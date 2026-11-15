@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>GATE CS · Practice Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="GATE CS Practice Lab home"><span class="brand-mark">G</span><span>GATE <b>CS</b><small>Practice Lab</small></span></a>
+    <div class="top-meta"><span class="live-dot"></span> YOUR PERSONAL QUESTION BANK <span class="edition">2027 · CS</span></div>
+  </header>
+  <main id="app" class="shell">
+    <section id="home-view">
+      <div class="hero">
+        <div class="hero-copy"><p class="eyebrow">GATE CS · QUESTION PRACTICE</p><h1>Get good at the<br><em>thinking part.</em></h1><p class="intro">A focused practice room for GATE-style problems. Choose a subject, pick a topic, then check your reasoning question by question.</p><button class="primary" id="start-btn">Choose a subject <span>↗</span></button></div>
+        <div class="hero-card"><div class="card-orbit orbit-a"></div><div class="card-orbit orbit-b"></div><span class="card-kicker">QUESTION BANK</span><strong id="hero-count">1600</strong><span class="card-caption">GATE-style problems<br>100 in every topic</span><div class="card-rule"></div><div class="mini-stats"><span><b>MCQ</b><small>choose one</small></span><span><b>MSQ</b><small>choose all</small></span><span><b>NAT</b><small>enter value</small></span></div><span class="spark">✳</span></div>
+      </div>
+      <div id="subject-selection">
+        <div class="section-head"><div><p class="eyebrow">CHOOSE YOUR FOCUS</p><h2>Subjects <span class="muted">/ 02</span></h2></div><span class="small-note">Your progress is saved on this device</span></div>
+        <div id="subject-grid" class="subject-grid"></div>
+      </div>
+      <section id="topic-selection" class="hidden">
+        <button class="back-link" id="subjects-back">← <span>All subjects</span></button>
+        <div class="section-head"><div><p class="eyebrow" id="subject-kicker"></p><h2 id="subject-heading">Topics</h2></div><span class="small-note">100 questions per topic · progress saved here</span></div>
+        <div id="topic-grid" class="topic-grid"></div>
+      </section>
+    </section>
+
+    <section id="practice-view" class="hidden">
+      <button class="back-link" id="back-btn">← <span>All topics</span></button>
+      <div class="practice-heading"><div><p class="eyebrow" id="topic-kicker"></p><h1 id="topic-title"></h1><p id="topic-desc" class="intro"></p></div><div class="score-card"><small>TOPIC PROGRESS</small><strong id="topic-score">0 / 0</strong><div class="progress-track"><i id="topic-progress"></i></div></div></div>
+      <div class="practice-layout">
+        <aside class="question-nav"><div class="nav-title"><span>QUESTIONS</span><span id="nav-count"></span></div><div id="question-list" class="question-list"></div><div class="legend"><span><i class="legend-current"></i> Current</span><span><i class="legend-done"></i> Checked</span></div></aside>
+        <article class="question-panel" id="question-panel"></article>
+      </div>
+    </section>
+  </main>
+  <footer><span>GATE CS PRACTICE LAB</span><span>Practice deliberately. Review honestly.</span><span>Static · works offline</span></footer>
+  <script src="questions.js"></script>
+  <script src="algorithm-questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
