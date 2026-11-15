@@ -1,0 +1,1429 @@
+{
+  "topicIndex": 5,
+  "questions": [
+    {
+      "id": "alg-greedy-001",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "For unweighted activity selection, which activity should a greedy algorithm choose first among those compatible with the current schedule?",
+      "options": [
+        "The activity with the earliest finishing time",
+        "The activity with the earliest start time",
+        "The activity with the longest duration",
+        "The activity with the highest identifier"
+      ],
+      "answer": [
+        "The activity with the earliest finishing time"
+      ],
+      "explanation": "Choosing the earliest finish leaves the largest remaining time interval for future compatible activities. This exchange choice is optimal for the unweighted problem."
+    },
+    {
+      "id": "alg-greedy-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Activities have intervals [1,3], [2,5], [4,6], [6,8], and [7,9]. Using the earliest-finish-time rule and allowing an activity to start when the previous one finishes, how many activities are selected?",
+      "answer": "3",
+      "explanation": "Choose [1,3], then [4,6], then [6,8]. The intervals [2,5] and [7,9] conflict with a selected activity, so the maximum compatible set has size three."
+    },
+    {
+      "id": "alg-greedy-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the earliest-finish-time activity-selection algorithm are correct?",
+      "options": [
+        "Sorting by finish time takes O(n log n)",
+        "A scan after sorting takes O(n)",
+        "The greedy choice is optimal for maximizing the number of unweighted activities",
+        "Choosing the longest activity first is always optimal"
+      ],
+      "answer": [
+        "Sorting by finish time takes O(n log n)",
+        "A scan after sorting takes O(n)",
+        "The greedy choice is optimal for maximizing the number of unweighted activities"
+      ],
+      "explanation": "The algorithm sorts activities by finish time and takes each compatible one. The exchange argument proves optimality for count maximization; longest duration is not a safe rule."
+    },
+    {
+      "id": "alg-greedy-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Activities are A=[0,10], B=[0,5], C=[5,10]. Which greedy choice maximizes the number of compatible activities?",
+      "options": [
+        "Choose A, yielding one activity",
+        "Choose B then C, yielding two",
+        "Choose C then A, yielding two",
+        "All three are compatible"
+      ],
+      "answer": [
+        "Choose B then C, yielding two"
+      ],
+      "explanation": "B finishes at time 5 and C starts at 5, so they are compatible under the stated endpoint convention. Choosing A prevents selecting either of them."
+    },
+    {
+      "id": "alg-greedy-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A schedule contains activities finishing at times 4, 7, 9, and 12. The selected activity ends at time 7. How many listed activities remain compatible if their start times are 7, 8, 9, and 10 respectively?",
+      "answer": "4",
+      "explanation": "Each listed start time is at least 7, so all four activities are compatible with the previously selected activity under the convention that touching endpoints do not overlap."
+    },
+    {
+      "id": "alg-greedy-006",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why does sorting intervals by earliest finish time solve unweighted activity selection but not weighted activity selection in general?",
+      "options": [
+        "The unweighted objective counts activities equally",
+        "A long high-value activity may outweigh several short activities in the weighted case",
+        "Weighted activity selection is solved by the same rule without modification",
+        "The weighted problem may require dynamic programming over compatible predecessors"
+      ],
+      "answer": [
+        "The unweighted objective counts activities equally",
+        "A long high-value activity may outweigh several short activities in the weighted case",
+        "The weighted problem may require dynamic programming over compatible predecessors"
+      ],
+      "explanation": "Earliest finish maximizes the number of activities, not their total weights. Weighted intervals can make an early-finishing low-value activity inferior; dynamic programming compares taking an interval with skipping it."
+    },
+    {
+      "id": "alg-greedy-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Fractional knapsack has capacity 50. Items have (value, weight) pairs (60,10), (100,20), and (120,30). What maximum value does the greedy value/weight rule obtain?",
+      "options": [
+        "220",
+        "240",
+        "260",
+        "280"
+      ],
+      "answer": [
+        "240"
+      ],
+      "explanation": "The value densities are 6,5,4. Take the first two items for value 160 and weight 30, then 20/30 of the third for value 80; total value is 240."
+    },
+    {
+      "id": "alg-greedy-008",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A fractional-knapsack item has value 84 and weight 12. What value density does it contribute?",
+      "answer": "7",
+      "explanation": "The value-to-weight ratio is 84/12=7 value units per weight unit."
+    },
+    {
+      "id": "alg-greedy-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why is sorting by value/weight ratio optimal for fractional knapsack but not for 0/1 knapsack?",
+      "options": [
+        "Fractional items permit taking the remaining capacity proportionally",
+        "The 0/1 problem has no weights",
+        "The ratio is undefined for fractional items",
+        "0/1 items can always be divided into equal parts"
+      ],
+      "answer": [
+        "Fractional items permit taking the remaining capacity proportionally"
+      ],
+      "explanation": "For fractional items, exchanging a lower-density portion for a higher-density one improves value until capacity is filled. The indivisibility in 0/1 knapsack prevents that exchange argument from guaranteeing an integral solution."
+    },
+    {
+      "id": "alg-greedy-010",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the greedy solution to fractional knapsack are correct?",
+      "options": [
+        "Items are considered in nonincreasing value density",
+        "At most one selected item needs to be fractional",
+        "The algorithm may leave capacity unused even though a positive-value item remains",
+        "The method is optimal when item values and weights are positive"
+      ],
+      "answer": [
+        "Items are considered in nonincreasing value density",
+        "At most one selected item needs to be fractional",
+        "The method is optimal when item values and weights are positive"
+      ],
+      "explanation": "The algorithm fills items in density order. It may take a fraction of the boundary item, after which capacity is full; positive-value items are not skipped while space remains."
+    },
+    {
+      "id": "alg-greedy-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For 0/1 knapsack with capacity 10, items (value,weight) are A=(12,6), B=(10,5), C=(10,5). Which set has maximum value?",
+      "options": [
+        "A only, value 12",
+        "B and C, value 20",
+        "A and B, value 22",
+        "A, B, and C, value 32"
+      ],
+      "answer": [
+        "B and C, value 20"
+      ],
+      "explanation": "A weighs 6, so it cannot be paired with either weight-5 item. B and C together exactly fill capacity and yield value 20, exceeding A's value 12."
+    },
+    {
+      "id": "alg-greedy-012",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A fractional knapsack has 18 units of capacity remaining. The next item has weight 24 and value 72. How much value is obtained by taking the maximum feasible fraction?",
+      "answer": "54",
+      "explanation": "The item density is 72/24=3. Taking 18/24=3/4 of it yields value 3×18=54."
+    },
+    {
+      "id": "alg-greedy-013",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties support a greedy-choice proof?",
+      "options": [
+        "An optimal solution can be transformed to include the greedy choice without worsening it",
+        "The remaining subproblem has the same structure",
+        "A locally best choice is assumed optimal without proof",
+        "An exchange argument can compare a greedy solution with an optimum"
+      ],
+      "answer": [
+        "An optimal solution can be transformed to include the greedy choice without worsening it",
+        "The remaining subproblem has the same structure",
+        "An exchange argument can compare a greedy solution with an optimum"
+      ],
+      "explanation": "Greedy correctness requires a proof that a safe local choice belongs to some optimum, then that the residual problem is solvable optimally. An unproved local intuition is insufficient."
+    },
+    {
+      "id": "alg-greedy-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A greedy algorithm repeatedly chooses the locally cheapest edge to build a spanning tree, while avoiding cycles. Which algorithm is described?",
+      "options": [
+        "Kruskal's algorithm",
+        "Dijkstra's algorithm",
+        "Bellman-Ford algorithm",
+        "Floyd-Warshall algorithm"
+      ],
+      "answer": [
+        "Kruskal's algorithm"
+      ],
+      "explanation": "Kruskal processes edges in nondecreasing weight and adds an edge exactly when it connects different components, producing a minimum spanning tree."
+    },
+    {
+      "id": "alg-greedy-015",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Kruskal's algorithm processes edges of weights 1, 2, 3, 4, 5 in order. The first edge is accepted, the second accepted, the third rejected because it closes a cycle, and the fourth accepted. What is the total accepted weight so far?",
+      "answer": "7",
+      "explanation": "The accepted edges have weights 1, 2, and 4. Their sum is 7; the weight-3 edge is rejected because it would create a cycle."
+    },
+    {
+      "id": "alg-greedy-016",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which facts about Kruskal's minimum-spanning-tree algorithm are correct?",
+      "options": [
+        "Edges are considered in nondecreasing weight order",
+        "A disjoint-set structure can test whether endpoints are already connected",
+        "It may reject an edge that would create a cycle",
+        "It requires the graph to be directed"
+      ],
+      "answer": [
+        "Edges are considered in nondecreasing weight order",
+        "A disjoint-set structure can test whether endpoints are already connected",
+        "It may reject an edge that would create a cycle"
+      ],
+      "explanation": "Kruskal is a greedy algorithm for undirected graphs. Sorting edges and maintaining connected components with disjoint sets allows it to avoid cycles."
+    },
+    {
+      "id": "alg-greedy-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a connected weighted undirected graph, all edge weights are distinct. What can be concluded about its minimum spanning tree?",
+      "options": [
+        "It is unique",
+        "It is always a path",
+        "It has the maximum total weight",
+        "It contains every edge"
+      ],
+      "answer": [
+        "It is unique"
+      ],
+      "explanation": "Distinct edge weights eliminate ties in the cut/cycle choices that could lead to alternative optimal trees. A connected graph therefore has a unique MST."
+    },
+    {
+      "id": "alg-greedy-018",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A connected graph has 9 vertices. How many edges does any spanning tree contain?",
+      "answer": "8",
+      "explanation": "Every tree on V vertices has V−1 edges. For V=9, a spanning tree contains 8 edges."
+    },
+    {
+      "id": "alg-greedy-019",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements describe the cut property for a minimum spanning tree?",
+      "options": [
+        "A minimum-weight edge crossing a cut is safe for some MST",
+        "If the minimum crossing edge is unique, it belongs to every MST",
+        "The cut must contain exactly one vertex",
+        "An edge entirely within one side crosses the cut"
+      ],
+      "answer": [
+        "A minimum-weight edge crossing a cut is safe for some MST",
+        "If the minimum crossing edge is unique, it belongs to every MST"
+      ],
+      "explanation": "The cut property states that a lightest edge crossing any cut can be included in an MST; uniqueness makes it mandatory. A cut partitions the vertices into two sets, and only edges between them cross it."
+    },
+    {
+      "id": "alg-greedy-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why does Kruskal reject an edge whose endpoints are already in the same disjoint-set component?",
+      "options": [
+        "Adding it would create a cycle",
+        "Its weight must be negative",
+        "It would disconnect the graph",
+        "The edge must be directed"
+      ],
+      "answer": [
+        "Adding it would create a cycle"
+      ],
+      "explanation": "The endpoints are already connected by selected edges. Adding another edge between them closes a cycle and cannot be necessary for a spanning tree."
+    },
+    {
+      "id": "alg-greedy-021",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A tree has 12 vertices. What is the number of edges accepted by Kruskal before a spanning tree is complete?",
+      "answer": "11",
+      "explanation": "A spanning tree on 12 vertices has 12−1=11 edges. Kruskal stops once that many edges connect all vertices."
+    },
+    {
+      "id": "alg-greedy-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Prim's algorithm grows a tree from a start vertex. Which edge does it choose at each step?",
+      "options": [
+        "A minimum-weight edge with exactly one endpoint in the current tree",
+        "The globally heaviest edge not yet used",
+        "Any edge between two vertices outside the tree",
+        "The edge that creates the largest cycle"
+      ],
+      "answer": [
+        "A minimum-weight edge with exactly one endpoint in the current tree"
+      ],
+      "explanation": "Prim maintains a cut between the current tree and remaining vertices, then adds the lightest crossing edge. This preserves the growing-tree invariant."
+    },
+    {
+      "id": "alg-greedy-023",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements comparing Prim's and Kruskal's algorithms are correct?",
+      "options": [
+        "Both produce a minimum spanning tree on a connected undirected weighted graph",
+        "Prim grows one connected tree",
+        "Kruskal may maintain several forest components before completion",
+        "Neither can handle negative edge weights for an MST"
+      ],
+      "answer": [
+        "Both produce a minimum spanning tree on a connected undirected weighted graph",
+        "Prim grows one connected tree",
+        "Kruskal may maintain several forest components before completion"
+      ],
+      "explanation": "Both algorithms rely on MST cut/cycle properties and work with negative weights. Prim grows a single tree; Kruskal builds a forest that merges components."
+    },
+    {
+      "id": "alg-greedy-024",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A weighted connected graph has vertices A,B,C,D and edges AB=1, AC=4, BC=2, BD=5, CD=3. What is the total weight of its MST?",
+      "answer": "6",
+      "explanation": "Kruskal selects AB=1 and BC=2. Edge CD=3 connects D without a cycle, yielding a spanning tree of weight 1+2+3=6."
+    },
+    {
+      "id": "alg-greedy-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph has two disjoint components. What does Kruskal produce after processing all edges?",
+      "options": [
+        "A minimum spanning forest with one tree per component",
+        "A spanning tree connecting the components without an edge",
+        "No selected edges",
+        "A directed arborescence"
+      ],
+      "answer": [
+        "A minimum spanning forest with one tree per component"
+      ],
+      "explanation": "No edge connects separate graph components, so a spanning tree of the entire graph is impossible. Kruskal returns a minimum spanning tree within each component, forming a forest."
+    },
+    {
+      "id": "alg-greedy-026",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about minimum spanning trees are correct?",
+      "options": [
+        "An MST minimizes total edge weight among all spanning trees",
+        "Every MST has exactly V−1 edges for a connected graph",
+        "An MST is necessarily a shortest-path tree from every root",
+        "Negative edge weights are allowed"
+      ],
+      "answer": [
+        "An MST minimizes total edge weight among all spanning trees",
+        "Every MST has exactly V−1 edges for a connected graph",
+        "Negative edge weights are allowed"
+      ],
+      "explanation": "An MST optimizes total weight, not paths from a root. It has V−1 edges when the graph is connected, and negative edges do not invalidate the cut-based algorithms."
+    },
+    {
+      "id": "alg-greedy-027",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For the graph with edges AB=2, AC=3, BC=1, and CD=4, find the total weight of its minimum spanning tree.",
+      "answer": "7",
+      "explanation": "Choose BC=1, AB=2, and CD=4. These three edges connect all four vertices without a cycle, with total weight 7."
+    },
+    {
+      "id": "alg-greedy-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Dijkstra's greedy shortest-path algorithm is correct under which edge-weight condition?",
+      "options": [
+        "All edge weights are nonnegative",
+        "All edge weights are strictly negative",
+        "The graph must be a tree",
+        "Every edge must have identical weight"
+      ],
+      "answer": [
+        "All edge weights are nonnegative"
+      ],
+      "explanation": "With nonnegative weights, extending a path cannot make it shorter, so the smallest tentative distance is safe to finalize. Negative edges can invalidate this greedy choice."
+    },
+    {
+      "id": "alg-greedy-029",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Dijkstra's algorithm are correct?",
+      "options": [
+        "It repeatedly finalizes the vertex with minimum tentative distance",
+        "It relaxes outgoing edges from a finalized vertex",
+        "It works correctly with negative edge weights in general",
+        "A binary heap implementation can achieve O((V+E)log V) time"
+      ],
+      "answer": [
+        "It repeatedly finalizes the vertex with minimum tentative distance",
+        "It relaxes outgoing edges from a finalized vertex",
+        "A binary heap implementation can achieve O((V+E)log V) time"
+      ],
+      "explanation": "Dijkstra's invariant finalizes the closest unsettled vertex and relaxes adjacent edges. Negative edges can later improve a finalized distance; a binary heap gives the stated common bound."
+    },
+    {
+      "id": "alg-greedy-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can Dijkstra's algorithm fail with negative edge weights?",
+      "options": [
+        "A vertex finalized early may later receive a shorter path through a negative edge",
+        "Negative edges make the graph disconnected",
+        "The priority queue cannot store negative numbers",
+        "The algorithm requires every weight to be an integer"
+      ],
+      "answer": [
+        "A vertex finalized early may later receive a shorter path through a negative edge"
+      ],
+      "explanation": "The greedy proof assumes path extensions cannot reduce cost. A negative edge can create a shorter route after a vertex was declared final, violating that invariant."
+    },
+    {
+      "id": "alg-greedy-031",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a graph with nonnegative edges, Dijkstra has tentative distances d(A)=4, d(B)=7, and d(C)=5 among unsettled vertices. Which distance value is finalized next?",
+      "answer": "4",
+      "explanation": "Dijkstra selects the unsettled vertex with the smallest tentative distance. The minimum of 4, 7, and 5 is 4."
+    },
+    {
+      "id": "alg-greedy-032",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a greedy algorithm's proof are important?",
+      "options": [
+        "The greedy choice must be shown safe",
+        "The remaining problem after the choice should preserve optimal substructure",
+        "A counterexample can refute a proposed greedy rule",
+        "Testing many examples proves correctness for all inputs"
+      ],
+      "answer": [
+        "The greedy choice must be shown safe",
+        "The remaining problem after the choice should preserve optimal substructure",
+        "A counterexample can refute a proposed greedy rule"
+      ],
+      "explanation": "Correctness needs a general argument, often an exchange proof plus optimal substructure. A single counterexample disproves a rule, while finitely many successful tests cannot establish universal correctness."
+    },
+    {
+      "id": "alg-greedy-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A greedy coin system uses denominations {1,3,4}. For amount 6, what does the largest-coin-first rule return, and what is the optimum number of coins?",
+      "options": [
+        "Greedy 3 coins; optimum 2 coins",
+        "Greedy 2 coins; optimum 2 coins",
+        "Greedy 4 coins; optimum 3 coins",
+        "Greedy 3 coins; optimum 3 coins"
+      ],
+      "answer": [
+        "Greedy 3 coins; optimum 2 coins"
+      ],
+      "explanation": "Greedy takes 4, then 1 and 1, for three coins. The optimal solution is 3+3, using two; thus the largest-denomination rule is not universally optimal."
+    },
+    {
+      "id": "alg-greedy-034",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For denominations {1,5,10,25}, how many coins does the usual largest-coin-first method use to make 41?",
+      "answer": "4",
+      "explanation": "Take 25, then 10, then 5, then 1. This uses four coins total."
+    },
+    {
+      "id": "alg-greedy-035",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about greedy coin change are correct?",
+      "options": [
+        "Largest-denomination-first is optimal for every denomination system",
+        "It is optimal for some canonical coin systems",
+        "A counterexample system can show the rule is not universally correct",
+        "Dynamic programming can solve the general minimum-coin problem"
+      ],
+      "answer": [
+        "It is optimal for some canonical coin systems",
+        "A counterexample system can show the rule is not universally correct",
+        "Dynamic programming can solve the general minimum-coin problem"
+      ],
+      "explanation": "Greedy works for canonical systems such as standard currency in many settings, but not all sets of denominations. Dynamic programming provides a general solution for positive integer denominations."
+    },
+    {
+      "id": "alg-greedy-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In Huffman coding, which two symbols are combined at each construction step?",
+      "options": [
+        "The two least frequent symbols or subtrees",
+        "The two most frequent symbols",
+        "Any two symbols with equal frequency",
+        "The first two symbols alphabetically"
+      ],
+      "answer": [
+        "The two least frequent symbols or subtrees"
+      ],
+      "explanation": "Huffman repeatedly merges the two lowest-frequency nodes into a parent whose weight is their sum. Repeating this greedy operation builds an optimal prefix-code tree."
+    },
+    {
+      "id": "alg-greedy-037",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Huffman coding has symbol frequencies 5, 7, 10, and 15. What is the total weighted path length of the resulting code tree?",
+      "answer": "71",
+      "explanation": "Merge 5+7=12, then 10+12=22, then 15+22=37. The total weighted path length equals the sum of merge weights: 12+22+37=71."
+    },
+    {
+      "id": "alg-greedy-038",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties hold for a Huffman code?",
+      "options": [
+        "It is prefix-free",
+        "More frequent symbols receive codewords no longer than less frequent ones in an optimal construction",
+        "It minimizes weighted external path length among binary prefix codes",
+        "Every symbol must receive the same codeword length"
+      ],
+      "answer": [
+        "It is prefix-free",
+        "More frequent symbols receive codewords no longer than less frequent ones in an optimal construction",
+        "It minimizes weighted external path length among binary prefix codes"
+      ],
+      "explanation": "Huffman produces a binary prefix tree with minimum frequency-weighted code length. Codeword lengths vary with frequency; high-frequency symbols can be placed closer to the root."
+    },
+    {
+      "id": "alg-greedy-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A Huffman tree has leaf frequencies 2, 3, and 7. The first merge combines 2 and 3. What is the total weighted path length after attaching the resulting weight-5 node with the weight-7 node?",
+      "options": [
+        "17",
+        "22",
+        "24",
+        "29"
+      ],
+      "answer": [
+        "17"
+      ],
+      "explanation": "The two merges have weights 5 and 12. Summing these internal-node weights gives total weighted path length 17."
+    },
+    {
+      "id": "alg-greedy-040",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An optimal merge pattern combines files of sizes 2, 3, 7, and 8. What is the minimum total merge cost?",
+      "answer": "37",
+      "explanation": "Merge 2+3=5, then 5+7=12, then 8+12=20. The sum of merge costs is 5+12+20=37."
+    },
+    {
+      "id": "alg-greedy-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The optimal merge pattern for files uses the same greedy rule as Huffman coding. Which pair should be merged first?",
+      "options": [
+        "The two smallest files",
+        "The two largest files",
+        "The smallest and largest files",
+        "Any two files"
+      ],
+      "answer": [
+        "The two smallest files"
+      ],
+      "explanation": "Merging small files early keeps their data from being repeatedly included in large later merge costs. A min-priority queue efficiently selects the two smallest sizes."
+    },
+    {
+      "id": "alg-greedy-042",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about greedy algorithms and matroids are correct?",
+      "options": [
+        "For a matroid, sorting elements by weight and greedily adding independent elements yields an optimal basis",
+        "The exchange property supports the greedy-choice proof",
+        "Every optimization problem forms a matroid",
+        "Matroids provide a framework for identifying when greedy selection is optimal"
+      ],
+      "answer": [
+        "For a matroid, sorting elements by weight and greedily adding independent elements yields an optimal basis",
+        "The exchange property supports the greedy-choice proof",
+        "Matroids provide a framework for identifying when greedy selection is optimal"
+      ],
+      "explanation": "Matroid independence and exchange properties guarantee that a weight-ordered greedy algorithm finds an optimal basis. Not every optimization problem satisfies the matroid axioms."
+    },
+    {
+      "id": "alg-greedy-043",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Job sequencing with deadlines assumes each job takes one unit of time and yields profit only if completed by its deadline. Which greedy rule is standard?",
+      "options": [
+        "Process jobs by decreasing profit, placing each in the latest available slot before its deadline",
+        "Process jobs by increasing deadline and ignore profit",
+        "Place every job in the earliest slot regardless of deadline",
+        "Choose the longest job first"
+      ],
+      "answer": [
+        "Process jobs by decreasing profit, placing each in the latest available slot before its deadline"
+      ],
+      "explanation": "The algorithm considers higher-profit jobs first and assigns each to the latest free slot that meets its deadline, preserving earlier slots for jobs with tighter deadlines."
+    },
+    {
+      "id": "alg-greedy-044",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Three unit-time jobs have (deadline,profit): A=(2,50), B=(1,40), C=(2,30). Using profit-descending job sequencing, what maximum total profit is scheduled?",
+      "answer": "90",
+      "explanation": "Schedule A in slot 2 and B in slot 1. C cannot be added because both slots through its deadline are occupied; the total profit is 50+40=90."
+    },
+    {
+      "id": "alg-greedy-045",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which assumptions are used by the standard job-sequencing greedy algorithm?",
+      "options": [
+        "Each job takes one unit of time",
+        "Each job has a deadline and profit",
+        "A job earns its profit only if completed by its deadline",
+        "Jobs may have arbitrary processing times without changing the method"
+      ],
+      "answer": [
+        "Each job takes one unit of time",
+        "Each job has a deadline and profit",
+        "A job earns its profit only if completed by its deadline"
+      ],
+      "explanation": "The classic greedy proof assumes unit-time jobs with deadlines and all-or-nothing profit. Arbitrary processing times alter feasibility and require different scheduling methods."
+    },
+    {
+      "id": "alg-greedy-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For interval scheduling with weights, intervals A=[0,2] weight 3, B=[2,4] weight 3, and C=[0,4] weight 7 are given. Which schedule is optimal?",
+      "options": [
+        "Choose A and B, total weight 6",
+        "Choose C, total weight 7",
+        "Choose all three, total weight 13",
+        "Choose A only, total weight 3"
+      ],
+      "answer": [
+        "Choose C, total weight 7"
+      ],
+      "explanation": "A and B are compatible and total 6, while C conflicts with both and has weight 7. The maximum-weight schedule therefore selects C, showing count-based earliest finish is not enough."
+    },
+    {
+      "id": "alg-greedy-047",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A graph has edge weights 1, 2, 2, 4 and vertices connected so that Kruskal selects the first three without cycles. What is the total weight of the resulting spanning tree?",
+      "answer": "5",
+      "explanation": "The accepted weights are 1, 2, and 2. Their sum is 5; the fourth edge is unnecessary once three vertices are connected."
+    },
+    {
+      "id": "alg-greedy-048",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements use the cycle property of minimum spanning trees?",
+      "options": [
+        "A unique maximum-weight edge on a cycle belongs to no MST",
+        "A maximum-weight edge on a cycle can be omitted from some MST",
+        "Every minimum-weight edge on a cycle must be excluded",
+        "The cycle property can justify rejecting an edge"
+      ],
+      "answer": [
+        "A unique maximum-weight edge on a cycle belongs to no MST",
+        "A maximum-weight edge on a cycle can be omitted from some MST",
+        "The cycle property can justify rejecting an edge"
+      ],
+      "explanation": "If an edge is the unique heaviest on a cycle, replacing it with a lighter cycle edge reduces tree cost. A non-unique maximum may be excluded from some MST, but minimum cycle edges need not be excluded."
+    },
+    {
+      "id": "alg-greedy-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A connected graph has a cut with a unique lightest crossing edge e. What must be true of e?",
+      "options": [
+        "It belongs to every minimum spanning tree",
+        "It belongs to no minimum spanning tree",
+        "It is the globally heaviest edge",
+        "It is a self-loop"
+      ],
+      "answer": [
+        "It belongs to every minimum spanning tree"
+      ],
+      "explanation": "By the cut property, the unique minimum-weight edge crossing a cut is safe and must be included in every MST."
+    },
+    {
+      "id": "alg-greedy-050",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A minimum spanning tree algorithm processes 10 vertices in a connected graph. How many successful edge additions are required?",
+      "answer": "9",
+      "explanation": "A spanning tree on 10 vertices has V−1=9 edges. Kruskal or Prim adds exactly that many edges."
+    },
+    {
+      "id": "alg-greedy-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A greedy algorithm for selecting a maximum set of nonoverlapping intervals sorts by start time. Which counterexample pattern can make this rule fail?",
+      "options": [
+        "One early-starting interval is very long and blocks several short compatible intervals",
+        "All intervals are pairwise disjoint",
+        "There is only one interval",
+        "All intervals have identical start and finish times"
+      ],
+      "answer": [
+        "One early-starting interval is very long and blocks several short compatible intervals"
+      ],
+      "explanation": "An early start does not imply an early finish. Choosing a long interval can prevent selecting multiple shorter activities, whereas earliest-finish ordering preserves more remaining time."
+    },
+    {
+      "id": "alg-greedy-052",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which greedy choices are optimal for their stated classical problems?",
+      "options": [
+        "Earliest finish time for maximum-cardinality unweighted activity selection",
+        "Maximum value/weight ratio for fractional knapsack",
+        "Minimum edge crossing the current cut for Prim's MST growth",
+        "Largest denomination for every arbitrary coin system"
+      ],
+      "answer": [
+        "Earliest finish time for maximum-cardinality unweighted activity selection",
+        "Maximum value/weight ratio for fractional knapsack",
+        "Minimum edge crossing the current cut for Prim's MST growth"
+      ],
+      "explanation": "These rules have proofs under their stated assumptions. Greedy coin choice is not optimal for all denomination systems, as {1,3,4} for amount 6 demonstrates."
+    },
+    {
+      "id": "alg-greedy-053",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Fractional knapsack has capacity 10 and items (value,weight) (30,5), (40,10), and (20,4). What value is obtained by the value-density greedy rule?",
+      "answer": "54",
+      "explanation": "The densities are 6, 4, and 5. Take the first item for value 30 and weight 5, then take the third item for value 20 and weight 4. The remaining capacity is 1, filled with one tenth of the second item for value 4; total value is 54."
+    },
+    {
+      "id": "alg-greedy-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A fractional knapsack has 5 units of capacity left. The next item has value 50 and weight 10. What additional value is obtained by taking the remaining capacity fraction?",
+      "options": [
+        "5",
+        "10",
+        "25",
+        "50"
+      ],
+      "answer": [
+        "25"
+      ],
+      "explanation": "The item's density is 50/10=5. Taking half the item uses five units and yields value 25."
+    },
+    {
+      "id": "alg-greedy-055",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties make fractional knapsack amenable to the density-greedy rule?",
+      "options": [
+        "Items can be divided fractionally",
+        "Value is additive across item fractions",
+        "Capacity is a single additive constraint",
+        "Each item must be selected wholly or not at all"
+      ],
+      "answer": [
+        "Items can be divided fractionally",
+        "Value is additive across item fractions",
+        "Capacity is a single additive constraint"
+      ],
+      "explanation": "Divisibility lets the algorithm exchange lower-density weight for higher-density weight continuously. Additive values and one capacity constraint make the ratio ordering optimal; indivisibility changes the problem."
+    },
+    {
+      "id": "alg-greedy-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Huffman coding merges frequencies 4 and 6, then merges their sum with frequency 9. What is the total weighted path length contribution of these two merges?",
+      "answer": "29",
+      "explanation": "The first merge contributes 4+6=10; the next contributes 10+9=19. Summing merge weights gives 29 total weighted path length for this three-leaf tree."
+    },
+    {
+      "id": "alg-greedy-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For symbols with frequencies a=5, b=7, c=10, d=15, the first Huffman merge combines a and b. What is the next smallest node weight?",
+      "options": [
+        "10",
+        "12",
+        "15",
+        "22"
+      ],
+      "answer": [
+        "10"
+      ],
+      "explanation": "The merged node has weight 5+7=12. The remaining weights are 10, 12, and 15, so the next smallest is 10."
+    },
+    {
+      "id": "alg-greedy-058",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about prefix codes and Huffman trees are correct?",
+      "options": [
+        "No codeword is a prefix of another in a prefix code",
+        "A binary tree's leaves can represent symbols",
+        "Huffman repeatedly merges two minimum weights",
+        "A prefix code must assign every symbol the same bit length"
+      ],
+      "answer": [
+        "No codeword is a prefix of another in a prefix code",
+        "A binary tree's leaves can represent symbols",
+        "Huffman repeatedly merges two minimum weights"
+      ],
+      "explanation": "Prefix-free codewords correspond to leaves of a binary tree, with no symbol leaf above another. Huffman's greedy construction creates variable-length codewords based on frequencies."
+    },
+    {
+      "id": "alg-greedy-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A set of frequencies has two equal minimum values during Huffman construction. What is true about choosing either one first?",
+      "options": [
+        "Either tie choice can lead to an optimal prefix code, though codewords may differ",
+        "Only the alphabetically first symbol is valid",
+        "The algorithm must stop",
+        "The resulting code must have a unique bit string assignment"
+      ],
+      "answer": [
+        "Either tie choice can lead to an optimal prefix code, though codewords may differ"
+      ],
+      "explanation": "Ties may yield different tree shapes or code assignments, but each minimum-weight merge is safe. The weighted path length remains optimal."
+    },
+    {
+      "id": "alg-greedy-060",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the cut property for a minimum spanning tree are correct?",
+      "answer": [
+        "A unique lightest edge crossing a cut belongs to every MST",
+        "A lightest edge crossing any cut is safe to add to some MST"
+      ],
+      "explanation": "The cut property justifies choosing a minimum-weight crossing edge; uniqueness makes it compulsory for every MST. It does not require equal-sized sides or globally distinct weights.",
+      "options": [
+        "A unique lightest edge crossing a cut belongs to every MST",
+        "A lightest edge crossing any cut is safe to add to some MST",
+        "The property applies only when all edge weights are distinct",
+        "The cut must separate the graph into components of equal size"
+      ]
+    },
+    {
+      "id": "alg-greedy-061",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the optimal merge pattern are correct?",
+      "options": [
+        "The two smallest files are merged first",
+        "The sum of all merge costs equals the weighted path length of the merge tree",
+        "A min-heap can maintain the available file sizes",
+        "Merging the two largest files first is always optimal"
+      ],
+      "answer": [
+        "The two smallest files are merged first",
+        "The sum of all merge costs equals the weighted path length of the merge tree",
+        "A min-heap can maintain the available file sizes"
+      ],
+      "explanation": "Repeatedly combining the two smallest sizes minimizes total merge cost, and a min-heap supports these selections. The resulting internal sums equal each original file size multiplied by its depth."
+    },
+    {
+      "id": "alg-greedy-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph has edge weights 1, 2, 3, 4, 5. Kruskal accepts edges of weights 1, 2, and 4 and rejects 3 because it creates a cycle. Why can the process still form a spanning tree?",
+      "options": [
+        "The accepted edges already connect the endpoints of edge 3, while edge 4 may connect another component",
+        "A rejected edge is automatically added later",
+        "Kruskal requires all edges to be accepted",
+        "Weights do not affect the process"
+      ],
+      "answer": [
+        "The accepted edges already connect the endpoints of edge 3, while edge 4 may connect another component"
+      ],
+      "explanation": "Rejecting a cycle edge preserves acyclicity, not connectivity progress. A later edge can still join separate components; Kruskal completes when V−1 accepted edges connect the graph."
+    },
+    {
+      "id": "alg-greedy-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A connected graph has 7 vertices. If a minimum spanning tree's edge weights sum to 31 and six edges are present, what is the mean edge weight?",
+      "answer": "5.166666667",
+      "explanation": "A spanning tree has six edges. Their mean weight is 31/6≈5.166666667."
+    },
+    {
+      "id": "alg-greedy-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Prim's algorithm uses a binary heap and adjacency lists. What is a common time bound for a connected graph?",
+      "options": [
+        "O((V+E)log V)",
+        "O(V²E)",
+        "O(E²)",
+        "O(log V)"
+      ],
+      "answer": [
+        "O((V+E)log V)"
+      ],
+      "explanation": "Each vertex is extracted once and edge relaxations update heap priorities. With adjacency lists and a binary heap, the common bound is O((V+E)log V)."
+    },
+    {
+      "id": "alg-greedy-065",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish a minimum spanning tree from a shortest-path tree?",
+      "options": [
+        "An MST minimizes the sum of selected edge weights",
+        "A shortest-path tree preserves distances from a designated source",
+        "An MST necessarily gives shortest paths from every root",
+        "The two structures can differ on the same graph"
+      ],
+      "answer": [
+        "An MST minimizes the sum of selected edge weights",
+        "A shortest-path tree preserves distances from a designated source",
+        "The two structures can differ on the same graph"
+      ],
+      "explanation": "MST and shortest-path objectives are different. An MST minimizes global edge sum, while a shortest-path tree preserves source distances; one structure need not satisfy the other's objective."
+    },
+    {
+      "id": "alg-greedy-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A weighted graph has edges AB=2, AC=5, BC=1, BD=4, CD=3. What is the weight of a minimum spanning tree?",
+      "answer": "6",
+      "explanation": "Choose BC=1, AB=2, and CD=3. These connect all four vertices without a cycle and total 6."
+    },
+    {
+      "id": "alg-greedy-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A proposed greedy algorithm for an optimization problem always returns a feasible solution. What additional property is still needed to claim it is correct?",
+      "options": [
+        "A proof that its solution is optimal for every valid input",
+        "A fast implementation on one example",
+        "A sorted input",
+        "A larger test suite only"
+      ],
+      "answer": [
+        "A proof that its solution is optimal for every valid input"
+      ],
+      "explanation": "Feasibility establishes that constraints are met, not that the objective is maximized or minimized. A correctness proof must show optimality for all inputs in the problem domain."
+    },
+    {
+      "id": "alg-greedy-068",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are common proof techniques for greedy algorithms?",
+      "options": [
+        "Exchange argument",
+        "Stays-ahead argument",
+        "Cut-and-cycle properties for spanning trees",
+        "Assuming the first greedy output is optimal"
+      ],
+      "answer": [
+        "Exchange argument",
+        "Stays-ahead argument",
+        "Cut-and-cycle properties for spanning trees"
+      ],
+      "explanation": "Exchange and stays-ahead proofs formalize why greedy choices preserve an optimum. MST correctness uses cut and cycle properties; merely assuming optimality is not a proof."
+    },
+    {
+      "id": "alg-greedy-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A set of activities selected by earliest finish has compatible intervals [1,2], [2,4], [4,5], [5,8], and [8,9]. How many activities are selected?",
+      "answer": "5",
+      "explanation": "Each activity begins at the prior activity's finish, so all five are mutually compatible under the stated endpoint convention."
+    },
+    {
+      "id": "alg-greedy-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A weighted activity-selection instance has interval values and compatibility constraints. Which standard recurrence supports an optimal solution?",
+      "options": [
+        "OPT(j)=max(OPT(j−1), w_j+OPT(p(j)))",
+        "OPT(j)=min(OPT(j−1), w_j+OPT(p(j)))",
+        "OPT(j)=w_j×OPT(j−1)",
+        "OPT(j)=OPT(j+1)+1"
+      ],
+      "answer": [
+        "OPT(j)=max(OPT(j−1), w_j+OPT(p(j)))"
+      ],
+      "explanation": "For the j-th finish-sorted activity, either skip it or take its weight plus the best solution among compatible earlier activities up to p(j). The maximum of these choices is optimal."
+    },
+    {
+      "id": "alg-greedy-071",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which facts explain why earliest-start-time is not a correct universal greedy rule for maximum-cardinality activity selection?",
+      "options": [
+        "An early-starting activity may have a very late finish",
+        "That long interval can block many shorter compatible activities",
+        "Earliest-finish time leaves more room for subsequent activities",
+        "Activities cannot be sorted by start time"
+      ],
+      "answer": [
+        "An early-starting activity may have a very late finish",
+        "That long interval can block many shorter compatible activities",
+        "Earliest-finish time leaves more room for subsequent activities"
+      ],
+      "explanation": "Start time alone says nothing about how much remaining time an activity consumes. The earliest-finishing rule is safe because it minimizes the time occupied by the first selected activity."
+    },
+    {
+      "id": "alg-greedy-072",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "For activity selection, activities have intervals [1,4], [3,5], [0,6], [5,7], [3,9], [5,9], and [8,10]. What is the maximum number of mutually compatible activities?",
+      "answer": "3",
+      "explanation": "Selecting by earliest finish gives [1,4], then [5,7], then [8,10]. These three are compatible. No four can fit: after the earliest feasible choices, the remaining intervals leave insufficient time."
+    },
+    {
+      "id": "alg-greedy-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a fractional-knapsack tie, two items have equal value-to-weight ratios. What can be said about choosing either first?",
+      "options": [
+        "Either order yields the same value for any amount of capacity allocated between them",
+        "Only the heavier item is optimal",
+        "The lighter item must be rejected",
+        "The algorithm becomes incorrect"
+      ],
+      "answer": [
+        "Either order yields the same value for any amount of capacity allocated between them"
+      ],
+      "explanation": "Equal densities contribute the same value per unit weight. If only part of the tied group fits, selecting weight from either item gives the same total objective value, assuming divisibility."
+    },
+    {
+      "id": "alg-greedy-074",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about greedy methods for 0/1 knapsack are correct?",
+      "options": [
+        "Sorting by value/weight ratio is not always optimal",
+        "The problem has an optimal-substructure dynamic-programming solution",
+        "A ratio-based greedy choice may leave a poor combination of remaining weights",
+        "Fractional divisibility is the property that makes the density proof work"
+      ],
+      "answer": [
+        "Sorting by value/weight ratio is not always optimal",
+        "The problem has an optimal-substructure dynamic-programming solution",
+        "A ratio-based greedy choice may leave a poor combination of remaining weights",
+        "Fractional divisibility is the property that makes the density proof work"
+      ],
+      "explanation": "Indivisible items can make a high-density choice block a better combination. Dynamic programming handles the capacity state; the fractional greedy exchange depends on taking partial items."
+    },
+    {
+      "id": "alg-greedy-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A shortest-path problem has a negative edge but no negative cycle. Which algorithm can correctly solve single-source shortest paths in general?",
+      "options": [
+        "Bellman-Ford",
+        "Dijkstra",
+        "Prim",
+        "Kruskal"
+      ],
+      "answer": [
+        "Bellman-Ford"
+      ],
+      "explanation": "Bellman-Ford accommodates negative edge weights and can detect reachable negative cycles. Dijkstra's greedy finalization is not generally correct with negative edges."
+    },
+    {
+      "id": "alg-greedy-076",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a graph, Dijkstra has finalized distance d(u)=7 and an edge (u,v) has weight 4. What candidate distance is considered for v during relaxation?",
+      "answer": "11",
+      "explanation": "Relaxation proposes d(u)+w(u,v)=7+4=11 for vertex v, replacing its tentative distance only if this candidate is smaller."
+    },
+    {
+      "id": "alg-greedy-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions allow Dijkstra's algorithm to finalize vertices greedily?",
+      "options": [
+        "Edge weights are nonnegative",
+        "The vertex selected has minimum tentative distance",
+        "Relaxation updates neighbors of finalized vertices",
+        "Negative edges are harmless if there are no negative cycles"
+      ],
+      "answer": [
+        "Edge weights are nonnegative",
+        "The vertex selected has minimum tentative distance",
+        "Relaxation updates neighbors of finalized vertices"
+      ],
+      "explanation": "Nonnegative edges ensure no later path through an unsettled vertex can reduce the selected minimum. The absence of negative cycles alone does not make negative edges safe for Dijkstra."
+    },
+    {
+      "id": "alg-greedy-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A set of jobs has unit processing time and deadlines. Why is the latest feasible slot used when placing a selected high-profit job?",
+      "options": [
+        "It preserves earlier slots for jobs with tighter deadlines",
+        "It maximizes the job's processing time",
+        "It makes every later deadline infeasible",
+        "It avoids sorting jobs by profit"
+      ],
+      "answer": [
+        "It preserves earlier slots for jobs with tighter deadlines"
+      ],
+      "explanation": "Placing a job as late as possible before its deadline leaves earlier positions available for jobs that may have less scheduling flexibility."
+    },
+    {
+      "id": "alg-greedy-079",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Three unit-time jobs have profits 100, 80, and 60 with deadlines 1, 2, and 2 respectively. Using profit-descending scheduling, what total profit is obtained?",
+      "answer": "180",
+      "explanation": "Schedule the profit-100 job in slot 1 and the profit-80 job in slot 2. The third job cannot be added because both slots through its deadline are occupied, giving 180 total."
+    },
+    {
+      "id": "alg-greedy-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the greedy-choice property are correct?",
+      "options": [
+        "It asserts that some optimal solution begins with a greedy choice",
+        "It can be established by an exchange argument",
+        "It is equivalent to saying every local optimum is global",
+        "It must be combined with a correct solution to the residual problem"
+      ],
+      "answer": [
+        "It asserts that some optimal solution begins with a greedy choice",
+        "It can be established by an exchange argument",
+        "It must be combined with a correct solution to the residual problem"
+      ],
+      "explanation": "A safe greedy choice can be exchanged into an optimum, after which the remainder must be solved optimally. The property does not imply that arbitrary local optima are global optima."
+    },
+    {
+      "id": "alg-greedy-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a connected graph with distinct edge weights, Kruskal processes an edge e that is the unique minimum across a cut. What follows?",
+      "options": [
+        "e is included in the unique MST",
+        "e is rejected because it is a cut edge",
+        "e is included only if it is a self-loop",
+        "The MST is not defined"
+      ],
+      "answer": [
+        "e is included in the unique MST"
+      ],
+      "explanation": "The cut property makes the unique lightest crossing edge safe. With all edge weights distinct, the MST itself is unique, and this edge belongs to it."
+    },
+    {
+      "id": "alg-greedy-082",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Huffman construction combines weights 2, 4, 6, and 8. What is the sum of the merge weights?",
+      "answer": "38",
+      "explanation": "The merges are 2+4=6, then 6+6=12, then 8+12=20. Their total cost is 6+12+20=38."
+    },
+    {
+      "id": "alg-greedy-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Huffman code lengths and frequencies are correct?",
+      "options": [
+        "A more frequent symbol can be assigned a shorter codeword",
+        "Huffman construction is optimal for binary prefix codes",
+        "Codeword lengths may differ",
+        "The frequency-weighted average length is minimized"
+      ],
+      "answer": [
+        "A more frequent symbol can be assigned a shorter codeword",
+        "Huffman construction is optimal for binary prefix codes",
+        "Codeword lengths may differ",
+        "The frequency-weighted average length is minimized"
+      ],
+      "explanation": "The greedy merges produce an optimal binary prefix code and minimize the weighted external path length. Frequently used symbols tend to be nearer the root, while lengths can vary."
+    },
+    {
+      "id": "alg-greedy-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A candidate solution satisfies every constraint and has objective value 42. What additional evidence is needed to show it is optimal?",
+      "options": [
+        "A proof that no feasible solution has a better objective value",
+        "A second feasible solution with value 42",
+        "A larger input size",
+        "A greedy choice at the first step"
+      ],
+      "answer": [
+        "A proof that no feasible solution has a better objective value"
+      ],
+      "explanation": "Feasibility and a good objective value do not establish optimality. A proof must show that no other feasible solution improves on 42, for example using an exchange or lower-bound argument."
+    },
+    {
+      "id": "alg-greedy-085",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An activity starts at time 12 and ends at time 17. The last selected activity ends at time 12. Is it compatible under the convention that start equal to finish is allowed? Answer 1 for compatible and 0 otherwise.",
+      "answer": "1",
+      "explanation": "The new activity starts exactly when the previous one finishes. Under the stated half-open or endpoint-compatible convention, it can be selected, so the answer is 1."
+    },
+    {
+      "id": "alg-greedy-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are common greedy applications with established optimal greedy rules under their stated assumptions?",
+      "options": [
+        "Fractional knapsack",
+        "Huffman coding",
+        "Minimum spanning tree construction",
+        "General 0/1 knapsack by value density"
+      ],
+      "answer": [
+        "Fractional knapsack",
+        "Huffman coding",
+        "Minimum spanning tree construction"
+      ],
+      "explanation": "Density ordering is optimal for fractional knapsack, repeated minimum-frequency merges give Huffman coding, and cut/cycle properties justify MST algorithms. Value-density greedy is not generally optimal for 0/1 knapsack."
+    },
+    {
+      "id": "alg-greedy-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A scheduling problem asks for the maximum number of mutually compatible intervals, with all activities having equal value. Which sorting key enables the standard greedy solution?",
+      "options": [
+        "Nondecreasing finishing time",
+        "Nondecreasing interval length",
+        "Nonincreasing starting time",
+        "Nonincreasing activity identifier"
+      ],
+      "answer": [
+        "Nondecreasing finishing time"
+      ],
+      "explanation": "Selecting the earliest-finishing compatible activity is the safe greedy choice for maximum-cardinality interval scheduling."
+    },
+    {
+      "id": "alg-greedy-088",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A fractional-knapsack item has value 90 and weight 15. If 40% of the item is selected, what value is gained?",
+      "answer": "36",
+      "explanation": "The value scales linearly with the selected fraction: 0.4×90=36."
+    },
+    {
+      "id": "alg-greedy-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph has edges AB=1, BC=2, AC=3. Which edge does the cycle property allow an MST algorithm to discard?",
+      "options": [
+        "AC with weight 3",
+        "AB with weight 1",
+        "BC with weight 2",
+        "No edge can be discarded"
+      ],
+      "answer": [
+        "AC with weight 3"
+      ],
+      "explanation": "The triangle is a cycle and AC is its unique heaviest edge. It cannot belong to an MST because replacing it with a lighter edge reduces total weight."
+    },
+    {
+      "id": "alg-greedy-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about interval compatibility are correct when intervals are half-open [s,f)?",
+      "options": [
+        "An activity starting at the previous finish time is compatible",
+        "Two intervals with positive-length overlap are incompatible",
+        "The endpoint convention should be stated for boundary cases",
+        "Intervals touching at an endpoint necessarily overlap"
+      ],
+      "answer": [
+        "An activity starting at the previous finish time is compatible",
+        "Two intervals with positive-length overlap are incompatible",
+        "The endpoint convention should be stated for boundary cases"
+      ],
+      "explanation": "Half-open intervals exclude their finish endpoint, so [a,b) and [b,c) do not overlap. Explicitly defining the convention avoids ambiguity in scheduling decisions."
+    },
+    {
+      "id": "alg-greedy-091",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A minimum spanning tree on 6 vertices has total weight 42. What is its average edge weight?",
+      "answer": "8.4",
+      "explanation": "The tree has 6−1=5 edges. Dividing total weight by edge count gives 42/5=8.4."
+    },
+    {
+      "id": "alg-greedy-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph's unique lightest edge is a self-loop. Can it belong to a minimum spanning tree?",
+      "options": [
+        "No, a self-loop never helps connect distinct vertices",
+        "Yes, because it is the lightest edge",
+        "Only if the graph is directed",
+        "Only when all other edges are negative"
+      ],
+      "answer": [
+        "No, a self-loop never helps connect distinct vertices"
+      ],
+      "explanation": "A spanning tree is acyclic and connects vertices. A self-loop creates a cycle of length one and adds no connectivity, so it is never included in an MST."
+    },
+    {
+      "id": "alg-greedy-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which characteristics distinguish a greedy algorithm from a dynamic-programming algorithm?",
+      "options": [
+        "A greedy method commits to a locally safe choice without revisiting it",
+        "Dynamic programming compares alternatives across subproblems",
+        "A greedy method always works without proof",
+        "Dynamic programming may store results for overlapping subproblems"
+      ],
+      "answer": [
+        "A greedy method commits to a locally safe choice without revisiting it",
+        "Dynamic programming compares alternatives across subproblems",
+        "Dynamic programming may store results for overlapping subproblems"
+      ],
+      "explanation": "Greedy algorithms commit to choices backed by a safety proof. Dynamic programming systematically combines alternatives and often caches overlapping states; neither paradigm is correct automatically."
+    },
+    {
+      "id": "alg-greedy-094",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A job-sequencing schedule accepts three unit-time jobs with profits 18, 11, and 7. What is the total scheduled profit?",
+      "answer": "36",
+      "explanation": "The total profit is 18+11+7=36 for the three scheduled jobs."
+    },
+    {
+      "id": "alg-greedy-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A greedy algorithm for a matroid sorts elements by increasing cost and builds a minimum-cost basis. Which elements are added?",
+      "options": [
+        "An element is added if it preserves independence",
+        "Every element is added in sorted order",
+        "An element is added only if it creates a dependent set",
+        "Only the maximum-cost element is considered"
+      ],
+      "answer": [
+        "An element is added if it preserves independence"
+      ],
+      "explanation": "The matroid greedy algorithm scans elements by weight and accepts one whenever the current set remains independent. It stops when a basis is formed."
+    },
+    {
+      "id": "alg-greedy-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about greedy counterexamples are correct?",
+      "options": [
+        "One valid counterexample disproves a universal optimality claim",
+        "A counterexample should satisfy the problem's assumptions",
+        "A counterexample proves every greedy algorithm fails",
+        "A counterexample can expose a missing assumption"
+      ],
+      "answer": [
+        "One valid counterexample disproves a universal optimality claim",
+        "A counterexample should satisfy the problem's assumptions",
+        "A counterexample can expose a missing assumption"
+      ],
+      "explanation": "A counterexample must be within the stated domain and demonstrate failure of the claim. It refutes that rule's universal guarantee but says nothing about unrelated greedy algorithms."
+    },
+    {
+      "id": "alg-greedy-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why does Kruskal's algorithm use a disjoint-set union structure?",
+      "options": [
+        "To detect whether an edge's endpoints are already connected by selected edges",
+        "To sort vertices by their degree",
+        "To compute shortest paths",
+        "To assign edge weights"
+      ],
+      "answer": [
+        "To detect whether an edge's endpoints are already connected by selected edges"
+      ],
+      "explanation": "Find operations identify each endpoint's current component. If the representatives differ, Kruskal can safely add the edge and union the components; otherwise it would form a cycle."
+    },
+    {
+      "id": "alg-greedy-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A connected graph with 15 vertices is processed by Kruskal. How many edges are rejected if the graph has 30 edges and the final spanning tree uses 14?",
+      "answer": "16",
+      "explanation": "Kruskal accepts 14 edges for the spanning tree. It rejects the other 30−14=16 edges as cycle-forming or unnecessary."
+    },
+    {
+      "id": "alg-greedy-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An interval-scheduling greedy algorithm sorts by finish time. After selecting an interval ending at f, which candidates remain eligible?",
+      "options": [
+        "Intervals with start time at least f",
+        "Intervals with finish time at most f",
+        "All intervals regardless of overlap",
+        "Only intervals that start before f"
+      ],
+      "answer": [
+        "Intervals with start time at least f"
+      ],
+      "explanation": "A future activity is compatible when it begins no earlier than the finish of the last selected activity, under the stated nonoverlap convention."
+    },
+    {
+      "id": "alg-greedy-100",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements summarize when a greedy strategy is justified?",
+      "options": [
+        "A locally optimal choice must be proven safe for an optimal solution",
+        "The residual problem should preserve the original optimization structure",
+        "An exchange or cut argument can establish correctness",
+        "A good result on sample inputs is a sufficient proof"
+      ],
+      "answer": [
+        "A locally optimal choice must be proven safe for an optimal solution",
+        "The residual problem should preserve the original optimization structure",
+        "An exchange or cut argument can establish correctness"
+      ],
+      "explanation": "Greedy correctness requires a safe-choice argument and optimal substructure for the remaining instance. Examples may illustrate behavior, but only a general proof establishes the guarantee."
+    }
+  ]
+}

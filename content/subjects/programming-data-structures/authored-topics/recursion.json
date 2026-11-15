@@ -1,0 +1,1485 @@
+{
+  "topicIndex": 1,
+  "questions": [
+    {
+      "id": "pds-rec-001",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Let f(0)=0 and f(n)=n+f(n-1) for n>0. What is f(6)?",
+      "answer": "21",
+      "explanation": "Expanding the recurrence gives the sum 1+2+3+4+5+6, which equals 21."
+    },
+    {
+      "id": "pds-rec-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A function makes one recursive call on n-1 until n=0. What is the maximum recursion depth on input n?",
+      "options": [
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(1)",
+        "Theta(n^2)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "There is one active frame for n,n-1,...,0, so stack depth grows linearly with n."
+    },
+    {
+      "id": "pds-rec-003",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=T(n-1)+1 with T(1)=1, what is the asymptotic running time?",
+      "options": [
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(n log n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "The recurrence decreases the argument by one and does constant work at each of n levels."
+    },
+    {
+      "id": "pds-rec-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive factorial returns 1 at n=0 and n*f(n-1) otherwise. What does f(5) return?",
+      "options": [
+        "120",
+        "24",
+        "25",
+        "720"
+      ],
+      "answer": [
+        "120"
+      ],
+      "explanation": "The recurrence multiplies 5*4*3*2*1*1, giving 120."
+    },
+    {
+      "id": "pds-rec-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+1 with size-one leaves, how many leaves are in the recursion tree when n is a power of two?",
+      "options": [
+        "n",
+        "log2(n)",
+        "2n-1",
+        "n/2"
+      ],
+      "answer": [
+        "n"
+      ],
+      "explanation": "Each level doubles subproblems. At depth log2(n), there are 2^log2(n)=n leaves."
+    },
+    {
+      "id": "pds-rec-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive function makes one call on floor(n/3) until n<=1 and performs constant work per call. What is its maximum depth?",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(log n)"
+      ],
+      "explanation": "Each call reduces the input by a factor of three, so the nested call count grows logarithmically."
+    },
+    {
+      "id": "pds-rec-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For F(0)=0, F(1)=1, F(n)=F(n-1)+F(n-2), how many calls does naive evaluation of F(5) make including base calls?",
+      "options": [
+        "15",
+        "9",
+        "11",
+        "31"
+      ],
+      "answer": [
+        "15"
+      ],
+      "explanation": "The call-count recurrence is C(n)=1+C(n-1)+C(n-2), C(0)=C(1)=1. Evaluating it gives C(5)=15."
+    },
+    {
+      "id": "pds-rec-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive routine makes two calls on n-1 and constant work, with T(0)=1. What is its asymptotic call count?",
+      "options": [
+        "Theta(2^n)",
+        "Theta(n^2)",
+        "Theta(n log n)",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(2^n)"
+      ],
+      "explanation": "The recurrence T(n)=2T(n-1)+O(1) creates an exponentially growing binary call tree."
+    },
+    {
+      "id": "pds-rec-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive traversal visits every node in a binary tree exactly once and performs constant work per node. What is the running time for n nodes?",
+      "options": [
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(n^2)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "The function performs constant work at each of n nodes, yielding linear total time."
+    },
+    {
+      "id": "pds-rec-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the primary role of a reachable base case in recursion?",
+      "options": [
+        "To stop further calls on sufficiently small inputs",
+        "To ensure every call branches twice",
+        "To make the function tail-recursive",
+        "To guarantee constant total time"
+      ],
+      "answer": [
+        "To stop further calls on sufficiently small inputs"
+      ],
+      "explanation": "A base case returns without another recursive call and prevents unbounded descent."
+    },
+    {
+      "id": "pds-rec-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive factorial computes n*f(n-1) after the recursive call returns. Is this call in tail position?",
+      "options": [
+        "No, multiplication remains after the call",
+        "Yes, every single recursive call is tail-recursive",
+        "Yes, because n decreases",
+        "No, because it has a base case"
+      ],
+      "answer": [
+        "No, multiplication remains after the call"
+      ],
+      "explanation": "The caller still multiplies the returned value by n, so computation remains after the call; it is not tail-recursive."
+    },
+    {
+      "id": "pds-rec-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If recursion depth is d and each activation record uses O(1) words, what stack space is used?",
+      "options": [
+        "O(d)",
+        "O(1) for every recursion",
+        "O(d^2)",
+        "O(2^d) regardless of branching"
+      ],
+      "answer": [
+        "O(d)"
+      ],
+      "explanation": "There are at most d simultaneously active constant-size activation records, giving O(d) stack space."
+    },
+    {
+      "id": "pds-rec-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=T(n-1)+n with T(1)=1, what is the asymptotic running time?",
+      "options": [
+        "Theta(n^2)",
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(2^n)"
+      ],
+      "answer": [
+        "Theta(n^2)"
+      ],
+      "explanation": "Expansion sums 1+2+...+n=n(n+1)/2, which is quadratic."
+    },
+    {
+      "id": "pds-rec-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive function invokes itself on n-1 until n=1. How many recursive edges are followed from input n to the base call?",
+      "options": [
+        "n-1",
+        "n",
+        "log2(n)",
+        "1"
+      ],
+      "answer": [
+        "n-1"
+      ],
+      "explanation": "The call sequence n,n-1,...,1 has n activations and n-1 transitions between them."
+    },
+    {
+      "id": "pds-rec-015",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A single-call recursive chain follows 12 recursive edges from the initial call to its base call. How many activations are in the chain?",
+      "answer": "13",
+      "explanation": "A path with 12 edges contains 13 vertices, corresponding to 13 calls including both endpoints."
+    },
+    {
+      "id": "pds-rec-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+n with T(1)=1, what is the asymptotic running time?",
+      "options": [
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(n^2)",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(n log n)"
+      ],
+      "explanation": "Each level of the recursion tree performs total work n, and there are logarithmically many levels."
+    },
+    {
+      "id": "pds-rec-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can naive recursive Fibonacci take exponential time?",
+      "options": [
+        "It recomputes overlapping subproblems",
+        "It halves n at every call",
+        "It makes only one call per non-base case",
+        "It uses a memo table automatically"
+      ],
+      "answer": [
+        "It recomputes overlapping subproblems"
+      ],
+      "explanation": "F(n) recursively evaluates F(n-1) and F(n-2), causing many smaller Fibonacci values to be recomputed along separate branches."
+    },
+    {
+      "id": "pds-rec-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the key time benefit of memoizing a recursive Fibonacci function?",
+      "options": [
+        "Each distinct input value is computed once",
+        "All recursion is removed",
+        "The stack depth becomes constant",
+        "The input sequence becomes sorted"
+      ],
+      "answer": [
+        "Each distinct input value is computed once"
+      ],
+      "explanation": "Caching results avoids repeated evaluation of the same F(k). The number of distinct inputs from zero through n is linear."
+    },
+    {
+      "id": "pds-rec-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A depth-first recursive traversal visits a balanced binary tree with n nodes. What is the maximum number of simultaneously active calls?",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(log n)"
+      ],
+      "explanation": "The active calls follow one root-to-leaf path. A balanced tree has logarithmic height, which bounds the recursion depth."
+    },
+    {
+      "id": "pds-rec-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A depth-first recursive traversal visits a skewed binary tree with n nodes. What is the maximum recursion depth?",
+      "options": [
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(1)",
+        "Theta(n^2)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "A skewed tree is a chain of n nodes, so the traversal may retain one call frame per node."
+    },
+    {
+      "id": "pds-rec-021",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Let g(0)=1 and g(n)=2*g(n-1)+1 for n>0. What is g(4)?",
+      "answer": "31",
+      "explanation": "The values are g(1)=3, g(2)=7, g(3)=15, and g(4)=31."
+    },
+    {
+      "id": "pds-rec-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A full binary recursion tree has L leaves and each internal node has exactly two children. How many total nodes does it have?",
+      "options": [
+        "2L-1",
+        "L-1",
+        "2L",
+        "L+1"
+      ],
+      "answer": [
+        "2L-1"
+      ],
+      "explanation": "A full binary tree has L-1 internal nodes. Adding leaves and internal nodes gives 2L-1 total nodes."
+    },
+    {
+      "id": "pds-rec-023",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Define T(0)=0 and T(n)=T(n-1)+n. What is T(6)?",
+      "answer": "21",
+      "explanation": "Expanding the recurrence gives 1+2+3+4+5+6=21."
+    },
+    {
+      "id": "pds-rec-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive routine calls itself on n-1 and performs no work after the call returns. What form is this?",
+      "options": [
+        "Tail recursion",
+        "Mutual recursion",
+        "Tree recursion",
+        "Indirect iteration"
+      ],
+      "answer": [
+        "Tail recursion"
+      ],
+      "explanation": "The recursive call is the final operation in the activation, so its result can be returned directly."
+    },
+    {
+      "id": "pds-rec-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement about tail-call optimization in C is correct?",
+      "options": [
+        "An implementation may perform it but is not required to",
+        "The C standard requires it",
+        "It is forbidden by the language",
+        "It is guaranteed only for void functions"
+      ],
+      "answer": [
+        "An implementation may perform it but is not required to"
+      ],
+      "explanation": "Tail position can enable frame reuse, but the C standard does not mandate that optimization."
+    },
+    {
+      "id": "pds-rec-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive procedure reduces n to floor(n/2) and makes one call per activation. How many non-base activations occur for n=32?",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "32"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "The successive inputs are 32,16,8,4,2,1. Five calls process values greater than one before reaching the base case."
+    },
+    {
+      "id": "pds-rec-027",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive function sums an array by adding its first value to the sum of the remaining n-1 values. What is its time complexity?",
+      "options": [
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(n^2)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "It processes one element per activation and has n recursive levels, so the total work is linear."
+    },
+    {
+      "id": "pds-rec-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive binary search on a sorted array of 64 elements can make at most how many midpoint comparisons before reaching a one-element interval?",
+      "options": [
+        "6",
+        "5",
+        "7",
+        "64"
+      ],
+      "answer": [
+        "6"
+      ],
+      "explanation": "Each comparison halves the range. Six halvings reduce 64 candidates to one, so at most six midpoint comparisons are needed in this convention."
+    },
+    {
+      "id": "pds-rec-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence T(n)=T(n/2)+1 is expanded into a recursion tree. What does each root-to-leaf path contain asymptotically?",
+      "options": [
+        "Theta(log n) activations",
+        "Theta(n) activations",
+        "Theta(n^2) activations",
+        "Theta(1) activations"
+      ],
+      "answer": [
+        "Theta(log n) activations"
+      ],
+      "explanation": "The input is halved at each level until one, which takes logarithmically many recursive activations."
+    },
+    {
+      "id": "pds-rec-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive function makes two calls on n-1 and has constant base work. Which growth describes its call count?",
+      "options": [
+        "Exponential",
+        "Linear",
+        "Logarithmic",
+        "Constant"
+      ],
+      "answer": [
+        "Exponential"
+      ],
+      "explanation": "Both recursive branches have nearly the same input size, producing a recurrence with exponentially many leaves."
+    },
+    {
+      "id": "pds-rec-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+n with constant base case, what is the asymptotic running time?",
+      "options": [
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(n^2)",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(n log n)"
+      ],
+      "explanation": "Each recursion-tree level contributes total work n, and the tree has logarithmic height."
+    },
+    {
+      "id": "pds-rec-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=T(n-1)+T(n-2)+1 with constant base cases, what is the asymptotic time?",
+      "options": [
+        "Exponential",
+        "Linear",
+        "Logarithmic",
+        "Constant"
+      ],
+      "answer": [
+        "Exponential"
+      ],
+      "explanation": "The recurrence branches into two overlapping subproblems and grows at a Fibonacci-like exponential rate."
+    },
+    {
+      "id": "pds-rec-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A full binary call tree has 8 leaves and every internal call has exactly two children. How many calls are in the entire tree?",
+      "options": [
+        "15",
+        "8",
+        "16",
+        "7"
+      ],
+      "answer": [
+        "15"
+      ],
+      "explanation": "A full binary tree with L leaves has L-1 internal nodes. Total nodes are 2L-1, which is 15 for L=8."
+    },
+    {
+      "id": "pds-rec-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the main time benefit of memoizing recursive Fibonacci?",
+      "options": [
+        "Each distinct input value is computed once",
+        "It removes all base cases",
+        "It makes stack depth constant",
+        "It changes the Fibonacci sequence values"
+      ],
+      "answer": [
+        "Each distinct input value is computed once"
+      ],
+      "explanation": "Caching prevents recomputation of repeated F(k) subproblems, reducing evaluation count to O(n)."
+    },
+    {
+      "id": "pds-rec-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If a recursive algorithm has depth d and each active frame stores constant-size state, what is its stack usage?",
+      "options": [
+        "Theta(d)",
+        "Theta(1) always",
+        "Theta(d^2)",
+        "Theta(2^d) always"
+      ],
+      "answer": [
+        "Theta(d)"
+      ],
+      "explanation": "There are d active frames along the deepest call chain, each using O(1) words."
+    },
+    {
+      "id": "pds-rec-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive function f(n) makes exactly one call on n-1 until n=0. How many total activations occur on input 10?",
+      "options": [
+        "11",
+        "10",
+        "9",
+        "20"
+      ],
+      "answer": [
+        "11"
+      ],
+      "explanation": "The activations are for n=10 down through n=0, giving eleven calls including the base case."
+    },
+    {
+      "id": "pds-rec-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A depth-first recursive traversal visits a balanced binary tree with n nodes. What is the maximum active call depth?",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(log n)"
+      ],
+      "explanation": "The calls follow one root-to-leaf path; the height of a balanced tree is logarithmic."
+    },
+    {
+      "id": "pds-rec-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence T(n)=4T(n/2)+n with constant base case has what asymptotic time?",
+      "options": [
+        "Theta(n^2)",
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(n^2)"
+      ],
+      "explanation": "The critical exponent is n^(log2 4)=n^2. The linear toll is smaller, so the leaves dominate."
+    },
+    {
+      "id": "pds-rec-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two functions call each other once while decreasing an integer argument by one until zero. What is the maximum call depth on input n?",
+      "options": [
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(1)",
+        "Theta(2^n)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "The function names alternate, but each activation decreases the argument by one and creates a single next call."
+    },
+    {
+      "id": "pds-rec-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In the recurrence T(n)=T(n/2)+1, how many recursive reductions occur for n=1024 before reaching 1?",
+      "options": [
+        "10",
+        "9",
+        "11",
+        "1024"
+      ],
+      "answer": [
+        "10"
+      ],
+      "explanation": "Repeated halving gives 1024,512,...,1. Ten reductions divide 1024 by 2^10 to reach one."
+    },
+    {
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Let f(0)=2 and f(n)=f(n-1)+2n for n>0. What is f(5)?",
+      "answer": "32",
+      "explanation": "The increments are 2,4,6,8,10. Adding their sum 30 to the base value 2 gives 32.",
+      "id": "pds-rec-041"
+    },
+    {
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursion tree has branching factor 2 and depth d, with the root at depth zero. How many leaves occur at depth d?",
+      "options": [
+        "2^d",
+        "2d",
+        "d^2",
+        "d+1"
+      ],
+      "answer": [
+        "2^d"
+      ],
+      "explanation": "Every level doubles its node count, so depth d contains 2^d nodes and leaves in a full tree.",
+      "id": "pds-rec-042"
+    },
+    {
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive function calls itself on n-1 and performs n units of work at each activation. What is its total time?",
+      "options": [
+        "Theta(n^2)",
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(2^n)"
+      ],
+      "answer": [
+        "Theta(n^2)"
+      ],
+      "explanation": "The total local work is n+(n-1)+...+1=n(n+1)/2, which is quadratic.",
+      "id": "pds-rec-043"
+    },
+    {
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive procedure decrements n until n==0. What happens if it starts with a negative integer and keeps decrementing?",
+      "options": [
+        "It does not reach the base case",
+        "It reaches zero after absolute-value-many calls",
+        "It returns immediately",
+        "The compiler converts n to unsigned"
+      ],
+      "answer": [
+        "It does not reach the base case"
+      ],
+      "explanation": "Decrementing a negative input moves it farther from zero, so the stated base condition is never reached.",
+      "id": "pds-rec-044"
+    },
+    {
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If each activation record occupies 24 bytes, approximately how much space do 1000 active recursive frames occupy?",
+      "options": [
+        "24000 bytes",
+        "2400 bytes",
+        "240 bytes",
+        "24 bytes"
+      ],
+      "answer": [
+        "24000 bytes"
+      ],
+      "explanation": "The frames use about 1000*24=24000 bytes, excluding the base activation and other runtime overhead.",
+      "id": "pds-rec-045"
+    },
+    {
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "While a recursive call waits for its child to return, what information must its activation preserve?",
+      "options": [
+        "Return location and needed local state",
+        "All future results in advance",
+        "A copy of the executable",
+        "Only the base-case value"
+      ],
+      "answer": [
+        "Return location and needed local state"
+      ],
+      "explanation": "The caller resumes after the child, so it must preserve its return location and any local values needed afterward.",
+      "id": "pds-rec-046"
+    },
+    {
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive list routine calls itself on the next node and immediately returns the child result. What form is this?",
+      "options": [
+        "Tail recursion",
+        "Tree recursion",
+        "Mutual recursion",
+        "Indirect iteration"
+      ],
+      "answer": [
+        "Tail recursion"
+      ],
+      "explanation": "No computation remains after the recursive call, so it is in tail position.",
+      "id": "pds-rec-047"
+    },
+    {
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about recursive call stacks are correct?",
+      "options": [
+        "Each active call has its own local state",
+        "Peak stack use depends on maximum call depth",
+        "Total call count always equals peak stack depth",
+        "Depth-first traversal retains frames along its active path"
+      ],
+      "answer": [
+        "Each active call has its own local state",
+        "Peak stack use depends on maximum call depth",
+        "Depth-first traversal retains frames along its active path"
+      ],
+      "explanation": "Total calls over completed branches do not all remain active simultaneously; active frames correspond to the current path.",
+      "id": "pds-rec-048"
+    },
+    {
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive function f(n) has one call on n-1, constant work, and f(0)=0. What is f(7)?",
+      "options": [
+        "7",
+        "6",
+        "8",
+        "14"
+      ],
+      "answer": [
+        "7"
+      ],
+      "explanation": "The recurrence adds one at each of seven steps starting from zero, giving f(7)=7.",
+      "id": "pds-rec-049"
+    },
+    {
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A memoized recurrence has n+1 possible integer states and O(1) work per state. What is the total time if each state is solved once?",
+      "options": [
+        "O(n)",
+        "O(2^n)",
+        "O(n^2)",
+        "O(log n)"
+      ],
+      "answer": [
+        "O(n)"
+      ],
+      "explanation": "There are n+1 distinct states, each evaluated once with constant additional work.",
+      "id": "pds-rec-050"
+    },
+    {
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about naive recursive Fibonacci are correct?",
+      "options": [
+        "The same subproblem can be recomputed in different branches",
+        "The call count grows exponentially",
+        "Memoization can reduce evaluation count to O(n)",
+        "Its stack depth is O(1) for every n"
+      ],
+      "answer": [
+        "The same subproblem can be recomputed in different branches",
+        "The call count grows exponentially",
+        "Memoization can reduce evaluation count to O(n)"
+      ],
+      "explanation": "Overlapping subproblems create repeated work and exponential calls; caching each state once yields linear evaluations, though depth remains linear.",
+      "id": "pds-rec-051"
+    },
+    {
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive maximum routine examines one element and recurses on the remaining n-1 elements. What is its running time?",
+      "options": [
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(n log n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "Every element is examined once, so the total amount of work grows linearly with n.",
+      "id": "pds-rec-052"
+    },
+    {
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For a one-call recursion with inputs n,n-1,...,0, how many activations occur when the initial input is 14?",
+      "answer": "15",
+      "explanation": "There are fourteen positive-input frames plus one base activation at zero.",
+      "id": "pds-rec-053"
+    },
+    {
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about recursion depth and total call count are correct?",
+      "options": [
+        "A binary recursion can have exponentially many total calls",
+        "A depth-first execution can use stack space proportional to tree height",
+        "Total calls and peak active calls are always equal",
+        "A chain of n calls has Theta(n) stack depth"
+      ],
+      "answer": [
+        "A binary recursion can have exponentially many total calls",
+        "A depth-first execution can use stack space proportional to tree height",
+        "A chain of n calls has Theta(n) stack depth"
+      ],
+      "explanation": "Total tree size determines work, while height determines the maximum simultaneous frames. A linear chain has linear height and stack use.",
+      "id": "pds-rec-054"
+    },
+    {
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive function makes one call on n/2 until n<=1 and does constant local work. What is its auxiliary stack space?",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(log n)"
+      ],
+      "explanation": "The argument halves at each step, yielding logarithmically many simultaneously active calls.",
+      "id": "pds-rec-055"
+    },
+    {
+      "id": "pds-rec-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+n/log n with T(1)=1, which asymptotic bound follows from a recursion tree?",
+      "options": [
+        "Theta(n log log n)",
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(n log squared n)"
+      ],
+      "answer": [
+        "Theta(n log log n)"
+      ],
+      "explanation": "At level i the aggregate nonrecursive work is n/(log n-i), while the tree has log n levels. Summing reciprocals gives a harmonic sum Theta(log log n), multiplied by n."
+    },
+    {
+      "id": "pds-rec-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A function makes three recursive calls on inputs of size n/2 and performs Theta(n) extra work. Its asymptotic running time is",
+      "options": [
+        "Theta(n^log2 3)",
+        "Theta(n log n)",
+        "Theta(n squared)",
+        "Theta(3^n)"
+      ],
+      "answer": [
+        "Theta(n^log2 3)"
+      ],
+      "explanation": "The recurrence is T(n)=3T(n/2)+Theta(n). Since n^log2 3 grows faster than n, the leaf contribution dominates by the Master theorem."
+    },
+    {
+      "id": "pds-rec-058",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For T(n)=T(n-1)+2n with T(0)=0, give the exact value of T(5).",
+      "answer": "30",
+      "explanation": "Unrolling gives T(n)=2(1+2+...+n)=n(n+1). Substitution at n=5 gives 30."
+    },
+    {
+      "id": "pds-rec-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive procedure calls itself on n-1 and n-2, doing constant work otherwise. What is its worst-case time?",
+      "options": [
+        "Theta(phi^n)",
+        "Theta(n squared)",
+        "Theta(2^n) exactly",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(phi^n)"
+      ],
+      "explanation": "The call-count recurrence is T(n)=T(n-1)+T(n-2)+Theta(1), whose characteristic roots include phi=(1+sqrt(5))/2, giving Theta(phi^n)."
+    },
+    {
+      "id": "pds-rec-060",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which recurrences have asymptotic solution Theta(n log n)?",
+      "options": [
+        "T(n)=2T(n/2)+n",
+        "T(n)=T(n/2)+n",
+        "T(n)=T(n-1)+1",
+        "T(n)=4T(n/2)+n squared"
+      ],
+      "answer": [
+        "T(n)=2T(n/2)+n",
+        "T(n)=4T(n/2)+n squared"
+      ],
+      "explanation": "For the first, every level costs Theta(n), and there are logarithmically many levels. The fourth has Theta(n squared) aggregate cost per level, hence Theta(n squared log n). The second sums geometrically to Theta(n), and the third is Theta(n)."
+    },
+    {
+      "id": "pds-rec-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Consider recursive binary search on a sorted array of n distinct elements. The maximum number of comparisons for n=31 is",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "31"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "Each comparison halves the candidate interval. At most ceil(log2(n+1)) comparisons are required; for n=31 this is 5."
+    },
+    {
+      "id": "pds-rec-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence is T(n)=T(n/3)+T(2n/3)+n. Which bound is correct?",
+      "options": [
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(n squared)",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(n log n)"
+      ],
+      "explanation": "At each recursion depth the subproblem sizes sum to n, so work per level is Theta(n). The longest root-to-leaf path has Theta(log n) levels, yielding Theta(n log n)."
+    },
+    {
+      "id": "pds-rec-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursive algorithm satisfies T(n)=2T(n/2)+1 for n a power of two, with T(1)=1. Find T(16).",
+      "answer": "31",
+      "explanation": "A full binary recursion tree with 16 leaves has 15 internal nodes. Each node contributes one, and each leaf contributes one, so the total is 31."
+    },
+    {
+      "id": "pds-rec-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=T(n/2)+T(n/4)+n, which asymptotic order is correct?",
+      "options": [
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(n^1.5)",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "The total subproblem size at each depth shrinks by a factor at most 3/4. Summed work over levels is bounded by n times a convergent geometric series, so T(n)=Theta(n)."
+    },
+    {
+      "id": "pds-rec-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive function has recurrence T(n)=T(n-1)+Theta(log n). What is T(n)?",
+      "options": [
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(log squared n)",
+        "Theta(n squared)"
+      ],
+      "answer": [
+        "Theta(n log n)"
+      ],
+      "explanation": "Unrolling sums logarithms from 1 through n. The sum is Theta(n log n), as follows from integral bounds or grouping the upper half of terms."
+    },
+    {
+      "id": "pds-rec-066",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about recursion are true?",
+      "options": [
+        "A base case must be reachable for every permitted input",
+        "A recursive call must always use a smaller numeric argument",
+        "Mutual recursion may terminate even if each function calls another function",
+        "Tail recursion guarantees O(1) stack space in every programming language"
+      ],
+      "answer": [
+        "A base case must be reachable for every permitted input",
+        "Mutual recursion may terminate even if each function calls another function"
+      ],
+      "explanation": "A base case must be reachable, and mutual recursion can terminate when the calls collectively make progress. Progress need not mean a smaller numeric argument, and tail-call stack elimination depends on the implementation."
+    },
+    {
+      "id": "pds-rec-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=8T(n/2)+n squared, the solution is",
+      "options": [
+        "Theta(n^3)",
+        "Theta(n squared log n)",
+        "Theta(n squared)",
+        "Theta(8^n)"
+      ],
+      "answer": [
+        "Theta(n^3)"
+      ],
+      "explanation": "Here n^log2 8=n^3 dominates f(n)=n^2, so the recursion tree is dominated by its leaves and T(n)=Theta(n^3)."
+    },
+    {
+      "id": "pds-rec-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursive algorithm creates 2 subproblems of half-size until size 1. For n=64, how many leaves are in its recursion tree?",
+      "answer": "64",
+      "explanation": "Every root-to-leaf path has six halvings and the branching factor is two, so the leaf count is 2^6=64."
+    },
+    {
+      "id": "pds-rec-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A procedure makes one recursive call on n-1 and then scans n items. Its running time is",
+      "options": [
+        "Theta(n squared)",
+        "Theta(n)",
+        "Theta(2^n)",
+        "Theta(n log n)"
+      ],
+      "answer": [
+        "Theta(n squared)"
+      ],
+      "explanation": "The recurrence T(n)=T(n-1)+Theta(n) sums 1+2+...+n, which is Theta(n squared)."
+    },
+    {
+      "id": "pds-rec-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a recursive tree traversal of a binary tree with n nodes, each node is processed once and makes calls on its children. The time is",
+      "options": [
+        "Theta(n)",
+        "Theta(log n) for every tree",
+        "Theta(n squared)",
+        "Theta(2^n)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "There is constant work per node and one call per child edge plus null-child calls. The total number of calls is linear in the number of nodes."
+    },
+    {
+      "id": "pds-rec-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=T(n/2)+T(n/4)+n, with T(1)=1, which is the tight asymptotic bound?",
+      "options": [
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(n^1.5)",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "The sum of child input sizes is at most 3n/4. Thus nonrecursive work n dominates the geometrically shrinking total work across successive levels, giving Theta(n)."
+    },
+    {
+      "id": "pds-rec-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For T(n)=2T(n/2)+n and T(1)=1, where n is a power of two, find T(8).",
+      "answer": "32",
+      "explanation": "At each internal level the total cost is n, across three internal levels giving 24; the eight leaves cost 8, totaling 32."
+    },
+    {
+      "id": "pds-rec-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In the preceding recurrence T(n)=2T(n/2)+n with unit leaf cost, the closed form for n=2^k is",
+      "options": [
+        "n log2 n+n",
+        "n log2 n",
+        "2n-1",
+        "n squared"
+      ],
+      "answer": [
+        "n log2 n+n"
+      ],
+      "explanation": "There are k internal levels each contributing n, plus n leaves of cost one, hence nk+n."
+    },
+    {
+      "id": "pds-rec-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive algorithm solves one subproblem of size n-1 and one of size n-2 with constant overhead. Which statement best describes its time?",
+      "options": [
+        "Exponential in n",
+        "Polynomial of degree 2",
+        "Logarithmic",
+        "Linear"
+      ],
+      "answer": [
+        "Exponential in n"
+      ],
+      "explanation": "The recurrence has Fibonacci growth. Its characteristic equation has a root greater than one, so the number of calls grows exponentially."
+    },
+    {
+      "id": "pds-rec-075",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a divide-and-conquer algorithm with recurrence T(n)=aT(n/b)+f(n), which conditions are sufficient to apply the standard Master theorem directly?",
+      "options": [
+        "a is at least 1 and b is greater than 1",
+        "f(n) is asymptotically nonnegative",
+        "The subproblem sizes are all exactly n/b",
+        "The input size is a positive integer"
+      ],
+      "answer": [
+        "a is at least 1 and b is greater than 1",
+        "f(n) is asymptotically nonnegative",
+        "The subproblem sizes are all exactly n/b"
+      ],
+      "explanation": "The standard form assumes a>=1, b>1, equally sized subproblems n/b, and asymptotically nonnegative f. The positive integer input convention is not the relevant structural restriction."
+    },
+    {
+      "id": "pds-rec-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive routine calls itself on n/2 until n=1, with Theta(n) work at every call. Its running time is",
+      "options": [
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(log n)",
+        "Theta(n squared)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "The work sums n+n/2+n/4+... which is a geometric series bounded above and below by constant multiples of n."
+    },
+    {
+      "id": "pds-rec-077",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A full ternary recursion tree has height 3 edges, with root at depth 0. How many leaves does it have?",
+      "answer": "27",
+      "explanation": "Each level triples the number of nodes; at depth 3 the number of leaves is 3^3=27."
+    },
+    {
+      "id": "pds-rec-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=T(n-1)+1 and T(0)=0, how many non-base recursive calls occur on input n?",
+      "options": [
+        "n",
+        "n+1",
+        "2^n",
+        "log2 n"
+      ],
+      "answer": [
+        "n"
+      ],
+      "explanation": "The argument decreases once per call from n to zero, giving exactly n calls that perform the recurrence step."
+    },
+    {
+      "id": "pds-rec-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive algorithm has recurrence T(n)=4T(n/2)+n. The tight bound is",
+      "options": [
+        "Theta(n squared)",
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(4^n)"
+      ],
+      "answer": [
+        "Theta(n squared)"
+      ],
+      "explanation": "The critical exponent is log2 4=2, while f(n)=n is polynomially smaller. Thus T(n)=Theta(n^2)."
+    },
+    {
+      "id": "pds-rec-080",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For T(n)=T(n-1)+n with T(0)=0, find T(4).",
+      "answer": "10",
+      "explanation": "The recurrence sums the increments 1+2+3+4=10."
+    },
+    {
+      "id": "pds-rec-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which recurrence-solving methods can establish a bound without guessing a closed form first?",
+      "options": [
+        "Recursion-tree expansion",
+        "Substitution with an induction hypothesis",
+        "Master theorem when its conditions apply",
+        "Treating every recurrence as a geometric series"
+      ],
+      "answer": [
+        "Recursion-tree expansion",
+        "Substitution with an induction hypothesis",
+        "Master theorem when its conditions apply"
+      ],
+      "explanation": "Recursion trees, induction by substitution, and the Master theorem under its conditions are valid methods. Not every recurrence has geometric level costs."
+    },
+    {
+      "id": "pds-rec-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive function computes F(n)=F(n-1)+F(n-1)+1 with F(0)=0. What is F(4)?",
+      "options": [
+        "15",
+        "8",
+        "16",
+        "7"
+      ],
+      "answer": [
+        "15"
+      ],
+      "explanation": "The values satisfy F(n)=2F(n-1)+1, yielding F(n)=2^n-1 by induction; at n=4 the value is 15."
+    },
+    {
+      "id": "pds-rec-083",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive algorithm makes two calls of size n/2 and performs constant work. Its running time is",
+      "options": [
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(n log n)",
+        "Theta(2^n)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "The recurrence is T(n)=2T(n/2)+Theta(1); the leaf count is n, and constant work at internal nodes adds only O(n), so the total is Theta(n)."
+    },
+    {
+      "id": "pds-rec-084",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For a binary recursive algorithm that branches twice and stops at size 1, with n=32, how many total nodes are in a full recursion tree?",
+      "answer": "63",
+      "explanation": "A full binary tree with 32 leaves has 31 internal nodes, for 63 total nodes."
+    },
+    {
+      "id": "pds-rec-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In recursive merge sort, merging subarrays of total length n costs Theta(n). The recurrence and bound are",
+      "options": [
+        "T(n)=2T(n/2)+Theta(n), Theta(n log n)",
+        "T(n)=T(n/2)+Theta(n), Theta(n)",
+        "T(n)=2T(n/2)+Theta(1), Theta(n)",
+        "T(n)=T(n-1)+Theta(n), Theta(n squared)"
+      ],
+      "answer": [
+        "T(n)=2T(n/2)+Theta(n), Theta(n log n)"
+      ],
+      "explanation": "There are two half-size recursive calls and a linear merge. Each of log n levels costs Theta(n), yielding Theta(n log n)."
+    },
+    {
+      "id": "pds-rec-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive routine makes one call on n/2 and does constant work per call. For n a power of two, its time is",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(2^n)"
+      ],
+      "answer": [
+        "Theta(log n)"
+      ],
+      "explanation": "There is one call at each halved size until one, so the recursion depth and total constant work are Theta(log n)."
+    },
+    {
+      "id": "pds-rec-087",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For T(n)=T(n/2)+3 with T(1)=2 and n=16, find T(n).",
+      "answer": "14",
+      "explanation": "There are four recursive halvings from 16 to 1, adding 3 at each level to the base value 2. Hence T(16)=2+4*3=14."
+    },
+    {
+      "id": "pds-rec-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A routine recursively processes n-1 elements, then performs a constant-time operation. What is its maximum recursion depth?",
+      "options": [
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(1)",
+        "Theta(n squared)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "Each call reduces the input by one, so starting from n requires n-O(1) nested calls before the base case."
+    },
+    {
+      "id": "pds-rec-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+n, with n a power of two, which statements are true?",
+      "options": [
+        "The recursion tree has log2 n internal levels",
+        "Each internal level contributes total cost n",
+        "The number of leaves is n",
+        "The total cost is Theta(n squared)"
+      ],
+      "answer": [
+        "The recursion tree has log2 n internal levels",
+        "Each internal level contributes total cost n",
+        "The number of leaves is n"
+      ],
+      "explanation": "There are log2 n internal levels, each with aggregate cost n, and n leaves. The total is Theta(n log n), so the final n-squared statement is false."
+    },
+    {
+      "id": "pds-rec-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive algorithm reduces n to n-1 and performs n squared work at each call. Its running time is",
+      "options": [
+        "Theta(n cubed)",
+        "Theta(n squared)",
+        "Theta(2^n)",
+        "Theta(n squared log n)"
+      ],
+      "answer": [
+        "Theta(n cubed)"
+      ],
+      "explanation": "Summing the per-call work gives n^2+(n-1)^2+...+1, which is Theta(n^3) by comparison with the sum of squares."
+    },
+    {
+      "id": "pds-rec-091",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary recursion tree has 16 leaves and is full. How many internal nodes does it have?",
+      "answer": "15",
+      "explanation": "In a full binary tree every internal node has two children, giving leaves=internal nodes+1. Therefore there are 15 internal nodes."
+    },
+    {
+      "id": "pds-rec-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=3T(n/2)+n, which term dominates the asymptotic solution?",
+      "options": [
+        "The leaves, giving Theta(n^log2 3)",
+        "The root work, giving Theta(n)",
+        "Every level equally, giving Theta(n log n)",
+        "The recurrence is exponential in n"
+      ],
+      "answer": [
+        "The leaves, giving Theta(n^log2 3)"
+      ],
+      "explanation": "The critical exponent log2 3 is greater than one, so n^log2 3 grows faster than the linear nonrecursive work and dominates."
+    },
+    {
+      "id": "pds-rec-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence T(n)=T(n/2)+T(n/2)+n/log n is given for n>2, with constant base values. Its order is",
+      "options": [
+        "Theta(n log log n)",
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(n log log n)"
+      ],
+      "explanation": "At level i, total work is n/(log n-i). Summing over levels gives n times a harmonic sum of order log log n, hence Theta(n log log n)."
+    },
+    {
+      "id": "pds-rec-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive routine calls itself on n/2 twice and spends n squared extra work. Its running time is",
+      "options": [
+        "Theta(n squared)",
+        "Theta(n squared log n)",
+        "Theta(n)",
+        "Theta(2^n)"
+      ],
+      "answer": [
+        "Theta(n squared)"
+      ],
+      "explanation": "At each level the aggregate extra work is proportional to n squared divided by 2^i, a geometric series dominated by the root. The leaves contribute only O(n), so total time is Theta(n^2)."
+    },
+    {
+      "id": "pds-rec-095",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary recursive procedure makes two calls of size n/2 until size 1. For n=128, how many leaves are there?",
+      "answer": "128",
+      "explanation": "Seven halvings produce depth 7; with branching factor two this gives 2^7=128 leaves."
+    },
+    {
+      "id": "pds-rec-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are valid ways to prove a proposed asymptotic bound for a recurrence?",
+      "options": [
+        "Use induction after substituting the proposed bound",
+        "Expand a recursion tree and sum level costs",
+        "Compare with a recurrence having a known bound",
+        "Assume the largest subproblem alone determines total work"
+      ],
+      "answer": [
+        "Use induction after substituting the proposed bound",
+        "Expand a recursion tree and sum level costs",
+        "Compare with a recurrence having a known bound"
+      ],
+      "explanation": "Induction, recursion-tree summation, and comparison with a known recurrence can prove bounds. Considering only the largest subproblem omits the work of the remaining branches."
+    },
+    {
+      "id": "pds-rec-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=T(n-1)+log n, T(1)=1, the tight order is",
+      "options": [
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(n squared)"
+      ],
+      "answer": [
+        "Theta(n log n)"
+      ],
+      "explanation": "Unrolling gives a sum of logarithms. Its upper bound is n log n and the last n/2 terms are each Theta(log n), giving a matching lower bound."
+    },
+    {
+      "id": "pds-rec-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For T(n)=2T(n/2)+1, T(1)=1, with n=4, find T(n).",
+      "answer": "7",
+      "explanation": "The recurrence gives T(2)=2*1+1=3 and T(4)=2*3+1=7."
+    },
+    {
+      "id": "pds-rec-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive algorithm has T(n)=T(n/3)+Theta(1). Its time complexity is",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(3^n)"
+      ],
+      "answer": [
+        "Theta(log n)"
+      ],
+      "explanation": "Each call reduces the input by a constant factor, so there are Theta(log_3 n) calls, each with constant overhead."
+    },
+    {
+      "id": "pds-rec-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A function computes both f(n-1) and f(n-1) independently, with constant work and f(0)=1. How many base-case calls occur for input n?",
+      "options": [
+        "2^n",
+        "n",
+        "n squared",
+        "log n"
+      ],
+      "answer": [
+        "2^n"
+      ],
+      "explanation": "Each recursive level doubles the number of calls and all paths reach zero after n levels, yielding 2^n leaves/base calls."
+    }
+  ]
+}

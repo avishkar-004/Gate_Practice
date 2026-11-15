@@ -377,6 +377,5 @@
     {...mcq('A queue is implemented using a singly linked list with pointers to both head and tail. Which operation can be performed in Θ(1) time?','Both enqueue at tail and dequeue at head',['Enqueue only','Dequeue only','Neither operation'],'A tail pointer supports insertion at the end in constant time, and removing the head is also constant time.'),id:'extra-3',topicIndex:4},
     {...mcq('A DFS traversal of an undirected graph is started from one vertex. When does it visit all vertices?','Exactly when the graph is connected',['Exactly when the graph is acyclic','For every undirected graph','Exactly when every vertex has even degree'],'A traversal from one start vertex reaches precisely the vertices in that vertex’s connected component.'),id:'extra-4',topicIndex:7}
   );
-  window.QUESTION_TOPICS = topics;
-  window.QUESTION_BANK = all;
+  window.SUBJECT_QUESTION_BANK = {topics, questions: all};
 })();

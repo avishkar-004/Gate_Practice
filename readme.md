@@ -60,7 +60,7 @@ General Aptitude is a common 15-mark component of the GATE paper. Refer to the o
 
 ## GATE CS Practice Lab
 
-The app contains two subjects: **Programming and Data Structures** and **Algorithms**. Each has eight topics with 100 GATE-style practice questions per topic (1,600 total). Questions include MCQs, multiple-select questions and numerical answers, with explanations shown after checking. These are practice problems written for this app, not reproduced official GATE questions.
+The app contains four subjects: **Programming and Data Structures**, **Algorithms**, **Computer Networks**, and **Computer Organization and Architecture**. The current bank has 100 records per topic (3,000 records across 30 topics), but many were produced from a small set of parameterized templates. The count does not represent 3,000 independently designed problems, and this legacy bank should not be treated as a complete GATE preparation resource. Topic banks are being replaced with original, varied questions and worked explanations; only a complete authored topic bank should be counted as rebuilt.
 
 ## Run with Docker
 
@@ -74,15 +74,24 @@ Open [http://localhost:8081](http://localhost:8081). Compose starts the frontend
 
 The SQLite file is stored in the named Docker volume `gate_practice_data`. `docker compose down` stops the app while keeping the database. Removing the volume (for example, `docker compose down -v`) deletes the database and all checked status. If port 8081 is occupied, set `GATE_PRACTICE_PORT` to another host port before starting.
 
-The question authoring sources are `questions.js` and `algorithm-questions.js`. After changing questions or subject metadata, regenerate the database seed with `node build_catalog.js`; the backend imports the updated catalog on its next API request. For changes to Python backend code, use `docker compose up --build`.
+## Project structure and adding subjects
 
-Frontend files:
+Each subject is a self-contained package under `content/subjects/` with its own `subject.json` and question source. The catalog builder discovers these folders automatically; no central subject list needs editing.
 
-- `index.html` — topic home and practice views
-- `styles.css` — responsive layout and styling
-- `app.js` — loads data from the API, renders practice and syncs checked state across tabs
-- `catalog.json` — generated database seed containing subjects, topics and questions
-- `questions.js` and `algorithm-questions.js` — question authoring sources
-- `build_catalog.js` — generates `catalog.json`
-- `server.py` — static file server, database seeding and SQLite API
+To add a subject, copy `templates/subject` to `content/subjects/<subject-slug>`, edit the manifest and `questions.json`, then run:
+
+```sh
+node tools/build_catalog.js
+```
+
+The builder validates question types, IDs, explanations and the 100–150 question count for every topic, then writes `content/catalog.json`. The backend imports catalog changes on its next API request. See [templates/README.md](templates/README.md) for the question format and the optional generated-bank format.
+
+Frontend files are in `frontend/`; the SQLite API is in `backend/server.py`; database content sources and the generated catalog are in `content/`; build tools are in `tools/`. Frontend edits are bind-mounted into Docker, while Python backend edits require `docker compose up --build`.
+
+- `frontend/index.html`, `frontend/styles.css`, `frontend/app.js` — browser application
+- `backend/server.py` — static file server, catalog seeding and SQLite API
+- `content/subjects/` — independently maintained subject packages
+- `content/catalog.json` — generated SQLite seed
+- `tools/build_catalog.js` — subject discovery, validation and catalog generation
+- `templates/subject/` — starter package for adding a subject
 - `Dockerfile` and `compose.yaml` — single-command container setup

@@ -1,0 +1,1478 @@
+{
+  "topicIndex": 2,
+  "questions": [
+    {
+      "id": "cn-dl-001",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An even-parity scheme appends one parity bit to data bits 1011010. What parity bit is appended?",
+      "options": [
+        "0",
+        "1",
+        "Either value",
+        "No parity bit is needed"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "The data contains four 1s, already an even count. Appending 0 preserves even parity."
+    },
+    {
+      "id": "cn-dl-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many 1 bits are in the odd-parity codeword 11010101, including its parity bit?",
+      "answer": "5",
+      "explanation": "The bit string contains five 1s, which is odd as required by odd parity."
+    },
+    {
+      "id": "cn-dl-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which error patterns are guaranteed to be detected by a single parity bit?",
+      "answer": [
+        "Any single-bit error",
+        "Any odd number of bit errors"
+      ],
+      "explanation": "Parity changes when an odd number of bits flip, so all odd-weight error patterns are detected. Even numbers of flips preserve parity and may go undetected.",
+      "options": [
+        "Any single-bit error",
+        "Any odd number of bit errors",
+        "A single parity bit detects every even number of bit errors",
+        "A single parity bit detects every burst error of length at most two"
+      ]
+    },
+    {
+      "id": "cn-dl-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A code has minimum Hamming distance d_min=5. What is the maximum number of errors it can guarantee to correct?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "A code with minimum distance d can correct at most floor((d−1)/2) errors. For d=5, this is floor(4/2)=2."
+    },
+    {
+      "id": "cn-dl-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A code has minimum distance 6. How many bit errors can it guarantee to detect?",
+      "answer": "5",
+      "explanation": "A code with minimum distance d detects up to d−1 errors. Here 6−1=5 errors are guaranteed detectable."
+    },
+    {
+      "id": "cn-dl-006",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Hamming distance are correct?",
+      "answer": [
+        "It counts bit positions in which two equal-length strings differ",
+        "Minimum distance d can detect up to d−1 errors",
+        "Minimum distance d can correct floor((d−1)/2) errors"
+      ],
+      "explanation": "Detection requires a corrupted word not to become another codeword; correction requires disjoint radius-t neighborhoods. For d=4, guaranteed correction is only floor(3/2)=1 error.",
+      "options": [
+        "It counts bit positions in which two equal-length strings differ",
+        "Minimum distance d can detect up to d−1 errors",
+        "Minimum distance d can correct floor((d−1)/2) errors",
+        "Minimum distance d can correct d-1 errors"
+      ]
+    },
+    {
+      "id": "cn-dl-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A CRC uses generator polynomial G(x)=x^3+x+1. How many zero bits are appended to the data before division?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "The generator degree is three. CRC encoding appends r=3 zeros before division to obtain a three-bit remainder."
+    },
+    {
+      "id": "cn-dl-008",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Using generator 1011, find the 3-bit CRC remainder for data 1101. Use modulo-2 division of 1101000 by 1011.",
+      "answer": "001",
+      "explanation": "Modulo-2 long division of 1101000 by 1011 leaves remainder 001. The transmitted codeword is 1101001."
+    },
+    {
+      "id": "cn-dl-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A CRC generator has degree r. Which burst-error guarantee is standard?",
+      "options": [
+        "All burst errors of length at most r are detected",
+        "Only single-bit errors are detected",
+        "No burst error can be detected",
+        "All errors of any length are detected"
+      ],
+      "answer": [
+        "All burst errors of length at most r are detected"
+      ],
+      "explanation": "A degree-r CRC detects every burst error whose length is at most r. Longer bursts are detected with high probability but are not all guaranteed to be detected."
+    },
+    {
+      "id": "cn-dl-010",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about CRC error detection are correct?",
+      "answer": [
+        "The receiver divides the received codeword by the agreed generator",
+        "A zero remainder is consistent with no detected error",
+        "CRC can detect all burst errors shorter than the generator degree"
+      ],
+      "explanation": "A zero syndrome means the received polynomial is divisible by the generator, but some error patterns may be undetected. CRC guarantees detection of bursts up to its degree.",
+      "options": [
+        "The receiver divides the received codeword by the agreed generator",
+        "A zero remainder is consistent with no detected error",
+        "CRC can detect all burst errors shorter than the generator degree",
+        "A zero remainder proves that the transmitted frame was error-free"
+      ]
+    },
+    {
+      "id": "cn-dl-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A byte-oriented framing protocol uses byte stuffing. If the payload contains the same byte as the frame delimiter, what does the sender do?",
+      "options": [
+        "Escape or stuff the delimiter occurrence in the payload",
+        "Delete the payload byte",
+        "Treat it as the end of frame",
+        "Restart the physical link"
+      ],
+      "answer": [
+        "Escape or stuff the delimiter occurrence in the payload"
+      ],
+      "explanation": "Byte stuffing inserts an escape sequence so a delimiter-valued payload byte is not mistaken for a frame boundary."
+    },
+    {
+      "id": "cn-dl-012",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about bit stuffing are correct?",
+      "answer": [
+        "The sender inserts a 0 after a run of five consecutive 1s in common HDLC-style framing",
+        "The receiver removes the inserted 0",
+        "It allows flag patterns to appear in data without ending the frame"
+      ],
+      "explanation": "Bit stuffing prevents the flag sequence from appearing in the transmitted data stream. The receiver destuffs the bits, recovering the original payload.",
+      "options": [
+        "The sender inserts a 0 after a run of five consecutive 1s in common HDLC-style framing",
+        "The receiver removes the inserted 0",
+        "It allows flag patterns to appear in data without ending the frame",
+        "The receiver inserts a 0 after five consecutive 1s"
+      ]
+    },
+    {
+      "id": "cn-dl-013",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Bit stuffing inserts one 0 after every run of five consecutive 1s. How many bits are transmitted for payload 11111011, excluding flags?",
+      "answer": "9",
+      "explanation": "A stuffed 0 follows the first five 1s. The original payload has 8 bits, so one inserted bit makes 9 transmitted bits."
+    },
+    {
+      "id": "cn-dl-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A framing method uses a fixed-size frame with a length field. What is a principal advantage over delimiter-only framing?",
+      "options": [
+        "The receiver can determine the frame boundary from the specified length",
+        "It eliminates all header overhead",
+        "It detects every transmission error",
+        "It needs no synchronization"
+      ],
+      "answer": [
+        "The receiver can determine the frame boundary from the specified length"
+      ],
+      "explanation": "A length field tells the receiver how many bytes belong to the frame, allowing boundary recovery without relying solely on a delimiter value."
+    },
+    {
+      "id": "cn-dl-015",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which techniques can be used to delineate frames on a bit stream?",
+      "answer": [
+        "Length fields",
+        "Sentinel flags with bit stuffing",
+        "Byte delimiters with byte stuffing"
+      ],
+      "explanation": "Length fields and escaped delimiters or flags provide frame boundaries. Routing tables choose packet paths and do not delimit link frames.",
+      "options": [
+        "Length fields",
+        "Sentinel flags with bit stuffing",
+        "Byte delimiters with byte stuffing",
+        "Preamble bits alone identify every frame boundary on an arbitrary bit stream"
+      ]
+    },
+    {
+      "id": "cn-dl-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In stop-and-wait ARQ, why is a sequence number needed even if only one data frame is outstanding?",
+      "options": [
+        "To distinguish a retransmitted duplicate from a new frame",
+        "To choose the physical transmission rate",
+        "To route the frame across networks",
+        "To calculate the frame checksum"
+      ],
+      "answer": [
+        "To distinguish a retransmitted duplicate from a new frame"
+      ],
+      "explanation": "If an ACK is lost, the sender retransmits the same frame. A sequence number lets the receiver recognize and discard the duplicate instead of delivering data twice."
+    },
+    {
+      "id": "cn-dl-017",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Stop-and-wait uses 1000-bit data frames on a 1 Mb/s link. The round-trip propagation and ACK time is 19 ms, and ACK transmission is negligible. What is utilization, as a percentage, ignoring processing?",
+      "answer": "5",
+      "explanation": "Data transmission takes 1 ms. One cycle is 1+19=20 ms, so utilization is 1/20=0.05=5%."
+    },
+    {
+      "id": "cn-dl-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stop-and-wait sender transmits a frame and receives no ACK before timeout. What is the normal response?",
+      "options": [
+        "Retransmit the outstanding frame",
+        "Discard all future frames permanently",
+        "Increase the sequence number and skip the data",
+        "Send an Ethernet broadcast"
+      ],
+      "answer": [
+        "Retransmit the outstanding frame"
+      ],
+      "explanation": "A timeout indicates the frame or its acknowledgment may have been lost. Stop-and-wait ARQ retransmits the unacknowledged frame."
+    },
+    {
+      "id": "cn-dl-019",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which events can cause a stop-and-wait ARQ retransmission?",
+      "answer": [
+        "The data frame is corrupted",
+        "The data frame is lost",
+        "The ACK is lost"
+      ],
+      "explanation": "Loss or corruption prevents the sender from receiving a valid acknowledgment. A lost ACK can cause a duplicate retransmission even though the receiver accepted the original frame.",
+      "options": [
+        "The data frame is corrupted",
+        "The data frame is lost",
+        "The ACK is lost",
+        "A lost ACK always proves that the original data frame was lost"
+      ]
+    },
+    {
+      "id": "cn-dl-020",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A data-link frame transmission succeeds independently with probability 0.9 on each attempt. With unlimited retries, what is the expected number of attempts per delivered frame?",
+      "answer": "1.111",
+      "explanation": "The number of attempts is geometric with success probability 0.9. Its expectation is 1/0.9?1.111 attempts per successfully delivered frame."
+    },
+    {
+      "id": "cn-dl-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a sliding-window protocol with m-bit sequence numbers, what is the maximum sender window for Go-Back-N?",
+      "options": [
+        "2^m−1",
+        "2^(m−1)",
+        "2^m",
+        "m−1"
+      ],
+      "answer": [
+        "2^m−1"
+      ],
+      "explanation": "Go-Back-N reserves one sequence-number value to distinguish the oldest unacknowledged frame from a new frame after wraparound. Its sender window is at most 2^m−1."
+    },
+    {
+      "id": "cn-dl-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For Selective Repeat ARQ with m-bit sequence numbers, what is the largest safe sender window?",
+      "options": [
+        "2^(m−1)",
+        "2^m−1",
+        "2^m",
+        "m"
+      ],
+      "answer": [
+        "2^(m−1)"
+      ],
+      "explanation": "Selective Repeat allows the receiver to buffer out-of-order frames. To avoid ambiguity after sequence-number wraparound, its window must be at most half the sequence space."
+    },
+    {
+      "id": "cn-dl-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A Go-Back-N sender has frames 5, 6, and 7 outstanding. It receives a cumulative ACK indicating that frame 6 is next expected, then the timer for the oldest unacknowledged frame expires. Which frames are retransmitted?",
+      "answer": [
+        "6 and 7"
+      ],
+      "explanation": "The ACK confirms that frame 5 arrived, leaving 6 and 7 outstanding. Go-Back-N retransmits the missing frame and every later outstanding frame after a timeout.",
+      "options": [
+        "5, 6, and 7",
+        "6 and 7",
+        "Only 5",
+        "Only 7"
+      ]
+    },
+    {
+      "id": "cn-dl-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A Selective Repeat receiver expects sequence number 5 and receives a valid frame 6 first. What is the usual action?",
+      "answer": [
+        "Buffer frame 6 and acknowledge it, but wait to deliver in order"
+      ],
+      "explanation": "Selective Repeat accepts and buffers an in-window out-of-order frame. It can acknowledge frame 6 individually, but ordered delivery waits until frame 5 arrives.",
+      "options": [
+        "Buffer frame 6 and acknowledge it, but wait to deliver in order",
+        "Discard frame 6 and acknowledge only frame 5",
+        "Deliver frame 6 immediately as the next application bytes",
+        "Reset the sequence space"
+      ]
+    },
+    {
+      "id": "cn-dl-025",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish Go-Back-N from Selective Repeat?",
+      "answer": [
+        "Go-Back-N may retransmit multiple frames after one loss",
+        "Selective Repeat can buffer correctly received out-of-order frames",
+        "Selective Repeat typically needs per-frame timers or equivalent retransmission tracking"
+      ],
+      "explanation": "Go-Back-N usually discards out-of-order frames and retransmits from the missing one onward. Selective Repeat buffers out-of-order frames and retransmits only missing or damaged frames.",
+      "options": [
+        "Go-Back-N may retransmit multiple frames after one loss",
+        "Selective Repeat can buffer correctly received out-of-order frames",
+        "Selective Repeat typically needs per-frame timers or equivalent retransmission tracking",
+        "Go-Back-N buffers every out-of-order frame by default"
+      ]
+    },
+    {
+      "id": "cn-dl-026",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which mechanisms are required or commonly used by Selective Repeat ARQ?",
+      "answer": [
+        "Receiver buffering for out-of-order frames",
+        "Individual acknowledgments or equivalent per-frame status",
+        "Selective retransmission of missing or corrupted frames"
+      ],
+      "explanation": "Selective Repeat retains valid out-of-order frames and tracks acknowledgment status per frame. It retransmits only frames that need recovery rather than discarding all later data.",
+      "options": [
+        "Receiver buffering for out-of-order frames",
+        "Individual acknowledgments or equivalent per-frame status",
+        "Selective retransmission of missing or corrupted frames",
+        "A missing frame must cause all later correct frames to be discarded permanently"
+      ]
+    },
+    {
+      "id": "cn-dl-027",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A Go-Back-N sender uses a 3-bit sequence number and a window size of 7. How many distinct sequence numbers exist?",
+      "answer": "8",
+      "explanation": "A 3-bit sequence number has 2^3=8 distinct values, numbered modulo 8. The Go-Back-N window of 7 is one less than this space."
+    },
+    {
+      "id": "cn-dl-028",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about cumulative acknowledgments in Go-Back-N are correct?",
+      "answer": [
+        "An ACK can indicate the next expected sequence number",
+        "One ACK can acknowledge a prefix of frames",
+        "The receiver normally discards out-of-order frames"
+      ],
+      "explanation": "Cumulative ACKs advance the acknowledged prefix by naming the next expected frame. Frames beyond a gap are generally discarded by a Go-Back-N receiver.",
+      "options": [
+        "An ACK can indicate the next expected sequence number",
+        "One ACK can acknowledge a prefix of frames",
+        "The receiver normally discards out-of-order frames",
+        "The receiver accepts every out-of-order frame and delivers it immediately"
+      ]
+    },
+    {
+      "id": "cn-dl-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A Go-Back-N receiver expects frame 5 but receives frame 6. What does a standard receiver usually do?",
+      "options": [
+        "Discard frame 6 and repeat the acknowledgment for the next expected frame",
+        "Buffer frame 6 and deliver it immediately",
+        "Advance the expected sequence to 7",
+        "Treat frame 6 as an Ethernet address"
+      ],
+      "answer": [
+        "Discard frame 6 and repeat the acknowledgment for the next expected frame"
+      ],
+      "explanation": "Go-Back-N receivers accept only the next in-order frame. They discard frame 6 and typically send a duplicate cumulative ACK indicating that frame 5 is still expected."
+    },
+    {
+      "id": "cn-dl-030",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which mechanisms are associated with reliable data-link ARQ?",
+      "answer": [
+        "Error detection",
+        "Acknowledgments",
+        "Timeouts and retransmissions"
+      ],
+      "explanation": "ARQ combines error detection with feedback and retransmission to recover lost or corrupted frames. Route aggregation is unrelated network-layer addressing functionality.",
+      "options": [
+        "Error detection",
+        "Acknowledgments",
+        "Timeouts and retransmissions",
+        "Sequence numbers alone guarantee delivery despite loss"
+      ]
+    },
+    {
+      "id": "cn-dl-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stop-and-wait protocol has data transmission time T_t and one-way propagation delay T_p. With negligible ACK transmission and processing, what is the cycle time?",
+      "options": [
+        "T_t+2T_p",
+        "T_t+T_p",
+        "2T_t+T_p",
+        "2T_t+2T_p"
+      ],
+      "answer": [
+        "T_t+2T_p"
+      ],
+      "explanation": "After transmitting for T_t, the sender waits for the data to propagate to the receiver and the ACK to propagate back, adding approximately 2T_p."
+    },
+    {
+      "id": "cn-dl-032",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A stop-and-wait sender spends most of each cycle idle on a long-delay link. Which architectural change most directly addresses this inefficiency?",
+      "answer": [
+        "Allow multiple unacknowledged frames using a sliding window"
+      ],
+      "explanation": "A sliding window pipelines several frames while feedback is in transit. This keeps the link busy when the bandwidth-delay product exceeds one frame.",
+      "options": [
+        "Allow multiple unacknowledged frames using a sliding window",
+        "Increase the propagation distance",
+        "Reduce the sequence-number space to one value",
+        "Disable error detection"
+      ]
+    },
+    {
+      "id": "cn-dl-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sliding-window sender can transmit W frames per RTT, each with L bits, over a link of rate R. Ignoring ACK overhead, what upper bound does the window impose on throughput?",
+      "options": [
+        "min(R, WL/RTT)",
+        "R+WL/RTT",
+        "RTT/(WL)",
+        "W+L+R"
+      ],
+      "answer": [
+        "min(R, WL/RTT)"
+      ],
+      "explanation": "The window can sustain at most WL bits per round trip, while the physical link limits rate to R. Throughput is bounded by the smaller of these values."
+    },
+    {
+      "id": "cn-dl-034",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sender has a window of 8 frames, each 1000 bits, and RTT is 20 ms. What window-limited rate is available in Mb/s?",
+      "answer": "0.4",
+      "explanation": "The window carries 8,000 bits per 0.020 s, giving 400,000 bits/s=0.4 Mb/s."
+    },
+    {
+      "id": "cn-dl-035",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which changes can improve stop-and-wait link utilization?",
+      "answer": [
+        "Increase the number of outstanding frames with a sliding window",
+        "Reduce RTT",
+        "Increase frame size relative to RTT"
+      ],
+      "explanation": "Utilization improves when more data can be sent before feedback returns, when RTT shrinks, or when each transmission occupies a larger share of the cycle. Greater propagation delay lowers utilization.",
+      "options": [
+        "Increase the number of outstanding frames with a sliding window",
+        "Reduce RTT",
+        "Increase frame size relative to RTT",
+        "Increase RTT while keeping frame size and window fixed"
+      ]
+    },
+    {
+      "id": "cn-dl-036",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which changes increase the fraction of time a stop-and-wait sender is waiting for acknowledgment rather than transmitting?",
+      "answer": [
+        "Increase round-trip propagation time",
+        "Decrease frame transmission time while RTT stays fixed",
+        "Add ACK processing time"
+      ],
+      "explanation": "The idle portion grows when feedback takes longer or data serialization becomes shorter. Increasing transmission time makes sending occupy a larger fraction of the cycle.",
+      "options": [
+        "Increase round-trip propagation time",
+        "Decrease frame transmission time while RTT stays fixed",
+        "Add ACK processing time",
+        "Decrease RTT while keeping transmission and ACK processing times fixed"
+      ]
+    },
+    {
+      "id": "cn-dl-037",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An alternating-bit protocol has a 1-bit sequence number. How many distinct sequence values does it use?",
+      "answer": "2",
+      "explanation": "A one-bit sequence field represents values 0 and 1, so it has two distinct sequence values."
+    },
+    {
+      "id": "cn-dl-038",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the alternating-bit protocol are correct?",
+      "answer": [
+        "It is stop-and-wait ARQ",
+        "Sequence numbers alternate between 0 and 1",
+        "It helps detect duplicate retransmissions"
+      ],
+      "explanation": "The protocol permits one outstanding frame and alternates a one-bit sequence number. The receiver uses it to distinguish a new frame from a retransmitted duplicate.",
+      "options": [
+        "It is stop-and-wait ARQ",
+        "Sequence numbers alternate between 0 and 1",
+        "It helps detect duplicate retransmissions",
+        "The sequence number must increase modulo 8"
+      ]
+    },
+    {
+      "id": "cn-dl-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sender's timeout is set shorter than the normal round-trip time. What failure can result?",
+      "options": [
+        "Premature retransmissions of frames that are still in transit",
+        "The link rate becomes zero",
+        "All frames become correctly acknowledged without delay",
+        "The receiver's sequence space doubles"
+      ],
+      "answer": [
+        "Premature retransmissions of frames that are still in transit"
+      ],
+      "explanation": "If the timeout expires before a valid ACK can normally return, the sender retransmits unnecessarily, causing duplicate traffic and possibly duplicate delivery unless sequence numbers handle it."
+    },
+    {
+      "id": "cn-dl-040",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An ACK is generated 2 ms after a frame arrives. The data frame takes 3 ms to transmit, 5 ms to propagate one way, and the ACK takes 5 ms to return by propagation. What is the time from transmission start until ACK arrival, ignoring ACK serialization?",
+      "answer": "15",
+      "explanation": "The timeline is 3 ms data transmission, 5 ms forward propagation, 2 ms ACK generation, and 5 ms return propagation. The total is 15 ms."
+    },
+    {
+      "id": "cn-dl-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In slotted ALOHA, a frame succeeds when how many stations transmit in a slot?",
+      "options": [
+        "Exactly one",
+        "At least one",
+        "Exactly two",
+        "No stations"
+      ],
+      "answer": [
+        "Exactly one"
+      ],
+      "explanation": "A collision occurs if multiple stations transmit in the same slot. A successful slot contains exactly one transmission."
+    },
+    {
+      "id": "cn-dl-042",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For slotted ALOHA with offered load G=1, compute throughput S=Ge^(−G) to three decimal places.",
+      "answer": "0.368",
+      "explanation": "At G=1, S=e^(−1)=1/e≈0.367879, which rounds to 0.368 frames per slot."
+    },
+    {
+      "id": "cn-dl-043",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "At what offered load is slotted ALOHA throughput G e^(−G) maximized?",
+      "options": [
+        "G=0",
+        "G=1",
+        "G=2",
+        "G→∞"
+      ],
+      "answer": [
+        "G=1"
+      ],
+      "explanation": "Differentiating S(G)=Ge^(−G) gives S'=e^(−G)(1−G). The maximum occurs at G=1, with throughput 1/e."
+    },
+    {
+      "id": "cn-dl-044",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements compare pure and slotted ALOHA?",
+      "answer": [
+        "Slotted ALOHA requires slot synchronization",
+        "Pure ALOHA permits transmission at any time",
+        "The maximum normalized throughput of slotted ALOHA is 1/e"
+      ],
+      "explanation": "Slotted ALOHA constrains starts to slot boundaries and has a one-frame vulnerable period; pure ALOHA's vulnerable period is two frame times, reducing its maximum throughput.",
+      "options": [
+        "Slotted ALOHA requires slot synchronization",
+        "Pure ALOHA permits transmission at any time",
+        "The maximum normalized throughput of slotted ALOHA is 1/e",
+        "Pure ALOHA requires global slot synchronization"
+      ]
+    },
+    {
+      "id": "cn-dl-045",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For pure ALOHA, maximum normalized throughput is 1/(2e). Approximate it to three decimal places.",
+      "answer": "0.184",
+      "explanation": "1/(2e)≈0.18394, which rounds to 0.184 successful frames per frame time."
+    },
+    {
+      "id": "cn-dl-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A station senses a busy CSMA medium. What is the basic principle of carrier sensing?",
+      "options": [
+        "Defer transmission while the medium is busy",
+        "Transmit immediately to create a collision",
+        "Turn the frame into a circuit",
+        "Change the destination MAC address"
+      ],
+      "answer": [
+        "Defer transmission while the medium is busy"
+      ],
+      "explanation": "Carrier sensing checks whether the medium is occupied. A station typically waits when it detects an ongoing transmission, reducing collisions compared with unsensed access."
+    },
+    {
+      "id": "cn-dl-047",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can collisions still occur in CSMA even when stations listen before transmitting?",
+      "answer": [
+        "Propagation delay means two distant stations may both sense an idle medium",
+        "A transmission takes time to become observable everywhere",
+        "Two stations may begin nearly simultaneously"
+      ],
+      "explanation": "A signal takes time to propagate. Before one station's transmission reaches another, both may observe idle and start, producing a collision.",
+      "options": [
+        "Propagation delay means two distant stations may both sense an idle medium",
+        "A transmission takes time to become observable everywhere",
+        "Two stations may begin nearly simultaneously",
+        "Carrier sensing makes simultaneous starts impossible at any propagation delay"
+      ]
+    },
+    {
+      "id": "cn-dl-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In CSMA/CD, what does a transmitting station do after detecting a collision?",
+      "options": [
+        "Abort the frame and send a jam signal before backing off",
+        "Continue transmitting silently until completion",
+        "Immediately declare the frame delivered",
+        "Switch to a different IP address"
+      ],
+      "answer": [
+        "Abort the frame and send a jam signal before backing off"
+      ],
+      "explanation": "Collision detection causes a station to stop the current frame, signal the collision with a jam sequence, and wait a randomized backoff interval before retrying."
+    },
+    {
+      "id": "cn-dl-049",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Classic Ethernet at 10 Mb/s uses a slot time of 51.2 microseconds. How many bits can be transmitted during one slot time?",
+      "answer": "512",
+      "explanation": "10,000,000 bits/s×51.2×10^−6 s=512 bits per slot time."
+    },
+    {
+      "id": "cn-dl-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why must Ethernet's minimum frame transmission time be at least the round-trip propagation time of the collision domain in CSMA/CD?",
+      "options": [
+        "The sender must still be transmitting when a worst-case collision signal returns",
+        "It ensures propagation delay is zero",
+        "It allows the receiver to choose an IP route",
+        "It eliminates the need for a CRC"
+      ],
+      "answer": [
+        "The sender must still be transmitting when a worst-case collision signal returns"
+      ],
+      "explanation": "If a collision occurs at the far end, its signal needs a round-trip propagation time to reach the sender. The sender must still be transmitting then to detect the collision."
+    },
+    {
+      "id": "cn-dl-051",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about CSMA/CD are correct?",
+      "answer": [
+        "It detects collisions while transmitting",
+        "It uses a backoff procedure after collisions",
+        "It is used by traditional shared, half-duplex Ethernet"
+      ],
+      "explanation": "CSMA/CD is associated with shared half-duplex Ethernet. Full-duplex switched links have separate transmit and receive paths and do not use collision detection.",
+      "options": [
+        "It detects collisions while transmitting",
+        "It uses a backoff procedure after collisions",
+        "It is used by traditional shared, half-duplex Ethernet",
+        "CSMA/CD is required on every full-duplex switched Ethernet link"
+      ]
+    },
+    {
+      "id": "cn-dl-052",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 100 Mb/s Ethernet collision domain has a maximum round-trip propagation time of 5.12 microseconds. What minimum frame length in bits is required by the collision-detection timing condition?",
+      "answer": "512",
+      "explanation": "The frame time must cover the round trip: 100,000,000×5.12×10^−6=512 bits."
+    },
+    {
+      "id": "cn-dl-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In binary exponential backoff after the kth collision, the station chooses a random integer from which range, in the common Ethernet description?",
+      "options": [
+        "0 through 2^k−1, subject to a maximum exponent",
+        "1 through k",
+        "0 through k²",
+        "Exactly 2^k"
+      ],
+      "answer": [
+        "0 through 2^k−1, subject to a maximum exponent"
+      ],
+      "explanation": "The backoff window grows exponentially with the collision count. A random number of slot times is selected from 0 through 2^k−1, with the exponent capped."
+    },
+    {
+      "id": "cn-dl-054",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Ethernet MAC addresses are correct?",
+      "answer": [
+        "A MAC address is used for link-layer delivery on a local network",
+        "A broadcast MAC can reach all stations on a broadcast LAN",
+        "A router normally rewrites the link-layer addresses when forwarding to another link"
+      ],
+      "explanation": "MAC addresses have local-link scope. Routers create a new frame on each outgoing link; IP addresses provide internetwork endpoint addressing.",
+      "options": [
+        "A MAC address is used for link-layer delivery on a local network",
+        "A broadcast MAC can reach all stations on a broadcast LAN",
+        "A router normally rewrites the link-layer addresses when forwarding to another link",
+        "A router preserves the same source and destination MAC addresses across every routed hop"
+      ]
+    },
+    {
+      "id": "cn-dl-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 48-bit Ethernet MAC address contains how many hexadecimal digits?",
+      "options": [
+        "6",
+        "8",
+        "12",
+        "48"
+      ],
+      "answer": [
+        "12"
+      ],
+      "explanation": "Each hexadecimal digit represents four bits. A 48-bit address therefore has 48/4=12 hexadecimal digits."
+    },
+    {
+      "id": "cn-dl-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 48-bit MAC address is written using two hexadecimal digits per byte. How many bytes are represented?",
+      "answer": "6",
+      "explanation": "There are eight bits per byte, so 48/8=6 bytes. Each byte is shown by two hexadecimal digits."
+    },
+    {
+      "id": "cn-dl-057",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which fields are commonly present in an Ethernet II frame?",
+      "answer": [
+        "Destination MAC address",
+        "Source MAC address",
+        "Type field"
+      ],
+      "explanation": "Ethernet II includes destination and source MAC addresses and a Type field indicating the upper-layer protocol. TCP acknowledgment numbers reside in the transport header.",
+      "options": [
+        "Destination MAC address",
+        "Source MAC address",
+        "Type field",
+        "An Ethernet II frame uses a hop-count field in place of the Type field"
+      ]
+    },
+    {
+      "id": "cn-dl-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A switch receives a frame whose destination MAC is unknown in its forwarding table. What does a learning Ethernet switch commonly do?",
+      "options": [
+        "Flood it out other ports in the same VLAN except the incoming port",
+        "Drop it unconditionally",
+        "Route it using the destination IP",
+        "Send it only to the oldest learned port"
+      ],
+      "answer": [
+        "Flood it out other ports in the same VLAN except the incoming port"
+      ],
+      "explanation": "For an unknown unicast destination, a switch floods the frame within the broadcast domain, excluding the port on which it arrived."
+    },
+    {
+      "id": "cn-dl-059",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Ethernet switch learning are correct?",
+      "answer": [
+        "The source MAC and incoming port can be learned from a frame",
+        "The forwarding database maps MAC addresses to ports",
+        "Aging can remove stale entries"
+      ],
+      "explanation": "A switch learns from source MAC addresses and records the associated input port. Dynamic entries age out; ordinary Ethernet switching is based on MAC rather than physical-layer signal interpretation or IP routing.",
+      "options": [
+        "The source MAC and incoming port can be learned from a frame",
+        "The forwarding database maps MAC addresses to ports",
+        "Aging can remove stale entries",
+        "A switch learns the destination port solely from the destination address of an incoming frame"
+      ]
+    },
+    {
+      "id": "cn-dl-060",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A stop-and-wait link sends 2000-bit frames at 2 Mb/s. RTT excluding data transmission is 18 ms, ACK transmission negligible. Find utilization percentage.",
+      "answer": "5.26",
+      "explanation": "Transmission time is 1 ms. Cycle time is 1+18=19 ms, so utilization is 1/19≈0.05263=5.26%."
+    },
+    {
+      "id": "cn-dl-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "One-way propagation delay is 5 ms and frame transmission time is 1 ms. A sliding window has 11 frames. Under the standard window-filling condition, is this sufficient to keep the sender busy?",
+      "options": [
+        "Yes; W=1+2a/Tt=11",
+        "No; at least 5 frames are needed",
+        "No; at least 21 frames are needed",
+        "No window can overcome propagation delay"
+      ],
+      "answer": [
+        "Yes; W=1+2a/Tt=11"
+      ],
+      "explanation": "With a=5 ms and Tt=1 ms, the required window is 1+2a/Tt=1+10=11 frames. The stated window exactly meets the idealized condition."
+    },
+    {
+      "id": "cn-dl-062",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which outcomes follow when a sender window is smaller than the number of frames needed to cover the bandwidth-delay product?",
+      "answer": [
+        "The sender may become idle while waiting for acknowledgments",
+        "The link can be underutilized despite available capacity",
+        "Increasing the window can improve utilization up to the path limit"
+      ],
+      "explanation": "An undersized window cannot keep enough data in flight to cover the feedback delay. Increasing it can raise utilization until the link or another bottleneck is saturated.",
+      "options": [
+        "The sender may become idle while waiting for acknowledgments",
+        "The link can be underutilized despite available capacity",
+        "Increasing the window can improve utilization up to the path limit",
+        "A smaller sender window always increases link utilization"
+      ]
+    },
+    {
+      "id": "cn-dl-063",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about ARQ sequence-number spaces are correct?",
+      "answer": [
+        "Sequence numbers wrap modulo the field's value range",
+        "Window constraints prevent old and new frames from becoming ambiguous",
+        "Selective Repeat needs a smaller maximum window than the full sequence space"
+      ],
+      "explanation": "An m-bit sequence number has 2^m values and wraps modulo that space. Window limits ensure the receiver can distinguish delayed duplicates from new transmissions.",
+      "options": [
+        "Sequence numbers wrap modulo the field's value range",
+        "Window constraints prevent old and new frames from becoming ambiguous",
+        "Selective Repeat needs a smaller maximum window than the full sequence space",
+        "Selective Repeat can use a window of the entire sequence-number space without ambiguity"
+      ]
+    },
+    {
+      "id": "cn-dl-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A two-bit Go-Back-N protocol uses sequence numbers modulo 4. Frames 2, 3, and 0 are sent. A cumulative ACK says the next expected frame is 0. How many of these frames remain unacknowledged?",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "The ACK for next expected 0 confirms receipt of frames 2 and 3. Frame 0 is still outstanding, so one remains unacknowledged."
+    },
+    {
+      "id": "cn-dl-065",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Why is a Selective Repeat window limited to at most half of the sequence-number space?",
+      "answer": [
+        "To prevent an old delayed frame from being mistaken for a new frame after wraparound"
+      ],
+      "explanation": "If sender and receiver windows overlap across sequence-number wraparound, an old duplicate may appear to be a new frame. Keeping each window at most half the space avoids this ambiguity.",
+      "options": [
+        "To prevent an old delayed frame from being mistaken for a new frame after wraparound",
+        "To make the link rate exactly twice the RTT",
+        "To force the sender to retransmit all frames",
+        "To avoid calculating checksums"
+      ]
+    },
+    {
+      "id": "cn-dl-066",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which events are handled differently by Go-Back-N and Selective Repeat?",
+      "answer": [
+        "Go-Back-N retransmits the missing frame and later outstanding frames",
+        "Selective Repeat can retransmit only the missing frame",
+        "Selective Repeat buffers out-of-order data frames"
+      ],
+      "explanation": "Go-Back-N recovers by resending the suffix beginning at the missing frame. Selective Repeat buffers later frames and selectively retransmits the missing one.",
+      "options": [
+        "Go-Back-N retransmits the missing frame and later outstanding frames",
+        "Selective Repeat can retransmit only the missing frame",
+        "Selective Repeat buffers out-of-order data frames",
+        "Go-Back-N buffers and individually acknowledges every out-of-order frame"
+      ]
+    },
+    {
+      "id": "cn-dl-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ACK in Go-Back-N states that the receiver expects sequence number 7. What does this cumulative ACK normally imply?",
+      "options": [
+        "All frames before 7 have been received in order",
+        "Only frame 7 has been received",
+        "No frame has been received",
+        "Frames 7 and later have been delivered"
+      ],
+      "answer": [
+        "All frames before 7 have been received in order"
+      ],
+      "explanation": "A cumulative ACK for the next expected number indicates that the receiver has accepted every preceding frame in sequence."
+    },
+    {
+      "id": "cn-dl-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sender transmits 4-bit Go-Back-N frames with sequence numbers 0 through 15. If the next expected sequence is 14, what sequence number follows 15?",
+      "answer": "0",
+      "explanation": "Sequence numbers wrap modulo 16. After 15, the next value is 0."
+    },
+    {
+      "id": "cn-dl-069",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about acknowledgments and retransmissions are correct?",
+      "answer": [
+        "A duplicate ACK can indicate a missing earlier frame",
+        "Timeouts can trigger retransmission",
+        "Sequence numbers help suppress duplicate delivery"
+      ],
+      "explanation": "Repeated cumulative acknowledgments often signal a gap; timers recover when feedback is absent. Sequence numbers let receivers recognize duplicate frames, while ACKs are separate control messages.",
+      "options": [
+        "A duplicate ACK can indicate a missing earlier frame",
+        "Timeouts can trigger retransmission",
+        "Sequence numbers help suppress duplicate delivery",
+        "A duplicate ACK proves that the reverse path has no packet loss"
+      ]
+    },
+    {
+      "id": "cn-dl-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a link protocol with bit errors, why is a checksum or CRC added to each frame?",
+      "options": [
+        "To detect corruption before accepting the frame",
+        "To guarantee the frame is delivered",
+        "To encrypt the payload",
+        "To choose the next hop"
+      ],
+      "answer": [
+        "To detect corruption before accepting the frame"
+      ],
+      "explanation": "Error-detection bits allow the receiver to identify many corrupted frames. Detection alone does not guarantee delivery; ARQ may be used for recovery."
+    },
+    {
+      "id": "cn-dl-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 1200-byte payload has a 4-byte CRC field and a 6-byte framing header. What is the total frame length?",
+      "answer": "1210",
+      "explanation": "The frame consists of 1200 payload bytes plus 4 CRC bytes and 6 header bytes: 1210 bytes."
+    },
+    {
+      "id": "cn-dl-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about checksums and CRCs are correct?",
+      "answer": [
+        "They add redundancy for error detection",
+        "They can detect but not necessarily correct errors",
+        "CRC operates on polynomial representations over GF(2)"
+      ],
+      "explanation": "Checksums and CRCs detect corruption by adding check bits; correction needs additional coding or retransmission. Some error patterns can yield a valid check value, so passing is not absolute proof.",
+      "options": [
+        "They add redundancy for error detection",
+        "They can detect but not necessarily correct errors",
+        "CRC operates on polynomial representations over GF(2)",
+        "A CRC can always reconstruct the original corrupted bits without retransmission"
+      ]
+    },
+    {
+      "id": "cn-dl-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which error patterns are guaranteed to be detected by a degree-r CRC generator?",
+      "answer": [
+        "Every nonzero burst error of length at most r"
+      ],
+      "explanation": "A degree-r generator guarantees detection of all nonzero burst errors up to length r. Some longer error polynomials are multiples of the generator and can be undetected.",
+      "options": [
+        "Every nonzero burst error of length at most r",
+        "Every burst error of length r+1",
+        "Every error pattern containing an even number of bit flips",
+        "Only burst errors whose length is exactly r"
+      ]
+    },
+    {
+      "id": "cn-dl-074",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A received CRC codeword has a nonzero remainder under the agreed generator. What is the correct interpretation?",
+      "answer": [
+        "The receiver detected an error"
+      ],
+      "explanation": "A nonzero remainder means the received polynomial is not divisible by the agreed generator, so the CRC check detects corruption.",
+      "options": [
+        "The receiver detected an error",
+        "The sender used an even number of bits",
+        "The frame is guaranteed correct",
+        "The generator degree is zero"
+      ]
+    },
+    {
+      "id": "cn-dl-075",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about error-detecting codes are correct?",
+      "answer": [
+        "A valid codeword is selected from a subset of all bit strings",
+        "Redundancy can make some corrupted strings invalid",
+        "Some error patterns can transform one valid codeword into another"
+      ],
+      "explanation": "Coding redundancy separates valid codewords, enabling detection or correction within distance limits. A corruption may land on another codeword, and detection alone does not correct it.",
+      "options": [
+        "A valid codeword is selected from a subset of all bit strings",
+        "Redundancy can make some corrupted strings invalid",
+        "Some error patterns can transform one valid codeword into another",
+        "Every possible bit string is a valid codeword when redundancy is added"
+      ]
+    },
+    {
+      "id": "cn-dl-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A code's minimum distance is 4. Which pair of guarantees is valid?",
+      "options": [
+        "Detect 3 errors and correct 1",
+        "Detect 4 errors and correct 2",
+        "Detect 2 errors and correct 2",
+        "Detect 1 error and correct 3"
+      ],
+      "answer": [
+        "Detect 3 errors and correct 1"
+      ],
+      "explanation": "Detection is guaranteed through d−1=3 errors, and correction through floor((4−1)/2)=1 error."
+    },
+    {
+      "id": "cn-dl-077",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A parity code adds one bit to 7 data bits. What is the resulting codeword length?",
+      "answer": "8",
+      "explanation": "One parity bit is appended to the seven data bits, producing an 8-bit codeword."
+    },
+    {
+      "id": "cn-dl-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a single parity bit are correct?",
+      "answer": [
+        "It detects every odd number of flipped bits",
+        "It can fail to detect two flipped bits",
+        "It adds one bit of redundancy"
+      ],
+      "explanation": "Parity checks only whether the total number of 1s has the required parity. It detects odd-weight errors but gives no location information, and two flips preserve parity.",
+      "options": [
+        "It detects every odd number of flipped bits",
+        "It can fail to detect two flipped bits",
+        "It adds one bit of redundancy",
+        "A single parity bit detects every pattern with an even number of flips"
+      ]
+    },
+    {
+      "id": "cn-dl-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In Ethernet CSMA/CD, why does the jam signal follow collision detection?",
+      "options": [
+        "To ensure all stations on the collision domain recognize the collision",
+        "To acknowledge successful delivery",
+        "To reserve the channel permanently",
+        "To encode the IP destination"
+      ],
+      "answer": [
+        "To ensure all stations on the collision domain recognize the collision"
+      ],
+      "explanation": "The jam sequence makes the collision event sufficiently noticeable across the shared medium before stations enter backoff."
+    },
+    {
+      "id": "cn-dl-080",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A shared Ethernet has a slot time of 51.2 microseconds. At 100 Mb/s, how many bits are transmitted during one slot?",
+      "answer": "5120",
+      "explanation": "100,000,000×51.2×10^−6=5,120 bits are transmitted in one slot interval."
+    },
+    {
+      "id": "cn-dl-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties are associated with switched full-duplex Ethernet?",
+      "answer": [
+        "A dedicated point-to-point link can carry simultaneous send and receive traffic",
+        "Collisions are not expected on a full-duplex link",
+        "CSMA/CD is unnecessary"
+      ],
+      "explanation": "Full-duplex switched links separate transmit and receive paths between a host and switch. They do not use the shared-medium collision mechanism.",
+      "options": [
+        "A dedicated point-to-point link can carry simultaneous send and receive traffic",
+        "Collisions are not expected on a full-duplex link",
+        "CSMA/CD is unnecessary",
+        "Full-duplex switched links use collision backoff independently in both directions"
+      ]
+    },
+    {
+      "id": "cn-dl-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A station has experienced several consecutive collisions. What effect does binary exponential backoff have?",
+      "options": [
+        "It expands the random backoff window as collisions accumulate",
+        "It forces immediate retransmission every time",
+        "It reduces the frame's CRC length",
+        "It permanently blocks the station"
+      ],
+      "answer": [
+        "It expands the random backoff window as collisions accumulate"
+      ],
+      "explanation": "Increasing the contention window after repeated collisions reduces the chance that the same stations retransmit simultaneously again."
+    },
+    {
+      "id": "cn-dl-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about ALOHA protocols are correct?",
+      "answer": [
+        "Pure ALOHA allows transmission at arbitrary times",
+        "Slotted ALOHA restricts transmissions to slot boundaries",
+        "Slotted ALOHA has a shorter vulnerable period than pure ALOHA"
+      ],
+      "explanation": "Slotted operation aligns frame starts and reduces the vulnerable period from two frame times to one. Both remain random-access protocols and can collide.",
+      "options": [
+        "Pure ALOHA allows transmission at arbitrary times",
+        "Slotted ALOHA restricts transmissions to slot boundaries",
+        "Slotted ALOHA has a shorter vulnerable period than pure ALOHA",
+        "Pure ALOHA has half the vulnerable period of slotted ALOHA"
+      ]
+    },
+    {
+      "id": "cn-dl-084",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Classic Ethernet operates at 100 Mb/s. The maximum one-way propagation delay is 25.6 microseconds. What minimum frame size in bytes is needed to ensure a sender is still transmitting when a worst-case collision returns? Ignore jam bits.",
+      "answer": "640",
+      "explanation": "The round-trip propagation time is 51.2 microseconds. At 100 Mb/s, 5120 bits can be transmitted during that interval, which is 640 bytes."
+    },
+    {
+      "id": "cn-dl-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For pure ALOHA, the vulnerable period for a frame of duration T is",
+      "options": [
+        "T",
+        "2T",
+        "T/2",
+        "0"
+      ],
+      "answer": [
+        "2T"
+      ],
+      "explanation": "A frame can collide with another that starts up to T before or T after its start. The total vulnerable interval is 2T."
+    },
+    {
+      "id": "cn-dl-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about CSMA persistence strategies are correct?",
+      "answer": [
+        "1-persistent transmits immediately when the medium becomes idle",
+        "Nonpersistent waits a random time after sensing busy",
+        "p-persistent applies probabilistic transmission at slot boundaries"
+      ],
+      "explanation": "The variants define how a station behaves when it senses a busy or idle channel. Propagation can still cause collisions, so none eliminates them entirely.",
+      "options": [
+        "1-persistent transmits immediately when the medium becomes idle",
+        "Nonpersistent waits a random time after sensing busy",
+        "p-persistent applies probabilistic transmission at slot boundaries",
+        "Nonpersistent CSMA transmits continuously while the channel is busy"
+      ]
+    },
+    {
+      "id": "cn-dl-087",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A link's one-way propagation delay is 4 microseconds and rate is 25 Mb/s. What frame size in bits has transmission time equal to the round-trip propagation time?",
+      "answer": "200",
+      "explanation": "Round-trip propagation is 8 microseconds. Multiply by 25×10^6 bits/s to get 200 bits."
+    },
+    {
+      "id": "cn-dl-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An Ethernet collision domain has round-trip propagation time 40 microseconds at 10 Mb/s. What minimum frame size satisfies the collision-detection timing condition?",
+      "options": [
+        "40 bits",
+        "100 bits",
+        "400 bits",
+        "4000 bits"
+      ],
+      "answer": [
+        "400 bits"
+      ],
+      "explanation": "The minimum frame transmission time must cover the 40-microsecond round trip. At 10 Mb/s, that is 10,000,000×40×10^−6=400 bits."
+    },
+    {
+      "id": "cn-dl-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Ethernet framing and collision handling are correct?",
+      "answer": [
+        "The frame check sequence detects many transmission errors",
+        "The minimum frame size supports collision detection in classic Ethernet",
+        "Backoff randomizes retransmission timing after collision"
+      ],
+      "explanation": "Ethernet uses an FCS for error detection, a minimum frame size related to collision timing, and backoff after collisions. The interframe gap is timing, not an address field.",
+      "options": [
+        "The frame check sequence detects many transmission errors",
+        "The minimum frame size supports collision detection in classic Ethernet",
+        "Backoff randomizes retransmission timing after collision",
+        "Ethernet backoff guarantees that a collision never occurs again"
+      ]
+    },
+    {
+      "id": "cn-dl-090",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 1500-byte Ethernet payload is sent in a frame with 18 bytes of header and trailer overhead. How many total bytes are carried, ignoring preamble and interframe gap?",
+      "answer": "1518",
+      "explanation": "Add the payload and stated overhead: 1500+18=1518 bytes."
+    },
+    {
+      "id": "cn-dl-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A receiver gets a frame with a CRC remainder that is nonzero. What should it conclude?",
+      "options": [
+        "An error has been detected and the frame should not be accepted as valid",
+        "The frame is certainly correct",
+        "The destination MAC is unknown",
+        "The sender has received an ACK"
+      ],
+      "answer": [
+        "An error has been detected and the frame should not be accepted as valid"
+      ],
+      "explanation": "A nonzero syndrome indicates that the received bit sequence fails the CRC check. The receiver treats it as corrupted and discards it or requests retransmission per protocol."
+    },
+    {
+      "id": "cn-dl-092",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 4-bit CRC remainder is appended to a 100-bit dataword. What is the resulting codeword length?",
+      "answer": "104",
+      "explanation": "The codeword includes the original 100 data bits plus 4 CRC bits, totaling 104 bits."
+    },
+    {
+      "id": "cn-dl-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a sliding-window link protocol are correct?",
+      "answer": [
+        "It can keep multiple frames in flight",
+        "It can improve utilization on a long-RTT link",
+        "It requires sequence numbers to identify frames"
+      ],
+      "explanation": "Sliding windows pipeline frames and use sequence numbers to track outstanding data. Reliable ARQ still uses acknowledgments or equivalent feedback.",
+      "options": [
+        "It can keep multiple frames in flight",
+        "It can improve utilization on a long-RTT link",
+        "It requires sequence numbers to identify frames",
+        "A sliding window permits only one unacknowledged frame at a time"
+      ]
+    },
+    {
+      "id": "cn-dl-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-bit sequence number field is used. What is the sequence-number space size?",
+      "options": [
+        "5",
+        "16",
+        "31",
+        "32"
+      ],
+      "answer": [
+        "32"
+      ],
+      "explanation": "An m-bit field represents 2^m values. For m=5, there are 32 sequence numbers."
+    },
+    {
+      "id": "cn-dl-095",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A Go-Back-N receiver expects frame 7 in a modulo-8 sequence space, but receives frame 0 before frame 7. What does it normally do?",
+      "answer": [
+        "Discard frame 0 and repeat the ACK for frame 7"
+      ],
+      "explanation": "Go-Back-N accepts only the next in-order frame. Since 7 is missing, frame 0 is out of order and is discarded; the receiver indicates that 7 is still expected.",
+      "options": [
+        "Discard frame 0 and repeat the ACK for frame 7",
+        "Buffer frame 0 and deliver it immediately",
+        "Advance expectation to frame 1",
+        "Acknowledge every frame through 0"
+      ]
+    },
+    {
+      "id": "cn-dl-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A Selective Repeat receiver has an in-window frame 0 arrive before missing frame 7, with sequence numbers modulo 8. What can it do?",
+      "options": [
+        "Buffer and acknowledge frame 0 while waiting for frame 7",
+        "Discard frame 0 because every protocol is Go-Back-N",
+        "Deliver frame 0 before all preceding data",
+        "Reset the sender window"
+      ],
+      "answer": [
+        "Buffer and acknowledge frame 0 while waiting for frame 7"
+      ],
+      "explanation": "Selective Repeat can accept an in-window out-of-order frame, store it, and acknowledge it individually. Ordered delivery can resume after frame 7 fills the gap."
+    },
+    {
+      "id": "cn-dl-097",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about error detection versus error correction are correct?",
+      "answer": [
+        "Detection can indicate corruption without identifying the original bits",
+        "Correction requires enough redundancy to infer the intended codeword",
+        "ARQ can recover by retransmission after detecting an error"
+      ],
+      "explanation": "Detection flags invalid data; correction needs sufficient code distance to identify the transmitted codeword. One parity bit detects a single-bit error but cannot locate which bit flipped.",
+      "options": [
+        "Detection can indicate corruption without identifying the original bits",
+        "Correction requires enough redundancy to infer the intended codeword",
+        "ARQ can recover by retransmission after detecting an error",
+        "Error detection always identifies the exact positions of all corrupted bits"
+      ]
+    },
+    {
+      "id": "cn-dl-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An even-parity receiver sees data plus parity containing an odd number of 1s. What can it conclude?",
+      "options": [
+        "A parity error is detected",
+        "The exact error location is known",
+        "The data is correct",
+        "Two bits definitely flipped"
+      ],
+      "answer": [
+        "A parity error is detected"
+      ],
+      "explanation": "An odd count violates the even-parity rule, so an error is detected. Parity alone cannot determine the error location or number of flipped bits."
+    },
+    {
+      "id": "cn-dl-099",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A codeword is changed by flipping exactly one bit. Which additional property is needed to guarantee that the receiver can identify and correct the flipped bit?",
+      "answer": [
+        "A code with minimum distance at least 3"
+      ],
+      "explanation": "Correcting one error requires disjoint radius-one decoding neighborhoods, which needs minimum distance 2t+1=3. A parity bit can detect a single error but cannot locate it.",
+      "options": [
+        "A code with minimum distance at least 3",
+        "A single parity bit only",
+        "A code with minimum distance 2",
+        "No redundancy"
+      ]
+    },
+    {
+      "id": "cn-dl-100",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements summarize reliable data-link communication?",
+      "answer": [
+        "Frames can be protected with error-detection bits",
+        "Acknowledgments provide receiver feedback",
+        "Retransmissions can recover from loss or detected corruption"
+      ],
+      "explanation": "Reliable link protocols combine detection and feedback with retransmission. They can recover from many errors but cannot ensure the physical medium never produces errors.",
+      "options": [
+        "Frames can be protected with error-detection bits",
+        "Acknowledgments provide receiver feedback",
+        "Retransmissions can recover from loss or detected corruption",
+        "Acknowledgments eliminate the need for sequence numbers and duplicate suppression"
+      ]
+    }
+  ]
+}

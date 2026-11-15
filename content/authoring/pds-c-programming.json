@@ -1,0 +1,1528 @@
+{
+  "topicIndex": 0,
+  "questions": [
+    {
+      "id": "pds-c-001",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Assume int is 4 bytes and row-major layout. What is the byte offset of a[2][1] in int a[4][3], from a[0][0]?",
+      "answer": "28",
+      "explanation": "The linear element offset is 2*3+1=7. At four bytes per int, the byte offset is 7*4=28."
+    },
+    {
+      "id": "pds-c-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For int a[7]={0}; in the same scope, what does sizeof(a)/sizeof(a[0]) evaluate to?",
+      "options": [
+        "7",
+        "28",
+        "4",
+        "The pointer size"
+      ],
+      "answer": [
+        "7"
+      ],
+      "explanation": "sizeof(a) includes all seven int elements; sizeof(a[0]) is one int. Their ratio gives the element count."
+    },
+    {
+      "id": "pds-c-003",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For char text[]=\"GATE\"; what value does sizeof(text) return?",
+      "answer": "5",
+      "explanation": "The array stores four visible characters plus the terminating null character, so sizeof reports five bytes."
+    },
+    {
+      "id": "pds-c-004",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For char text[]=\"GATE\"; what does strlen(text) return before modification?",
+      "answer": "4",
+      "explanation": "strlen counts characters up to but excluding the null terminator."
+    },
+    {
+      "id": "pds-c-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Let int a[9]; int *p=&a[2] and int *q=&a[8]. What is q-p?",
+      "answer": "6",
+      "explanation": "Pointer subtraction for elements of the same array returns their element-index difference: 8-2=6."
+    },
+    {
+      "id": "pds-c-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For int a[4]; int *p=&a[3]; which operation is defined?",
+      "options": [
+        "Forming p+1 as a one-past pointer",
+        "Dereferencing p+1",
+        "Forming p+2",
+        "Dereferencing a[4]"
+      ],
+      "answer": [
+        "Forming p+1 as a one-past pointer"
+      ],
+      "explanation": "C permits a pointer one past an array end for comparison or subtraction, but it cannot be dereferenced or advanced farther."
+    },
+    {
+      "id": "pds-c-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a function parameter declaration void f(int values[20]), what type does values have inside f?",
+      "options": [
+        "int *",
+        "int [20]",
+        "int **",
+        "const int *"
+      ],
+      "answer": [
+        "int *"
+      ],
+      "explanation": "Array parameters are adjusted to pointer parameters. The function receives an int pointer; the bound 20 does not automatically enforce a runtime length."
+    },
+    {
+      "id": "pds-c-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A function void inc(int x) executes x=x+1. The caller passes variable n. What is guaranteed about n after the call?",
+      "options": [
+        "The call does not modify n through x",
+        "n is incremented exactly once",
+        "n is multiplied by two",
+        "The result depends on stack layout"
+      ],
+      "answer": [
+        "The call does not modify n through x"
+      ],
+      "explanation": "C passes the scalar value by value. The function changes its local parameter copy, not the caller object."
+    },
+    {
+      "id": "pds-c-009",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A block-scope static int counter starts without an initializer and is incremented once per call. What is its value after 9 calls?",
+      "answer": "9",
+      "explanation": "A static-storage object is zero-initialized once and retains its value between calls. Nine increments produce 9."
+    },
+    {
+      "id": "pds-c-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What initial value does a file-scope int object without an explicit initializer have?",
+      "options": [
+        "0",
+        "An indeterminate value",
+        "-1",
+        "The value of the first input read"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "Objects with static storage duration are zero-initialized when no initializer is provided."
+    },
+    {
+      "id": "pds-c-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A function declares static int calls; and increments calls every invocation. What happens to calls between invocations?",
+      "options": [
+        "Its value is retained for the program duration",
+        "It is recreated with value zero on every call",
+        "It becomes a global variable visible to all translation units",
+        "It is stored in the caller stack frame"
+      ],
+      "answer": [
+        "Its value is retained for the program duration"
+      ],
+      "explanation": "A block-scope static object has static storage duration. Its name remains block-scoped, but its stored value persists across calls."
+    },
+    {
+      "id": "pds-c-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the status of reading an uninitialized automatic int local variable?",
+      "options": [
+        "It has an indeterminate value and using it can have undefined behavior",
+        "It is guaranteed to be zero",
+        "It is guaranteed to equal the last value at that stack address",
+        "It is implementation-defined but always safe"
+      ],
+      "answer": [
+        "It has an indeterminate value and using it can have undefined behavior"
+      ],
+      "explanation": "An automatic object without an initializer is not zero-initialized. Evaluating its indeterminate value is not a portable operation."
+    },
+    {
+      "id": "pds-c-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "At file scope, what does extern int total; normally declare?",
+      "options": [
+        "An object defined elsewhere without defining storage here",
+        "A new zero-initialized object definition",
+        "An automatic local object",
+        "A function that returns int"
+      ],
+      "answer": [
+        "An object defined elsewhere without defining storage here"
+      ],
+      "explanation": "A file-scope extern declaration refers to an externally linked object. Without an initializer, it is a declaration rather than a tentative definition."
+    },
+    {
+      "id": "pds-c-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does static on a file-scope function declaration specify?",
+      "options": [
+        "Internal linkage within that translation unit",
+        "External linkage across the whole program",
+        "Automatic storage duration for each call",
+        "The function must be inlined"
+      ],
+      "answer": [
+        "Internal linkage within that translation unit"
+      ],
+      "explanation": "A file-scope static function name is not visible to other translation units; static changes linkage in this context."
+    },
+    {
+      "id": "pds-c-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Given int a[3], b[3]; what does the statement a=b; do in standard C?",
+      "options": [
+        "It violates a constraint because arrays are not assignable",
+        "It copies all three elements",
+        "It copies the address of b",
+        "It swaps the arrays"
+      ],
+      "answer": [
+        "It violates a constraint because arrays are not assignable"
+      ],
+      "explanation": "Array objects are not modifiable lvalues and cannot be assigned wholesale. Elements must be copied individually or through a library routine."
+    },
+    {
+      "id": "pds-c-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For int a[2][5], what is the type of a+1 after array conversion?",
+      "options": [
+        "Pointer to an array of 5 int",
+        "Pointer to int",
+        "Pointer to an array of 2 int",
+        "Pointer to pointer to int"
+      ],
+      "answer": [
+        "Pointer to an array of 5 int"
+      ],
+      "explanation": "The outer array decays to a pointer to its first row. Each row has type int[5], so adding one advances by one row."
+    },
+    {
+      "id": "pds-c-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Inside a function, sizeof applied to a parameter declared int x[] yields what?",
+      "options": [
+        "The size of an int pointer",
+        "The total size of the caller array",
+        "The number of elements passed",
+        "The size of the first int"
+      ],
+      "answer": [
+        "The size of an int pointer"
+      ],
+      "explanation": "The parameter is adjusted to int *x. sizeof measures that pointer object; the array length must be passed separately."
+    },
+    {
+      "id": "pds-c-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For char s[4]=\"GATE\"; which statement is correct?",
+      "options": [
+        "The initializer cannot fit because the null terminator needs a fifth element",
+        "It is valid and stores the complete string including terminator",
+        "It silently truncates the last character",
+        "It makes s a pointer"
+      ],
+      "answer": [
+        "The initializer cannot fit because the null terminator needs a fifth element"
+      ],
+      "explanation": "The string literal has five char elements including its terminator. An array of four cannot hold the full initializer as written."
+    },
+    {
+      "id": "pds-c-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which printf conversion is intended for a value of type size_t returned by sizeof?",
+      "options": [
+        "%zu",
+        "%d",
+        "%f",
+        "%c"
+      ],
+      "answer": [
+        "%zu"
+      ],
+      "explanation": "sizeof has type size_t. The z length modifier with u is the matching standard conversion for an unsigned integer type such as size_t."
+    },
+    {
+      "id": "pds-c-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For int a[]={3,5,8,12}; int *p=a; what value does p[2] designate?",
+      "options": [
+        "8",
+        "5",
+        "12",
+        "The address of a[2]"
+      ],
+      "answer": [
+        "8"
+      ],
+      "explanation": "p[2] is *(p+2). Since p points to a[0], it selects a[2], whose value is 8."
+    },
+    {
+      "id": "pds-c-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For int a[4]; int *p=&a[1]; which expression denotes the address of a[3]?",
+      "options": [
+        "p+2",
+        "p+3",
+        "p-2",
+        "&p[3]"
+      ],
+      "answer": [
+        "p+2"
+      ],
+      "explanation": "Starting at a[1], advancing the pointer by two elements yields a[3]."
+    },
+    {
+      "id": "pds-c-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For char *p=\"abc\";, which operation has undefined behavior?",
+      "options": [
+        "Attempting to modify p[0]",
+        "Reading p[1]",
+        "Comparing p with NULL",
+        "Passing p to a function taking const char *"
+      ],
+      "answer": [
+        "Attempting to modify p[0]"
+      ],
+      "explanation": "A string literal is not modifiable. Reading its characters is allowed, but writing through p has undefined behavior."
+    },
+    {
+      "id": "pds-c-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For int a[3]={1,2}; what value is stored in a[2]?",
+      "options": [
+        "0",
+        "2",
+        "An indeterminate value",
+        "The address of a[0]"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "Aggregate initialization supplies zero values for array elements omitted from the initializer list."
+    },
+    {
+      "id": "pds-c-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which C function counts characters in a null-terminated string s, excluding its terminator?",
+      "options": [
+        "strlen(s)",
+        "sizeof(s)",
+        "sizeof(s)-1 for every s",
+        "sizeof(char *)"
+      ],
+      "answer": [
+        "strlen(s)"
+      ],
+      "explanation": "strlen counts characters before the first null byte. sizeof may measure an array or just a pointer, depending on context."
+    },
+    {
+      "id": "pds-c-025",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For char word[]=\"net\"; what is sizeof(word)?",
+      "answer": "4",
+      "explanation": "The array contains n, e, t, and a terminating null character, so it has four char elements."
+    },
+    {
+      "id": "pds-c-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For int a[5], what is the result of 2[a]?",
+      "options": [
+        "The same element as a[2]",
+        "A syntax error",
+        "The address of a[2]",
+        "The element before a[0]"
+      ],
+      "answer": [
+        "The same element as a[2]"
+      ],
+      "explanation": "C defines a[i] as *(a+i). Pointer addition is commutative, so 2[a] is equivalent to a[2], though it is unusual style."
+    },
+    {
+      "id": "pds-c-027",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a function parameter written int x[static 8], what does static require of each call?",
+      "options": [
+        "The argument provides access to at least eight int elements",
+        "The function allocates eight ints automatically",
+        "The argument has static storage duration",
+        "The parameter becomes a global array"
+      ],
+      "answer": [
+        "The argument provides access to at least eight int elements"
+      ],
+      "explanation": "The static array-parameter qualifier expresses a minimum accessible element count; it does not allocate storage."
+    },
+    {
+      "id": "pds-c-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In the declaration int (*p)[6], what does p point to?",
+      "options": [
+        "An array of six int",
+        "An int pointer",
+        "An array of six int pointers",
+        "A function returning int"
+      ],
+      "answer": [
+        "An array of six int"
+      ],
+      "explanation": "Parentheses make p a pointer to an array of six int, rather than an array of pointers."
+    },
+    {
+      "id": "pds-c-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which declaration is an array of four pointers to char?",
+      "options": [
+        "char *names[4];",
+        "char (*names)[4];",
+        "char names*[4];",
+        "char (*names[4])(void);"
+      ],
+      "answer": [
+        "char *names[4];"
+      ],
+      "explanation": "Array subscripting binds more tightly than unary *, so names is an array whose elements are char pointers."
+    },
+    {
+      "id": "pds-c-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Assume 8-bit unsigned char. What value results from unsigned char x=250; x+=10; ?",
+      "options": [
+        "4",
+        "260",
+        "255",
+        "Undefined behavior"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "The compound assignment converts the sum back to an 8-bit unsigned type. 260 modulo 256 is 4."
+    },
+    {
+      "id": "pds-c-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Assume 32-bit unsigned int. What value does 0u-1u produce?",
+      "options": [
+        "4294967295",
+        "-1",
+        "0",
+        "4294967296"
+      ],
+      "answer": [
+        "4294967295"
+      ],
+      "explanation": "Unsigned arithmetic is modulo 2^32, so zero minus one yields 2^32-1."
+    },
+    {
+      "id": "pds-c-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Assume 32-bit signed int with x=INT_MAX. What happens when x is incremented?",
+      "options": [
+        "The behavior is undefined due to signed overflow",
+        "It is guaranteed to wrap to INT_MIN",
+        "It becomes zero",
+        "It is defined to saturate"
+      ],
+      "answer": [
+        "The behavior is undefined due to signed overflow"
+      ],
+      "explanation": "C does not define signed overflow. Hardware wraparound does not make the expression portable."
+    },
+    {
+      "id": "pds-c-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Assume unsigned char is 8 bits and int can represent 0 through 255. What value does the expression (unsigned char)255 + 1 have before assignment to any narrower object?",
+      "options": [
+        "256",
+        "0",
+        "1",
+        "Undefined behavior"
+      ],
+      "answer": [
+        "256"
+      ],
+      "explanation": "The unsigned char operand is promoted to int because int represents its full range. The addition therefore occurs as int and yields 256; it does not wrap at 8 bits."
+    },
+    {
+      "id": "pds-c-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For unsigned int x, which expression tests whether its least significant bit is set?",
+      "options": [
+        "(x & 1u) != 0",
+        "(x | 1u) == 0",
+        "(x >> 1) == 1u",
+        "(x & 1u) == 0"
+      ],
+      "answer": [
+        "(x & 1u) != 0"
+      ],
+      "explanation": "Bitwise AND with one isolates the low bit. Comparing that masked result with zero tests whether it is set."
+    },
+    {
+      "id": "pds-c-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Given int a[]={4,9,13}; int *p=a; then execute int first=*p++; followed by int second=*p; what values are stored in first and second?",
+      "options": [
+        "4 and 9",
+        "9 and 9",
+        "4 and 4",
+        "Undefined behavior"
+      ],
+      "answer": [
+        "4 and 9"
+      ],
+      "explanation": "Each statement is a separate full expression. The first reads a[0] and advances p; the next reads a[1], so the values are 4 and 9."
+    },
+    {
+      "id": "pds-c-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If p points to a modifiable int, what does (*p)++ do?",
+      "options": [
+        "Increment the pointed-to int",
+        "Increment p by one element",
+        "Increment the pointer by one byte",
+        "Dereference the next element"
+      ],
+      "answer": [
+        "Increment the pointed-to int"
+      ],
+      "explanation": "Parentheses make indirection occur first, so postfix increment applies to the int object reached through p."
+    },
+    {
+      "id": "pds-c-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which uses of an array expression avoid array-to-pointer conversion?",
+      "options": [
+        "sizeof a",
+        "a+1",
+        "a[0]",
+        "Passing a as an int * argument"
+      ],
+      "answer": [
+        "sizeof a"
+      ],
+      "explanation": "The operand of sizeof is an exception to array conversion when it is not a variable-length array type. Other listed contexts use the array as a pointer."
+    },
+    {
+      "id": "pds-c-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For int a[4]; int *p=&a[0]; int *q=&a[3]; what is q-p?",
+      "options": [
+        "3",
+        "12",
+        "sizeof(int)*3",
+        "4"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Pointer subtraction within one array is measured in elements. The index difference is 3, independent of int byte size."
+    },
+    {
+      "id": "pds-c-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operation on int a[5] is defined when p=&a[4]?",
+      "options": [
+        "Compare p+1 with a+5",
+        "Dereference p+1",
+        "Compute p+2",
+        "Dereference a[5]"
+      ],
+      "answer": [
+        "Compare p+1 with a+5"
+      ],
+      "explanation": "p+1 is the one-past pointer and equals a+5. It may be formed but not dereferenced or advanced farther."
+    },
+    {
+      "id": "pds-c-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which declaration denotes a pointer to a function taking int and returning int?",
+      "options": [
+        "int (*fp)(int);",
+        "int *fp(int);",
+        "int fp(*int);",
+        "int (fp*)(int);"
+      ],
+      "answer": [
+        "int (*fp)(int);"
+      ],
+      "explanation": "Parentheses bind the pointer declarator to fp before the function parameter list. Without parentheses, int *fp(int) declares a function returning int pointer."
+    },
+    {
+      "id": "pds-c-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does const int *p allow?",
+      "options": [
+        "Changing p to point elsewhere but not modifying the int through p",
+        "Modifying p but not changing the int value",
+        "Neither changing p nor modifying the int",
+        "Changing both p and the int freely"
+      ],
+      "answer": [
+        "Changing p to point elsewhere but not modifying the int through p"
+      ],
+      "explanation": "The pointed-to type is const-qualified through this access path, but p itself is not const and may be reassigned."
+    },
+    {
+      "id": "pds-c-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does int * const p mean?",
+      "options": [
+        "p cannot be reassigned, but the pointed-to int may be modified",
+        "p points to a const int",
+        "Both p and the int are const",
+        "p is a function pointer"
+      ],
+      "answer": [
+        "p cannot be reassigned, but the pointed-to int may be modified"
+      ],
+      "explanation": "The const qualifier applies to the pointer object itself. It does not qualify the int that p points to."
+    },
+    {
+      "id": "pds-c-043",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What guarantee does volatile provide by itself?",
+      "options": [
+        "It does not make accesses atomic or thread-safe",
+        "It guarantees inter-thread synchronization",
+        "It prevents all hardware reordering",
+        "It makes the object read-only"
+      ],
+      "answer": [
+        "It does not make accesses atomic or thread-safe"
+      ],
+      "explanation": "volatile affects optimization assumptions about accesses but is not an atomicity or synchronization mechanism."
+    },
+    {
+      "id": "pds-c-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement describes restrict in C99 and later?",
+      "options": [
+        "It is an aliasing promise about access to an object through a pointer",
+        "It means the pointer cannot be null",
+        "It makes the pointed-to object const",
+        "It requests that the pointer be stored in a register"
+      ],
+      "answer": [
+        "It is an aliasing promise about access to an object through a pointer"
+      ],
+      "explanation": "restrict communicates a restricted access association for an object during a block execution. Violating that promise can yield undefined behavior."
+    },
+    {
+      "id": "pds-c-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Assume struct S { char c; int x; } with int alignment 4 and natural padding. What is sizeof(struct S)?",
+      "options": [
+        "8",
+        "5",
+        "6",
+        "4"
+      ],
+      "answer": [
+        "8"
+      ],
+      "explanation": "c uses byte 0; padding aligns x at offset 4; the int ends at offset 8. Struct size is rounded to its maximum member alignment, four."
+    },
+    {
+      "id": "pds-c-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why may memcmp on two structures report different bytes even when their members compare equal?",
+      "options": [
+        "Padding bytes may differ",
+        "memcmp ignores the structure members",
+        "C stores a pointer in every structure",
+        "The structures must have different types"
+      ],
+      "answer": [
+        "Padding bytes may differ"
+      ],
+      "explanation": "Padding can be part of the object representation without being a member value. Member-wise comparison avoids relying on unspecified padding bytes."
+    },
+    {
+      "id": "pds-c-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a union with members int i and char c, which is true about their storage?",
+      "options": [
+        "The members overlap and begin at the same address",
+        "The union stores both in separate consecutive areas",
+        "Its size is always the sum of member sizes",
+        "Only the first member can ever be selected"
+      ],
+      "answer": [
+        "The members overlap and begin at the same address"
+      ],
+      "explanation": "Union members share storage. The union has enough size and alignment for its largest member, rather than adding all member sizes."
+    },
+    {
+      "id": "pds-c-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An enum is declared enum E {P=4, Q, R=9, S}; what value does S have?",
+      "options": [
+        "10",
+        "5",
+        "9",
+        "11"
+      ],
+      "answer": [
+        "10"
+      ],
+      "explanation": "An enumerator without an explicit value is one greater than its predecessor. R is 9, so S is 10."
+    },
+    {
+      "id": "pds-c-049",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about C structure and union objects are correct?",
+      "options": [
+        "Compatible structures may be assigned as whole values",
+        "Union members share overlapping storage",
+        "A structure may contain padding between members",
+        "All structure types are compared by memcmp"
+      ],
+      "answer": [
+        "Compatible structures may be assigned as whole values",
+        "Union members share overlapping storage",
+        "A structure may contain padding between members"
+      ],
+      "explanation": "Structure assignment copies compatible structure values. Union members overlap in storage, and implementations may insert padding between structure members; bytewise comparison can therefore differ even when member values match."
+    },
+    {
+      "id": "pds-c-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which pointer type may inspect the object representation of an arbitrary object byte by byte?",
+      "options": [
+        "A pointer to character type",
+        "A pointer to int only",
+        "A pointer to function",
+        "A pointer to void after direct dereference"
+      ],
+      "answer": [
+        "A pointer to character type"
+      ],
+      "explanation": "Character-type lvalues are allowed to inspect object representation. A void pointer must be converted to an object pointer type before dereferencing."
+    },
+    {
+      "id": "pds-c-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What can happen when an object is accessed through an incompatible pointer type, outside specified exceptions?",
+      "options": [
+        "It can violate effective-type rules and cause undefined behavior",
+        "The compiler always converts the representation safely",
+        "The object is copied to a temporary of the new type",
+        "It is safe whenever pointer sizes match"
+      ],
+      "answer": [
+        "It can violate effective-type rules and cause undefined behavior"
+      ],
+      "explanation": "C restricts access to object storage through compatible types, with specified exceptions such as character types."
+    },
+    {
+      "id": "pds-c-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement about function pointers is correct?",
+      "options": [
+        "A function pointer can be called with arguments matching its function type",
+        "A function pointer can be dereferenced to read machine code bytes portably",
+        "All object pointers and function pointers must have identical representations",
+        "A function pointer is an array of instructions"
+      ],
+      "answer": [
+        "A function pointer can be called with arguments matching its function type"
+      ],
+      "explanation": "A function pointer designates a function and may be invoked through a compatible function type. Its representation need not match object pointers."
+    },
+    {
+      "id": "pds-c-053",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which declarations can represent a pointer to an array of five int?",
+      "options": [
+        "int (*p)[5];",
+        "typedef int Row[5]; Row *p;",
+        "int *p[5];",
+        "int **p;"
+      ],
+      "answer": [
+        "int (*p)[5];",
+        "typedef int Row[5]; Row *p;"
+      ],
+      "explanation": "Both the parenthesized declarator and the typedef form declare a pointer to an array of five int. An array of pointers and a pointer-to-pointer are different types."
+    },
+    {
+      "id": "pds-c-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does p->member mean for a pointer p to a structure object?",
+      "options": [
+        "(*p).member",
+        "*(p.member)",
+        "p.member for all pointer types",
+        "&p.member"
+      ],
+      "answer": [
+        "(*p).member"
+      ],
+      "explanation": "The arrow operator is equivalent to first dereferencing p, then selecting the named structure member."
+    },
+    {
+      "id": "pds-c-055",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Evaluate 0x35u & 0x0Fu and give its decimal value.",
+      "answer": "5",
+      "explanation": "The mask keeps the low four bits of 0x35; 0101 in binary is decimal 5."
+    },
+    {
+      "id": "pds-c-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Evaluate 0x35u ^ 0x0Fu and give the hexadecimal result.",
+      "answer": "0x3A",
+      "explanation": "Hexadecimal XOR gives 0x35 XOR 0x0F = 0x3A because only corresponding equal bits become zero."
+    },
+    {
+      "id": "pds-c-057",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Assume 32-bit unsigned int. What is the value of 1u << 5?",
+      "answer": "32",
+      "explanation": "Left-shifting unsigned one by five positions gives 2^5, which is 32."
+    },
+    {
+      "id": "pds-c-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a 32-bit unsigned int, which shift count makes x << count undefined?",
+      "options": [
+        "32",
+        "0",
+        "1",
+        "31"
+      ],
+      "answer": [
+        "32"
+      ],
+      "explanation": "The shift count must be less than the width of the promoted left operand. A count of 32 is invalid for a 32-bit value."
+    },
+    {
+      "id": "pds-c-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In C17, what can be concluded about right-shifting a negative signed integer?",
+      "options": [
+        "The result is implementation-defined",
+        "It is always a logical shift",
+        "It is always division rounded toward zero",
+        "It is undefined on every implementation"
+      ],
+      "answer": [
+        "The result is implementation-defined"
+      ],
+      "explanation": "C17 leaves right shift of a negative signed value implementation-defined. Portable code should not assume a particular sign-extension result."
+    },
+    {
+      "id": "pds-c-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A function int inc(int x) returns x+1. If int (*fp)(int)=inc; what value does fp(6) return?",
+      "options": [
+        "7",
+        "6",
+        "1",
+        "The address of inc"
+      ],
+      "answer": [
+        "7"
+      ],
+      "explanation": "fp stores a pointer to a function with compatible parameter and result types. Calling fp(6) invokes inc with 6 and returns 6+1=7."
+    },
+    {
+      "id": "pds-c-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What is sizeof(int[3]) in bytes when sizeof(int) is 4?",
+      "answer": "12",
+      "explanation": "The type is an array of three int objects. Its size is 3*4=12 bytes."
+    },
+    {
+      "id": "pds-c-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A variable-length array int a[n] has a run-time bound n. When is sizeof(a) determined?",
+      "options": [
+        "At run time from the value of n",
+        "Always at translation time",
+        "It equals sizeof(int *)",
+        "It is not permitted for a VLA"
+      ],
+      "answer": [
+        "At run time from the value of n"
+      ],
+      "explanation": "A variable-length array has a bound evaluated at run time, and sizeof on its VLA type reflects that bound."
+    },
+    {
+      "id": "pds-c-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which type may control a switch statement in C after integer promotions?",
+      "options": [
+        "An integer type",
+        "A structure type",
+        "A pointer to char",
+        "An array type"
+      ],
+      "answer": [
+        "An integer type"
+      ],
+      "explanation": "The controlling expression must have integer type after the permitted integer promotions."
+    },
+    {
+      "id": "pds-c-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A break statement is inside a switch that itself is inside a while loop. What does break exit?",
+      "options": [
+        "The switch only",
+        "Both the switch and while loop",
+        "The function",
+        "The current while iteration and then the switch"
+      ],
+      "answer": [
+        "The switch only"
+      ],
+      "explanation": "break exits only the innermost enclosing switch or loop. Execution continues after the switch, still within the while body."
+    },
+    {
+      "id": "pds-c-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a for loop, where does continue transfer control?",
+      "options": [
+        "To the iteration expression, then the next condition check",
+        "Directly after the loop",
+        "To the loop body start without checking the condition",
+        "Out of the containing function"
+      ],
+      "answer": [
+        "To the iteration expression, then the next condition check"
+      ],
+      "explanation": "For a for loop, continue executes the iteration expression before evaluating the condition for the next iteration."
+    },
+    {
+      "id": "pds-c-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is guaranteed about sizeof(char) in C?",
+      "options": [
+        "It equals 1",
+        "It equals 8",
+        "It equals sizeof(int)",
+        "It is implementation-defined and may be zero"
+      ],
+      "answer": [
+        "It equals 1"
+      ],
+      "explanation": "sizeof measures in C bytes, and a char always occupies exactly one such byte. A byte may have more than eight bits."
+    },
+    {
+      "id": "pds-c-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does CHAR_BIT from limits.h specify?",
+      "options": [
+        "The number of bits in a byte",
+        "The number of bytes in an int",
+        "The number of bits in a pointer",
+        "The maximum number of chars in a string"
+      ],
+      "answer": [
+        "The number of bits in a byte"
+      ],
+      "explanation": "CHAR_BIT defines how many bits are in one C byte; the standard does not require every byte to have exactly eight bits."
+    },
+    {
+      "id": "pds-c-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement about null pointers is guaranteed by C?",
+      "options": [
+        "A null pointer compares unequal to every pointer to an object or function",
+        "A null pointer is represented by all zero bits",
+        "A null pointer always has type int *",
+        "A null pointer can be dereferenced to obtain zero"
+      ],
+      "answer": [
+        "A null pointer compares unequal to every pointer to an object or function"
+      ],
+      "explanation": "Null pointer semantics are defined by comparisons and conversion rules, not by a required all-zero representation."
+    },
+    {
+      "id": "pds-c-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the difference between the null character and a null pointer?",
+      "options": [
+        "The null character is a character value; a null pointer is a pointer value that designates no object or function",
+        "They are the same value and type",
+        "A null pointer terminates a C string",
+        "The null character can only appear in pointer objects"
+      ],
+      "answer": [
+        "The null character is a character value; a null pointer is a pointer value that designates no object or function"
+      ],
+      "explanation": "The null character terminates strings. A null pointer is a special pointer value; the concepts have different types and uses."
+    },
+    {
+      "id": "pds-c-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For char s[]=\"CS\";, what storage does s contain?",
+      "options": [
+        "C, S, and a terminating null character",
+        "A pointer to immutable literal storage",
+        "Only C and S with no terminator",
+        "The address of the literal as an integer"
+      ],
+      "answer": [
+        "C, S, and a terminating null character"
+      ],
+      "explanation": "Array initialization copies the literal into a modifiable three-element char array including its terminator."
+    },
+    {
+      "id": "pds-c-071",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A six-element int array uses the designated initializer {[3]=9} and has no other initializers. What is the sum of all its elements?",
+      "answer": "9",
+      "explanation": "The designated initializer sets only element 3 to 9. Every omitted element of the aggregate is zero-initialized, so the total sum is 9."
+    },
+    {
+      "id": "pds-c-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about C strings are correct?",
+      "options": [
+        "A string is terminated by a null character",
+        "strlen excludes the terminating null character",
+        "strcpy copies the terminating null character",
+        "Every char array is automatically a valid null-terminated string"
+      ],
+      "answer": [
+        "A string is terminated by a null character",
+        "strlen excludes the terminating null character",
+        "strcpy copies the terminating null character"
+      ],
+      "explanation": "A C string is a character sequence ending at a null byte. strlen excludes that byte, while strcpy copies it to terminate the destination string."
+    },
+    {
+      "id": "pds-c-073",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which C17 expression-order statements are correct?",
+      "options": [
+        "The left operand of && is evaluated before the right operand",
+        "The condition of ?: is evaluated before one selected branch",
+        "The operands of + have no specified left-to-right order",
+        "Arguments to a function are evaluated left to right"
+      ],
+      "answer": [
+        "The left operand of && is evaluated before the right operand",
+        "The condition of ?: is evaluated before one selected branch",
+        "The operands of + have no specified left-to-right order"
+      ],
+      "explanation": "Logical AND and the conditional operator impose sequencing rules. Ordinary addition and function arguments do not have a general left-to-right evaluation order in C17."
+    },
+    {
+      "id": "pds-c-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What can be concluded about the exact nonzero value returned by strcmp?",
+      "options": [
+        "Only its sign is specified",
+        "It is always exactly -1 or 1",
+        "It is always the ASCII difference",
+        "It is the difference in string lengths"
+      ],
+      "answer": [
+        "Only its sign is specified"
+      ],
+      "explanation": "strcmp specifies whether its result is negative, zero, or positive; the exact nonzero magnitude is not fixed."
+    },
+    {
+      "id": "pds-c-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the behavior of printf(\"%d\", 3.5) in a variadic call?",
+      "options": [
+        "Undefined because %d expects an int",
+        "It converts 3.5 to integer 3",
+        "It prints the double bit pattern",
+        "A diagnostic is required in every implementation"
+      ],
+      "answer": [
+        "Undefined because %d expects an int"
+      ],
+      "explanation": "Variadic arguments are not converted according to the format string. A double argument mismatched with %d has undefined behavior."
+    },
+    {
+      "id": "pds-c-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An object pointer p is passed to printf with the %p conversion. Which argument form satisfies the required pointer type?",
+      "options": [
+        "(void *)p",
+        "(int)p",
+        "*p",
+        "&p[1] for every pointer type"
+      ],
+      "answer": [
+        "(void *)p"
+      ],
+      "explanation": "The %p conversion expects a void pointer argument. An object pointer can be converted to void * explicitly before passing it through the variadic argument list."
+    },
+    {
+      "id": "pds-c-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What happens to a float argument in the unnamed portion of a variadic function call?",
+      "options": [
+        "It is promoted to double",
+        "It remains float",
+        "It is converted to int",
+        "It is promoted to long double"
+      ],
+      "answer": [
+        "It is promoted to double"
+      ],
+      "explanation": "The default argument promotions convert float to double for arguments corresponding to an ellipsis."
+    },
+    {
+      "id": "pds-c-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which is the safe pattern when realloc must preserve the old allocation if it fails?",
+      "options": [
+        "Store the result in a temporary pointer and update the owner only on success",
+        "Assign the result directly to the only copy of p",
+        "Free p before calling realloc",
+        "Pass p+1 to realloc"
+      ],
+      "answer": [
+        "Store the result in a temporary pointer and update the owner only on success"
+      ],
+      "explanation": "On failure realloc returns NULL and leaves the old allocation valid. A temporary pointer avoids losing the original address."
+    },
+    {
+      "id": "pds-c-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What argument must be passed to free for a block returned by malloc?",
+      "options": [
+        "The original allocation pointer or NULL",
+        "An interior pointer to its last byte",
+        "The first value stored in the block",
+        "Any pointer with the same numeric address after arithmetic"
+      ],
+      "answer": [
+        "The original allocation pointer or NULL"
+      ],
+      "explanation": "free accepts the allocation pointer itself or NULL. Interior pointers and repeated frees are invalid."
+    },
+    {
+      "id": "pds-c-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does calloc guarantee about the bytes of a successful allocation?",
+      "options": [
+        "They are all set to zero bits",
+        "Every pointer member is guaranteed to be a null pointer",
+        "Every floating member is guaranteed to equal 0.0",
+        "Each object is initialized by a constructor"
+      ],
+      "answer": [
+        "They are all set to zero bits"
+      ],
+      "explanation": "calloc fills bytes with all-bits-zero; C does not require that representation to encode null pointers or floating zero for every type."
+    },
+    {
+      "id": "pds-c-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why is gets unsafe for reading input into a fixed-size array?",
+      "options": [
+        "It has no parameter limiting how many bytes are stored",
+        "It cannot read spaces",
+        "It always reads only one character",
+        "It never stores a terminator"
+      ],
+      "answer": [
+        "It has no parameter limiting how many bytes are stored"
+      ],
+      "explanation": "gets cannot enforce the destination bound and was removed from the C standard. fgets accepts an explicit size limit."
+    },
+    {
+      "id": "pds-c-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For #define SQR(x) x*x, what does SQR(1+2) expand to and evaluate as?",
+      "options": [
+        "1+2*1+2, which is 5",
+        "(1+2)*(1+2), which is 9",
+        "1+(2*1)+2, which is 9",
+        "The macro invocation is invalid"
+      ],
+      "answer": [
+        "1+2*1+2, which is 5"
+      ],
+      "explanation": "Macro substitution is textual. Without parentheses the expansion is 1+2*1+2, which evaluates to 5 by operator precedence."
+    },
+    {
+      "id": "pds-c-083",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which definition protects a square macro from precedence errors?",
+      "options": [
+        "#define SQR(x) ((x) * (x))",
+        "#define SQR(x) x * x",
+        "#define SQR x*x",
+        "#define SQR(x) x*x+1"
+      ],
+      "answer": [
+        "#define SQR(x) ((x) * (x))"
+      ],
+      "explanation": "Parenthesizing each argument use and the complete expansion preserves grouping in surrounding expressions."
+    },
+    {
+      "id": "pds-c-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What risk remains for SQR(i++) with a macro defined as ((x)*(x))?",
+      "options": [
+        "The side effect can occur twice",
+        "The argument is never evaluated",
+        "The increment occurs exactly once",
+        "The macro is converted to a function automatically"
+      ],
+      "answer": [
+        "The side effect can occur twice"
+      ],
+      "explanation": "The argument text appears twice in the replacement, so i++ can be evaluated twice. Parentheses do not remove repeated side effects."
+    },
+    {
+      "id": "pds-c-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does typedef unsigned long Size; do?",
+      "options": [
+        "Introduces Size as an alias for unsigned long",
+        "Creates a distinct representation",
+        "Allocates an object",
+        "Defines a preprocessor macro"
+      ],
+      "answer": [
+        "Introduces Size as an alias for unsigned long"
+      ],
+      "explanation": "typedef introduces a type name alias; it does not allocate storage or create a distinct representation by itself."
+    },
+    {
+      "id": "pds-c-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In hosted C99 and later, what happens if main reaches its closing brace?",
+      "options": [
+        "It is equivalent to returning zero",
+        "It is undefined behavior",
+        "It returns the last local value",
+        "It restarts the program"
+      ],
+      "answer": [
+        "It is equivalent to returning zero"
+      ],
+      "explanation": "The standard gives main a special rule: reaching its closing brace returns zero. This rule does not apply to arbitrary non-void functions."
+    },
+    {
+      "id": "pds-c-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which return type is required for main in a hosted C program?",
+      "options": [
+        "int",
+        "void",
+        "size_t",
+        "char *"
+      ],
+      "answer": [
+        "int"
+      ],
+      "explanation": "A hosted program defines main with return type int in one of the standard forms."
+    },
+    {
+      "id": "pds-c-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does the prototype int f(void); specify?",
+      "options": [
+        "f takes no parameters and returns int",
+        "f accepts any number of parameters",
+        "f takes one void pointer",
+        "f returns no value"
+      ],
+      "answer": [
+        "f takes no parameters and returns int"
+      ],
+      "explanation": "The parameter list containing void explicitly specifies no parameters; the result type is int."
+    },
+    {
+      "id": "pds-c-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A function returns the address of an automatic local variable. What is the problem after return?",
+      "options": [
+        "The pointed-to object lifetime has ended",
+        "The pointer automatically becomes NULL",
+        "The local variable becomes global",
+        "C forbids returning any pointer"
+      ],
+      "answer": [
+        "The pointed-to object lifetime has ended"
+      ],
+      "explanation": "An automatic local object ceases to exist when its block ends. Using the returned pointer to access it is invalid."
+    },
+    {
+      "id": "pds-c-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is guaranteed about the representation of a null object pointer?",
+      "options": [
+        "It need not consist of all zero bits",
+        "It is always all zero bits",
+        "It is always address 1",
+        "It has the same representation as the null character"
+      ],
+      "answer": [
+        "It need not consist of all zero bits"
+      ],
+      "explanation": "C specifies null-pointer value semantics, not a required bit pattern."
+    },
+    {
+      "id": "pds-c-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What values can standard C _Bool store?",
+      "options": [
+        "0 or 1",
+        "Any integer unchanged",
+        "Only -1 and 0",
+        "Any floating value unchanged"
+      ],
+      "answer": [
+        "0 or 1"
+      ],
+      "explanation": "Conversion to _Bool produces zero if the value compares equal to zero and one otherwise."
+    },
+    {
+      "id": "pds-c-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which declaration makes f a function taking no parameters and returning a pointer to int?",
+      "options": [
+        "int *f(void);",
+        "int (*f)(void);",
+        "int f(void *);",
+        "int f[1](void);"
+      ],
+      "answer": [
+        "int *f(void);"
+      ],
+      "explanation": "The declarator is a function named f with a void parameter list; its return type is int pointer. Parentheses around *f would instead make f a function pointer object."
+    },
+    {
+      "id": "pds-c-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does sizeof applied to a function designator do in standard C?",
+      "options": [
+        "It is not permitted for a function type",
+        "It returns machine-code size",
+        "It returns a function pointer size",
+        "It returns the parameter count"
+      ],
+      "answer": [
+        "It is not permitted for a function type"
+      ],
+      "explanation": "sizeof cannot be applied to function types. A pointer to function is a distinct object type and can be measured."
+    },
+    {
+      "id": "pds-c-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For enum E {A=3, B, C=10, D}; what value does D have?",
+      "options": [
+        "11",
+        "4",
+        "10",
+        "12"
+      ],
+      "answer": [
+        "11"
+      ],
+      "explanation": "An enumerator without an explicit value follows its predecessor by one. C is 10, so D is 11."
+    },
+    {
+      "id": "pds-c-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can a program not apply unary & to a bit-field member?",
+      "options": [
+        "A bit-field is not an independently addressable object",
+        "A bit-field is always a pointer",
+        "The structure has no address",
+        "The operator is valid only on arrays"
+      ],
+      "answer": [
+        "A bit-field is not an independently addressable object"
+      ],
+      "explanation": "C prohibits taking a bit-field address because the field may not occupy an independently addressable object."
+    },
+    {
+      "id": "pds-c-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about C storage duration and linkage are correct?",
+      "options": [
+        "A block-scope static object retains its value between calls",
+        "A file-scope static function has internal linkage",
+        "An ordinary automatic local object ends its lifetime at block exit",
+        "extern always defines a new object"
+      ],
+      "answer": [
+        "A block-scope static object retains its value between calls",
+        "A file-scope static function has internal linkage",
+        "An ordinary automatic local object ends its lifetime at block exit"
+      ],
+      "explanation": "Static duration preserves a local static value. File-scope static restricts linkage; ordinary locals end at block exit. extern alone does not define storage."
+    },
+    {
+      "id": "pds-c-097",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about malloc and realloc are correct?",
+      "options": [
+        "malloc returns suitably aligned storage for object types",
+        "A failed nonzero-size realloc leaves the original allocation valid",
+        "free sets the caller pointer to NULL",
+        "realloc accepts an interior pointer to a block"
+      ],
+      "answer": [
+        "malloc returns suitably aligned storage for object types",
+        "A failed nonzero-size realloc leaves the original allocation valid"
+      ],
+      "explanation": "malloc returns suitably aligned storage. If a nonzero realloc request fails, the old block remains allocated; free does not overwrite the caller pointer."
+    },
+    {
+      "id": "pds-c-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does the declaration const int *p prevent?",
+      "options": [
+        "Modifying the pointed-to int through p",
+        "Reassigning p",
+        "Reading the pointed-to int",
+        "Comparing p with NULL"
+      ],
+      "answer": [
+        "Modifying the pointed-to int through p"
+      ],
+      "explanation": "The pointed-to type is const-qualified through p, so writes through it are disallowed; p itself may be reassigned."
+    },
+    {
+      "id": "pds-c-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement about errno after a successful library call is correct?",
+      "options": [
+        "The function is not generally required to clear errno on success",
+        "It is guaranteed to be zero",
+        "It always equals the return value",
+        "It cannot be changed by a library function"
+      ],
+      "answer": [
+        "The function is not generally required to clear errno on success"
+      ],
+      "explanation": "A function may leave errno unchanged after success. Inspect it only according to that function's documented error convention."
+    },
+    {
+      "id": "pds-c-100",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which expressions have defined sequencing between their relevant evaluations?",
+      "options": [
+        "The comma expression (i++, i+1)",
+        "The left-to-right short-circuit evaluation of a && b",
+        "The two operands of i++ + i",
+        "Function arguments are guaranteed left to right"
+      ],
+      "answer": [
+        "The comma expression (i++, i+1)",
+        "The left-to-right short-circuit evaluation of a && b"
+      ],
+      "explanation": "The comma operator sequences its left operand before the right; && sequences left before right. Addition and function arguments have no general left-to-right order."
+    }
+  ]
+}

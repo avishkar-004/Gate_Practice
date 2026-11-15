@@ -1,0 +1,1388 @@
+{
+  "topicIndex": 6,
+  "questions": [
+    {
+      "id": "alg-dp-001",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which pair of properties most directly motivates dynamic programming?",
+      "options": [
+        "Overlapping subproblems and optimal substructure",
+        "Sorted input and constant memory",
+        "Randomization and hashing",
+        "Greedy choice and negative weights"
+      ],
+      "answer": [
+        "Overlapping subproblems and optimal substructure"
+      ],
+      "explanation": "Dynamic programming stores solutions to repeated subproblems and combines optimal subsolutions into an optimal solution to the original problem."
+    },
+    {
+      "id": "alg-dp-002",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish memoization from tabulation?",
+      "options": [
+        "Memoization is commonly top-down recursion with cached states",
+        "Tabulation commonly fills states in a dependency-respecting order",
+        "Memoization can avoid computing states that are never reached",
+        "Tabulation always uses less space than memoization"
+      ],
+      "answer": [
+        "Memoization is commonly top-down recursion with cached states",
+        "Tabulation commonly fills states in a dependency-respecting order",
+        "Memoization can avoid computing states that are never reached"
+      ],
+      "explanation": "Top-down memoization computes reached states on demand; bottom-up tabulation fills a chosen order. Space use depends on the problem and implementation, so neither universally uses less."
+    },
+    {
+      "id": "alg-dp-003",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A Fibonacci dynamic program uses F(0)=0, F(1)=1, and F(n)=F(n−1)+F(n−2). Find F(8).",
+      "answer": "21",
+      "explanation": "The sequence from F(0) through F(8) is 0,1,1,2,3,5,8,13,21. Thus F(8)=21."
+    },
+    {
+      "id": "alg-dp-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A top-down Fibonacci implementation memoizes each state once. What is its time complexity for F(n)?",
+      "options": [
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n²)",
+        "Θ(2^n)"
+      ],
+      "answer": [
+        "Θ(n)"
+      ],
+      "explanation": "There are n+1 distinct states and each is computed once with constant work beyond the two lookups. The total time is Θ(n)."
+    },
+    {
+      "id": "alg-dp-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A bottom-up 0/1 knapsack DP processes 20 items and capacity 50 using the standard item-by-capacity table. How many state cells are filled if capacities 0 through 50 are included for every item row?",
+      "answer": "1071",
+      "explanation": "There are 21 rows including the zero-item row and 51 capacity columns, so the table contains 21×51=1071 cells."
+    },
+    {
+      "id": "alg-dp-006",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which choices are needed when designing a dynamic-programming solution?",
+      "options": [
+        "Define the state so it contains enough information for future decisions",
+        "Write a recurrence relating a state to smaller states",
+        "Specify base cases",
+        "Ignore the order in which dependencies are evaluated"
+      ],
+      "answer": [
+        "Define the state so it contains enough information for future decisions",
+        "Write a recurrence relating a state to smaller states",
+        "Specify base cases"
+      ],
+      "explanation": "A DP design needs a sufficient state, recurrence, and base cases. Evaluation must respect dependencies, either through recursion or a valid topological tabulation order."
+    },
+    {
+      "id": "alg-dp-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The longest common subsequence (LCS) recurrence for prefixes X[1..i] and Y[1..j] uses which rule when X[i]=Y[j]?",
+      "options": [
+        "L[i,j]=1+L[i−1,j−1]",
+        "L[i,j]=L[i−1,j]+L[i,j−1]",
+        "L[i,j]=0",
+        "L[i,j]=min(L[i−1,j],L[i,j−1])"
+      ],
+      "answer": [
+        "L[i,j]=1+L[i−1,j−1]"
+      ],
+      "explanation": "When the final characters match, an optimal common subsequence can append that character to an LCS of the two shorter prefixes."
+    },
+    {
+      "id": "alg-dp-008",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Find the LCS length of the strings ABCDGH and AEDFHR.",
+      "answer": "3",
+      "explanation": "One longest common subsequence is ADH, with length 3. No common subsequence of length four can be maintained in order in both strings."
+    },
+    {
+      "id": "alg-dp-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For LCS of strings of lengths m and n, what is the standard bottom-up time complexity?",
+      "options": [
+        "Θ(mn)",
+        "Θ(m+n)",
+        "Θ(log(mn))",
+        "Θ(2^(m+n))"
+      ],
+      "answer": [
+        "Θ(mn)"
+      ],
+      "explanation": "The standard table has (m+1)(n+1) states, each filled in constant time from neighboring states, giving Θ(mn) time."
+    },
+    {
+      "id": "alg-dp-010",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about LCS are correct?",
+      "options": [
+        "The LCS need not be unique",
+        "The LCS length is at most min(m,n)",
+        "The standard recurrence considers matching and nonmatching final characters",
+        "A longest common subsequence must be contiguous"
+      ],
+      "answer": [
+        "The LCS need not be unique",
+        "The LCS length is at most min(m,n)",
+        "The standard recurrence considers matching and nonmatching final characters"
+      ],
+      "explanation": "Different subsequences can have the same maximum length. A subsequence preserves order but may skip characters, so it need not be contiguous."
+    },
+    {
+      "id": "alg-dp-011",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What is the LCS length of the strings AGGTAB and GXTXAYB?",
+      "answer": "4",
+      "explanation": "One LCS is GTAB, which appears in order in both strings. Its length is four."
+    },
+    {
+      "id": "alg-dp-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In edit distance with unit costs, what is the distance between CAT and CUT?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "Replace A with U in the middle position. One substitution transforms CAT into CUT, and the strings are not identical, so distance one is minimal."
+    },
+    {
+      "id": "alg-dp-013",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations are typically allowed in Levenshtein edit distance?",
+      "options": [
+        "Insertion",
+        "Deletion",
+        "Substitution",
+        "Reordering any two characters at unit cost"
+      ],
+      "answer": [
+        "Insertion",
+        "Deletion",
+        "Substitution"
+      ],
+      "explanation": "The standard distance permits insertions, deletions, and substitutions with specified costs. Transposition is not included unless using a different edit-distance variant."
+    },
+    {
+      "id": "alg-dp-014",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What is the unit-cost edit distance between the strings KITTEN and SITTING?",
+      "answer": "3",
+      "explanation": "Substitute K with S, substitute E with I, and insert G at the end. These three edits suffice and are minimal."
+    },
+    {
+      "id": "alg-dp-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In matrix-chain multiplication for dimensions p0×p1, p1×p2, …, the cost of splitting chain i..j at k is which expression?",
+      "options": [
+        "m[i,k]+m[k+1,j]+p(i−1)·p(k)·p(j)",
+        "m[i,j]+p(i)·p(j)",
+        "m[k,j]+p(i)·p(k)",
+        "p(i−1)+p(k)+p(j)"
+      ],
+      "answer": [
+        "m[i,k]+m[k+1,j]+p(i−1)·p(k)·p(j)"
+      ],
+      "explanation": "The split multiplies the optimal left and right subchains, then multiplies their resulting matrices. The scalar multiplication cost is p(i−1)×p(k)×p(j)."
+    },
+    {
+      "id": "alg-dp-016",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Matrices A1=10×30 and A2=30×5 are multiplied. How many scalar multiplications are required?",
+      "answer": "1500",
+      "explanation": "The output has dimensions 10×5 and each entry sums 30 products. The cost is 10×30×5=1500 scalar multiplications."
+    },
+    {
+      "id": "alg-dp-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For matrices with dimensions 10×30, 30×5, and 5×60, which parenthesization has lower scalar multiplication cost?",
+      "options": [
+        "(A1A2)A3, cost 4500",
+        "A1(A2A3), cost 27000",
+        "Both cost 18000",
+        "Both cost 31500"
+      ],
+      "answer": [
+        "(A1A2)A3, cost 4500"
+      ],
+      "explanation": "(A1A2) costs 10×30×5=1500, then 10×5×60=3000, total 4500. A2A3 costs 9000, then A1 times the 30×60 result costs 18000, total 27000."
+    },
+    {
+      "id": "alg-dp-018",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about matrix-chain multiplication are correct?",
+      "options": [
+        "The order of matrices is fixed",
+        "Parenthesization changes the number of scalar multiplications",
+        "The DP state can be the minimum cost for matrices i through j",
+        "The optimal parenthesization must be left-associative"
+      ],
+      "answer": [
+        "The order of matrices is fixed",
+        "Parenthesization changes the number of scalar multiplications",
+        "The DP state can be the minimum cost for matrices i through j"
+      ],
+      "explanation": "Matrix dimensions constrain a fixed product order, but associativity allows different parenthesizations with different costs. DP considers every split rather than assuming one shape."
+    },
+    {
+      "id": "alg-dp-019",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Three matrices have dimensions 5×10, 10×3, and 3×12. Find the scalar multiplication cost of (A1A2)A3.",
+      "answer": "330",
+      "explanation": "A1A2 costs 5×10×3=150 and creates a 5×3 matrix. Multiplying by A3 costs 5×3×12=180, totaling 330."
+    },
+    {
+      "id": "alg-dp-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For 0/1 knapsack, let DP[i,w] be the maximum value using the first i items with capacity w. If item i has weight wi>w, what recurrence applies?",
+      "options": [
+        "DP[i,w]=DP[i−1,w]",
+        "DP[i,w]=value_i+DP[i−1,w−wi]",
+        "DP[i,w]=DP[i,w−wi]",
+        "DP[i,w]=0 always"
+      ],
+      "answer": [
+        "DP[i,w]=DP[i−1,w]"
+      ],
+      "explanation": "The item does not fit, so it cannot be included. The best value is inherited from the previous items at the same capacity."
+    },
+    {
+      "id": "alg-dp-021",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 0/1 knapsack has capacity 7 and items (weight,value) (2,3), (3,4), and (4,6). What is the maximum value?",
+      "answer": "10",
+      "explanation": "Taking items of weights 3 and 4 uses the full capacity and yields value 4+6=10. Other feasible combinations, including weights 2+4, yield at most 9."
+    },
+    {
+      "id": "alg-dp-022",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish 0/1 knapsack from unbounded knapsack?",
+      "options": [
+        "In 0/1 knapsack each item can be used at most once",
+        "In unbounded knapsack an item may be reused",
+        "The recurrence dependency for unbounded knapsack can remain on the same item row",
+        "The two problems always have identical optimal values"
+      ],
+      "answer": [
+        "In 0/1 knapsack each item can be used at most once",
+        "In unbounded knapsack an item may be reused",
+        "The recurrence dependency for unbounded knapsack can remain on the same item row"
+      ],
+      "explanation": "The state transition reflects whether items may be reused. A 0/1 transition refers to the previous item row, while unbounded use can refer to the current row at reduced capacity."
+    },
+    {
+      "id": "alg-dp-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 0/1 knapsack DP is compressed to one dimension over capacity. In which direction should capacities be iterated to prevent reusing an item in the same iteration?",
+      "options": [
+        "From high capacity down to the item's weight",
+        "From low capacity upward",
+        "In arbitrary order",
+        "Only at the maximum capacity"
+      ],
+      "answer": [
+        "From high capacity down to the item's weight"
+      ],
+      "explanation": "Descending iteration ensures DP[w−weight] still represents the previous item set, so the current item cannot be selected multiple times during one pass."
+    },
+    {
+      "id": "alg-dp-024",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 0/1 knapsack has capacity 6 and items (weight,value) (2,4) and (3,5). What maximum value can be obtained?",
+      "answer": "9",
+      "explanation": "Both items fit together with total weight 5 and value 4+5=9. No other subset has greater total value."
+    },
+    {
+      "id": "alg-dp-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a minimum-coin DP with coin values 1,3,4, what is the minimum number of coins for amount 6?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "Use two coins of value 3. The greedy choice 4+1+1 uses three, illustrating why a DP recurrence is useful for arbitrary coin systems."
+    },
+    {
+      "id": "alg-dp-026",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the unbounded minimum-coin recurrence are correct?",
+      "options": [
+        "A state for amount x can consider each coin c≤x",
+        "The recurrence can use 1+DP[x−c]",
+        "A base state is DP[0]=0",
+        "A coin can be used only once in total"
+      ],
+      "answer": [
+        "A state for amount x can consider each coin c≤x",
+        "The recurrence can use 1+DP[x−c]",
+        "A base state is DP[0]=0"
+      ],
+      "explanation": "The recurrence chooses a final coin and adds one to the optimal solution for the remaining amount. Unbounded coin change permits reuse, unlike 0/1 selection."
+    },
+    {
+      "id": "alg-dp-027",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Using coin denominations 1, 3, and 4 with unlimited supply, what is the minimum number of coins for amount 10?",
+      "answer": "3",
+      "explanation": "Three coins of value 3,3,4 sum to 10. Two coins cannot make 10 because the largest available value is 4, so three is optimal."
+    },
+    {
+      "id": "alg-dp-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The longest increasing subsequence (LIS) of [10,9,2,5,3,7,101,18] has what length?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "One LIS is [2,3,7,18] or [2,3,7,101], with length four. No increasing subsequence of length five exists in this sequence."
+    },
+    {
+      "id": "alg-dp-029",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What is the LIS length of [3, 1, 2, 5, 4]?",
+      "answer": "3",
+      "explanation": "The subsequence [1,2,5] has length three; [1,2,4] is another. The sequence has no increasing subsequence of length four."
+    },
+    {
+      "id": "alg-dp-030",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about LIS algorithms are correct?",
+      "options": [
+        "A simple DP can run in O(n²)",
+        "A tails-based method can run in O(n log n)",
+        "The tails array always is itself a subsequence of the input",
+        "The length of the tails array equals the LIS length"
+      ],
+      "answer": [
+        "A simple DP can run in O(n²)",
+        "A tails-based method can run in O(n log n)",
+        "The length of the tails array equals the LIS length"
+      ],
+      "explanation": "The quadratic recurrence checks earlier positions; a binary-search tails method improves the time. The tails values summarize minimum tail values for lengths and need not form one actual subsequence."
+    },
+    {
+      "id": "alg-dp-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For the subset-sum problem with positive integers, what does a Boolean state DP[i,s] commonly represent?",
+      "options": [
+        "Whether sum s is achievable using the first i items",
+        "The number of all subsets of size i",
+        "The largest item in the input",
+        "The minimum sum greater than s"
+      ],
+      "answer": [
+        "Whether sum s is achievable using the first i items"
+      ],
+      "explanation": "The state records feasibility of forming a target sum from a prefix of the items. Its recurrence either excludes the current item or includes it when the sum permits."
+    },
+    {
+      "id": "alg-dp-032",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Can a subset of [3, 5, 8, 10] sum to 13? Answer 1 for yes and 0 for no.",
+      "answer": "1",
+      "explanation": "The subset 3+10 equals 13, so the target is achievable and the answer is 1."
+    },
+    {
+      "id": "alg-dp-033",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about reconstructing a DP solution are correct?",
+      "options": [
+        "Store predecessor choices or recompute which transition attained the state",
+        "The optimal value alone may be insufficient to identify a chosen solution",
+        "A tie between transitions can produce multiple optimal solutions",
+        "Reconstruction can never require additional memory or time"
+      ],
+      "answer": [
+        "Store predecessor choices or recompute which transition attained the state",
+        "The optimal value alone may be insufficient to identify a chosen solution",
+        "A tie between transitions can produce multiple optimal solutions"
+      ],
+      "explanation": "DP tables commonly store values; recovering a witness requires following decisions or recomputing them. Equal-valued transitions may lead to different optimal solutions, and reconstruction has a cost."
+    },
+    {
+      "id": "alg-dp-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A rod of length 4 has prices p1=1, p2=5, p3=8, p4=9. What is the maximum revenue?",
+      "options": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "answer": [
+        "10"
+      ],
+      "explanation": "Cutting into two pieces of length 2 yields 5+5=10, which exceeds the uncut price 9 and other partitions such as 1+3=9."
+    },
+    {
+      "id": "alg-dp-035",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For rod cutting with prices p1=2, p2=5, p3=7, and p4=8, what is the optimal revenue for length 4?",
+      "answer": "10",
+      "explanation": "Two pieces of length 2 give 5+5=10. A 1+3 split gives 2+7=9 and the uncut rod gives 8, so 10 is optimal."
+    },
+    {
+      "id": "alg-dp-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In the rod-cutting recurrence, why is the cut position enumerated?",
+      "options": [
+        "The best first piece length is not known in advance",
+        "Every cut must be at the midpoint",
+        "The recurrence has no optimal substructure",
+        "The price must increase with length"
+      ],
+      "answer": [
+        "The best first piece length is not known in advance"
+      ],
+      "explanation": "The optimal solution may begin with any first-piece length. The recurrence tries each feasible cut and combines its price with the optimal revenue for the remaining length."
+    },
+    {
+      "id": "alg-dp-037",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a DP state space are correct?",
+      "options": [
+        "The number of states affects time and memory",
+        "A state should summarize all information needed by future transitions",
+        "Equivalent subproblems should map to the same state when possible",
+        "Adding irrelevant state dimensions always improves efficiency"
+      ],
+      "answer": [
+        "The number of states affects time and memory",
+        "A state should summarize all information needed by future transitions",
+        "Equivalent subproblems should map to the same state when possible"
+      ],
+      "explanation": "A concise sufficient state avoids duplicated work while preserving correctness. Extra irrelevant dimensions multiply the state count and often increase resource use."
+    },
+    {
+      "id": "alg-dp-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An LCS table has strings of lengths 12 and 9. How many character-pair DP states are computed, excluding the zero-prefix row and column?",
+      "answer": "108",
+      "explanation": "There is one state for each character pair, giving 12×9=108 interior table cells."
+    },
+    {
+      "id": "alg-dp-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The edit-distance DP compares prefixes of lengths i and j. If the final characters differ and insertion, deletion, and substitution each cost one, which recurrence applies?",
+      "options": [
+        "1+min(D[i−1,j],D[i,j−1],D[i−1,j−1])",
+        "D[i−1,j−1] only",
+        "max(D[i−1,j],D[i,j−1])",
+        "0"
+      ],
+      "answer": [
+        "1+min(D[i−1,j],D[i,j−1],D[i−1,j−1])"
+      ],
+      "explanation": "A final mismatch can be resolved by deleting, inserting, or substituting. Each choice costs one plus the corresponding smaller-prefix state, and the minimum is selected."
+    },
+    {
+      "id": "alg-dp-040",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What is the unit-cost edit distance from the empty string to a string of length 7?",
+      "answer": "7",
+      "explanation": "Each character must be inserted once. No operation can create more than one required character, so the minimum is seven insertions."
+    },
+    {
+      "id": "alg-dp-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP recurrence for weighted interval scheduling defines p(j) as the rightmost earlier interval compatible with j. Which candidate recurrence is correct?",
+      "options": [
+        "OPT(j)=max(OPT(j−1), wj+OPT(p(j)))",
+        "OPT(j)=min(OPT(j−1), wj+OPT(p(j)))",
+        "OPT(j)=OPT(p(j))−wj",
+        "OPT(j)=wj×OPT(j−1)"
+      ],
+      "answer": [
+        "OPT(j)=max(OPT(j−1), wj+OPT(p(j)))"
+      ],
+      "explanation": "An optimal schedule either excludes interval j or includes it and combines its weight with the best compatible prefix. The larger value gives the optimum."
+    },
+    {
+      "id": "alg-dp-042",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions suggest that dynamic programming may improve a naive recursive algorithm?",
+      "options": [
+        "Many recursive paths reach the same subproblem",
+        "The problem has optimal substructure",
+        "Every subproblem is unique and independent",
+        "Caching a subproblem result can avoid repeated evaluation"
+      ],
+      "answer": [
+        "Many recursive paths reach the same subproblem",
+        "The problem has optimal substructure",
+        "Caching a subproblem result can avoid repeated evaluation"
+      ],
+      "explanation": "Overlapping subproblems cause redundant work, and optimal substructure allows composition of optimal smaller solutions. If every state is unique, memoization provides less benefit."
+    },
+    {
+      "id": "alg-dp-043",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DP evaluates 35 states, each with 4 candidate transitions. How many transition candidates are examined in total?",
+      "answer": "140",
+      "explanation": "Each of 35 states examines four candidates, giving 35×4=140 transition evaluations."
+    },
+    {
+      "id": "alg-dp-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 0/1 knapsack item has weight 4 and value 7. In a one-dimensional DP updated in ascending capacity order, what incorrect behavior can occur?",
+      "options": [
+        "The same item may be reused multiple times in one pass",
+        "The item is always skipped",
+        "The DP becomes top-down",
+        "The table size changes"
+      ],
+      "answer": [
+        "The same item may be reused multiple times in one pass"
+      ],
+      "explanation": "Ascending updates may read a state that already includes the current item, allowing repeated use. Descending capacity order preserves previous-item states for 0/1 knapsack."
+    },
+    {
+      "id": "alg-dp-045",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 0/1 knapsack with capacity 9 has items (weight,value) (5,10), (4,8), and (6,11). What is the optimal value?",
+      "answer": "18",
+      "explanation": "The first two items fit exactly and give value 18. Item three can pair only with weight 4 for value 19? That pair weighs 10 and is infeasible; paired with weight 5 it weighs 11. Thus 18 is optimal."
+    },
+    {
+      "id": "alg-dp-046",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about space optimization in dynamic programming are correct?",
+      "options": [
+        "It can discard states no longer needed by future transitions",
+        "It may make solution reconstruction harder",
+        "It is safe only after dependency requirements are analyzed",
+        "It always changes the time complexity to linear"
+      ],
+      "answer": [
+        "It can discard states no longer needed by future transitions",
+        "It may make solution reconstruction harder",
+        "It is safe only after dependency requirements are analyzed"
+      ],
+      "explanation": "Rolling arrays or compressed states save memory when future transitions depend only on a limited frontier. Discarded choices may be needed for reconstruction; space optimization does not automatically alter time."
+    },
+    {
+      "id": "alg-dp-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP has n states and each state considers all earlier states. What is the resulting time complexity?",
+      "options": [
+        "Θ(n)",
+        "Θ(nlog n)",
+        "Θ(n²)",
+        "Θ(2^n)"
+      ],
+      "answer": [
+        "Θ(n²)"
+      ],
+      "explanation": "The transition counts are 0+1+…+(n−1)=n(n−1)/2, which is Θ(n²)."
+    },
+    {
+      "id": "alg-dp-048",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "The standard LCS DP table for strings of lengths 5 and 7 includes boundary row and column. How many total cells are allocated?",
+      "answer": "48",
+      "explanation": "The table dimensions are (5+1)×(7+1)=6×8=48 cells, including the empty-prefix boundaries."
+    },
+    {
+      "id": "alg-dp-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A longest-common-subsequence solution is reconstructed from its table. If X[i]=Y[j], which predecessor is typically followed?",
+      "options": [
+        "Diagonal state (i−1,j−1)",
+        "Up state (i−1,j+1)",
+        "Left state (i+1,j−1)",
+        "No predecessor is needed"
+      ],
+      "answer": [
+        "Diagonal state (i−1,j−1)"
+      ],
+      "explanation": "A matching final character contributes one to the LCS and points to the diagonal prefix state. The character is included, and reconstruction continues diagonally."
+    },
+    {
+      "id": "alg-dp-050",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about optimal substructure are correct?",
+      "options": [
+        "An optimal solution can be composed from optimal solutions to appropriate subproblems",
+        "It means every local choice is globally optimal",
+        "It is useful for deriving a DP recurrence",
+        "It alone guarantees a polynomial-time algorithm"
+      ],
+      "answer": [
+        "An optimal solution can be composed from optimal solutions to appropriate subproblems",
+        "It is useful for deriving a DP recurrence"
+      ],
+      "explanation": "Optimal substructure supports recurrence construction, but the number of states and transitions may still be exponential. It does not justify arbitrary greedy choices or by itself imply polynomial time."
+    },
+    {
+      "id": "alg-dp-051",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Using the standard LCS dynamic program, what is the length of an LCS of X=\"AGGTAB\" and Y=\"GXTXAYB\"?",
+      "answer": "4",
+      "explanation": "One longest common subsequence is GTAB: its symbols occur in order in both strings. The dynamic-programming table gives length 4; no common subsequence of length 5 exists."
+    },
+    {
+      "id": "alg-dp-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP state depends on states with smaller indices. What is a valid bottom-up evaluation order?",
+      "options": [
+        "An order in which every dependency is computed before the state that uses it",
+        "Reverse alphabetical order of variable names",
+        "Any random order",
+        "Only descending order, regardless of recurrence"
+      ],
+      "answer": [
+        "An order in which every dependency is computed before the state that uses it"
+      ],
+      "explanation": "Tabulation must follow a topological order of the state-dependency graph. The exact direction depends on which states the recurrence references."
+    },
+    {
+      "id": "alg-dp-053",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For LCS, strings X=ABC and Y=AC have how many distinct subsequences of X that are also subsequences of Y, including the empty subsequence?",
+      "answer": "4",
+      "explanation": "The common subsequences are empty, A, C, and AC. There are four, including the empty sequence."
+    },
+    {
+      "id": "alg-dp-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a 0/1 knapsack with n items and integer capacity W, what are the standard table time and space bounds?",
+      "options": [
+        "Θ(nW) time and Θ(nW) space",
+        "Θ(2^n) time and Θ(1) space",
+        "Θ(n log W) time and Θ(W²) space",
+        "Θ(W) time and Θ(n) space"
+      ],
+      "answer": [
+        "Θ(nW) time and Θ(nW) space"
+      ],
+      "explanation": "The conventional item-capacity table has Θ(nW) states and constant work per state. A one-dimensional optimization can reduce space to Θ(W) without changing the pseudo-polynomial time."
+    },
+    {
+      "id": "alg-dp-055",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why is O(nW) knapsack DP called pseudo-polynomial rather than polynomial in input length?",
+      "options": [
+        "W may require only log W bits to encode",
+        "The running time depends on the numeric value W",
+        "W can be exponentially larger than its representation length",
+        "The algorithm is necessarily exponential in n"
+      ],
+      "answer": [
+        "W may require only log W bits to encode",
+        "The running time depends on the numeric value W",
+        "W can be exponentially larger than its representation length"
+      ],
+      "explanation": "The DP is polynomial in n and the numeric capacity W, but the input encodes W in logarithmically many bits. Thus the time can be exponential in the bit-length of W."
+    },
+    {
+      "id": "alg-dp-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A matrix chain has dimensions 10×20, 20×30, and 30×40. What is the cost of (A1A2)A3?",
+      "options": [
+        "18,000",
+        "24,000",
+        "32,000",
+        "36,000"
+      ],
+      "answer": [
+        "18,000"
+      ],
+      "explanation": "A1A2 costs 10×20×30=6,000 and produces 10×30. Multiplying by A3 costs 10×30×40=12,000, totaling 18,000."
+    },
+    {
+      "id": "alg-dp-057",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For the same dimensions 10×20, 20×30, and 30×40, what is the cost of A1(A2A3)?",
+      "answer": "32000",
+      "explanation": "A2A3 costs 20?30?40=24,000 and produces a 20?40 matrix. Multiplying A1 by it costs 10?20?40=8,000, totaling 32,000."
+    },
+    {
+      "id": "alg-dp-058",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For edit distance between strings X and Y using insert, delete, and substitute operations of unit cost, which statements about the dynamic program are correct?",
+      "options": [
+        "The empty-prefix boundary costs are their respective prefix lengths",
+        "For unequal final characters, the recurrence considers insert, delete, and substitute transitions",
+        "The running time of the basic table algorithm is O(|X||Y|)",
+        "The minimum edit distance is always the absolute difference in string lengths"
+      ],
+      "answer": [
+        "The empty-prefix boundary costs are their respective prefix lengths",
+        "For unequal final characters, the recurrence considers insert, delete, and substitute transitions",
+        "The running time of the basic table algorithm is O(|X||Y|)"
+      ],
+      "explanation": "Transforming an empty prefix requires one insertion or deletion per symbol. The table combines three edit operations for mismatches; string-length difference is only a lower bound on distance."
+    },
+    {
+      "id": "alg-dp-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For the dimensions in Q56, which parenthesization is cheaper?",
+      "options": [
+        "(A1A2)A3",
+        "A1(A2A3)",
+        "Both are equal",
+        "The dimensions make multiplication invalid"
+      ],
+      "answer": [
+        "(A1A2)A3"
+      ],
+      "explanation": "The left-associated cost is 18,000 and the right-associated cost is 32,000. Thus (A1A2)A3 requires fewer scalar multiplications."
+    },
+    {
+      "id": "alg-dp-060",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DP table has dimensions 31×41, and every state is computed once. How many states are evaluated?",
+      "answer": "1271",
+      "explanation": "The table contains 31×41=1,271 state entries."
+    },
+    {
+      "id": "alg-dp-061",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the coin-change minimum-count problem are correct?",
+      "options": [
+        "The optimal solution may use multiple copies of a denomination",
+        "A greedy rule can fail for some denomination sets",
+        "DP can compute the optimum for amounts up to a target A",
+        "The state for amount x can depend on amount x−c"
+      ],
+      "answer": [
+        "The optimal solution may use multiple copies of a denomination",
+        "A greedy rule can fail for some denomination sets",
+        "DP can compute the optimum for amounts up to a target A",
+        "The state for amount x can depend on amount x−c"
+      ],
+      "explanation": "Unlimited coin change permits repeated denominations, and transitions remove one coin value from the remaining amount. DP avoids the failure of greedy choice on noncanonical systems."
+    },
+    {
+      "id": "alg-dp-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A subset-sum DP uses positive values and target S. What is the standard pseudo-polynomial time bound for n items?",
+      "options": [
+        "O(nS)",
+        "O(log S)",
+        "O(2^S)",
+        "O(n log n)"
+      ],
+      "answer": [
+        "O(nS)"
+      ],
+      "explanation": "A Boolean table tracks up to S sums for each of n items, leading to O(nS) time. Since S is numeric, this is pseudo-polynomial in the encoded input size."
+    },
+    {
+      "id": "alg-dp-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Can the values [2, 6, 9] form a subset summing to 8? Answer 1 for yes and 0 for no.",
+      "answer": "1",
+      "explanation": "The subset containing 2 and 6 sums to 8. Therefore the target is reachable and the answer is 1."
+    },
+    {
+      "id": "alg-dp-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP over subsets of n elements typically has how many possible subset states?",
+      "options": [
+        "n",
+        "n²",
+        "2^n",
+        "n!"
+      ],
+      "answer": [
+        "2^n"
+      ],
+      "explanation": "Each of the n elements is either included or excluded, giving 2^n possible subsets and often an exponential state space."
+    },
+    {
+      "id": "alg-dp-065",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which techniques can reduce the space used by a DP without changing its recurrence value?",
+      "options": [
+        "Keep only the previous row when future transitions use only that row",
+        "Use a one-dimensional array with a carefully chosen update direction",
+        "Discard any state even if a future state depends on it",
+        "Reconstruct choices by rerunning the DP if necessary"
+      ],
+      "answer": [
+        "Keep only the previous row when future transitions use only that row",
+        "Use a one-dimensional array with a carefully chosen update direction",
+        "Reconstruct choices by rerunning the DP if necessary"
+      ],
+      "explanation": "Space compression is safe only when dependencies are preserved. Some algorithms can recompute choices or rerun portions of the DP to reconstruct a solution after discarding predecessor storage."
+    },
+    {
+      "id": "alg-dp-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An LCS problem has string lengths 20 and 30. How many non-boundary states are evaluated in the standard table?",
+      "answer": "600",
+      "explanation": "There is one state per character pair, so the interior table has 20×30=600 states."
+    },
+    {
+      "id": "alg-dp-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP recurrence for a problem minimizes cost over all possible last choices. What must be true of its recurrence to guarantee optimality?",
+      "options": [
+        "Every feasible solution must be represented by one of the considered last choices and a valid subproblem",
+        "The first choice must be greedy",
+        "The state must contain the entire execution history",
+        "The costs must all be equal"
+      ],
+      "answer": [
+        "Every feasible solution must be represented by one of the considered last choices and a valid subproblem"
+      ],
+      "explanation": "The recurrence must cover all feasible solutions and decompose their costs correctly. Taking the minimum then includes an optimal solution; omitted choices invalidate the proof."
+    },
+    {
+      "id": "alg-dp-068",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A capacity-10 0/1 knapsack has items A=(weight 6,value 12), B=(5,10), and C=(4,7). Which subset gives the maximum value?",
+      "answer": [
+        "A and C, value 19"
+      ],
+      "explanation": "A and C weigh 6+4=10 and yield value 12+7=19. B and C yield 17, while A and B exceed capacity, so A and C are optimal.",
+      "options": [
+        "A only, value 12",
+        "B and C, value 17",
+        "A and C, value 19",
+        "A and B, value 22"
+      ]
+    },
+    {
+      "id": "alg-dp-069",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about top-down DP with memoization are correct?",
+      "options": [
+        "It begins from the requested state and recursively visits dependencies",
+        "A computed state is cached for reuse",
+        "Unreachable states may never be evaluated",
+        "Its recursion depth can consume stack space"
+      ],
+      "answer": [
+        "It begins from the requested state and recursively visits dependencies",
+        "A computed state is cached for reuse",
+        "Unreachable states may never be evaluated",
+        "Its recursion depth can consume stack space"
+      ],
+      "explanation": "Memoization evaluates states on demand, caches results, and can skip irrelevant states. Its recursive implementation may use stack proportional to the dependency depth."
+    },
+    {
+      "id": "alg-dp-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP recurrence has n states, each considering O(n) earlier states, and uses O(1) work per transition. What is its time bound?",
+      "options": [
+        "O(n)",
+        "O(nlog n)",
+        "O(n²)",
+        "O(2^n)"
+      ],
+      "answer": [
+        "O(n²)"
+      ],
+      "explanation": "There are n states and at most n transitions considered per state. Their product gives O(n²) total work."
+    },
+    {
+      "id": "alg-dp-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sequence of length 9 is processed by the O(n²) LIS dynamic program that compares each position with all earlier positions. How many pair comparisons are made?",
+      "answer": "36",
+      "explanation": "The number of earlier-position pairs is 0+1+…+8=9×8/2=36 comparisons."
+    },
+    {
+      "id": "alg-dp-072",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For strings of lengths m and n, which memory bound is possible for computing only the LCS length?",
+      "options": [
+        "O(min(m,n)) using rolling rows",
+        "O(1) for arbitrary lengths",
+        "O(log(m+n))",
+        "O(m+n) is impossible"
+      ],
+      "answer": [
+        "O(min(m,n)) using rolling rows"
+      ],
+      "explanation": "Each DP row depends only on the previous row and the current row's left neighbor. Keeping two rows along the shorter dimension reduces auxiliary space to O(min(m,n))."
+    },
+    {
+      "id": "alg-dp-073",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the LCS length recurrence are correct when the current characters differ?",
+      "options": [
+        "L[i,j]=max(L[i−1,j],L[i,j−1])",
+        "The optimal subsequence omits at least one of the two final characters",
+        "The recurrence adds one to the diagonal state",
+        "The boundary states for an empty string are zero"
+      ],
+      "answer": [
+        "L[i,j]=max(L[i−1,j],L[i,j−1])",
+        "The optimal subsequence omits at least one of the two final characters",
+        "The boundary states for an empty string are zero"
+      ],
+      "explanation": "When characters differ, an LCS cannot use both as the same final matched character. It must omit one, so the maximum of the two prefix states is used; empty-prefix LCS length is zero."
+    },
+    {
+      "id": "alg-dp-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What is the LCS length of strings ABCD and ACBD?",
+      "answer": "3",
+      "explanation": "The subsequence ABD occurs in both, as does ACD. No length-four sequence can preserve the different relative order of B and C, so the maximum length is three."
+    },
+    {
+      "id": "alg-dp-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A rod-cutting DP has price p1=2, p2=5, p3=8, p4=9. What is the optimal revenue for a rod of length 4?",
+      "options": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "answer": [
+        "10"
+      ],
+      "explanation": "Cut into two pieces of length 2 for revenue 5+5=10. This exceeds the uncut price 9 and other partitions such as 1+3=10, tying at 10."
+    },
+    {
+      "id": "alg-dp-076",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For a rod of length 5, prices are p1=2, p2=5, p3=7, p4=8, p5=10. What is the maximum revenue?",
+      "answer": "12",
+      "explanation": "A cut into lengths 2 and 3 yields 5+7=12. A 2+2+1 cut also yields 5+5+2=12, while other partitions and the uncut price give no more, so the maximum is 12."
+    },
+    {
+      "id": "alg-dp-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about rod cutting DP are correct?",
+      "options": [
+        "The first cut can be any length from 1 to n",
+        "The recurrence maximizes price plus optimal remainder revenue",
+        "The uncut rod is one candidate",
+        "A greedy rule based only on price per unit is always optimal"
+      ],
+      "answer": [
+        "The first cut can be any length from 1 to n",
+        "The recurrence maximizes price plus optimal remainder revenue",
+        "The uncut rod is one candidate"
+      ],
+      "explanation": "The recurrence tries every first piece length, including n itself, and combines its price with the optimal remainder. Price-density greedy can fail for arbitrary price tables."
+    },
+    {
+      "id": "alg-dp-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In weighted interval scheduling, intervals are sorted by finish time. What does p(j) denote?",
+      "options": [
+        "The rightmost interval before j that is compatible with j",
+        "The interval with the largest weight",
+        "The number of overlapping intervals",
+        "The first interval after j"
+      ],
+      "answer": [
+        "The rightmost interval before j that is compatible with j"
+      ],
+      "explanation": "The predecessor index p(j) identifies the last earlier interval that finishes no later than interval j begins, enabling the take-j recurrence."
+    },
+    {
+      "id": "alg-dp-079",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Weighted intervals have (start,finish,weight): A=(1,3,5), B=(3,5,6), C=(1,5,12). With touching endpoints compatible, what is the maximum total weight?",
+      "answer": "12",
+      "explanation": "A and B are compatible and total 11, while C alone has weight 12 and conflicts with both. The optimal schedule chooses C for value 12."
+    },
+    {
+      "id": "alg-dp-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about dynamic programming complexity are correct?",
+      "options": [
+        "Time depends on the number of states and work per transition",
+        "A polynomial number of states with polynomial transitions gives polynomial time",
+        "A small recurrence description guarantees few states",
+        "State values may be numeric even when the input encodes them in few bits"
+      ],
+      "answer": [
+        "Time depends on the number of states and work per transition",
+        "A polynomial number of states with polynomial transitions gives polynomial time",
+        "State values may be numeric even when the input encodes them in few bits"
+      ],
+      "explanation": "The state graph size and transition work determine runtime. Compactly encoded numeric bounds can yield pseudo-polynomial algorithms even when the state count is large relative to input bit length."
+    },
+    {
+      "id": "alg-dp-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP recurrence for a path problem uses state dp[i]=best cost to reach vertex i. What does the state need in addition if future feasibility depends on the last chosen color?",
+      "options": [
+        "Include the last color in the state",
+        "No change; dp[i] is always sufficient",
+        "Include the full path as a string in every case",
+        "Store only the total number of vertices"
+      ],
+      "answer": [
+        "Include the last color in the state"
+      ],
+      "explanation": "A state must retain all information that affects future transitions. If future choices depend on the last color, states with different colors cannot be merged into one value for i."
+    },
+    {
+      "id": "alg-dp-082",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DP table has 15 states and each state checks 6 transitions. How many transition checks are performed?",
+      "answer": "90",
+      "explanation": "Each of the 15 DP states examines six candidate transitions. Multiplying states by transitions per state gives 15?6=90 total checks."
+    },
+    {
+      "id": "alg-dp-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about reconstructing an LCS from the DP table are correct?",
+      "options": [
+        "A diagonal move at a matching-character cell records that character",
+        "Moves upward or leftward can skip a character",
+        "Ties between up and left can lead to different valid LCS strings",
+        "The table's length value alone always identifies a unique LCS"
+      ],
+      "answer": [
+        "A diagonal move at a matching-character cell records that character",
+        "Moves upward or leftward can skip a character",
+        "Ties between up and left can lead to different valid LCS strings"
+      ],
+      "explanation": "Backtracking records matches on diagonal steps and skips characters on horizontal or vertical steps. Multiple optimal subsequences can share the same length, so reconstruction need not be unique."
+    },
+    {
+      "id": "alg-dp-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A subset-sum DP uses a bitset where bit s indicates whether sum s is reachable. How can adding a value x update the set for 0/1 use?",
+      "options": [
+        "OR the bitset with a left-shifted copy by x, using the old bitset",
+        "Repeatedly shift the updated bitset by x until full",
+        "Clear all bits below x",
+        "Set every bit to one"
+      ],
+      "answer": [
+        "OR the bitset with a left-shifted copy by x, using the old bitset"
+      ],
+      "explanation": "A shifted copy represents sums formed by taking the current item. Combining it with the old reachability set handles exclusion and inclusion; using the old set prevents reusing the item within the same update."
+    },
+    {
+      "id": "alg-dp-085",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For the set [4, 7, 9, 12], how many distinct subsets sum to 16?",
+      "answer": "2",
+      "explanation": "There are two such subsets: {4,12} and {7,9}. Each uses distinct elements and sums to 16."
+    },
+    {
+      "id": "alg-dp-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about shortest-path dynamic programming are correct?",
+      "options": [
+        "Bellman-Ford relaxations can be viewed as DP over the maximum number of edges",
+        "The state can represent the best distance using at most k edges",
+        "Negative edges can be handled if no reachable negative cycle exists",
+        "Dijkstra and Bellman-Ford use identical greedy invariants"
+      ],
+      "answer": [
+        "Bellman-Ford relaxations can be viewed as DP over the maximum number of edges",
+        "The state can represent the best distance using at most k edges",
+        "Negative edges can be handled if no reachable negative cycle exists"
+      ],
+      "explanation": "Layered Bellman-Ford states track paths with bounded edge counts and support negative weights absent negative cycles. Dijkstra relies on a different nonnegative-edge greedy finalization property."
+    },
+    {
+      "id": "alg-dp-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence has f(n)=f(n−1)+f(n−2) and memoization computes each state once. How many distinct recurrence states are evaluated from n down to the base cases?",
+      "options": [
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n²)",
+        "Θ(2^n)"
+      ],
+      "answer": [
+        "Θ(n)"
+      ],
+      "explanation": "The distinct indices are 0 through n, so there are n+1 memoized states. Each is evaluated once, giving linear time."
+    },
+    {
+      "id": "alg-dp-088",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DP has 25 rows and 40 columns and stores one value per cell using 8 bytes. How many bytes are needed for the table?",
+      "answer": "8000",
+      "explanation": "There are 25×40=1,000 cells. At eight bytes each, the table uses 8,000 bytes."
+    },
+    {
+      "id": "alg-dp-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about optimal substructure and overlapping subproblems are correct?",
+      "options": [
+        "Optimal substructure concerns how optimal solutions relate to smaller instances",
+        "Overlapping subproblems mean the same state is reached repeatedly",
+        "Both properties commonly motivate DP",
+        "Overlapping subproblems alone prove a greedy algorithm is correct"
+      ],
+      "answer": [
+        "Optimal substructure concerns how optimal solutions relate to smaller instances",
+        "Overlapping subproblems mean the same state is reached repeatedly",
+        "Both properties commonly motivate DP"
+      ],
+      "explanation": "DP combines optimal substructure with reuse of repeated states. Overlap does not validate greedy choices; greedy correctness requires a separate safe-choice proof."
+    },
+    {
+      "id": "alg-dp-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A minimum-cost path DP allows moves right and down in a grid. What state dependency order ensures all predecessors are computed first?",
+      "options": [
+        "Increasing row and column indices",
+        "Decreasing both indices in every case",
+        "Random cell order",
+        "Only sorting cells by their stored costs"
+      ],
+      "answer": [
+        "Increasing row and column indices"
+      ],
+      "explanation": "Each cell depends on the cell above and to its left. Filling rows and columns in increasing order computes both predecessors before the current cell."
+    },
+    {
+      "id": "alg-dp-091",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A grid-path DP counts paths from the upper-left to a cell using only right and down moves. For a 2×3 grid of cells, how many paths reach the lower-right cell?",
+      "answer": "3",
+      "explanation": "A path requires one down move and two right moves. Their possible orderings number 3!/(1!2!)=3."
+    },
+    {
+      "id": "alg-dp-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP recurrence uses the minimum over all prior positions, but those values are already maintained in a prefix-minimum array. What can happen to the transition cost per state?",
+      "options": [
+        "It can drop from O(n) to O(1)",
+        "It must become exponential",
+        "It cannot change",
+        "It becomes O(log log n) automatically"
+      ],
+      "answer": [
+        "It can drop from O(n) to O(1)"
+      ],
+      "explanation": "A precomputed prefix minimum answers the minimum-over-prefix query in constant time. This optimization reduces transition work when the recurrence's candidate set has that structure."
+    },
+    {
+      "id": "alg-dp-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are valid reasons a DP may use more memory than its final answer requires?",
+      "options": [
+        "It stores intermediate states needed by later transitions",
+        "It stores predecessor decisions for reconstruction",
+        "It stores every recursion call even when identical states are memoized",
+        "Its state table may be larger than the output"
+      ],
+      "answer": [
+        "It stores intermediate states needed by later transitions",
+        "It stores predecessor decisions for reconstruction",
+        "Its state table may be larger than the output"
+      ],
+      "explanation": "Intermediate values and reconstruction metadata can require substantial storage. Memoization shares identical states rather than storing every repeated call separately."
+    },
+    {
+      "id": "alg-dp-094",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "There are unlimited coins of denominations 1, 2, and 3. If order does not matter, how many combinations make amount 5?",
+      "answer": "5",
+      "explanation": "The combinations are 1+1+1+1+1, 1+1+1+2, 1+2+2, 1+1+3, and 2+3. Counting ordered sequences would be a different DP problem."
+    },
+    {
+      "id": "alg-dp-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP has a polynomial number of states, but each state enumerates all subsets of n items. What is the likely consequence?",
+      "options": [
+        "The total time can still be exponential",
+        "The algorithm is necessarily polynomial",
+        "The state count is irrelevant",
+        "The transitions take O(1)"
+      ],
+      "answer": [
+        "The total time can still be exponential"
+      ],
+      "explanation": "Runtime is the sum of transition costs over states. Exponentially many choices per state can make an algorithm exponential even if the number of states is polynomial."
+    },
+    {
+      "id": "alg-dp-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements describe a valid DP recurrence for a minimization problem?",
+      "options": [
+        "Each state considers all possible final decisions",
+        "The recurrence includes the cost of the chosen decision",
+        "Base cases match the smallest valid instances",
+        "Taking the minimum of an incomplete set of choices guarantees optimality"
+      ],
+      "answer": [
+        "Each state considers all possible final decisions",
+        "The recurrence includes the cost of the chosen decision",
+        "Base cases match the smallest valid instances"
+      ],
+      "explanation": "A minimization recurrence must represent every feasible final decision and add its cost to the corresponding subproblem value. Missing choices can exclude the optimum, regardless of taking a minimum."
+    },
+    {
+      "id": "alg-dp-097",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A standard matrix-chain DP processes n=8 matrices. How many possible split positions are considered for the full chain A1 through A8?",
+      "answer": "7",
+      "explanation": "A chain of eight matrices can split after A1, A2, …, A7, giving seven candidate split positions."
+    },
+    {
+      "id": "alg-dp-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP solution returns an optimal value but not the decisions that attain it. What is the most direct extension to produce an actual solution?",
+      "options": [
+        "Record a chosen predecessor or reconstruct choices by revisiting the recurrence",
+        "Replace every state with zero",
+        "Sort the DP table by value",
+        "Run a greedy algorithm on the output value"
+      ],
+      "answer": [
+        "Record a chosen predecessor or reconstruct choices by revisiting the recurrence"
+      ],
+      "explanation": "A witness can be recovered by storing which transition attained each state or by recomputing that transition during backtracking from the final state."
+    },
+    {
+      "id": "alg-dp-099",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about rolling-array optimization are correct?",
+      "options": [
+        "It can reduce memory when a state depends only on a fixed number of earlier layers",
+        "Update direction can affect whether old or newly updated states are read",
+        "It always preserves enough information to reconstruct an optimal solution",
+        "It requires analyzing dependencies before overwriting cells"
+      ],
+      "answer": [
+        "It can reduce memory when a state depends only on a fixed number of earlier layers",
+        "Update direction can affect whether old or newly updated states are read",
+        "It requires analyzing dependencies before overwriting cells"
+      ],
+      "explanation": "Rolling arrays retain only the dependency frontier, but overwriting too early can change recurrence semantics. Reconstruction may need extra decisions or recomputation."
+    },
+    {
+      "id": "alg-dp-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DP state is defined only by position i, but the optimal continuation also depends on remaining capacity W. What is the key modeling defect?",
+      "options": [
+        "The state omits information needed to determine future choices",
+        "The recurrence has too many base cases",
+        "The DP must be greedy",
+        "The input must be sorted"
+      ],
+      "answer": [
+        "The state omits information needed to determine future choices"
+      ],
+      "explanation": "Two subproblems at the same position but with different remaining capacities can have different optimal continuations. Capacity must be included in the state so these subproblems are not incorrectly merged."
+    }
+  ]
+}

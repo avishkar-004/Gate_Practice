@@ -1,0 +1,1393 @@
+{
+  "topicIndex": 5,
+  "questions": [
+    {
+      "id": "coa-pipe-001",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An ideal 5-stage pipeline executes 12 instructions. It starts empty, has one cycle per stage, and has no stalls. How many clock cycles are required?",
+      "answer": "16",
+      "explanation": "For N instructions and k stages, ideal cycles=N+k-1=12+5-1=16, accounting for pipeline fill."
+    },
+    {
+      "id": "coa-pipe-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 6-stage pipeline executes 20 instructions and incurs 3 total stall cycles. Assume one cycle per stage and no other overhead. How many cycles elapse?",
+      "options": [
+        "28",
+        "25",
+        "23",
+        "120"
+      ],
+      "answer": [
+        "28"
+      ],
+      "explanation": "Without stalls, cycles=N+k-1=20+6-1=25. Adding 3 stall cycles gives 28."
+    },
+    {
+      "id": "coa-pipe-003",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A non-pipelined processor takes 5 cycles per instruction. A 5-stage pipeline has equal stage times and no stalls. For a long stream, what ideal throughput speedup does pipelining approach?",
+      "answer": "5",
+      "explanation": "The non-pipelined design completes one instruction every five cycles; the ideal pipeline completes one per cycle after filling. The throughput speedup approaches five."
+    },
+    {
+      "id": "coa-pipe-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has stage delays 1.0, 1.4, 0.9, 1.2, and 1.1 ns. Ignore pipeline-register overhead. What is its minimum clock period?",
+      "options": [
+        "1.4 ns",
+        "1.1 ns",
+        "5.6 ns",
+        "0.9 ns"
+      ],
+      "answer": [
+        "1.4 ns"
+      ],
+      "explanation": "The clock period must accommodate the slowest stage. The maximum listed stage delay is 1.4 ns."
+    },
+    {
+      "id": "coa-pipe-005",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements compare instruction latency and throughput in a basic pipeline?",
+      "options": [
+        "Pipelining can improve throughput without reducing the number of stages traversed by one instruction.",
+        "An instruction still passes through each required pipeline stage.",
+        "Pipeline fill and drain affect short instruction sequences more strongly than long ones.",
+        "A k-stage pipeline always reduces an individual instruction's latency by a factor of k."
+      ],
+      "answer": [
+        "Pipelining can improve throughput without reducing the number of stages traversed by one instruction.",
+        "An instruction still passes through each required pipeline stage.",
+        "Pipeline fill and drain affect short instruction sequences more strongly than long ones."
+      ],
+      "explanation": "Pipelining overlaps instructions to increase completion rate. A single instruction still traverses its stages, and fill/drain overhead is a larger fraction for short streams."
+    },
+    {
+      "id": "coa-pipe-006",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline has base CPI 1.0. Conditional branches occur in 20% of instructions; 60% are mispredicted, and each misprediction costs 2 cycles. Ignoring other stalls, what is average CPI?",
+      "answer": "1.24",
+      "explanation": "Mispredictions per instruction=0.20×0.60=0.12. Branch stall cycles/instruction=0.12×2=0.24, so CPI=1+0.24=1.24."
+    },
+    {
+      "id": "coa-pipe-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two instructions use the same single-ported memory in the same cycle: one fetches an instruction and the other accesses data. What type of hazard can result?",
+      "options": [
+        "Structural hazard",
+        "Control hazard",
+        "Write-after-write hazard",
+        "Page fault"
+      ],
+      "answer": [
+        "Structural hazard"
+      ],
+      "explanation": "Both operations require the same limited hardware resource in one cycle. The resource conflict is a structural hazard."
+    },
+    {
+      "id": "coa-pipe-008",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Instruction I1 writes R5. The immediately following I2 reads R5. Which statements describe the dependency in an in-order pipeline?",
+      "options": [
+        "It is a read-after-write (RAW) dependence.",
+        "Forwarding may provide the value before register write-back.",
+        "It is a write-after-read (WAR) hazard in a basic in-order pipeline.",
+        "Without forwarding or suitable timing, I2 may need to stall."
+      ],
+      "answer": [
+        "It is a read-after-write (RAW) dependence.",
+        "Forwarding may provide the value before register write-back.",
+        "Without forwarding or suitable timing, I2 may need to stall."
+      ],
+      "explanation": "I2 needs the value produced by I1, so the dependence is RAW. Bypassing can forward it; otherwise a stall may be needed. WAR is not the relevant in-order pipeline hazard here."
+    },
+    {
+      "id": "coa-pipe-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a classic five-stage pipeline with forwarding, an ALU instruction produces a result in EX. The next instruction uses it as an ALU operand in its EX stage. What can forwarding do?",
+      "options": [
+        "Send the result directly to the dependent EX input without waiting for register write-back",
+        "Remove the dependency from the program",
+        "Prevent all control hazards",
+        "Make the producer skip its MEM and WB stages"
+      ],
+      "answer": [
+        "Send the result directly to the dependent EX input without waiting for register write-back"
+      ],
+      "explanation": "A bypass path forwards a value from a later pipeline stage to the consumer's EX input. The architectural dependence remains, but the register-file wait can be avoided."
+    },
+    {
+      "id": "coa-pipe-010",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A classic five-stage pipeline has no forwarding. A consumer immediately follows an ALU producer and reads the result in ID. Assume the register file is written in the first half of a cycle and read in the second half. How many stall cycles are needed before the consumer can read the value?",
+      "answer": "2",
+      "explanation": "The producer writes in WB during cycle 5. The consumer reaches ID in cycle 3, so it must be delayed to cycle 5, requiring two stall cycles; the first-half write is visible to the second-half read."
+    },
+    {
+      "id": "coa-pipe-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a five-stage IF-ID-EX-MEM-WB pipeline with forwarding, a load is immediately followed by an instruction that uses the loaded value in EX. Why can one stall still be required?",
+      "options": [
+        "The load data becomes available only after its MEM stage, later than the consumer's needed EX input time.",
+        "Forwarding is impossible for every load result.",
+        "The consumer is a control instruction by definition.",
+        "The register file cannot store values from memory"
+      ],
+      "answer": [
+        "The load data becomes available only after its MEM stage, later than the consumer's needed EX input time."
+      ],
+      "explanation": "The immediately following consumer reaches EX before the load's memory data is available for that cycle. A load-use interlock inserts a bubble so the data can be forwarded in time."
+    },
+    {
+      "id": "coa-pipe-012",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch predictor predicts not taken. Branches are taken 30% of the time, resolve in EX, and flush two younger instructions when mispredicted. What is the average misprediction penalty per instruction?",
+      "answer": "0.6",
+      "explanation": "A taken branch is mispredicted under this predictor. Expected penalty=0.30×2=0.6 cycles per instruction."
+    },
+    {
+      "id": "coa-pipe-013",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch predictor has 90% accuracy. Branches are 25% of instructions and a misprediction costs 4 cycles. Which statements are correct?",
+      "options": [
+        "Mispredictions occur on 2.5% of all instructions.",
+        "Expected branch penalty is 0.1 cycles per instruction.",
+        "The branch contribution to CPI is 0.4 cycles per instruction.",
+        "The expected penalty is branch frequency × misprediction rate × penalty."
+      ],
+      "answer": [
+        "Mispredictions occur on 2.5% of all instructions.",
+        "Expected branch penalty is 0.1 cycles per instruction.",
+        "The expected penalty is branch frequency × misprediction rate × penalty."
+      ],
+      "explanation": "Misprediction fraction among instructions=0.25×0.10=0.025. CPI penalty=0.025×4=0.10. The 0.4 value omits the 90% prediction accuracy."
+    },
+    {
+      "id": "coa-pipe-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline resolves a conditional branch in ID rather than EX. Assuming the same branch frequency and predictor, what potential benefit can this provide?",
+      "options": [
+        "It can reduce the number of younger instructions that must be flushed on a wrong-path decision.",
+        "It eliminates all data hazards.",
+        "It increases the number of pipeline stages.",
+        "It guarantees a correct prediction"
+      ],
+      "answer": [
+        "It can reduce the number of younger instructions that must be flushed on a wrong-path decision."
+      ],
+      "explanation": "Earlier branch resolution shortens the interval during which younger instructions can be fetched on the wrong path, potentially reducing control-hazard penalty."
+    },
+    {
+      "id": "coa-pipe-015",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline clock period is 1.25 ns. Ignoring fill/drain and stalls, what is the maximum steady-state instruction throughput in instructions per second?",
+      "answer": "800000000",
+      "explanation": "The ideal pipeline completes one instruction per cycle. Throughput=1/(1.25×10^-9 s)=0.8×10^9=800,000,000 instructions/s."
+    },
+    {
+      "id": "coa-pipe-016",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Pipeline registers are inserted between combinational stages. Which effects can their overhead have?",
+      "options": [
+        "They can add setup, clock-to-Q, and clock-skew constraints to the cycle time.",
+        "They store intermediate values between cycles.",
+        "They may limit the maximum clock frequency.",
+        "They remove all data dependences between instructions."
+      ],
+      "answer": [
+        "They can add setup, clock-to-Q, and clock-skew constraints to the cycle time.",
+        "They store intermediate values between cycles.",
+        "They may limit the maximum clock frequency."
+      ],
+      "explanation": "Pipeline registers hold stage state and contribute timing overhead. They do not change program dependences, and their timing can reduce achievable frequency."
+    },
+    {
+      "id": "coa-pipe-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has stages with delays 0.8, 0.9, 1.6, and 1.0 ns. Pipeline register overhead is 0.2 ns per stage boundary. What clock period is required?",
+      "options": [
+        "1.8 ns",
+        "1.6 ns",
+        "4.3 ns",
+        "2.0 ns"
+      ],
+      "answer": [
+        "1.8 ns"
+      ],
+      "explanation": "The slowest combinational stage is 1.6 ns. Adding 0.2 ns register overhead gives a required period of 1.8 ns."
+    },
+    {
+      "id": "coa-pipe-018",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-stage pipeline executes 100 instructions with 6 stall cycles. How many cycles are required, assuming one cycle per stage and an initially empty pipeline?",
+      "answer": "109",
+      "explanation": "Base cycles=N+k-1=100+4-1=103. Adding 6 stalls gives 109 cycles."
+    },
+    {
+      "id": "coa-pipe-019",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch decision is made in EX, while the processor fetches sequential instructions speculatively. What can happen when the branch is taken?",
+      "options": [
+        "Younger instructions from the sequential path may be flushed.",
+        "The fetch PC is redirected to the branch target.",
+        "The branch's own architectural effect is discarded.",
+        "The control hazard can add bubbles or lost cycles."
+      ],
+      "answer": [
+        "Younger instructions from the sequential path may be flushed.",
+        "The fetch PC is redirected to the branch target.",
+        "The control hazard can add bubbles or lost cycles."
+      ],
+      "explanation": "When the branch resolves as taken, the pipeline redirects fetch and discards younger wrong-path instructions. The branch itself remains architecturally executed."
+    },
+    {
+      "id": "coa-pipe-020",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor has base CPI 1.1. Structural hazards add 0.08 cycles per instruction and data hazards add 0.17 cycles per instruction. What is the resulting CPI before control penalties?",
+      "answer": "1.35",
+      "explanation": "CPI=base CPI+average structural stalls+average data stalls=1.1+0.08+0.17=1.35."
+    },
+    {
+      "id": "coa-pipe-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline stage's output is needed by a dependent instruction, but no bypass path exists. What is the purpose of an interlock?",
+      "options": [
+        "Detect the hazard and stall the consumer until the value is available",
+        "Change the producer's result to match the consumer",
+        "Delete the dependent instruction",
+        "Turn the data hazard into a page fault"
+      ],
+      "answer": [
+        "Detect the hazard and stall the consumer until the value is available"
+      ],
+      "explanation": "An interlock detects a dependency that cannot be satisfied immediately and inserts stalls so the consumer reads the correct value."
+    },
+    {
+      "id": "coa-pipe-022",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which changes can reduce the branch penalty in a pipelined processor?",
+      "options": [
+        "Resolve the branch earlier in the pipeline.",
+        "Improve branch prediction accuracy.",
+        "Use a target buffer to reduce target-fetch delay.",
+        "Increase the number of wrong-path stages before resolution."
+      ],
+      "answer": [
+        "Resolve the branch earlier in the pipeline.",
+        "Improve branch prediction accuracy.",
+        "Use a target buffer to reduce target-fetch delay."
+      ],
+      "explanation": "Earlier resolution, better prediction, and faster target availability can reduce wrong-path work or redirect delay. More stages before resolution tends to increase the potential penalty."
+    },
+    {
+      "id": "coa-pipe-023",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline has 4 ns stage delays and 0.5 ns register overhead. Ignoring clock skew, what is its ideal clock frequency in MHz?",
+      "answer": "222.2222222",
+      "explanation": "Clock period=4+0.5=4.5 ns. Frequency=1/(4.5×10^-9)=222.222... MHz."
+    },
+    {
+      "id": "coa-pipe-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An exception occurs in an older instruction while younger instructions are in the pipeline. What property does a precise exception aim to provide?",
+      "options": [
+        "Architectural state appears as if all older instructions completed and no younger instruction took effect",
+        "All younger instructions are allowed to commit first",
+        "The exception is converted into a cache miss",
+        "The pipeline registers are permanently frozen"
+      ],
+      "answer": [
+        "Architectural state appears as if all older instructions completed and no younger instruction took effect"
+      ],
+      "explanation": "Precise exceptions present a clean instruction boundary: older instructions have completed, while younger instructions have not changed architectural state."
+    },
+    {
+      "id": "coa-pipe-025",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has separate instruction and data memories. Which structural-hazard conclusion is valid?",
+      "options": [
+        "Instruction fetch and a data access can use separate memories in the same cycle.",
+        "This organization removes that particular shared-memory conflict.",
+        "It eliminates RAW data hazards.",
+        "Other structural hazards may still occur in shared datapath resources."
+      ],
+      "answer": [
+        "Instruction fetch and a data access can use separate memories in the same cycle.",
+        "This organization removes that particular shared-memory conflict.",
+        "Other structural hazards may still occur in shared datapath resources."
+      ],
+      "explanation": "Separate instruction and data memories remove contention for one shared memory port, but they do not remove data dependences or all other resource conflicts."
+    },
+    {
+      "id": "coa-pipe-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a basic in-order five-stage pipeline, an instruction reads R4 before a later instruction writes R4. Which statement is correct?",
+      "options": [
+        "This is not a WAR hazard in the basic in-order pipeline because reads occur before the later write.",
+        "It is always a RAW hazard.",
+        "It is a control hazard.",
+        "It necessarily requires a branch flush"
+      ],
+      "answer": [
+        "This is not a WAR hazard in the basic in-order pipeline because reads occur before the later write."
+      ],
+      "explanation": "In a simple in-order pipeline, register reads occur in ID and writes occur later in WB. A later instruction cannot write before an older instruction's read, so WAR hazards do not arise in the basic design."
+    },
+    {
+      "id": "coa-pipe-027",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A producer instruction writes R7, and two later instructions read R7 at different distances. Which statements are correct?",
+      "options": [
+        "Both reads depend on the producer's value.",
+        "A nearer consumer may need forwarding or a stall.",
+        "A farther consumer may read the value from the register file after write-back.",
+        "The dependence disappears if one consumer is a load instruction."
+      ],
+      "answer": [
+        "Both reads depend on the producer's value.",
+        "A nearer consumer may need forwarding or a stall.",
+        "A farther consumer may read the value from the register file after write-back."
+      ],
+      "explanation": "Each consumer has a RAW dependence on the producer. Distance affects whether forwarding or stalling is needed; an instruction being a load does not erase its register dependence."
+    },
+    {
+      "id": "coa-pipe-028",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A five-stage pipeline uses one bubble for each load-use hazard. There are 40 such hazards in a 200-instruction program and no other stalls. How many cycles are required?",
+      "answer": "244",
+      "explanation": "Ideal cycles=200+5-1=204. Forty one-cycle bubbles add 40, so total cycles=244."
+    },
+    {
+      "id": "coa-pipe-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline's forwarding network can forward ALU results but not memory data. Which dependence is most likely to retain a stall even with this network?",
+      "options": [
+        "A load followed immediately by an instruction using the loaded register",
+        "An ALU result followed by an independent instruction",
+        "A branch with no data dependency",
+        "Two instructions using different registers"
+      ],
+      "answer": [
+        "A load followed immediately by an instruction using the loaded register"
+      ],
+      "explanation": "Load data appears later than an ALU result. If the bypass network cannot forward memory data to the consumer, the load-use dependence must wait for write-back or another available path."
+    },
+    {
+      "id": "coa-pipe-030",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline uses operand forwarding. Which sources may commonly feed an ALU input bypass mux?",
+      "options": [
+        "A result in an EX/MEM pipeline register",
+        "A result in a MEM/WB pipeline register",
+        "Only the architectural register file output",
+        "A recently computed value before it is written back"
+      ],
+      "answer": [
+        "A result in an EX/MEM pipeline register",
+        "A result in a MEM/WB pipeline register",
+        "A recently computed value before it is written back"
+      ],
+      "explanation": "Bypass muxes can select results from later pipeline registers so consumers need not wait for register-file write-back. The register file is another possible input, not the only one."
+    },
+    {
+      "id": "coa-pipe-031",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch predictor is correct for 96% of branches. Branches occur in 15% of instructions and each misprediction costs 3 cycles. What is the average misprediction penalty per instruction?",
+      "answer": "0.018",
+      "explanation": "Mispredicted branches per instruction=0.15×(1-0.96)=0.006. Multiplying by 3 cycles gives 0.018 cycles per instruction."
+    },
+    {
+      "id": "coa-pipe-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline predicts a conditional branch not taken. The branch resolves as taken in EX. Which action is typically required?",
+      "options": [
+        "Redirect fetch to the target and flush younger sequential-path instructions",
+        "Commit all younger sequential instructions before redirecting",
+        "Change the branch condition to not taken",
+        "Clear every register in the processor"
+      ],
+      "answer": [
+        "Redirect fetch to the target and flush younger sequential-path instructions"
+      ],
+      "explanation": "The prediction was wrong, so the fetch stream must be redirected to the target and any younger wrong-path instructions discarded."
+    },
+    {
+      "id": "coa-pipe-033",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch predictor has a branch target buffer (BTB). What information can the BTB supply?",
+      "options": [
+        "A predicted target address for a branch instruction",
+        "A prediction that a branch is taken, depending on the design",
+        "The architectural result of the branch's comparison",
+        "The cache block containing the target instruction, potentially aiding fetch"
+      ],
+      "answer": [
+        "A predicted target address for a branch instruction",
+        "A prediction that a branch is taken, depending on the design",
+        "The cache block containing the target instruction, potentially aiding fetch"
+      ],
+      "explanation": "A BTB stores branch-associated target information and may be combined with direction prediction. It predicts control flow; it does not compute the branch's comparison result."
+    },
+    {
+      "id": "coa-pipe-034",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor executes 1 billion instructions at average CPI 1.4 and clock frequency 2 GHz. What is the execution time in seconds?",
+      "answer": "0.7",
+      "explanation": "Cycles=10^9×1.4=1.4×10^9. Time=cycles/frequency=1.4×10^9/(2×10^9)=0.7 seconds."
+    },
+    {
+      "id": "coa-pipe-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline stage takes 2 ns, but its pipeline register overhead is 0.4 ns. Ignoring skew and setup differences, what is the maximum clock frequency?",
+      "options": [
+        "416.67 MHz",
+        "500 MHz",
+        "2 GHz",
+        "2.4 GHz"
+      ],
+      "answer": [
+        "416.67 MHz"
+      ],
+      "explanation": "The cycle period is 2+0.4=2.4 ns. Frequency=1/2.4 ns≈416.67 MHz."
+    },
+    {
+      "id": "coa-pipe-036",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has five stages with delays 1, 1, 3, 1, and 1 ns and no register overhead. Which statements are correct?",
+      "options": [
+        "The clock period is limited to at least 3 ns.",
+        "The third stage is the bottleneck.",
+        "Balancing stage delays could improve clock frequency without changing total combinational work.",
+        "Adding delay to the first stage would improve maximum frequency."
+      ],
+      "answer": [
+        "The clock period is limited to at least 3 ns.",
+        "The third stage is the bottleneck.",
+        "Balancing stage delays could improve clock frequency without changing total combinational work."
+      ],
+      "explanation": "The slowest stage determines the cycle time. Redistributing logic to make stages more balanced can reduce the maximum stage delay; increasing a shorter stage cannot help."
+    },
+    {
+      "id": "coa-pipe-037",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 6-stage ideal pipeline runs at 500 MHz and executes 100 instructions with no stalls. How long does the sequence take in nanoseconds, including fill and drain?",
+      "answer": "210",
+      "explanation": "Cycles=N+k-1=100+6-1=105. At 500 MHz, one cycle is 2 ns, so time=105×2=210 ns."
+    },
+    {
+      "id": "coa-pipe-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hazard unit detects that an instruction in ID reads a register being loaded by the immediately preceding instruction in EX. Which response is typical in a five-stage pipeline?",
+      "options": [
+        "Hold the dependent instruction and insert a bubble into EX",
+        "Delete the load instruction",
+        "Forward the data from ID before memory access",
+        "Flush the entire program"
+      ],
+      "answer": [
+        "Hold the dependent instruction and insert a bubble into EX"
+      ],
+      "explanation": "The load's data is not yet available when the consumer would enter EX. The interlock holds the consumer and inserts a bubble until forwarding can deliver the value."
+    },
+    {
+      "id": "coa-pipe-039",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has a one-cycle structural stall whenever an instruction fetch coincides with a data-memory access. Data accesses occur in 20% of instructions. Which statements follow if every such coincidence stalls exactly one cycle?",
+      "options": [
+        "The average structural stall contribution is 0.2 cycles per instruction.",
+        "The CPI increases by 0.2 over the no-stall base CPI.",
+        "The structural stall rate is independent of the number of data accesses.",
+        "Separate instruction and data memories could remove this particular conflict."
+      ],
+      "answer": [
+        "The average structural stall contribution is 0.2 cycles per instruction.",
+        "The CPI increases by 0.2 over the no-stall base CPI.",
+        "Separate instruction and data memories could remove this particular conflict."
+      ],
+      "explanation": "One stall for 20% of instructions contributes 0.2 cycles per instruction. Separate ports can eliminate the shared-memory contention; the stall rate depends on access frequency."
+    },
+    {
+      "id": "coa-pipe-040",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline executes 500 instructions. There are 15 load-use bubbles and 20 flushed wrong-path instruction slots. What is the total cycle count?",
+      "answer": "539",
+      "explanation": "Ideal cycles=500+5-1=504. Adding 15 bubbles and 20 flushed slots gives 504+15+20=539 cycles."
+    },
+    {
+      "id": "coa-pipe-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has base CPI 1.0. A branch occurs every fifth instruction and has a 2-cycle penalty when mispredicted. If the misprediction rate among branches is 10%, what is the resulting CPI?",
+      "options": [
+        "1.04",
+        "1.4",
+        "1.2",
+        "1.02"
+      ],
+      "answer": [
+        "1.04"
+      ],
+      "explanation": "Branches per instruction=1/5=0.2. Mispredicts per instruction=0.2×0.1=0.02. Stall contribution=0.02×2=0.04, giving CPI=1.04."
+    },
+    {
+      "id": "coa-pipe-042",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline flush discards younger instructions after a branch misprediction. Which statements are correct?",
+      "options": [
+        "Flushed instructions must not update architectural state.",
+        "The branch's target path is fetched after redirection.",
+        "Flushing can waste work already performed by younger instructions.",
+        "The older instructions must also be discarded in every pipeline."
+      ],
+      "answer": [
+        "Flushed instructions must not update architectural state.",
+        "The branch's target path is fetched after redirection.",
+        "Flushing can waste work already performed by younger instructions."
+      ],
+      "explanation": "Wrong-path younger instructions are prevented from committing architectural effects. The processor redirects to the correct path; older instructions generally remain valid."
+    },
+    {
+      "id": "coa-pipe-043",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline completes 1 instruction per cycle after fill. Its clock period is 0.8 ns. What is its ideal steady-state throughput in instructions per second?",
+      "answer": "1250000000",
+      "explanation": "Throughput=1/0.8 ns=1.25×10^9 instructions per second."
+    },
+    {
+      "id": "coa-pipe-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor's pipeline depth is doubled while total logic is divided evenly, but pipeline-register overhead is significant. Which outcome is possible?",
+      "options": [
+        "Clock frequency may fail to double because register overhead becomes a larger fraction of each stage",
+        "Clock frequency must double exactly",
+        "Instruction latency becomes zero",
+        "All hazards disappear"
+      ],
+      "answer": [
+        "Clock frequency may fail to double because register overhead becomes a larger fraction of each stage"
+      ],
+      "explanation": "Shorter combinational stages can raise frequency, but each added boundary incurs register and clock overhead. The ideal doubling may not be achieved, and hazards remain."
+    },
+    {
+      "id": "coa-pipe-045",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch predictor is changed from 90% to 95% accuracy. Branch frequency is 20%, and penalty is 3 cycles per misprediction. Which statements are correct?",
+      "options": [
+        "Old branch penalty contribution is 0.06 CPI.",
+        "New branch penalty contribution is 0.03 CPI.",
+        "The CPI reduction from this change is 0.03, assuming other factors fixed.",
+        "The branch frequency is irrelevant to the CPI impact."
+      ],
+      "answer": [
+        "Old branch penalty contribution is 0.06 CPI.",
+        "New branch penalty contribution is 0.03 CPI.",
+        "The CPI reduction from this change is 0.03, assuming other factors fixed."
+      ],
+      "explanation": "Old misprediction fraction per instruction=0.2×0.10=0.02, giving 0.06 cycles/instruction. New is 0.2×0.05×3=0.03, a 0.03-CPI reduction."
+    },
+    {
+      "id": "coa-pipe-046",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline executes 80 instructions. Four branches each cause a 2-cycle flush penalty, and there are 6 data-stall cycles. What is total execution time in cycles?",
+      "answer": "98",
+      "explanation": "Ideal cycles=80+5-1=84. Branch penalties add 4×2=8 cycles and data stalls add 6, giving 84+8+6=98 cycles."
+    },
+    {
+      "id": "coa-pipe-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An older instruction raises an exception in MEM while younger instructions are in IF and ID. For a precise exception, what should happen to the younger instructions?",
+      "options": [
+        "They are prevented from committing architectural effects and are flushed or held as required",
+        "They must complete and commit before the exception is handled",
+        "They overwrite the saved exception PC",
+        "They become interrupt handlers"
+      ],
+      "answer": [
+        "They are prevented from committing architectural effects and are flushed or held as required"
+      ],
+      "explanation": "Precise exceptions require younger instructions not to modify architectural state. They are squashed or otherwise prevented from committing while the exception is taken."
+    },
+    {
+      "id": "coa-pipe-048",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A five-stage pipeline has IF, ID, EX, MEM, and WB. Which stage activities are correctly paired in a typical design?",
+      "options": [
+        "IF: fetch instruction",
+        "ID: decode and read registers",
+        "EX: ALU operation or address calculation",
+        "WB: write result to register file"
+      ],
+      "answer": [
+        "IF: fetch instruction",
+        "ID: decode and read registers",
+        "EX: ALU operation or address calculation",
+        "WB: write result to register file"
+      ],
+      "explanation": "These are the conventional roles of the five stages. Memory access is normally associated with MEM, while register write-back occurs in WB."
+    },
+    {
+      "id": "coa-pipe-049",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline has CPI 1.0 for 1000 instructions, plus 30 data-stall cycles and 50 control-stall cycles. What is average CPI including all cycles?",
+      "answer": "1.084",
+      "explanation": "Ideal cycles=1000+5-1=1004. Total=1004+30+50=1084 cycles. CPI=1084/1000=1.084."
+    },
+    {
+      "id": "coa-pipe-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline's stage delays are 1, 1, 1, and 4 ns. Splitting the 4-ns stage into two balanced 2-ns stages changes the pipeline to five stages. Ignoring register overhead, what is the new clock period?",
+      "options": [
+        "2 ns",
+        "4 ns",
+        "8 ns",
+        "1 ns"
+      ],
+      "answer": [
+        "2 ns"
+      ],
+      "explanation": "After splitting, stage delays are 1, 1, 1, 2, and 2 ns. The slowest stage is 2 ns, which sets the new clock period."
+    },
+    {
+      "id": "coa-pipe-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two older instructions both write R1, and a younger instruction reads R1. Both candidate results match the source register. Which forwarding source should the consumer use?",
+      "options": [
+        "The youngest older producer's result",
+        "The oldest producer's result",
+        "The value in memory address 1",
+        "Either result because both writes are equivalent"
+      ],
+      "answer": [
+        "The youngest older producer's result"
+      ],
+      "explanation": "The program's sequential semantics require the most recent preceding write. The forwarding unit must prioritize the youngest matching producer."
+    },
+    {
+      "id": "coa-pipe-052",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor uses a static predict-not-taken policy. Which events require recovery?",
+      "options": [
+        "A branch predicted not taken is actually taken.",
+        "A branch predicted not taken is actually not taken.",
+        "A branch target must be fetched after a taken branch resolves.",
+        "An arithmetic instruction produces zero"
+      ],
+      "answer": [
+        "A branch predicted not taken is actually taken.",
+        "A branch target must be fetched after a taken branch resolves."
+      ],
+      "explanation": "A taken branch contradicts the prediction and requires redirecting fetch, often flushing younger instructions. Correctly predicted not-taken branches need no recovery."
+    },
+    {
+      "id": "coa-pipe-053",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has base CPI 1.0. There are 0.1 branch mispredictions per instruction at 3 cycles each and 0.05 load-use stalls per instruction at 1 cycle each. What is total CPI?",
+      "answer": "1.35",
+      "explanation": "Branch stalls contribute 0.1×3=0.30 CPI and load-use stalls contribute 0.05×1=0.05. Total CPI=1+0.30+0.05=1.35."
+    },
+    {
+      "id": "coa-pipe-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stall is inserted by holding the PC and IF/ID register while injecting a NOP into ID/EX. What is the primary effect?",
+      "options": [
+        "The dependent instruction is delayed while older instructions continue progressing",
+        "The entire pipeline is flushed",
+        "The producer instruction is deleted",
+        "The PC advances twice"
+      ],
+      "answer": [
+        "The dependent instruction is delayed while older instructions continue progressing"
+      ],
+      "explanation": "Holding fetch/decode preserves the dependent instruction for a later cycle, while the bubble prevents it from entering EX prematurely. Older instructions continue through later stages."
+    },
+    {
+      "id": "coa-pipe-055",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a five-stage pipeline with forwarding, a load-use hazard inserts one bubble. A program contains 250 instructions and 18 such hazards, with no other stalls. How many cycles are required?",
+      "answer": "272",
+      "explanation": "Ideal cycles=250+5-1=254. Eighteen one-cycle bubbles increase this to 272 cycles."
+    },
+    {
+      "id": "coa-pipe-056",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A unified single-ported memory is shared by IF and MEM. Which instruction overlap creates a structural hazard?",
+      "options": [
+        "One instruction in IF while an older load is in MEM",
+        "Two ALU instructions in EX if there is only one ALU",
+        "Two register reads in ID if the register file has two read ports",
+        "A branch in EX while an instruction fetch uses a separate memory"
+      ],
+      "answer": [
+        "One instruction in IF while an older load is in MEM",
+        "Two ALU instructions in EX if there is only one ALU"
+      ],
+      "explanation": "Both listed pairs compete for a single resource in the same cycle: unified memory or one ALU. Two reads fit a two-read-port register file, and separate memories avoid the stated fetch/data conflict."
+    },
+    {
+      "id": "coa-pipe-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has five stages and a 2-ns clock period. A non-pipelined implementation takes 10 ns per instruction. Ignoring fill and stalls, what is the ideal long-run throughput speedup?",
+      "options": [
+        "5",
+        "2",
+        "10",
+        "0.2"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "The non-pipelined throughput is one instruction per 10 ns; the pipeline completes one per 2 ns after filling. Speedup=10/2=5."
+    },
+    {
+      "id": "coa-pipe-058",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A precise interrupt is recognized at an instruction boundary in an in-order pipeline. Which statements are consistent with precise state?",
+      "options": [
+        "All older instructions have completed architecturally.",
+        "No younger instruction has committed an architectural effect.",
+        "The saved PC identifies the instruction or continuation required by the ISA.",
+        "Every in-flight instruction must first write its result before taking the interrupt."
+      ],
+      "answer": [
+        "All older instructions have completed architecturally.",
+        "No younger instruction has committed an architectural effect.",
+        "The saved PC identifies the instruction or continuation required by the ISA."
+      ],
+      "explanation": "Precise state corresponds to a clean boundary between older and younger instructions. Younger work may be discarded; it must not commit before the handler runs."
+    },
+    {
+      "id": "coa-pipe-059",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline executes 30 instructions with no stalls. How many cycles are spent after the pipeline is filled completing the remaining instructions, if the first completion occurs at the end of cycle 5?",
+      "answer": "29",
+      "explanation": "The first instruction completes at cycle 5. The remaining 29 instructions complete one per cycle, so 29 additional cycles elapse after the first completion."
+    },
+    {
+      "id": "coa-pipe-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline's branch target is computed in EX, but its direction is known in ID. What can a separate early target adder potentially improve?",
+      "options": [
+        "It can make the target available sooner and reduce redirect delay",
+        "It can eliminate all branch prediction",
+        "It can remove the register file",
+        "It guarantees the branch is taken"
+      ],
+      "answer": [
+        "It can make the target available sooner and reduce redirect delay"
+      ],
+      "explanation": "Computing the target earlier can reduce the time from branch resolution to the next correct fetch. It does not determine direction or eliminate all control hazards."
+    },
+    {
+      "id": "coa-pipe-061",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An instruction stream has 400 instructions and an ideal 5-stage pipeline. Three branches each flush two younger instructions, and the pipeline also incurs 7 data-stall cycles. How many cycles are required?",
+      "answer": "417",
+      "explanation": "Ideal cycles=400+5-1=404. Branch flushes cost 3×2=6 cycles; data stalls add 7, giving 404+6+7=417 cycles."
+    },
+    {
+      "id": "coa-pipe-062",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch depends on a comparison result produced by the immediately preceding instruction. Which hazards may affect branch resolution?",
+      "options": [
+        "A RAW data hazard on the comparison operand/result",
+        "A control hazard from choosing the next PC",
+        "A possible stall if forwarding cannot deliver the result in time",
+        "A write-after-read hazard in every in-order implementation"
+      ],
+      "answer": [
+        "A RAW data hazard on the comparison operand/result",
+        "A control hazard from choosing the next PC",
+        "A possible stall if forwarding cannot deliver the result in time"
+      ],
+      "explanation": "The branch may need a value produced by the prior instruction and also changes control flow. Lack of a timely bypass can stall it; WAR is not inherent in the basic in-order pipeline."
+    },
+    {
+      "id": "coa-pipe-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline has 100 instructions. It incurs 10 load-use stalls and 6 branch-flush cycles. What is its average CPI?",
+      "options": [
+        "1.20",
+        "1.16",
+        "1.10",
+        "1.06"
+      ],
+      "answer": [
+        "1.20"
+      ],
+      "explanation": "Ideal cycles=100+5-1=104. Total cycles=104+10+6=120, so CPI=120/100=1.20."
+    },
+    {
+      "id": "coa-pipe-064",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions can create a structural hazard in a pipeline?",
+      "options": [
+        "Two stages need the same single-ported memory in one cycle.",
+        "Two operations need a single non-pipelined multiplier simultaneously.",
+        "A consumer needs a value not yet produced by an older instruction.",
+        "Two independent instructions need distinct register-file read ports that are available."
+      ],
+      "answer": [
+        "Two stages need the same single-ported memory in one cycle.",
+        "Two operations need a single non-pipelined multiplier simultaneously."
+      ],
+      "explanation": "Structural hazards arise from resource conflicts. A missing producer value is a data hazard; distinct available ports allow the independent register reads."
+    },
+    {
+      "id": "coa-pipe-065",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch predictor reduces misprediction rate from 12% to 7%. Branches are 30% of instructions and the penalty is 5 cycles. By how much does CPI decrease?",
+      "answer": "0.075",
+      "explanation": "The misprediction-rate reduction is 0.05 per branch. CPI reduction=0.30×0.05×5=0.075 cycles per instruction."
+    },
+    {
+      "id": "coa-pipe-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A data hazard is resolved by forwarding from MEM/WB to an EX input. What is being bypassed?",
+      "options": [
+        "The need to wait for the value to be written and reread from the register file",
+        "The instruction's memory address",
+        "The branch target prediction",
+        "The pipeline clock"
+      ],
+      "answer": [
+        "The need to wait for the value to be written and reread from the register file"
+      ],
+      "explanation": "The result is routed directly from a later pipeline register to the consumer's ALU input, avoiding an extra wait for register-file write-back and read."
+    },
+    {
+      "id": "coa-pipe-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor has a pipelined floating-point unit with latency 5 cycles and initiation interval 1 cycle. Which statements are correct?",
+      "options": [
+        "One operation's result appears after about five cycles.",
+        "A new independent operation can begin every cycle.",
+        "The unit can have multiple operations in flight.",
+        "Latency 5 means throughput is necessarily one operation every five cycles."
+      ],
+      "answer": [
+        "One operation's result appears after about five cycles.",
+        "A new independent operation can begin every cycle.",
+        "The unit can have multiple operations in flight."
+      ],
+      "explanation": "Latency describes how long one operation takes to produce a result; initiation interval describes how often new operations can start. A pipelined unit can accept an operation each cycle despite five-cycle latency."
+    },
+    {
+      "id": "coa-pipe-068",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A five-stage pipeline has clock period 2 ns. A 100-instruction stream has 10 stall cycles. What is total execution time in nanoseconds?",
+      "answer": "228",
+      "explanation": "Cycles=100+5-1+10=114. At 2 ns per cycle, execution time=114×2=228 ns."
+    },
+    {
+      "id": "coa-pipe-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline stage performs an operation that cannot accept a new input until its current operation finishes after 4 cycles. What kind of limitation can this create?",
+      "options": [
+        "A structural hazard if another instruction needs that unit during its busy interval",
+        "A RAW hazard in every instruction",
+        "A branch prediction hit",
+        "A cache compulsory miss"
+      ],
+      "answer": [
+        "A structural hazard if another instruction needs that unit during its busy interval"
+      ],
+      "explanation": "A non-pipelined multi-cycle unit is occupied while computing. A subsequent instruction needing it may conflict for the same hardware resource."
+    },
+    {
+      "id": "coa-pipe-070",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A static compiler reorders independent instructions to reduce stalls. Which constraints must it preserve?",
+      "options": [
+        "Program data dependences that affect results",
+        "Control-flow and exception semantics",
+        "Memory ordering where accesses may alias",
+        "The exact original textual order of every independent instruction"
+      ],
+      "answer": [
+        "Program data dependences that affect results",
+        "Control-flow and exception semantics",
+        "Memory ordering where accesses may alias"
+      ],
+      "explanation": "Scheduling may reorder independent operations, but must preserve observable data, control, exception, and memory-order behavior. Independent instructions need not retain their textual order."
+    },
+    {
+      "id": "coa-pipe-071",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline executes 60 instructions. It incurs 12 cycles of data stalls and 8 cycles of control penalties. What is its average CPI?",
+      "answer": "1.4",
+      "explanation": "Ideal cycles=60+5-1=64. Total cycles=64+12+8=84. Average CPI=84/60=1.4."
+    },
+    {
+      "id": "coa-pipe-072",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch predictor has 100% accuracy for a branch, but the processor still waits one cycle to compute the target address after direction is known. What penalty remains?",
+      "options": [
+        "A target/redirect delay can remain despite correct direction prediction",
+        "A direction misprediction penalty of 100%",
+        "A RAW hazard on every register",
+        "No possible delay of any kind"
+      ],
+      "answer": [
+        "A target/redirect delay can remain despite correct direction prediction"
+      ],
+      "explanation": "Direction accuracy does not guarantee that the target address is available immediately. Target computation or fetch redirection can still add delay."
+    },
+    {
+      "id": "coa-pipe-073",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An instruction is stalled in ID while an older load waits in MEM. Which control actions may be necessary?",
+      "options": [
+        "Hold the PC and IF/ID contents so the stalled instruction is retained.",
+        "Prevent the dependent instruction from entering EX.",
+        "Allow older instructions to continue if their stages can advance.",
+        "Re-execute all older instructions from the beginning"
+      ],
+      "answer": [
+        "Hold the PC and IF/ID contents so the stalled instruction is retained.",
+        "Prevent the dependent instruction from entering EX.",
+        "Allow older instructions to continue if their stages can advance."
+      ],
+      "explanation": "An interlock preserves the consumer and inserts a bubble downstream while older instructions continue. Restarting older work would be unnecessary and incorrect."
+    },
+    {
+      "id": "coa-pipe-074",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-stage pipeline has 0.8-ns stages and 0.1-ns register overhead. It executes 1000 instructions with no stalls. What is execution time in microseconds?",
+      "answer": "0.9027",
+      "explanation": "Cycle time=0.8+0.1=0.9 ns. Cycles=1000+4-1=1003. Time=1003×0.9=902.7 ns=0.9027 microseconds."
+    },
+    {
+      "id": "coa-pipe-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline uses a delayed-branch ISA that defines one instruction after a branch as the delay slot. What must the compiler or assembler account for?",
+      "options": [
+        "The delay-slot instruction executes before the branch takes effect and must be safe for that behavior.",
+        "The delay slot is always squashed on a taken branch.",
+        "The delay slot stores the branch target address.",
+        "The delay slot eliminates all data hazards"
+      ],
+      "answer": [
+        "The delay-slot instruction executes before the branch takes effect and must be safe for that behavior."
+      ],
+      "explanation": "In an architecture with an explicit delay slot, the following instruction executes regardless of the branch outcome as defined by that ISA. Scheduling must preserve program semantics."
+    },
+    {
+      "id": "coa-pipe-076",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a five-stage pipeline with forwarding, a load is immediately followed by an ALU instruction that uses its result. How many load-use bubble cycles are typically required?",
+      "answer": "1",
+      "explanation": "The load's data is available after MEM, too late for the immediately following instruction's original EX cycle. One bubble delays that EX stage until the data can be forwarded."
+    },
+    {
+      "id": "coa-pipe-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch condition is computed in ID, but the branch target is computed in EX. Which part of the control transfer can still delay fetching the correct target?",
+      "options": [
+        "Target-address computation and redirection",
+        "Register write-back of an unrelated instruction",
+        "Data-cache replacement",
+        "The clock's frequency unit conversion"
+      ],
+      "answer": [
+        "Target-address computation and redirection"
+      ],
+      "explanation": "Knowing the direction early is insufficient if the target address is unavailable. Target generation and fetch redirection can still create a control penalty."
+    },
+    {
+      "id": "coa-pipe-078",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A predictor's accuracy improves from 92% to 98%. Branches are 10% of all instructions and each misprediction costs 5 cycles. How much does CPI decrease?",
+      "answer": "0.03",
+      "explanation": "Misprediction rate falls by 0.06 per branch. CPI reduction=0.10×0.06×5=0.03 cycles per instruction."
+    },
+    {
+      "id": "coa-pipe-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has 5 stages and a 2-ns clock. Ignoring stalls, what is the latency from an instruction entering IF to completing WB?",
+      "options": [
+        "10 ns",
+        "2 ns",
+        "5 ns",
+        "8 ns"
+      ],
+      "answer": [
+        "10 ns"
+      ],
+      "explanation": "The instruction occupies five successive stage cycles. Its latency is 5×2=10 ns, although steady-state throughput can be one instruction every 2 ns."
+    },
+    {
+      "id": "coa-pipe-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipelined implementation has clock period 1.5 ns and CPI 1.3. A non-pipelined design has clock period 6 ns and CPI 1.0. Which statements about average instruction time are correct?",
+      "options": [
+        "Pipelined average time is 1.95 ns per instruction.",
+        "Non-pipelined average time is 6 ns per instruction.",
+        "The pipeline is faster in average instruction throughput under these values.",
+        "CPI alone is sufficient to compare the designs."
+      ],
+      "answer": [
+        "Pipelined average time is 1.95 ns per instruction.",
+        "Non-pipelined average time is 6 ns per instruction.",
+        "The pipeline is faster in average instruction throughput under these values."
+      ],
+      "explanation": "Average time/instruction=CPI×clock period. The pipeline takes 1.3×1.5=1.95 ns versus 1.0×6=6 ns; both CPI and clock period matter."
+    },
+    {
+      "id": "coa-pipe-081",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline has stage delays 0.7, 0.8, 1.1, 0.9, and 1.0 ns, plus 0.1 ns of register overhead. What is the clock period?",
+      "answer": "1.2",
+      "explanation": "The slowest combinational stage is 1.1 ns. Add 0.1 ns register overhead for a 1.2-ns clock period."
+    },
+    {
+      "id": "coa-pipe-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline's instruction fetch is stalled for one cycle due to an instruction-cache miss. Which effects may follow?",
+      "options": [
+        "The fetch stage cannot supply a new instruction during the miss.",
+        "Younger pipeline stages may continue if they already contain valid instructions and resources permit.",
+        "The miss necessarily invalidates every older instruction.",
+        "The miss may reduce throughput even if older instructions continue."
+      ],
+      "answer": [
+        "The fetch stage cannot supply a new instruction during the miss.",
+        "Younger pipeline stages may continue if they already contain valid instructions and resources permit.",
+        "The miss may reduce throughput even if older instructions continue."
+      ],
+      "explanation": "A front-end miss stops or delays fetch. Existing instructions can progress depending on design, but the resulting gap may lower throughput; older work is not automatically invalidated."
+    },
+    {
+      "id": "coa-pipe-083",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An exception is detected in an older instruction while a younger instruction has computed a result but has not reached WB. In a precise pipeline, what happens to the younger result?",
+      "options": [
+        "It is not committed to architectural state.",
+        "It must be written before the exception is taken.",
+        "It replaces the exception address.",
+        "It is committed only if the result is nonzero"
+      ],
+      "answer": [
+        "It is not committed to architectural state."
+      ],
+      "explanation": "Precise exception handling prevents younger instructions from committing. Their speculative intermediate results are discarded when the older exception is taken."
+    },
+    {
+      "id": "coa-pipe-084",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline completes 1.6 billion instructions per second after filling. What is its average steady-state cycle period? Give the answer in nanoseconds, assuming CPI=1.",
+      "answer": "0.625",
+      "explanation": "At CPI 1, cycle frequency equals instruction throughput: 1.6 GHz. Period=1/1.6 GHz=0.625 ns."
+    },
+    {
+      "id": "coa-pipe-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline is deepened from 4 stages to 8 stages while total combinational work is unchanged. Which outcomes are possible?",
+      "options": [
+        "The ideal throughput may improve if stage delays become shorter.",
+        "Pipeline fill/drain overhead becomes larger for short instruction sequences.",
+        "Branch misprediction penalty may increase because more work can be in flight.",
+        "All data dependencies disappear."
+      ],
+      "answer": [
+        "The ideal throughput may improve if stage delays become shorter.",
+        "Pipeline fill/drain overhead becomes larger for short instruction sequences.",
+        "Branch misprediction penalty may increase because more work can be in flight."
+      ],
+      "explanation": "More stages can reduce combinational work per stage but increase register overhead, fill/drain cost, and wrong-path work on control events. Dependencies remain."
+    },
+    {
+      "id": "coa-pipe-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An in-order pipeline detects a RAW hazard but has no forwarding. What is the safe action if the producer has not yet written the register file?",
+      "options": [
+        "Stall the consumer until the write is visible",
+        "Use the old register value and continue",
+        "Rename the register in software automatically",
+        "Flush the producer"
+      ],
+      "answer": [
+        "Stall the consumer until the write is visible"
+      ],
+      "explanation": "Without a bypass path, the consumer must wait until the producer's result is available through the register file, otherwise it would read a stale value."
+    },
+    {
+      "id": "coa-pipe-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A compiler schedules an independent instruction between a load and its dependent use. What can this accomplish in a pipeline?",
+      "options": [
+        "It may allow the load to reach MEM before the consumer needs the value.",
+        "It can hide a load-use latency without changing program semantics if truly independent.",
+        "It removes the dependence between load and consumer.",
+        "It may reduce stall cycles."
+      ],
+      "answer": [
+        "It may allow the load to reach MEM before the consumer needs the value.",
+        "It can hide a load-use latency without changing program semantics if truly independent.",
+        "It may reduce stall cycles."
+      ],
+      "explanation": "An independent instruction can occupy a cycle that would otherwise be a bubble, giving the load more time. The consumer's RAW dependence still exists."
+    },
+    {
+      "id": "coa-pipe-088",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A five-stage pipeline runs 100 instructions at 1 cycle per stage and has 5 data bubbles and a 3-cycle branch penalty. What is total cycle count?",
+      "answer": "112",
+      "explanation": "Ideal cycles=100+5-1=104. Adding 5 bubbles and 3 branch-penalty cycles gives 112 cycles."
+    },
+    {
+      "id": "coa-pipe-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "During a data-hazard stall, why may the pipeline insert a NOP into the next stage rather than simply hold every stage?",
+      "options": [
+        "To let older instructions progress while preventing the dependent instruction from using unavailable data",
+        "To erase the data dependence permanently",
+        "To force the producer to recompute its result",
+        "To increase the branch target address"
+      ],
+      "answer": [
+        "To let older instructions progress while preventing the dependent instruction from using unavailable data"
+      ],
+      "explanation": "A bubble occupies the blocked stage while older instructions continue toward completion. Holding every stage could unnecessarily stop work that is already safe to advance."
+    },
+    {
+      "id": "coa-pipe-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has separate integer and multiply units, but only one write-back port. Which statements are correct?",
+      "options": [
+        "Integer and multiply operations may execute concurrently if their other resources permit.",
+        "Two results completing in the same cycle may contend for the single write-back port.",
+        "A write-back conflict can create a structural hazard.",
+        "Separate execution units guarantee no structural hazards anywhere."
+      ],
+      "answer": [
+        "Integer and multiply operations may execute concurrently if their other resources permit.",
+        "Two results completing in the same cycle may contend for the single write-back port.",
+        "A write-back conflict can create a structural hazard."
+      ],
+      "explanation": "Separate functional units allow some overlap, but a shared write-back resource can still conflict. Structural hazards can occur at any shared limited resource."
+    },
+    {
+      "id": "coa-pipe-091",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline's CPI is 1.25 at 800 MHz. How many instructions per second does it complete in steady state?",
+      "answer": "640000000",
+      "explanation": "Throughput=fclock/CPI=800×10^6/1.25=640×10^6 instructions/s."
+    },
+    {
+      "id": "coa-pipe-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch predictor is correct, but the target instruction is not in the instruction cache. What delay can still occur?",
+      "options": [
+        "An instruction-cache miss delay on the target fetch",
+        "A data RAW hazard caused by the branch itself",
+        "A guaranteed zero-cycle fetch",
+        "An ALU overflow exception"
+      ],
+      "answer": [
+        "An instruction-cache miss delay on the target fetch"
+      ],
+      "explanation": "Correct direction and target prediction do not guarantee that the target instruction is resident. The target fetch can still miss in the instruction cache."
+    },
+    {
+      "id": "coa-pipe-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has 5 stages, and an instruction stream has N instructions with no stalls. Which statements about cycle count are correct?",
+      "options": [
+        "The count is N+4 for an initially empty pipeline.",
+        "For large N, cycles per instruction approach 1.",
+        "For N=1, the instruction still requires 5 stage cycles.",
+        "For N=100, the pipeline requires only 100/5 cycles."
+      ],
+      "answer": [
+        "The count is N+4 for an initially empty pipeline.",
+        "For large N, cycles per instruction approach 1.",
+        "For N=1, the instruction still requires 5 stage cycles."
+      ],
+      "explanation": "N instructions through k=5 stages take N+k-1=N+4 cycles. A long stream approaches one completion per cycle, while a single instruction traverses all five stages."
+    },
+    {
+      "id": "coa-pipe-094",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline processes 240 instructions in 250 cycles. What is its average CPI?",
+      "answer": "1.0416666667",
+      "explanation": "Average CPI=total cycles/instructions=250/240=25/24≈1.0416666667."
+    },
+    {
+      "id": "coa-pipe-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A forwarding unit sees that both EX/MEM and MEM/WB contain a destination matching the current instruction's source register. Which value normally has priority?",
+      "options": [
+        "EX/MEM, because it is the newer result",
+        "MEM/WB, because it is older",
+        "The value from the original register file only",
+        "A random one"
+      ],
+      "answer": [
+        "EX/MEM, because it is the newer result"
+      ],
+      "explanation": "The closest older instruction in program order is the most recent producer. Its result in EX/MEM must override the older value in MEM/WB."
+    },
+    {
+      "id": "coa-pipe-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A load instruction follows a branch, and the processor predicts the branch direction. Which mechanisms address the two distinct pipeline concerns?",
+      "options": [
+        "Branch prediction/redirect logic addresses control flow.",
+        "Load-use interlocking or forwarding addresses data availability.",
+        "A single technique necessarily eliminates both concerns.",
+        "The branch may be resolved before or after the load depending on pipeline timing."
+      ],
+      "answer": [
+        "Branch prediction/redirect logic addresses control flow.",
+        "Load-use interlocking or forwarding addresses data availability.",
+        "The branch may be resolved before or after the load depending on pipeline timing."
+      ],
+      "explanation": "Control hazards concern the next instruction address; data hazards concern operand readiness. They may interact in timing but are handled by distinct prediction and dependency mechanisms."
+    },
+    {
+      "id": "coa-pipe-097",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline has base CPI 0.9, but memory stalls contribute 0.25 cycles per instruction and control stalls contribute 0.15. What is effective CPI?",
+      "answer": "1.3",
+      "explanation": "Effective CPI=0.9+0.25+0.15=1.30 cycles per instruction."
+    },
+    {
+      "id": "coa-pipe-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline stage must complete both an ALU operation and a cache lookup sequentially, taking 0.8 ns and 1.5 ns. Ignoring register overhead, what is the minimum clock period if they share one stage?",
+      "options": [
+        "2.3 ns",
+        "1.5 ns",
+        "0.8 ns",
+        "1.875 ns"
+      ],
+      "answer": [
+        "2.3 ns"
+      ],
+      "explanation": "The two operations are sequential within the stage, so its delay is 0.8+1.5=2.3 ns. The pipeline clock must be at least this long."
+    },
+    {
+      "id": "coa-pipe-099",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipeline's measured CPI is 1.4 and clock frequency is 1.6 GHz. Which conclusions are correct?",
+      "options": [
+        "Average instruction time is 0.875 ns.",
+        "Steady-state throughput is about 1.143 billion instructions/s.",
+        "Increasing frequency while CPI remains fixed reduces average instruction time.",
+        "CPI 1.4 means every instruction individually takes exactly 1.4 cycles."
+      ],
+      "answer": [
+        "Average instruction time is 0.875 ns.",
+        "Steady-state throughput is about 1.143 billion instructions/s.",
+        "Increasing frequency while CPI remains fixed reduces average instruction time."
+      ],
+      "explanation": "Average time=1.4/(1.6×10^9)=0.875 ns; throughput is its reciprocal, about 1.143×10^9 instructions/s. CPI is an average, not each instruction's individual latency."
+    },
+    {
+      "id": "coa-pipe-100",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-stage pipeline executes 1000 instructions with CPI 1.08 at 2.5 GHz. What is execution time in microseconds?",
+      "answer": "0.432",
+      "explanation": "Cycles=1000×1.08=1080. Time=1080/(2.5×10^9)=4.32×10^-7 seconds=0.432 microseconds."
+    }
+  ]
+}

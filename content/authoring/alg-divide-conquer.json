@@ -1,0 +1,1412 @@
+{
+  "topicIndex": 4,
+  "questions": [
+    {
+      "id": "alg-dc-001",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A divide-and-conquer algorithm splits an input into two halves, solves both recursively, and combines the answers in linear time. Which recurrence models it?",
+      "options": [
+        "T(n)=2T(n/2)+Θ(n)",
+        "T(n)=T(n−1)+Θ(1)",
+        "T(n)=4T(n/2)+Θ(n)",
+        "T(n)=2T(n/2)+Θ(1)"
+      ],
+      "answer": [
+        "T(n)=2T(n/2)+Θ(n)"
+      ],
+      "explanation": "Two recursive calls each handle n/2 items, and the combine phase scans Θ(n) data. The recurrence solves to Θ(nlog n)."
+    },
+    {
+      "id": "alg-dc-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recurrence T(n)=2T(n/2)+n has T(1)=1. For n=8, what is T(n) under exact integer arithmetic?",
+      "answer": "32",
+      "explanation": "Expand: T(8)=2T(4)+8; T(4)=2T(2)+4; T(2)=2T(1)+2=4. Then T(4)=12 and T(8)=32."
+    },
+    {
+      "id": "alg-dc-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties are characteristic of divide-and-conquer?",
+      "options": [
+        "The original problem is divided into smaller subproblems",
+        "Subproblems are solved recursively or directly at a base case",
+        "Their results are combined into an answer",
+        "Every divide-and-conquer algorithm has exactly two subproblems"
+      ],
+      "answer": [
+        "The original problem is divided into smaller subproblems",
+        "Subproblems are solved recursively or directly at a base case",
+        "Their results are combined into an answer"
+      ],
+      "explanation": "The paradigm has divide, conquer, and combine steps. The number of subproblems varies by algorithm; it need not be exactly two."
+    },
+    {
+      "id": "alg-dc-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=3T(n/2)+n, which term dominates asymptotically?",
+      "options": [
+        "The linear combine work, giving Θ(n)",
+        "The leaves, giving Θ(n^(log₂3))",
+        "All levels equally, giving Θ(nlog n)",
+        "The root alone, giving Θ(n²)"
+      ],
+      "answer": [
+        "The leaves, giving Θ(n^(log₂3))"
+      ],
+      "explanation": "The recursion tree has 3^i subproblems at level i, each of size n/2^i. The leaf count grows as n^(log₂3), which dominates the total linear combine work."
+    },
+    {
+      "id": "alg-dc-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A balanced divide-and-conquer method halves the problem size until n=1. How many recursive levels of splitting are needed for n=256?",
+      "answer": "8",
+      "explanation": "The number of halving steps is log₂256=8. The root plus base level would make nine levels if both are counted, but there are eight splits."
+    },
+    {
+      "id": "alg-dc-006",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=aT(n/b)+f(n), where a≥1 and b>1 are constants, which quantities determine the Master theorem comparison?",
+      "options": [
+        "The critical exponent n^(log_b a)",
+        "The asymptotic growth of f(n)",
+        "The ratio between n and the recursion depth only",
+        "The regularity condition in the polynomially larger case"
+      ],
+      "answer": [
+        "The critical exponent n^(log_b a)",
+        "The asymptotic growth of f(n)",
+        "The regularity condition in the polynomially larger case"
+      ],
+      "explanation": "The theorem compares f(n) with the total leaf-scale term n^(log_b a). In the third case, an additional regularity condition is needed to ensure the root-side work dominates."
+    },
+    {
+      "id": "alg-dc-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Solve T(n)=4T(n/2)+n for n a power of two and T(1)=Θ(1).",
+      "options": [
+        "Θ(n)",
+        "Θ(nlog n)",
+        "Θ(n²)",
+        "Θ(n³)"
+      ],
+      "answer": [
+        "Θ(n²)"
+      ],
+      "explanation": "The critical term is n^(log₂4)=n². The additive n is polynomially smaller, so the recursion leaves dominate with Θ(n²) total work."
+    },
+    {
+      "id": "alg-dc-008",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursion tree for T(n)=2T(n/2)+n has n=16. What is the total work in the internal levels, if each internal level contributes exactly n units?",
+      "answer": "64",
+      "explanation": "There are log₂16=4 internal levels, each contributing 16 units. The total internal work is 4×16=64."
+    },
+    {
+      "id": "alg-dc-009",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Binary search on an array of size n performs one recursive call on approximately n/2 elements and constant extra work. Which recurrence is appropriate?",
+      "options": [
+        "T(n)=T(n/2)+Θ(1)",
+        "T(n)=2T(n/2)+Θ(1)",
+        "T(n)=T(n−1)+Θ(n)",
+        "T(n)=nT(n/2)+Θ(1)"
+      ],
+      "answer": [
+        "T(n)=T(n/2)+Θ(1)"
+      ],
+      "explanation": "Only one half remains after each comparison, and the comparison itself costs constant time. Repeated halving gives Θ(log n) total time."
+    },
+    {
+      "id": "alg-dc-010",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary-search recurrence T(n)=T(n/2)+1 has T(1)=1. For n=64, what is T(n) under this exact recurrence?",
+      "answer": "7",
+      "explanation": "There are six halvings from 64 to 1, each adding one. Including the base value gives T(64)=6+1=7."
+    },
+    {
+      "id": "alg-dc-011",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about merge sort's divide-and-conquer structure are correct?",
+      "options": [
+        "It divides the input into two subarrays",
+        "It recursively sorts each subarray",
+        "Its merge step combines two sorted runs in linear time",
+        "It relies on an in-place partition around a pivot"
+      ],
+      "answer": [
+        "It divides the input into two subarrays",
+        "It recursively sorts each subarray",
+        "Its merge step combines two sorted runs in linear time"
+      ],
+      "explanation": "Merge sort recursively sorts halves and merges them. Partitioning around a pivot is characteristic of quicksort, not merge sort."
+    },
+    {
+      "id": "alg-dc-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A divide-and-conquer algorithm has recurrence T(n)=2T(n/2)+n². What is its asymptotic running time?",
+      "options": [
+        "Θ(n)",
+        "Θ(nlog n)",
+        "Θ(n²)",
+        "Θ(n³)"
+      ],
+      "answer": [
+        "Θ(n²)"
+      ],
+      "explanation": "The root contributes n² work; the next level contributes n²/2, and subsequent levels shrink geometrically. Their sum is Θ(n²)."
+    },
+    {
+      "id": "alg-dc-013",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A problem of size 81 is recursively divided into 3 equal subproblems until subproblem size 1. How many division levels occur?",
+      "answer": "4",
+      "explanation": "The sizes are 81,27,9,3,1. Four divisions reduce the problem to singleton base cases."
+    },
+    {
+      "id": "alg-dc-014",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which recurrences have Θ(nlog n) solutions for n a power of two and constant base cases?",
+      "options": [
+        "2T(n/2)+n",
+        "T(n/2)+n",
+        "4T(n/2)+n²",
+        "2T(n/2)+1"
+      ],
+      "answer": [
+        "2T(n/2)+n",
+        "4T(n/2)+n²"
+      ],
+      "explanation": "The first has linear work matching its critical term. In the third, the critical term is n² and the additive work matches it, so an extra log factor appears. The other recurrences have Θ(n) and Θ(n), respectively."
+    },
+    {
+      "id": "alg-dc-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence is T(n)=T(n/3)+T(2n/3)+n. Which asymptotic solution is correct?",
+      "options": [
+        "Θ(n)",
+        "Θ(nlog n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "answer": [
+        "Θ(nlog n)"
+      ],
+      "explanation": "At each depth, subproblem sizes sum to approximately n, so each level has Θ(n) combine work. The longest path has Θ(log n) levels, giving Θ(nlog n) total work."
+    },
+    {
+      "id": "alg-dc-016",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A divide-and-conquer process creates 3 subproblems at every node and stops after 4 splitting levels. How many subproblems exist at level 4?",
+      "answer": "81",
+      "explanation": "The branching factor is three, so level 4 contains 3^4=81 subproblems."
+    },
+    {
+      "id": "alg-dc-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+n/log n, what technique is most direct for resolving the boundary case not covered by the basic three-case Master theorem?",
+      "options": [
+        "Sum the recursion-tree cost by level",
+        "Assume the answer is Θ(nlog n)",
+        "Ignore the nonrecursive term",
+        "Replace each recursive call by a constant"
+      ],
+      "answer": [
+        "Sum the recursion-tree cost by level"
+      ],
+      "explanation": "The toll is only a logarithmic factor below the critical term, so the basic Master theorem is inconclusive. A recursion-tree sum exposes the harmonic accumulation and yields Θ(nloglog n)."
+    },
+    {
+      "id": "alg-dc-018",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which parts of the closest-pair divide-and-conquer algorithm are essential to its O(nlog n) bound in the plane?",
+      "options": [
+        "Sort points by a coordinate before recursion",
+        "Combine halves by checking only a bounded number of nearby strip points per point",
+        "Re-sort all points from scratch at every recursive call",
+        "Use the one-dimensional median to divide the point set"
+      ],
+      "answer": [
+        "Sort points by a coordinate before recursion",
+        "Combine halves by checking only a bounded number of nearby strip points per point",
+        "Use the one-dimensional median to divide the point set"
+      ],
+      "explanation": "Presorted coordinate orders and a median split support logarithmic recursion depth and linear combine work. A geometric packing argument limits strip comparisons; re-sorting at every node would add extra logarithmic factors."
+    },
+    {
+      "id": "alg-dc-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In the planar closest-pair algorithm, why are only a constant number of subsequent points in the strip checked for each point after sorting by y-coordinate?",
+      "options": [
+        "Geometric packing limits how many points can lie in the relevant neighborhood",
+        "The strip contains at most eight points globally",
+        "All points in the strip have identical x-coordinates",
+        "The recursive halves are already sorted by distance"
+      ],
+      "answer": [
+        "Geometric packing limits how many points can lie in the relevant neighborhood"
+      ],
+      "explanation": "Partitioning the strip into small regions based on the current minimum distance bounds the number of points close enough to improve the answer. This packing argument makes the combine step linear."
+    },
+    {
+      "id": "alg-dc-020",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Karatsuba multiplication replaces four half-size multiplications with three recursive multiplications. If each multiplication is on n/2 digits, how many recursive multiplication calls occur at a node?",
+      "answer": "3",
+      "explanation": "The Karatsuba identity computes three products of half-size operands, then derives the cross term using additions and subtractions."
+    },
+    {
+      "id": "alg-dc-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Karatsuba multiplication has recurrence T(n)=3T(n/2)+Θ(n). What is its asymptotic time?",
+      "options": [
+        "Θ(n)",
+        "Θ(nlog n)",
+        "Θ(n^(log₂3))",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(n^(log₂3))"
+      ],
+      "explanation": "The recursion has a=3 and b=2, so the critical exponent is log₂3≈1.585. Linear addition work is smaller, giving Θ(n^(log₂3))."
+    },
+    {
+      "id": "alg-dc-022",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Strassen's matrix multiplication algorithm are correct?",
+      "options": [
+        "It uses seven recursive matrix multiplications on half-size matrices",
+        "Its recurrence is T(n)=7T(n/2)+Θ(n²)",
+        "Its asymptotic exponent is log₂7, less than 3",
+        "It reduces the number of scalar additions to zero"
+      ],
+      "answer": [
+        "It uses seven recursive matrix multiplications on half-size matrices",
+        "Its recurrence is T(n)=7T(n/2)+Θ(n²)",
+        "Its asymptotic exponent is log₂7, less than 3"
+      ],
+      "explanation": "Strassen reduces eight half-size multiplications to seven, but uses additional additions and subtractions. The recurrence solves to Θ(n^(log₂7)), which improves on cubic multiplication asymptotically."
+    },
+    {
+      "id": "alg-dc-023",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A matrix of order 16 is recursively split into four equal quadrants until scalar matrices are reached. How many splitting levels are performed?",
+      "answer": "4",
+      "explanation": "The side length halves at each level: 16,8,4,2,1. Four splitting levels reach scalar blocks."
+    },
+    {
+      "id": "alg-dc-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A divide-and-conquer recurrence has a=8, b=2, and f(n)=n². Which Master theorem case applies?",
+      "options": [
+        "f is polynomially smaller than n^(log_b a)",
+        "f matches n^(log_b a)",
+        "f is polynomially larger and regularity holds",
+        "The recurrence cannot be analyzed by the Master theorem"
+      ],
+      "answer": [
+        "f is polynomially smaller than n^(log_b a)"
+      ],
+      "explanation": "The critical term is n^(log₂8)=n³. Since f(n)=n² is polynomially smaller, the leaf-scale term dominates and T(n)=Θ(n³)."
+    },
+    {
+      "id": "alg-dc-025",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For T(n)=4T(n/2)+n with n=8 and T(1)=1, compute T(8) exactly.",
+      "answer": "120",
+      "explanation": "T(2)=4?1+2=6. Then T(4)=4?6+4=28, and T(8)=4?28+8=120."
+    },
+    {
+      "id": "alg-dc-026",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a recursion tree for T(n)=4T(n/2)+n are correct?",
+      "options": [
+        "At level i there are 4^i nodes",
+        "Each node at level i has size n/2^i",
+        "The aggregate level cost is n·2^i",
+        "The leaf count is Θ(n²)"
+      ],
+      "answer": [
+        "At level i there are 4^i nodes",
+        "Each node at level i has size n/2^i",
+        "The aggregate level cost is n·2^i",
+        "The leaf count is Θ(n²)"
+      ],
+      "explanation": "At level i, each node contributes n/2^i, so total nonrecursive work is 4^i×n/2^i=n2^i. At depth log₂n, the leaves number 4^(log₂n)=n²."
+    },
+    {
+      "id": "alg-dc-027",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the main risk of using a recurrence that describes only the recursive calls but omits the combine work?",
+      "options": [
+        "It may produce the wrong asymptotic solution because combine cost can dominate",
+        "It always changes the base case",
+        "It only affects memory usage",
+        "It can never affect the result"
+      ],
+      "answer": [
+        "It may produce the wrong asymptotic solution because combine cost can dominate"
+      ],
+      "explanation": "The nonrecursive work can determine which Master theorem case applies. Omitting a linear or quadratic combine term can change both the recursion-tree level costs and final bound."
+    },
+    {
+      "id": "alg-dc-028",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recurrence T(n)=T(n/2)+n has T(1)=1. For n=16, compute T(n) exactly.",
+      "answer": "31",
+      "explanation": "Expansion gives 16+8+4+2+1=31. The geometric sum includes the base work at size one."
+    },
+    {
+      "id": "alg-dc-029",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about recursive binary search are correct?",
+      "options": [
+        "It makes one recursive call per non-base step",
+        "Its recursion depth is Θ(log n)",
+        "Its auxiliary stack space is Θ(log n)",
+        "It visits both halves at every level"
+      ],
+      "answer": [
+        "It makes one recursive call per non-base step",
+        "Its recursion depth is Θ(log n)",
+        "Its auxiliary stack space is Θ(log n)"
+      ],
+      "explanation": "Binary search discards one half and recurses on the other, halving the range each time. The active call stack therefore has logarithmic depth, not a branching tree of both halves."
+    },
+    {
+      "id": "alg-dc-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+Θ(n²), what is the aggregate work at recursion-tree level i?",
+      "options": [
+        "Θ(n²/2^i)",
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n³/2^i)"
+      ],
+      "answer": [
+        "Θ(n²/2^i)"
+      ],
+      "explanation": "At level i, there are 2^i subproblems of size n/2^i, each with quadratic toll (n/2^i)². Their aggregate is 2^i·n²/4^i=n²/2^i."
+    },
+    {
+      "id": "alg-dc-031",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary recursion tree has 32 leaves. If every internal node has exactly two children, how many internal nodes does it have?",
+      "answer": "31",
+      "explanation": "A full binary tree with L leaves has L−1 internal nodes. With 32 leaves, it contains 31 internal nodes."
+    },
+    {
+      "id": "alg-dc-032",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about base cases in divide-and-conquer algorithms are correct?",
+      "options": [
+        "They stop recursion on sufficiently small inputs",
+        "Their cost can affect exact values and sometimes asymptotic bounds",
+        "A base case must always have size exactly one",
+        "An invalid base case can cause nontermination"
+      ],
+      "answer": [
+        "They stop recursion on sufficiently small inputs",
+        "Their cost can affect exact values and sometimes asymptotic bounds",
+        "An invalid base case can cause nontermination"
+      ],
+      "explanation": "Base cases define termination and contribute leaf cost. They may use a small range rather than exactly one element; failing to make progress toward any base case can cause infinite recursion."
+    },
+    {
+      "id": "alg-dc-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An algorithm divides a problem into 9 subproblems of size n/3 and performs Θ(n²) combine work. What is its asymptotic time?",
+      "options": [
+        "Θ(n²)",
+        "Θ(n²log n)",
+        "Θ(n³)",
+        "Θ(n^(log₃9))"
+      ],
+      "answer": [
+        "Θ(n²log n)"
+      ],
+      "explanation": "The critical exponent is n^(log₃9)=n², matching the combine work. Each of Θ(log n) levels contributes Θ(n²), producing Θ(n²log n)."
+    },
+    {
+      "id": "alg-dc-034",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A divide-and-conquer method creates four children per node and expands for 3 levels. How many leaves are at level 3?",
+      "answer": "64",
+      "explanation": "The number of nodes at level 3 is 4³=64, which are leaves if expansion stops there."
+    },
+    {
+      "id": "alg-dc-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The recurrence T(n)=2T(n/2)+Θ(n) has Θ(nlog n) work. What is the primary reason?",
+      "options": [
+        "Every internal level has Θ(n) aggregate work and there are Θ(log n) levels",
+        "The leaves each cost Θ(nlog n)",
+        "The root alone costs Θ(nlog n)",
+        "There are Θ(n²) subproblems"
+      ],
+      "answer": [
+        "Every internal level has Θ(n) aggregate work and there are Θ(log n) levels"
+      ],
+      "explanation": "The total input size represented at each internal level remains n, so linear combine costs sum to Θ(n) per level. Halving creates Θ(log n) levels."
+    },
+    {
+      "id": "alg-dc-036",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions make a divide-and-conquer algorithm terminate?",
+      "options": [
+        "Each recursive call makes measurable progress toward a base case",
+        "Subproblem sizes decrease according to a well-founded measure",
+        "The algorithm always recurses on the original input size",
+        "The base case is reachable from every recursive branch"
+      ],
+      "answer": [
+        "Each recursive call makes measurable progress toward a base case",
+        "Subproblem sizes decrease according to a well-founded measure",
+        "The base case is reachable from every recursive branch"
+      ],
+      "explanation": "Termination follows when a nonnegative integer measure decreases and all branches eventually reach a base case. Repeating the same size provides no such guarantee."
+    },
+    {
+      "id": "alg-dc-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence T(n)=T(n/2)+T(n/2)+Θ(1) is solved for n=2^k. Which bound is tight?",
+      "options": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(nlog n)",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(n)"
+      ],
+      "explanation": "There are 2^i nodes at level i and constant cost per node. The tree has n leaves and Θ(n) total nodes, so the total work is Θ(n)."
+    },
+    {
+      "id": "alg-dc-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recurrence T(n)=2T(n/2)+1 has T(1)=1. For n=16, what is T(n)?",
+      "answer": "31",
+      "explanation": "There are 16 leaves each contributing 1 and 15 internal nodes each contributing 1. Equivalently T(16)=2T(8)+1=31."
+    },
+    {
+      "id": "alg-dc-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In the divide-and-conquer closest-pair algorithm, points are divided by the median x-coordinate and a strip is checked after solving both halves. What asymptotic bound results when the strip is processed in y-order?",
+      "options": [
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(n log^2 n)",
+        "Theta(n^2)"
+      ],
+      "answer": [
+        "Theta(n log n)"
+      ],
+      "explanation": "The two recursive calls cost 2T(n/2), and the y-ordered strip can be checked in linear time. Thus T(n)=2T(n/2)+Theta(n), which is Theta(n log n)."
+    },
+    {
+      "id": "alg-dc-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+n/log n, what is the asymptotic total when n is a power of two?",
+      "options": [
+        "Θ(n)",
+        "Θ(nloglog n)",
+        "Θ(nlog n)",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(nloglog n)"
+      ],
+      "explanation": "At level i the total toll is approximately n/(log n−i). Summing these reciprocal denominators over logarithmically many levels gives Θ(nloglog n)."
+    },
+    {
+      "id": "alg-dc-041",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursion tree for T(n)=3T(n/3)+n has n=27. How many internal levels contain subproblems larger than one?",
+      "answer": "3",
+      "explanation": "The sizes at the root and subsequent internal levels are 27, 9, and 3. Three divisions lead from size 27 to singleton leaves."
+    },
+    {
+      "id": "alg-dc-042",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the recurrence T(n)=3T(n/4)+n are correct?",
+      "options": [
+        "The critical term is n^(log₄3)",
+        "The additive n term is polynomially larger than the critical term",
+        "The regularity condition holds for the linear toll",
+        "The solution is Θ(n)"
+      ],
+      "answer": [
+        "The critical term is n^(log₄3)",
+        "The additive n term is polynomially larger than the critical term",
+        "The regularity condition holds for the linear toll",
+        "The solution is Θ(n)"
+      ],
+      "explanation": "Since log₄3<1, f(n)=n is polynomially larger. The regularity ratio is 3(n/4)/n=3/4<1, so the Master theorem gives Θ(n)."
+    },
+    {
+      "id": "alg-dc-043",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive algorithm splits into 4 subproblems of size n/2 and performs constant work per call. What is its time complexity?",
+      "options": [
+        "Θ(n)",
+        "Θ(nlog n)",
+        "Θ(n²)",
+        "Θ(2^n)"
+      ],
+      "answer": [
+        "Θ(n²)"
+      ],
+      "explanation": "The recursion tree has 4^i nodes at level i and depth log₂n. Its leaves number 4^(log₂n)=n², and constant work per node gives Θ(n²) total."
+    },
+    {
+      "id": "alg-dc-044",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursive process splits n=64 into 2 equal parts at each level. How many leaves result when recursion stops at size 1?",
+      "answer": "64",
+      "explanation": "Each input element becomes one leaf. The recursion depth is six and the number of leaves is 2^6=64."
+    },
+    {
+      "id": "alg-dc-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which step in divide-and-conquer most directly determines whether subproblem solutions can be assembled correctly?",
+      "options": [
+        "The combine procedure and its correctness argument",
+        "The choice of variable names",
+        "The memory address of the original input",
+        "The order in which source files are compiled"
+      ],
+      "answer": [
+        "The combine procedure and its correctness argument"
+      ],
+      "explanation": "Even correct recursive subanswers do not guarantee a correct whole answer unless the combine step uses them appropriately. Its invariant and proof connect local results to the original problem."
+    },
+    {
+      "id": "alg-dc-046",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions are relevant when choosing a divide-and-conquer split?",
+      "options": [
+        "The subproblems should be substantially smaller than the original",
+        "The number and sizes of subproblems affect the recurrence",
+        "The combine cost must be included in the analysis",
+        "Every split must produce exactly equal-sized parts"
+      ],
+      "answer": [
+        "The subproblems should be substantially smaller than the original",
+        "The number and sizes of subproblems affect the recurrence",
+        "The combine cost must be included in the analysis"
+      ],
+      "explanation": "The split must make progress; its branching and shrinkage determine recursive work, while combine cost may dominate. Unequal partitions are valid and are handled by suitable analysis."
+    },
+    {
+      "id": "alg-dc-047",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm has recurrence T(n)=4T(n/2)+n² and exact base T(1)=1. For n=2, compute T(2).",
+      "answer": "8",
+      "explanation": "The base value is T(1)=1. Substituting n=2 gives T(2)=4?T(1)+2?=4+4=8."
+    },
+    {
+      "id": "alg-dc-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A divide-and-conquer recurrence has two subproblems of size n/2 and combine work Θ(nlog n). What is the total time?",
+      "options": [
+        "Θ(nlog n)",
+        "Θ(n(log n)²)",
+        "Θ(n²)",
+        "Θ(n^(log₂3))"
+      ],
+      "answer": [
+        "Θ(n(log n)²)"
+      ],
+      "explanation": "The critical term for two half-size calls is n. The combine cost is n times one logarithmic factor, so the balanced recursion tree accumulates an additional log factor over Θ(log n) levels."
+    },
+    {
+      "id": "alg-dc-049",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about divide-and-conquer and dynamic programming are correct?",
+      "options": [
+        "Divide-and-conquer often solves independent subproblems",
+        "Dynamic programming commonly stores results for overlapping subproblems",
+        "Divide-and-conquer never uses recursion",
+        "Memoization can prevent repeated solution of the same subproblem"
+      ],
+      "answer": [
+        "Divide-and-conquer often solves independent subproblems",
+        "Dynamic programming commonly stores results for overlapping subproblems",
+        "Memoization can prevent repeated solution of the same subproblem"
+      ],
+      "explanation": "Divide-and-conquer recurses on smaller instances, often independent ones. Dynamic programming is useful when subproblems overlap and stores results; memoization is a top-down caching method."
+    },
+    {
+      "id": "alg-dc-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Classical block matrix multiplication recursively computes eight products of half-size matrices and combines them with ?(n?) additions. Which recurrence models it?",
+      "options": [
+        "T(n)=8T(n/2)+?(n?)",
+        "T(n)=4T(n/2)+?(n)",
+        "T(n)=7T(n/2)+?(n?)",
+        "T(n)=2T(n/2)+?(n?)"
+      ],
+      "answer": [
+        "T(n)=8T(n/2)+?(n?)"
+      ],
+      "explanation": "Each output quadrant needs two recursive products, giving eight products total on matrices of half the order. Combining the results uses ?(n?) additions."
+    },
+    {
+      "id": "alg-dc-051",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For T(n)=3T(n/2)+n, n=4 and T(1)=1. Compute T(4), assuming the recurrence is applied only at n=2 and n=4.",
+      "answer": "19",
+      "explanation": "At n=2, T(2)=3?T(1)+2=3+2=5. Substituting that value at n=4 gives T(4)=3?5+4=19."
+    },
+    {
+      "id": "alg-dc-052",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are valid approaches for analyzing a divide-and-conquer recurrence?",
+      "options": [
+        "Recursion-tree summation",
+        "Substitution with an inductive upper and lower bound",
+        "Master theorem when its conditions apply",
+        "Ignoring floors and ceilings when they change asymptotic order"
+      ],
+      "answer": [
+        "Recursion-tree summation",
+        "Substitution with an inductive upper and lower bound",
+        "Master theorem when its conditions apply"
+      ],
+      "explanation": "Trees, induction, and the Master theorem are standard tools. Floors and ceilings are often harmless for asymptotic bounds, but must be considered if they materially affect the recurrence or its domain."
+    },
+    {
+      "id": "alg-dc-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the time complexity of T(n)=T(n/2)+Θ(n) when the nonrecursive work is performed at each node?",
+      "options": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(nlog n)",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(n)"
+      ],
+      "explanation": "The work by level is n+n/2+n/4+…, a convergent geometric series bounded by 2n. The root's linear work dominates the total."
+    },
+    {
+      "id": "alg-dc-054",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursive algorithm has recurrence T(n)=2T(n/2)+n and n=32. How many leaves does its recursion tree have?",
+      "answer": "32",
+      "explanation": "Each level doubles the number of nodes while halving subproblem size. At singleton size the number of leaves equals the original 32 elements."
+    },
+    {
+      "id": "alg-dc-055",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about unequal subproblem recurrences are correct?",
+      "options": [
+        "The basic Master theorem does not directly cover every unequal split",
+        "A recursion-tree argument can track varying subproblem sizes",
+        "The recurrence T(n)=T(n/3)+T(2n/3)+n can be analyzed by level costs",
+        "Unequal splits necessarily imply exponential time"
+      ],
+      "answer": [
+        "The basic Master theorem does not directly cover every unequal split",
+        "A recursion-tree argument can track varying subproblem sizes",
+        "The recurrence T(n)=T(n/3)+T(2n/3)+n can be analyzed by level costs"
+      ],
+      "explanation": "Uneven subproblem sizes may require a recursion tree or Akra–Bazzi-style analysis. They do not inherently cause exponential time; the sum of level costs and depth determine the result."
+    },
+    {
+      "id": "alg-dc-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence T(n)=T(n/2)+T(n/4)+n has n=64. Which asymptotic class is expected?",
+      "options": [
+        "Θ(n)",
+        "Θ(nlog n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "answer": [
+        "Θ(n)"
+      ],
+      "explanation": "The total child input size is at most 3n/4. Since each node's toll is linear in its size, work across levels contracts geometrically and sums to Θ(n)."
+    },
+    {
+      "id": "alg-dc-057",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A divide-and-conquer algorithm makes 2 recursive calls at each of 5 levels before reaching leaves. How many leaves does the recursion tree have?",
+      "answer": "32",
+      "explanation": "With branching factor two, the fifth level has 2^5=32 leaves."
+    },
+    {
+      "id": "alg-dc-058",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about matrix multiplication by divide-and-conquer are correct?",
+      "options": [
+        "Classical block multiplication uses eight half-size products",
+        "Its recurrence is 8T(n/2)+Θ(n²)",
+        "The solution is Θ(n³)",
+        "Strassen reduces recursive products from eight to seven"
+      ],
+      "answer": [
+        "Classical block multiplication uses eight half-size products",
+        "Its recurrence is 8T(n/2)+Θ(n²)",
+        "The solution is Θ(n³)",
+        "Strassen reduces recursive products from eight to seven"
+      ],
+      "explanation": "The classical algorithm computes eight quadrant products, yielding exponent log₂8=3. Strassen reduces the number of recursive products to seven, at the cost of additional additions and subtractions."
+    },
+    {
+      "id": "alg-dc-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=8T(n/2)+n², which asymptotic bound follows?",
+      "options": [
+        "Θ(n²)",
+        "Θ(n³)",
+        "Θ(n³log n)",
+        "Θ(n⁴)"
+      ],
+      "answer": [
+        "Θ(n³)"
+      ],
+      "explanation": "The critical term is n^(log₂8)=n³. The quadratic combine work is polynomially smaller, so the leaf cost dominates."
+    },
+    {
+      "id": "alg-dc-060",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recurrence T(n)=2T(n/2)+3n has n=8 and T(1)=1. Find T(8).",
+      "answer": "80",
+      "explanation": "T(2)=2?1+6=8; T(4)=2?8+12=28; T(8)=2?28+24=80."
+    },
+    {
+      "id": "alg-dc-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can a naive recursive algorithm for Fibonacci numbers be exponential?",
+      "options": [
+        "It repeatedly solves the same overlapping subproblems",
+        "Each recursive call decreases n by only a constant factor",
+        "It has no base cases",
+        "The output has exponentially many bits"
+      ],
+      "answer": [
+        "It repeatedly solves the same overlapping subproblems"
+      ],
+      "explanation": "The recursion branches into F(n−1) and F(n−2), recomputing many identical values. This produces an exponential recursion tree; memoization or iteration reduces the work to linear time."
+    },
+    {
+      "id": "alg-dc-062",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which changes can reduce repeated work in a recursive divide-and-conquer-style algorithm with overlapping subproblems?",
+      "options": [
+        "Memoize computed subproblem results",
+        "Use a bottom-up table",
+        "Recompute each subproblem independently",
+        "Identify a state representation that merges equivalent subproblems"
+      ],
+      "answer": [
+        "Memoize computed subproblem results",
+        "Use a bottom-up table",
+        "Identify a state representation that merges equivalent subproblems"
+      ],
+      "explanation": "Memoization and tabulation reuse results, while a good state definition exposes equivalent subproblems. Independent recomputation preserves redundant work."
+    },
+    {
+      "id": "alg-dc-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recurrence T(n)=2T(n/2)+n has n=4 and T(1)=1. Compute T(4).",
+      "answer": "12",
+      "explanation": "First compute T(2)=2?T(1)+2=4. Then T(4)=2?T(2)+4=2?4+4=12."
+    },
+    {
+      "id": "alg-dc-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+Θ(n/log n), why does a simple claim of Θ(nlog n) fail?",
+      "options": [
+        "The toll per level decreases with depth, producing a harmonic-like sum",
+        "There is only one recursive subproblem",
+        "The recurrence depth is constant",
+        "The base case contributes exponential work"
+      ],
+      "answer": [
+        "The toll per level decreases with depth, producing a harmonic-like sum"
+      ],
+      "explanation": "At level i the aggregate toll is roughly n/(log n−i). Summing these terms gives Θ(nloglog n), not nlog n; the level cost is not constant n."
+    },
+    {
+      "id": "alg-dc-065",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the recursion-tree method are correct?",
+      "options": [
+        "It sums the work over all nodes at each depth",
+        "It can help when subproblem sizes are unequal",
+        "It can expose a geometric or harmonic series",
+        "It counts only the cost along one root-to-leaf path"
+      ],
+      "answer": [
+        "It sums the work over all nodes at each depth",
+        "It can help when subproblem sizes are unequal",
+        "It can expose a geometric or harmonic series"
+      ],
+      "explanation": "A recursion tree accounts for all subproblems and their nonrecursive costs, grouped by level when useful. It is not limited to one path, and level sums often reveal familiar series."
+    },
+    {
+      "id": "alg-dc-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A divide-and-conquer algorithm makes 4 subproblems per call and has 64 leaves. Assuming a full tree, how many internal nodes are there?",
+      "answer": "21",
+      "explanation": "For a full m-ary tree with L leaves and m=4 children per internal node, internal nodes I satisfy L=1+(m−1)I. Thus I=(64−1)/3=21."
+    },
+    {
+      "id": "alg-dc-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence T(n)=2T(n/2)+Θ(n²log n) has quadratic combine cost times a logarithm. What is the tight solution?",
+      "options": [
+        "Θ(n²log n)",
+        "Θ(n²(log n)²)",
+        "Θ(n³)",
+        "Θ(nlog n)"
+      ],
+      "answer": [
+        "Θ(n²log n)"
+      ],
+      "explanation": "At level i, aggregate toll is about n²log(n/2^i)/2^i. The geometric factor 1/2^i makes the root-side terms dominate, so the total is Θ(n²log n)."
+    },
+    {
+      "id": "alg-dc-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A balanced binary divide-and-conquer procedure has input size 128. How many nodes are at recursion-tree level 6, with the root at level 0?",
+      "answer": "64",
+      "explanation": "A binary tree has 2^i nodes at level i. Level 6 therefore contains 2^6=64 nodes."
+    },
+    {
+      "id": "alg-dc-069",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A divide-and-conquer maximum-subarray algorithm computes the best subarray wholly left, wholly right, or crossing the midpoint. Which statements are correct?",
+      "options": [
+        "The crossing candidate is formed from a suffix of the left half and a prefix of the right half",
+        "The two recursive subproblems are disjoint",
+        "Combining the three candidates takes linear time if the crossing sum is recomputed by scanning",
+        "The recurrence can be written as 2T(n/2)+Theta(n)"
+      ],
+      "answer": [
+        "The crossing candidate is formed from a suffix of the left half and a prefix of the right half",
+        "The two recursive subproblems are disjoint",
+        "The recurrence can be written as 2T(n/2)+Theta(n)"
+      ],
+      "explanation": "A crossing interval must touch the midpoint from both sides. The left and right recursive ranges are disjoint, and scanning outward to find the best suffix and prefix uses linear combine work."
+    },
+    {
+      "id": "alg-dc-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which recurrence corresponds to a divide-and-conquer algorithm that makes 7 subcalls on size n/2 and performs Θ(n²) additional work?",
+      "options": [
+        "T(n)=7T(n/2)+Θ(n²)",
+        "T(n)=2T(n/7)+Θ(n²)",
+        "T(n)=7T(n−2)+Θ(n)",
+        "T(n)=T(n/2)+7Θ(n²)"
+      ],
+      "answer": [
+        "T(n)=7T(n/2)+Θ(n²)"
+      ],
+      "explanation": "The recurrence must include seven recursive subproblems, each of half the input size, plus the stated quadratic combine work."
+    },
+    {
+      "id": "alg-dc-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursion tree for T(n)=4T(n/2)+n has n=8. How many leaves are present?",
+      "answer": "64",
+      "explanation": "The depth is log₂8=3 and the branching factor is four, so leaves=4³=64=n²."
+    },
+    {
+      "id": "alg-dc-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements describe the effect of the number of recursive calls on a recurrence tree?",
+      "options": [
+        "More children can increase the number of nodes at a level",
+        "The subproblem size reduction also affects tree depth",
+        "The number of calls alone is enough to determine complexity",
+        "The combine cost can dominate even when the tree has few nodes"
+      ],
+      "answer": [
+        "More children can increase the number of nodes at a level",
+        "The subproblem size reduction also affects tree depth",
+        "The combine cost can dominate even when the tree has few nodes"
+      ],
+      "explanation": "Total work depends on branching, shrinkage, depth, and per-node toll. Branching alone omits crucial information; even a single-node path can have a large combine cost."
+    },
+    {
+      "id": "alg-dc-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence is T(n)=2T(n/2)+n². What is the cost at level i of its recursion tree, ignoring constants?",
+      "options": [
+        "n²/2^i",
+        "n²",
+        "n·2^i",
+        "2^i"
+      ],
+      "answer": [
+        "n²/2^i"
+      ],
+      "explanation": "At depth i there are 2^i nodes of size n/2^i. Each contributes (n/2^i)², so their aggregate is n²/2^i."
+    },
+    {
+      "id": "alg-dc-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For a complete binary recursion tree with 8 leaves, how many total nodes are present?",
+      "answer": "15",
+      "explanation": "A full binary tree with L leaves has 2L−1 total nodes. For 8 leaves this is 16−1=15."
+    },
+    {
+      "id": "alg-dc-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=T(n/2)+T(n/4)+?(1), which asymptotic form follows from Akra?Bazzi? Let p satisfy (1/2)^p+(1/4)^p=1.",
+      "options": [
+        "?(1)",
+        "?(log n)",
+        "?(n^p)",
+        "?(nlog n)"
+      ],
+      "answer": [
+        "?(n^p)"
+      ],
+      "explanation": "The exponent p is the positive solution of the characteristic balance equation, approximately 0.694. Since the additive toll is constant and smaller than n^p, Akra?Bazzi gives T(n)=?(n^p)."
+    },
+    {
+      "id": "alg-dc-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which mechanisms can make a divide-and-conquer combine step efficient?",
+      "options": [
+        "Reuse ordering or summaries computed by recursive calls",
+        "Use structural properties to limit cross-subproblem comparisons",
+        "Recompute every detail of every subproblem from the original input",
+        "Maintain a suitable invariant across the split"
+      ],
+      "answer": [
+        "Reuse ordering or summaries computed by recursive calls",
+        "Use structural properties to limit cross-subproblem comparisons",
+        "Maintain a suitable invariant across the split"
+      ],
+      "explanation": "Efficient combinations exploit recursive results and problem structure, with invariants proving correctness. Recomputing all information discards the benefit of recursive summaries."
+    },
+    {
+      "id": "alg-dc-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A merge-based algorithm counts inversions by recursively counting each half and then counting cross-inversions during merge. What is its worst-case time for n elements?",
+      "answer": [
+        "Theta(n log n)"
+      ],
+      "explanation": "Each level performs linear merge work and the recursion has logarithmic depth. Counting cross-inversions does not change the merge cost, so total work is Theta(n log n).",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(n^2)"
+      ]
+    },
+    {
+      "id": "alg-dc-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why does a closest-pair algorithm presort points by y-coordinate before recursive strip processing?",
+      "options": [
+        "It lets the combine step inspect nearby points in order without sorting at each recursive node",
+        "It makes every point pair have equal distance",
+        "It removes the need to divide by x-coordinate",
+        "It guarantees the closest pair lies in one half"
+      ],
+      "answer": [
+        "It lets the combine step inspect nearby points in order without sorting at each recursive node"
+      ],
+      "explanation": "Maintaining y-order allows a linear scan of the strip and avoids a fresh sort at each level. The closest pair may cross the dividing line, so both halves and the strip must be considered."
+    },
+    {
+      "id": "alg-dc-079",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=3T(n/3)+n with n=27, what is the aggregate nonrecursive work at recursion-tree depth 2?",
+      "options": [
+        "Each full internal level has total toll Θ(n)",
+        "The recursion depth is Θ(log n)",
+        "The total solution is Θ(nlog n)",
+        "The number of leaves is Θ(n²)"
+      ],
+      "answer": "27",
+      "explanation": "At depth two there are 3?=9 subproblems, each of size 27/3?=3. Each contributes three units, so the aggregate toll is 9?3=27."
+    },
+    {
+      "id": "alg-dc-080",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recurrence T(n)=2T(n/2)+n has n=32 and T(1)=0. What is T(32) under exact arithmetic?",
+      "answer": "160",
+      "explanation": "Each of the five internal levels contributes 32 units, and the leaves contribute zero. Therefore T(32)=5×32=160."
+    },
+    {
+      "id": "alg-dc-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence T(n)=5T(n/2)+n² has critical exponent log₂5≈2.322. Which term dominates?",
+      "options": [
+        "The n² combine term",
+        "The recursive leaves, giving Θ(n^(log₂5))",
+        "Both match, giving Θ(n²log n)",
+        "The recursion depth, giving Θ(log n)"
+      ],
+      "answer": [
+        "The recursive leaves, giving Θ(n^(log₂5))"
+      ],
+      "explanation": "Since log₂5>2, the critical term n^(log₂5) grows polynomially faster than n². The leaves dominate under the Master theorem's first case."
+    },
+    {
+      "id": "alg-dc-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about using the Master theorem are correct?",
+      "options": [
+        "It assumes equal-sized subproblems of size n/b",
+        "It compares f(n) with n^(log_b a)",
+        "It directly solves every recurrence with nonconstant a or b",
+        "Its third case needs a regularity condition"
+      ],
+      "answer": [
+        "It assumes equal-sized subproblems of size n/b",
+        "It compares f(n) with n^(log_b a)",
+        "Its third case needs a regularity condition"
+      ],
+      "explanation": "The standard theorem covers T(n)=aT(n/b)+f(n) for fixed constants a and b. Unequal splits or varying parameters may need another technique, and the polynomially larger case requires regularity."
+    },
+    {
+      "id": "alg-dc-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm creates 2 recursive subproblems at each call and reaches 128 leaves. How many binary splitting levels were performed?",
+      "answer": "7",
+      "explanation": "A binary tree with 128=2^7 leaves has seven branching levels from root to leaf."
+    },
+    {
+      "id": "alg-dc-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence has T(n)=T(n/2)+T(n/4)+Θ(n). What feature explains why the total remains linear?",
+      "options": [
+        "The sum of child sizes is at most 3n/4",
+        "There is only one child",
+        "The recursion stops after one level",
+        "The toll is constant"
+      ],
+      "answer": [
+        "The sum of child sizes is at most 3n/4"
+      ],
+      "explanation": "At every node the total size passed to children contracts by a factor at most 3/4. Because toll is proportional to size, the sum of work over a level decreases geometrically."
+    },
+    {
+      "id": "alg-dc-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about exact recurrence calculations are correct?",
+      "options": [
+        "The base-case value is needed for an exact numerical answer",
+        "Asymptotic Θ bounds ignore constant factors",
+        "Floors and ceilings may matter for small exact inputs",
+        "A recurrence's asymptotic class always determines its exact value"
+      ],
+      "answer": [
+        "The base-case value is needed for an exact numerical answer",
+        "Asymptotic Θ bounds ignore constant factors",
+        "Floors and ceilings may matter for small exact inputs"
+      ],
+      "explanation": "Exact values require base cases and precise recurrence definitions. Asymptotic notation abstracts constants and cannot determine an exact runtime for a given input."
+    },
+    {
+      "id": "alg-dc-086",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursion tree has 2^i nodes at level i and each node performs n/2^i work. For n=64, what is the aggregate cost of level 4?",
+      "answer": "64",
+      "explanation": "At level four there are 16 nodes, each with cost 64/16=4. Their total is 16×4=64."
+    },
+    {
+      "id": "alg-dc-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An algorithm divides into 2 subproblems of size n/2 and combines in Θ(n³) time. What is its total asymptotic time?",
+      "options": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n³)",
+        "Θ(n³log n)"
+      ],
+      "answer": [
+        "Θ(n³)"
+      ],
+      "explanation": "The cubic combine costs across levels decrease geometrically: level i costs proportional to n³/4^i. The root dominates, giving Θ(n³)."
+    },
+    {
+      "id": "alg-dc-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which facts about divide-and-conquer correctness proofs are useful?",
+      "options": [
+        "Prove the base case returns a correct answer",
+        "Assume recursive calls return correct answers for smaller inputs",
+        "Show the combine step produces a correct full-size answer",
+        "Prove only that the recurrence terminates"
+      ],
+      "answer": [
+        "Prove the base case returns a correct answer",
+        "Assume recursive calls return correct answers for smaller inputs",
+        "Show the combine step produces a correct full-size answer"
+      ],
+      "explanation": "Inductive correctness combines a valid base case, an induction hypothesis for smaller subproblems, and a proof that combining their results solves the current instance. Termination alone is insufficient."
+    },
+    {
+      "id": "alg-dc-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Strassen matrix multiplication uses seven recursive multiplications on matrices of half the dimension and Theta(n^2) extra additions. What is its asymptotic time?",
+      "answer": [
+        "Theta(n^(log2 7))"
+      ],
+      "explanation": "The recurrence is T(n)=7T(n/2)+Theta(n^2). Since log base 2 of 7 is about 2.807, the recursive multiplication term dominates the quadratic additions.",
+      "options": [
+        "Theta(n^2)",
+        "Theta(n^2 log n)",
+        "Theta(n^(log2 7))",
+        "Theta(n^3)"
+      ]
+    },
+    {
+      "id": "alg-dc-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a recurrence T(n)=aT(n/b)+Θ(n^d), with a=b^d, what is the typical Master theorem solution?",
+      "options": [
+        "Θ(n^d)",
+        "Θ(n^dlog n)",
+        "Θ(n^(d+1))",
+        "Θ(log n)"
+      ],
+      "answer": [
+        "Θ(n^dlog n)"
+      ],
+      "explanation": "The equality a=b^d means n^(log_b a)=n^d, matching the polynomial combine term. The matching case adds a logarithmic factor."
+    },
+    {
+      "id": "alg-dc-091",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which recurrence-solving conclusions are correct?",
+      "options": [
+        "T(n)=2T(n/2)+n² is Θ(n²)",
+        "T(n)=4T(n/2)+n is Θ(n²)",
+        "T(n)=2T(n/2)+1 is Θ(n)",
+        "T(n)=T(n/2)+1 is Θ(log n)"
+      ],
+      "answer": [
+        "T(n)=2T(n/2)+n² is Θ(n²)",
+        "T(n)=4T(n/2)+n is Θ(n²)",
+        "T(n)=2T(n/2)+1 is Θ(n)",
+        "T(n)=T(n/2)+1 is Θ(log n)"
+      ],
+      "explanation": "The first has geometrically decreasing quadratic level costs; the second is leaf-dominated with n² leaves. The third has n leaves and constant node cost; the last has logarithmic depth and one call per level."
+    },
+    {
+      "id": "alg-dc-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Let T(n)=3T(n/2)+n for n a power of 2, with T(1)=1. What is the asymptotic order of T(n)?",
+      "options": [
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(n^(log2 3))",
+        "Theta(n^2)"
+      ],
+      "answer": [
+        "Theta(n^(log2 3))"
+      ],
+      "explanation": "The critical exponent is log base 2 of 3, approximately 1.585. Since the linear toll is polynomially smaller, the recursion tree is dominated by its leaves."
+    },
+    {
+      "id": "alg-dc-093",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A ternary recursion tree expands for 3 levels, with the root at level 0. How many nodes are at level 3?",
+      "answer": "27",
+      "explanation": "The branching factor is three, so level 3 contains 3³=27 nodes."
+    },
+    {
+      "id": "alg-dc-094",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are potential advantages of divide-and-conquer?",
+      "options": [
+        "Independent subproblems may be processed in parallel",
+        "Smaller subproblems may fit in faster memory levels",
+        "The combine step is automatically free",
+        "The approach can simplify proofs by structural induction"
+      ],
+      "answer": [
+        "Independent subproblems may be processed in parallel",
+        "Smaller subproblems may fit in faster memory levels",
+        "The approach can simplify proofs by structural induction"
+      ],
+      "explanation": "Independent recursive calls can execute concurrently, and recursive structure can improve locality and proof organization. Combining results still has a cost that must be analyzed."
+    },
+    {
+      "id": "alg-dc-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence T(n)=4T(n/2)+Θ(n²) has a combine cost that matches its critical term. What does each internal level contribute?",
+      "options": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n²log n)",
+        "Θ(n³)"
+      ],
+      "answer": [
+        "Θ(n²)"
+      ],
+      "explanation": "At level i there are 4^i nodes of size n/2^i, each with quadratic cost n²/4^i. Their total is n² at every internal level."
+    },
+    {
+      "id": "alg-dc-096",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursion tree has branching factor 4 and 5 full levels below the root. How many nodes are at level 5?",
+      "answer": "1024",
+      "explanation": "The number at level 5 is 4^5=1024 nodes."
+    },
+    {
+      "id": "alg-dc-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which recurrence represents a divide-and-conquer algorithm with one subproblem of size n/2 and linear combine work?",
+      "options": [
+        "T(n)=T(n/2)+Θ(n)",
+        "T(n)=2T(n/2)+Θ(1)",
+        "T(n)=T(n−1)+Θ(n)",
+        "T(n)=nT(n/2)+Θ(1)"
+      ],
+      "answer": [
+        "T(n)=T(n/2)+Θ(n)"
+      ],
+      "explanation": "The recurrence has one half-size recursive call plus a linear nonrecursive combine cost. The geometric level sum gives Θ(n) total time."
+    },
+    {
+      "id": "alg-dc-098",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about work and depth in recursive algorithms are correct?",
+      "options": [
+        "Work can be much larger than depth when many branches exist",
+        "Depth counts the longest chain of recursive calls",
+        "Parallel execution time may depend more directly on depth plus combine constraints",
+        "Total work equals the number of leaves only for every recurrence"
+      ],
+      "answer": [
+        "Work can be much larger than depth when many branches exist",
+        "Depth counts the longest chain of recursive calls",
+        "Parallel execution time may depend more directly on depth plus combine constraints"
+      ],
+      "explanation": "Depth is a path measure; total work sums all nodes. Parallel span is related to dependency depth, while the number of leaves alone ignores internal costs and branching structure."
+    },
+    {
+      "id": "alg-dc-099",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursive process halves a size-32 input until size 1, and each node charges work equal to its current size, including the base. What is the total work along one root-to-leaf path?",
+      "answer": "63",
+      "explanation": "The path sizes are 32,16,8,4,2,1. Their work sums to 32+16+8+4+2+1=63 units."
+    },
+    {
+      "id": "alg-dc-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A divide-and-conquer design has efficient subproblem solvers, but the merge phase repeatedly scans all n items at each of log n levels. What is the resulting total time if recursive work per level is also O(n)?",
+      "options": [
+        "O(n)",
+        "O(log n)",
+        "O(nlog n)",
+        "O(n²)"
+      ],
+      "answer": [
+        "O(nlog n)"
+      ],
+      "explanation": "Each of Θ(log n) levels performs Θ(n) combine work. Summing across levels yields Θ(nlog n), even if the recursive subproblem work is no larger."
+    }
+  ]
+}

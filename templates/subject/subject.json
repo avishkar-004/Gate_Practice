@@ -1,0 +1,7 @@
+{
+  "id": "my-subject",
+  "title": "My Subject",
+  "short": "MY SUBJECT",
+  "description": "A short description for the subject card",
+  "order": 100
+}

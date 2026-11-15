@@ -1,0 +1,1363 @@
+{
+  "topicIndex": 3,
+  "questions": [
+    {
+      "id": "coa-mem-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit byte-addressed processor has a 4-KiB direct-mapped cache with 16-byte blocks. How many tag, index, and block-offset bits are used?",
+      "options": [
+        "20, 8, 4",
+        "20, 4, 8",
+        "16, 12, 4",
+        "24, 4, 4"
+      ],
+      "answer": [
+        "20, 8, 4"
+      ],
+      "explanation": "The cache has 4096/16=256 lines, requiring 8 index bits. A 16-byte block requires 4 offset bits. Tag bits=32-8-4=20."
+    },
+    {
+      "id": "coa-mem-002",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 36-bit byte-addressed system has a 32-KiB, 8-way set-associative cache with 64-byte blocks. How many cache sets are present?",
+      "answer": "64",
+      "explanation": "The cache holds 32,768/64=512 blocks. At 8 blocks per set, the number of sets is 512/8=64."
+    },
+    {
+      "id": "coa-mem-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a cache with 32-byte blocks, which address bits form the block offset in a byte-addressed system?",
+      "options": [
+        "The lowest 5 address bits",
+        "The bits that select a byte within one block",
+        "The cache tag bits",
+        "The bits that identify a particular word only if the word size is 1 byte"
+      ],
+      "answer": [
+        "The lowest 5 address bits",
+        "The bits that select a byte within one block"
+      ],
+      "explanation": "Thirty-two byte positions require log2(32)=5 offset bits. Those low-order bits select a byte within a cache block; the remaining higher bits identify the block/tag and set."
+    },
+    {
+      "id": "coa-mem-004",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache has hit time 2 ns, hit ratio 0.9, and a miss penalty of 30 ns in addition to the hit lookup. What is the average memory access time? Give the answer in nanoseconds.",
+      "answer": "5",
+      "explanation": "AMAT=hit time+miss rate×miss penalty=2+(1-0.9)×30=2+3=5 ns."
+    },
+    {
+      "id": "coa-mem-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A two-level hierarchy has L1 hit time 1 ns, L1 miss rate 0.1, L2 hit time 5 ns, and L2 local miss rate 0.2 with a 40-ns memory penalty. What is the average access time, assuming L2 is accessed only on an L1 miss?",
+      "options": [
+        "2.3 ns",
+        "1.5 ns",
+        "3.0 ns",
+        "9.0 ns"
+      ],
+      "answer": [
+        "2.3 ns"
+      ],
+      "explanation": "L2 access time including its local miss penalty is 5+0.2×40=13 ns. Overall average is 1+0.1×13=2.3 ns."
+    },
+    {
+      "id": "coa-mem-006",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-KiB cache has 64-byte blocks and is 4-way set associative. Each line stores a 20-bit tag and one valid bit. How many tag-plus-valid bits are stored across all lines?",
+      "answer": "10752",
+      "explanation": "There are 32,768/64=512 lines. Each stores 20+1=21 metadata bits, so total metadata is 512×21=10,752 bits."
+    },
+    {
+      "id": "coa-mem-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A memory chip is organized as 16K × 8 bits. How many address pins are needed to select one 8-bit word within the chip?",
+      "options": [
+        "14",
+        "8",
+        "16",
+        "21"
+      ],
+      "answer": [
+        "14"
+      ],
+      "explanation": "16K=16×1024=2^14 words, so 14 address bits select one word. The 8 data pins correspond to the word width, not address width."
+    },
+    {
+      "id": "coa-mem-008",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 64-KiB memory is built from chips organized as 16K × 4 bits. How many chips are required to provide the full capacity and an 8-bit data width?",
+      "answer": "32",
+      "explanation": "Each chip stores 16K×4=64K bits=8 KiB. Four chips in parallel provide an 8-bit word; eight such groups provide 64 KiB, for 4×8=32 chips."
+    },
+    {
+      "id": "coa-mem-009",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A direct-mapped cache has 128 lines. Which statements are correct?",
+      "options": [
+        "A main-memory block maps to exactly one cache line.",
+        "Two blocks with the same index bits compete for the same line.",
+        "A block can choose any of 128 lines if its tag matches.",
+        "The line index requires 7 bits."
+      ],
+      "answer": [
+        "A main-memory block maps to exactly one cache line.",
+        "Two blocks with the same index bits compete for the same line.",
+        "The line index requires 7 bits."
+      ],
+      "explanation": "Direct mapping fixes the line from the index. Since 128=2^7 lines, seven index bits are used. Blocks sharing those bits contend, regardless of their different tags."
+    },
+    {
+      "id": "coa-mem-010",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A byte address is 0x3A7C and the cache block size is 64 bytes. What is the byte offset within its block, in decimal?",
+      "answer": "60",
+      "explanation": "A 64-byte block uses the low 6 bits. 0x3A7C modulo 0x40 is 0x3C=60."
+    },
+    {
+      "id": "coa-mem-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A direct-mapped cache has 4 lines. Starting empty, it accesses blocks 0, 4, 0, 4 in that order. Assuming the line index is block number mod 4, what is the hit/miss sequence?",
+      "options": [
+        "M, M, M, M",
+        "M, M, H, H",
+        "M, H, H, H",
+        "M, M, H, M"
+      ],
+      "answer": [
+        "M, M, M, M"
+      ],
+      "explanation": "Blocks 0 and 4 both map to line 0. Each access replaces the other block, so all four accesses miss."
+    },
+    {
+      "id": "coa-mem-012",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 2-way set-associative cache uses LRU replacement. A set contains blocks A and B, with A least recently used. A hit to B occurs, then a new block C maps to the set. What follows?",
+      "options": [
+        "The hit makes A the least recently used block.",
+        "C replaces A.",
+        "C replaces B.",
+        "The hit to B does not change recency state."
+      ],
+      "answer": [
+        "The hit makes A the least recently used block.",
+        "C replaces A."
+      ],
+      "explanation": "After B is accessed, B becomes most recently used and A becomes least recently used. On C's miss, LRU evicts A."
+    },
+    {
+      "id": "coa-mem-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A write-through cache updates a cached word and immediately propagates each store to the next memory level. What is a common consequence compared with write-back?",
+      "options": [
+        "More write traffic to the next level, but simpler consistency of lower-level contents",
+        "Less write traffic because dirty blocks are combined",
+        "A dirty bit is always required for every line",
+        "Stores never update the cache"
+      ],
+      "answer": [
+        "More write traffic to the next level, but simpler consistency of lower-level contents"
+      ],
+      "explanation": "Write-through sends each store onward, increasing lower-level traffic, while keeping lower memory more current. Write-back usually reduces traffic but needs dirty tracking and later writeback."
+    },
+    {
+      "id": "coa-mem-014",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A write-back cache has a 64-byte block. A dirty block is evicted to a 32-bit-wide memory interface that transfers one word per cycle. Ignoring setup, how many cycles are needed to write back the block?",
+      "answer": "16",
+      "explanation": "A 64-byte block contains 64/4=16 four-byte words. One word per cycle requires 16 cycles."
+    },
+    {
+      "id": "coa-mem-015",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a write-allocate cache, what happens on a store miss under the usual policy?",
+      "options": [
+        "The missed block is brought into the cache.",
+        "The store is applied to the allocated cache block.",
+        "A no-write-allocate policy is being used.",
+        "The store may later be propagated according to write-through or write-back policy."
+      ],
+      "answer": [
+        "The missed block is brought into the cache.",
+        "The store is applied to the allocated cache block.",
+        "The store may later be propagated according to write-through or write-back policy."
+      ],
+      "explanation": "Write allocate fetches the block on a write miss, then updates it. Whether and when lower memory is updated depends separately on write-through versus write-back."
+    },
+    {
+      "id": "coa-mem-016",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor executes 2×10^6 instructions at base CPI 1.5. Data-cache misses occur at 0.08 misses per instruction and each miss costs 20 extra cycles. What is the total execution-cycle count?",
+      "answer": "6200000",
+      "explanation": "Base cycles=2×10^6×1.5=3×10^6. Misses=2×10^6×0.08=160,000, adding 3.2×10^6 cycles. Total=6.2×10^6 cycles."
+    },
+    {
+      "id": "coa-mem-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache has a miss rate of 5% and a miss penalty of 40 cycles. The processor's base CPI is 1. If each instruction makes one memory reference, what is the effective CPI?",
+      "options": [
+        "3",
+        "2",
+        "1.05",
+        "41"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Expected miss stall cycles per instruction are 0.05×40=2. Add base CPI 1 to obtain effective CPI 3."
+    },
+    {
+      "id": "coa-mem-018",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about spatial and temporal locality are correct?",
+      "options": [
+        "Temporal locality means a recently accessed item is likely to be accessed again.",
+        "Spatial locality means nearby addresses are likely to be accessed.",
+        "A cache block can exploit spatial locality by fetching adjacent bytes together.",
+        "A larger block always improves performance regardless of workload."
+      ],
+      "answer": [
+        "Temporal locality means a recently accessed item is likely to be accessed again.",
+        "Spatial locality means nearby addresses are likely to be accessed.",
+        "A cache block can exploit spatial locality by fetching adjacent bytes together."
+      ],
+      "explanation": "Caches exploit repeated and nearby accesses. Larger blocks can help spatial locality but may increase miss penalty, bandwidth use, and pollution, so they do not always improve performance."
+    },
+    {
+      "id": "coa-mem-019",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A direct-mapped cache uses 10 index bits and 5 block-offset bits. The processor has 36-bit byte addresses. How many tag bits are stored per line?",
+      "answer": "21",
+      "explanation": "The tag uses the remaining address bits: 36-10-5=21."
+    },
+    {
+      "id": "coa-mem-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-way cache has 128 sets and 32-byte blocks. How many data bytes can it hold?",
+      "options": [
+        "16 KiB",
+        "4 KiB",
+        "32 KiB",
+        "128 KiB"
+      ],
+      "answer": [
+        "16 KiB"
+      ],
+      "explanation": "Capacity=ways×sets×block size=4×128×32=16,384 bytes=16 KiB."
+    },
+    {
+      "id": "coa-mem-021",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache is physically indexed and physically tagged. Which address translation relationship is relevant to a load?",
+      "options": [
+        "The physical address is used to select the set and compare the tag.",
+        "A virtual address must be translated before the physical tag comparison.",
+        "The cache tag is necessarily the entire virtual address.",
+        "The page offset is often unchanged by translation and can support early indexing in some designs."
+      ],
+      "answer": [
+        "The physical address is used to select the set and compare the tag.",
+        "A virtual address must be translated before the physical tag comparison.",
+        "The page offset is often unchanged by translation and can support early indexing in some designs."
+      ],
+      "explanation": "A physically indexed/tagged cache uses the translated physical address. Page offsets are preserved by ordinary virtual-memory translation, which can allow some indexing to overlap translation if the index lies within the offset."
+    },
+    {
+      "id": "coa-mem-022",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache has a 3-ns hit time, a 0.04 miss rate, and a 50-ns additional miss penalty. What is AMAT? Give the answer in nanoseconds.",
+      "answer": "5",
+      "explanation": "Using AMAT=hit time+miss rate×miss penalty gives 3+0.04×50=3+2=5 ns."
+    },
+    {
+      "id": "coa-mem-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A memory system has a 1-ns L1 hit time, a 10% L1 miss rate, and a 20-ns L2 access time. L2 misses are already included in that 20-ns average. What is the overall average access time?",
+      "options": [
+        "3 ns",
+        "2 ns",
+        "20 ns",
+        "21 ns"
+      ],
+      "answer": [
+        "3 ns"
+      ],
+      "explanation": "An L1 hit takes 1 ns. On the 10% misses, L2 takes an additional average 20 ns. Overall AMAT=1+0.10×20=3 ns."
+    },
+    {
+      "id": "coa-mem-024",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-way set-associative cache has 256 sets. Which fields are needed to locate and verify a byte request?",
+      "options": [
+        "Set index to choose one of 256 sets",
+        "Tag to identify which memory block is in a way",
+        "Block offset to select a byte within the block",
+        "Way number supplied directly by the memory address as an independent field"
+      ],
+      "answer": [
+        "Set index to choose one of 256 sets",
+        "Tag to identify which memory block is in a way",
+        "Block offset to select a byte within the block"
+      ],
+      "explanation": "The address is divided into tag, set index and block offset. The set's ways are searched in parallel; the address does not generally contain a separate way-number field."
+    },
+    {
+      "id": "coa-mem-025",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 1-MiB byte-addressable memory is organized using 64-KiB chips. How many chips are required?",
+      "answer": "16",
+      "explanation": "1 MiB=1024 KiB. Dividing by 64 KiB per chip gives 1024/64=16 chips."
+    },
+    {
+      "id": "coa-mem-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 2-way set-associative cache has 8 sets and uses block number modulo 8 as its set index. Starting empty, it accesses blocks 2, 10, 18, 2 in this order. Assuming LRU replacement, what is the final access?",
+      "options": [
+        "Hit",
+        "Miss",
+        "It depends on the tag width",
+        "It is a compulsory miss"
+      ],
+      "answer": [
+        "Miss"
+      ],
+      "explanation": "All three blocks map to set 2. The first two occupy both ways; block 18 replaces the least-recently-used block 2. The final access to block 2 therefore misses."
+    },
+    {
+      "id": "coa-mem-027",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 40-bit physical address is used by a 128-KiB, 4-way set-associative cache with 128-byte blocks. How many tag bits are stored per line?",
+      "answer": "25",
+      "explanation": "The cache has 131,072/128=1024 lines and 1024/4=256 sets, requiring 8 index bits. A 128-byte block needs 7 offset bits. The tag is 40-8-7=25 bits."
+    },
+    {
+      "id": "coa-mem-028",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache line contains a tag, valid bit, and dirty bit. Which statements are correct?",
+      "options": [
+        "The valid bit can distinguish an allocated line from an unused line.",
+        "The dirty bit can indicate that a write-back line differs from lower memory.",
+        "The tag identifies which memory block currently occupies the line or set way.",
+        "The dirty bit is required for every write-through cache."
+      ],
+      "answer": [
+        "The valid bit can distinguish an allocated line from an unused line.",
+        "The dirty bit can indicate that a write-back line differs from lower memory.",
+        "The tag identifies which memory block currently occupies the line or set way."
+      ],
+      "explanation": "Valid tracks whether tag/data contents are meaningful. Dirty tracks modified data in write-back designs. A write-through cache typically does not need dirty tracking for that purpose."
+    },
+    {
+      "id": "coa-mem-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache uses write-back and write-allocate. A store misses on a block not present in the cache. Which sequence is typical?",
+      "options": [
+        "Fetch the block, update the selected word, and mark the line dirty",
+        "Write the word directly to memory and never allocate the block",
+        "Discard the store because the tag did not match",
+        "Write every byte in the cache to memory"
+      ],
+      "answer": [
+        "Fetch the block, update the selected word, and mark the line dirty"
+      ],
+      "explanation": "Write allocate brings the missed block into the cache. The store updates it, and write-back policy marks it dirty so the modified line is written to lower memory when evicted."
+    },
+    {
+      "id": "coa-mem-030",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A direct-mapped cache has 256 lines and 32-byte blocks. A byte address is 0x12345. What is its cache-line index in decimal?",
+      "answer": "26",
+      "explanation": "The block number is floor(0x12345/32)=0x91A. The line index is 0x91A mod 256=0x1A=26."
+    },
+    {
+      "id": "coa-mem-031",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A memory is divided into four banks and uses low-order interleaving: consecutive words are assigned to consecutive banks modulo 4. Which statements are correct?",
+      "options": [
+        "Word addresses 0,1,2,3 select banks 0,1,2,3 respectively.",
+        "Word address 4 returns to bank 0.",
+        "Four consecutive word accesses can use distinct banks.",
+        "Every address in a 4-word group is stored in the same bank."
+      ],
+      "answer": [
+        "Word addresses 0,1,2,3 select banks 0,1,2,3 respectively.",
+        "Word address 4 returns to bank 0.",
+        "Four consecutive word accesses can use distinct banks."
+      ],
+      "explanation": "With low-order interleaving, bank=word address mod 4. Thus addresses 0–3 use separate banks and address 4 maps back to bank 0."
+    },
+    {
+      "id": "coa-mem-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit byte address is partitioned into tag, set index, and block offset. The cache is 8-way with 128 sets and 64-byte blocks. How many low-order bits are used for set index and block offset combined?",
+      "options": [
+        "13",
+        "7",
+        "10",
+        "19"
+      ],
+      "answer": [
+        "13"
+      ],
+      "explanation": "128 sets require 7 index bits and 64-byte blocks require 6 offset bits. Together they use 7+6=13 low-order address bits."
+    },
+    {
+      "id": "coa-mem-033",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 256-KiB memory is built from chips organized as 32K × 8 bits. How many chips are required?",
+      "answer": "8",
+      "explanation": "Each chip stores 32K bytes=32 KiB. The target is 256 KiB, so 256/32=8 chips are required."
+    },
+    {
+      "id": "coa-mem-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit physically addressed cache has 64-byte blocks and 256 sets. What is the tag width?",
+      "options": [
+        "18 bits",
+        "20 bits",
+        "22 bits",
+        "24 bits"
+      ],
+      "answer": [
+        "18 bits"
+      ],
+      "explanation": "The block offset is log2(64)=6 bits and the set index is log2(256)=8 bits. Tag width=32-6-8=18 bits."
+    },
+    {
+      "id": "coa-mem-035",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program repeatedly accesses a working set larger than the cache. Which miss classifications may occur?",
+      "options": [
+        "Capacity misses because the working set does not fit.",
+        "Conflict misses if mapping constraints cause blocks to compete for sets.",
+        "Compulsory misses the first time a block is accessed.",
+        "Only compulsory misses can occur after the cache is full."
+      ],
+      "answer": [
+        "Capacity misses because the working set does not fit.",
+        "Conflict misses if mapping constraints cause blocks to compete for sets.",
+        "Compulsory misses the first time a block is accessed."
+      ],
+      "explanation": "The three common classes are compulsory (first touch), capacity (working set exceeds capacity), and conflict (mapping contention). A full cache can experience all classes depending on the access stream."
+    },
+    {
+      "id": "coa-mem-036",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-way cache has 1024 sets and 32-byte blocks. A byte address is 0x12345678. What is the set index in decimal?",
+      "answer": "691",
+      "explanation": "The block number is floor(0x12345678/32)=0x91A2B3. The set index is 0x91A2B3 mod 1024, which is its low 10 bits: 0x2B3=691."
+    },
+    {
+      "id": "coa-mem-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 2-way LRU set contains A and B, with B most recently used. A miss for C maps to the same set. Which block is evicted?",
+      "options": [
+        "A",
+        "B",
+        "Both A and B",
+        "Neither; 2-way sets cannot replace blocks"
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "LRU selects the least-recently-used resident. Since B is most recent, A is least recent and is evicted to make room for C."
+    },
+    {
+      "id": "coa-mem-038",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An L1 cache has a 12% miss rate. Of L1 misses, 25% also miss in L2. What is the global miss rate reaching main memory?",
+      "answer": "0.03",
+      "explanation": "The global rate is the L1 miss rate multiplied by the L2 local miss rate: 0.12×0.25=0.03, or 3% of all references."
+    },
+    {
+      "id": "coa-mem-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor has base CPI 0.8. Instruction-cache misses add 0.04 misses per instruction at 30 cycles each; data-cache misses add 0.02 misses per instruction at 50 cycles each. What is effective CPI?",
+      "options": [
+        "3.0",
+        "2.0",
+        "4.8",
+        "0.86"
+      ],
+      "answer": [
+        "3.0"
+      ],
+      "explanation": "Instruction miss stalls add 0.04×30=1.2 cycles/instruction. Data stalls add 0.02×50=1.0. Effective CPI=0.8+1.2+1.0=3.0."
+    },
+    {
+      "id": "coa-mem-040",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 128-byte cache block is filled over a 64-bit-wide memory bus that transfers one bus word every 3 ns. Ignoring startup latency, how long does the transfer take? Give the answer in nanoseconds.",
+      "answer": "48",
+      "explanation": "A 64-bit bus transfers 8 bytes per beat. A 128-byte block requires 16 beats, each taking 3 ns, for 48 ns."
+    },
+    {
+      "id": "coa-mem-041",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Increasing the cache block size while keeping total data capacity fixed can have which effects?",
+      "options": [
+        "Fewer cache lines are available.",
+        "Spatial locality may reduce some miss rates.",
+        "Miss penalty and transfer bandwidth per miss may increase.",
+        "Conflict behavior must improve for every workload."
+      ],
+      "answer": [
+        "Fewer cache lines are available.",
+        "Spatial locality may reduce some miss rates.",
+        "Miss penalty and transfer bandwidth per miss may increase."
+      ],
+      "explanation": "Larger blocks mean fewer lines at fixed capacity. They can exploit nearby references, but increase transfer cost and may worsen conflicts or pollution; no universal improvement is guaranteed."
+    },
+    {
+      "id": "coa-mem-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Why does a cache line need a valid bit after power-up or reset?",
+      "options": [
+        "To indicate whether its stored tag and data represent an allocated memory block",
+        "To record the line's least-recently-used age in every cache design",
+        "To identify whether the CPU is in supervisor mode",
+        "To hold the memory block's byte offset"
+      ],
+      "answer": [
+        "To indicate whether its stored tag and data represent an allocated memory block"
+      ],
+      "explanation": "After reset, tag/data bits may be arbitrary. The valid bit prevents them from producing a false hit until the line has been filled."
+    },
+    {
+      "id": "coa-mem-043",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A virtually indexed, physically tagged cache is used with a page size of 4 KiB. Which statements are relevant to avoiding synonym-related indexing problems?",
+      "options": [
+        "The set-index bits can be chosen entirely within the 12-bit page offset.",
+        "The physical tag comparison uses translated physical address bits.",
+        "If index bits extend above the page offset, different virtual aliases may index different sets.",
+        "The cache must use the full virtual address as its physical tag."
+      ],
+      "answer": [
+        "The set-index bits can be chosen entirely within the 12-bit page offset.",
+        "The physical tag comparison uses translated physical address bits.",
+        "If index bits extend above the page offset, different virtual aliases may index different sets."
+      ],
+      "explanation": "Page offset bits are unchanged by translation and can be used safely for early set selection. Bits above the page offset may differ across virtual aliases; physical tags are compared after translation."
+    },
+    {
+      "id": "coa-mem-044",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An inclusive L2 cache has 2 MiB capacity and an L1 cache has 32 KiB capacity. What is the ratio of L2 capacity to L1 capacity?",
+      "answer": "64",
+      "explanation": "2 MiB=2048 KiB. The ratio is 2048/32=64."
+    },
+    {
+      "id": "coa-mem-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An L1 hit time is 1 ns. The L1 miss rate is 0.1. On an L1 miss, L2 takes 4 ns; L2's local miss rate is 0.25, and main memory adds 40 ns after an L2 miss. What is AMAT?",
+      "options": [
+        "2.4 ns",
+        "1.4 ns",
+        "5.0 ns",
+        "4.1 ns"
+      ],
+      "answer": [
+        "2.4 ns"
+      ],
+      "explanation": "L2 average service time=4+0.25×40=14 ns. Overall AMAT=1+0.1×14=2.4 ns."
+    },
+    {
+      "id": "coa-mem-046",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A write-through cache uses a write buffer. Which benefits can the buffer provide?",
+      "options": [
+        "It can let the CPU continue while lower-level writes are pending.",
+        "It can combine or queue writes before they reach memory, depending on design.",
+        "It makes every store hit the cache even on a miss without allocation.",
+        "It eliminates the need to preserve write ordering when ordering is required."
+      ],
+      "answer": [
+        "It can let the CPU continue while lower-level writes are pending.",
+        "It can combine or queue writes before they reach memory, depending on design."
+      ],
+      "explanation": "A write buffer decouples the CPU from lower-level write latency and may merge queued writes. Correct ordering constraints still have to be honored, and allocation policy is separate."
+    },
+    {
+      "id": "coa-mem-047",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 64-byte dirty cache block is written to memory through a 16-bit interface transferring one word every 2 cycles. How many processor cycles are required for the data transfer, ignoring setup?",
+      "answer": "64",
+      "explanation": "A 16-bit word is 2 bytes, so the block needs 64/2=32 transfers. At 2 cycles per transfer, the writeback takes 32×2=64 cycles."
+    },
+    {
+      "id": "coa-mem-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A memory interface transfers 8 bytes per bus cycle. A 64-byte cache block has a 12-cycle startup latency, then one cycle per transferred bus word. What is the miss penalty?",
+      "options": [
+        "20 cycles",
+        "8 cycles",
+        "12 cycles",
+        "76 cycles"
+      ],
+      "answer": [
+        "20 cycles"
+      ],
+      "explanation": "The block requires 64/8=8 bus words. Total miss penalty is 12 startup cycles plus 8 transfer cycles, or 20 cycles."
+    },
+    {
+      "id": "coa-mem-049",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-bank interleaved memory has a bank busy time of 4 cycles per access. A sequential stream maps consecutive words to consecutive banks and each request arrives one cycle apart. What can be true after the pipeline fills?",
+      "options": [
+        "Different requests can be serviced by different banks concurrently.",
+        "The aggregate rate can approach one word per cycle if bank conflicts are avoided.",
+        "Each individual bank still needs multiple cycles before it can accept another request.",
+        "Interleaving reduces the latency of a single isolated access to zero."
+      ],
+      "answer": [
+        "Different requests can be serviced by different banks concurrently.",
+        "The aggregate rate can approach one word per cycle if bank conflicts are avoided.",
+        "Each individual bank still needs multiple cycles before it can accept another request."
+      ],
+      "explanation": "Interleaving improves throughput by overlapping operations across banks. It does not remove a bank's own busy time or make an isolated access instantaneous."
+    },
+    {
+      "id": "coa-mem-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A direct-mapped cache has 8 lines. A loop alternates accesses to blocks 3 and 11, which map to the same line. Why can the loop miss on every access after the first?",
+      "options": [
+        "Each access replaces the other block in the shared line.",
+        "The cache has no tag field.",
+        "The blocks are in different memory words but the same byte offset.",
+        "Direct-mapped caches cannot store data"
+      ],
+      "answer": [
+        "Each access replaces the other block in the shared line."
+      ],
+      "explanation": "The two blocks have the same index modulo 8 but different tags. Each access evicts the other, creating a conflict-miss pattern."
+    },
+    {
+      "id": "coa-mem-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-way cache has 64 sets and 16-byte blocks. What is its total data capacity?",
+      "options": [
+        "4 KiB",
+        "1 KiB",
+        "16 KiB",
+        "64 KiB"
+      ],
+      "answer": [
+        "4 KiB"
+      ],
+      "explanation": "Capacity=ways×sets×block size=4×64×16=4096 bytes=4 KiB."
+    },
+    {
+      "id": "coa-mem-052",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program makes 5000 memory references. The cache records 375 misses. What is the miss rate as a decimal fraction?",
+      "answer": "0.075",
+      "explanation": "Miss rate=misses/references=375/5000=0.075, or 7.5%."
+    },
+    {
+      "id": "coa-mem-053",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An L1 cache has a global miss rate of 8%. Of those misses, 30% miss in L2. Which quantities are correct?",
+      "options": [
+        "L2 local miss rate is 30%.",
+        "The rate of references reaching main memory is 2.4%.",
+        "The overall L1 hit rate is 92%.",
+        "The global L2 miss rate is 30% of all references."
+      ],
+      "answer": [
+        "L2 local miss rate is 30%.",
+        "The rate of references reaching main memory is 2.4%.",
+        "The overall L1 hit rate is 92%."
+      ],
+      "explanation": "The local L2 miss rate is conditional on an L1 miss. Global main-memory rate=0.08×0.30=0.024=2.4%; L1 hit rate=1-0.08=92%."
+    },
+    {
+      "id": "coa-mem-054",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 24-bit byte-addressable system uses 8-bit-wide memory chips, each organized as 64K × 8. How many chips are needed to build a 256-KiB memory with an 8-bit data path?",
+      "answer": "4",
+      "explanation": "Each chip stores 64K bytes=64 KiB and already supplies an 8-bit word. Four chips provide 4×64=256 KiB at the same data width."
+    },
+    {
+      "id": "coa-mem-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A DRAM chip is organized as 64K × 16 and multiplexes row and column addresses over the same pins. How many address bits identify one of its 64K words?",
+      "options": [
+        "16",
+        "8",
+        "64",
+        "80"
+      ],
+      "answer": [
+        "16"
+      ],
+      "explanation": "64K=2^16 word locations, so the combined row/column address contains 16 bits. Multiplexing may transmit those bits in separate phases but does not change the total address width."
+    },
+    {
+      "id": "coa-mem-056",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A memory bus transfers 16 bytes per 5-ns cycle. What is its peak bandwidth in bytes per second, ignoring protocol overhead?",
+      "answer": "3200000000",
+      "explanation": "Bandwidth=16 bytes/5 ns=3.2 bytes/ns. Since 1 ns=10^-9 s, this is 3.2×10^9 bytes/s."
+    },
+    {
+      "id": "coa-mem-057",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor has separate instruction and data caches. Which potential advantages does this organization provide?",
+      "options": [
+        "Instruction fetch and data access can proceed in parallel.",
+        "The two caches may use different policies or block sizes.",
+        "It necessarily eliminates all cache misses.",
+        "It can avoid structural contention between instruction and data requests at L1."
+      ],
+      "answer": [
+        "Instruction fetch and data access can proceed in parallel.",
+        "The two caches may use different policies or block sizes.",
+        "It can avoid structural contention between instruction and data requests at L1."
+      ],
+      "explanation": "Separate L1 paths can serve instruction and data requests simultaneously and can be configured differently. They do not prevent capacity, conflict, or compulsory misses."
+    },
+    {
+      "id": "coa-mem-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A fully associative cache has 8 lines and uses LRU. Starting empty, it accesses blocks 1 through 8, then accesses 1, then 9. Which block is evicted for block 9?",
+      "options": [
+        "Block 2",
+        "Block 1",
+        "Block 8",
+        "Block 9"
+      ],
+      "answer": [
+        "Block 2"
+      ],
+      "explanation": "After blocks 1–8, block 1 is least recent. Accessing 1 makes block 2 the least recently used. Therefore block 9 replaces block 2."
+    },
+    {
+      "id": "coa-mem-059",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An inclusive multilevel cache hierarchy guarantees every block present in L1 is also present in L2. Which consequences can follow when an L2 block is evicted?",
+      "options": [
+        "A matching L1 copy may need to be invalidated.",
+        "Inclusion can simplify some hierarchy relationships.",
+        "L1 and L2 are required to have equal capacities.",
+        "An L2 replacement can cause an L1 eviction even if L1 did not select the block itself."
+      ],
+      "answer": [
+        "A matching L1 copy may need to be invalidated.",
+        "Inclusion can simplify some hierarchy relationships.",
+        "An L2 replacement can cause an L1 eviction even if L1 did not select the block itself."
+      ],
+      "explanation": "Evicting an L2 line while retaining its L1 copy would violate inclusion, so the L1 copy may be invalidated. Inclusivity does not require equal capacities."
+    },
+    {
+      "id": "coa-mem-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a set-associative cache lookup, four tag comparators for the selected set operate in parallel. What determines a hit?",
+      "options": [
+        "At least one valid way has a tag equal to the request tag.",
+        "The block offset equals the tag.",
+        "All four tags must match simultaneously.",
+        "The least-recently-used way's tag must match."
+      ],
+      "answer": [
+        "At least one valid way has a tag equal to the request tag."
+      ],
+      "explanation": "A hit occurs if any way in the indexed set is valid and its stored tag equals the address tag. Replacement state does not determine whether the current access hits."
+    },
+    {
+      "id": "coa-mem-061",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-bank memory uses low-order interleaving. Word address 37 is assigned to which bank, numbered 0 through 3?",
+      "answer": "1",
+      "explanation": "Bank number is word address modulo 4. 37 mod 4=1, so the word resides in bank 1."
+    },
+    {
+      "id": "coa-mem-062",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A write buffer contains two pending stores to the same aligned word, first writing 0xAAAA and then 0xBBBB. If the buffer safely merges writes while preserving program order, what can it do?",
+      "options": [
+        "Forward the newest value 0xBBBB to a later load to that word.",
+        "Combine or replace the older pending word value with 0xBBBB before memory commit.",
+        "Return the stale value 0xAAAA to every later load.",
+        "Ensure the final memory value is 0xBBBB after both stores commit."
+      ],
+      "answer": [
+        "Forward the newest value 0xBBBB to a later load to that word.",
+        "Combine or replace the older pending word value with 0xBBBB before memory commit.",
+        "Ensure the final memory value is 0xBBBB after both stores commit."
+      ],
+      "explanation": "A store buffer must preserve the latest program-ordered value. It can forward that value to a load and coalesce the pending writes, leaving memory with 0xBBBB."
+    },
+    {
+      "id": "coa-mem-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache uses no-write-allocate. A store misses on a block that is not cached. What is the typical action?",
+      "options": [
+        "Send the store to the next memory level without allocating the block in this cache.",
+        "Fetch the whole block and allocate it in the cache.",
+        "Drop the store permanently.",
+        "Invalidate every line in the cache"
+      ],
+      "answer": [
+        "Send the store to the next memory level without allocating the block in this cache."
+      ],
+      "explanation": "No-write-allocate bypasses allocation on a store miss, usually sending the write to lower memory. This policy is independent of whether hits use write-through or write-back."
+    },
+    {
+      "id": "coa-mem-064",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A dirty 128-byte cache line is written back over a 32-bit bus. Each transfer takes 2 cycles and setup takes 5 cycles. What is the total eviction penalty in cycles?",
+      "answer": "69",
+      "explanation": "The line contains 128/4=32 bus words. Transfer cost is 32×2=64 cycles; adding 5 setup cycles gives 69."
+    },
+    {
+      "id": "coa-mem-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor has base CPI 1.2. It executes 1.5 memory references per instruction, the miss rate per reference is 0.02, and the miss penalty is 30 cycles. What is the effective CPI?",
+      "options": [
+        "2.1",
+        "1.8",
+        "2.2",
+        "1.5"
+      ],
+      "answer": [
+        "2.1"
+      ],
+      "explanation": "Misses per instruction=1.5×0.02=0.03. Stall cycles/instruction=0.03×30=0.9. Effective CPI=1.2+0.9=2.1."
+    },
+    {
+      "id": "coa-mem-066",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache uses 7 block-offset bits and 9 set-index bits in a 40-bit address. How many tag bits remain?",
+      "answer": "24",
+      "explanation": "The tag occupies the address bits left after offset and set index: 40-7-9=24 tag bits."
+    },
+    {
+      "id": "coa-mem-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a fixed data capacity and block size, increasing associativity can have which effects?",
+      "options": [
+        "Reduce the number of sets.",
+        "Reduce some conflict misses by allowing more placement choices.",
+        "Require selecting among more candidate ways on a hit.",
+        "Guarantee a lower AMAT for every program."
+      ],
+      "answer": [
+        "Reduce the number of sets.",
+        "Reduce some conflict misses by allowing more placement choices.",
+        "Require selecting among more candidate ways on a hit."
+      ],
+      "explanation": "At fixed capacity and block size, more ways means fewer sets and more choices within a set. More tag comparisons or selection may be needed; the tradeoff does not guarantee lower AMAT for every workload."
+    },
+    {
+      "id": "coa-mem-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache has a write-back policy. A store hits a clean line and modifies one byte. What metadata change is typically required?",
+      "options": [
+        "Set the line's dirty bit",
+        "Clear its valid bit",
+        "Replace its tag with the byte value",
+        "Invalidate every other set"
+      ],
+      "answer": [
+        "Set the line's dirty bit"
+      ],
+      "explanation": "After a write-back store changes cached data, the line differs from lower memory. Marking it dirty ensures it is written back if evicted."
+    },
+    {
+      "id": "coa-mem-069",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "System A has AMAT 4 ns. System B has AMAT 3.2 ns. By what percentage is B's AMAT lower than A's?",
+      "answer": "20",
+      "explanation": "The reduction is (4-3.2)/4×100%=0.8/4×100%=20%."
+    },
+    {
+      "id": "coa-mem-070",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hardware prefetcher brings the next sequential cache block before the CPU requests it. Which outcomes are possible?",
+      "options": [
+        "A later demand access may become a hit.",
+        "Memory traffic can increase even if the prefetched block is never used.",
+        "Prefetching can evict useful lines and cause pollution.",
+        "Prefetching guarantees that all future accesses hit."
+      ],
+      "answer": [
+        "A later demand access may become a hit.",
+        "Memory traffic can increase even if the prefetched block is never used.",
+        "Prefetching can evict useful lines and cause pollution."
+      ],
+      "explanation": "A correct prefetch can hide a future miss, but unused prefetches consume bandwidth and cache capacity. It cannot predict every access perfectly or guarantee all hits."
+    },
+    {
+      "id": "coa-mem-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 3-way set uses true LRU. Its recency order from least to most recent is A, B, C. Accessing B hits. What is the new order from least to most recent?",
+      "options": [
+        "A, C, B",
+        "B, A, C",
+        "C, A, B",
+        "A, B, C"
+      ],
+      "answer": [
+        "A, C, B"
+      ],
+      "explanation": "The hit makes B most recently used. A remains least recent, and C is between them, producing A, C, B."
+    },
+    {
+      "id": "coa-mem-072",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A fully associative 3-line cache uses LRU and starts empty. Access sequence: A, B, C, A, D, C. How many hits occur?",
+      "answer": "2",
+      "explanation": "A, B, and C miss. A hits and makes B least recent. D misses and evicts B. C then hits. There are two hits: the second A and the final C."
+    },
+    {
+      "id": "coa-mem-073",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DRAM interface multiplexes row and column addresses and uses RAS/CAS-style phases. Which statements are correct?",
+      "options": [
+        "The same address pins can carry row and column portions at different times.",
+        "A row activation can make multiple columns in that row accessible.",
+        "Multiplexing reduces the number of physical address pins compared with presenting all address bits simultaneously.",
+        "The data width of the chip is encoded by the row address."
+      ],
+      "answer": [
+        "The same address pins can carry row and column portions at different times.",
+        "A row activation can make multiple columns in that row accessible.",
+        "Multiplexing reduces the number of physical address pins compared with presenting all address bits simultaneously."
+      ],
+      "explanation": "DRAM commonly transmits row and column address portions in separate phases over shared pins. The chip's data width is a separate organization parameter."
+    },
+    {
+      "id": "coa-mem-074",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which memory technology is commonly used to build CPU caches because it offers low access latency without periodic refresh?",
+      "options": [
+        "SRAM",
+        "DRAM",
+        "Magnetic disk",
+        "Optical storage"
+      ],
+      "answer": [
+        "SRAM"
+      ],
+      "explanation": "SRAM stores state in bistable circuits and does not require periodic refresh, making it suitable for fast caches. DRAM is denser and used for main memory but requires refresh."
+    },
+    {
+      "id": "coa-mem-075",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A memory has 24 address bits and is byte-addressable. What is its capacity in MiB?",
+      "answer": "16",
+      "explanation": "There are 2^24 bytes. Since 1 MiB=2^20 bytes, capacity is 2^24/2^20=16 MiB."
+    },
+    {
+      "id": "coa-mem-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache has 64 sets and 2 ways per set. A block number is 0x2D7. Using block-number modulo set-count indexing, which set does it map to?",
+      "options": [
+        "23",
+        "39",
+        "55",
+        "7"
+      ],
+      "answer": [
+        "23"
+      ],
+      "explanation": "64 sets means the index is the low 6 bits of the block number, or 0x2D7 mod 64. Since 0x2C0 is divisible by 64, the remainder is 0x17=23."
+    },
+    {
+      "id": "coa-mem-077",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache's hit time is 1.5 ns and miss rate is 0.08. A design change reduces miss rate to 0.05 but increases hit time to 1.8 ns. The miss penalty remains 20 ns. By how many nanoseconds does AMAT change?",
+      "answer": "-0.3",
+      "explanation": "Old AMAT=1.5+0.08×20=3.1 ns. New AMAT=1.8+0.05×20=2.8 ns. The change is 2.8-3.1=-0.3 ns, an improvement."
+    },
+    {
+      "id": "coa-mem-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "At fixed cache capacity, a larger block size can reduce the number of cache lines. Which workloads are most likely to benefit from the larger block size?",
+      "options": [
+        "A sequential scan that uses many bytes in each fetched block",
+        "A workload with strong spatial locality",
+        "A workload that touches one byte per widely separated block and suffers pollution",
+        "A workload where nearby addresses are frequently accessed"
+      ],
+      "answer": [
+        "A sequential scan that uses many bytes in each fetched block",
+        "A workload with strong spatial locality",
+        "A workload where nearby addresses are frequently accessed"
+      ],
+      "explanation": "Sequential and nearby accesses can use the extra bytes fetched in a larger block. Sparse unrelated accesses may waste bandwidth and displace useful lines."
+    },
+    {
+      "id": "coa-mem-079",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 16-KiB direct-mapped cache has 32-byte blocks. Each line stores a 24-bit tag, valid bit, and dirty bit. How many total metadata bits are present?",
+      "answer": "13312",
+      "explanation": "There are 16,384/32=512 lines. Each has 24+1+1=26 metadata bits. Total metadata=512×26=13,312 bits."
+    },
+    {
+      "id": "coa-mem-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 2-way cache set initially contains tags A and B. Access sequence within this set is A, C, B using LRU. Which statement is true about the final access to B?",
+      "options": [
+        "It misses because B was evicted by C.",
+        "It hits because both A and B are retained.",
+        "It misses because the cache is 2-way.",
+        "It is independent of replacement policy."
+      ],
+      "answer": [
+        "It misses because B was evicted by C."
+      ],
+      "explanation": "Initially A is least recent and B most recent. Access A makes B least recent. The miss for C evicts B; the subsequent B access therefore misses."
+    },
+    {
+      "id": "coa-mem-081",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 5-bank memory uses low-order interleaving. A burst begins at word address 18 and transfers 12 consecutive words. How many words are assigned to bank 3?",
+      "answer": "3",
+      "explanation": "Bank is address modulo 5. The burst covers addresses 18 through 29. Bank 3 receives addresses 18, 23, and 28, for three words."
+    },
+    {
+      "id": "coa-mem-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache write buffer is full when the processor issues a store miss. Which responses may be needed?",
+      "options": [
+        "Stall the processor until an entry becomes available.",
+        "Apply backpressure to the store path.",
+        "Drop the store and continue without preserving it.",
+        "Use another buffer or queue if the design provides one."
+      ],
+      "answer": [
+        "Stall the processor until an entry becomes available.",
+        "Apply backpressure to the store path.",
+        "Use another buffer or queue if the design provides one."
+      ],
+      "explanation": "A full finite buffer cannot accept another pending write unless the design supplies another queue. The processor must wait or receive backpressure; silently losing a store is incorrect."
+    },
+    {
+      "id": "coa-mem-083",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A write-back cache line is clean. A read hit occurs. What is the expected effect on its dirty bit?",
+      "options": [
+        "It remains clear.",
+        "It must become set because the line was read.",
+        "It becomes the valid bit.",
+        "It is copied into the tag field."
+      ],
+      "answer": [
+        "It remains clear."
+      ],
+      "explanation": "A read does not modify the cached data, so a clean line remains clean. The dirty bit indicates writes that have not yet been propagated to lower memory."
+    },
+    {
+      "id": "coa-mem-084",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache hierarchy uses an L1 local miss rate of 0.06 and an L2 local miss rate of 0.15. Out of 1,000,000 CPU memory references, how many reach main memory on average?",
+      "answer": "9000",
+      "explanation": "Global miss rate=0.06×0.15=0.009. Thus 1,000,000×0.009=9,000 references reach main memory."
+    },
+    {
+      "id": "coa-mem-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A single-ported memory takes 4 cycles per access. A four-bank interleaved memory receives sequential word requests, one per cycle, and each bank can accept a request every 4 cycles. After startup, what throughput is achievable under ideal conflict-free scheduling?",
+      "options": [
+        "One word per cycle",
+        "One word every 4 cycles",
+        "Four words per cycle",
+        "One word every 16 cycles"
+      ],
+      "answer": [
+        "One word per cycle"
+      ],
+      "explanation": "Consecutive words rotate across four banks. Each bank has 4 cycles to complete before its next request, allowing the aggregate memory to accept one word per cycle after the pipeline fills."
+    },
+    {
+      "id": "coa-mem-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache uses write-through and no-write-allocate. Which behavior is consistent with those policies?",
+      "options": [
+        "A store hit updates the cache and is propagated to lower memory.",
+        "A store miss is sent to lower memory without allocating the block in this cache.",
+        "Every store miss must fetch the entire block first.",
+        "A dirty bit is unnecessary for tracking delayed write-back data because writes are propagated immediately."
+      ],
+      "answer": [
+        "A store hit updates the cache and is propagated to lower memory.",
+        "A store miss is sent to lower memory without allocating the block in this cache.",
+        "A dirty bit is unnecessary for tracking delayed write-back data because writes are propagated immediately."
+      ],
+      "explanation": "Write-through propagates stores, and no-write-allocate bypasses a missed block. Since updates are not deferred for dirty-line writeback, a dirty bit is not needed for that purpose."
+    },
+    {
+      "id": "coa-mem-087",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program has base CPI 1.0 and executes 0.5 data references per instruction. Data-cache miss rate is 4% per data reference, with 25-cycle penalty. Instruction misses contribute 0.2 cycles per instruction. What is total CPI?",
+      "answer": "1.7",
+      "explanation": "Data misses per instruction=0.5×0.04=0.02; data stall cost=0.02×25=0.5 CPI. Total CPI=1.0+0.5+0.2=1.7."
+    },
+    {
+      "id": "coa-mem-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a physically tagged cache, which steps are part of a typical lookup after a load request?",
+      "options": [
+        "Translate the virtual address to a physical address when virtual memory is used.",
+        "Use index bits to select a set or line.",
+        "Compare the requested tag with valid stored tag(s).",
+        "Treat a matching tag as a hit only if the corresponding valid bit is set."
+      ],
+      "answer": [
+        "Translate the virtual address to a physical address when virtual memory is used.",
+        "Use index bits to select a set or line.",
+        "Compare the requested tag with valid stored tag(s).",
+        "Treat a matching tag as a hit only if the corresponding valid bit is set."
+      ],
+      "explanation": "A physical tag comparison uses translated address bits. The index selects candidate line(s), and a valid matching tag is required for a hit."
+    },
+    {
+      "id": "coa-mem-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache has 8-byte blocks and a 32-bit byte address. The address's low 3 bits are 101₂. Which byte within the block is requested?",
+      "options": [
+        "Byte 5",
+        "Byte 3",
+        "Byte 8",
+        "Byte 101"
+      ],
+      "answer": [
+        "Byte 5"
+      ],
+      "explanation": "The low 3 bits are the block offset. Binary 101₂ equals decimal 5, selecting byte position 5 within the 8-byte block."
+    },
+    {
+      "id": "coa-mem-090",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A memory is organized as 256K × 32 bits. What is its capacity in MiB?",
+      "answer": "1",
+      "explanation": "256K×32 bits=256×1024×4 bytes=1,048,576 bytes=1 MiB."
+    },
+    {
+      "id": "coa-mem-091",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A four-way cache has one tag comparator per way and a multiplexer selecting the hit data. Which statements are correct?",
+      "options": [
+        "The four tags for the selected set can be compared in parallel.",
+        "The hit-way information can control the data selection mux.",
+        "The associativity increases the number of candidate tags checked per access.",
+        "All four ways' data must be returned as the architectural load result."
+      ],
+      "answer": [
+        "The four tags for the selected set can be compared in parallel.",
+        "The hit-way information can control the data selection mux.",
+        "The associativity increases the number of candidate tags checked per access."
+      ],
+      "explanation": "A set-associative lookup checks candidate ways and selects data from the matching valid way. Only that way's data supplies the requested load value."
+    },
+    {
+      "id": "coa-mem-092",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A direct-mapped cache contains 64 lines and has 8-byte blocks. A 32-bit byte address has 6 index bits and 3 offset bits. How many tag bits are used?",
+      "answer": "23",
+      "explanation": "The tag uses the remaining address bits after line selection and byte selection: 32-6-3=23 bits."
+    },
+    {
+      "id": "coa-mem-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 2-way set-associative cache has 4 sets. Block numbers 1, 5, and 9 all map to the same set using modulo indexing. What is the minimum number of misses when accessing 1,5,9 once each from an empty cache?",
+      "options": [
+        "3",
+        "2",
+        "1",
+        "0"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "The cache starts empty, so the first access to each distinct block is compulsory. There are three distinct blocks, resulting in three misses regardless of which one is evicted."
+    },
+    {
+      "id": "coa-mem-094",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An L1 cache takes 1 ns and misses 10% of the time. L2 takes 8 ns on an L1 miss and itself misses 20% of those accesses, with a 30-ns main-memory penalty. What is overall AMAT?",
+      "answer": "2.4",
+      "explanation": "L2 average service time=8+0.2×30=14 ns. Overall AMAT=1+0.1×14=2.4 ns."
+    },
+    {
+      "id": "coa-mem-095",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor uses a nonblocking cache with miss status holding registers (MSHRs). Which capabilities can MSHRs support?",
+      "options": [
+        "Track outstanding cache misses.",
+        "Allow independent hits or misses to proceed while earlier misses wait, subject to resources.",
+        "Guarantee that every miss returns in one cycle.",
+        "Merge multiple requests to the same outstanding cache block in some designs."
+      ],
+      "answer": [
+        "Track outstanding cache misses.",
+        "Allow independent hits or misses to proceed while earlier misses wait, subject to resources.",
+        "Merge multiple requests to the same outstanding cache block in some designs."
+      ],
+      "explanation": "MSHRs record outstanding misses and their destinations, enabling memory-level parallelism and sometimes merging same-block requests. They do not eliminate memory latency."
+    },
+    {
+      "id": "coa-mem-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-KiB cache has 32-byte blocks and is direct mapped. How many valid bits are required, one per cache line?",
+      "options": [
+        "128",
+        "32",
+        "256",
+        "4096"
+      ],
+      "answer": [
+        "128"
+      ],
+      "explanation": "The number of lines is 4096/32=128. With one valid bit per line, 128 valid bits are required."
+    },
+    {
+      "id": "coa-mem-097",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A memory bus has a peak bandwidth of 8 GB/s (1 GB = 10^9 bytes). How many bytes can it transfer in 2 microseconds at that rate?",
+      "answer": "16000",
+      "explanation": "Transferred bytes=8×10^9 bytes/s × 2×10^-6 s=16×10^3=16,000 bytes."
+    },
+    {
+      "id": "coa-mem-098",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which mechanisms can reduce observed memory stall time without changing the nominal main-memory latency?",
+      "options": [
+        "A cache hit avoids a main-memory access.",
+        "Memory-level parallelism overlaps independent misses.",
+        "A prefetch can bring data before its demand access.",
+        "Increasing the miss penalty"
+      ],
+      "answer": [
+        "A cache hit avoids a main-memory access.",
+        "Memory-level parallelism overlaps independent misses.",
+        "A prefetch can bring data before its demand access."
+      ],
+      "explanation": "Caches, overlapping requests, and timely prefetching can hide or avoid latency. Increasing the miss penalty increases, rather than reduces, stall time."
+    },
+    {
+      "id": "coa-mem-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cache's hit rate rises from 90% to 94%, while hit time remains 2 ns and miss penalty is 50 ns. By how much does AMAT improve?",
+      "options": [
+        "2 ns",
+        "4 ns",
+        "0.2 ns",
+        "50 ns"
+      ],
+      "answer": [
+        "2 ns"
+      ],
+      "explanation": "Old AMAT=2+0.10×50=7 ns. New AMAT=2+0.06×50=5 ns, so AMAT improves by 2 ns."
+    },
+    {
+      "id": "coa-mem-100",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 48-bit address is used with a 256-KiB direct-mapped cache and 128-byte blocks. How many tag bits remain after index and block-offset fields?",
+      "answer": "30",
+      "explanation": "The cache has 262,144/128=2048 lines, requiring 11 index bits. The block offset is 7 bits. Tag width=48-11-7=30 bits."
+    }
+  ]
+}

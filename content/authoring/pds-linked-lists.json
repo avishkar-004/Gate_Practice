@@ -1,0 +1,289 @@
+{
+  "topicIndex": 3,
+  "questions": [
+    {
+      "id": "pds-ll-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A singly linked list contains keys 1,2,...,n in this order. Which operation can delete the node containing key n in O(1) time if only a pointer to that node is given?",
+      "options": [
+        "None in general",
+        "Yes, by setting its next to null",
+        "Yes, by copying its predecessor's next value",
+        "Yes, by updating the head"
+      ],
+      "answer": [
+        "None in general"
+      ],
+      "explanation": "Without the predecessor pointer, the previous link cannot be changed; copying the successor's data fails for the tail. The head pointer also does not identify the predecessor."
+    },
+    {
+      "id": "pds-ll-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pointer p addresses a non-tail node in a singly linked list. Which method deletes p in O(1) time when node payloads may be copied?",
+      "options": [
+        "Copy successor payload into p and bypass successor",
+        "Search from head for predecessor",
+        "Set p to null",
+        "Swap p with head"
+      ],
+      "answer": [
+        "Copy successor payload into p and bypass successor"
+      ],
+      "explanation": "Copying the successor's payload into p and linking p to the successor's successor removes the logical element in constant time, provided p is not the tail and payload copying is allowed."
+    },
+    {
+      "id": "pds-ll-003",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A singly linked list has n nodes. Starting only at head, how many next-pointer traversals are needed to reach the node at zero-based position k, where 0<=k<n?",
+      "answer": "k",
+      "explanation": "The head is at position zero, so exactly k links are followed to reach position k."
+    },
+    {
+      "id": "pds-ll-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A circular singly linked list has a tail pointer t and n>=1 nodes. Which pointer identifies its first node?",
+      "options": [
+        "t.next",
+        "t",
+        "t.next.next always",
+        "No node can be identified"
+      ],
+      "answer": [
+        "t.next"
+      ],
+      "explanation": "In a circular list, the tail's next link points to the head; this provides head access in constant time."
+    },
+    {
+      "id": "pds-ll-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A singly linked list supports insertion at the front and deletion at the front. What is the worst-case time for each?",
+      "options": [
+        "O(1) and O(1)",
+        "O(n) and O(1)",
+        "O(1) and O(n)",
+        "O(n) and O(n)"
+      ],
+      "answer": [
+        "O(1) and O(1)"
+      ],
+      "explanation": "Insertion changes the new node's next and the head pointer. Deletion advances head to head.next. Both take constant pointer operations."
+    },
+    {
+      "id": "pds-ll-006",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A singly linked list is unsorted and has no tail pointer. Which operations have worst-case O(1) time?",
+      "options": [
+        "Insert a node at the head",
+        "Delete the head node",
+        "Append a node at the tail",
+        "Find whether a given key occurs"
+      ],
+      "answer": [
+        null
+      ],
+      "explanation": "1,2"
+    },
+    {
+      "id": "pds-ll-007",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A linked list has n nodes. A complete traversal follows the next pointer of every node except the last. How many next-pointer traversals occur?",
+      "answer": "n-1",
+      "explanation": "Each of the first n-1 nodes links to its successor; the last node has no successor link to follow."
+    },
+    {
+      "id": "pds-ll-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two nonempty singly linked lists are concatenated in O(1) time when both head and tail pointers are maintained. Which update is required?",
+      "options": [
+        "First tail.next becomes second head, then first tail becomes second tail",
+        "Second tail.next becomes first head",
+        "First head becomes second tail",
+        "No update is possible in O(1)"
+      ],
+      "answer": [
+        "First tail.next becomes second head, then first tail becomes second tail"
+      ],
+      "explanation": "The first tail is linked to the second head, and the resulting tail is the second list's tail. Both list endpoints are available directly."
+    },
+    {
+      "id": "pds-ll-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A singly linked list is represented only by a head pointer. What is the worst-case time to append one node?",
+      "options": [
+        "O(n)",
+        "O(1)",
+        "O(log n)",
+        "O(n squared)"
+      ],
+      "answer": [
+        "O(n)"
+      ],
+      "explanation": "The implementation must traverse to the last node to set its next field. Without a tail pointer this scan is linear."
+    },
+    {
+      "id": "pds-ll-010",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a doubly linked list with head and tail pointers, which operations take O(1) time?",
+      "options": [
+        "Insert before a node when its pointer is given",
+        "Delete a node when its pointer is given",
+        "Find the predecessor of a node when its pointer is given",
+        "Find a key by value in an unsorted list"
+      ],
+      "answer": [
+        null,
+        null,
+        null
+      ],
+      "explanation": "1,2,3"
+    },
+    {
+      "id": "pds-ll-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A doubly linked list node x is deleted from a nonempty list. Which pair of neighbor updates is generally required?",
+      "options": [
+        "x.prev.next=x.next and x.next.prev=x.prev",
+        "x.prev=x.next and x.next=x.prev",
+        "head=x.prev and tail=x.next",
+        "Only x.next.prev=x.prev"
+      ],
+      "answer": [
+        "x.prev.next=x.next and x.next.prev=x.prev"
+      ],
+      "explanation": "For an interior node, reconnecting the predecessor to the successor and the successor to the predecessor removes x. Boundary cases update head or tail instead."
+    },
+    {
+      "id": "pds-ll-012",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circular singly linked list contains 7 nodes. Starting at head, how many next-pointer traversals return to head for the first time?",
+      "answer": "7",
+      "explanation": "A cycle through all seven distinct nodes returns to its starting node after exactly seven link traversals."
+    },
+    {
+      "id": "pds-ll-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Floyd's tortoise-and-hare algorithm starts both pointers at the head of a list with a cycle of length lambda and a noncyclic prefix of length mu. What is its worst-case time order?",
+      "options": [
+        "O(mu+lambda)",
+        "O(mu*lambda)",
+        "O(lambda squared)",
+        "O(1)"
+      ],
+      "answer": [
+        "O(mu+lambda)"
+      ],
+      "explanation": "The pointers advance one and two links per iteration. They meet within O(mu+lambda) steps, requiring linear time in the prefix plus cycle length."
+    },
+    {
+      "id": "pds-ll-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Floyd's cycle-detection algorithm uses two pointers advancing by one and two links. Which statement is correct for an acyclic list of n nodes?",
+      "options": [
+        "It terminates after O(n) steps without a meeting",
+        "It always meets at the tail",
+        "It requires O(n) extra memory",
+        "It may loop forever"
+      ],
+      "answer": [
+        "It terminates after O(n) steps without a meeting"
+      ],
+      "explanation": "On an acyclic list the fast pointer eventually reaches null (or its next is null), so the algorithm terminates after linear traversal with constant extra space."
+    },
+    {
+      "id": "pds-ll-015",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A singly linked list has a cycle consisting of 5 nodes. Once Floyd's slow and fast pointers are both within the cycle, what is the maximum number of iterations until they meet?",
+      "answer": "5",
+      "explanation": "Their relative speed is one node per iteration modulo the cycle length. Any initial separation is removed in at most lambda iterations, here five."
+    },
+    {
+      "id": "pds-ll-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A list is reversed iteratively using prev, cur, and next pointers. After processing the first k nodes of an n-node list, which invariant holds?",
+      "options": [
+        "prev heads the reversed prefix and cur heads the untouched suffix",
+        "prev is always null and cur heads the reversed prefix",
+        "The original head still heads the whole list",
+        "The tail points to the original head"
+      ],
+      "answer": [
+        "prev heads the reversed prefix and cur heads the untouched suffix"
+      ],
+      "explanation": "Each processed link is reversed toward prev, so prev is the head of the reversed prefix and cur begins the remaining original-order suffix."
+    },
+    {
+      "id": "pds-ll-017",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A singly linked list of 9 nodes is reversed iteratively. How many next pointers of existing nodes must be redirected?",
+      "answer": "8",
+      "explanation": "Every original edge between consecutive nodes is reversed; a list of nine nodes has eight such edges."
+    },
+    {
+      "id": "pds-ll-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "To find the middle node of a singly linked list in one pass using slow and fast pointers, how should they advance?",
+      "options": [
+        "Slow by one and fast by two links",
+        "Both by one link",
+        "Slow by two and fast by one link",
+        "Fast by three and slow by two links"
+      ],
+      "answer": [
+        "Slow by one and fast by two links"
+      ],
+      "explanation": "The fast pointer traverses twice as quickly. When it reaches the end, slow has traversed approximately half the list."
+    },
+    {
+      "id": "pds-ll-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A list has 8 nodes. With slow initialized at head and fast at head, and the loop condition fast!=null && fast.next!=null followed by slow=slow.next and fast=fast.next.next, where does slow stop?",
+      "options": [
+        "At zero-based index 4",
+        "At zero-based index 3",
+        "At zero-based index 7",
+        "At null"
+      ],
+      "answer": [
+        "At zero-based index 4"
+      ],
+      "explanation": "For an even-length list under this initialization and loop, slow advances four times and stops at index 4, the second of the two central nodes."
+    },
+    {
+      "id": "pds-ll-020",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about singly linked-list traversal are true?",
+      "options": [
+        "Accessing position k from head takes O(k) time",
+        "Finding the predecessor of a given node pointer may require O(n) time",
+        "A tail pointer alone makes arbitrary indexed access O(1)",
+        "Searching an unsorted list is O(n) in the worst case"
+      ],
+      "answer": [
+        "Accessing position k from head takes O(k) time",
+        "Finding the predecessor of a given node pointer may require O(n) time",
+        "Searching an unsorted list is O(n) in the worst case"
+      ],
+      "explanation": "Links provide sequential access, so indexed access and predecessor search may scan linearly. A tail pointer only helps at the end, and unsorted key search is linear."
+    }
+  ]
+}

@@ -1,0 +1,1383 @@
+{
+  "topicIndex": 1,
+  "questions": [
+    {
+      "id": "coa-alu-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU adds signed two's-complement operands 100 and 60. Which pair gives the stored signed result and the signed-overflow flag?",
+      "options": [
+        "-96, overflow=1",
+        "160, overflow=0",
+        "-96, overflow=0",
+        "96, overflow=1"
+      ],
+      "answer": [
+        "-96, overflow=1"
+      ],
+      "explanation": "The mathematical sum is 160, outside the 8-bit signed range [-128,127]. The bit sum is 0xA0, which represents -96; signed overflow is set."
+    },
+    {
+      "id": "coa-alu-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An 8-bit unsigned ALU computes 255+1. What is the stored unsigned result?",
+      "answer": "0",
+      "explanation": "The 9-bit sum is 256 (1 0000 0000₂). The low 8 bits are 0000 0000₂, so the stored result is 0; the separate carry-out is 1."
+    },
+    {
+      "id": "coa-alu-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For 8-bit two's-complement addition of 0x7F and 0x01, which statements are correct?",
+      "options": [
+        "The stored bit pattern is 0x80.",
+        "The mathematical signed sum is +128.",
+        "Signed overflow occurs.",
+        "Unsigned carry-out is 1."
+      ],
+      "answer": [
+        "The stored bit pattern is 0x80.",
+        "The mathematical signed sum is +128.",
+        "Signed overflow occurs."
+      ],
+      "explanation": "0x7F+0x01=0x80 with no carry out of bit 7. The operands are positive but the result's sign bit is 1, so signed overflow occurs; 0x80 represents -128 as signed 8-bit."
+    },
+    {
+      "id": "coa-alu-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An 8-bit bitwise ALU computes 0xB6 AND 0x5A. What is the hexadecimal result?",
+      "options": [
+        "0x12",
+        "0xFE",
+        "0xAC",
+        "0x4C"
+      ],
+      "answer": [
+        "0x12"
+      ],
+      "explanation": "0xB6=10110110₂ and 0x5A=01011010₂. Bitwise AND gives 00010010₂=0x12."
+    },
+    {
+      "id": "coa-alu-005",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU performs an arithmetic right shift by 2 on the two's-complement bit pattern for -20. Give the resulting signed decimal value.",
+      "answer": "-5",
+      "explanation": "-20 is 11101100₂ in 8-bit two's complement. Arithmetic right shift replicates the sign bit: 11111011₂, which represents -5."
+    },
+    {
+      "id": "coa-alu-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An 8-bit logical right shift is applied three times to 0xD2. What is the resulting hexadecimal bit pattern?",
+      "options": [
+        "0x1A",
+        "0xFA",
+        "0xA4",
+        "0x0D"
+      ],
+      "answer": [
+        "0x1A"
+      ],
+      "explanation": "Logical right shift inserts zeros at the left. 0xD2 >> 3 = floor(210/8)=26=0x1A."
+    },
+    {
+      "id": "coa-alu-007",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU computes 0x35-0x6A using two's-complement addition. What is the resulting 8-bit hexadecimal pattern?",
+      "answer": "0xCB",
+      "explanation": "Two's-complement negation of 0x6A is 0x96. Then 0x35+0x96=0xCB. The pattern is the 8-bit result of the subtraction."
+    },
+    {
+      "id": "coa-alu-008",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements characterize signed overflow in two's-complement addition?",
+      "options": [
+        "Adding operands of opposite signs cannot produce signed overflow.",
+        "Adding two positive operands can overflow to a negative result.",
+        "A carry-out of the most significant bit is necessary and sufficient for signed overflow.",
+        "Overflow can be detected when the carry into the sign bit differs from the carry out."
+      ],
+      "answer": [
+        "Adding operands of opposite signs cannot produce signed overflow.",
+        "Adding two positive operands can overflow to a negative result.",
+        "Overflow can be detected when the carry into the sign bit differs from the carry out."
+      ],
+      "explanation": "Signed overflow occurs when equal-sign operands produce a result with the opposite sign. Equivalently, carry into the sign bit differs from carry out. Carry-out alone indicates unsigned overflow and is not equivalent."
+    },
+    {
+      "id": "coa-alu-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A signed 8-bit ALU negates 0x80 using two's-complement negation. What happens?",
+      "options": [
+        "The result remains 0x80 and signed overflow is set.",
+        "The result is 0x00 with no overflow.",
+        "The result is 0x7F and carry is set.",
+        "The result is 0xFF and signed overflow is clear."
+      ],
+      "answer": [
+        "The result remains 0x80 and signed overflow is set."
+      ],
+      "explanation": "0x80 represents -128, the minimum signed 8-bit value. Its positive counterpart +128 is not representable. Negation wraps to 0x80 and overflows."
+    },
+    {
+      "id": "coa-alu-010",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What 8-bit two's-complement bit pattern represents -37? Give the answer in hexadecimal.",
+      "answer": "0xDB",
+      "explanation": "37 is 0x25. Invert the bits to get 0xDA and add 1, yielding 0xDB."
+    },
+    {
+      "id": "coa-alu-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-bit signed two's-complement ALU adds 7 and 3. Which pair gives the bit-pattern result and overflow status?",
+      "options": [
+        "1010₂, overflow=1",
+        "1010₂, overflow=0",
+        "0110₂, overflow=1",
+        "1111₂, overflow=0"
+      ],
+      "answer": [
+        "1010₂, overflow=1"
+      ],
+      "explanation": "The 4-bit result is 1010₂, which represents -6. The true sum +10 is outside [-8,7], so signed overflow occurs."
+    },
+    {
+      "id": "coa-alu-012",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit logical left shift is applied to 0xB3 by 2 positions; bits shifted out are discarded and zeros enter at the right. Give the resulting hexadecimal pattern.",
+      "answer": "0xCC",
+      "explanation": "0xB3×4=0x2CC. Keeping only the low 8 bits gives 0xCC."
+    },
+    {
+      "id": "coa-alu-013",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A full adder receives input bits A, B, and carry-in C_in. Which Boolean expressions give its outputs?",
+      "options": [
+        "Sum = A XOR B XOR C_in",
+        "Carry-out = AB + AC_in + BC_in",
+        "Carry-out = A XOR B XOR C_in",
+        "Sum = AB + AC_in + BC_in"
+      ],
+      "answer": [
+        "Sum = A XOR B XOR C_in",
+        "Carry-out = AB + AC_in + BC_in"
+      ],
+      "explanation": "The sum is the parity of the three input bits. Carry-out is 1 when at least two inputs are 1, represented by AB+AC_in+BC_in."
+    },
+    {
+      "id": "coa-alu-014",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A full adder has A=1, B=0, and carry-in=1. What is the decimal value of its carry-out bit?",
+      "answer": "1",
+      "explanation": "The total number of asserted input bits is 2, so the full adder produces sum 0 and carry-out 1."
+    },
+    {
+      "id": "coa-alu-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a carry-lookahead adder, a bit position has propagate P_i=A_i XOR B_i and generate G_i=A_i AND B_i. Which equation gives the carry into the next position?",
+      "options": [
+        "C_(i+1)=G_i OR (P_i AND C_i)",
+        "C_(i+1)=P_i XOR G_i",
+        "C_(i+1)=A_i OR B_i OR C_i",
+        "C_(i+1)=G_i AND (P_i OR C_i)"
+      ],
+      "answer": [
+        "C_(i+1)=G_i OR (P_i AND C_i)"
+      ],
+      "explanation": "A bit generates a carry when both operand bits are 1; otherwise it propagates an incoming carry when P_i=1. Thus C_(i+1)=G_i+P_iC_i."
+    },
+    {
+      "id": "coa-alu-016",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A ripple-carry adder has 32 bit positions. Each carry stage takes 2 gate delays, and the input carry is available at time 0. Under this simplified model, how many gate delays are needed for the most significant carry-out?",
+      "answer": "64",
+      "explanation": "The carry passes through 32 stages, each taking 2 gate delays, for 32×2=64 gate delays."
+    },
+    {
+      "id": "coa-alu-017",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An ALU must implement A-B using an adder that supports operand inversion and carry-in. Which configuration computes the two's-complement subtraction?",
+      "options": [
+        "Invert B and set carry-in to 1",
+        "Invert A and set carry-in to 0",
+        "Do not invert either operand and set carry-in to 1",
+        "Invert both operands and set carry-in to 0"
+      ],
+      "answer": [
+        "Invert B and set carry-in to 1"
+      ],
+      "explanation": "A-B = A + (~B) + 1. The ALU conditionally complements B and sets the initial carry-in to 1."
+    },
+    {
+      "id": "coa-alu-018",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For unsigned 8-bit subtraction A-B, which statements are correct?",
+      "options": [
+        "A result modulo 256 can be produced by adding A to the two's-complement of B.",
+        "If A<B, the mathematical result is negative even though the stored pattern is 8 bits.",
+        "The carry/borrow flag convention is identical in all processor architectures.",
+        "Unsigned underflow and signed overflow describe different conditions."
+      ],
+      "answer": [
+        "A result modulo 256 can be produced by adding A to the two's-complement of B.",
+        "If A<B, the mathematical result is negative even though the stored pattern is 8 bits.",
+        "Unsigned underflow and signed overflow describe different conditions."
+      ],
+      "explanation": "The low 8-bit result is A+~B+1 modulo 256. A<B indicates unsigned underflow; signed overflow depends on signed operand/result signs. Architectures differ in whether subtraction carry is defined as borrow or no-borrow."
+    },
+    {
+      "id": "coa-alu-019",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU computes unsigned 0x20-0x35 and stores the low 8 bits. What hexadecimal pattern is stored?",
+      "answer": "0xEB",
+      "explanation": "0x20-0x35=-0x15. Modulo 256, the result is 256-21=235=0xEB."
+    },
+    {
+      "id": "coa-alu-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An ALU's zero flag is defined as 1 exactly when its result bits are all zero. What is the zero flag after 8-bit addition 0x7F+0x01?",
+      "options": [
+        "0",
+        "1",
+        "It equals the carry-out",
+        "It equals the sign bit"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "The 8-bit result is 0x80, not zero, so Z=0. Carry-out and sign are separate flags."
+    },
+    {
+      "id": "coa-alu-021",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor compares two registers by internally computing A-B and updating condition flags without storing the result. Which facts are true?",
+      "options": [
+        "Equality can be detected from a zero result.",
+        "Unsigned less-than may be derived from carry/borrow information, according to the ISA convention.",
+        "Signed less-than can always be inferred from the sign bit alone, even if overflow occurs.",
+        "The destination register need not be written by a compare operation."
+      ],
+      "answer": [
+        "Equality can be detected from a zero result.",
+        "Unsigned less-than may be derived from carry/borrow information, according to the ISA convention.",
+        "The destination register need not be written by a compare operation."
+      ],
+      "explanation": "A compare commonly performs subtraction for flags only. Z indicates equality. Signed less-than generally combines sign and overflow (e.g., N XOR V), so the sign bit alone is insufficient when overflow is possible."
+    },
+    {
+      "id": "coa-alu-022",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 16-bit ALU sign-extends the 8-bit two's-complement input 0xD6. Give the resulting 16-bit hexadecimal pattern.",
+      "answer": "0xFFD6",
+      "explanation": "The 8-bit sign bit is 1, so sign extension fills the upper byte with 0xFF. The result is 0xFFD6."
+    },
+    {
+      "id": "coa-alu-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 16-bit ALU zero-extends the 8-bit input 0xD6 before addition. What unsigned value is added?",
+      "options": [
+        "214",
+        "-42",
+        "0xFFD6",
+        "-214"
+      ],
+      "answer": [
+        "214"
+      ],
+      "explanation": "Zero extension forms 0x00D6, which is 13×16+6=214. The signed interpretation -42 is not used in this operation."
+    },
+    {
+      "id": "coa-alu-024",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-bit ALU computes A XOR B for A=1011₂ and B=1101₂. What is the unsigned decimal value of the result?",
+      "answer": "6",
+      "explanation": "Bitwise XOR gives 0110₂, whose unsigned decimal value is 6."
+    },
+    {
+      "id": "coa-alu-025",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ALU supports AND, OR, XOR, and NOT. Which identities hold for every bit vector X of width n?",
+      "options": [
+        "X AND 0 = 0",
+        "X OR 0 = X",
+        "X XOR X = 0",
+        "NOT(NOT(X)) = 0"
+      ],
+      "answer": [
+        "X AND 0 = 0",
+        "X OR 0 = X",
+        "X XOR X = 0"
+      ],
+      "explanation": "AND with zero clears all bits, OR with zero preserves X, and XORing a bit with itself gives zero. Double negation returns X, not the zero vector."
+    },
+    {
+      "id": "coa-alu-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU receives A=0xFF and B=0x01. Interpreting the same bit patterns first as unsigned and then as signed two's-complement, which pair gives the mathematical sums?",
+      "options": [
+        "(256, 0)",
+        "(0, 256)",
+        "(256, 256)",
+        "(0, 0)"
+      ],
+      "answer": [
+        "(256, 0)"
+      ],
+      "explanation": "Unsigned, 255+1=256. Signed, 0xFF represents -1, so -1+1=0. The low 8-bit pattern is 0x00 in both cases, but the mathematical interpretations differ."
+    },
+    {
+      "id": "coa-alu-027",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU adds 0x7E, 0x01, and carry-in 1. Give the 8-bit hexadecimal result.",
+      "answer": "0x80",
+      "explanation": "0x7E+0x01+1=0x80. As signed values this is 126+1+1=128, which exceeds +127 and therefore overflows; the stored bit pattern remains 0x80."
+    },
+    {
+      "id": "coa-alu-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In 8-bit two's-complement arithmetic, compute 0x80-0x01. What are the stored result and signed-overflow status?",
+      "options": [
+        "0x7F, overflow=1",
+        "0x7F, overflow=0",
+        "0x81, overflow=1",
+        "0xFF, overflow=0"
+      ],
+      "answer": [
+        "0x7F, overflow=1"
+      ],
+      "explanation": "-128-1=-129, outside the signed range. The low 8-bit result is 0x7F, interpreted as +127, so signed overflow occurs."
+    },
+    {
+      "id": "coa-alu-029",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Consider signed 8-bit addition. Which operand/result sign patterns indicate overflow?",
+      "options": [
+        "Positive + positive → negative result",
+        "Negative + negative → nonnegative result",
+        "Positive + negative → positive result",
+        "Negative + positive → negative result"
+      ],
+      "answer": [
+        "Positive + positive → negative result",
+        "Negative + negative → nonnegative result"
+      ],
+      "explanation": "Overflow occurs when same-sign operands produce a result with the opposite sign. Opposite-sign operands cannot overflow signed addition, regardless of the result sign."
+    },
+    {
+      "id": "coa-alu-030",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An ALU has 11 mutually exclusive operation codes selected by a fixed-width control field. What is the minimum number of control bits required?",
+      "answer": "4",
+      "explanation": "Three bits encode only 8 choices, while four bits encode 16. Thus ceil(log2 11)=4 control bits are required."
+    },
+    {
+      "id": "coa-alu-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU logically shifts 0x81 left by one and discards the shifted-out bit. What are the result pattern and shifted-out bit?",
+      "options": [
+        "0x02, bit=1",
+        "0x03, bit=1",
+        "0x02, bit=0",
+        "0x81, bit=1"
+      ],
+      "answer": [
+        "0x02, bit=1"
+      ],
+      "explanation": "0x81 is 10000001₂. Shifting left gives 00000010₂ after truncation; the original most significant bit, 1, is shifted out."
+    },
+    {
+      "id": "coa-alu-032",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit rotate-right operation rotates 0x93 right by 3 positions, reinserting each shifted-out bit at the left. Give the resulting hexadecimal pattern.",
+      "answer": "0x72",
+      "explanation": "0x93 is 10010011₂. Rotating right by 3 yields 01110010₂=0x72; unlike a logical shift, the three low bits wrap around to the high end."
+    },
+    {
+      "id": "coa-alu-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A 32-bit ALU has a barrel shifter that must shift by any amount from 0 through 31 in one operation. How many control bits are needed to encode the shift amount?",
+      "options": [
+        "5",
+        "6",
+        "31",
+        "32"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "There are 32 possible shift amounts. Five bits encode 2^5=32 values, from 0 through 31."
+    },
+    {
+      "id": "coa-alu-034",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A combinational ALU is built from 32 one-bit slices for addition. Which statements are correct about a ripple-carry implementation?",
+      "options": [
+        "Each slice can receive a carry from the lower-order slice.",
+        "The most significant sum may depend on a carry that traverses many slices.",
+        "Its worst-case carry delay generally grows with the number of bit positions.",
+        "Adding more bits always reduces the longest carry path."
+      ],
+      "answer": [
+        "Each slice can receive a carry from the lower-order slice.",
+        "The most significant sum may depend on a carry that traverses many slices.",
+        "Its worst-case carry delay generally grows with the number of bit positions."
+      ],
+      "explanation": "Ripple carry passes sequentially between adjacent bit slices, so a long carry chain can delay the high-order result. Increasing width generally lengthens, not shortens, this path."
+    },
+    {
+      "id": "coa-alu-035",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU computes 0xFF+0x01. Using flags Z (zero), N (most significant result bit), and C (unsigned carry-out), give ZNC as a 3-bit string in that order.",
+      "answer": "101",
+      "explanation": "The 8-bit result is 0x00, so Z=1 and N=0. The 9-bit sum is 0x100, so carry-out C=1. Therefore ZNC=101."
+    },
+    {
+      "id": "coa-alu-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU subtracts 3 from 5 by computing 5 + (~3) + 1. Which carry-out is produced by the binary addition?",
+      "options": [
+        "1",
+        "0",
+        "The carry-out is undefined for subtraction",
+        "It equals the zero flag"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "~3 in 8 bits is 0xFC. The sum 0x05+0xFC+1=0x102, so the low byte is 0x02 and carry-out is 1. Some ISAs interpret this as no borrow."
+    },
+    {
+      "id": "coa-alu-037",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 16-bit two's-complement ALU adds 20000 and 12000. Give the stored signed decimal result.",
+      "answer": "32000",
+      "explanation": "The mathematical sum is 32000, which is within the 16-bit signed range [-32768,32767]. Therefore there is no overflow and the stored signed result is +32000."
+    },
+    {
+      "id": "coa-alu-038",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An 8-bit ALU computes (0xA5 OR 0x3C) XOR 0xFF. What is the result?",
+      "options": [
+        "0x42",
+        "0xBD",
+        "0xFF",
+        "0x00"
+      ],
+      "answer": [
+        "0x42"
+      ],
+      "explanation": "0xA5 OR 0x3C=0xBD. XOR with 0xFF complements all 8 bits, giving 0x42."
+    },
+    {
+      "id": "coa-alu-039",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A fixed-point ALU represents values in Q4.4 format: an 8-bit signed two's-complement integer scaled by 2^-4. It adds bit patterns 0x18 and 0x28. What real number does the result represent?",
+      "answer": "4",
+      "explanation": "The stored integers are 24 and 40; their sum is 64 (0x40). In Q4.4, divide by 16, giving 64/16=4.0, with no 8-bit overflow."
+    },
+    {
+      "id": "coa-alu-040",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A saturating signed 8-bit adder clamps results outside [-128,127], whereas a wrapping adder keeps only the low 8 bits. For 100+60, which statements are true?",
+      "options": [
+        "The wrapping bit pattern is 0xA0, representing -96.",
+        "The saturating result is +127.",
+        "The two modes produce the same signed result.",
+        "The mathematical sum exceeds the maximum signed value."
+      ],
+      "answer": [
+        "The wrapping bit pattern is 0xA0, representing -96.",
+        "The saturating result is +127.",
+        "The mathematical sum exceeds the maximum signed value."
+      ],
+      "explanation": "The true sum is 160. Wrapping modulo 256 yields 0xA0, which reads as -96 signed. Saturation clamps the out-of-range positive result to +127."
+    },
+    {
+      "id": "coa-alu-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A carry-lookahead adder has bit generate terms G0,G1,G2 and propagate terms P0,P1,P2. Which expression gives the carry into bit 3, C3, in terms of these signals and C0?",
+      "options": [
+        "G2 + P2G1 + P2P1G0 + P2P1P0C0",
+        "G0 + P0G1 + P0P1G2 + P0P1P2C0",
+        "G2P2 + G1P1 + G0P0 + C0",
+        "P2 + P1 + P0 + G2G1G0"
+      ],
+      "answer": [
+        "G2 + P2G1 + P2P1G0 + P2P1P0C0"
+      ],
+      "explanation": "Apply C_(i+1)=G_i+P_iC_i repeatedly: C3=G2+P2G1+P2P1G0+P2P1P0C0. The expanded expression computes the carry without waiting for each ripple stage in sequence."
+    },
+    {
+      "id": "coa-alu-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two 32-bit adders have identical logic per bit. Adder A ripples carry through all 32 positions; adder B uses a carry-lookahead network. What is the principal performance advantage expected from B?",
+      "options": [
+        "It reduces the dependence of carry computation on a 32-stage serial chain.",
+        "It eliminates all logic gates used for addition.",
+        "It produces a mathematically different sum.",
+        "It never needs a carry input."
+      ],
+      "answer": [
+        "It reduces the dependence of carry computation on a 32-stage serial chain."
+      ],
+      "explanation": "Carry-lookahead computes group carries using propagate/generate logic, reducing serial carry propagation depth at the cost of additional circuitry. The arithmetic result remains the same."
+    },
+    {
+      "id": "coa-alu-043",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For two's-complement subtraction A-B implemented as A+~B+1, which statements are correct?",
+      "options": [
+        "The B operand is complemented before addition.",
+        "The initial carry-in is 1.",
+        "The result bits equal A-B modulo 2^n.",
+        "A and B must both be unsigned for the identity to hold."
+      ],
+      "answer": [
+        "The B operand is complemented before addition.",
+        "The initial carry-in is 1.",
+        "The result bits equal A-B modulo 2^n."
+      ],
+      "explanation": "The identity A-B=A+~B+1 holds modulo 2^n for the bit patterns regardless of whether those patterns are later interpreted as signed or unsigned."
+    },
+    {
+      "id": "coa-alu-044",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Sign-extend the 5-bit two's-complement value 10110₂ to 8 bits. Give the 8-bit binary pattern.",
+      "answer": "11110110",
+      "explanation": "The 5-bit pattern 10110 has sign bit 1. Copying that sign bit into the three new high-order positions gives 11110110₂."
+    },
+    {
+      "id": "coa-alu-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-bit two's-complement value 0111 is negated by complementing all bits and adding 1. What is the result pattern and signed value?",
+      "options": [
+        "1001₂, -7",
+        "1000₂, -8",
+        "0111₂, +7",
+        "0001₂, +1"
+      ],
+      "answer": [
+        "1001₂, -7"
+      ],
+      "explanation": "Complement 0111 to 1000 and add 1: 1001. In 4-bit two's complement, 1001 represents -7."
+    },
+    {
+      "id": "coa-alu-046",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A one-bit ALU slice supports AND, OR, XOR, and addition. Which outputs can depend on a carry-in from the previous bit position?",
+      "options": [
+        "The sum bit of addition",
+        "The carry-out of addition",
+        "The AND result",
+        "The XOR result when it is a separate bitwise operation"
+      ],
+      "answer": [
+        "The sum bit of addition",
+        "The carry-out of addition"
+      ],
+      "explanation": "Addition uses carry-in in both the sum and carry equations. Independent bitwise AND and XOR operations do not use the adder carry chain."
+    },
+    {
+      "id": "coa-alu-047",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 12-bit two's-complement ALU adds 0x7FF and 0x001. What is the stored hexadecimal result?",
+      "answer": "0x800",
+      "explanation": "The bit addition is 0x7FF+0x001=0x800. As signed 12-bit values, +2047+1 exceeds the maximum +2047 and overflows to the pattern representing -2048."
+    },
+    {
+      "id": "coa-alu-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ALU computes A XOR B and then ANDs the result with mask 0x0F. If A=0xB3 and B=0x5A, what value is produced?",
+      "options": [
+        "0x09",
+        "0xE9",
+        "0x00",
+        "0xF9"
+      ],
+      "answer": [
+        "0x09"
+      ],
+      "explanation": "0xB3 XOR 0x5A=0xE9. Masking with 0x0F retains only the low nibble, giving 0x09."
+    },
+    {
+      "id": "coa-alu-049",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations can be implemented by an ALU that has an adder, operand inversion controls, and a selectable carry-in?",
+      "options": [
+        "A+B",
+        "A-B",
+        "A+1",
+        "A AND B without any bitwise logic path"
+      ],
+      "answer": [
+        "A+B",
+        "A-B",
+        "A+1"
+      ],
+      "explanation": "The adder directly computes A+B. Conditional inversion of B with carry-in 1 gives subtraction, and adding a constant one yields A+1. These arithmetic resources alone do not produce bitwise AND."
+    },
+    {
+      "id": "coa-alu-050",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU performs arithmetic right shift by 1 on 0x91. Give the resulting hexadecimal pattern.",
+      "answer": "0xC8",
+      "explanation": "0x91 is 10010001₂. Arithmetic right shift copies the sign bit 1 into the high position, yielding 11001000₂=0xC8."
+    },
+    {
+      "id": "coa-alu-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 16-bit signed ALU adds 0x7FFF and 0x0001. Which result/flag combination is correct?",
+      "options": [
+        "0x8000, overflow=1",
+        "0x8000, overflow=0",
+        "0x0000, carry=1",
+        "0x7FFF, overflow=1"
+      ],
+      "answer": [
+        "0x8000, overflow=1"
+      ],
+      "explanation": "The bit result is 0x8000. The mathematical sum 32768 exceeds the maximum signed 16-bit value 32767; the result sign changes from positive to negative, so overflow is set."
+    },
+    {
+      "id": "coa-alu-052",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For n-bit two's-complement subtraction R=A-B, which conditions are equivalent ways to identify signed overflow?",
+      "options": [
+        "A and B have different signs, and R's sign differs from A's sign.",
+        "The carry into the most significant bit differs from the carry out.",
+        "A and B have the same sign, and R has the opposite sign.",
+        "A and B have different signs, and R has A's sign."
+      ],
+      "answer": [
+        "A and B have different signs, and R's sign differs from A's sign.",
+        "The carry into the most significant bit differs from the carry out."
+      ],
+      "explanation": "Subtraction overflows when operands have opposite signs and the result's sign differs from A. As for addition, overflow is also detected by XOR of the carry into and out of the sign bit."
+    },
+    {
+      "id": "coa-alu-053",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An 8-bit ALU computes (0xD3 AND 0x3F) OR 0x80. Give the hexadecimal result.",
+      "answer": "0x93",
+      "explanation": "0xD3 AND 0x3F = 0x13 because the upper two bits are masked off. OR with 0x80 sets the most significant bit, giving 0x93."
+    },
+    {
+      "id": "coa-alu-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ALU implements A AND (NOT B). For A=11010110₂ and B=01101100₂, what is the 8-bit result?",
+      "options": [
+        "10010010₂",
+        "01101100₂",
+        "11111010₂",
+        "01000100₂"
+      ],
+      "answer": [
+        "10010010₂"
+      ],
+      "explanation": "NOT B=10010011₂. ANDing with A=11010110₂ leaves common 1-bits at positions 7, 4 and 1, producing 10010010₂."
+    },
+    {
+      "id": "coa-alu-055",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The 8-bit pattern 0xF0 is shifted right by 2. Which statements are correct?",
+      "options": [
+        "A logical right shift produces 0x3C.",
+        "An arithmetic right shift produces 0xFC.",
+        "The results differ because the vacated high bits are filled differently.",
+        "Both operations produce 0x3C for any 8-bit operand."
+      ],
+      "answer": [
+        "A logical right shift produces 0x3C.",
+        "An arithmetic right shift produces 0xFC.",
+        "The results differ because the vacated high bits are filled differently."
+      ],
+      "explanation": "0xF0 is 11110000₂. Logical shift inserts zeros, yielding 00111100₂=0x3C. Arithmetic shift replicates the sign bit 1, yielding 11111100₂=0xFC."
+    },
+    {
+      "id": "coa-alu-056",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 6-bit ALU computes 0b101101 + 0b011011, retaining 6 result bits. What is the unsigned carry-out bit?",
+      "answer": "1",
+      "explanation": "45+27=72. Since 72=1×64+8, the low 6 bits are 001000₂ and the carry-out is 1."
+    },
+    {
+      "id": "coa-alu-057",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A fixed-width ALU's operation selector must choose among 8 operations. What is the minimum selector width if each code identifies exactly one operation?",
+      "options": [
+        "3 bits",
+        "4 bits",
+        "8 bits",
+        "1 bit"
+      ],
+      "answer": [
+        "3 bits"
+      ],
+      "explanation": "Three selector bits encode 2^3=8 distinct operation codes, exactly enough for the eight operations."
+    },
+    {
+      "id": "coa-alu-058",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor compares signed 8-bit values A and B by computing A-B. Let N be the result's sign flag and V the signed-overflow flag. Which statements are correct?",
+      "options": [
+        "A<B can be determined from N XOR V.",
+        "A=B can be determined from a zero-result flag.",
+        "A<B is always equivalent to N=1.",
+        "Overflow can make the raw sign flag alone give a wrong signed comparison."
+      ],
+      "answer": [
+        "A<B can be determined from N XOR V.",
+        "A=B can be determined from a zero-result flag.",
+        "Overflow can make the raw sign flag alone give a wrong signed comparison."
+      ],
+      "explanation": "For signed subtraction, the less-than condition is N XOR V. Equality corresponds to a zero result. When overflow occurs, N alone may not represent the mathematical sign of A-B."
+    },
+    {
+      "id": "coa-alu-059",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A carry-lookahead group contains four bits with P=1 for each bit and G=0 for each bit. If the carry entering the group is 1, what carry leaves the group?",
+      "answer": "1",
+      "explanation": "With every bit propagating and none generating, the incoming carry passes through the group unchanged. Thus the group carry-out is 1."
+    },
+    {
+      "id": "coa-alu-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 16-bit ALU computes an arithmetic right shift of the signed value -3 by one bit. Which result is produced under sign-filling arithmetic-shift semantics?",
+      "options": [
+        "-2",
+        "-1",
+        "32766",
+        "1"
+      ],
+      "answer": [
+        "-2"
+      ],
+      "explanation": "In two's-complement, -3 is 0xFFFD. Arithmetic right shift replicates the sign bit, producing 0xFFFE, which is -2. This rounds toward negative infinity for this operation."
+    },
+    {
+      "id": "coa-alu-061",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A bit-sliced ALU is assembled from one-bit cells. Which features allow the cells to implement word-wide addition?",
+      "options": [
+        "Each cell computes a sum bit from its operand bits and carry-in.",
+        "Each cell computes a carry-out for the next higher bit.",
+        "The least-significant cell receives the initial carry-in.",
+        "Every cell independently computes the entire word's sum without communication."
+      ],
+      "answer": [
+        "Each cell computes a sum bit from its operand bits and carry-in.",
+        "Each cell computes a carry-out for the next higher bit.",
+        "The least-significant cell receives the initial carry-in."
+      ],
+      "explanation": "Bit slices combine into a word adder by linking each carry-out to the next slice's carry-in, starting with the specified initial carry. A slice does not independently know the entire word result."
+    },
+    {
+      "id": "coa-alu-062",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU computes 0x80 XOR 0xFF. Give the hexadecimal result.",
+      "answer": "0x7F",
+      "explanation": "XOR with 0xFF complements every bit. The complement of 10000000₂ is 01111111₂=0x7F."
+    },
+    {
+      "id": "coa-alu-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-bit two's-complement adder computes 1000₂ + 1000₂. What is the result pattern and overflow status?",
+      "options": [
+        "0000₂, overflow=1",
+        "0000₂, overflow=0",
+        "1000₂, overflow=1",
+        "1111₂, overflow=0"
+      ],
+      "answer": [
+        "0000₂, overflow=1"
+      ],
+      "explanation": "Each 1000₂ represents -8. The mathematical sum -16 is outside [-8,7]. The low 4 bits are 0000₂, so signed overflow occurs even though the stored result is zero."
+    },
+    {
+      "id": "coa-alu-064",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a fixed-width left shift, which statements are true?",
+      "options": [
+        "Logical left shift inserts zero bits at the right.",
+        "Bits shifted out of the most significant end are discarded unless separately recorded.",
+        "A left shift of a signed value always preserves its mathematical value.",
+        "Shifting a signed value left can cause signed overflow."
+      ],
+      "answer": [
+        "Logical left shift inserts zero bits at the right.",
+        "Bits shifted out of the most significant end are discarded unless separately recorded.",
+        "Shifting a signed value left can cause signed overflow."
+      ],
+      "explanation": "A fixed-width logical left shift moves bits toward the MSB, inserts zeros at the LSB, and discards or records outgoing bits. It multiplies by powers of two only when the mathematical result remains representable."
+    },
+    {
+      "id": "coa-alu-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU computes 0xE7 + 0x29. Which pair gives the low 8-bit hexadecimal result and unsigned carry-out?",
+      "options": [
+        "0x10, carry=1",
+        "0x10, carry=0",
+        "0x110, carry=0",
+        "0xFF, carry=1"
+      ],
+      "answer": [
+        "0x10, carry=1"
+      ],
+      "explanation": "0xE7+0x29=0x110. The low byte is 0x10 and the ninth bit is the carry-out 1."
+    },
+    {
+      "id": "coa-alu-066",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A signed 8-bit ALU computes 0x90 AND 0x0F. What bit pattern results, regardless of how the input values are interpreted as signed numbers?",
+      "options": [
+        "0x00",
+        "0x90",
+        "0x9F",
+        "0xFF"
+      ],
+      "answer": [
+        "0x00"
+      ],
+      "explanation": "Bitwise AND operates position by position on the patterns. 0x90 has zeros in its low nibble, while 0x0F has zeros in its high nibble, so no bit is 1 in both operands."
+    },
+    {
+      "id": "coa-alu-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ALU supports addition with carry-in. Which uses of the carry-in are valid?",
+      "options": [
+        "Adding multiword integers by feeding a lower word's carry to the next word.",
+        "Implementing A-B as A+~B+1.",
+        "Computing A+B+1 when the carry-in is set.",
+        "Making signed overflow identical to unsigned carry-out."
+      ],
+      "answer": [
+        "Adding multiword integers by feeding a lower word's carry to the next word.",
+        "Implementing A-B as A+~B+1.",
+        "Computing A+B+1 when the carry-in is set."
+      ],
+      "explanation": "Carry-in supports chained multiword addition and the +1 term in two's-complement subtraction. Signed overflow and unsigned carry remain distinct conditions."
+    },
+    {
+      "id": "coa-alu-068",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 10-bit ALU performs two's-complement negation of 0x155. Give the 10-bit hexadecimal result.",
+      "answer": "0x2AB",
+      "explanation": "Within 10 bits, negate by computing 2^10-0x155=0x400-0x155=0x2AB. Equivalently, invert the 10 bits and add one."
+    },
+    {
+      "id": "coa-alu-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ALU uses a single adder for both A+B and A-B. A control signal S selects subtraction when S=1. Which pair of control actions is appropriate?",
+      "options": [
+        "Conditionally invert B with S and use carry-in S",
+        "Conditionally invert A with S and use carry-in 0",
+        "Always invert B and use carry-in 0",
+        "Select XOR logic and ignore the adder carry"
+      ],
+      "answer": [
+        "Conditionally invert B with S and use carry-in S"
+      ],
+      "explanation": "When S=0, the adder computes A+B. When S=1, it computes A+~B+1=A-B. The same control can drive B inversion and the initial carry-in."
+    },
+    {
+      "id": "coa-alu-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 32-bit ALU uses a 5-bit shift-amount input. How many distinct shift amounts can this input encode?",
+      "answer": "32",
+      "explanation": "A 5-bit unsigned field has 2^5=32 encodings, typically representing shift amounts 0 through 31."
+    },
+    {
+      "id": "coa-alu-071",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ALU computes a bitwise NOT on an n-bit operand. Which statements are correct?",
+      "options": [
+        "Each output bit is the complement of the corresponding input bit.",
+        "The operation is independent of carry-in.",
+        "The result depends on whether the bit pattern is interpreted signed or unsigned.",
+        "Applying NOT twice returns the original n-bit pattern."
+      ],
+      "answer": [
+        "Each output bit is the complement of the corresponding input bit.",
+        "The operation is independent of carry-in.",
+        "Applying NOT twice returns the original n-bit pattern."
+      ],
+      "explanation": "Bitwise NOT complements each bit and ignores the arithmetic carry chain. The bitwise result does not depend on signedness, and complementing twice restores the original pattern."
+    },
+    {
+      "id": "coa-alu-072",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit ripple-carry adder has a worst-case carry delay of 32 gate stages. A proposed design reduces that path to 8 gate stages but uses more gates. What is the most direct tradeoff?",
+      "options": [
+        "Lower carry-propagation delay at the cost of additional hardware",
+        "Higher delay with fewer operand bits",
+        "Different arithmetic semantics",
+        "Removal of the need for a result bus"
+      ],
+      "answer": [
+        "Lower carry-propagation delay at the cost of additional hardware"
+      ],
+      "explanation": "Faster carry computation generally requires extra parallel logic, wiring or intermediate signals. It changes implementation cost and timing, not the defined arithmetic operation."
+    },
+    {
+      "id": "coa-alu-073",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Zero-extend the 7-bit value 1011011₂ to 12 bits. Give the result as a 12-bit binary string.",
+      "answer": "000001011011",
+      "explanation": "The value has 7 bits. Zero extension adds five zeros on the left: 00000 1011011, or 000001011011₂."
+    },
+    {
+      "id": "coa-alu-074",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor's ALU status flags are updated only by instructions that explicitly request flag updates. Which statements can be true?",
+      "options": [
+        "An arithmetic instruction may write a result without changing flags.",
+        "A compare instruction may update flags without writing a general-purpose destination.",
+        "The flag-update policy is part of the instruction-set semantics.",
+        "Every logical operation must set carry to the value of its most significant result bit."
+      ],
+      "answer": [
+        "An arithmetic instruction may write a result without changing flags.",
+        "A compare instruction may update flags without writing a general-purpose destination.",
+        "The flag-update policy is part of the instruction-set semantics."
+      ],
+      "explanation": "Architectures specify which instructions update which flags. A compare commonly subtracts internally to set flags without storing the arithmetic result. A logical operation's carry behavior is ISA-specific, not universally equal to the result's MSB."
+    },
+    {
+      "id": "coa-alu-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit unsigned ALU adds 0xF0 and 0x30. Which result pair is correct?",
+      "options": [
+        "low result 0x20, carry-out 1",
+        "low result 0x20, carry-out 0",
+        "low result 0xFF, carry-out 1",
+        "low result 0x00, carry-out 0"
+      ],
+      "answer": [
+        "low result 0x20, carry-out 1"
+      ],
+      "explanation": "0xF0+0x30=0x120. The low eight bits are 0x20 and the ninth bit is carry-out 1."
+    },
+    {
+      "id": "coa-alu-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit signed ALU adds -128 and -1. Which result and flag are correct?",
+      "options": [
+        "0x7F, signed overflow=1",
+        "0x7F, signed overflow=0",
+        "0x81, signed overflow=1",
+        "0xFF, signed overflow=0"
+      ],
+      "answer": [
+        "0x7F, signed overflow=1"
+      ],
+      "explanation": "The mathematical sum is -129, below the minimum -128. Its low 8 bits are 0x7F, interpreted as +127, so signed overflow occurs."
+    },
+    {
+      "id": "coa-alu-077",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU computes 0x80+0x80. What is the carry-out bit?",
+      "answer": "1",
+      "explanation": "0x80+0x80=0x100, so the ninth bit is 1 and the low byte is 0x00."
+    },
+    {
+      "id": "coa-alu-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For an n-bit two's-complement ALU, which statements about negation are correct?",
+      "options": [
+        "Negation can be computed as bitwise complement plus one.",
+        "Negating zero produces zero.",
+        "The most negative value has a positive counterpart representable in the same width.",
+        "Negating the most negative value causes signed overflow."
+      ],
+      "answer": [
+        "Negation can be computed as bitwise complement plus one.",
+        "Negating zero produces zero.",
+        "Negating the most negative value causes signed overflow."
+      ],
+      "explanation": "Two's-complement negation is ~x+1. Zero is its own negation. The most negative value has magnitude 2^(n-1), which cannot be represented positively in n-bit signed form."
+    },
+    {
+      "id": "coa-alu-079",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An n-bit ALU implements a zero detector from its result bus R[n-1:0]. Which logic function produces Z=1 exactly when the result is zero?",
+      "options": [
+        "NOR of all result bits",
+        "OR of all result bits",
+        "XOR of all result bits",
+        "AND of all result bits"
+      ],
+      "answer": [
+        "NOR of all result bits"
+      ],
+      "explanation": "The result is zero only when every bit is 0. ORing all bits yields 0 in that case, and inversion (NOR) produces Z=1."
+    },
+    {
+      "id": "coa-alu-080",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 16-bit unsigned ALU adds 0xFFFF, 0x0001, and carry-in 1. Give the low 16-bit result in hexadecimal.",
+      "answer": "0x0001",
+      "explanation": "0xFFFF+0x0001+1=0x10001. The low 16 bits are 0x0001; the carry-out is 1."
+    },
+    {
+      "id": "coa-alu-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about arithmetic and logical right shifts are correct for a two's-complement bit pattern?",
+      "options": [
+        "Logical right shift inserts zeros at the left.",
+        "Arithmetic right shift replicates the sign bit at the left when defined that way by the ISA.",
+        "For a negative operand, the two results can differ.",
+        "Both operations always divide a signed integer by 2^k with identical rounding."
+      ],
+      "answer": [
+        "Logical right shift inserts zeros at the left.",
+        "Arithmetic right shift replicates the sign bit at the left when defined that way by the ISA.",
+        "For a negative operand, the two results can differ."
+      ],
+      "explanation": "Logical shift fills with zero; arithmetic shift typically fills with the sign bit. For negative values they differ, and arithmetic shift rounding conventions need not match language-level division in every case."
+    },
+    {
+      "id": "coa-alu-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a subtraction implemented as A+~B+1, an architecture defines its subtraction carry flag as 1 when no unsigned borrow occurs. What does C=1 imply?",
+      "options": [
+        "A is greater than or equal to B as unsigned values",
+        "A is strictly less than B as unsigned values",
+        "A and B are equal only",
+        "Signed overflow occurred"
+      ],
+      "answer": [
+        "A is greater than or equal to B as unsigned values"
+      ],
+      "explanation": "Under the stated convention, carry=1 means no borrow, which for unsigned subtraction occurs exactly when A≥B. This flag does not by itself indicate signed overflow."
+    },
+    {
+      "id": "coa-alu-083",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A one-bit full-adder slice has A=1, B=1 and carry-in=0. Write the pair (sum, carry-out) as two bits.",
+      "answer": "10",
+      "explanation": "The input sum is 1+1+0=2, whose two-bit binary representation is 10: sum=0, carry-out=1."
+    },
+    {
+      "id": "coa-alu-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit signed saturating ALU computes 100+60. What is the final result after saturation?",
+      "options": [
+        "127",
+        "-96",
+        "-128",
+        "160"
+      ],
+      "answer": [
+        "127"
+      ],
+      "explanation": "The exact sum is 160, greater than the maximum representable signed 8-bit value 127. Saturation clamps the result to 127 instead of wrapping to -96."
+    },
+    {
+      "id": "coa-alu-085",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two Q8.8 fixed-point values are represented by signed 16-bit patterns 0x0180 and 0x0040. After addition, what real value does the result represent?",
+      "answer": "1.75",
+      "explanation": "The encoded integers are 384 and 64, summing to 448. Dividing by 2^8=256 gives 448/256=1.75."
+    },
+    {
+      "id": "coa-alu-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A carry-select adder divides a word into blocks. Which statements describe its basic idea?",
+      "options": [
+        "A block may compute results for possible incoming carries in parallel.",
+        "A later selection chooses the result matching the actual incoming carry.",
+        "It trades additional hardware for reduced carry waiting between blocks.",
+        "It removes the need to compute sum bits."
+      ],
+      "answer": [
+        "A block may compute results for possible incoming carries in parallel.",
+        "A later selection chooses the result matching the actual incoming carry.",
+        "It trades additional hardware for reduced carry waiting between blocks."
+      ],
+      "explanation": "Carry-select precomputes candidate block sums for carry-in 0 and 1, then selects the correct one once the actual carry arrives. Parallel computation can reduce delay at an area cost."
+    },
+    {
+      "id": "coa-alu-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-bit unsigned ALU computes 1111₂ + 0001₂ and discards carry-out. Which pair gives the result and carry-out?",
+      "options": [
+        "0000₂, 1",
+        "0000₂, 0",
+        "1111₂, 1",
+        "1000₂, 0"
+      ],
+      "answer": [
+        "0000₂, 1"
+      ],
+      "explanation": "15+1=16=1 0000₂. The low 4-bit result is 0000 and the carry-out is 1."
+    },
+    {
+      "id": "coa-alu-088",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-bit carry-lookahead block has P=1 and G=0 for each bit. With carry-in 0, what is the block carry-out?",
+      "answer": "0",
+      "explanation": "All positions propagate an incoming carry, but none generates one. Since the input carry is 0, the carry out remains 0."
+    },
+    {
+      "id": "coa-alu-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In one's-complement signed representation, which statements differ from two's-complement representation?",
+      "options": [
+        "One's complement has both positive zero and negative zero.",
+        "To negate a value, one's complement flips all bits without adding one.",
+        "The representable positive and negative magnitudes are symmetric.",
+        "Every bit pattern has exactly one numeric interpretation, including zero."
+      ],
+      "answer": [
+        "One's complement has both positive zero and negative zero.",
+        "To negate a value, one's complement flips all bits without adding one.",
+        "The representable positive and negative magnitudes are symmetric."
+      ],
+      "explanation": "One's complement has two zero encodings and symmetric positive/negative ranges. Flipping all bits negates a value; two's complement instead adds one after inversion. The all-ones and all-zeros patterns both denote zero, so zero is not uniquely encoded."
+    },
+    {
+      "id": "coa-alu-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU computes 0x6D XOR 0xA7. What is the result?",
+      "options": [
+        "0xCA",
+        "0xC5",
+        "0xFF",
+        "0x00"
+      ],
+      "answer": [
+        "0xCA"
+      ],
+      "explanation": "0x6D=01101101₂ and 0xA7=10100111₂. XOR produces 11001010₂=0xCA."
+    },
+    {
+      "id": "coa-alu-091",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit ALU computes 0x50-0x70 and stores the low byte. Give the result as a signed decimal number.",
+      "answer": "-32",
+      "explanation": "The mathematical difference is 80-112=-32, which is within the signed 8-bit range. Its bit pattern is 0xE0, representing -32."
+    },
+    {
+      "id": "coa-alu-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit rotate-left operation rotates 0x81 by one position. What is the resulting pattern?",
+      "options": [
+        "0x03",
+        "0x02",
+        "0xC0",
+        "0x81"
+      ],
+      "answer": [
+        "0x03"
+      ],
+      "explanation": "0x81 is 10000001₂. Rotate-left moves the high bit 1 to the low position while shifting left, yielding 00000011₂=0x03."
+    },
+    {
+      "id": "coa-alu-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ALU compares unsigned 8-bit values by subtraction and defines C=1 to mean no borrow. Which statements are valid?",
+      "options": [
+        "A<B exactly when C=0.",
+        "A≥B exactly when C=1.",
+        "A=B can be detected with a zero-result flag.",
+        "The sign flag alone determines unsigned less-than."
+      ],
+      "answer": [
+        "A<B exactly when C=0.",
+        "A≥B exactly when C=1.",
+        "A=B can be detected with a zero-result flag."
+      ],
+      "explanation": "Under the specified no-borrow convention, carry is 1 iff A≥B. Equality gives a zero subtraction result. The sign flag reflects the top bit, not unsigned ordering."
+    },
+    {
+      "id": "coa-alu-094",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "For an n-bit two's-complement ALU, n=12. What is the maximum signed integer representable?",
+      "answer": "2047",
+      "explanation": "The maximum is 2^(n-1)-1=2^11-1=2047. The full signed range is -2048 through +2047."
+    },
+    {
+      "id": "coa-alu-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 16-bit arithmetic right shift is applied to 0x8000 by 4 bits. What pattern results under sign-replicating semantics?",
+      "options": [
+        "0xF800",
+        "0x0800",
+        "0x8000",
+        "0x0008"
+      ],
+      "answer": [
+        "0xF800"
+      ],
+      "explanation": "The sign bit is 1. Shifting 1000 0000 0000 0000₂ right by four while replicating 1s yields 1111 1000 0000 0000₂=0xF800."
+    },
+    {
+      "id": "coa-alu-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which flag outcomes can occur after an ALU operation, depending on its result and the ISA's flag rules?",
+      "options": [
+        "A zero flag can be set when the result is all zeros.",
+        "A negative/sign flag can reflect the most significant result bit.",
+        "A carry flag can report unsigned carry-out from addition.",
+        "Signed overflow must equal the carry-out for every operation."
+      ],
+      "answer": [
+        "A zero flag can be set when the result is all zeros.",
+        "A negative/sign flag can reflect the most significant result bit.",
+        "A carry flag can report unsigned carry-out from addition."
+      ],
+      "explanation": "Z, N and C conventionally summarize different result properties. Signed overflow is a separate condition and need not equal unsigned carry-out."
+    },
+    {
+      "id": "coa-alu-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8-bit two's-complement ALU adds 0x7F and 0x01. Which result and signed-overflow status are correct?",
+      "answer": [
+        "0x80, overflow set"
+      ],
+      "explanation": "The bit pattern 0x7F represents +127 and 0x01 represents +1. Their 8-bit sum is 0x80, interpreted as -128, so adding two positive values produced a negative result and signed overflow is set.",
+      "options": [
+        "0x80, overflow set",
+        "0x80, overflow clear",
+        "0x7F, overflow set",
+        "0x00, overflow clear"
+      ]
+    },
+    {
+      "id": "coa-alu-098",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A two-input XOR gate receives 0 and 1. What is its output?",
+      "options": [
+        "1",
+        "0",
+        "Undefined",
+        "It equals the carry-in"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "XOR is 1 when its inputs differ. Since 0≠1, the output is 1."
+    },
+    {
+      "id": "coa-alu-099",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A word-wide logical shifter is implemented as a barrel shifter using stages for shifts by 1, 2, 4, 8, and 16 positions. Which statements are correct for a 32-bit word?",
+      "options": [
+        "Five control bits can select any shift from 0 through 31.",
+        "The stages can be conditionally composed according to the binary shift amount.",
+        "A shift by 13 can be formed using the 8-, 4-, and 1-position stages.",
+        "The circuit must propagate an arithmetic carry from bit 0 through bit 31 to perform a logical shift."
+      ],
+      "answer": [
+        "Five control bits can select any shift from 0 through 31.",
+        "The stages can be conditionally composed according to the binary shift amount.",
+        "A shift by 13 can be formed using the 8-, 4-, and 1-position stages."
+      ],
+      "explanation": "Binary 13 is 01101₂, selecting shifts 8+4+1. Conditional mux stages compose these distances; a logical barrel shift does not need an arithmetic carry chain."
+    },
+    {
+      "id": "coa-alu-100",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit signed ALU adds 0x40000000 and 0x40000000. Give the stored hexadecimal result.",
+      "answer": "0x80000000",
+      "explanation": "The sum is 0x80000000. As signed 32-bit values, two positive 2^30 operands sum to 2^31, outside the representable range, so signed overflow occurs; the stored bit pattern is 0x80000000."
+    }
+  ]
+}

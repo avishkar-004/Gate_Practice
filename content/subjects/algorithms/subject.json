@@ -1,0 +1,7 @@
+{
+  "id": "algorithms",
+  "title": "Algorithms",
+  "short": "ALGORITHMS",
+  "description": "Complexity, searching, sorting, hashing, design paradigms and graphs",
+  "order": 20
+}

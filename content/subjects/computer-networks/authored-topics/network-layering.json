@@ -1,0 +1,1442 @@
+{
+  "topicIndex": 0,
+  "questions": [
+    {
+      "id": "cn-layer-001",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A host sends an application message using TCP over IPv4 over Ethernet. In what order are headers added as the message moves down the sender's protocol stack?",
+      "options": [
+        "Application, TCP, IP, Ethernet",
+        "Ethernet, IP, TCP, application",
+        "TCP, application, Ethernet, IP",
+        "IP, Ethernet, application, TCP"
+      ],
+      "answer": [
+        "Application, TCP, IP, Ethernet"
+      ],
+      "explanation": "Each lower layer encapsulates the data from the layer above. The transport header is added to the application data, then IP, then the link-layer frame header."
+    },
+    {
+      "id": "cn-layer-002",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about encapsulation are correct?",
+      "options": [
+        "A lower layer treats the upper-layer PDU as payload",
+        "Each layer may add control information in its own header",
+        "The receiver removes headers in reverse order",
+        "Encapsulation changes the original application message semantics"
+      ],
+      "answer": [
+        "A lower layer treats the upper-layer PDU as payload",
+        "Each layer may add control information in its own header",
+        "The receiver removes headers in reverse order"
+      ],
+      "explanation": "Encapsulation wraps data with layer-specific control fields; decapsulation removes them in the reverse order. The application payload is preserved end to end unless an application explicitly transforms it."
+    },
+    {
+      "id": "cn-layer-003",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router forwards an IPv4 packet from one Ethernet network to another. Which headers are normally replaced at the next hop?",
+      "options": [
+        "The Ethernet header and trailer",
+        "The TCP header only",
+        "The application header only",
+        "The IP source and destination addresses at every hop"
+      ],
+      "answer": [
+        "The Ethernet header and trailer"
+      ],
+      "explanation": "The router removes the incoming link-layer frame and creates a new frame for the outgoing link. The end-to-end IP addresses normally remain the same, apart from mechanisms such as NAT."
+    },
+    {
+      "id": "cn-layer-004",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A data unit has an application payload of 1000 bytes, a TCP header of 20 bytes, an IPv4 header of 20 bytes, and an Ethernet header and trailer totaling 18 bytes. What is the frame size in bytes, ignoring padding?",
+      "answer": "1058",
+      "explanation": "The frame carries all encapsulated bytes: 1000+20+20+18=1058 bytes."
+    },
+    {
+      "id": "cn-layer-005",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which address types are associated with the stated networking functions?",
+      "options": [
+        "A MAC address identifies a link-layer interface on a local link",
+        "An IP address supports network-layer delivery across networks",
+        "A transport port identifies an application endpoint within a host",
+        "A URL is used by Ethernet switches to forward frames"
+      ],
+      "answer": [
+        "A MAC address identifies a link-layer interface on a local link",
+        "An IP address supports network-layer delivery across networks",
+        "A transport port identifies an application endpoint within a host"
+      ],
+      "explanation": "MAC, IP, and port values operate at different scopes and layers. Ethernet switching uses MAC addresses; URLs are application-level identifiers interpreted by software."
+    },
+    {
+      "id": "cn-layer-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A packet travels through three routers between two hosts. Which statement about its source and destination MAC addresses is generally true?",
+      "options": [
+        "They change on each link, while the IP endpoints usually remain the same",
+        "They remain fixed end to end, while IP addresses change at each router",
+        "Both MAC and IP addresses change at every hop",
+        "Neither address type appears in a packet"
+      ],
+      "answer": [
+        "They change on each link, while the IP endpoints usually remain the same"
+      ],
+      "explanation": "Each hop uses a new link-layer frame addressed to the next-hop interface. The IP source and destination identify the end hosts across routed links unless address translation is applied."
+    },
+    {
+      "id": "cn-layer-007",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 1200-byte application message receives 20 bytes of transport header, 20 bytes of network header, and 14 bytes of link header plus 4 bytes of trailer. How many total bytes are transmitted at the link layer?",
+      "answer": "958",
+      "explanation": "The total combines the 900-byte message, 20-byte transport header, 20-byte network header, and 18 bytes of link overhead: 900+20+20+18=958 bytes."
+    },
+    {
+      "id": "cn-layer-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which layer is primarily responsible for process-to-process delivery using port numbers?",
+      "options": [
+        "Transport layer",
+        "Network layer",
+        "Data-link layer",
+        "Physical layer"
+      ],
+      "answer": [
+        "Transport layer"
+      ],
+      "explanation": "Transport protocols such as TCP and UDP use port numbers to multiplex data among application processes on a host."
+    },
+    {
+      "id": "cn-layer-009",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which functions are commonly provided by the transport layer?",
+      "options": [
+        "Multiplexing application processes using ports",
+        "End-to-end reliability in TCP",
+        "Congestion control in TCP",
+        "Forwarding frames based on destination MAC addresses"
+      ],
+      "answer": [
+        "Multiplexing application processes using ports",
+        "End-to-end reliability in TCP",
+        "Congestion control in TCP"
+      ],
+      "explanation": "Transport protocols provide process multiplexing; TCP also implements reliable delivery and congestion control. MAC-based frame forwarding belongs to the link layer and switches."
+    },
+    {
+      "id": "cn-layer-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A communication protocol specifies message formats, ordering, and actions on message exchange. What distinguishes it from a service?",
+      "options": [
+        "A protocol defines peer-to-peer rules; a service describes what a layer offers upward",
+        "A protocol is only a physical cable",
+        "A service defines routing between peer layers",
+        "There is no distinction between them"
+      ],
+      "answer": [
+        "A protocol defines peer-to-peer rules; a service describes what a layer offers upward"
+      ],
+      "explanation": "Peer entities use protocols to communicate, while a layer's service describes the capabilities it exposes to the layer above through an interface."
+    },
+    {
+      "id": "cn-layer-011",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An application writes 2400 bytes. A protocol below it accepts at most 600 payload bytes per PDU and adds 20 bytes of header per PDU. How many total bytes are sent across those four PDUs?",
+      "answer": "2480",
+      "explanation": "The payload requires 2400/600=4 PDUs. Their headers add 4×20=80 bytes, so total transmitted PDU bytes are 2480."
+    },
+    {
+      "id": "cn-layer-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which mapping from the five-layer Internet architecture to the four-layer TCP/IP model is correct?",
+      "options": [
+        "The TCP/IP link layer combines the Internet link and physical layers",
+        "The TCP/IP application layer combines transport and network",
+        "TCP/IP has separate session and presentation layers",
+        "The Internet application layer is below the transport layer"
+      ],
+      "answer": [
+        "The TCP/IP link layer combines the Internet link and physical layers"
+      ],
+      "explanation": "The five-layer teaching model separates link and physical functions; the common four-layer TCP/IP model groups them into one link/network-access layer."
+    },
+    {
+      "id": "cn-layer-013",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which functions are associated with the network layer?",
+      "options": [
+        "Logical addressing such as IP addresses",
+        "Routing and forwarding packets between networks",
+        "End-to-end byte-stream reliability in TCP",
+        "Fragmentation or packet-size handling in some network protocols"
+      ],
+      "answer": [
+        "Logical addressing such as IP addresses",
+        "Routing and forwarding packets between networks",
+        "Fragmentation or packet-size handling in some network protocols"
+      ],
+      "explanation": "The network layer provides internetwork addressing and packet delivery functions, including routing and forwarding. Reliable byte-stream delivery is a transport-layer function of TCP."
+    },
+    {
+      "id": "cn-layer-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process sends a UDP datagram to a server's IP address and port. Which layer uses the port to deliver data to the correct server process?",
+      "options": [
+        "Transport",
+        "Network",
+        "Data link",
+        "Physical"
+      ],
+      "answer": [
+        "Transport"
+      ],
+      "explanation": "UDP's transport header contains source and destination ports. The receiving host uses the destination port to demultiplex the datagram to the appropriate process."
+    },
+    {
+      "id": "cn-layer-015",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An Ethernet MTU permits a network-layer packet of at most 1500 bytes. An IPv4 header is 20 bytes and a TCP header is 20 bytes. What is the maximum TCP application payload in one packet, ignoring options?",
+      "answer": "1460",
+      "explanation": "The IP packet includes both headers and the TCP payload. The maximum payload is 1500−20−20=1460 bytes."
+    },
+    {
+      "id": "cn-layer-016",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a network service access point and protocol interface are correct?",
+      "options": [
+        "An interface defines how an upper layer accesses a lower-layer service",
+        "A protocol defines communication between peer entities",
+        "A service specification need not reveal the lower layer's internal implementation",
+        "A protocol is the same thing as the physical interface connector"
+      ],
+      "answer": [
+        "An interface defines how an upper layer accesses a lower-layer service",
+        "A protocol defines communication between peer entities",
+        "A service specification need not reveal the lower layer's internal implementation"
+      ],
+      "explanation": "Interfaces describe local access between adjacent layers, and protocols govern peer communication. A service can abstract implementation details; a physical connector is not the meaning of protocol."
+    },
+    {
+      "id": "cn-layer-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router receives a frame whose destination MAC is its own interface, removes the link header, examines the IP destination, and emits a new frame. Which layer-to-layer action is this?",
+      "options": [
+        "Network-layer forwarding between link-layer frames",
+        "Transport-layer retransmission",
+        "Application-layer name resolution",
+        "Physical-layer modulation only"
+      ],
+      "answer": [
+        "Network-layer forwarding between link-layer frames"
+      ],
+      "explanation": "The router uses the network-layer destination to choose an outgoing interface, then encapsulates the packet in a new link-layer frame for the next hop."
+    },
+    {
+      "id": "cn-layer-018",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A file contains 18,000 bytes. A link supports a maximum network-layer packet payload of 1000 bytes, and each packet carries 40 bytes of transport and network headers. How many total bytes are carried in the resulting packets, assuming the final payload is exactly full-sized?",
+      "answer": "18720",
+      "explanation": "The file is split into 18 payloads of 1000 bytes. Header overhead is 18×40=720 bytes, so packet bytes total 18,720."
+    },
+    {
+      "id": "cn-layer-019",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements correctly distinguish a packet from a frame?",
+      "options": [
+        "A packet is commonly a network-layer PDU",
+        "A frame is commonly a link-layer PDU",
+        "A router may remove one frame and create another around the same IP packet",
+        "A frame is always delivered end to end unchanged"
+      ],
+      "answer": [
+        "A packet is commonly a network-layer PDU",
+        "A frame is commonly a link-layer PDU",
+        "A router may remove one frame and create another around the same IP packet"
+      ],
+      "explanation": "Frames carry network-layer packets across one link. Routers decapsulate and re-encapsulate at each hop, so frame headers generally change along the route."
+    },
+    {
+      "id": "cn-layer-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which layer is responsible for converting bits into signals on a transmission medium?",
+      "options": [
+        "Physical",
+        "Data link",
+        "Network",
+        "Transport"
+      ],
+      "answer": [
+        "Physical"
+      ],
+      "explanation": "The physical layer defines signaling, encoding, timing, and medium-related transmission of bits."
+    },
+    {
+      "id": "cn-layer-021",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 900-byte application message is segmented into transport payloads of at most 300 bytes. Each segment adds a 20-byte transport header. How many total transport-layer bytes are produced?",
+      "answer": "960",
+      "explanation": "Three segments carry 900 bytes total. Their headers add 3×20=60 bytes, giving 960 transport-layer bytes."
+    },
+    {
+      "id": "cn-layer-022",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which responsibilities are typically associated with the data-link layer?",
+      "options": [
+        "Framing packets for a local link",
+        "Link-level error detection",
+        "Medium access control on a shared medium",
+        "Choosing end-to-end routes across multiple networks"
+      ],
+      "answer": [
+        "Framing packets for a local link",
+        "Link-level error detection",
+        "Medium access control on a shared medium"
+      ],
+      "explanation": "The link layer handles frame boundaries, local error detection, and shared-medium access. Multi-network route selection is a network-layer function."
+    },
+    {
+      "id": "cn-layer-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A lower-layer protocol fragments a 3000-byte message into chunks of 1000 payload bytes and adds a 12-byte header to each chunk. What is the total transmitted size?",
+      "options": [
+        "3012 bytes",
+        "3036 bytes",
+        "3000 bytes",
+        "3120 bytes"
+      ],
+      "answer": [
+        "3036 bytes"
+      ],
+      "explanation": "Three fragments are needed, each with 1000 payload bytes and a 12-byte header. Total size is 3000+3×12=3036 bytes."
+    },
+    {
+      "id": "cn-layer-024",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 2400-byte message is divided into 700-byte maximum payloads. How many fragments are created?",
+      "answer": "4",
+      "explanation": "Three full fragments carry 2100 bytes, and a fourth carries the remaining 300 bytes. Therefore four fragments are created."
+    },
+    {
+      "id": "cn-layer-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sender uses a reliable transport protocol over an unreliable network. Which statement best describes the layering principle?",
+      "options": [
+        "The transport layer can provide reliability without requiring the network layer to guarantee delivery",
+        "The network layer must duplicate every packet",
+        "The physical layer retransmits application messages",
+        "Reliable transport makes link framing unnecessary"
+      ],
+      "answer": [
+        "The transport layer can provide reliability without requiring the network layer to guarantee delivery"
+      ],
+      "explanation": "Layering allows transport protocols to add end-to-end reliability using acknowledgments and retransmissions even when the underlying network offers best-effort delivery."
+    },
+    {
+      "id": "cn-layer-026",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which benefits can layering provide in a network architecture?",
+      "options": [
+        "Modularity between functions",
+        "Independent implementation changes behind stable interfaces",
+        "Interoperability through agreed protocols",
+        "Elimination of all headers and processing overhead"
+      ],
+      "answer": [
+        "Modularity between functions",
+        "Independent implementation changes behind stable interfaces",
+        "Interoperability through agreed protocols"
+      ],
+      "explanation": "Layering separates responsibilities and enables compatible implementations to interoperate. It introduces headers and processing, so it does not eliminate overhead."
+    },
+    {
+      "id": "cn-layer-027",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 2 MiB file is sent in 1400-byte payloads. Using 1 MiB=1,048,576 bytes, how many full or partial payload units are required?",
+      "answer": "1498",
+      "explanation": "The file has 2,097,152 bytes. Dividing by 1400 gives 1497 full chunks with a remainder, requiring one additional partial chunk: ceil(2,097,152/1400)=1498."
+    },
+    {
+      "id": "cn-layer-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which OSI layer is associated with end-to-end dialogue control and synchronization checkpoints in the traditional model?",
+      "options": [
+        "Session",
+        "Network",
+        "Data link",
+        "Physical"
+      ],
+      "answer": [
+        "Session"
+      ],
+      "explanation": "The OSI session layer is traditionally described as managing dialogues and synchronization points, although practical Internet stacks often combine or implement these functions elsewhere."
+    },
+    {
+      "id": "cn-layer-029",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which functions are associated with the traditional OSI presentation layer?",
+      "options": [
+        "Data representation or format translation",
+        "Encryption or decryption functions in the model",
+        "Compression or decompression",
+        "Routing packets using IP prefixes"
+      ],
+      "answer": [
+        "Data representation or format translation",
+        "Encryption or decryption functions in the model",
+        "Compression or decompression"
+      ],
+      "explanation": "Presentation functions concern syntax, representation, encryption, and compression. IP-prefix routing belongs to the network layer."
+    },
+    {
+      "id": "cn-layer-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS query is generated by an application and carried in UDP/IP/Ethernet. At which layer does DNS itself operate?",
+      "options": [
+        "Application",
+        "Transport",
+        "Network",
+        "Data link"
+      ],
+      "answer": [
+        "Application"
+      ],
+      "explanation": "DNS defines application-level messages and query semantics. UDP, IP, and Ethernet provide lower-layer transport and delivery."
+    },
+    {
+      "id": "cn-layer-031",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An application payload is 600 bytes. TCP adds 20 bytes and IPv4 adds 20 bytes. What is the IP packet size, excluding link-layer framing?",
+      "answer": "640",
+      "explanation": "The IP packet contains the TCP segment of 620 bytes plus a 20-byte IP header, totaling 640 bytes."
+    },
+    {
+      "id": "cn-layer-032",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about multiplexing and demultiplexing are correct?",
+      "options": [
+        "Transport source and destination ports help identify application endpoints",
+        "The sender can combine data from multiple applications onto network-layer packets",
+        "The receiver uses header fields to deliver data to the correct process",
+        "Ethernet MAC addresses uniquely identify every application process"
+      ],
+      "answer": [
+        "Transport source and destination ports help identify application endpoints",
+        "The sender can combine data from multiple applications onto network-layer packets",
+        "The receiver uses header fields to deliver data to the correct process"
+      ],
+      "explanation": "Transport ports distinguish process endpoints, enabling multiplexing at the sender and demultiplexing at the receiver. MAC addresses identify link interfaces, not individual processes."
+    },
+    {
+      "id": "cn-layer-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP segment is encapsulated inside an IP packet. Which statement about their addresses is correct?",
+      "options": [
+        "The IP header identifies hosts, while TCP ports identify processes on those hosts",
+        "TCP ports identify routers, while IP addresses identify applications",
+        "Both headers contain only MAC addresses",
+        "The IP packet has no source or destination information"
+      ],
+      "answer": [
+        "The IP header identifies hosts, while TCP ports identify processes on those hosts"
+      ],
+      "explanation": "IP source/destination addresses identify network-layer endpoints; TCP source/destination ports support delivery to transport endpoints and application processes."
+    },
+    {
+      "id": "cn-layer-034",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A network-layer packet is 1500 bytes, including a 20-byte IP header. What is its IP payload size?",
+      "answer": "1480",
+      "explanation": "The payload is the packet length excluding the IP header: 1500−20=1480 bytes."
+    },
+    {
+      "id": "cn-layer-035",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about end-to-end and hop-by-hop functions are correct?",
+      "options": [
+        "TCP reliability is end to end between transport endpoints",
+        "Ethernet delivery is hop by hop on a local link",
+        "A router may forward a packet without interpreting application data",
+        "Link-layer error detection can be repeated independently on each link"
+      ],
+      "answer": [
+        "TCP reliability is end to end between transport endpoints",
+        "Ethernet delivery is hop by hop on a local link",
+        "A router may forward a packet without interpreting application data",
+        "Link-layer error detection can be repeated independently on each link"
+      ],
+      "explanation": "Transport reliability spans endpoints, while link delivery and error checks apply separately on each hop. Routers normally forward based on network-layer information without parsing application semantics."
+    },
+    {
+      "id": "cn-layer-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router processes an IPv4 packet and decrements its TTL. At which layer does this field belong?",
+      "options": [
+        "Network",
+        "Transport",
+        "Data link",
+        "Application"
+      ],
+      "answer": [
+        "Network"
+      ],
+      "explanation": "TTL is an IPv4 network-layer field used to limit packet lifetime across routers."
+    },
+    {
+      "id": "cn-layer-037",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A message of 10,000 bytes is divided into network-layer payloads of at most 1400 bytes. How many packets are required?",
+      "answer": "8",
+      "explanation": "Seven full payloads carry 9,800 bytes and one final payload carries 200 bytes, for a total of eight packets."
+    },
+    {
+      "id": "cn-layer-038",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about protocol data units (PDUs) are correct?",
+      "options": [
+        "A PDU consists of a layer's control information and payload",
+        "The transport layer may call its PDU a segment or datagram",
+        "The network layer commonly carries packets",
+        "PDU names are identical in every architecture and textbook"
+      ],
+      "answer": [
+        "A PDU consists of a layer's control information and payload",
+        "The transport layer may call its PDU a segment or datagram",
+        "The network layer commonly carries packets"
+      ],
+      "explanation": "A PDU is the formatted unit exchanged at a layer. Names vary by protocol and convention: TCP uses segments, UDP datagrams, and IP packets."
+    },
+    {
+      "id": "cn-layer-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link provides a maximum frame size of 1518 bytes including 18 bytes of link header and trailer. IPv4 and TCP headers total 40 bytes. What is the maximum application payload?",
+      "options": [
+        "1460 bytes",
+        "1480 bytes",
+        "1500 bytes",
+        "1518 bytes"
+      ],
+      "answer": [
+        "1460 bytes"
+      ],
+      "explanation": "The network-layer packet can be at most 1518−18=1500 bytes. Subtracting the 40-byte IP and TCP headers leaves 1460 bytes for application data."
+    },
+    {
+      "id": "cn-layer-040",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which tasks are typically performed by an application-layer protocol?",
+      "options": [
+        "Defining request and response formats",
+        "Specifying application-level semantics",
+        "Using transport services to exchange messages",
+        "Computing the next-hop MAC address at each router"
+      ],
+      "answer": [
+        "Defining request and response formats",
+        "Specifying application-level semantics",
+        "Using transport services to exchange messages"
+      ],
+      "explanation": "Application protocols define messages and their meaning and use transport services to communicate. Next-hop link addressing is handled by network and link mechanisms."
+    },
+    {
+      "id": "cn-layer-041",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 5000-byte file is sent with 1000-byte payloads. Each transport segment has 20 bytes of header and each IP packet has a 20-byte header. What is the total number of transport-plus-network bytes?",
+      "answer": "5200",
+      "explanation": "Five segments are required. Each adds 40 bytes of transport and network headers, giving 5000+5×40=5200 bytes."
+    },
+    {
+      "id": "cn-layer-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement best describes the Internet's network-layer service model?",
+      "options": [
+        "IP provides best-effort packet delivery without a general guarantee of delivery",
+        "IP guarantees reliable in-order delivery",
+        "IP reserves bandwidth for every packet",
+        "IP performs application-level retransmission"
+      ],
+      "answer": [
+        "IP provides best-effort packet delivery without a general guarantee of delivery"
+      ],
+      "explanation": "IP forwards datagrams on a best-effort basis. Reliability, ordering, and retransmission may be supplied by transport protocols such as TCP."
+    },
+    {
+      "id": "cn-layer-043",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which features are not guaranteed by the basic IP service?",
+      "options": [
+        "Successful delivery of every packet",
+        "In-order packet arrival",
+        "A fixed end-to-end delay bound",
+        "A network-layer address in the packet"
+      ],
+      "answer": [
+        "Successful delivery of every packet",
+        "In-order packet arrival",
+        "A fixed end-to-end delay bound"
+      ],
+      "explanation": "Best-effort IP does not promise reliability, ordering, or a fixed delay. It does include network-layer addressing needed for forwarding."
+    },
+    {
+      "id": "cn-layer-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A packet is delivered to a host but to the wrong application process. Which layer's demultiplexing is most directly implicated?",
+      "options": [
+        "Transport",
+        "Network",
+        "Data link",
+        "Physical"
+      ],
+      "answer": [
+        "Transport"
+      ],
+      "explanation": "The network layer can deliver to the correct host while transport ports determine which local process receives the data."
+    },
+    {
+      "id": "cn-layer-045",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router forwards an IPv4 datagram from one Ethernet link to another without fragmentation. Which statements are correct?",
+      "answer": [
+        "The incoming Ethernet frame is removed before forwarding",
+        "The destination IP address normally remains unchanged",
+        "The source and destination MAC addresses in the forwarded frame are selected for the outgoing link",
+        "The router decrements the IPv4 TTL"
+      ],
+      "explanation": "Routing removes the incoming link encapsulation, updates TTL (and checksum), and encapsulates the datagram for the next hop. End-to-end IP addresses normally stay the same absent NAT.",
+      "options": [
+        "The incoming Ethernet frame is removed before forwarding",
+        "The destination IP address normally remains unchanged",
+        "The source and destination MAC addresses in the forwarded frame are selected for the outgoing link",
+        "The router decrements the IPv4 TTL"
+      ]
+    },
+    {
+      "id": "cn-layer-046",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about layering and implementation are correct?",
+      "options": [
+        "A layer can be implemented in software, hardware, or both",
+        "Peer layers communicate according to protocols",
+        "Adjacent layers interact through service interfaces",
+        "A layer must be implemented on a separate physical device"
+      ],
+      "answer": [
+        "A layer can be implemented in software, hardware, or both",
+        "Peer layers communicate according to protocols",
+        "Adjacent layers interact through service interfaces"
+      ],
+      "explanation": "Layers are logical abstractions and may share a host or device. Protocols define peer behavior, while interfaces connect adjacent layers within a system."
+    },
+    {
+      "id": "cn-layer-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A web browser's HTTP request is carried by TCP, which is carried by IP. Which entity is a peer of the browser's HTTP layer?",
+      "options": [
+        "The web server's HTTP layer",
+        "The first router's Ethernet interface",
+        "The client's IP layer",
+        "The server's physical transceiver"
+      ],
+      "answer": [
+        "The web server's HTTP layer"
+      ],
+      "explanation": "Application-layer protocols communicate logically between peer application entities at the endpoints. Lower layers carry the encapsulated data across the network."
+    },
+    {
+      "id": "cn-layer-048",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An IP packet has total length 1420 bytes, of which 20 bytes are the IPv4 header. How many bytes are in its payload?",
+      "answer": "1400",
+      "explanation": "IPv4 total length includes its header and payload. Subtract the 20-byte header: 1420−20=1400 bytes."
+    },
+    {
+      "id": "cn-layer-049",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about packet switching are correct?",
+      "options": [
+        "Resources can be statistically shared among flows",
+        "Packets from different users can interleave on a link",
+        "A packet-switched network necessarily reserves a dedicated end-to-end circuit",
+        "Packets may experience variable queuing delay"
+      ],
+      "answer": [
+        "Resources can be statistically shared among flows",
+        "Packets from different users can interleave on a link",
+        "Packets may experience variable queuing delay"
+      ],
+      "explanation": "Packet switching shares link capacity dynamically and can queue packets when demand exceeds capacity. It does not inherently reserve a dedicated circuit for each flow."
+    },
+    {
+      "id": "cn-layer-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which layer commonly detects bit errors in a received Ethernet frame using a frame check sequence?",
+      "options": [
+        "Data link",
+        "Network",
+        "Transport",
+        "Application"
+      ],
+      "answer": [
+        "Data link"
+      ],
+      "explanation": "Ethernet's frame check sequence detects corruption at the link layer. Higher-layer mechanisms may independently detect or recover from other errors."
+    },
+    {
+      "id": "cn-layer-051",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A frame carries a 1400-byte IP packet and has 18 bytes of link overhead. How many bytes are sent for that frame, ignoring preamble and inter-frame gap?",
+      "answer": "1418",
+      "explanation": "The transmitted frame size under the stated accounting is 1400+18=1418 bytes."
+    },
+    {
+      "id": "cn-layer-052",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a router and a switch are generally correct?",
+      "options": [
+        "A router forwards network-layer packets between networks",
+        "An Ethernet switch forwards frames based on link-layer addresses",
+        "A switch normally decrements IPv4 TTL for every frame",
+        "A router may use a forwarding table to select an outgoing interface"
+      ],
+      "answer": [
+        "A router forwards network-layer packets between networks",
+        "An Ethernet switch forwards frames based on link-layer addresses",
+        "A router may use a forwarding table to select an outgoing interface"
+      ],
+      "explanation": "Routers make network-layer forwarding decisions and typically decrement TTL. Ethernet switches learn and forward using MAC addresses without ordinary IP routing behavior."
+    },
+    {
+      "id": "cn-layer-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A packet has source IP S and destination IP D. At a router, the outgoing frame's source MAC is the router's egress interface. Which address is typically the outgoing frame's destination MAC?",
+      "options": [
+        "The next-hop interface's MAC address",
+        "The final destination host's MAC on a remote network",
+        "The packet's destination IP copied unchanged",
+        "The sender's original source MAC"
+      ],
+      "answer": [
+        "The next-hop interface's MAC address"
+      ],
+      "explanation": "The link-layer frame is addressed to the next hop on the local outgoing link. The remote destination's MAC is not used across intervening routed links."
+    },
+    {
+      "id": "cn-layer-054",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 2400-byte message is sent in three packets with payloads 1000, 1000, and 400 bytes. Each packet has 28 bytes of network and transport headers. What is the total size?",
+      "answer": "2484",
+      "explanation": "The total payload is 2400 bytes. Three sets of 28-byte headers contribute 84 bytes, for 2484 total."
+    },
+    {
+      "id": "cn-layer-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the main role of a transport port number in a client-server exchange?",
+      "options": [
+        "Identify a transport endpoint/process on a host",
+        "Identify the physical link between routers",
+        "Provide a global network prefix",
+        "Detect corruption in an Ethernet frame"
+      ],
+      "answer": [
+        "Identify a transport endpoint/process on a host"
+      ],
+      "explanation": "Port numbers allow transport protocols to deliver incoming data to the appropriate service or application process on the destination host."
+    },
+    {
+      "id": "cn-layer-056",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about multiplexing at the transport layer are correct?",
+      "options": [
+        "Multiple application sockets can share a host's network interface",
+        "Port and address fields help distinguish communication endpoints",
+        "Demultiplexing occurs at the receiving host",
+        "Multiplexing means combining bits from unrelated physical cables"
+      ],
+      "answer": [
+        "Multiple application sockets can share a host's network interface",
+        "Port and address fields help distinguish communication endpoints",
+        "Demultiplexing occurs at the receiving host"
+      ],
+      "explanation": "Transport multiplexing combines data from several sockets for transmission and uses endpoint identifiers to direct received data. It is unrelated to combining physical cables."
+    },
+    {
+      "id": "cn-layer-057",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 4000-byte application message is segmented into at most 1000 payload bytes. TCP adds 20 bytes per segment. What is the total size of the TCP segments, excluding IP and link headers?",
+      "answer": "4080",
+      "explanation": "Four segments are needed. Their total headers are 4×20=80 bytes, so segment bytes total 4,080."
+    },
+    {
+      "id": "cn-layer-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which protocol-layer function is associated with mapping a network-layer next hop to a local-link hardware address in IPv4 networks?",
+      "options": [
+        "Address resolution",
+        "Congestion control",
+        "Application framing",
+        "Transport reliability"
+      ],
+      "answer": [
+        "Address resolution"
+      ],
+      "explanation": "Address resolution maps a local IPv4 next-hop address to a link-layer address so a frame can be sent on the local network."
+    },
+    {
+      "id": "cn-layer-059",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about fragmentation and encapsulation are correct?",
+      "options": [
+        "A large payload may be divided into multiple lower-layer units",
+        "Each fragment or segment may carry its own header",
+        "Per-unit headers add overhead",
+        "Fragmentation always reduces total transmitted bytes"
+      ],
+      "answer": [
+        "A large payload may be divided into multiple lower-layer units",
+        "Each fragment or segment may carry its own header",
+        "Per-unit headers add overhead"
+      ],
+      "explanation": "Splitting data permits transmission under size limits but repeats control headers, increasing total bytes. Fragmentation solves size constraints and does not inherently reduce overhead."
+    },
+    {
+      "id": "cn-layer-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A network service offers reliable, ordered byte delivery to applications. Which protocol is a common implementation of this service on the Internet?",
+      "options": [
+        "TCP",
+        "IP",
+        "Ethernet",
+        "ARP"
+      ],
+      "answer": [
+        "TCP"
+      ],
+      "explanation": "TCP provides a reliable, in-order byte stream between transport endpoints. IP and Ethernet provide lower-layer delivery services without this guarantee."
+    },
+    {
+      "id": "cn-layer-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An application message of 64,000 bytes is segmented into 1000-byte payloads. Each segment has a 20-byte transport header. How many bytes of transport headers are added?",
+      "answer": "1280",
+      "explanation": "There are 64 segments, each adding 20 bytes. The total transport-header overhead is 64×20=1,280 bytes."
+    },
+    {
+      "id": "cn-layer-062",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the OSI and Internet protocol models are correct?",
+      "options": [
+        "The OSI model has seven conceptual layers",
+        "The Internet stack is commonly taught with four or five layers",
+        "Practical protocols do not always map one-to-one onto OSI layers",
+        "The Internet stack requires separate session and presentation protocols in every application"
+      ],
+      "answer": [
+        "The OSI model has seven conceptual layers",
+        "The Internet stack is commonly taught with four or five layers",
+        "Practical protocols do not always map one-to-one onto OSI layers"
+      ],
+      "explanation": "OSI is a seven-layer reference model, while Internet descriptions commonly group functions into four or five layers. Real protocol implementations can combine or distribute functions across layers."
+    },
+    {
+      "id": "cn-layer-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In the OSI model, which layer is traditionally associated with end-to-end error recovery and flow control?",
+      "options": [
+        "Transport",
+        "Data link",
+        "Physical",
+        "Presentation"
+      ],
+      "answer": [
+        "Transport"
+      ],
+      "explanation": "The OSI transport layer provides end-to-end process communication and may include reliability and flow-control functions. Link-layer recovery is hop by hop."
+    },
+    {
+      "id": "cn-layer-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A transport PDU is 1200 bytes and receives a 20-byte IP header and 18 bytes of link framing. What is the resulting frame size?",
+      "answer": "1238",
+      "explanation": "Encapsulation adds 20+18=38 bytes to the 1,200-byte transport PDU, giving 1,238 bytes."
+    },
+    {
+      "id": "cn-layer-065",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which effects can arise when one network layer hides lower-layer details behind a service abstraction?",
+      "options": [
+        "Upper layers can use a common interface across different link technologies",
+        "The lower layer can change internally without changing the service contract",
+        "All performance overhead disappears",
+        "Different implementations can interoperate if they honor the service and protocol rules"
+      ],
+      "answer": [
+        "Upper layers can use a common interface across different link technologies",
+        "The lower layer can change internally without changing the service contract",
+        "Different implementations can interoperate if they honor the service and protocol rules"
+      ],
+      "explanation": "Abstraction supports modularity and interoperability, but it does not eliminate processing, headers, or performance tradeoffs."
+    },
+    {
+      "id": "cn-layer-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A host receives an Ethernet frame addressed to its MAC, then sees an IP destination belonging to another network. What should the host generally do?",
+      "options": [
+        "Send the packet to its configured default gateway in a new frame",
+        "Change the TCP destination port to the gateway",
+        "Forward the frame unchanged to every local host",
+        "Discard the packet because its IP is remote"
+      ],
+      "answer": [
+        "Send the packet to its configured default gateway in a new frame"
+      ],
+      "explanation": "For a remote IP destination, the host sends the IP packet to its next-hop router, usually the default gateway, encapsulated in a local-link frame addressed to that gateway."
+    },
+    {
+      "id": "cn-layer-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An Ethernet payload is limited to 1500 bytes. It contains a 20-byte IPv4 header and a 20-byte TCP header. What is the largest application data segment that fits?",
+      "answer": "1460",
+      "explanation": "Subtract the 40 bytes of IP and TCP headers from the 1500-byte payload limit: 1500−20−20=1460 bytes."
+    },
+    {
+      "id": "cn-layer-068",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about end-to-end principles are correct?",
+      "options": [
+        "Some functions are best implemented at communicating endpoints",
+        "Lower layers may provide partial support without replacing endpoint checks",
+        "A link-layer checksum alone guarantees end-to-end application correctness",
+        "TCP endpoints can detect missing data even if individual links are reliable"
+      ],
+      "answer": [
+        "Some functions are best implemented at communicating endpoints",
+        "Lower layers may provide partial support without replacing endpoint checks",
+        "TCP endpoints can detect missing data even if individual links are reliable"
+      ],
+      "explanation": "End-to-end functions such as complete reliability may require endpoint knowledge. Link checks help on individual hops but do not by themselves guarantee that the full application transfer is correct."
+    },
+    {
+      "id": "cn-layer-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A packet's IP header is processed by each router, but its HTTP payload is not interpreted by ordinary routers. Which concept explains this separation?",
+      "options": [
+        "Layering and encapsulation",
+        "Collision detection",
+        "Character encoding",
+        "Application multiplexing only"
+      ],
+      "answer": [
+        "Layering and encapsulation"
+      ],
+      "explanation": "Routers operate on network-layer information needed for forwarding. Encapsulated application data is treated as payload, preserving separation between layers."
+    },
+    {
+      "id": "cn-layer-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A file of 9000 bytes is sent in chunks of at most 1200 payload bytes. How many chunks are needed?",
+      "answer": "8",
+      "explanation": "Seven full chunks carry 8400 bytes, leaving 600 bytes for an eighth chunk. Thus eight chunks are required."
+    },
+    {
+      "id": "cn-layer-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which layer is responsible for routing decisions that determine a path across multiple networks?",
+      "options": [
+        "Network",
+        "Transport",
+        "Data link",
+        "Physical"
+      ],
+      "answer": [
+        "Network"
+      ],
+      "explanation": "Routing selects paths across interconnected networks using network-layer addressing and topology information."
+    },
+    {
+      "id": "cn-layer-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which functions are commonly associated with the transport layer in TCP/IP?",
+      "options": [
+        "Process multiplexing through ports",
+        "End-to-end congestion control in TCP",
+        "Reliable stream delivery in TCP",
+        "Ethernet frame error detection"
+      ],
+      "answer": [
+        "Process multiplexing through ports",
+        "End-to-end congestion control in TCP",
+        "Reliable stream delivery in TCP"
+      ],
+      "explanation": "Ports, TCP reliability, and TCP congestion control belong to transport. Ethernet's frame check is a data-link function."
+    },
+    {
+      "id": "cn-layer-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 7500-byte message is split into payloads of 1000 bytes. Each packet adds 40 bytes of headers. What is the total transmitted size?",
+      "answer": "7820",
+      "explanation": "Eight packets are required: seven carry 1000 bytes and one carries 500. Header overhead is 8×40=320, so total size is 7,820 bytes."
+    },
+    {
+      "id": "cn-layer-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement about encapsulation at a router is correct?",
+      "options": [
+        "The incoming link frame is removed and a new outgoing link frame is formed",
+        "The application data is always re-encrypted by the router",
+        "The TCP header is removed at every hop",
+        "The source and destination IP addresses always become the router's addresses"
+      ],
+      "answer": [
+        "The incoming link frame is removed and a new outgoing link frame is formed"
+      ],
+      "explanation": "A router decapsulates the incoming frame to inspect the IP packet and then places that packet into an outgoing frame appropriate for the next link."
+    },
+    {
+      "id": "cn-layer-075",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Internet host communication are correct?",
+      "options": [
+        "Application processes communicate using application protocols",
+        "Transport protocols multiplex processes using port numbers",
+        "IP provides addressing and best-effort packet forwarding",
+        "Ethernet MAC addresses provide global end-to-end routing across the Internet"
+      ],
+      "answer": [
+        "Application processes communicate using application protocols",
+        "Transport protocols multiplex processes using port numbers",
+        "IP provides addressing and best-effort packet forwarding"
+      ],
+      "explanation": "Application, transport, and network layers provide these functions respectively. MAC addresses are local-link identifiers and are replaced at routers rather than routed end to end."
+    },
+    {
+      "id": "cn-layer-076",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 10,000-byte application message is carried in segments with a maximum payload of 1460 bytes. How many TCP segments are required?",
+      "answer": "7",
+      "explanation": "Six full segments carry 8,760 bytes, leaving 1,240 bytes. A seventh segment carries the remainder, so seven segments are needed."
+    },
+    {
+      "id": "cn-layer-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A data-link protocol delivers frames to the next directly connected node. What type of delivery scope does this describe?",
+      "options": [
+        "Hop-by-hop",
+        "End-to-end process-to-process",
+        "Application-to-application only",
+        "Global DNS resolution"
+      ],
+      "answer": [
+        "Hop-by-hop"
+      ],
+      "explanation": "Link-layer delivery is limited to one local link. Routers terminate one link-layer frame and create another for the next hop."
+    },
+    {
+      "id": "cn-layer-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about layering overhead are correct?",
+      "options": [
+        "Each encapsulation header consumes bytes",
+        "Smaller fragments can increase header overhead per payload byte",
+        "Headers may carry information needed for delivery and control",
+        "Adding layers guarantees higher throughput"
+      ],
+      "answer": [
+        "Each encapsulation header consumes bytes",
+        "Smaller fragments can increase header overhead per payload byte",
+        "Headers may carry information needed for delivery and control"
+      ],
+      "explanation": "Headers add bytes but provide addressing, sequencing, and control information. Fragmenting a fixed payload into more units repeats headers and can reduce useful-data efficiency."
+    },
+    {
+      "id": "cn-layer-079",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 4000-byte file is divided into payloads of 900 bytes, each with a 30-byte header. How many total bytes are transmitted?",
+      "answer": "4150",
+      "explanation": "Five payload units are needed: four full 900-byte chunks and one 400-byte chunk. Five headers add 150 bytes, totaling 4,150."
+    },
+    {
+      "id": "cn-layer-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which protocol belongs to the network layer?",
+      "options": [
+        "IPv4",
+        "TCP",
+        "HTTP",
+        "Ethernet"
+      ],
+      "answer": [
+        "IPv4"
+      ],
+      "explanation": "IPv4 provides network-layer datagram addressing and forwarding. TCP is transport, HTTP is application, and Ethernet is data link."
+    },
+    {
+      "id": "cn-layer-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about protocol layering and peer entities are correct?",
+      "options": [
+        "Logical peer communication occurs between corresponding layers on hosts",
+        "Actual data is passed down and up adjacent layers at each endpoint",
+        "A router may implement only the layers needed for forwarding functions",
+        "Every router must run every application protocol in payloads"
+      ],
+      "answer": [
+        "Logical peer communication occurs between corresponding layers on hosts",
+        "Actual data is passed down and up adjacent layers at each endpoint",
+        "A router may implement only the layers needed for forwarding functions"
+      ],
+      "explanation": "Peer protocols are logical abstractions over lower-layer transfer. Hosts pass data through adjacent layers; routers need not implement endpoint application protocols to forward packets."
+    },
+    {
+      "id": "cn-layer-082",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An IPv4 datagram has total length 1500 bytes and header length 24 bytes. How many bytes are carried as IP payload?",
+      "answer": "1476",
+      "explanation": "The IPv4 total length includes the 24-byte header. The payload length is 1500−24=1476 bytes."
+    },
+    {
+      "id": "cn-layer-083",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A network application needs reliable, ordered delivery. Which design choice is appropriate without implementing retransmission itself?",
+      "options": [
+        "Use a reliable transport service such as TCP",
+        "Send raw Ethernet frames",
+        "Use IP alone and assume order",
+        "Use DNS instead of transport"
+      ],
+      "answer": [
+        "Use a reliable transport service such as TCP"
+      ],
+      "explanation": "TCP provides reliable, ordered byte-stream delivery, allowing the application to rely on transport retransmission and sequencing rather than implementing them itself."
+    },
+    {
+      "id": "cn-layer-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about TCP and UDP services are correct?",
+      "options": [
+        "TCP provides a reliable byte stream",
+        "UDP preserves message boundaries at its service interface",
+        "UDP itself does not guarantee delivery or ordering",
+        "Both use transport-layer port numbers"
+      ],
+      "answer": [
+        "TCP provides a reliable byte stream",
+        "UDP preserves message boundaries at its service interface",
+        "UDP itself does not guarantee delivery or ordering",
+        "Both use transport-layer port numbers"
+      ],
+      "explanation": "TCP is a reliable byte-stream protocol; UDP is connectionless and message-oriented without delivery or ordering guarantees. Both use ports for process multiplexing."
+    },
+    {
+      "id": "cn-layer-085",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A host sends 5 application messages of 700 bytes each. Each is placed in a separate TCP segment with a 20-byte header. How many bytes are carried in the five segments, excluding IP headers?",
+      "answer": "3600",
+      "explanation": "The payload total is 5×700=3500 bytes, and the TCP headers add 5×20=100 bytes. Total segment size is 3600 bytes."
+    },
+    {
+      "id": "cn-layer-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why might a network-layer packet be fragmented?",
+      "options": [
+        "It exceeds the maximum packet size supported on a traversed link",
+        "Its TCP port is unavailable",
+        "Its application protocol is unknown to a switch",
+        "The Ethernet source address is duplicated"
+      ],
+      "answer": [
+        "It exceeds the maximum packet size supported on a traversed link"
+      ],
+      "explanation": "A packet larger than a link's supported MTU may need fragmentation or another size-handling mechanism so it can cross that link."
+    },
+    {
+      "id": "cn-layer-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a service model are correct?",
+      "options": [
+        "It describes the guarantees or abstractions exposed to an upper layer",
+        "Best-effort IP is a service model with limited guarantees",
+        "A service contract necessarily specifies the exact internal algorithm",
+        "Different implementations can provide the same service"
+      ],
+      "answer": [
+        "It describes the guarantees or abstractions exposed to an upper layer",
+        "Best-effort IP is a service model with limited guarantees",
+        "Different implementations can provide the same service"
+      ],
+      "explanation": "A service specifies what users of a layer can rely on, not necessarily how it is implemented. Multiple implementations can conform to the same service and protocol."
+    },
+    {
+      "id": "cn-layer-088",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An application sends 1024 bytes. There are 4 bytes of application framing per message, 8 bytes of transport header, 20 bytes of IP header, and 18 bytes of link overhead. What total size is carried on the link?",
+      "answer": "1074",
+      "explanation": "Add all stated overheads to the payload: 1024+4+8+20+18=1074 bytes."
+    },
+    {
+      "id": "cn-layer-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which OSI layer is traditionally associated with syntax translation and data representation?",
+      "options": [
+        "Presentation",
+        "Session",
+        "Transport",
+        "Network"
+      ],
+      "answer": [
+        "Presentation"
+      ],
+      "explanation": "The OSI presentation layer handles representation issues such as syntax translation, encoding, compression, and encryption in the traditional model."
+    },
+    {
+      "id": "cn-layer-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about network-layer and link-layer addressing are correct?",
+      "options": [
+        "A router uses a network-layer destination to choose a route",
+        "A frame's destination MAC is normally the next hop on the local link",
+        "A remote host's MAC address is carried unchanged through every router",
+        "IP addresses commonly identify source and destination hosts across an internetwork"
+      ],
+      "answer": [
+        "A router uses a network-layer destination to choose a route",
+        "A frame's destination MAC is normally the next hop on the local link",
+        "IP addresses commonly identify source and destination hosts across an internetwork"
+      ],
+      "explanation": "Routers forward using network-layer addresses, while each link frame addresses the next-hop interface. Link-layer addresses are rewritten at each routed hop; IP endpoints generally remain end to end."
+    },
+    {
+      "id": "cn-layer-091",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 12,000-byte payload is sent in packets carrying at most 1400 payload bytes. Each packet adds 40 bytes of headers. How many total bytes are transmitted?",
+      "answer": "12360",
+      "explanation": "Nine packets are needed: eight carry 1400 bytes (11,200 total) and one carries 800. Header overhead is 9×40=360, giving 12,360 bytes."
+    },
+    {
+      "id": "cn-layer-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link-layer frame is corrupted but its frame check sequence detects the error. What does Ethernet generally do with the damaged frame?",
+      "options": [
+        "Discards it; recovery may be handled by a higher layer",
+        "Repairs every corrupted bit and guarantees delivery",
+        "Converts it into an IP route",
+        "Delivers it to the application with a warning"
+      ],
+      "answer": [
+        "Discards it; recovery may be handled by a higher layer"
+      ],
+      "explanation": "Ethernet detects many frame errors and discards corrupted frames. Reliable recovery, if required, is generally provided by a higher-layer protocol such as TCP."
+    },
+    {
+      "id": "cn-layer-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about protocol headers are correct?",
+      "options": [
+        "They can include addresses, sequence values, or control flags",
+        "A receiver may inspect headers to decide how to process the payload",
+        "Header fields are identical across all layers",
+        "Some headers may be added or removed at each router hop"
+      ],
+      "answer": [
+        "They can include addresses, sequence values, or control flags",
+        "A receiver may inspect headers to decide how to process the payload",
+        "Some headers may be added or removed at each router hop"
+      ],
+      "explanation": "Headers carry layer-specific control information. Link headers change per hop, while higher-layer headers may persist end to end; no single header format applies to all layers."
+    },
+    {
+      "id": "cn-layer-094",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 5000-byte message is segmented into at most 1200 bytes per segment. Each segment has a 12-byte header. How many bytes of segment headers are added?",
+      "answer": "60",
+      "explanation": "The payload requires five segments: four full 1200-byte segments and one 200-byte segment. Five 12-byte headers add 60 bytes."
+    },
+    {
+      "id": "cn-layer-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which function is most directly associated with the link layer on a shared broadcast medium?",
+      "options": [
+        "Medium access control",
+        "End-to-end congestion control",
+        "Domain-name resolution",
+        "IP route selection"
+      ],
+      "answer": [
+        "Medium access control"
+      ],
+      "explanation": "The link layer determines how nodes share access to a common medium, in addition to framing and local delivery functions."
+    },
+    {
+      "id": "cn-layer-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about PDU encapsulation across a host stack are correct?",
+      "options": [
+        "Application data may become a transport segment",
+        "A transport segment may become an IP packet payload",
+        "An IP packet may become a frame payload",
+        "The frame becomes an application header before transmission"
+      ],
+      "answer": [
+        "Application data may become a transport segment",
+        "A transport segment may become an IP packet payload",
+        "An IP packet may become a frame payload"
+      ],
+      "explanation": "Encapsulation moves downward: application data is wrapped by transport, then network, then link layers. The receiver reverses this sequence during decapsulation."
+    },
+    {
+      "id": "cn-layer-097",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A network packet contains 1300 bytes of payload and a 20-byte IP header. Its link frame adds 18 bytes. What is the frame size?",
+      "answer": "1338",
+      "explanation": "The IP packet is 1320 bytes. Adding 18 bytes of link framing gives 1338 bytes."
+    },
+    {
+      "id": "cn-layer-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A layer offers a connectionless service. Which statement is necessarily true?",
+      "options": [
+        "Each unit can be handled independently without requiring a prior logical connection",
+        "The service guarantees reliable in-order delivery",
+        "The service reserves a path for the entire session",
+        "The sender must use TCP"
+      ],
+      "answer": [
+        "Each unit can be handled independently without requiring a prior logical connection"
+      ],
+      "explanation": "Connectionless service does not require establishing a logical connection before sending units. It does not by itself imply reliability, ordering, or resource reservation."
+    },
+    {
+      "id": "cn-layer-099",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about connection-oriented transport service are correct?",
+      "options": [
+        "A logical connection is established before data transfer",
+        "The service may provide sequencing and reliable delivery",
+        "It eliminates the need for network-layer addressing",
+        "TCP is a common example"
+      ],
+      "answer": [
+        "A logical connection is established before data transfer",
+        "The service may provide sequencing and reliable delivery",
+        "TCP is a common example"
+      ],
+      "explanation": "TCP establishes connection state and provides sequence-based reliable delivery. It still relies on network-layer addresses to reach the peer host."
+    },
+    {
+      "id": "cn-layer-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A change replaces Ethernet with Wi-Fi while keeping IP and TCP applications unchanged. Which architectural property makes this possible?",
+      "options": [
+        "The link layer exposes compatible services to the network layer",
+        "TCP depends on a specific Ethernet frame format",
+        "Application protocols directly control radio modulation",
+        "IP addresses are replaced by port numbers"
+      ],
+      "answer": [
+        "The link layer exposes compatible services to the network layer"
+      ],
+      "explanation": "Layered interfaces let the network layer operate over different link technologies that provide the required local delivery service, while upper-layer protocols remain unchanged."
+    }
+  ]
+}

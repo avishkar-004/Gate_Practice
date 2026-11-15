@@ -1,0 +1,1366 @@
+{
+  "topicIndex": 1,
+  "questions": [
+    {
+      "id": "cn-perf-001",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 1500-byte packet is transmitted over a 100 Mb/s link. What is its transmission delay in milliseconds?",
+      "answer": "0.12",
+      "explanation": "The packet has 12,000 bits. Transmission delay is L/R=12,000/(100×10^6)=0.00012 s=0.12 ms."
+    },
+    {
+      "id": "cn-perf-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A signal travels 600 km through a medium at 2×10^8 m/s. What is the propagation delay?",
+      "options": [
+        "0.3 ms",
+        "3 ms",
+        "30 ms",
+        "300 ms"
+      ],
+      "answer": [
+        "3 ms"
+      ],
+      "explanation": "Convert 600 km to 600,000 m. Delay is distance/speed=600,000/(2×10^8)=0.003 s, or 3 ms."
+    },
+    {
+      "id": "cn-perf-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish transmission delay from propagation delay?",
+      "options": [
+        "Transmission delay depends on packet size and link rate",
+        "Propagation delay depends on physical distance and signal speed",
+        "Increasing link rate reduces propagation delay",
+        "Increasing packet size increases transmission delay"
+      ],
+      "answer": [
+        "Transmission delay depends on packet size and link rate",
+        "Propagation delay depends on physical distance and signal speed",
+        "Increasing packet size increases transmission delay"
+      ],
+      "explanation": "Transmission delay is L/R, while propagation delay is d/s. Raising R affects serialization time, not the physical travel time of a signal over fixed distance."
+    },
+    {
+      "id": "cn-perf-004",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An 8000-bit packet crosses two store-and-forward links with rates 2 Mb/s and 4 Mb/s. Ignore propagation and processing delays. What is the total transmission delay in milliseconds?",
+      "answer": "6",
+      "explanation": "The first link requires 8000/2,000,000=4 ms; the second requires 8000/4,000,000=2 ms. Store-and-forward adds both, totaling 6 ms."
+    },
+    {
+      "id": "cn-perf-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a fixed packet and physical path, which change reduces transmission delay but not propagation delay?",
+      "options": [
+        "Increase the link bit rate",
+        "Shorten the physical path",
+        "Increase the signal propagation speed",
+        "Move the receiver farther away"
+      ],
+      "answer": [
+        "Increase the link bit rate"
+      ],
+      "explanation": "Transmission delay is packet bits divided by link rate, so increasing the rate reduces it. Propagation delay is distance divided by signal speed and is unchanged."
+    },
+    {
+      "id": "cn-perf-006",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 2 MB file contains 16,000,000 bits under the stated decimal convention. How long does it take to transmit over a 20 Mb/s link, ignoring all other delay?",
+      "answer": "0.8",
+      "explanation": "The serialization time is 16,000,000/(20,000,000)=0.8 seconds."
+    },
+    {
+      "id": "cn-perf-007",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which four components appear in the standard nodal-delay decomposition, even when a component such as queueing is zero?",
+      "options": [
+        "Processing delay",
+        "Queueing delay",
+        "Transmission delay",
+        "Propagation delay"
+      ],
+      "answer": [
+        "Processing delay",
+        "Queueing delay",
+        "Transmission delay",
+        "Propagation delay"
+      ],
+      "explanation": "The standard decomposition includes processing, queueing, transmission, and propagation. A particular packet may have zero queueing delay, but queueing remains one of the modeled components."
+    },
+    {
+      "id": "cn-perf-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router uses store-and-forward switching. When can it begin transmitting a packet on the outgoing link?",
+      "options": [
+        "After receiving the complete packet",
+        "As soon as the first bit arrives",
+        "Before any bit arrives",
+        "Only after the destination acknowledges it"
+      ],
+      "answer": [
+        "After receiving the complete packet"
+      ],
+      "explanation": "Store-and-forward requires the full packet to be buffered before forwarding begins, so incoming and outgoing transmission delays are sequential at that router."
+    },
+    {
+      "id": "cn-perf-009",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 12,000-bit packet traverses three store-and-forward links, each at 6 Mb/s. Ignore propagation and queueing. What is the cumulative transmission delay in milliseconds?",
+      "answer": "6",
+      "explanation": "Each link takes 12,000/6,000,000=2 ms. Store-and-forward across three links accumulates 3×2=6 ms."
+    },
+    {
+      "id": "cn-perf-010",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about queueing delay are correct?",
+      "options": [
+        "It depends on traffic arriving ahead of a packet",
+        "It can vary from packet to packet",
+        "It is always zero if the link has a nonzero rate",
+        "It may grow sharply as utilization approaches one"
+      ],
+      "answer": [
+        "It depends on traffic arriving ahead of a packet",
+        "It can vary from packet to packet",
+        "It may grow sharply as utilization approaches one"
+      ],
+      "explanation": "Queueing depends on the arrival process and existing backlog. A positive service rate does not prevent queues, and delay often increases rapidly near saturation."
+    },
+    {
+      "id": "cn-perf-011",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 10,000-bit frame is sent over a 5 Mb/s link. Find its transmission delay in milliseconds.",
+      "answer": "2",
+      "explanation": "L/R=10,000/5,000,000=0.002 seconds, which is 2 ms."
+    },
+    {
+      "id": "cn-perf-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link has propagation delay 20 ms and rate 10 Mb/s. What is its bandwidth-delay product in bits for a one-way delay?",
+      "options": [
+        "20,000 bits",
+        "200,000 bits",
+        "2,000,000 bits",
+        "200,000,000 bits"
+      ],
+      "answer": [
+        "200,000 bits"
+      ],
+      "explanation": "The product is rate×delay=10,000,000×0.020=200,000 bits. It represents the number of bits that can be in flight on the link."
+    },
+    {
+      "id": "cn-perf-013",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 50 Mb/s path has a round-trip propagation time of 40 ms. What is its bandwidth-delay product in bits?",
+      "answer": "2000000",
+      "explanation": "Multiply 50×10^6 bits/s by 0.040 s to obtain 2,000,000 bits in flight for one RTT."
+    },
+    {
+      "id": "cn-perf-014",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conclusions follow from a large bandwidth-delay product?",
+      "options": [
+        "Many bits may be in flight before an acknowledgment returns",
+        "A sender may need a large window to fully utilize the path",
+        "The propagation delay must be zero",
+        "The product depends on both rate and delay"
+      ],
+      "answer": [
+        "Many bits may be in flight before an acknowledgment returns",
+        "A sender may need a large window to fully utilize the path",
+        "The product depends on both rate and delay"
+      ],
+      "explanation": "BDP=capacity×RTT measures in-flight data needed to fill the path. A large BDP can require a large sender window; it does not imply zero propagation delay."
+    },
+    {
+      "id": "cn-perf-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 1 Mb/s link has a one-way propagation delay of 50 ms. How many bits can be in flight in one direction?",
+      "options": [
+        "5,000 bits",
+        "50,000 bits",
+        "500,000 bits",
+        "5,000,000 bits"
+      ],
+      "answer": [
+        "50,000 bits"
+      ],
+      "explanation": "The one-way bandwidth-delay product is 1,000,000×0.050=50,000 bits."
+    },
+    {
+      "id": "cn-perf-016",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 600-km fiber path carries signals at 2×10^8 m/s. What is the one-way propagation delay in milliseconds?",
+      "answer": "3",
+      "explanation": "Distance is 600,000 m, so d/s=600,000/(2×10^8)=0.003 s=3 ms."
+    },
+    {
+      "id": "cn-perf-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A packet has 8,000 bits and the link rate is 4 Mb/s. How long does it take to serialize the packet?",
+      "options": [
+        "0.5 ms",
+        "2 ms",
+        "4 ms",
+        "32 ms"
+      ],
+      "answer": [
+        "2 ms"
+      ],
+      "explanation": "Transmission delay is 8,000/4,000,000=0.002 seconds, or 2 milliseconds."
+    },
+    {
+      "id": "cn-perf-018",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which quantities affect the propagation delay of a packet over one fixed link?",
+      "options": [
+        "Link distance",
+        "Signal propagation speed in the medium",
+        "Packet length",
+        "Link bit rate"
+      ],
+      "answer": [
+        "Link distance",
+        "Signal propagation speed in the medium"
+      ],
+      "explanation": "Propagation delay is d/s. Packet length and bit rate determine transmission delay, not the signal travel time on the fixed link."
+    },
+    {
+      "id": "cn-perf-019",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 2,000-byte packet crosses a 10 Mb/s link. What is its transmission delay in milliseconds?",
+      "answer": "1.6",
+      "explanation": "The packet has 16,000 bits. Dividing by 10,000,000 bits/s gives 0.0016 s=1.6 ms."
+    },
+    {
+      "id": "cn-perf-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two packets of equal size are sent on the same link, one after another. Ignoring queueing, what is the interval between the starts of their transmissions if the link is work-conserving?",
+      "options": [
+        "One packet transmission time",
+        "One propagation delay",
+        "Zero",
+        "Twice the propagation delay"
+      ],
+      "answer": [
+        "One packet transmission time"
+      ],
+      "explanation": "The link serializes one packet at a time. The next packet can start as soon as the first has been fully transmitted, so the start interval is L/R."
+    },
+    {
+      "id": "cn-perf-021",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 4 Mb file is transferred over a 2 Mb/s link, with no protocol overhead and no other delay. What is the minimum transmission time in seconds?",
+      "answer": "2",
+      "explanation": "The ideal transmission time is file bits divided by rate: 4 Mb/2 Mb/s=2 s."
+    },
+    {
+      "id": "cn-perf-022",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which factors can increase total end-to-end packet delay?",
+      "options": [
+        "More store-and-forward hops",
+        "Longer links",
+        "Lower transmission rates",
+        "Lower queue occupancy"
+      ],
+      "answer": [
+        "More store-and-forward hops",
+        "Longer links",
+        "Lower transmission rates"
+      ],
+      "explanation": "Additional hops add per-hop processing and often transmission/propagation delays; longer paths add propagation delay; lower rates increase serialization time. Lower queue occupancy reduces queueing delay."
+    },
+    {
+      "id": "cn-perf-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A packet is 1000 bytes and travels over two 1 Mb/s store-and-forward links. Ignore propagation and processing. What is the end-to-end transmission component?",
+      "options": [
+        "4 ms",
+        "8 ms",
+        "16 ms",
+        "32 ms"
+      ],
+      "answer": [
+        "16 ms"
+      ],
+      "explanation": "Each link serializes 8,000 bits in 8 ms. Store-and-forward requires both link transmissions sequentially, totaling 16 ms."
+    },
+    {
+      "id": "cn-perf-024",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 1000-byte packet travels 100 km through a medium with propagation speed 2×10^8 m/s. What is the propagation delay in milliseconds?",
+      "answer": "0.5",
+      "explanation": "100 km is 100,000 m. Divide by 2×10^8 m/s to get 0.0005 s=0.5 ms."
+    },
+    {
+      "id": "cn-perf-025",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about circuit switching are correct?",
+      "options": [
+        "A path or resources may be reserved before data transfer",
+        "Setup delay can precede transmission",
+        "Reserved capacity may be unused during silence",
+        "Circuit switching always has lower delay for every workload"
+      ],
+      "answer": [
+        "A path or resources may be reserved before data transfer",
+        "Setup delay can precede transmission",
+        "Reserved capacity may be unused during silence"
+      ],
+      "explanation": "Circuit switching can require setup and allocates resources for the connection. Dedicated capacity may be idle when the user is silent; comparative delay depends on workload and setup."
+    },
+    {
+      "id": "cn-perf-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A circuit-switching system reserves a 2 Mb/s channel for a user who sends at an average of 0.5 Mb/s. What fraction of the reserved rate is used on average?",
+      "options": [
+        "12.5%",
+        "25%",
+        "50%",
+        "75%"
+      ],
+      "answer": [
+        "25%"
+      ],
+      "explanation": "The average rate fraction is 0.5/2=0.25, or 25 percent. The remaining reserved capacity is unused on average under this load."
+    },
+    {
+      "id": "cn-perf-027",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circuit requires 80 ms to establish. The subsequent data takes 120 ms to transmit and propagate. What is total completion time from request to completion?",
+      "answer": "200",
+      "explanation": "Include setup and data transfer: 80 ms+120 ms=200 ms total."
+    },
+    {
+      "id": "cn-perf-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Statistical multiplexing improves utilization primarily because it",
+      "options": [
+        "shares link capacity dynamically among active users",
+        "reserves a fixed equal-rate circuit for every user",
+        "eliminates packet headers",
+        "makes every flow transmit continuously"
+      ],
+      "answer": [
+        "shares link capacity dynamically among active users"
+      ],
+      "explanation": "Packet switching lets active users consume capacity when they have traffic, rather than permanently reserving a fixed share for each source."
+    },
+    {
+      "id": "cn-perf-029",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about packet switching are correct?",
+      "options": [
+        "Packets may be queued when aggregate arrival rate exceeds service rate",
+        "Statistical multiplexing can exploit bursty traffic",
+        "A packet's route can differ from another packet's route in some networks",
+        "Every packet experiences identical delay"
+      ],
+      "answer": [
+        "Packets may be queued when aggregate arrival rate exceeds service rate",
+        "Statistical multiplexing can exploit bursty traffic",
+        "A packet's route can differ from another packet's route in some networks"
+      ],
+      "explanation": "Packet networks queue bursts and share capacity statistically. Routes and queueing conditions can vary, so packet delays need not be identical."
+    },
+    {
+      "id": "cn-perf-030",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 9,000-bit packet is transmitted at 3 Mb/s. Find the transmission delay in milliseconds.",
+      "answer": "3",
+      "explanation": "9,000/3,000,000=0.003 seconds, which is 3 ms."
+    },
+    {
+      "id": "cn-perf-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A store-and-forward router has a 2 ms processing delay. The incoming link takes 3 ms to transmit the packet, and the outgoing link takes 4 ms. Ignoring propagation and queueing, what is the total delay through the router?",
+      "options": [
+        "5 ms",
+        "7 ms",
+        "9 ms",
+        "12 ms"
+      ],
+      "answer": [
+        "9 ms"
+      ],
+      "explanation": "The packet must be received in 3 ms, processed for 2 ms, then transmitted for 4 ms. The sum is 3+2+4=9 ms."
+    },
+    {
+      "id": "cn-perf-032",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which events can occur concurrently while a long stream of packets traverses a multi-link path?",
+      "options": [
+        "A later packet can be transmitted on an earlier link while an earlier packet is on a later link",
+        "Propagation of one packet can overlap transmission of another",
+        "Store-and-forward prevents any pipelining across the entire path",
+        "Different links can transmit different packets simultaneously"
+      ],
+      "answer": [
+        "A later packet can be transmitted on an earlier link while an earlier packet is on a later link",
+        "Propagation of one packet can overlap transmission of another",
+        "Different links can transmit different packets simultaneously"
+      ],
+      "explanation": "Store-and-forward constrains each packet at each router, but different packets can pipeline across different links. Transmission and propagation phases can overlap in a network."
+    },
+    {
+      "id": "cn-perf-033",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 1000-byte packet is sent over a 2 Mb/s link and then a 4 Mb/s store-and-forward link. Ignore all other delay. What is the total transmission delay in milliseconds?",
+      "answer": "6",
+      "explanation": "The packet contains 8,000 bits. The first transmission takes 4 ms and the second takes 2 ms, totaling 6 ms."
+    },
+    {
+      "id": "cn-perf-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link's utilization is 0.99 under a traffic model with variable arrivals. Which outcome is most plausible?",
+      "options": [
+        "Queueing delay may become very large",
+        "Queueing delay must be zero",
+        "The link rate becomes infinite",
+        "Propagation delay drops to zero"
+      ],
+      "answer": [
+        "Queueing delay may become very large"
+      ],
+      "explanation": "As offered load approaches link capacity, bursts have little spare service capacity to drain. Queueing delays and queue lengths can rise sharply."
+    },
+    {
+      "id": "cn-perf-035",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which values are required to compute propagation delay for a single link?",
+      "options": [
+        "Link length",
+        "Signal speed in the medium",
+        "Packet size",
+        "Transmission bit rate"
+      ],
+      "answer": [
+        "Link length",
+        "Signal speed in the medium"
+      ],
+      "explanation": "Propagation delay is distance divided by signal propagation speed. Packet size and rate determine transmission delay instead."
+    },
+    {
+      "id": "cn-perf-036",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An 8000-bit packet traverses two store-and-forward links of rates 2 Mb/s and 4 Mb/s. Each link has 3 ms propagation delay. Ignore queueing and processing. What is the end-to-end delay for this single packet?",
+      "answer": "12",
+      "explanation": "Transmission takes 8000/2,000,000=4 ms on the first link and 2 ms on the second. The two propagation delays add 6 ms, for a total of 12 ms."
+    },
+    {
+      "id": "cn-perf-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link rate increases from 10 Mb/s to 100 Mb/s while packet size stays fixed. What happens to transmission delay?",
+      "options": [
+        "It decreases by a factor of 10",
+        "It increases by a factor of 10",
+        "It is unchanged",
+        "It becomes equal to propagation delay"
+      ],
+      "answer": [
+        "It decreases by a factor of 10"
+      ],
+      "explanation": "Transmission delay L/R is inversely proportional to rate. Increasing R tenfold divides the serialization delay by ten."
+    },
+    {
+      "id": "cn-perf-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 200 km path has propagation speed 2×10^8 m/s. What is its round-trip propagation delay in milliseconds, assuming a symmetric path?",
+      "answer": "2",
+      "explanation": "One-way delay is 200,000/(2×10^8)=1 ms. A symmetric round trip doubles it to 2 ms."
+    },
+    {
+      "id": "cn-perf-039",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about bandwidth-delay product and a sliding window are correct?",
+      "options": [
+        "A window smaller than the BDP may leave some path capacity unused",
+        "A window at least the BDP can potentially keep the path full",
+        "The BDP is measured in bits when rate is bits/s and delay is seconds",
+        "The BDP is the time to transmit one packet"
+      ],
+      "answer": [
+        "A window smaller than the BDP may leave some path capacity unused",
+        "A window at least the BDP can potentially keep the path full",
+        "The BDP is measured in bits when rate is bits/s and delay is seconds"
+      ],
+      "explanation": "BDP is the amount of data needed in flight to fill the path. A sufficiently large window can sustain utilization; it is a volume, not a packet transmission time."
+    },
+    {
+      "id": "cn-perf-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stop-and-wait sender transmits 1000-bit frames over a 1 Mb/s link. The round-trip propagation and ACK processing time is 20 ms; ignore ACK transmission time. What is the utilization?",
+      "options": [
+        "1/21",
+        "1/20",
+        "20/21",
+        "1"
+      ],
+      "answer": [
+        "1/21"
+      ],
+      "explanation": "Frame transmission takes 1000/1,000,000=1 ms. One frame occupies 1 ms of a 21 ms send-and-wait cycle, so utilization is 1/21, about 4.76%."
+    },
+    {
+      "id": "cn-perf-041",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A router has 3 ms processing delay and 7 ms queueing delay for a packet. What is its total processing-plus-queueing delay?",
+      "answer": "10",
+      "explanation": "Add the two nodal components: 3+7=10 ms."
+    },
+    {
+      "id": "cn-perf-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link transmits a packet at 1 Mb/s. Its propagation delay is 10 ms and packet transmission delay is 8 ms. When has the last bit arrived at the receiver, measured from the first bit starting transmission?",
+      "options": [
+        "10 ms",
+        "18 ms",
+        "80 ms",
+        "100 ms"
+      ],
+      "answer": [
+        "18 ms"
+      ],
+      "explanation": "The first bit propagates while later bits are being serialized. The last bit leaves after 8 ms and then propagates for 10 ms, arriving at 18 ms."
+    },
+    {
+      "id": "cn-perf-043",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about store-and-forward packet transmission are correct?",
+      "options": [
+        "Each router must receive the full packet before forwarding it",
+        "Per-hop transmission delays accumulate for one packet",
+        "Propagation delays also accumulate across links",
+        "The total delay is independent of packet length"
+      ],
+      "answer": [
+        "Each router must receive the full packet before forwarding it",
+        "Per-hop transmission delays accumulate for one packet",
+        "Propagation delays also accumulate across links"
+      ],
+      "explanation": "For one packet under store-and-forward, each hop's serialization must complete before the next begins; link propagation and processing delays also add. Packet length affects each transmission term."
+    },
+    {
+      "id": "cn-perf-044",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 5000-bit packet crosses two links. The first has 1 Mb/s rate and 2 ms propagation; the second has 5 Mb/s rate and 3 ms propagation. Under store-and-forward, with no other delay, what is the total delay in milliseconds?",
+      "answer": "11",
+      "explanation": "Transmission delays are 5 ms and 1 ms. Propagation delays sum to 2+3=5 ms. The total is 5+1+5=11 ms."
+    },
+    {
+      "id": "cn-perf-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A packet-switched link has capacity 100 Mb/s and two active flows each sends at 70 Mb/s. What condition occurs if both rates persist at this bottleneck?",
+      "options": [
+        "Offered load exceeds capacity and queues can grow",
+        "The link automatically doubles its rate",
+        "Each flow is guaranteed 70 Mb/s without queueing",
+        "The propagation delay becomes negative"
+      ],
+      "answer": [
+        "Offered load exceeds capacity and queues can grow"
+      ],
+      "explanation": "The combined arrival rate is 140 Mb/s, exceeding the 100 Mb/s service rate. Without shaping or dropping, backlog grows; in practice packets are queued or lost."
+    },
+    {
+      "id": "cn-perf-046",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which factors can affect packet queueing delay at a router?",
+      "options": [
+        "Arrival rate relative to service rate",
+        "Burstiness of arriving traffic",
+        "Packets already waiting in the queue",
+        "Physical signal speed alone"
+      ],
+      "answer": [
+        "Arrival rate relative to service rate",
+        "Burstiness of arriving traffic",
+        "Packets already waiting in the queue"
+      ],
+      "explanation": "Queueing depends on traffic load, variability, and backlog. Signal propagation speed affects travel time on a link, not how long a packet waits in a router's queue."
+    },
+    {
+      "id": "cn-perf-047",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 40,000-bit packet is sent over a 20 Mb/s link. What is its transmission delay in milliseconds?",
+      "answer": "2",
+      "explanation": "40,000/20,000,000=0.002 seconds, or 2 ms."
+    },
+    {
+      "id": "cn-perf-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link has rate R and one-way propagation delay d. Ignoring headers, what packet size L makes transmission delay equal propagation delay?",
+      "options": [
+        "L=Rd",
+        "L=R/d",
+        "L=d/R",
+        "L=R+d"
+      ],
+      "answer": [
+        "L=Rd"
+      ],
+      "explanation": "Set L/R=d and multiply by R to obtain L=Rd bits. This is the one-way bandwidth-delay product."
+    },
+    {
+      "id": "cn-perf-049",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 5 Mb/s link has 12 ms one-way propagation delay. What packet size in bits has a transmission delay equal to that propagation delay?",
+      "answer": "60000",
+      "explanation": "The packet size that makes transmission and propagation delays equal is L=R?d. Substituting 5,000,000 bits/s and 0.012 s gives L=60,000 bits."
+    },
+    {
+      "id": "cn-perf-050",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which assumptions are needed when adding per-link delays for a single store-and-forward packet?",
+      "options": [
+        "The packet is fully received before forwarding on the next link",
+        "Transmission and propagation terms are accounted for on each hop",
+        "Queuing and processing can be added if specified",
+        "All links must have the same rate"
+      ],
+      "answer": [
+        "The packet is fully received before forwarding on the next link",
+        "Transmission and propagation terms are accounted for on each hop",
+        "Queuing and processing can be added if specified"
+      ],
+      "explanation": "Store-and-forward and the link-delay components determine the sum. Link rates may differ; each transmission term uses its own link's rate."
+    },
+    {
+      "id": "cn-perf-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A source sends a 10,000-bit packet over a 1 Mb/s link with 5 ms propagation. At what time does the first bit arrive, measured from transmission start?",
+      "options": [
+        "5 ms",
+        "10 ms",
+        "15 ms",
+        "50 ms"
+      ],
+      "answer": [
+        "5 ms"
+      ],
+      "explanation": "The first bit begins propagating immediately when it is transmitted. It arrives after the link's 5 ms propagation delay, before the full packet has finished serialization."
+    },
+    {
+      "id": "cn-perf-052",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A packet is 10,000 bits and the link rate is 1 Mb/s. Including 5 ms propagation, when does the last bit arrive after transmission starts?",
+      "answer": "15",
+      "explanation": "The packet takes 10 ms to serialize, and its last bit then propagates for 5 ms. Arrival of the last bit occurs at 15 ms."
+    },
+    {
+      "id": "cn-perf-053",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a packet on a link, which statements about first-bit and last-bit arrival are correct?",
+      "options": [
+        "The first bit can arrive before the sender finishes transmitting the packet",
+        "The last bit arrival time includes serialization plus propagation",
+        "Propagation delay is incurred independently of packet length",
+        "The first and last bits arrive simultaneously"
+      ],
+      "answer": [
+        "The first bit can arrive before the sender finishes transmitting the packet",
+        "The last bit arrival time includes serialization plus propagation",
+        "Propagation delay is incurred independently of packet length"
+      ],
+      "explanation": "The first bit starts propagating as soon as it is serialized. The last bit leaves after L/R and then propagates for d/s; all bits experience the same propagation delay, but not the same departure time."
+    },
+    {
+      "id": "cn-perf-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A communication path has four links with rates 10, 8, 5, and 12 Mb/s. What is the bottleneck capacity for a single flow without parallel path aggregation?",
+      "options": [
+        "5 Mb/s",
+        "8 Mb/s",
+        "10 Mb/s",
+        "35 Mb/s"
+      ],
+      "answer": [
+        "5 Mb/s"
+      ],
+      "explanation": "The end-to-end throughput cannot exceed the slowest link on the path. The minimum of the four rates is 5 Mb/s."
+    },
+    {
+      "id": "cn-perf-055",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 12 MB file is transferred over a path whose bottleneck rate is 24 Mb/s. Using decimal bytes and bits, what is the ideal transfer time in seconds, ignoring overhead and startup?",
+      "answer": "4",
+      "explanation": "12 MB is 96 Mb. At 24 Mb/s, ideal serialization time is 96/24=4 seconds."
+    },
+    {
+      "id": "cn-perf-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 10 MB file is sent over a 20 Mb/s bottleneck. Ignoring overhead, what is the minimum transmission time?",
+      "options": [
+        "0.5 s",
+        "2 s",
+        "4 s",
+        "5 s"
+      ],
+      "answer": [
+        "4 s"
+      ],
+      "explanation": "10 MB is 80 megabits under decimal units. Dividing by 20 Mb/s gives 4 seconds."
+    },
+    {
+      "id": "cn-perf-057",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which factors can limit end-to-end throughput along a multi-link path?",
+      "options": [
+        "The smallest link capacity on the path",
+        "Shared competing traffic at a bottleneck",
+        "Receiver or sender processing limits",
+        "The sum of all link rates, regardless of topology"
+      ],
+      "answer": [
+        "The smallest link capacity on the path",
+        "Shared competing traffic at a bottleneck",
+        "Receiver or sender processing limits"
+      ],
+      "explanation": "Throughput is constrained by the bottleneck and may be further limited by competing traffic or endpoint capacity. Adding all link rates ignores the serial path structure."
+    },
+    {
+      "id": "cn-perf-058",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 15 Mb/s link carries 3 Mb of data. What is the ideal transmission time in seconds?",
+      "answer": "0.2",
+      "explanation": "The transfer time is data size divided by rate: 3 Mb/15 Mb/s=0.2 s."
+    },
+    {
+      "id": "cn-perf-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Three flows share a 90 Mb/s link equally under a fair-share assumption. What rate does each flow receive?",
+      "options": [
+        "15 Mb/s",
+        "30 Mb/s",
+        "45 Mb/s",
+        "90 Mb/s"
+      ],
+      "answer": [
+        "30 Mb/s"
+      ],
+      "explanation": "Equal sharing divides capacity by three: 90/3=30 Mb/s per flow."
+    },
+    {
+      "id": "cn-perf-060",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about statistical multiplexing are correct?",
+      "options": [
+        "It can improve utilization when sources are bursty",
+        "It can cause queueing when many sources are active together",
+        "It guarantees every flow its peak rate simultaneously",
+        "It shares capacity dynamically rather than reserving all peak rates"
+      ],
+      "answer": [
+        "It can improve utilization when sources are bursty",
+        "It can cause queueing when many sources are active together",
+        "It shares capacity dynamically rather than reserving all peak rates"
+      ],
+      "explanation": "Statistical multiplexing relies on sources not all peaking simultaneously. Correlated bursts can create queues, and capacity is not guaranteed at every flow's peak rate."
+    },
+    {
+      "id": "cn-perf-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circuit link has capacity 64 kb/s and allocates 8 kb/s to each user. How many users can be supported simultaneously?",
+      "answer": "8",
+      "explanation": "Divide total capacity by per-user allocation: 64/8=8 simultaneous circuits."
+    },
+    {
+      "id": "cn-perf-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A circuit-switched path needs 100 ms setup and then carries a 2 Mb file at 10 Mb/s. Ignoring propagation, what is completion time?",
+      "options": [
+        "100 ms",
+        "300 ms",
+        "500 ms",
+        "900 ms"
+      ],
+      "answer": [
+        "900 ms"
+      ],
+      "explanation": "The file contains 8 Mb and takes 8/10=0.8 seconds, or 800 ms, to transmit. Adding 100 ms of setup gives 900 ms."
+    },
+    {
+      "id": "cn-perf-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A packet crosses four links. Each link has 2 ms propagation delay. What is the total propagation component?",
+      "answer": "8",
+      "explanation": "The per-link propagation delays add along the path: 4×2=8 ms."
+    },
+    {
+      "id": "cn-perf-064",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which components are included in the common nodal-delay decomposition d_nodal=d_proc+d_queue+d_trans+d_prop?",
+      "options": [
+        "Processing",
+        "Queueing",
+        "Transmission",
+        "Propagation"
+      ],
+      "answer": [
+        "Processing",
+        "Queueing",
+        "Transmission",
+        "Propagation"
+      ],
+      "explanation": "The standard decomposition includes processing, queueing, transmission, and propagation delays at a node or link."
+    },
+    {
+      "id": "cn-perf-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router takes 1 ms to process each packet and the queue wait is 4 ms. What is the processing-plus-queueing component?",
+      "options": [
+        "3 ms",
+        "4 ms",
+        "5 ms",
+        "6 ms"
+      ],
+      "answer": [
+        "5 ms"
+      ],
+      "explanation": "Add the processing component and the time waiting in the queue: 1 ms+4 ms=5 ms total before transmission begins."
+    },
+    {
+      "id": "cn-perf-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 5000-byte frame is transmitted at 20 Mb/s. What is its transmission delay in milliseconds?",
+      "answer": "2",
+      "explanation": "The frame contains 40,000 bits. At 20,000,000 bits/s, serialization takes 0.002 seconds=2 ms."
+    },
+    {
+      "id": "cn-perf-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A satellite link has a long propagation delay but a high bit rate. Which statement can be true?",
+      "options": [
+        "A small packet may have low transmission delay but still high propagation delay",
+        "A high bit rate makes propagation delay zero",
+        "A long propagation delay implies a low bit rate",
+        "Packet length determines signal speed"
+      ],
+      "answer": [
+        "A small packet may have low transmission delay but still high propagation delay"
+      ],
+      "explanation": "Transmission and propagation are separate components. A high rate makes L/R small, while a long-distance satellite path can still have large d/s."
+    },
+    {
+      "id": "cn-perf-068",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which changes reduce propagation delay on a given packet path?",
+      "options": [
+        "Shorten the physical distance",
+        "Use a medium with higher signal propagation speed",
+        "Increase the link's bit rate only",
+        "Reduce packet size only"
+      ],
+      "answer": [
+        "Shorten the physical distance",
+        "Use a medium with higher signal propagation speed"
+      ],
+      "explanation": "Propagation delay equals distance divided by signal speed. Bit rate and packet size affect serialization, not the physical propagation term."
+    },
+    {
+      "id": "cn-perf-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A packet travels 1500 km through a medium at 2.5×10^8 m/s. What is its propagation delay in milliseconds?",
+      "answer": "6",
+      "explanation": "1500 km is 1,500,000 m. Dividing by 2.5×10^8 m/s gives 0.006 s=6 ms."
+    },
+    {
+      "id": "cn-perf-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 1200-byte packet has a 2 ms transmission delay. What link rate is implied?",
+      "options": [
+        "0.48 Mb/s",
+        "4.8 Mb/s",
+        "48 Mb/s",
+        "480 Mb/s"
+      ],
+      "answer": [
+        "4.8 Mb/s"
+      ],
+      "explanation": "The packet contains 9,600 bits. Dividing by 0.002 s gives 4,800,000 bits/s=4.8 Mb/s."
+    },
+    {
+      "id": "cn-perf-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 10 Mb/s link has a transmission delay of 0.8 ms for a packet. How many bits are in the packet?",
+      "answer": "8000",
+      "explanation": "Use L=R?t. Multiplying 10,000,000 bits/s by 0.0008 s gives 8,000 bits in the packet."
+    },
+    {
+      "id": "cn-perf-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about transmission delay and throughput are correct?",
+      "options": [
+        "A single packet's transmission delay is L/R",
+        "A higher R reduces transmission time for fixed L",
+        "Throughput is a rate of successful data delivery",
+        "A short transmission delay guarantees low end-to-end delay"
+      ],
+      "answer": [
+        "A single packet's transmission delay is L/R",
+        "A higher R reduces transmission time for fixed L",
+        "Throughput is a rate of successful data delivery"
+      ],
+      "explanation": "Transmission delay depends on serialization. End-to-end delay also includes propagation, processing, and queueing, so a fast link alone does not guarantee low total delay."
+    },
+    {
+      "id": "cn-perf-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two links have rates R1=8 Mb/s and R2=2 Mb/s. For a long continuous flow over the path, what is the maximum steady-state throughput absent other constraints?",
+      "options": [
+        "2 Mb/s",
+        "5 Mb/s",
+        "8 Mb/s",
+        "10 Mb/s"
+      ],
+      "answer": [
+        "2 Mb/s"
+      ],
+      "explanation": "The slower 2 Mb/s link is the bottleneck. Data cannot pass through the serial path at a higher sustained rate."
+    },
+    {
+      "id": "cn-perf-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 24 MB file is transferred at a sustained throughput of 8 MB/s. What is the transfer duration?",
+      "answer": "3",
+      "explanation": "Duration equals data volume divided by throughput: 24/8=3 seconds."
+    },
+    {
+      "id": "cn-perf-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A path's bottleneck rate is 10 Mb/s, but a flow achieves 6 Mb/s because other traffic shares the link. What is the flow's utilization of its available bottleneck capacity?",
+      "options": [
+        "40%",
+        "60%",
+        "75%",
+        "160%"
+      ],
+      "answer": [
+        "60%"
+      ],
+      "explanation": "The flow receives 6/10=0.6 of the nominal bottleneck rate, or 60 percent."
+    },
+    {
+      "id": "cn-perf-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which effects can reduce useful application throughput relative to the physical link rate?",
+      "options": [
+        "Protocol headers",
+        "Retransmissions",
+        "Competing flows",
+        "Propagation delay by itself in a continuously backlogged pipeline"
+      ],
+      "answer": [
+        "Protocol headers",
+        "Retransmissions",
+        "Competing flows"
+      ],
+      "explanation": "Headers consume link capacity, retransmissions resend non-useful data, and other flows share the bottleneck. Propagation affects latency and window requirements but not the ideal saturated pipeline rate by itself."
+    },
+    {
+      "id": "cn-perf-077",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 100 Mb/s path has a 50 ms round-trip time. How many megabytes of data equal its bandwidth-delay product, using 8 bits per byte?",
+      "answer": "0.625",
+      "explanation": "BDP=100×10^6×0.05=5,000,000 bits. Dividing by 8 gives 625,000 bytes=0.625 decimal MB."
+    },
+    {
+      "id": "cn-perf-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 10 Mb/s path has RTT 100 ms. A sender's window is 50,000 bytes. Ignoring protocol overhead, what is the maximum rate allowed by the window?",
+      "options": [
+        "0.4 Mb/s",
+        "4 Mb/s",
+        "10 Mb/s",
+        "40 Mb/s"
+      ],
+      "answer": [
+        "4 Mb/s"
+      ],
+      "explanation": "The window is 400,000 bits. Window-limited rate is 400,000/0.1=4,000,000 bits/s=4 Mb/s, below the path capacity."
+    },
+    {
+      "id": "cn-perf-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions are needed for a sender to keep a path continuously busy in a window-based protocol?",
+      "options": [
+        "The outstanding data window should be at least the bandwidth-delay product",
+        "The sender must have data available",
+        "The bottleneck must offer capacity to the flow",
+        "The window must be zero"
+      ],
+      "answer": [
+        "The outstanding data window should be at least the bandwidth-delay product",
+        "The sender must have data available",
+        "The bottleneck must offer capacity to the flow"
+      ],
+      "explanation": "A sufficiently large window covers the feedback round trip, but utilization also requires data backlog and available path capacity. A zero window prevents transmission."
+    },
+    {
+      "id": "cn-perf-080",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sender transmits 12,000 bits per RTT and the RTT is 30 ms. What is the corresponding average rate in Mb/s?",
+      "answer": "0.4",
+      "explanation": "Rate=12,000/0.030=400,000 bits/s=0.4 Mb/s."
+    },
+    {
+      "id": "cn-perf-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A packet has transmission delay 5 ms and propagation delay 40 ms on one link. Which delay dominates for this packet?",
+      "options": [
+        "Propagation delay",
+        "Transmission delay",
+        "They are equal",
+        "Neither can be compared"
+      ],
+      "answer": [
+        "Propagation delay"
+      ],
+      "explanation": "The signal travel time is 40 ms, eight times the 5 ms serialization time, so propagation dominates the link delay."
+    },
+    {
+      "id": "cn-perf-082",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A store-and-forward path has four links. Each link contributes 1 ms processing, 2 ms queueing, 3 ms transmission, and 4 ms propagation. What is total path delay if these values apply at every hop?",
+      "answer": "40",
+      "explanation": "Each hop contributes 1+2+3+4=10 ms. Across four hops, total delay is 4×10=40 ms."
+    },
+    {
+      "id": "cn-perf-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about packet pipelining over multiple links are correct?",
+      "options": [
+        "Different packets can occupy different links simultaneously",
+        "Store-and-forward imposes a full-packet wait at each router for each packet",
+        "After pipeline fill, throughput can approach the slowest link rate",
+        "Pipelining removes all propagation delay"
+      ],
+      "answer": [
+        "Different packets can occupy different links simultaneously",
+        "Store-and-forward imposes a full-packet wait at each router for each packet",
+        "After pipeline fill, throughput can approach the slowest link rate"
+      ],
+      "explanation": "Packets can be pipelined across separate links even though each waits for full reception at a router. Steady-state throughput is bottleneck-limited; propagation latency remains."
+    },
+    {
+      "id": "cn-perf-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 1000-bit packet crosses 3 store-and-forward links, each 1 Mb/s, with 10 ms propagation per link. What is the arrival time of the last bit, ignoring processing and queueing?",
+      "options": [
+        "3 ms",
+        "30 ms",
+        "33 ms",
+        "36 ms"
+      ],
+      "answer": [
+        "33 ms"
+      ],
+      "explanation": "Each link transmission takes 1 ms and each propagation takes 10 ms. Store-and-forward total is 3×(1+10)=33 ms."
+    },
+    {
+      "id": "cn-perf-085",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Four 1000-bit packets are pipelined over three store-and-forward links, each 1 Mb/s with 10 ms propagation. With no queueing, when does the last bit of the fourth packet arrive?",
+      "answer": "36",
+      "explanation": "The first packet takes 3?(1+10)=33 ms end to end. Each following packet can enter the pipeline one transmission time (1 ms) later, so the fourth completes at 33+3=36 ms."
+    },
+    {
+      "id": "cn-perf-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a fixed distance, a fiber signal speed rises from 2×10^8 to 2.5×10^8 m/s. What happens to propagation delay?",
+      "options": [
+        "It becomes 0.8 times its previous value",
+        "It becomes 1.25 times its previous value",
+        "It is unchanged",
+        "It doubles"
+      ],
+      "answer": [
+        "It becomes 0.8 times its previous value"
+      ],
+      "explanation": "Propagation delay is inversely proportional to signal speed. The ratio is (2×10^8)/(2.5×10^8)=0.8, so delay decreases by 20 percent."
+    },
+    {
+      "id": "cn-perf-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about circuit and packet switching are correct?",
+      "options": [
+        "Circuit switching can reserve resources in advance",
+        "Packet switching can statistically share capacity",
+        "Circuit switching may incur setup delay",
+        "Packet switching guarantees a dedicated fixed-rate path"
+      ],
+      "answer": [
+        "Circuit switching can reserve resources in advance",
+        "Packet switching can statistically share capacity",
+        "Circuit switching may incur setup delay"
+      ],
+      "explanation": "Circuit switching may reserve path resources after setup, while packet switching shares links dynamically. Packet switching does not inherently establish a dedicated fixed-rate path."
+    },
+    {
+      "id": "cn-perf-088",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circuit setup takes 50 ms. A 1 MB file is transmitted at 20 Mb/s, using decimal units. What is total time including setup?",
+      "answer": "450",
+      "explanation": "1 MB is 8 Mb and takes 8/20=0.4 s=400 ms to transmit. Adding 50 ms setup gives 450 ms."
+    },
+    {
+      "id": "cn-perf-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A packet waits 3 ms in a router queue, is processed for 1 ms, transmitted in 2 ms, and propagates for 8 ms. What is the nodal delay?",
+      "options": [
+        "11 ms",
+        "14 ms",
+        "8 ms",
+        "6 ms"
+      ],
+      "answer": [
+        "14 ms"
+      ],
+      "explanation": "Sum queueing, processing, transmission, and propagation: 3+1+2+8=14 ms."
+    },
+    {
+      "id": "cn-perf-090",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A stable queue has an average of 24 packets waiting and an arrival rate of 6 packets per millisecond. Using Little's law for the queue, what is the average waiting time in milliseconds?",
+      "answer": "4",
+      "explanation": "For the queue, Little's law is Lq=?Wq. Therefore Wq=24/6=4 ms."
+    },
+    {
+      "id": "cn-perf-091",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Little's law are correct?",
+      "options": [
+        "L=λW for a stable system under suitable long-run conditions",
+        "L is average number in the system",
+        "λ is average arrival rate",
+        "W is average time spent in the system"
+      ],
+      "answer": [
+        "L=λW for a stable system under suitable long-run conditions",
+        "L is average number in the system",
+        "λ is average arrival rate",
+        "W is average time spent in the system"
+      ],
+      "explanation": "Little's law relates long-run averages: mean population L equals arrival rate λ times mean time W in the system, assuming a stable system and consistent boundaries."
+    },
+    {
+      "id": "cn-perf-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router's queue is empty when a packet arrives. Under a FIFO model, what is its queueing delay?",
+      "options": [
+        "0",
+        "One packet transmission time",
+        "One propagation delay",
+        "The packet's full end-to-end delay"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "With no packets ahead of it and assuming immediate service, the packet waits zero time in the queue. It still incurs transmission and propagation delays."
+    },
+    {
+      "id": "cn-perf-093",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A link's utilization is 0.8 and its capacity is 25 Mb/s. What is the carried average rate under this definition?",
+      "answer": "20",
+      "explanation": "Utilization is carried rate divided by capacity. The average rate is 0.8×25=20 Mb/s."
+    },
+    {
+      "id": "cn-perf-094",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions can lead to packet loss in a finite-buffer packet-switched router?",
+      "options": [
+        "A burst arrives when the buffer is full",
+        "Long-term offered load exceeds service capacity",
+        "A packet is corrupted and discarded by error detection",
+        "A packet has a small transmission delay"
+      ],
+      "answer": [
+        "A burst arrives when the buffer is full",
+        "Long-term offered load exceeds service capacity",
+        "A packet is corrupted and discarded by error detection"
+      ],
+      "explanation": "Finite queues drop arrivals when full, and sustained overload can fill a buffer. Link error detection may discard corrupted frames; a small serialization delay alone does not imply loss."
+    },
+    {
+      "id": "cn-perf-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A packet has size 1200 bytes. Its transmission delay is 0.96 ms. What is the link rate?",
+      "options": [
+        "1 Mb/s",
+        "10 Mb/s",
+        "100 Mb/s",
+        "1 Gb/s"
+      ],
+      "answer": [
+        "10 Mb/s"
+      ],
+      "explanation": "The packet is 9,600 bits. Dividing by 0.00096 s gives 10,000,000 bits/s=10 Mb/s."
+    },
+    {
+      "id": "cn-perf-096",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 2 Mb/s link has one-way propagation delay 25 ms. How many bytes equal the one-way bandwidth-delay product?",
+      "answer": "6250",
+      "explanation": "BDP=2,000,000×0.025=50,000 bits. Divide by 8 to obtain 6,250 bytes."
+    },
+    {
+      "id": "cn-perf-097",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about end-to-end delay versus throughput are correct?",
+      "options": [
+        "A path can have high throughput and high propagation delay",
+        "Throughput is a rate, while delay is elapsed time",
+        "Increasing packet size can increase serialization delay",
+        "A high bottleneck rate guarantees zero queueing delay"
+      ],
+      "answer": [
+        "A path can have high throughput and high propagation delay",
+        "Throughput is a rate, while delay is elapsed time",
+        "Increasing packet size can increase serialization delay"
+      ],
+      "explanation": "Rate and elapsed delay are different metrics. Long-distance links can be fast but high-latency; larger packets take longer to serialize, and queues can form even on fast links."
+    },
+    {
+      "id": "cn-perf-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link is 2000 km long and signals travel at 2×10^8 m/s. What is its one-way propagation delay?",
+      "options": [
+        "1 ms",
+        "10 ms",
+        "100 ms",
+        "200 ms"
+      ],
+      "answer": [
+        "10 ms"
+      ],
+      "explanation": "Convert 2000 km to 2,000,000 m. Divide by 2×10^8 m/s to get 0.01 s=10 ms."
+    },
+    {
+      "id": "cn-perf-099",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 100 Mb/s link serializes a 1,250,000-bit packet. What is its transmission delay in milliseconds?",
+      "answer": "12.5",
+      "explanation": "Divide 1,250,000 bits by 100,000,000 bits/s to obtain 0.0125 s, or 12.5 ms."
+    },
+    {
+      "id": "cn-perf-100",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements summarize the main delay components in a packet network?",
+      "options": [
+        "Processing checks headers and selects a route",
+        "Queueing is waiting behind packets",
+        "Transmission serializes bits onto a link",
+        "Propagation carries signals through the medium"
+      ],
+      "answer": [
+        "Processing checks headers and selects a route",
+        "Queueing is waiting behind packets",
+        "Transmission serializes bits onto a link",
+        "Propagation carries signals through the medium"
+      ],
+      "explanation": "These four components describe distinct work: examine the packet, wait for service, put bits on the link, and let the signal travel to the next node."
+    }
+  ]
+}

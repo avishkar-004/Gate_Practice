@@ -1,0 +1,1368 @@
+{
+  "topicIndex": 2,
+  "questions": [
+    {
+      "id": "alg-sort-001",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Insertion sort processes [8, 3, 7, 4] in ascending order. What is the array after the third key (7) has been inserted into the sorted prefix?",
+      "options": [
+        "[3, 7, 8, 4]",
+        "[3, 8, 7, 4]",
+        "[7, 3, 8, 4]",
+        "[3, 4, 7, 8]"
+      ],
+      "answer": [
+        "[3, 7, 8, 4]"
+      ],
+      "explanation": "After inserting 3, the prefix is [3,8]. The next key 7 shifts 8 one position right and is placed between 3 and 8, giving [3,7,8,4]."
+    },
+    {
+      "id": "alg-sort-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many inversions are in the sequence [4, 1, 3, 2]?",
+      "answer": "4",
+      "explanation": "The inversions are (4,1), (4,3), (4,2), and (3,2). There are four pairs out of order."
+    },
+    {
+      "id": "alg-sort-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about insertion sort are correct?",
+      "options": [
+        "It is stable when equal keys are not shifted past one another",
+        "It is in-place in its standard array implementation",
+        "Its worst-case number of shifts is Θ(n²)",
+        "Its best-case running time on an already sorted array is Θ(n log n)"
+      ],
+      "answer": [
+        "It is stable when equal keys are not shifted past one another",
+        "It is in-place in its standard array implementation",
+        "Its worst-case number of shifts is Θ(n²)"
+      ],
+      "explanation": "Standard insertion sort uses constant extra storage and preserves equal-key order if it shifts only strictly larger keys. Reverse order causes a quadratic number of shifts; sorted input takes linear time."
+    },
+    {
+      "id": "alg-sort-004",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In insertion sort on [2, 5, 8, 11, 14, 3], how many existing keys are shifted when inserting the final key 3?",
+      "answer": "4",
+      "explanation": "The keys 14, 11, 8, and 5 are larger than 3 and move one position right. The key 2 remains before it, so four shifts occur."
+    },
+    {
+      "id": "alg-sort-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stable sorting algorithm sorts records by a secondary key, and the records were previously sorted by a primary key. Which method correctly produces lexicographic order (primary, then secondary)?",
+      "options": [
+        "Stable-sort by secondary key, then stable-sort by primary key",
+        "Stable-sort by primary key, then stable-sort by secondary key",
+        "Use any unstable sort by either key",
+        "Sort once by the concatenation without a defined key order"
+      ],
+      "answer": [
+        "Stable-sort by secondary key, then stable-sort by primary key"
+      ],
+      "explanation": "The final stable sort by the primary key groups primary values while preserving within each group the earlier secondary-key order. The order of the two passes matters for lexicographic sorting."
+    },
+    {
+      "id": "alg-sort-006",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties hold for standard merge sort on an array of n distinct keys?",
+      "options": [
+        "Worst-case time is Θ(n log n)",
+        "It is stable if equal keys from the left run are chosen first",
+        "An array implementation typically needs Θ(n) auxiliary storage",
+        "Its worst-case comparison count is Θ(n²)"
+      ],
+      "answer": [
+        "Worst-case time is Θ(n log n)",
+        "It is stable if equal keys from the left run are chosen first",
+        "An array implementation typically needs Θ(n) auxiliary storage"
+      ],
+      "explanation": "Merge sort performs linear merge work over logarithmically many levels. Choosing from the left run on equality preserves stability; standard array merges use linear auxiliary storage."
+    },
+    {
+      "id": "alg-sort-007",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two sorted runs have lengths 6 and 5. What is the maximum number of key comparisons required by a standard merge before one run is exhausted?",
+      "answer": "10",
+      "explanation": "A merge of runs of lengths p and q uses at most p+q−1 comparisons, attained when their keys interleave until one final item remains. Here 6+5−1=10."
+    },
+    {
+      "id": "alg-sort-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A merge step combines [1, 4, 9] and [2, 3, 10]. Which is the resulting sequence?",
+      "options": [
+        "[1, 2, 3, 4, 9, 10]",
+        "[1, 2, 4, 3, 9, 10]",
+        "[2, 1, 3, 4, 9, 10]",
+        "[1, 2, 3, 4, 10, 9]"
+      ],
+      "answer": [
+        "[1, 2, 3, 4, 9, 10]"
+      ],
+      "explanation": "Repeatedly select the smaller front element: 1,2,3,4,9, then 10. Both input runs are sorted, so this produces the sorted union."
+    },
+    {
+      "id": "alg-sort-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For merge sort on n=2^k distinct keys, which recurrence models its comparison work up to constants?",
+      "options": [
+        "T(n)=2T(n/2)+Θ(n)",
+        "T(n)=T(n−1)+Θ(1)",
+        "T(n)=4T(n/2)+Θ(n)",
+        "T(n)=2T(n/2)+Θ(1)"
+      ],
+      "answer": [
+        "T(n)=2T(n/2)+Θ(n)"
+      ],
+      "explanation": "It recursively sorts two half-size subarrays, then merges them using linear work. This recurrence solves to Θ(nlog n)."
+    },
+    {
+      "id": "alg-sort-010",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A merge-sort implementation splits 64 elements evenly until singleton runs. How many merge levels are performed?",
+      "answer": "6",
+      "explanation": "Each level halves the run length. Six halvings take 64 elements to singleton runs because log₂64=6."
+    },
+    {
+      "id": "alg-sort-011",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about quicksort are correct?",
+      "options": [
+        "A poor pivot can produce Θ(n²) partition work",
+        "Random pivot selection gives expected Θ(n log n) time",
+        "The standard in-place partition can sort without a Θ(n) merge buffer",
+        "Every pivot rule guarantees Θ(n log n) worst-case time"
+      ],
+      "answer": [
+        "A poor pivot can produce Θ(n²) partition work",
+        "Random pivot selection gives expected Θ(n log n) time",
+        "The standard in-place partition can sort without a Θ(n) merge buffer"
+      ],
+      "explanation": "Repeatedly selecting an extreme pivot yields highly unbalanced partitions and quadratic work. Randomization gives expected balanced behavior; deterministic pivot rules do not all guarantee a worst-case nlogn bound."
+    },
+    {
+      "id": "alg-sort-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Quicksort uses the last element as pivot on the already sorted array [1,2,3,4,5]. If partition places the pivot in its final position, what are the subarray sizes after the first partition?",
+      "options": [
+        "0 and 4",
+        "1 and 3",
+        "2 and 2",
+        "4 and 0"
+      ],
+      "answer": [
+        "4 and 0"
+      ],
+      "explanation": "The pivot 5 is the largest key, so all four other values lie on its left and no values lie on its right. The recursive split is maximally unbalanced."
+    },
+    {
+      "id": "alg-sort-013",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Quicksort always partitions n distinct keys into subproblems of sizes 0 and n−1. How many partition comparisons are made in total for n=6, assuming each partition compares the pivot once with every other key?",
+      "answer": "15",
+      "explanation": "The partition costs are 5+4+3+2+1. Their sum is 15 comparisons, illustrating the quadratic worst case."
+    },
+    {
+      "id": "alg-sort-014",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For randomized quicksort on distinct keys, which statements are valid?",
+      "options": [
+        "The expected number of comparisons is Θ(n log n)",
+        "Its worst-case number of comparisons remains Θ(n²)",
+        "Randomization changes the pivot distribution, not the required sorted output",
+        "It has Θ(n log n) comparisons for every random sequence of pivots"
+      ],
+      "answer": [
+        "The expected number of comparisons is Θ(n log n)",
+        "Its worst-case number of comparisons remains Θ(n²)",
+        "Randomization changes the pivot distribution, not the required sorted output"
+      ],
+      "explanation": "Random pivots give a Θ(nlogn) expectation, but an unlucky sequence can still yield extreme partitions and quadratic work. The result is sorted regardless of pivot choices."
+    },
+    {
+      "id": "alg-sort-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which sequence is produced by one pass of bubble sort from left to right on [5, 1, 4, 2, 8], swapping adjacent inverted pairs?",
+      "options": [
+        "[1, 4, 2, 5, 8]",
+        "[1, 2, 4, 5, 8]",
+        "[5, 1, 2, 4, 8]",
+        "[1, 5, 4, 2, 8]"
+      ],
+      "answer": [
+        "[1, 4, 2, 5, 8]"
+      ],
+      "explanation": "Compare adjacent pairs in order: swap 5 and 1, then 5 and 4, then 5 and 2, then leave 5 and 8. The resulting pass is [1,4,2,5,8]."
+    },
+    {
+      "id": "alg-sort-016",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many adjacent swaps does bubble sort perform to sort [3, 1, 4, 2] in ascending order?",
+      "answer": "3",
+      "explanation": "An adjacent-swap sort performs one swap per inversion. The inversions are (3,1), (3,2), and (4,2), totaling three."
+    },
+    {
+      "id": "alg-sort-017",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which standard sorting algorithms are stable in their usual textbook implementations?",
+      "options": [
+        "Merge sort",
+        "Insertion sort",
+        "Heap sort",
+        "Selection sort with direct minimum exchange"
+      ],
+      "answer": [
+        "Merge sort",
+        "Insertion sort"
+      ],
+      "explanation": "Merge sort can preserve equal-key order by favoring the left run, and insertion sort preserves it by shifting only strictly larger keys. Heap sort and exchange-based selection sort are generally unstable."
+    },
+    {
+      "id": "alg-sort-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A comparison-based sorting algorithm must sort n distinct keys. What lower bound applies to its worst-case number of comparisons?",
+      "options": [
+        "Ω(log n)",
+        "Ω(n)",
+        "Ω(n log n)",
+        "Ω(n²)"
+      ],
+      "answer": [
+        "Ω(n log n)"
+      ],
+      "explanation": "A comparison decision tree must distinguish n! input permutations, requiring height at least log₂(n!)=Ω(nlogn) by Stirling's approximation."
+    },
+    {
+      "id": "alg-sort-019",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many comparisons does the comparison lower-bound expression ceil(log₂(n!)) give for n=3?",
+      "answer": "3",
+      "explanation": "There are 3!=6 possible permutations. Since 2²=4<6≤8=2³, at least ceil(log₂6)=3 comparisons are required by this decision-tree bound."
+    },
+    {
+      "id": "alg-sort-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Counting sort is applied to n keys drawn from integers 0 through k. Which running-time bound is standard?",
+      "options": [
+        "Θ(n log n)",
+        "Θ(n+k)",
+        "Θ(nk)",
+        "Θ(k log n)"
+      ],
+      "answer": [
+        "Θ(n+k)"
+      ],
+      "explanation": "The algorithm counts occurrences across k+1 possible values and processes the n input items. Its time is linear in the input size plus the key-range size."
+    },
+    {
+      "id": "alg-sort-021",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions allow counting sort to be useful?",
+      "options": [
+        "Keys are integers from a reasonably small range",
+        "The key range k is not much larger than n",
+        "Keys need not be compared to one another",
+        "The algorithm is comparison-based and must obey the Ω(n log n) lower bound"
+      ],
+      "answer": [
+        "Keys are integers from a reasonably small range",
+        "The key range k is not much larger than n",
+        "Keys need not be compared to one another"
+      ],
+      "explanation": "Counting sort exploits direct indexing by key value, so it is not a comparison sort. Its n+k cost is attractive when the range is manageable; the comparison-tree lower bound does not apply."
+    },
+    {
+      "id": "alg-sort-022",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Counting sort receives keys [2,0,1,2,1,0,2]. What is the sorted output? Give the sum of its elements.",
+      "answer": "8",
+      "explanation": "The multiset contains two zeros, two ones, and three twos, producing [0,0,1,1,2,2,2]. The sum is 0+0+1+1+2+2+2=8."
+    },
+    {
+      "id": "alg-sort-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stable counting sort must output records with equal keys in their original order. Which common construction supports this property?",
+      "options": [
+        "Compute cumulative counts and place input records while scanning the input backward",
+        "Place every record at the first index for its key",
+        "Sort equal-key records by their memory address",
+        "Discard record identity and reconstruct ties afterward"
+      ],
+      "answer": [
+        "Compute cumulative counts and place input records while scanning the input backward"
+      ],
+      "explanation": "Cumulative counts identify the final range for each key. Scanning input from right to left and decrementing the destination index preserves the relative order of equal-key records."
+    },
+    {
+      "id": "alg-sort-024",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about radix sort are correct?",
+      "options": [
+        "Each digit pass must be stable for the usual least-significant-digit method",
+        "Its cost depends on the number of digits and the per-digit range",
+        "It can sort fixed-width integers without pairwise key comparisons",
+        "It is always asymptotically faster than comparison sorting for arbitrary keys"
+      ],
+      "answer": [
+        "Each digit pass must be stable for the usual least-significant-digit method",
+        "Its cost depends on the number of digits and the per-digit range",
+        "It can sort fixed-width integers without pairwise key comparisons"
+      ],
+      "explanation": "LSD radix sort relies on stability to preserve ordering established by less significant digits. Its cost depends on digit count and radix; arbitrary key representations can make it unsuitable or slower."
+    },
+    {
+      "id": "alg-sort-025",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A base-10 LSD radix sort processes 5-digit keys using stable counting sort on each digit. How many digit passes are performed?",
+      "answer": "5",
+      "explanation": "One stable pass is performed for each decimal digit position, from units through ten-thousands. Five positions require five passes."
+    },
+    {
+      "id": "alg-sort-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A min-heap is used to sort n items by repeatedly deleting the minimum. What order is produced by the deletion sequence?",
+      "options": [
+        "Nondecreasing order",
+        "Nonincreasing order",
+        "The original insertion order",
+        "An arbitrary permutation"
+      ],
+      "answer": [
+        "Nondecreasing order"
+      ],
+      "explanation": "Each delete-min returns the smallest remaining key. Repeating it emits the keys in nondecreasing order."
+    },
+    {
+      "id": "alg-sort-027",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Bottom-up heap construction is applied to an array of 15 keys. How many internal nodes receive a sift-down operation in the standard 1-indexed method?",
+      "answer": "7",
+      "explanation": "In a 1-indexed heap of 15 entries, nodes 1 through floor(15/2)=7 have children and are processed. Leaves require no sift-down."
+    },
+    {
+      "id": "alg-sort-028",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about heapsort are correct?",
+      "options": [
+        "Its worst-case time is Θ(n log n)",
+        "The standard array implementation uses O(1) auxiliary space",
+        "It is stable in its standard in-place form",
+        "Bottom-up heap construction takes Θ(n) time"
+      ],
+      "answer": [
+        "Its worst-case time is Θ(n log n)",
+        "The standard array implementation uses O(1) auxiliary space",
+        "Bottom-up heap construction takes Θ(n) time"
+      ],
+      "explanation": "Heap construction is linear and n deletions cost O(log n) each. In-place swaps need constant extra storage, but they can move equal keys past each other, so standard heapsort is unstable."
+    },
+    {
+      "id": "alg-sort-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why does bottom-up heap construction take Θ(n), despite an O(log n) sift-down bound for one node?",
+      "options": [
+        "Most nodes are near the leaves and can move only a small distance",
+        "The algorithm sorts the array while building the heap",
+        "Every node is sifted exactly once by log n levels",
+        "The number of internal nodes is constant"
+      ],
+      "answer": [
+        "Most nodes are near the leaves and can move only a small distance"
+      ],
+      "explanation": "There are many nodes of small height and few nodes near the root. Summing the height-dependent sift costs over all nodes gives a convergent geometric series of Θ(n), not nlogn."
+    },
+    {
+      "id": "alg-sort-030",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In selection sort on 8 elements, how many key comparisons are made regardless of input order?",
+      "answer": "28",
+      "explanation": "The passes compare 7,6,…,1 candidates. The total is 8×7/2=28 comparisons."
+    },
+    {
+      "id": "alg-sort-031",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties describe standard selection sort?",
+      "options": [
+        "It performs Θ(n²) comparisons even on sorted input",
+        "It uses O(1) auxiliary array space",
+        "It is stable when implemented with a direct swap of the selected minimum",
+        "Its number of exchanges is O(n)"
+      ],
+      "answer": [
+        "It performs Θ(n²) comparisons even on sorted input",
+        "It uses O(1) auxiliary array space",
+        "Its number of exchanges is O(n)"
+      ],
+      "explanation": "Selection sort scans the unsorted suffix on every pass, independent of initial order, and performs at most n−1 swaps. A direct swap can reorder equal keys, so it is not generally stable."
+    },
+    {
+      "id": "alg-sort-032",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which algorithm is usually preferred when a small array is nearly sorted and stability is desired?",
+      "options": [
+        "Insertion sort",
+        "Heap sort",
+        "Worst-case-pivot quicksort",
+        "Selection sort by swapping minima"
+      ],
+      "answer": [
+        "Insertion sort"
+      ],
+      "explanation": "Insertion sort is stable in its standard form and runs in Θ(n+I), where I is the inversion count. Nearly sorted inputs have few inversions, making it efficient."
+    },
+    {
+      "id": "alg-sort-033",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Insertion sort processes [1, 3, 5, 7, 9] and then inserts 6. How many key shifts are required?",
+      "answer": "2",
+      "explanation": "Only 9 and 7 are greater than 6 and move one position right. The key 5 stops the shift, so two existing keys move."
+    },
+    {
+      "id": "alg-sort-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stable sort is applied to records with equal primary keys, preserving their previous order by a secondary key. What order is guaranteed afterward?",
+      "options": [
+        "Primary-key order, with ties retaining secondary-key order",
+        "Secondary-key order only",
+        "Reverse order within every primary-key group",
+        "No relationship to either previous ordering"
+      ],
+      "answer": [
+        "Primary-key order, with ties retaining secondary-key order"
+      ],
+      "explanation": "Stability preserves the relative order of equal primary keys. If those records were previously ordered by the secondary key, that order remains within each primary-key group."
+    },
+    {
+      "id": "alg-sort-035",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A merge operation combines two runs of lengths 9 and 12. What is its worst-case number of comparisons?",
+      "answer": "20",
+      "explanation": "The merge needs at most 9+12−1=20 comparisons before one run empties. Remaining elements are copied without further key comparisons."
+    },
+    {
+      "id": "alg-sort-036",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the inversion count I of an array are correct?",
+      "options": [
+        "I=0 exactly when the array is nondecreasing",
+        "Insertion sort's number of shifts is proportional to I",
+        "I≤n(n−1)/2",
+        "The number of inversions is independent of input order"
+      ],
+      "answer": [
+        "I=0 exactly when the array is nondecreasing",
+        "Insertion sort's number of shifts is proportional to I",
+        "I≤n(n−1)/2"
+      ],
+      "explanation": "An inversion is a pair i<j with A[i]>A[j]. A sorted array has none, each inversion contributes a shift in insertion sort, and there are at most all n choose 2 index pairs."
+    },
+    {
+      "id": "alg-sort-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A comparison sort is required to run in worst-case O(n log n) time and use O(1) auxiliary array space. Which standard algorithm meets both requirements?",
+      "options": [
+        "Heapsort",
+        "Mergesort on arrays",
+        "Insertion sort",
+        "Quicksort with last-element pivot"
+      ],
+      "answer": [
+        "Heapsort"
+      ],
+      "explanation": "In-place heapsort has worst-case Θ(nlogn) time and constant auxiliary storage. Array mergesort normally needs linear extra memory, while insertion sort and fixed-pivot quicksort have quadratic worst cases."
+    },
+    {
+      "id": "alg-sort-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For n=16, how many merge operations occur in a conventional top-down merge sort that splits to singleton arrays?",
+      "answer": "15",
+      "explanation": "The recursion forms a full binary tree with 16 leaves. A full binary tree with n leaves has n−1 internal nodes, each corresponding to one merge, so there are 15 merges."
+    },
+    {
+      "id": "alg-sort-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Quicksort partitions around a pivot. Which invariant is sufficient after partitioning for recursive sorting to be correct?",
+      "options": [
+        "Every key left of the pivot is no greater and every key right is no smaller",
+        "The left and right subarrays have equal lengths",
+        "The pivot is the median key",
+        "Both subarrays are already sorted"
+      ],
+      "answer": [
+        "Every key left of the pivot is no greater and every key right is no smaller"
+      ],
+      "explanation": "Once the partition invariant holds, recursively sorting each side places all left values before the pivot and all right values after it. Balanced sizes improve performance but are not required for correctness."
+    },
+    {
+      "id": "alg-sort-040",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which facts about the comparison-sorting lower bound are correct?",
+      "options": [
+        "It assumes keys are distinguished only through comparisons",
+        "It implies no comparison sort has O(n) worst-case time for arbitrary distinct keys",
+        "It does not rule out linear-time counting sort over a bounded integer range",
+        "It proves heapsort must use exactly n log₂n comparisons"
+      ],
+      "answer": [
+        "It assumes keys are distinguished only through comparisons",
+        "It implies no comparison sort has O(n) worst-case time for arbitrary distinct keys",
+        "It does not rule out linear-time counting sort over a bounded integer range"
+      ],
+      "explanation": "The decision-tree argument applies to comparison sorts and establishes Ω(nlogn) worst-case comparisons. Non-comparison methods exploit extra key structure, and the bound is not an exact count for heapsort."
+    },
+    {
+      "id": "alg-sort-041",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many swaps are needed by bubble sort to sort [4, 3, 2, 1] in ascending order?",
+      "answer": "6",
+      "explanation": "Adjacent-swap bubble sort performs one swap per inversion. A reverse-sorted array of four values has 4×3/2=6 inversions."
+    },
+    {
+      "id": "alg-sort-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A sorting algorithm makes a single left-to-right pass of adjacent compare-and-swap operations. Which element is guaranteed to reach its final position after that pass?",
+      "options": [
+        "The maximum element reaches the rightmost position",
+        "The minimum element reaches the leftmost position",
+        "Every element reaches its final position",
+        "The median reaches the middle position"
+      ],
+      "answer": [
+        "The maximum element reaches the rightmost position"
+      ],
+      "explanation": "As the pass moves rightward, the largest value seen so far is carried to the next position. By the end, the global maximum has bubbled to the final index."
+    },
+    {
+      "id": "alg-sort-043",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the expected running time of quicksort with a uniformly random pivot are correct?",
+      "options": [
+        "A random pivot has expected rank near the middle",
+        "The expected recurrence is Θ(n log n)",
+        "A particular run can still take Θ(n²)",
+        "The recursion tree is perfectly balanced for every pivot sequence"
+      ],
+      "answer": [
+        "A random pivot has expected rank near the middle",
+        "The expected recurrence is Θ(n log n)",
+        "A particular run can still take Θ(n²)"
+      ],
+      "explanation": "Uniform random pivots produce sufficiently balanced splits on average, giving Θ(nlogn) expected work. They do not guarantee balanced partitions in every realization."
+    },
+    {
+      "id": "alg-sort-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stable sorting algorithm takes 4 passes to sort records by four digits, from least significant to most significant. Why must each pass be stable?",
+      "options": [
+        "So later digit passes preserve ordering established by earlier, less significant digits",
+        "So the algorithm can use constant time",
+        "To ensure every digit is unique",
+        "Because unstable algorithms cannot sort integers"
+      ],
+      "answer": [
+        "So later digit passes preserve ordering established by earlier, less significant digits"
+      ],
+      "explanation": "After sorting by a more significant digit, stability keeps the relative order produced by less significant passes for records tied on that digit. Without stability, prior digit ordering can be lost."
+    },
+    {
+      "id": "alg-sort-045",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorting method performs n(n−1)/2 comparisons. Evaluate the count for n=25.",
+      "answer": "300",
+      "explanation": "Substituting n=25 gives 25×24/2=300 comparisons."
+    },
+    {
+      "id": "alg-sort-046",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which algorithm's standard worst-case time is Θ(n²), but whose best-case time is Θ(n) on an already sorted array?",
+      "options": [
+        "Insertion sort",
+        "Heap sort",
+        "Merge sort",
+        "Counting sort with k=Θ(n)"
+      ],
+      "answer": [
+        "Insertion sort"
+      ],
+      "explanation": "Insertion sort makes only one comparison per key on sorted input, giving linear best-case time, but reverse order forces a quadratic number of shifts."
+    },
+    {
+      "id": "alg-sort-047",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements correctly compare mergesort and heapsort?",
+      "options": [
+        "Both have Θ(n log n) worst-case time",
+        "Array mergesort usually needs Θ(n) extra storage",
+        "Standard heapsort is in-place but unstable",
+        "Heapsort is stable by virtue of using a heap"
+      ],
+      "answer": [
+        "Both have Θ(n log n) worst-case time",
+        "Array mergesort usually needs Θ(n) extra storage",
+        "Standard heapsort is in-place but unstable"
+      ],
+      "explanation": "Mergesort's guaranteed time usually trades for an auxiliary array. Heapsort sorts within the input array but heap exchanges can disturb equal-key order, so it is not stable."
+    },
+    {
+      "id": "alg-sort-048",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A stable sorting method is applied to [ (2,a), (1,b), (2,c), (1,d) ] by the numeric key. How many pairs of equal-key records must retain their relative order?",
+      "answer": "2",
+      "explanation": "There are two records with key 1 and two with key 2. Stability preserves the pairwise order b before d and a before c, giving two equal-key pairs."
+    },
+    {
+      "id": "alg-sort-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An array has many repeated keys. Which property is necessary if records tied on the key must retain their original order?",
+      "options": [
+        "Stability",
+        "In-place operation",
+        "A power-of-two input size",
+        "A random pivot"
+      ],
+      "answer": [
+        "Stability"
+      ],
+      "explanation": "Stability guarantees that equal-key records appear in the same relative order as in the input. In-place storage and pivot choice do not provide this guarantee."
+    },
+    {
+      "id": "alg-sort-050",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A bottom-up mergesort begins with 32 singleton runs and merges pairs at each level. How many merge levels are needed to obtain one run?",
+      "answer": "5",
+      "explanation": "The number of runs halves at each level: 32,16,8,4,2,1. Five merge levels reduce the input to one sorted run."
+    },
+    {
+      "id": "alg-sort-051",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which sorting algorithms can have linear time under additional assumptions on keys or input?",
+      "options": [
+        "Counting sort when the key range is O(n)",
+        "Radix sort for fixed-width keys with a constant number of stable digit passes",
+        "Insertion sort when the inversion count is O(n)",
+        "Comparison-based sorting for arbitrary distinct keys in the worst case"
+      ],
+      "answer": [
+        "Counting sort when the key range is O(n)",
+        "Radix sort for fixed-width keys with a constant number of stable digit passes",
+        "Insertion sort when the inversion count is O(n)"
+      ],
+      "explanation": "Counting and radix sort exploit key representation, while insertion sort takes Θ(n+I) time for inversion count I. The comparison lower bound rules out linear worst-case time for arbitrary distinct keys in that model."
+    },
+    {
+      "id": "alg-sort-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "During insertion sort, the sorted prefix is [2, 5, 9, 12] and the next key is 7. Which prefix results after the insertion?",
+      "options": [
+        "[2, 5, 7, 9, 12]",
+        "[2, 7, 5, 9, 12]",
+        "[7, 2, 5, 9, 12]",
+        "[2, 5, 9, 7, 12]"
+      ],
+      "answer": [
+        "[2, 5, 7, 9, 12]"
+      ],
+      "explanation": "Shift 12 and 9 one position right until reaching 5, which is less than 7. Insert the key after 5, yielding [2,5,7,9,12]."
+    },
+    {
+      "id": "alg-sort-053",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An insertion-sort pass inserts key 6 into the sorted prefix [1, 4, 8, 10, 13]. How many keys move right?",
+      "answer": "3",
+      "explanation": "The keys 13, 10, and 8 are larger than 6 and are shifted one position right. The key 4 stops the scan, for three shifts."
+    },
+    {
+      "id": "alg-sort-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorting algorithm is comparison-based and uses O(n) auxiliary space. Which conclusion about its worst-case comparisons is unavoidable?",
+      "options": [
+        "Ω(n log n)",
+        "O(n)",
+        "Θ(n²)",
+        "Ω(n²)"
+      ],
+      "answer": [
+        "Ω(n log n)"
+      ],
+      "explanation": "The decision-tree lower bound applies regardless of auxiliary-space usage. A comparison sort needs Ω(nlogn) comparisons in the worst case to distinguish all permutations."
+    },
+    {
+      "id": "alg-sort-055",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about external sorting are correct when data does not fit in main memory?",
+      "options": [
+        "I/O cost can dominate CPU comparison cost",
+        "Run generation followed by multiway merging is a common strategy",
+        "A RAM-only O(n log n) bound fully captures disk performance",
+        "Merge operations can exploit sequential block access"
+      ],
+      "answer": [
+        "I/O cost can dominate CPU comparison cost",
+        "Run generation followed by multiway merging is a common strategy",
+        "Merge operations can exploit sequential block access"
+      ],
+      "explanation": "External sorting is designed around block transfers and sequential I/O. It creates sorted runs and merges them; a RAM operation count alone does not model disk cost."
+    },
+    {
+      "id": "alg-sort-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Counting sort receives 240 records with integer keys in the range 0 through 99. Under a cost model charging one unit per input record and per key value, what is the total n+k work?",
+      "answer": "340",
+      "explanation": "The key range contains 100 values, and there are 240 records. The stated n+k cost is 240+100=340 units."
+    },
+    {
+      "id": "alg-sort-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can comparison sorting not achieve O(n) worst-case comparisons for arbitrary distinct keys?",
+      "options": [
+        "It must distinguish n! possible input orders using a binary decision tree",
+        "It must swap every pair of records",
+        "It must allocate n² memory cells",
+        "It always performs one comparison for every key pair"
+      ],
+      "answer": [
+        "It must distinguish n! possible input orders using a binary decision tree"
+      ],
+      "explanation": "A comparison's two outcomes form a decision tree. Distinguishing all n! permutations requires a tree of height at least log₂(n!)=Ω(nlogn)."
+    },
+    {
+      "id": "alg-sort-058",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "The list [7, 2, 6, 1] is sorted by selection sort. What minimum value is selected on the first pass?",
+      "answer": "1",
+      "explanation": "Selection sort scans the entire unsorted suffix and chooses its minimum. The smallest value in the list is 1."
+    },
+    {
+      "id": "alg-sort-059",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which characteristics are true of a stable algorithm that sorts records by key?",
+      "options": [
+        "Equal-key records keep their input-relative order",
+        "It can be used as a pass in least-significant-digit radix sort",
+        "Stability means the algorithm uses O(1) auxiliary memory",
+        "Stability can matter when records have multiple sort fields"
+      ],
+      "answer": [
+        "Equal-key records keep their input-relative order",
+        "It can be used as a pass in least-significant-digit radix sort",
+        "Stability can matter when records have multiple sort fields"
+      ],
+      "explanation": "Stability concerns the order of records with equal keys. It is essential to LSD radix passes and useful for multi-field sorting, but does not specify memory usage."
+    },
+    {
+      "id": "alg-sort-060",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A sorting algorithm repeatedly selects a pivot and partitions the remaining keys. Which algorithm is being described?",
+      "options": [
+        "Quicksort",
+        "Mergesort",
+        "Counting sort",
+        "Insertion sort"
+      ],
+      "answer": [
+        "Quicksort"
+      ],
+      "explanation": "Quicksort partitions around a pivot and recursively sorts the resulting subarrays. The other listed algorithms use merging, frequency counts, or insertion into a prefix."
+    },
+    {
+      "id": "alg-sort-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A max-heap stores 31 keys. What is its maximum height measured in edges?",
+      "answer": "4",
+      "explanation": "A complete binary heap with 31=2^5−1 keys has five levels, so the longest root-to-leaf path contains four edges."
+    },
+    {
+      "id": "alg-sort-062",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about sorting nearly sorted data are correct?",
+      "options": [
+        "Insertion sort can run in Θ(n+I), where I is inversion count",
+        "If I=O(n), insertion sort is O(n)",
+        "A reverse-sorted input has the maximum inversion count",
+        "Mergesort becomes Θ(n) automatically when the input is already sorted"
+      ],
+      "answer": [
+        "Insertion sort can run in Θ(n+I), where I is inversion count",
+        "If I=O(n), insertion sort is O(n)",
+        "A reverse-sorted input has the maximum inversion count"
+      ],
+      "explanation": "Insertion sort shifts once per inversion plus linear overhead. Reverse order has n(n−1)/2 inversions. Standard mergesort still performs Θ(nlogn) work unless specifically adapted to exploit existing order."
+    },
+    {
+      "id": "alg-sort-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a stable merge, the left run represents an earlier consecutive portion of the original input. If both front keys are equal, which run should supply the next output record?",
+      "options": [
+        "The left run",
+        "The right run",
+        "Either run, because stability is unaffected",
+        "The longer run"
+      ],
+      "answer": [
+        "The left run"
+      ],
+      "explanation": "The left run represents records that appeared earlier in the original sequence. Taking its equal key first preserves their relative order and therefore maintains stability."
+    },
+    {
+      "id": "alg-sort-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For n=10 distinct keys, how many possible input permutations must a comparison sort distinguish?",
+      "answer": "3628800",
+      "explanation": "The number is 10!=3,628,800. A comparison decision tree needs at least this many distinguishable leaves."
+    },
+    {
+      "id": "alg-sort-065",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which property is guaranteed by an in-place sorting algorithm but not by a stable one?",
+      "options": [
+        "It uses only constant or very small extra storage under the stated model",
+        "It preserves equal-key order",
+        "It always uses O(n log n) time",
+        "It never moves records"
+      ],
+      "answer": [
+        "It uses only constant or very small extra storage under the stated model"
+      ],
+      "explanation": "In-place describes auxiliary storage, while stability describes relative order among equal keys. Neither property implies a particular time bound or that records remain unmoved."
+    },
+    {
+      "id": "alg-sort-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A radix sort processes 32-bit unsigned integers 8 bits per pass. How many stable digit passes are required?",
+      "answer": "4",
+      "explanation": "Each pass processes one byte, or eight bits. A 32-bit key has 32/8=4 byte positions, so four passes are required."
+    },
+    {
+      "id": "alg-sort-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about quicksort's recursion depth are correct?",
+      "options": [
+        "Balanced partitions give Θ(log n) depth",
+        "Repeated 0 versus n−1 splits give Θ(n) depth",
+        "The recursion depth affects stack-space use",
+        "Expected Θ(n log n) time implies Θ(log n) depth for every run"
+      ],
+      "answer": [
+        "Balanced partitions give Θ(log n) depth",
+        "Repeated 0 versus n−1 splits give Θ(n) depth",
+        "The recursion depth affects stack-space use"
+      ],
+      "explanation": "The depth reflects partition balance and determines the number of active recursive frames. Expected running time is an average over pivots and does not rule out a linear-depth realization."
+    },
+    {
+      "id": "alg-sort-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A library sort must guarantee O(n log n) worst-case time, preserve stability, and may use O(n) memory. Which choice is appropriate?",
+      "options": [
+        "Mergesort",
+        "Heapsort",
+        "Insertion sort",
+        "Quicksort with a fixed pivot"
+      ],
+      "answer": [
+        "Mergesort"
+      ],
+      "explanation": "Array mergesort has worst-case Θ(nlogn) time, can be stable, and uses linear auxiliary memory. Heapsort is unstable, while insertion and fixed-pivot quicksort have quadratic worst cases."
+    },
+    {
+      "id": "alg-sort-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An array has 8 distinct elements in reverse order. How many inversions does it contain?",
+      "answer": "28",
+      "explanation": "Every pair is inverted in reverse order, so the count is 8×7/2=28."
+    },
+    {
+      "id": "alg-sort-070",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are valid reasons to choose heapsort over mergesort?",
+      "options": [
+        "A worst-case Θ(n log n) guarantee is needed",
+        "Auxiliary array storage should be avoided",
+        "Stability is mandatory",
+        "In-place operation is important"
+      ],
+      "answer": [
+        "A worst-case Θ(n log n) guarantee is needed",
+        "Auxiliary array storage should be avoided",
+        "In-place operation is important"
+      ],
+      "explanation": "Heapsort offers a worst-case nlogn bound and constant auxiliary space. Standard heapsort is unstable, so it is unsuitable when stability is mandatory."
+    },
+    {
+      "id": "alg-sort-071",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An insertion sort processes [2, 4, 6, 8] in ascending order. How many shifts of existing keys occur?",
+      "options": [
+        "0",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "Each next key is already at least as large as all preceding keys. No existing element is shifted, giving the best-case linear behavior."
+    },
+    {
+      "id": "alg-sort-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A selection sort on 12 elements performs exactly n−1 exchanges at most. What is the maximum number of exchanges?",
+      "answer": "11",
+      "explanation": "There is one selection pass for each of the first n−1 positions. Each pass performs at most one exchange, so the bound is 12−1=11."
+    },
+    {
+      "id": "alg-sort-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A counting-sort key range has k=10^9 possible values but the input has only n=100 records. Why may counting sort be a poor choice?",
+      "options": [
+        "Its Θ(n+k) time and storage depend on the huge key range",
+        "It compares every pair of records",
+        "It cannot handle integer keys",
+        "Its running time is always Θ(n²)"
+      ],
+      "answer": [
+        "Its Θ(n+k) time and storage depend on the huge key range"
+      ],
+      "explanation": "Counting sort allocates and processes a count structure over the key range. When k is vastly larger than n, the range-dependent cost can overwhelm the input processing."
+    },
+    {
+      "id": "alg-sort-074",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about in-place quicksort are correct under the standard array model?",
+      "options": [
+        "Partitioning can use O(1) extra array storage",
+        "Recursion still uses stack space",
+        "Worst-case stack depth can be Θ(n)",
+        "In-place implies stable"
+      ],
+      "answer": [
+        "Partitioning can use O(1) extra array storage",
+        "Recursion still uses stack space",
+        "Worst-case stack depth can be Θ(n)"
+      ],
+      "explanation": "The partition rearranges elements within the array, but recursive calls consume stack frames. Unbalanced partitions can make the stack linear, and in-place says nothing about stability."
+    },
+    {
+      "id": "alg-sort-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A bottom-up heap build is run on n=31 keys. How many leaves are present in the resulting complete binary heap?",
+      "answer": "16",
+      "explanation": "In a 1-indexed heap, indices floor(n/2)+1 through n are leaves. For n=31, leaves are indices 16 through 31, totaling 16."
+    },
+    {
+      "id": "alg-sort-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement about the number of comparisons in merge sort is correct?",
+      "options": [
+        "Its worst-case recurrence is T(n)=2T(n/2)+Θ(n)",
+        "It always uses exactly n log₂n comparisons",
+        "It makes Θ(n²) comparisons on reverse-sorted data",
+        "It has no comparisons during merging"
+      ],
+      "answer": [
+        "Its worst-case recurrence is T(n)=2T(n/2)+Θ(n)"
+      ],
+      "explanation": "The recurrence captures two recursive halves and linear merging. Exact comparisons depend on key arrangement and n, so the algorithm does not always use precisely nlog₂n comparisons."
+    },
+    {
+      "id": "alg-sort-077",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Merging sorted runs [1, 6, 9] and [2, 4, 10, 12] stops when the first run is exhausted. How many key comparisons occur?",
+      "answer": "5",
+      "explanation": "The comparisons select 1,2,4,6,9 in succession. Once the first run is exhausted, the remaining 10 and 12 are copied, so five comparisons occur."
+    },
+    {
+      "id": "alg-sort-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which input conditions can make insertion sort efficient?",
+      "options": [
+        "The array is already sorted",
+        "The number of inversions is O(n)",
+        "The array is reverse sorted",
+        "The array is short enough that simple code has low overhead"
+      ],
+      "answer": [
+        "The array is already sorted",
+        "The number of inversions is O(n)",
+        "The array is short enough that simple code has low overhead"
+      ],
+      "explanation": "Insertion sort is Θ(n+I), where I is the inversion count, and has low constant overhead on small arrays. Reverse order has Θ(n²) inversions and causes quadratic shifts."
+    },
+    {
+      "id": "alg-sort-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A deterministic quicksort uses median-of-three pivot selection. Which conclusion is generally safe without a stronger analysis of the implementation?",
+      "options": [
+        "It often improves practical partition balance but does not automatically eliminate all quadratic worst cases",
+        "It guarantees perfect balance for every input",
+        "It guarantees linear worst-case time",
+        "It makes quicksort stable"
+      ],
+      "answer": [
+        "It often improves practical partition balance but does not automatically eliminate all quadratic worst cases"
+      ],
+      "explanation": "Median-of-three is a practical heuristic that reduces some poor splits. Certain inputs can still trigger highly unbalanced partitions; the heuristic does not by itself prove a worst-case nlogn bound or stability."
+    },
+    {
+      "id": "alg-sort-080",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 4-pass radix sort performs a stable counting pass on 1000 keys for each digit. How many key-digit inspections occur, ignoring count-array initialization?",
+      "answer": "4000",
+      "explanation": "Each pass examines the digit of every one of the 1000 keys. Four passes therefore inspect 4×1000=4000 key digits."
+    },
+    {
+      "id": "alg-sort-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about sorting records with a composite key are correct?",
+      "options": [
+        "A stable sort by the less significant field followed by a stable sort by the more significant field yields lexicographic order",
+        "A stable sort preserves tie order from its input",
+        "Sorting only by the less significant field always gives full composite-key order",
+        "The stable passes can be reused for LSD radix sorting"
+      ],
+      "answer": [
+        "A stable sort by the less significant field followed by a stable sort by the more significant field yields lexicographic order",
+        "A stable sort preserves tie order from its input",
+        "The stable passes can be reused for LSD radix sorting"
+      ],
+      "explanation": "The final stable pass groups by the most significant field while retaining the previous less-significant ordering within ties. Stability is precisely what preserves that ordering across passes."
+    },
+    {
+      "id": "alg-sort-082",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A heap sort builds a max-heap and repeatedly swaps its root with the final element of the heap. What order accumulates at the array's end?",
+      "options": [
+        "Largest keys in final sorted positions, from largest toward smaller",
+        "Smallest keys in final positions, from smallest upward",
+        "Keys in insertion order",
+        "Unsorted keys only"
+      ],
+      "answer": [
+        "Largest keys in final sorted positions, from largest toward smaller"
+      ],
+      "explanation": "The max-heap root is the largest remaining key. Moving it to the last heap position repeatedly fills the array's suffix in ascending final order."
+    },
+    {
+      "id": "alg-sort-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary comparison decision tree has at most 12 comparisons on any root-to-leaf path. What is the maximum number of leaves it can have?",
+      "answer": "4096",
+      "explanation": "A binary tree with at most 12 decisions along a path can distinguish at most 2^12=4096 outcomes, one per leaf."
+    },
+    {
+      "id": "alg-sort-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which fact explains why no comparison sort can sort every input of 3 distinct keys using at most 2 comparisons?",
+      "options": [
+        "There are 3!=6 permutations but a depth-2 binary tree has at most 4 leaves",
+        "Three keys require exactly 3 swaps",
+        "A comparison has three possible outcomes in all sorting models",
+        "The array must have at least 3 auxiliary cells"
+      ],
+      "answer": [
+        "There are 3!=6 permutations but a depth-2 binary tree has at most 4 leaves"
+      ],
+      "explanation": "A comparison decision tree with at most two binary outcomes per path has at most four leaves at depth two. Six input permutations require six distinguishable outcomes, so two comparisons cannot suffice in the worst case."
+    },
+    {
+      "id": "alg-sort-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about sorting lower bounds and non-comparison sorts are correct?",
+      "options": [
+        "The Ω(n log n) bound is for comparison sorting",
+        "Counting sort can run in Θ(n+k) for integer keys in range k",
+        "Radix sort can evade the comparison lower bound by processing digits",
+        "Every sort, regardless of key model, requires Ω(n log n) operations"
+      ],
+      "answer": [
+        "The Ω(n log n) bound is for comparison sorting",
+        "Counting sort can run in Θ(n+k) for integer keys in range k",
+        "Radix sort can evade the comparison lower bound by processing digits"
+      ],
+      "explanation": "The decision-tree lower bound applies when comparisons are the only way to distinguish keys. Counting and radix methods exploit bounded integer representations, so the universal claim is false."
+    },
+    {
+      "id": "alg-sort-086",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Selection sort on 9 distinct keys uses one scan per unsorted suffix. How many candidate-key inspections are made across all scans, including the initial candidate in each suffix?",
+      "answer": "44",
+      "explanation": "The suffix lengths are 9,8,…,2, totaling 44 inspections. The last single remaining item requires no selection pass."
+    },
+    {
+      "id": "alg-sort-087",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statement about bubble sort with an early-exit flag is correct?",
+      "options": [
+        "It can finish in Θ(n) time on already sorted input",
+        "It is always Θ(n log n)",
+        "It avoids all swaps on reverse-sorted data",
+        "Its worst-case becomes Θ(n)"
+      ],
+      "answer": [
+        "It can finish in Θ(n) time on already sorted input"
+      ],
+      "explanation": "If a pass makes no swaps, the array is sorted and the algorithm terminates. The initial verification pass takes linear time, while reverse input still causes quadratic work."
+    },
+    {
+      "id": "alg-sort-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions are needed for stable counting sort of records?",
+      "options": [
+        "Cumulative counts identify final index ranges",
+        "Input records are placed in an order that preserves their original tie order",
+        "The keys are integers or mapped to a bounded range",
+        "Records with equal keys must be randomly permuted"
+      ],
+      "answer": [
+        "Cumulative counts identify final index ranges",
+        "Input records are placed in an order that preserves their original tie order",
+        "The keys are integers or mapped to a bounded range"
+      ],
+      "explanation": "Stable placement uses cumulative counts and a direction of traversal that preserves equal-key order. The key domain must be manageable for counting; randomizing ties would violate stability."
+    },
+    {
+      "id": "alg-sort-089",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A list of 11 distinct items is reverse sorted. How many inversions are present?",
+      "answer": "55",
+      "explanation": "Every pair is inverted. The count is 11×10/2=55, which is the maximum for 11 elements."
+    },
+    {
+      "id": "alg-sort-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A quicksort partition returns pivot index p in an array segment [l,r]. Which recursive ranges avoid processing the pivot again?",
+      "options": [
+        "[l,p−1] and [p+1,r]",
+        "[l,p] and [p,r]",
+        "[l,r] and [p,p]",
+        "[p+1,r] only"
+      ],
+      "answer": [
+        "[l,p−1] and [p+1,r]"
+      ],
+      "explanation": "The partition has placed the pivot in its final position p. Recursion should sort only elements strictly to its left and right, excluding the pivot to ensure progress."
+    },
+    {
+      "id": "alg-sort-091",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A merge sort on 32 elements performs linear merge work of 32 units at each internal level. How many units of merge work occur across its five internal levels?",
+      "answer": "160",
+      "explanation": "For an even split, each internal level processes all 32 elements once. There are log₂32=5 such levels, giving 5×32=160 units under the stated cost model."
+    },
+    {
+      "id": "alg-sort-092",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the stability of sorting algorithms are correct?",
+      "options": [
+        "Stability concerns the relative order of records with equal keys",
+        "A stable algorithm must leave all records in their original positions",
+        "A stable sort may still move records substantially",
+        "Stability can preserve an earlier sort key during a later stable pass"
+      ],
+      "answer": [
+        "Stability concerns the relative order of records with equal keys",
+        "A stable sort may still move records substantially",
+        "Stability can preserve an earlier sort key during a later stable pass"
+      ],
+      "explanation": "Stability constrains only the order among equal keys. Records can move to new positions while maintaining that order; this property enables stable multi-pass sorting."
+    },
+    {
+      "id": "alg-sort-093",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which method sorts an array by repeatedly choosing the smallest remaining key and placing it at the next output position?",
+      "options": [
+        "Selection sort",
+        "Insertion sort",
+        "Merge sort",
+        "Radix sort"
+      ],
+      "answer": [
+        "Selection sort"
+      ],
+      "explanation": "Selection sort selects the minimum from the unsorted suffix and exchanges it into the next position. The other algorithms use different sorting mechanisms."
+    },
+    {
+      "id": "alg-sort-094",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A max-heap contains 63 keys. What is the maximum number of edges on a root-to-leaf path?",
+      "answer": "5",
+      "explanation": "Since 63=2^6−1, the complete heap has six levels. A path from the root at level one to a deepest leaf at level six contains five edges."
+    },
+    {
+      "id": "alg-sort-095",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about adaptive sorting algorithms are true?",
+      "options": [
+        "An adaptive algorithm can exploit existing order in the input",
+        "Insertion sort is adaptive with respect to inversion count",
+        "A fixed-pass radix sort is always adaptive to comparison inversions",
+        "Adaptivity can improve best-case time without changing worst-case asymptotics"
+      ],
+      "answer": [
+        "An adaptive algorithm can exploit existing order in the input",
+        "Insertion sort is adaptive with respect to inversion count",
+        "Adaptivity can improve best-case time without changing worst-case asymptotics"
+      ],
+      "explanation": "Insertion sort's work depends on the number of inversions, so ordered inputs are cheap. A fixed digit-pass count does not generally adapt to comparison-based disorder; best-case gains need not change worst-case bounds."
+    },
+    {
+      "id": "alg-sort-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorting task requires stable output and guaranteed Θ(n log n) worst-case time. Which candidate is unsuitable in its standard form?",
+      "options": [
+        "Heapsort",
+        "Stable mergesort",
+        "A guaranteed stable comparison sort with worst-case n log n",
+        "External mergesort"
+      ],
+      "answer": [
+        "Heapsort"
+      ],
+      "explanation": "Standard heapsort is not stable because heap swaps may reverse equal-key records. Mergesort variants can be stable and retain the worst-case nlogn time bound."
+    },
+    {
+      "id": "alg-sort-097",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A stable counting sort processes 18 records whose integer keys lie in the range 0 through 7. If one unit of work is charged for each input record and each possible key, what is the charged total?",
+      "answer": "26",
+      "explanation": "There are 18 input records and 8 possible key values. Under the stated cost model the charge is n+k=18+8=26 units."
+    },
+    {
+      "id": "alg-sort-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a random permutation, which statement best describes the expected number of inversions?",
+      "options": [
+        "n(n−1)/4",
+        "n(n−1)/2",
+        "n log₂n",
+        "log₂(n!)"
+      ],
+      "answer": [
+        "n(n−1)/4"
+      ],
+      "explanation": "Each of the n choose 2 index pairs is inverted with probability one half in a uniformly random permutation. The expectation is half of n(n−1)/2, namely n(n−1)/4."
+    },
+    {
+      "id": "alg-sort-099",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For n=20, what is the expected number of inversions in a uniformly random permutation?",
+      "answer": "95",
+      "explanation": "The expected inversion count is n(n−1)/4. Substituting 20 gives 20×19/4=95."
+    },
+    {
+      "id": "alg-sort-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A programmer needs an array sort with stable ordering, Θ(n log n) worst-case time, and no restriction on linear auxiliary memory. Which is the most direct standard choice?",
+      "options": [
+        "Mergesort",
+        "Heapsort",
+        "Selection sort",
+        "Quicksort with a fixed first-element pivot"
+      ],
+      "answer": [
+        "Mergesort"
+      ],
+      "explanation": "Mergesort can preserve equal-key order, has Θ(nlogn) worst-case time, and uses Θ(n) auxiliary storage in its usual array implementation. The other listed choices fail at least one requirement."
+    }
+  ]
+}

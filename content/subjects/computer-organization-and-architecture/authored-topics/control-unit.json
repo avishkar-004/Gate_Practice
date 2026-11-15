@@ -1,0 +1,1407 @@
+{
+  "topicIndex": 2,
+  "questions": [
+    {
+      "id": "coa-cu-001",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which description best distinguishes a hardwired control unit from a microprogrammed control unit?",
+      "options": [
+        "Hardwired control derives signals from logic; microprogrammed control reads control words from a control store.",
+        "Hardwired control uses a control store; microprogrammed control uses only gates.",
+        "Hardwired control is software running on the user's operating system.",
+        "There is no difference in how either design produces control signals."
+      ],
+      "answer": [
+        "Hardwired control derives signals from logic; microprogrammed control reads control words from a control store."
+      ],
+      "explanation": "A hardwired controller combines instruction/state inputs through logic. A microprogrammed controller fetches microinstructions from a control store to specify datapath and sequencing actions."
+    },
+    {
+      "id": "coa-cu-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A control store contains 512 addressable microinstructions. What is the minimum number of bits in a microaddress?",
+      "answer": "9",
+      "explanation": "Nine bits address 2^9=512 distinct locations, so a 9-bit microaddress is sufficient and minimal."
+    },
+    {
+      "id": "coa-cu-003",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A control store has 256 words, each 48 bits wide. What is its capacity in bytes?",
+      "answer": "1536",
+      "explanation": "The store contains 256×48=12,288 bits. Dividing by 8 gives 1,536 bytes."
+    },
+    {
+      "id": "coa-cu-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A horizontal microinstruction has one independent control bit for each of 40 datapath signals, a 9-bit next-address field, and a 3-bit sequencing field. What is its width?",
+      "options": [
+        "52 bits",
+        "49 bits",
+        "43 bits",
+        "40 bits"
+      ],
+      "answer": [
+        "52 bits"
+      ],
+      "explanation": "The fields are concatenated: 40+9+3=52 bits. Independent control bits allow the listed signals to be selected directly."
+    },
+    {
+      "id": "coa-cu-005",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about vertical and horizontal microinstruction formats are generally correct?",
+      "options": [
+        "A horizontal format may use one bit per control signal.",
+        "A vertical format often encodes control choices in compact fields that require decoding.",
+        "A horizontal format is necessarily narrower than a vertical format.",
+        "A vertical format can reduce control-store width at the cost of additional decoding or restrictions on parallel actions."
+      ],
+      "answer": [
+        "A horizontal format may use one bit per control signal.",
+        "A vertical format often encodes control choices in compact fields that require decoding.",
+        "A vertical format can reduce control-store width at the cost of additional decoding or restrictions on parallel actions."
+      ],
+      "explanation": "Horizontal control is wide and direct; vertical encoding is compact but decoded. Neither format is universally narrower in all designs, and encoding may limit which actions can be issued together."
+    },
+    {
+      "id": "coa-cu-006",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A vertical microinstruction uses a 5-bit encoded field to select one of 20 mutually exclusive ALU functions. How many field encodings are unused?",
+      "answer": "12",
+      "explanation": "Five bits provide 32 encodings. Twenty are assigned, leaving 32-20=12 unused encodings."
+    },
+    {
+      "id": "coa-cu-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "During ordinary sequential microinstruction execution, how is the next microaddress commonly obtained when no branch is taken?",
+      "options": [
+        "Increment the microprogram counter to the next control-store word",
+        "Load the user program's stack pointer",
+        "Copy the ALU result into every address bit",
+        "Restart the current microinstruction indefinitely"
+      ],
+      "answer": [
+        "Increment the microprogram counter to the next control-store word"
+      ],
+      "explanation": "A microprogram counter (or sequencer) normally advances to the next microinstruction unless the control word or condition logic selects another address."
+    },
+    {
+      "id": "coa-cu-008",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction supports conditional sequencing based on a processor status flag. Which statements are correct?",
+      "options": [
+        "The next-address logic can select different microaddresses based on the flag.",
+        "The condition can be tested by the microsequencer without changing the flag.",
+        "A conditional microbranch is the same as a user-level branch instruction in every respect.",
+        "The control word or sequencer must define what happens for each condition outcome."
+      ],
+      "answer": [
+        "The next-address logic can select different microaddresses based on the flag.",
+        "The condition can be tested by the microsequencer without changing the flag.",
+        "The control word or sequencer must define what happens for each condition outcome."
+      ],
+      "explanation": "Microsequencing may inspect status signals to choose the next control word. This is an internal control-flow decision and is not necessarily equivalent to an architectural branch instruction."
+    },
+    {
+      "id": "coa-cu-009",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An instruction register contains 6 opcode bits. A dispatch table has one entry for every opcode and is addressed directly by the opcode value. How many entries are needed?",
+      "answer": "64",
+      "explanation": "A 6-bit opcode has 2^6=64 possible patterns, so the direct dispatch table needs 64 entries if every pattern has an entry."
+    },
+    {
+      "id": "coa-cu-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "What is the main purpose of a control store in a microprogrammed controller?",
+      "options": [
+        "Hold microinstructions that specify control actions and sequencing",
+        "Store the program's user data permanently",
+        "Replace the processor's register file",
+        "Store only cache tags"
+      ],
+      "answer": [
+        "Hold microinstructions that specify control actions and sequencing"
+      ],
+      "explanation": "The control store contains microcode. Its words drive datapath controls and determine how the controller advances through the microprogram."
+    },
+    {
+      "id": "coa-cu-011",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are typical tradeoffs between hardwired and microprogrammed control?",
+      "options": [
+        "Hardwired control may achieve lower control latency in a suitable design.",
+        "Microprogrammed control can make control behavior easier to modify.",
+        "Hardwired control can never implement a complex instruction set.",
+        "Microprogrammed control requires storage for its microinstructions."
+      ],
+      "answer": [
+        "Hardwired control may achieve lower control latency in a suitable design.",
+        "Microprogrammed control can make control behavior easier to modify.",
+        "Microprogrammed control requires storage for its microinstructions."
+      ],
+      "explanation": "Hardwired logic can be fast but changes may require redesign. Microcode is stored and can be easier to update, but the control store and fetch/sequencing path add implementation cost and latency."
+    },
+    {
+      "id": "coa-cu-012",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogram takes 7 microcycles to execute. Each microcycle lasts 3 processor clock periods. How many clock periods elapse, ignoring overlap and setup?",
+      "answer": "21",
+      "explanation": "The microprogram uses 7×3=21 processor clock periods under the stated sequential timing model."
+    },
+    {
+      "id": "coa-cu-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction contains a 4-bit encoded ALU-operation field. Which component commonly converts that field into individual ALU control signals?",
+      "options": [
+        "A decoder",
+        "The program counter incrementer",
+        "The data cache replacement unit",
+        "The memory address register"
+      ],
+      "answer": [
+        "A decoder"
+      ],
+      "explanation": "An encoded control field represents one of several choices. A decoder translates the binary code into the corresponding datapath control signals."
+    },
+    {
+      "id": "coa-cu-014",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A horizontal control word directly controls 36 independent datapath actions using one bit per action. How many bits are required for this control portion, excluding sequencing fields?",
+      "answer": "36",
+      "explanation": "With one independent bit for each of 36 actions, the direct control portion is 36 bits wide."
+    },
+    {
+      "id": "coa-cu-015",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction asserts `PC←PC+1` and `MAR←PC` in the same cycle. Whether this is valid depends on which design facts?",
+      "options": [
+        "Whether the datapath supports both transfers concurrently",
+        "Whether the source value for MAR is the old or updated PC under the datapath's timing semantics",
+        "Whether the control word can encode both actions",
+        "The numeric value currently stored in the cache tag"
+      ],
+      "answer": [
+        "Whether the datapath supports both transfers concurrently",
+        "Whether the source value for MAR is the old or updated PC under the datapath's timing semantics",
+        "Whether the control word can encode both actions"
+      ],
+      "explanation": "Parallel micro-operations are constrained by available buses, register ports, control encoding and clock-edge semantics. The cache tag value does not determine whether these transfers can be issued together."
+    },
+    {
+      "id": "coa-cu-016",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction is 64 bits wide. Its control fields occupy 38 bits and its next-address field occupies 10 bits. How many bits remain for sequencing and condition selection?",
+      "answer": "16",
+      "explanation": "The named fields use 38+10=48 bits. The remaining 64-48=16 bits can encode sequencing and condition information."
+    },
+    {
+      "id": "coa-cu-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogrammed controller has 128 microinstructions. Each microinstruction is 40 bits. The control store is implemented as a ROM. What is its minimum storage capacity in bytes?",
+      "options": [
+        "640",
+        "512",
+        "128",
+        "5120"
+      ],
+      "answer": [
+        "640"
+      ],
+      "explanation": "128×40=5,120 bits. Dividing by 8 gives 640 bytes."
+    },
+    {
+      "id": "coa-cu-018",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogram must select a next address from (i) sequential successor, (ii) a fixed branch target, or (iii) an address derived from opcode bits. Which hardware functions can participate in this selection?",
+      "options": [
+        "Incrementer for the sequential successor",
+        "Next-address multiplexer",
+        "Opcode dispatch logic",
+        "Floating-point rounding unit"
+      ],
+      "answer": [
+        "Incrementer for the sequential successor",
+        "Next-address multiplexer",
+        "Opcode dispatch logic"
+      ],
+      "explanation": "The sequencer can form sequential and branch addresses and dispatch based on opcode, then select among them. Floating-point rounding is unrelated to microaddress selection."
+    },
+    {
+      "id": "coa-cu-019",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A control store has 1024 words. A microprogram counter currently contains address 1022, and the controller increments it modulo the store size when no branch is selected. What is the next address?",
+      "answer": "1023",
+      "explanation": "Sequential increment gives 1022+1=1023, which is still the final valid address in a 1024-word store."
+    },
+    {
+      "id": "coa-cu-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statement best describes a micro-operation?",
+      "options": [
+        "A low-level register transfer or datapath action performed within an instruction's implementation",
+        "A complete source-level program",
+        "A cache line replacement decision only",
+        "A network packet transmission"
+      ],
+      "answer": [
+        "A low-level register transfer or datapath action performed within an instruction's implementation"
+      ],
+      "explanation": "Micro-operations are elementary actions such as register transfers, ALU operations, or memory-interface actions that together implement an architectural instruction."
+    },
+    {
+      "id": "coa-cu-021",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogram uses a shared fetch routine that is called by several instruction-specific routines. What must the microsequencer support for this organization?",
+      "options": [
+        "A way to transfer control to the shared routine",
+        "A way to preserve or reconstruct the microprogram return address",
+        "A way to return to the caller's next microinstruction",
+        "A separate user-visible stack frame for every microinstruction"
+      ],
+      "answer": [
+        "A way to transfer control to the shared routine",
+        "A way to preserve or reconstruct the microprogram return address",
+        "A way to return to the caller's next microinstruction"
+      ],
+      "explanation": "A micro-subroutine call needs a target and a return mechanism, such as a microstack or saved return address. It does not require a user-level stack frame per microinstruction."
+    },
+    {
+      "id": "coa-cu-022",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A control store has 2048 words. A microaddress is 11 bits wide. How many distinct control-store words can this address field identify?",
+      "answer": "2048",
+      "explanation": "An 11-bit address field has 2^11=2048 distinct encodings, matching the number of words in the store."
+    },
+    {
+      "id": "coa-cu-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a microprogrammed control unit, a microinstruction is fetched from control memory and then decoded. Which register most directly holds the fetched control word for use during the current microcycle?",
+      "options": [
+        "Microinstruction register",
+        "Instruction address register",
+        "Memory data register",
+        "Stack pointer"
+      ],
+      "answer": [
+        "Microinstruction register"
+      ],
+      "explanation": "The microinstruction register holds the currently fetched control word so its fields can drive control signals and next-address logic."
+    },
+    {
+      "id": "coa-cu-024",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A control word contains three mutually exclusive encoded fields of 3, 4, and 2 bits, plus 12 independent control bits. What is its total width?",
+      "answer": "21",
+      "explanation": "The encoded fields contribute 3+4+2=9 bits. Adding 12 independent control bits gives a total width of 21 bits."
+    },
+    {
+      "id": "coa-cu-025",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogrammed controller executes one microinstruction per microcycle. Which statements follow from this assumption?",
+      "options": [
+        "A 10-microinstruction sequence takes 10 microcycles if there are no extra wait states.",
+        "A microinstruction may assert multiple compatible control signals in one cycle.",
+        "A microcycle is necessarily one user-level instruction.",
+        "Different user-level instructions may require different numbers of microcycles."
+      ],
+      "answer": [
+        "A 10-microinstruction sequence takes 10 microcycles if there are no extra wait states.",
+        "A microinstruction may assert multiple compatible control signals in one cycle.",
+        "Different user-level instructions may require different numbers of microcycles."
+      ],
+      "explanation": "One control word is consumed per microcycle. Compatible datapath actions can be combined, and instruction routines can have different lengths; a microcycle is not an architectural instruction."
+    },
+    {
+      "id": "coa-cu-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hardwired controller is modeled as a finite-state machine. What determines its next state and control outputs?",
+      "options": [
+        "Current state and relevant instruction/status inputs through combinational logic",
+        "Only the contents of the data cache",
+        "A microinstruction fetched from a control ROM in every design",
+        "The value of the user's program stack"
+      ],
+      "answer": [
+        "Current state and relevant instruction/status inputs through combinational logic"
+      ],
+      "explanation": "A hardwired FSM computes outputs and next state from the current controller state and inputs such as opcode or condition flags, using combinational logic."
+    },
+    {
+      "id": "coa-cu-027",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogram dispatch address is formed by concatenating a 5-bit opcode with a 7-bit base field. How many distinct dispatch addresses can this concatenation represent?",
+      "answer": "4096",
+      "explanation": "The concatenated field is 12 bits wide, so it has 2^12=4096 distinct bit patterns."
+    },
+    {
+      "id": "coa-cu-028",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction has a next-address field and a sequencing-control field. Which actions may be selected by the sequencing logic?",
+      "options": [
+        "Advance to the sequential successor",
+        "Branch to the explicit next-address field",
+        "Select an address based on an instruction opcode",
+        "Choose a data-cache line to evict"
+      ],
+      "answer": [
+        "Advance to the sequential successor",
+        "Branch to the explicit next-address field",
+        "Select an address based on an instruction opcode"
+      ],
+      "explanation": "The sequencing field can control sequential, branch, or dispatch behavior. Cache replacement is not part of microaddress generation."
+    },
+    {
+      "id": "coa-cu-029",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A controller executes 18 microinstructions. Each microcycle takes 2.5 ns and no cycles overlap. How long does the sequence take? Give the answer in nanoseconds.",
+      "answer": "45",
+      "explanation": "The elapsed time is 18×2.5 ns=45 ns under the stated no-overlap assumption."
+    },
+    {
+      "id": "coa-cu-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A microprogrammed controller asserts a memory-read signal, but main memory returns data only after several cycles. What may the controller need to do before consuming that data?",
+      "options": [
+        "Wait through additional microcycles or use a ready/wait condition",
+        "Assume the data is available in the same instant",
+        "Clear the instruction register and abandon the operation",
+        "Convert the control store into a data cache"
+      ],
+      "answer": [
+        "Wait through additional microcycles or use a ready/wait condition"
+      ],
+      "explanation": "The control sequence must respect memory latency. It can insert wait microcycles or branch on a completion/ready signal before using the returned data."
+    },
+    {
+      "id": "coa-cu-031",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A datapath has one internal bus and two registers both request to drive it in the same microcycle. What is the control-design issue?",
+      "options": [
+        "The transfers conflict because two sources cannot simultaneously drive a single bus.",
+        "A different bus or a separate microcycle may be needed.",
+        "Both sources can be combined by ORing their values without changing semantics.",
+        "The microinstruction must prevent incompatible source-enable signals from being asserted together."
+      ],
+      "answer": [
+        "The transfers conflict because two sources cannot simultaneously drive a single bus.",
+        "A different bus or a separate microcycle may be needed.",
+        "The microinstruction must prevent incompatible source-enable signals from being asserted together."
+      ],
+      "explanation": "A single bus supports one selected driver at a time. Resource conflicts must be avoided by control encoding, extra hardware, or scheduling the transfers in different cycles."
+    },
+    {
+      "id": "coa-cu-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A control store contains the same 24 mutually exclusive ALU operations in two formats. Format H uses one-hot control bits; format V uses a binary code. What is the minimum width of the operation-selection portion in each format?",
+      "options": [
+        "H: 24 bits, V: 5 bits",
+        "H: 5 bits, V: 24 bits",
+        "H: 24 bits, V: 24 bits",
+        "H: 1 bit, V: 5 bits"
+      ],
+      "answer": [
+        "H: 24 bits, V: 5 bits"
+      ],
+      "explanation": "One-hot encoding uses one bit per operation, requiring 24 bits. A binary encoding needs ceil(log2 24)=5 bits, with some codes unused."
+    },
+    {
+      "id": "coa-cu-033",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction controls two register transfers, one ALU function, and a conditional branch. The first transfer needs 3 encoded choices, the second 5, the ALU field 9, and the branch condition 4. What is the width of these encoded fields combined?",
+      "answer": "21",
+      "explanation": "The fields together require 3+5+9+4=21 bits, excluding any next-address or direct control bits."
+    },
+    {
+      "id": "coa-cu-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogram counter is 8 bits wide and the control store contains 192 words. Which addresses are valid?",
+      "options": [
+        "0 through 191",
+        "0 through 255",
+        "1 through 192",
+        "Only 0 through 127"
+      ],
+      "answer": [
+        "0 through 191"
+      ],
+      "explanation": "The store has 192 addressable words numbered 0 through 191. Although the 8-bit counter can represent 256 values, addresses 192 through 255 are outside this control store."
+    },
+    {
+      "id": "coa-cu-035",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogrammed control store is implemented as writable control memory. Which consequences are possible?",
+      "options": [
+        "The control sequence can potentially be modified by updating stored microcode.",
+        "A write mechanism and protection policy may be needed.",
+        "Every update necessarily changes the architectural instruction set visible to software.",
+        "Microcode storage remains separate from ordinary user data memory in many designs."
+      ],
+      "answer": [
+        "The control sequence can potentially be modified by updating stored microcode.",
+        "A write mechanism and protection policy may be needed.",
+        "Microcode storage remains separate from ordinary user data memory in many designs."
+      ],
+      "explanation": "Writable control stores enable updates but require appropriate write support and safeguards. Internal microcode changes need not alter architectural behavior, and control storage is commonly distinct from user memory."
+    },
+    {
+      "id": "coa-cu-036",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A microaddress field must select any of 300 control-store words. What minimum width is required?",
+      "answer": "9",
+      "explanation": "Eight bits represent 256 addresses, which is insufficient. Nine bits represent 512, so 9 bits are required."
+    },
+    {
+      "id": "coa-cu-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An instruction's control routine begins at a microaddress computed from its opcode. Which component is most directly responsible for this operation?",
+      "options": [
+        "Opcode dispatch logic in the microsequencer",
+        "The ALU carry-out circuit",
+        "The data-memory write buffer",
+        "The condition-code register alone"
+      ],
+      "answer": [
+        "Opcode dispatch logic in the microsequencer"
+      ],
+      "explanation": "The microsequencer maps instruction bits, often the opcode, to the starting microaddress of the corresponding control routine."
+    },
+    {
+      "id": "coa-cu-038",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A conditional microbranch tests the zero flag Z. Which behaviors are consistent with such a microbranch?",
+      "options": [
+        "If Z=1, select one next microaddress; otherwise select another.",
+        "The branch can be internal to the controller and need not alter the user-visible PC.",
+        "Testing Z necessarily clears the flag.",
+        "The microinstruction may include both the condition selection and branch target information."
+      ],
+      "answer": [
+        "If Z=1, select one next microaddress; otherwise select another.",
+        "The branch can be internal to the controller and need not alter the user-visible PC.",
+        "The microinstruction may include both the condition selection and branch target information."
+      ],
+      "explanation": "The sequencer can branch internally based on an existing status condition. Testing a flag does not inherently modify it or change the architectural PC."
+    },
+    {
+      "id": "coa-cu-039",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A vertical microinstruction uses an encoded field to select one of 13 register destinations. What is the minimum field width?",
+      "answer": "4",
+      "explanation": "Three bits encode only 8 destinations; four bits encode 16. Therefore at least 4 bits are needed, leaving 3 codes unused."
+    },
+    {
+      "id": "coa-cu-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction simultaneously selects `R2` as an ALU input, selects addition, and enables `R5` to capture the ALU output. What is the architectural interpretation?",
+      "options": [
+        "The datapath performs a register-to-register arithmetic micro-operation in one microcycle, if resources permit.",
+        "The control unit has executed a complete program.",
+        "The microinstruction necessarily reads main memory.",
+        "The selected operation is a microbranch rather than an ALU operation."
+      ],
+      "answer": [
+        "The datapath performs a register-to-register arithmetic micro-operation in one microcycle, if resources permit."
+      ],
+      "explanation": "The control fields can select source registers, an ALU function, and a destination register. If the buses and register ports support it, this action occurs as one micro-operation in that microcycle."
+    },
+    {
+      "id": "coa-cu-041",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hardwired controller uses a state register and combinational next-state logic. Which changes can alter its control behavior?",
+      "options": [
+        "Changing the next-state logic",
+        "Changing the output decode logic",
+        "Changing the state encoding and corresponding logic consistently",
+        "Changing an unrelated data word in main memory"
+      ],
+      "answer": [
+        "Changing the next-state logic",
+        "Changing the output decode logic",
+        "Changing the state encoding and corresponding logic consistently"
+      ],
+      "explanation": "Hardwired control behavior is embodied in the state transition and output logic. Main-memory data does not change that logic, while changing state encoding requires a consistent redesign of its logic."
+    },
+    {
+      "id": "coa-cu-042",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A control store has 4096 words and a 12-bit word address. The microprogram counter contains 0xFFE and the next operation is a sequential increment, without wraparound. What address is selected? Give a hexadecimal answer.",
+      "answer": "0xFFF",
+      "explanation": "0xFFE+1=0xFFF, which is the last valid address in a 4096-word store (0 through 0xFFF)."
+    },
+    {
+      "id": "coa-cu-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Why might a designer choose a microprogrammed controller for a complex instruction set?",
+      "options": [
+        "Control sequences can be expressed as stored microinstructions and may be easier to revise than extensive fixed logic.",
+        "It eliminates the need for a datapath.",
+        "It guarantees zero control latency.",
+        "It makes every instruction execute in one microcycle."
+      ],
+      "answer": [
+        "Control sequences can be expressed as stored microinstructions and may be easier to revise than extensive fixed logic."
+      ],
+      "explanation": "Microprogramming represents instruction behavior as sequences of control words, which can simplify design and modification. It does not eliminate datapath hardware or guarantee a particular latency."
+    },
+    {
+      "id": "coa-cu-044",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction contains both control bits and a sequencing field. What roles can these portions serve?",
+      "options": [
+        "Control bits can initiate register transfers or select an ALU operation.",
+        "The sequencing field can choose the next microaddress.",
+        "The sequencing field always stores the user program's next PC.",
+        "Some fields may be interpreted conditionally by the microsequencer."
+      ],
+      "answer": [
+        "Control bits can initiate register transfers or select an ALU operation.",
+        "The sequencing field can choose the next microaddress.",
+        "Some fields may be interpreted conditionally by the microsequencer."
+      ],
+      "explanation": "Control fields operate the datapath; sequencing fields guide internal control flow. The architectural PC is distinct from the microprogram address and is not what the sequencing field always stores."
+    },
+    {
+      "id": "coa-cu-045",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction is 56 bits wide. It has 32 direct control bits, a 12-bit next-address field, and a 3-bit condition selector. How many bits remain for other sequencing controls?",
+      "answer": "9",
+      "explanation": "The listed fields total 32+12+3=47 bits. The remaining width is 56-47=9 bits."
+    },
+    {
+      "id": "coa-cu-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogrammed controller uses one microinstruction word per microcycle. If an instruction routine contains 14 words and incurs 2 additional wait microcycles, how many microcycles does it consume?",
+      "options": [
+        "16",
+        "14",
+        "12",
+        "28"
+      ],
+      "answer": [
+        "16"
+      ],
+      "explanation": "The routine executes 14 control words plus 2 wait cycles, for 16 microcycles total."
+    },
+    {
+      "id": "coa-cu-047",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An encoded microinstruction field selects one of four mutually exclusive bus sources. What are the benefits and constraints of this encoding?",
+      "options": [
+        "It requires 2 bits instead of four one-hot bits.",
+        "A decoder can generate the source-enable signals.",
+        "It naturally selects exactly one of the four sources when all codes are valid.",
+        "It can select all four sources simultaneously with one code."
+      ],
+      "answer": [
+        "It requires 2 bits instead of four one-hot bits.",
+        "A decoder can generate the source-enable signals.",
+        "It naturally selects exactly one of the four sources when all codes are valid."
+      ],
+      "explanation": "Two bits encode four choices and can be decoded into one source enable. A mutually exclusive encoded field selects one choice, not all sources at once."
+    },
+    {
+      "id": "coa-cu-048",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hardwired control FSM has 18 states. If binary state encoding is used, what is the minimum number of state bits?",
+      "answer": "5",
+      "explanation": "Four bits encode 16 states, which is insufficient. Five bits encode 32 states, enough for 18."
+    },
+    {
+      "id": "coa-cu-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A controller uses one-hot state encoding for 18 states. How many state-register bits are required?",
+      "options": [
+        "18",
+        "5",
+        "4",
+        "36"
+      ],
+      "answer": [
+        "18"
+      ],
+      "explanation": "One-hot encoding assigns one state bit to each state, so 18 state bits are used. This is wider than binary encoding but can simplify state decoding."
+    },
+    {
+      "id": "coa-cu-050",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements compare binary and one-hot state encoding for a control FSM?",
+      "options": [
+        "Binary encoding uses about ceil(log2 S) state bits for S states.",
+        "One-hot encoding uses S state bits.",
+        "One-hot encoding can simplify state decode logic.",
+        "One-hot encoding always minimizes the number of flip-flops."
+      ],
+      "answer": [
+        "Binary encoding uses about ceil(log2 S) state bits for S states.",
+        "One-hot encoding uses S state bits.",
+        "One-hot encoding can simplify state decode logic."
+      ],
+      "explanation": "Binary encoding is compact; one-hot uses one bit per state and can reduce decode complexity. It uses more flip-flops, so it does not minimize their count."
+    },
+    {
+      "id": "coa-cu-051",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A horizontal microinstruction has 72 independent control bits, a 10-bit microaddress field, and a 2-bit condition code. What is the total width?",
+      "answer": "84",
+      "explanation": "The width is the sum of the independent controls and sequencing fields: 72+10+2=84 bits."
+    },
+    {
+      "id": "coa-cu-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A control store is organized as 1024 words × 64 bits. Which capacity is correct?",
+      "options": [
+        "8192 bytes",
+        "65536 bytes",
+        "1024 bytes",
+        "65536 bits"
+      ],
+      "answer": [
+        "8192 bytes"
+      ],
+      "explanation": "1024×64=65,536 bits. Dividing by 8 gives 8,192 bytes, or 8 KiB."
+    },
+    {
+      "id": "coa-cu-053",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogram counter is 10 bits wide and a control store has 900 words. Which statements are correct?",
+      "options": [
+        "The address field can represent 1024 different values.",
+        "At least 124 bit patterns do not correspond to valid words in this store.",
+        "All 10-bit patterns are necessarily valid microaddresses.",
+        "A range check or restricted sequencing may be needed to avoid invalid addresses."
+      ],
+      "answer": [
+        "The address field can represent 1024 different values.",
+        "At least 124 bit patterns do not correspond to valid words in this store.",
+        "A range check or restricted sequencing may be needed to avoid invalid addresses."
+      ],
+      "explanation": "A 10-bit field has 1024 patterns, but only addresses 0 through 899 name words. The remaining 1024-900=124 codes are invalid unless mapped or otherwise handled."
+    },
+    {
+      "id": "coa-cu-054",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A vertical field encodes one of 27 possible source registers. What is the minimum number of bits for the field?",
+      "answer": "5",
+      "explanation": "Four bits encode only 16 choices. Five bits encode 32, so 5 bits suffice for 27 sources."
+    },
+    {
+      "id": "coa-cu-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hardwired controller's next-state function is N=f(S, opcode, Z), where S is the current state and Z is a status flag. If only Z changes while S and opcode remain fixed, what may happen?",
+      "options": [
+        "The next state may change because Z is an input to f.",
+        "The current state changes combinationally without a clock edge.",
+        "The control store address changes because all hardwired controllers have one.",
+        "Nothing can change because status flags are never controller inputs."
+      ],
+      "answer": [
+        "The next state may change because Z is an input to f."
+      ],
+      "explanation": "Since Z is an explicit input to the next-state function, changing it can change the computed next state (and possibly outputs) before the next state-register clock edge."
+    },
+    {
+      "id": "coa-cu-056",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogrammed instruction requires 9 ordinary microcycles and 3 memory wait microcycles. The microcycle time is 4 ns. What is the total latency? Give the answer in nanoseconds.",
+      "answer": "48",
+      "explanation": "There are 9+3=12 microcycles. At 4 ns each, latency is 12×4=48 ns."
+    },
+    {
+      "id": "coa-cu-057",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A controller branches to one of two microaddresses depending on whether the ALU's zero flag is set. What information must be available to determine the next microaddress?",
+      "options": [
+        "The current microaddress or branch target information",
+        "The current value of the zero flag",
+        "The branch-control selection for this microinstruction",
+        "The contents of an unrelated network interface"
+      ],
+      "answer": [
+        "The current microaddress or branch target information",
+        "The current value of the zero flag",
+        "The branch-control selection for this microinstruction"
+      ],
+      "explanation": "The sequencer needs a target or sequential address, the condition input, and the control indication selecting conditional branching. Unrelated device data is not part of this decision."
+    },
+    {
+      "id": "coa-cu-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microsequencer supports a micro-subroutine stack of depth 4. A control routine attempts a fifth nested micro-subroutine call before any return. What condition occurs?",
+      "options": [
+        "The micro-return stack overflows unless the design provides another mechanism.",
+        "The architectural data stack automatically grows instead.",
+        "The control store becomes twice as wide.",
+        "The fifth call is converted into an ALU operation."
+      ],
+      "answer": [
+        "The micro-return stack overflows unless the design provides another mechanism."
+      ],
+      "explanation": "A four-entry microstack cannot preserve a fifth nested return address. The implementation must prevent, trap, or otherwise handle the overflow; it is separate from the user stack."
+    },
+    {
+      "id": "coa-cu-059",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A single-bus datapath has 6 register sources that can be selected as the bus driver. What is the minimum width of a binary source-select field?",
+      "answer": "3",
+      "explanation": "Two bits encode only four sources; three bits encode eight. Thus at least 3 select bits are required for six sources."
+    },
+    {
+      "id": "coa-cu-060",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction initiates a memory write. Which actions or conditions may be required for a correct write sequence?",
+      "options": [
+        "Place the target address in the memory-address interface register.",
+        "Place the data to be written on the memory-data interface.",
+        "Assert the write control at the appropriate time.",
+        "Assume the write completes before the memory has accepted the request."
+      ],
+      "answer": [
+        "Place the target address in the memory-address interface register.",
+        "Place the data to be written on the memory-data interface.",
+        "Assert the write control at the appropriate time."
+      ],
+      "explanation": "A memory write requires an address, data and a write request coordinated with the interface timing. The controller must observe completion or wait requirements rather than assuming an instantaneous write."
+    },
+    {
+      "id": "coa-cu-061",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 48-bit microinstruction has a 7-bit control field and a 9-bit next-address field. The rest is reserved for datapath controls. How many datapath-control bits remain?",
+      "answer": "32",
+      "explanation": "Subtract the other fields from the total: 48-7-9=32 datapath-control bits."
+    },
+    {
+      "id": "coa-cu-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A single-bus datapath performs `MAR←PC` and `PC←PC+4` in the same microcycle. Under edge-triggered registers that sample old values at the clock edge, what value is loaded into MAR?",
+      "options": [
+        "The old PC value",
+        "The incremented PC value",
+        "The ALU carry-out",
+        "An undefined value in every design"
+      ],
+      "answer": [
+        "The old PC value"
+      ],
+      "explanation": "Both destination registers sample their inputs at the clock edge. MAR's input is connected to the pre-edge PC value, while PC's input is the ALU's incremented value."
+    },
+    {
+      "id": "coa-cu-063",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction contains mutually exclusive encoded ALU operations. Which design choices are consistent with this format?",
+      "options": [
+        "Use a decoder to generate ALU function selects.",
+        "Reserve unused codes for illegal or future operations.",
+        "Issue two different ALU functions simultaneously through the same ALU with one encoded field.",
+        "Use another field to control an independent register transfer in parallel."
+      ],
+      "answer": [
+        "Use a decoder to generate ALU function selects.",
+        "Reserve unused codes for illegal or future operations.",
+        "Use another field to control an independent register transfer in parallel."
+      ],
+      "explanation": "The field selects one ALU function and may leave codes unassigned. Other independent fields can still initiate compatible datapath actions in parallel."
+    },
+    {
+      "id": "coa-cu-064",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An instruction register has a 7-bit opcode. A direct dispatch table uses the opcode as its index. How many distinct routine entry points can the table select?",
+      "answer": "128",
+      "explanation": "Seven opcode bits have 2^7=128 possible values, and a direct dispatch table can map each value to an entry point."
+    },
+    {
+      "id": "coa-cu-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A micro-subroutine returns to the address immediately after its call. Which value must have been saved when the call was made?",
+      "options": [
+        "The microaddress of the call's sequential successor",
+        "The user program's stack contents",
+        "The ALU's last sum value",
+        "The opcode of the next instruction only"
+      ],
+      "answer": [
+        "The microaddress of the call's sequential successor"
+      ],
+      "explanation": "A micro-subroutine return must restore the control flow to the caller's next microinstruction, so that microaddress (or equivalent continuation state) must be preserved."
+    },
+    {
+      "id": "coa-cu-066",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 7-bit microprogram counter contains 0x7E. The control store has 128 words, and a sequential increment wraps modulo 128. What is the next microaddress? Give a hexadecimal answer.",
+      "answer": "0x7F",
+      "explanation": "0x7E is 126 decimal. Incrementing gives 127=0x7F, still the final valid address; wrap occurs only after incrementing 0x7F."
+    },
+    {
+      "id": "coa-cu-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction uses the ALU to compute a result and writes it to a register. Which control decisions are generally needed?",
+      "options": [
+        "Select ALU input sources.",
+        "Select the ALU function.",
+        "Enable the destination register to capture the result.",
+        "Select the Ethernet frame checksum polynomial."
+      ],
+      "answer": [
+        "Select ALU input sources.",
+        "Select the ALU function.",
+        "Enable the destination register to capture the result."
+      ],
+      "explanation": "The datapath needs operand-source selection, an operation selection, and a write-enable for the destination. Network checksum behavior is unrelated to this ALU micro-operation."
+    },
+    {
+      "id": "coa-cu-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A writable control store is updated with a new microprogram for an existing opcode. What must remain true for binary compatibility with existing programs?",
+      "options": [
+        "The revised control routine must preserve the opcode's architectural behavior.",
+        "The opcode must be removed from the instruction set.",
+        "Every old program must be recompiled because microaddresses are visible to software.",
+        "The data-cache size must double."
+      ],
+      "answer": [
+        "The revised control routine must preserve the opcode's architectural behavior."
+      ],
+      "explanation": "Microcode is an implementation mechanism. Existing programs remain compatible if the instruction's architectural effects and exceptions are preserved, even if its internal control sequence changes."
+    },
+    {
+      "id": "coa-cu-069",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A very wide horizontal control word is used to allow many datapath signals to be asserted directly. What are possible consequences?",
+      "options": [
+        "The control store may require more bits per word.",
+        "Control signals may require less decoding.",
+        "More compatible actions can potentially be specified in parallel.",
+        "The microaddress field automatically becomes unnecessary."
+      ],
+      "answer": [
+        "The control store may require more bits per word.",
+        "Control signals may require less decoding.",
+        "More compatible actions can potentially be specified in parallel."
+      ],
+      "explanation": "Direct bits widen the word and can reduce decode logic while supporting parallel control selections. Sequencing still needs a way to select the next microinstruction."
+    },
+    {
+      "id": "coa-cu-070",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 6-bit encoded microinstruction field selects one of 45 control actions. How many codes are unassigned?",
+      "answer": "19",
+      "explanation": "Six bits provide 64 codes. With 45 assigned, 64-45=19 codes remain unused."
+    },
+    {
+      "id": "coa-cu-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An opcode dispatch table has 64 entries, each containing a 10-bit microaddress. What is the total number of bits in the table?",
+      "options": [
+        "640",
+        "64",
+        "1024",
+        "4096"
+      ],
+      "answer": [
+        "640"
+      ],
+      "explanation": "Each of 64 entries stores 10 bits, so the table contains 64×10=640 bits."
+    },
+    {
+      "id": "coa-cu-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogram contains a loop that repeats while a datapath condition is true. Which are valid implementation elements?",
+      "options": [
+        "A microbranch target for the loop body or test.",
+        "A condition source, such as a status bit.",
+        "A sequencing decision that exits when the condition becomes false.",
+        "A requirement that the architectural PC decrement on every loop iteration."
+      ],
+      "answer": [
+        "A microbranch target for the loop body or test.",
+        "A condition source, such as a status bit.",
+        "A sequencing decision that exits when the condition becomes false."
+      ],
+      "explanation": "A microprogram loop uses internal branch sequencing and a condition to repeat or exit. It need not change the user-visible PC."
+    },
+    {
+      "id": "coa-cu-073",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction fetch requires 2 ns of control-store access and 1 ns of decode delay before control outputs are stable. Ignoring other datapath delays, what is the minimum microcycle time? Give the answer in nanoseconds.",
+      "answer": "3",
+      "explanation": "The serial control path takes 2 ns for the store read plus 1 ns for decode, totaling 3 ns before control outputs are stable."
+    },
+    {
+      "id": "coa-cu-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction's condition field selects a test of the ALU zero flag. The next-address field contains T. If Z=1 and the sequencer defines true as taking the branch, what next address is selected?",
+      "options": [
+        "T",
+        "The sequential successor",
+        "The instruction's opcode value",
+        "The current microaddress forever"
+      ],
+      "answer": [
+        "T"
+      ],
+      "explanation": "Under the stated convention, a true condition takes the branch, so Z=1 selects the explicit target T."
+    },
+    {
+      "id": "coa-cu-075",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A one-hot control field represents four mutually exclusive ALU functions. Which statements are correct?",
+      "options": [
+        "The field uses four bits.",
+        "A valid code has exactly one asserted bit.",
+        "The encoding uses more bits than a 2-bit binary field.",
+        "A valid code can request all four functions at once."
+      ],
+      "answer": [
+        "The field uses four bits.",
+        "A valid code has exactly one asserted bit.",
+        "The encoding uses more bits than a 2-bit binary field."
+      ],
+      "explanation": "One-hot encoding uses one bit per function and exactly one bit is set for a valid selection. Binary encoding needs only two bits for four functions, but may need decoding."
+    },
+    {
+      "id": "coa-cu-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The current microaddress is 0x20. A microinstruction specifies a conditional branch to 0x38 if Z=1, otherwise sequential execution. If Z=0 and sequential addresses increment by one, what is the next microaddress?",
+      "options": [
+        "0x21",
+        "0x38",
+        "0x20",
+        "0x19"
+      ],
+      "answer": [
+        "0x21"
+      ],
+      "explanation": "The branch condition is false, so the sequencer takes the sequential successor 0x20+1=0x21."
+    },
+    {
+      "id": "coa-cu-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogrammed controller must wait for a variable-latency memory response. Which sequencing strategies can handle this correctly?",
+      "options": [
+        "Insert wait microcycles until a ready signal is observed.",
+        "Use a conditional microbranch on the ready signal.",
+        "Proceed to consume the data after a fixed delay only if the interface guarantees that delay is sufficient.",
+        "Ignore the ready signal and assume every memory completes in one cycle."
+      ],
+      "answer": [
+        "Insert wait microcycles until a ready signal is observed.",
+        "Use a conditional microbranch on the ready signal.",
+        "Proceed to consume the data after a fixed delay only if the interface guarantees that delay is sufficient."
+      ],
+      "explanation": "The controller must synchronize with the memory interface. It may poll readiness, branch on it, or use a guaranteed fixed-latency schedule; blindly assuming one-cycle completion is unsafe."
+    },
+    {
+      "id": "coa-cu-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A datapath has two independent internal buses, a single ALU, and one destination register write port. Which pair of actions can potentially occur in one microcycle?",
+      "options": [
+        "Read two source registers on the buses and add them in the ALU, writing one destination",
+        "Perform two different ALU operations and write two registers",
+        "Drive both buses from the same single-port register simultaneously without replication",
+        "Issue two memory reads through one single-ported memory"
+      ],
+      "answer": [
+        "Read two source registers on the buses and add them in the ALU, writing one destination"
+      ],
+      "explanation": "Two buses can deliver two operands to the single ALU, and one destination port can capture the result. The other choices exceed the stated ALU, register-port, or memory-port resources."
+    },
+    {
+      "id": "coa-cu-079",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A micro-subroutine call at address 0x2A stores its sequential successor in the micro-return register. Sequential microaddresses increment by one. What return address is stored? Give a hexadecimal answer.",
+      "answer": "0x2B",
+      "explanation": "The call's sequential successor is 0x2A+1=0x2B, which is saved so the microsequencer can resume after the call."
+    },
+    {
+      "id": "coa-cu-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction starts a memory read and the memory interface returns a completion signal. Which dependencies should the control sequence respect?",
+      "options": [
+        "The returned value should not be consumed before the interface indicates valid data.",
+        "A wait or completion branch may be required.",
+        "The memory address should remain valid as required by the interface protocol.",
+        "The control unit can safely consume old bus data immediately after asserting read."
+      ],
+      "answer": [
+        "The returned value should not be consumed before the interface indicates valid data.",
+        "A wait or completion branch may be required.",
+        "The memory address should remain valid as required by the interface protocol."
+      ],
+      "explanation": "The sequence must satisfy the memory handshake and data-valid timing. Reading stale bus contents before completion can produce an incorrect value."
+    },
+    {
+      "id": "coa-cu-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A vertical microinstruction compresses several one-hot datapath controls into an encoded field. What is a likely implementation consequence?",
+      "options": [
+        "A decoder is needed, and the encoded choices may be constrained to mutually exclusive actions.",
+        "No control signals can be generated from the field.",
+        "The control store width must increase by the number of controls.",
+        "All encoded actions occur in parallel automatically."
+      ],
+      "answer": [
+        "A decoder is needed, and the encoded choices may be constrained to mutually exclusive actions."
+      ],
+      "explanation": "Encoding reduces stored bits but requires decoding. If a single field represents one choice, it cannot independently assert several mutually exclusive controls in parallel."
+    },
+    {
+      "id": "coa-cu-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microcode update changes the order of internal register transfers for an instruction. Which conditions preserve architectural compatibility?",
+      "options": [
+        "The final architectural register and memory effects remain the same.",
+        "Exceptions and externally visible side effects retain their specified behavior.",
+        "The internal microaddresses remain unchanged for all time.",
+        "Timing may change if timing is not architecturally guaranteed and the system permits it."
+      ],
+      "answer": [
+        "The final architectural register and memory effects remain the same.",
+        "Exceptions and externally visible side effects retain their specified behavior.",
+        "Timing may change if timing is not architecturally guaranteed and the system permits it."
+      ],
+      "explanation": "Microcode is internal implementation. Compatibility depends on preserving architectural results, exceptions and required externally visible behavior; internal addresses need not be stable software interfaces."
+    },
+    {
+      "id": "coa-cu-083",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An interrupt is accepted between architectural instructions. In a microprogrammed controller, what is a valid role for a dedicated interrupt micro-routine?",
+      "options": [
+        "Save or arrange architectural state and sequence entry to the interrupt service routine",
+        "Replace all instruction decoding permanently",
+        "Modify the program counter without preserving any required state",
+        "Run the user's interrupt handler directly from the control store"
+      ],
+      "answer": [
+        "Save or arrange architectural state and sequence entry to the interrupt service routine"
+      ],
+      "explanation": "The controller can sequence the processor through interrupt-entry micro-operations, such as saving state and loading the service-routine address. The handler itself is ordinary architectural code, not microcode."
+    },
+    {
+      "id": "coa-cu-084",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A control store has 512 words, and an invalid opcode dispatches to the final word as a trap entry. What is that trap entry's microaddress in decimal?",
+      "answer": "511",
+      "explanation": "The 512 words are numbered 0 through 511, so the final control-store location is address 511."
+    },
+    {
+      "id": "coa-cu-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A controller is implemented using a PLA-based hardwired design rather than a microprogrammed ROM. Which statements are correct?",
+      "options": [
+        "The PLA can implement combinational decode and next-state logic.",
+        "The controller need not fetch a microinstruction from a control store each cycle.",
+        "The design is still hardwired control even though programmable logic is used during implementation.",
+        "The PLA automatically provides a software-editable microprogram."
+      ],
+      "answer": [
+        "The PLA can implement combinational decode and next-state logic.",
+        "The controller need not fetch a microinstruction from a control store each cycle.",
+        "The design is still hardwired control even though programmable logic is used during implementation."
+      ],
+      "explanation": "A PLA is a logic implementation technology for hardwired control functions. It does not by itself create a stored microinstruction sequence that software can edit."
+    },
+    {
+      "id": "coa-cu-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hardwired controller's outputs depend combinationally on the current FSM state and opcode. When can an output change after the opcode changes?",
+      "options": [
+        "After the combinational logic propagation delay, even before the next state-register clock edge",
+        "Only after a complete microinstruction fetch from ROM",
+        "Never; hardwired outputs are constant",
+        "Only when the data cache is written"
+      ],
+      "answer": [
+        "After the combinational logic propagation delay, even before the next state-register clock edge"
+      ],
+      "explanation": "Combinational outputs can respond to input changes after propagation delay. The registered FSM state itself changes at its clock edge, but decoding may change before then."
+    },
+    {
+      "id": "coa-cu-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A controller executes a compare instruction that sets flags, then a later microinstruction branches on the zero flag. What must be true for the branch to use the compare result?",
+      "options": [
+        "The compare's flag update must complete before the branch tests the flag.",
+        "The flag must remain available until the branch decision is made.",
+        "The branch condition logic must select the zero flag as its input.",
+        "The branch must recompute the compare regardless of the flag state."
+      ],
+      "answer": [
+        "The compare's flag update must complete before the branch tests the flag.",
+        "The flag must remain available until the branch decision is made.",
+        "The branch condition logic must select the zero flag as its input."
+      ],
+      "explanation": "The controller's data and control timing must ensure the condition reflects the compare. It can then select that status bit for the microbranch; recomputation is unnecessary if the flag is valid."
+    },
+    {
+      "id": "coa-cu-088",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A control sequence has 6 microinstructions before a memory request, then 4 wait cycles, then 3 microinstructions after completion. How many microcycles elapse in total?",
+      "answer": "13",
+      "explanation": "The sequence uses 6+4+3=13 microcycles, including the four wait cycles."
+    },
+    {
+      "id": "coa-cu-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogrammed control unit has a 64-bit control word. A 10-bit field selects the next microaddress, and a 2-bit field chooses among sequential, branch, call, and return. How many bits remain for datapath control?",
+      "options": [
+        "52",
+        "54",
+        "50",
+        "64"
+      ],
+      "answer": [
+        "52"
+      ],
+      "explanation": "The sequencing fields use 10+2=12 bits. The remaining control portion is 64-12=52 bits."
+    },
+    {
+      "id": "coa-cu-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microsequencer supports sequential execution, unconditional branch, conditional branch and opcode dispatch. Which inputs can affect its next-address selection?",
+      "options": [
+        "Current microaddress",
+        "Branch target field",
+        "Condition/status inputs",
+        "Instruction opcode bits"
+      ],
+      "answer": [
+        "Current microaddress",
+        "Branch target field",
+        "Condition/status inputs",
+        "Instruction opcode bits"
+      ],
+      "explanation": "Sequential flow uses the current address, branch operations use a target, conditional flow uses status inputs, and dispatch uses opcode bits. Each can participate depending on the sequencing control."
+    },
+    {
+      "id": "coa-cu-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction specifies two writes to the same single-write-port register file in one cycle, with different destination registers. What is the likely issue?",
+      "options": [
+        "The datapath lacks enough write ports to perform both writes concurrently.",
+        "The control store cannot store two destination numbers.",
+        "The writes become a cache coherence operation.",
+        "The ALU automatically serializes them without control."
+      ],
+      "answer": [
+        "The datapath lacks enough write ports to perform both writes concurrently."
+      ],
+      "explanation": "A single write port accepts only one destination write per cycle. The operations must be serialized or the register file must provide additional write capability."
+    },
+    {
+      "id": "coa-cu-092",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 4-phase microsequence uses states S0→S1→S2→S3→S0 and emits one distinct control pulse in each state. How many distinct control pulses occur in one complete cycle?",
+      "answer": "4",
+      "explanation": "Each of the four states emits one distinct pulse, so one complete traversal produces four distinct control pulses."
+    },
+    {
+      "id": "coa-cu-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A control store is built as a ROM with 1024 words of 48 bits. Which design statements are correct?",
+      "options": [
+        "The ROM stores 49,152 bits of microcode.",
+        "Changing a microprogram normally requires changing or replacing the ROM contents.",
+        "The microaddress requires 10 bits.",
+        "The control store can hold 1024 distinct microinstruction words."
+      ],
+      "answer": [
+        "The ROM stores 49,152 bits of microcode.",
+        "Changing a microprogram normally requires changing or replacing the ROM contents.",
+        "The microaddress requires 10 bits.",
+        "The control store can hold 1024 distinct microinstruction words."
+      ],
+      "explanation": "Capacity is 1024×48=49,152 bits. Addressing 1024 words needs 10 bits. A ROM contains 1024 stored words and is not ordinarily modified in place during normal execution."
+    },
+    {
+      "id": "coa-cu-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two microprograms perform the same architectural instruction. Program A uses 8 microinstructions with a 40-bit control word; Program B uses 5 microinstructions with a 56-bit control word. Which statement about the executed control bits is correct?",
+      "options": [
+        "A emits 320 control-word bits and B emits 280 control-word bits.",
+        "A emits 40 bits and B emits 56 bits total.",
+        "B emits fewer bits per word but more microinstructions.",
+        "Both necessarily emit the same number of control bits."
+      ],
+      "answer": [
+        "A emits 320 control-word bits and B emits 280 control-word bits."
+      ],
+      "explanation": "The total fetched control-word bits are 8×40=320 for A and 5×56=280 for B. This comparison does not by itself determine latency or physical storage cost."
+    },
+    {
+      "id": "coa-cu-095",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microcycle is divided into 4 ns for control-store access, 2 ns for decode and 5 ns for datapath settling. If these steps are serial within a cycle, what is the minimum cycle time?",
+      "answer": "11",
+      "explanation": "The serial path requires 4+2+5=11 ns, so the microcycle must be at least 11 ns under this timing model."
+    },
+    {
+      "id": "coa-cu-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hardwired FSM has Moore-style outputs. Which statements describe this output model?",
+      "options": [
+        "Outputs depend on the current FSM state.",
+        "An input change may affect the next-state logic without immediately changing the state-dependent outputs.",
+        "Outputs are necessarily stored as microinstructions in ROM.",
+        "State transitions occur according to the clocked state register."
+      ],
+      "answer": [
+        "Outputs depend on the current FSM state.",
+        "An input change may affect the next-state logic without immediately changing the state-dependent outputs.",
+        "State transitions occur according to the clocked state register."
+      ],
+      "explanation": "Moore outputs are functions of the registered state. Inputs may change the computed next state, but outputs tied only to the current state change after that state register updates."
+    },
+    {
+      "id": "coa-cu-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microprogrammed controller shares a common instruction-fetch routine. After fetching and decoding an opcode, what should the sequencer typically do?",
+      "options": [
+        "Dispatch to the micro-routine associated with that opcode",
+        "Restart the same fetch step without examining the opcode",
+        "Write the opcode into every general-purpose register",
+        "Treat the opcode as a memory address unconditionally"
+      ],
+      "answer": [
+        "Dispatch to the micro-routine associated with that opcode"
+      ],
+      "explanation": "Once the instruction is decoded, opcode dispatch selects the entry point for the corresponding execution micro-routine."
+    },
+    {
+      "id": "coa-cu-098",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A conditional microbranch is implemented using a mux selecting between target T and sequential address S. Which statements are correct?",
+      "options": [
+        "The condition can control the mux select input.",
+        "The mux output becomes the next microaddress.",
+        "Both T and S must be fetched as microinstructions in the same cycle.",
+        "The selected address is used in a later microinstruction fetch."
+      ],
+      "answer": [
+        "The condition can control the mux select input.",
+        "The mux output becomes the next microaddress.",
+        "The selected address is used in a later microinstruction fetch."
+      ],
+      "explanation": "The condition selects either T or S. The mux output feeds the microaddress path for the subsequent control-store access; both candidate words need not be fetched."
+    },
+    {
+      "id": "coa-cu-099",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A ROM control store has 2048 words, each 72 bits. What is the total capacity in kibibits (Kibit), where 1 Kibit = 1024 bits?",
+      "answer": "144",
+      "explanation": "2048×72=147,456 bits. Dividing by 1024 bits per Kibit gives 144 Kibit."
+    },
+    {
+      "id": "coa-cu-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microinstruction performs an ALU operation whose result is written to R4, while the next-address logic branches if the result is zero. Which sequence of dependencies is correct?",
+      "options": [
+        "ALU computes the result; the zero condition is derived from it; the sequencer selects the next microaddress using that condition.",
+        "The sequencer selects the next address before the ALU computes, regardless of timing.",
+        "The memory unit determines the zero condition from the instruction opcode alone.",
+        "The microinstruction register itself stores the ALU result in place of R4."
+      ],
+      "answer": [
+        "ALU computes the result; the zero condition is derived from it; the sequencer selects the next microaddress using that condition."
+      ],
+      "explanation": "The ALU result feeds both the destination register path and zero-detection logic. If timing permits within the microcycle, the condition then drives next-address selection for the following microinstruction."
+    }
+  ]
+}

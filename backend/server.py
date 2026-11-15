@@ -12,7 +12,8 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 
-APP_ROOT = Path(os.environ.get("APP_ROOT", "/workspace"))
+APP_ROOT = Path(os.environ.get("APP_ROOT", "/frontend"))
+CATALOG_FILE = Path(os.environ.get("CATALOG_PATH", "/content/catalog.json"))
 DATABASE_PATH = Path(os.environ.get("DATABASE_PATH", "/data/progress.sqlite3"))
 HOST = os.environ.get("HOST", "0.0.0.0")
 PORT = int(os.environ.get("PORT", "8080"))
@@ -31,8 +32,18 @@ def connect_db() -> sqlite3.Connection:
 
 
 def catalog_path() -> Path:
-    mounted = APP_ROOT / "catalog.json"
-    return mounted if mounted.is_file() else Path(__file__).resolve().parent / "catalog.json"
+    if CATALOG_FILE.is_file():
+        return CATALOG_FILE
+    return Path(__file__).resolve().parent.parent / "content" / "catalog.json"
+
+
+def parse_numeric_answer(value: object) -> float:
+    """Parse decimal NAT input and explicit 0x-prefixed hexadecimal input."""
+    normalized = str(value).replace(",", "").strip()
+    try:
+        return float(normalized)
+    except ValueError:
+        return float(int(normalized, 0))
 
 
 def initialize_db() -> None:
@@ -79,6 +90,7 @@ def initialize_db() -> None:
         )
         db.commit()
     sync_catalog(force=True)
+    migrate_legacy_progress()
 
 
 def sync_catalog(force: bool = False) -> None:
@@ -97,7 +109,14 @@ def sync_catalog(force: bool = False) -> None:
         catalog = json.loads(source.read_text(encoding="utf-8"))
         with closing(connect_db()) as db:
             with db:
+                db.execute("CREATE TEMP TABLE IF NOT EXISTS incoming_subjects(id TEXT PRIMARY KEY)")
+                db.execute("CREATE TEMP TABLE IF NOT EXISTS incoming_topics(id TEXT PRIMARY KEY)")
+                db.execute("CREATE TEMP TABLE IF NOT EXISTS incoming_questions(id TEXT PRIMARY KEY)")
+                db.execute("DELETE FROM incoming_subjects")
+                db.execute("DELETE FROM incoming_topics")
+                db.execute("DELETE FROM incoming_questions")
                 for subject_position, subject in enumerate(catalog["subjects"]):
+                    db.execute("INSERT INTO incoming_subjects(id) VALUES(?)", (subject["id"],))
                     db.execute(
                         """INSERT INTO subjects(id,title,short_name,description,position)
                            VALUES(?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET
@@ -106,6 +125,7 @@ def sync_catalog(force: bool = False) -> None:
                         (subject["id"], subject["title"], subject["short"], subject["description"], subject_position),
                     )
                     for topic in subject["topics"]:
+                        db.execute("INSERT INTO incoming_topics(id) VALUES(?)", (topic["id"],))
                         db.execute(
                             """INSERT INTO topics(id,subject_id,title,subtitle,icon,position)
                                VALUES(?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET
@@ -114,6 +134,7 @@ def sync_catalog(force: bool = False) -> None:
                             (topic["id"], subject["id"], topic["title"], topic["subtitle"], topic["icon"], topic["position"]),
                         )
                     for question in subject["questions"]:
+                        db.execute("INSERT INTO incoming_questions(id) VALUES(?)", (question["id"],))
                         db.execute(
                             """INSERT INTO questions
                                (id,subject_id,topic_id,type,difficulty,prompt,options_json,answer_json,explanation,position)
@@ -128,7 +149,34 @@ def sync_catalog(force: bool = False) -> None:
                                 json.dumps(question["answer"], ensure_ascii=False), question["explanation"], question["position"],
                             ),
                         )
+                db.execute("DELETE FROM questions WHERE id NOT IN (SELECT id FROM incoming_questions)")
+                db.execute("DELETE FROM topics WHERE id NOT IN (SELECT id FROM incoming_topics)")
+                db.execute("DELETE FROM subjects WHERE id NOT IN (SELECT id FROM incoming_subjects)")
         CATALOG_SIGNATURE = signature
+
+
+def migrate_legacy_progress() -> None:
+    """Merge old browser-scoped attempts into the new shared progress table."""
+    with closing(connect_db()) as db:
+        exists = db.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='answer_progress'"
+        ).fetchone()
+        if not exists:
+            return
+        with db:
+            db.execute(
+                """INSERT INTO checked_status(question_id,response_json,correct,checked_at)
+                   SELECT old.question_id,old.response_json,old.correct,old.updated_at
+                   FROM answer_progress old JOIN questions q
+                     ON q.id=old.question_id AND q.subject_id=old.subject
+                   WHERE old.rowid=(
+                     SELECT candidate.rowid FROM answer_progress candidate
+                     WHERE candidate.subject=old.subject AND candidate.question_id=old.question_id
+                     ORDER BY candidate.updated_at DESC,candidate.rowid DESC LIMIT 1
+                   )
+                   ON CONFLICT(question_id) DO NOTHING"""
+            )
+            db.execute("DROP TABLE answer_progress")
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -256,8 +304,8 @@ class Handler(BaseHTTPRequestHandler):
                 expected = json.loads(row["answer_json"])
                 if row["type"] == "NAT":
                     try:
-                        actual_number = float(response.replace(",", "").strip())
-                        expected_number = float(expected)
+                        actual_number = parse_numeric_answer(response)
+                        expected_number = parse_numeric_answer(expected)
                         correct = abs(actual_number - expected_number) <= 1e-6 * max(1.0, abs(expected_number))
                     except (ValueError, AttributeError):
                         correct = False
@@ -288,7 +336,7 @@ class Handler(BaseHTTPRequestHandler):
             return
         file_path = APP_ROOT / filename
         if not file_path.is_file():
-            file_path = Path(__file__).resolve().parent / filename
+            file_path = Path(__file__).resolve().parent.parent / "frontend" / filename
         if not file_path.is_file():
             self.send_json(404, {"error": "Static file not found"})
             return

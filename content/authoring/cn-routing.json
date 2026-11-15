@@ -1,0 +1,1420 @@
+{
+  "topicIndex": 3,
+  "questions": [
+    {
+      "id": "cn-route-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Router X has neighbors A and B. For destination D, c(X,A)=2, d_A(D)=7, c(X,B)=5, and d_B(D)=1. Which next hop and distance does the Bellman-Ford update select?",
+      "options": [
+        "A with cost 9",
+        "B with cost 6",
+        "A with cost 7",
+        "B with cost 5"
+      ],
+      "answer": [
+        "B with cost 6"
+      ],
+      "explanation": "The candidate through A costs 2+7=9; through B it costs 5+1=6. X selects neighbor B and installs distance 6."
+    },
+    {
+      "id": "cn-route-002",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Router R has links of cost 3 to A and 8 to B. Their advertised distances to T are 5 and 1. What distance to T does R compute?",
+      "answer": "8",
+      "explanation": "The candidate through A is 3+5=8; through B it is 8+1=9. The minimum is 8."
+    },
+    {
+      "id": "cn-route-003",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router receives a distance vector from neighbor N. Which value is added to N's advertised distance before comparing that route with alternatives?",
+      "options": [
+        "The local link cost from this router to N",
+        "The current route cost in this router table",
+        "The number of routers in the graph",
+        "The destination sequence number"
+      ],
+      "answer": [
+        "The local link cost from this router to N"
+      ],
+      "explanation": "The Bellman-Ford update forms c(x,N)+d_N(y) for each neighbor. It must include the local outgoing link cost."
+    },
+    {
+      "id": "cn-route-004",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties characterize a conventional distance-vector router?",
+      "options": [
+        "It exchanges distance estimates with directly connected neighbors",
+        "It need not know the complete network topology",
+        "Its update can use the Bellman-Ford recurrence",
+        "It independently runs Dijkstra on a complete link-state database"
+      ],
+      "answer": [
+        "It exchanges distance estimates with directly connected neighbors",
+        "It need not know the complete network topology",
+        "Its update can use the Bellman-Ford recurrence"
+      ],
+      "explanation": "A distance-vector router updates destination costs and next hops from neighbor advertisements, without requiring a full topology database."
+    },
+    {
+      "id": "cn-route-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can a distance-vector protocol experience count-to-infinity after a link failure?",
+      "options": [
+        "Neighbors can advertise stale routes to one another as apparent alternatives",
+        "Dijkstra marks the failed edge negative",
+        "Link-state flooding stops all updates",
+        "Routers remove every neighbor route"
+      ],
+      "answer": [
+        "Neighbors can advertise stale routes to one another as apparent alternatives"
+      ],
+      "explanation": "Two routers may each believe the other has a route after a failure. They increase the advertised metric repeatedly until the protocol infinity is reached."
+    },
+    {
+      "id": "cn-route-006",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about split horizon and poisoned reverse are correct?",
+      "options": [
+        "Split horizon suppresses a route advertisement on the interface from which it was learned",
+        "Poisoned reverse advertises that route back with an infinite metric",
+        "These methods reduce some distance-vector loops",
+        "They guarantee elimination of loops in every topology"
+      ],
+      "answer": [
+        "Split horizon suppresses a route advertisement on the interface from which it was learned",
+        "Poisoned reverse advertises that route back with an infinite metric",
+        "These methods reduce some distance-vector loops"
+      ],
+      "explanation": "These methods address loops involving the neighbor from which a route was learned. Loops involving more routers can still occur."
+    },
+    {
+      "id": "cn-route-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link-state router detects that one of its links has failed. What should it normally do so other routers can update their topology view?",
+      "options": [
+        "Originate and flood a changed link-state advertisement",
+        "Increase each distance-vector metric by one",
+        "Wait for every destination to request a route",
+        "Delete its topology database permanently"
+      ],
+      "answer": [
+        "Originate and flood a changed link-state advertisement"
+      ],
+      "explanation": "Flooding distributes the local topology change. Routers then update their link-state databases and recompute shortest paths."
+    },
+    {
+      "id": "cn-route-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What information does a router generally need before running Dijkstra in link-state routing?",
+      "options": [
+        "A current graph of routers, links, and link costs",
+        "Only a route vector from one neighbor",
+        "The full payload of each packet",
+        "Only the final destination address"
+      ],
+      "answer": [
+        "A current graph of routers, links, and link costs"
+      ],
+      "explanation": "Dijkstra operates on a weighted graph. Link-state advertisements allow routers to construct the network topology database needed for the computation."
+    },
+    {
+      "id": "cn-route-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "With adjacency lists and a binary heap, what is the usual asymptotic time for one Dijkstra run on V vertices and E edges?",
+      "options": [
+        "O((V+E) log V)",
+        "O(V^2 E)",
+        "O(E^2)",
+        "O(log V)"
+      ],
+      "answer": [
+        "O((V+E) log V)"
+      ],
+      "explanation": "The heap supports vertex extraction and distance updates while each adjacency-list edge is processed, giving O((V+E) log V)."
+    },
+    {
+      "id": "cn-route-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which assumption is needed for standard Dijkstra to correctly compute shortest paths?",
+      "options": [
+        "Every edge weight is nonnegative",
+        "The graph must be a tree",
+        "All edge weights must be equal",
+        "The graph must be acyclic"
+      ],
+      "answer": [
+        "Every edge weight is nonnegative"
+      ],
+      "explanation": "With a negative edge, a path discovered later could improve a vertex that Dijkstra already finalized."
+    },
+    {
+      "id": "cn-route-011",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A network graph has 9 vertices. How many full relaxation passes are sufficient for the standard Bellman-Ford worst-case bound from one source?",
+      "answer": "8",
+      "explanation": "A shortest simple path has at most V-1 edges. Bellman-Ford therefore needs at most 9-1=8 full passes."
+    },
+    {
+      "id": "cn-route-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In Dijkstra's algorithm, what does selecting the minimum tentative-distance vertex establish when weights are nonnegative?",
+      "options": [
+        "Its shortest distance from the source is final",
+        "Its distance must be reset to infinity",
+        "It can be removed from the graph",
+        "All its outgoing edges become zero-cost"
+      ],
+      "answer": [
+        "Its shortest distance from the source is final"
+      ],
+      "explanation": "No route through a remaining vertex can improve the selected minimum under nonnegative weights, so the distance is finalized."
+    },
+    {
+      "id": "cn-route-013",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations are part of a typical link-state routing process?",
+      "options": [
+        "Discover neighbors and local link costs",
+        "Flood link-state information",
+        "Build a topology database",
+        "Run shortest-path computation on that database"
+      ],
+      "answer": [
+        "Discover neighbors and local link costs",
+        "Flood link-state information",
+        "Build a topology database",
+        "Run shortest-path computation on that database"
+      ],
+      "explanation": "The router learns local adjacency, floods its state, assembles a graph database, then derives routes by shortest-path computation."
+    },
+    {
+      "id": "cn-route-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link-state advertisement has an age field. What is its main purpose?",
+      "options": [
+        "To discard stale topology information eventually",
+        "To encode the packet payload length",
+        "To select the next hop directly",
+        "To prevent every duplicate advertisement"
+      ],
+      "answer": [
+        "To discard stale topology information eventually"
+      ],
+      "explanation": "Aging bounds the lifetime of outdated state. Sequence numbers and flooding rules help select newer advertisements and suppress duplicates."
+    },
+    {
+      "id": "cn-route-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two equal-cost shortest paths connect S to D. What may a routing implementation do?",
+      "options": [
+        "Choose either path, or install both if equal-cost multipath is supported",
+        "Declare that D is unreachable",
+        "Increase an edge weight until the tie disappears",
+        "Always choose the path with more hops"
+      ],
+      "answer": [
+        "Choose either path, or install both if equal-cost multipath is supported"
+      ],
+      "explanation": "Both routes have minimum cost. A tie-breaking rule may select one, while equal-cost multipath implementations can retain multiple next hops."
+    },
+    {
+      "id": "cn-route-016",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a route from X to D through A, c(X,A)=4 and A advertises d_A(D)=9. What candidate distance does X compute through A?",
+      "answer": "13",
+      "explanation": "The candidate is the local link cost plus the advertised remainder: 4+9=13."
+    },
+    {
+      "id": "cn-route-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a distance-vector table, what does the next-hop field for destination D identify?",
+      "options": [
+        "The adjacent router to which the packet should be sent",
+        "The destination application process",
+        "The router that created the packet",
+        "The complete ordered route to D"
+      ],
+      "answer": [
+        "The adjacent router to which the packet should be sent"
+      ],
+      "explanation": "A forwarding router usually stores a next hop, not a full path. The neighboring router performs its own forwarding lookup."
+    },
+    {
+      "id": "cn-route-018",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements correctly distinguish distance-vector and link-state routing?",
+      "options": [
+        "Distance-vector routers exchange route estimates with neighbors",
+        "Link-state routers distribute information about local links",
+        "Link-state routers run shortest-path calculations on a topology database",
+        "Distance-vector routing requires every router to store the complete graph"
+      ],
+      "answer": [
+        "Distance-vector routers exchange route estimates with neighbors",
+        "Link-state routers distribute information about local links",
+        "Link-state routers run shortest-path calculations on a topology database"
+      ],
+      "explanation": "Distance-vector propagates destination estimates. Link-state floods local topology data so routers can build a graph and run a shortest-path algorithm."
+    },
+    {
+      "id": "cn-route-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router receives a link-state advertisement with a sequence number older than the copy already stored. What should it normally do?",
+      "options": [
+        "Discard the stale advertisement",
+        "Replace the newer copy",
+        "Treat both copies as separate links",
+        "Set every route metric to infinity"
+      ],
+      "answer": [
+        "Discard the stale advertisement"
+      ],
+      "explanation": "Sequence numbers distinguish newer state from older state. Accepting a stale copy could roll the topology database backward."
+    },
+    {
+      "id": "cn-route-020",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A simple path in a graph with 11 vertices can contain at most how many edges?",
+      "answer": "10",
+      "explanation": "A simple path cannot repeat vertices, so with V vertices it contains at most V-1 edges: 11-1=10."
+    },
+    {
+      "id": "cn-route-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can edge order affect how quickly in-place Bellman-Ford relaxations propagate a route?",
+      "options": [
+        "A pass may use values updated earlier in that pass",
+        "Edge order changes the mathematical shortest distance",
+        "Edges must be sorted by increasing weight",
+        "Only one edge is relaxed per pass"
+      ],
+      "answer": [
+        "A pass may use values updated earlier in that pass"
+      ],
+      "explanation": "An in-place pass can propagate across several edges depending on order. It may therefore converge faster in some orderings, while the worst-case V-1-pass bound remains."
+    },
+    {
+      "id": "cn-route-022",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Bellman-Ford shortest paths are correct?",
+      "options": [
+        "It supports negative edges if no reachable negative cycle makes distance unbounded",
+        "A further relaxable edge after V-1 passes can reveal a reachable negative cycle",
+        "It underlies distance-vector updates",
+        "It finalizes vertices greedily in nondecreasing distance order"
+      ],
+      "answer": [
+        "It supports negative edges if no reachable negative cycle makes distance unbounded",
+        "A further relaxable edge after V-1 passes can reveal a reachable negative cycle",
+        "It underlies distance-vector updates"
+      ],
+      "explanation": "Repeated edge relaxation handles negative weights absent a reachable negative cycle. Greedy finalization is associated with Dijkstra, not Bellman-Ford."
+    },
+    {
+      "id": "cn-route-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "How does a metric-based distance-vector protocol commonly represent an unreachable destination?",
+      "options": [
+        "With a protocol-defined infinity metric",
+        "With a negative distance",
+        "With a zero-cost next hop",
+        "By removing every neighboring router"
+      ],
+      "answer": [
+        "With a protocol-defined infinity metric"
+      ],
+      "explanation": "An infinity value marks a route as unreachable. Some protocols choose a finite maximum metric, which also bounds count-to-infinity."
+    },
+    {
+      "id": "cn-route-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "During Dijkstra relaxation of edge (u,v) with weight w, which candidate is compared with the current distance to v?",
+      "options": [
+        "d[u]+w",
+        "d[v]+d[u]",
+        "w-d[u]",
+        "d[u] times the degree of v"
+      ],
+      "answer": [
+        "d[u]+w"
+      ],
+      "explanation": "The route to v through u has cost d[u]+w(u,v). If this improves d[v], update v's tentative distance and predecessor."
+    },
+    {
+      "id": "cn-route-025",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Router R has candidate route costs to Z of 12 through A, 7 through B, and 9 through C. What distance does its update install?",
+      "answer": "7",
+      "explanation": "The update chooses the minimum candidate over neighbors: min(12,7,9)=7."
+    },
+    {
+      "id": "cn-route-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In an asynchronous distance-vector protocol, what does asynchronous operation mean?",
+      "options": [
+        "Routers may send and process updates at different times",
+        "Every router must update in lockstep once per second",
+        "One central router computes every route",
+        "Topology changes never trigger updates"
+      ],
+      "answer": [
+        "Routers may send and process updates at different times"
+      ],
+      "explanation": "Distributed routers need not share a clock or update simultaneously. Convergence is achieved despite staggered message arrivals and computation."
+    },
+    {
+      "id": "cn-route-027",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which information is commonly included in a link-state advertisement?",
+      "options": [
+        "The originating router identifier",
+        "The originator's directly connected links",
+        "A cost for each advertised link",
+        "A complete end-to-end path for every destination"
+      ],
+      "answer": [
+        "The originating router identifier",
+        "The originator's directly connected links",
+        "A cost for each advertised link"
+      ],
+      "explanation": "An LSA describes local adjacency and metrics, identified by its origin. Receivers combine advertisements to construct topology; the origin does not list every complete route."
+    },
+    {
+      "id": "cn-route-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why does link-state flooding use duplicate suppression?",
+      "options": [
+        "The same advertisement can reach a router over multiple paths",
+        "A router can have only one neighbor",
+        "It makes all link costs equal",
+        "It prevents Dijkstra from examining edges"
+      ],
+      "answer": [
+        "The same advertisement can reach a router over multiple paths"
+      ],
+      "explanation": "Flooding propagates advertisements through multiple neighbors. Version identifiers let routers avoid repeatedly forwarding a copy already processed."
+    },
+    {
+      "id": "cn-route-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a dense graph represented by an adjacency matrix, what is the usual time complexity of simple array-based Dijkstra?",
+      "options": [
+        "O(V^2)",
+        "O(E log V)",
+        "O(V+E)",
+        "O(log E)"
+      ],
+      "answer": [
+        "O(V^2)"
+      ],
+      "explanation": "Each of V iterations scans V tentative distances and can inspect a row of V entries, yielding O(V^2)."
+    },
+    {
+      "id": "cn-route-030",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions can prevent a router from forming a consistent link-state topology view?",
+      "options": [
+        "An advertisement is lost and not retransmitted",
+        "Stale sequence information is accepted as current",
+        "The topology changes while advertisements propagate",
+        "All routers have the same accurate database"
+      ],
+      "answer": [
+        "An advertisement is lost and not retransmitted",
+        "Stale sequence information is accepted as current",
+        "The topology changes while advertisements propagate"
+      ],
+      "explanation": "Reliable flooding and freshness rules are needed for consistent state. Loss, stale data, or concurrent topology changes can temporarily create inconsistent databases."
+    },
+    {
+      "id": "cn-route-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the purpose of a predecessor field updated by Dijkstra when a relaxation improves vertex v through u?",
+      "options": [
+        "To reconstruct a shortest path after distances are computed",
+        "To store the packet payload",
+        "To count routing advertisements",
+        "To remember the most expensive edge"
+      ],
+      "answer": [
+        "To reconstruct a shortest path after distances are computed"
+      ],
+      "explanation": "Following predecessor links backward from a destination reconstructs the path whose cost generated its final shortest distance."
+    },
+    {
+      "id": "cn-route-032",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Router R has direct link costs 2 to A and 6 to B. A advertises distance 11 to Z; B advertises distance 3. What distance to Z is selected?",
+      "answer": "9",
+      "explanation": "The candidate via A is 2+11=13; via B it is 6+3=9. The minimum is 9."
+    },
+    {
+      "id": "cn-route-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "R detects that its direct link to neighbor N has failed. What happens immediately to a route whose next hop is N?",
+      "options": [
+        "It is invalidated or marked unreachable pending recomputation",
+        "Its cost becomes zero",
+        "Its next hop automatically changes to the destination",
+        "All routes in the network are deleted"
+      ],
+      "answer": [
+        "It is invalidated or marked unreachable pending recomputation"
+      ],
+      "explanation": "A route using the failed neighbor as its first hop cannot be forwarded. R must mark it unusable or seek another valid route."
+    },
+    {
+      "id": "cn-route-034",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about distance-vector convergence are correct?",
+      "options": [
+        "A topology change can take multiple rounds to propagate",
+        "A router may temporarily hold an outdated route",
+        "Triggered updates can speed notification of a change",
+        "Convergence always occurs in one update regardless of topology"
+      ],
+      "answer": [
+        "A topology change can take multiple rounds to propagate",
+        "A router may temporarily hold an outdated route",
+        "Triggered updates can speed notification of a change"
+      ],
+      "explanation": "Distance information propagates hop by hop and can require several updates. Triggered updates reduce waiting but do not guarantee one-step global convergence."
+    },
+    {
+      "id": "cn-route-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why associate link-state advertisements with an origin identifier and version information?",
+      "options": [
+        "To identify the source and determine which copy is newest",
+        "To let routers avoid learning their neighbors",
+        "To store edge weights only as packet lengths",
+        "To delete every equal-cost path"
+      ],
+      "answer": [
+        "To identify the source and determine which copy is newest"
+      ],
+      "explanation": "Origin and version information let each database track the current state for each router and reject stale duplicates."
+    },
+    {
+      "id": "cn-route-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A distance-vector protocol defines a finite maximum metric as infinity. What effect is intended by this choice?",
+      "options": [
+        "It bounds numeric count-to-infinity growth",
+        "It prevents every routing loop",
+        "It makes all paths have equal cost",
+        "It removes the need to exchange updates"
+      ],
+      "answer": [
+        "It bounds numeric count-to-infinity growth"
+      ],
+      "explanation": "The finite infinity marks unreachable routes and limits metric growth. It does not alone prevent transient loops."
+    },
+    {
+      "id": "cn-route-037",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about routing metrics are correct?",
+      "options": [
+        "A metric may represent delay, cost, or another protocol-defined preference",
+        "The minimum-hop route need not be the minimum-delay route",
+        "Routers need a consistent interpretation of advertised metrics",
+        "A lower number always means lower physical delay in every protocol"
+      ],
+      "answer": [
+        "A metric may represent delay, cost, or another protocol-defined preference",
+        "The minimum-hop route need not be the minimum-delay route",
+        "Routers need a consistent interpretation of advertised metrics"
+      ],
+      "explanation": "Metric semantics are protocol-specific. A consistent comparison is required, and hop count can disagree with delay or other path objectives."
+    },
+    {
+      "id": "cn-route-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Dijkstra is run only to find destination t. When may it safely stop under nonnegative edge weights?",
+      "options": [
+        "When t is extracted as the minimum tentative-distance vertex",
+        "When t is first discovered as a neighbor",
+        "After examining the first edge from the source",
+        "Only after enumerating every simple path"
+      ],
+      "answer": [
+        "When t is extracted as the minimum tentative-distance vertex"
+      ],
+      "explanation": "First discovery can be through a nonoptimal route. Extraction as the minimum tentative label finalizes t's distance."
+    },
+    {
+      "id": "cn-route-039",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a graph with 6 vertices, how many complete Bellman-Ford relaxation passes are sufficient in the standard worst-case bound?",
+      "answer": "5",
+      "explanation": "A shortest simple path contains at most V-1 edges. With six vertices, the bound is five complete passes."
+    },
+    {
+      "id": "cn-route-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When does Dijkstra update v's predecessor to u during relaxation?",
+      "options": [
+        "When d[u]+w(u,v) is smaller than the current d[v]",
+        "When edge (u,v) has the largest weight",
+        "When v is already finalized",
+        "When the candidate path has more hops"
+      ],
+      "answer": [
+        "When d[u]+w(u,v) is smaller than the current d[v]"
+      ],
+      "explanation": "A strict distance improvement changes the best-known predecessor. Equal-cost ties may be handled separately by the implementation."
+    },
+    {
+      "id": "cn-route-041",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are costs or limitations of link-state routing?",
+      "options": [
+        "Flooding uses bandwidth and processing during updates",
+        "Each router stores a topology database",
+        "Shortest-path recomputation consumes CPU time",
+        "Routers do not need freshness information"
+      ],
+      "answer": [
+        "Flooding uses bandwidth and processing during updates",
+        "Each router stores a topology database",
+        "Shortest-path recomputation consumes CPU time"
+      ],
+      "explanation": "Link-state routers store topology and compute paths, and flooding consumes resources. Versioning and aging mechanisms are needed to manage stale information."
+    },
+    {
+      "id": "cn-route-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "After a distance-vector router removes a failed route, what should it advertise to neighbors for that destination if no alternative exists?",
+      "options": [
+        "The protocol's unreachable metric",
+        "Its former finite cost as if still usable",
+        "A negative metric",
+        "A zero cost through the failed link"
+      ],
+      "answer": [
+        "The protocol's unreachable metric"
+      ],
+      "explanation": "Neighbors need to learn that the route is unavailable. Advertising the old cost could preserve a stale forwarding loop."
+    },
+    {
+      "id": "cn-route-043",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router has two candidate routes to P: via A, link cost 4 plus advertised cost 8; via B, link cost 7 plus advertised cost 2. What is the selected metric?",
+      "answer": "9",
+      "explanation": "The candidate totals are 4+8=12 and 7+2=9. The smaller metric, 9, is selected."
+    },
+    {
+      "id": "cn-route-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does a shortest-path tree rooted at source s contain for each reachable vertex other than s?",
+      "options": [
+        "One predecessor edge defining a selected shortest path from s",
+        "Every edge in the original graph",
+        "Only edges with zero weight",
+        "A cycle through that vertex"
+      ],
+      "answer": [
+        "One predecessor edge defining a selected shortest path from s"
+      ],
+      "explanation": "The predecessor relation gives each reachable non-source vertex a parent on a shortest path. Together these edges form a tree when ties are resolved consistently."
+    },
+    {
+      "id": "cn-route-045",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A connected link-state graph has 13 routers. How many edges are in a shortest-path tree rooted at one router when every router is reachable?",
+      "answer": "12",
+      "explanation": "A tree spanning all V routers has V-1 edges. For 13 routers, the predecessor tree has 12 edges."
+    },
+    {
+      "id": "cn-route-046",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph has routes S-A-B-T with costs 4, 2, 3 and S-C-T with costs 5, 6. What is the shortest distance from S to T?",
+      "answer": "9",
+      "explanation": "The first route costs 4+2+3=9; the second costs 5+6=11. The minimum is 9."
+    },
+    {
+      "id": "cn-route-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A routing graph becomes disconnected after a link failure. What should shortest-path computation report for a vertex with no remaining path from the source?",
+      "options": [
+        "No finite route distance",
+        "Distance zero",
+        "A negative distance",
+        "The previous path cost as final"
+      ],
+      "answer": [
+        "No finite route distance"
+      ],
+      "explanation": "An unreachable vertex has no finite path cost from the source. A routing protocol represents it as unreachable using its protocol-specific convention."
+    },
+    {
+      "id": "cn-route-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can one router temporarily choose a different next hop from another router after a topology change?",
+      "options": [
+        "Their distributed routing information may not have converged yet",
+        "Routers must always use different metrics",
+        "Dijkstra assigns random next hops",
+        "The destination address changes at every hop"
+      ],
+      "answer": [
+        "Their distributed routing information may not have converged yet"
+      ],
+      "explanation": "Updates propagate over time. Until all routers process the change, they can hold different topology or distance information."
+    },
+    {
+      "id": "cn-route-049",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router compares candidate costs to destination Q of 16 via A, 11 via B, and 14 via C. What is the selected cost?",
+      "answer": "11",
+      "explanation": "The distance-vector choice is the minimum candidate: min(16,11,14)=11."
+    },
+    {
+      "id": "cn-route-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "At initialization, what tentative distance does Dijkstra assign to its source s?",
+      "options": [
+        "0",
+        "The smallest outgoing edge weight",
+        "Infinity",
+        "The number of vertices"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "The empty path from the source to itself has cost zero. Other vertices start at infinity unless reached through an edge."
+    },
+    {
+      "id": "cn-route-051",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph has edges S-A=3, S-B=8, A-B=2, A-C=7, B-C=1, and C-T=4. What is the shortest distance from S to T?",
+      "answer": "10",
+      "explanation": "The route S-A-B-C-T costs 3+2+1+4=10. The alternatives through A-C or direct S-B cost more."
+    },
+    {
+      "id": "cn-route-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why is ordinary Dijkstra invalid for arbitrary negative edge weights?",
+      "options": [
+        "A finalized vertex might later receive a smaller route through a negative edge",
+        "It cannot represent a directed graph",
+        "All edge weights must be equal",
+        "It computes only one destination"
+      ],
+      "answer": [
+        "A finalized vertex might later receive a smaller route through a negative edge"
+      ],
+      "explanation": "Dijkstra assumes extending a path cannot lower its cost. A negative edge can invalidate the greedy finalization step."
+    },
+    {
+      "id": "cn-route-053",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Router M has direct costs 5 to A and 2 to B. A advertises distance 3 to X; B advertises 9. What distance to X does M install?",
+      "answer": "8",
+      "explanation": "The candidates are 5+3=8 via A and 2+9=11 via B. The minimum is 8."
+    },
+    {
+      "id": "cn-route-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A vertex has no path from the source in a shortest-path computation. What distance should be reported?",
+      "options": [
+        "Infinity or an unreachable marker",
+        "Zero",
+        "The largest edge weight",
+        "The vertex degree"
+      ],
+      "answer": [
+        "Infinity or an unreachable marker"
+      ],
+      "explanation": "No finite route exists, so the algorithm retains an infinity value or equivalent unreachable sentinel."
+    },
+    {
+      "id": "cn-route-055",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For nonnegative edge weights, which statements about Dijkstra are correct?",
+      "options": [
+        "It computes shortest distances from one source",
+        "A finalized vertex need not be reconsidered",
+        "It supports arbitrary negative edges without modification",
+        "Relaxation can update a tentative predecessor"
+      ],
+      "answer": [
+        "It computes shortest distances from one source",
+        "A finalized vertex need not be reconsidered",
+        "Relaxation can update a tentative predecessor"
+      ],
+      "explanation": "Dijkstra computes source distances by relaxation and greedy finalization. Negative edges can invalidate the finalized-distance property."
+    },
+    {
+      "id": "cn-route-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operation dominates a simple O(V^2) Dijkstra implementation on an adjacency matrix?",
+      "options": [
+        "Repeated selection of the minimum unfinalized vertex",
+        "Sorting all paths by their number of edges",
+        "Flooding every edge to every neighbor",
+        "Checking only the source vertex"
+      ],
+      "answer": [
+        "Repeated selection of the minimum unfinalized vertex"
+      ],
+      "explanation": "The implementation scans the V tentative distances to select a vertex in each of V iterations, yielding quadratic work."
+    },
+    {
+      "id": "cn-route-057",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Edges S-A=2, S-B=7, A-B=1, A-C=6, B-C=2, and C-T=3 form a positive-weight graph. What is the shortest distance from S to T?",
+      "answer": "8",
+      "explanation": "S-A-B-C-T costs 2+1+2+3=8. Routes using A-C or the direct S-B edge are more expensive."
+    },
+    {
+      "id": "cn-route-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A reachable negative cycle exists in a graph processed by Bellman-Ford. What happens to the minimum cost of a walk from the source to a vertex reachable from that cycle?",
+      "options": [
+        "It is unbounded below because the cycle can be repeated",
+        "It is always zero",
+        "It equals the number of vertices",
+        "It remains the same as Dijkstra computes"
+      ],
+      "answer": [
+        "It is unbounded below because the cycle can be repeated"
+      ],
+      "explanation": "Each traversal of a reachable negative cycle lowers the walk cost further, so no finite minimum exists for destinations downstream of it."
+    },
+    {
+      "id": "cn-route-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "After a router accepts a fresh link-state advertisement, what is normally done to distribute it further?",
+      "options": [
+        "Flood it to eligible neighbors other than the incoming interface",
+        "Add its link costs to all routes immediately",
+        "Send it only to the final destinations",
+        "Discard it after updating one local route"
+      ],
+      "answer": [
+        "Flood it to eligible neighbors other than the incoming interface"
+      ],
+      "explanation": "Flooding propagates fresh topology information throughout the routing domain, while avoiding immediate reflection to the neighbor that sent it."
+    },
+    {
+      "id": "cn-route-060",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A shortest path uses four links with costs 2, 5, 1, and 8. What is the total additive cost?",
+      "answer": "16",
+      "explanation": "Add the edge metrics along the route: 2+5+1+8=16."
+    },
+    {
+      "id": "cn-route-061",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about shortest paths in a graph with nonnegative weights are correct?",
+      "options": [
+        "A subpath of a shortest path is itself shortest between its endpoints",
+        "A shortest path can be chosen simple if all weights are strictly positive",
+        "A shortest path must use the fewest edges",
+        "Equal-cost shortest paths can coexist"
+      ],
+      "answer": [
+        "A subpath of a shortest path is itself shortest between its endpoints",
+        "A shortest path can be chosen simple if all weights are strictly positive",
+        "Equal-cost shortest paths can coexist"
+      ],
+      "explanation": "Shortest paths have optimal substructure. Positive cycles cannot improve a route, but weighted cost need not agree with hop count; ties may yield multiple paths."
+    },
+    {
+      "id": "cn-route-062",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "In Dijkstra, current distances are d[A]=4 and d[B]=7. Edge A-B has weight 2. After relaxing A-B, what is d[B]?",
+      "answer": "6",
+      "explanation": "The candidate through A costs 4+2=6, which improves the previous tentative value 7."
+    },
+    {
+      "id": "cn-route-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Suppose Dijkstra extracts vertex u with d[u]=8 and then relaxes edge u-v of weight 5. If d[v] was 20, what predecessor and distance are recorded for v?",
+      "options": [
+        "u and 13",
+        "v and 5",
+        "u and 20",
+        "No update because u is finalized"
+      ],
+      "answer": [
+        "u and 13"
+      ],
+      "explanation": "The candidate distance is 8+5=13, which is smaller than 20. The algorithm records u as predecessor of v."
+    },
+    {
+      "id": "cn-route-064",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which inputs can standard Dijkstra handle correctly when run from a source vertex?",
+      "options": [
+        "A directed graph with nonnegative weights",
+        "An undirected graph with nonnegative weights",
+        "A graph containing negative weights but no negative cycle",
+        "A disconnected graph with some unreachable vertices"
+      ],
+      "answer": [
+        "A directed graph with nonnegative weights",
+        "An undirected graph with nonnegative weights",
+        "A disconnected graph with some unreachable vertices"
+      ],
+      "explanation": "Dijkstra supports directed or undirected nonnegative graphs. Unreachable vertices remain at infinity; negative edges can invalidate its greedy finalization even without a negative cycle."
+    },
+    {
+      "id": "cn-route-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A distance-vector protocol uses triggered updates. When is an update sent?",
+      "options": [
+        "Soon after a relevant route changes, rather than waiting only for the next periodic timer",
+        "Only when a packet reaches its destination",
+        "Only when the whole network is shut down",
+        "At a fixed interval regardless of changes"
+      ],
+      "answer": [
+        "Soon after a relevant route changes, rather than waiting only for the next periodic timer"
+      ],
+      "explanation": "Triggered updates notify neighbors promptly when route state changes, while many protocols also retain periodic updates."
+    },
+    {
+      "id": "cn-route-066",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Router X has route candidates to Y with costs 15 through A, 10 through B, and 12 through C. If B becomes unavailable, what is the new minimum cost?",
+      "answer": "12",
+      "explanation": "After removing B's candidate, the remaining costs are 15 and 12. The minimum alternative is 12."
+    },
+    {
+      "id": "cn-route-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A shortest-path tree rooted at S is built for a connected graph. How many predecessor edges does it contain when there are 18 vertices?",
+      "options": [
+        "17",
+        "18",
+        "153",
+        "16"
+      ],
+      "answer": [
+        "17"
+      ],
+      "explanation": "A tree spanning V vertices has V-1 edges. With 18 reachable vertices, the predecessor tree contains 17 edges."
+    },
+    {
+      "id": "cn-route-068",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about link-state flooding are correct?",
+      "options": [
+        "A router can receive the same advertisement along multiple paths",
+        "Sequence or version information helps reject stale copies",
+        "Duplicate suppression prevents endless reflooding",
+        "Each router advertises a full path to every destination"
+      ],
+      "answer": [
+        "A router can receive the same advertisement along multiple paths",
+        "Sequence or version information helps reject stale copies",
+        "Duplicate suppression prevents endless reflooding"
+      ],
+      "explanation": "Flooding is redundant by design, so freshness identifiers and duplicate suppression are required. An LSA describes local links, not every end-to-end route."
+    },
+    {
+      "id": "cn-route-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router has a route to D with cost 9 through A. A new neighbor advertisement offers cost 4 via B after including the local link cost. What should happen?",
+      "options": [
+        "Install the route through B with metric 4",
+        "Keep A because its route was learned earlier",
+        "Store both costs as 13",
+        "Mark D unreachable"
+      ],
+      "answer": [
+        "Install the route through B with metric 4"
+      ],
+      "explanation": "The new candidate metric 4 is lower than the stored metric 9, so the route is replaced with next hop B."
+    },
+    {
+      "id": "cn-route-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A source has edges to A with cost 4 and B with cost 7. A later route through A reaches B with additional cost 2. What distance should Dijkstra assign to B after relaxing A-B?",
+      "options": [
+        "6",
+        "7",
+        "2",
+        "11"
+      ],
+      "answer": [
+        "6"
+      ],
+      "explanation": "The candidate through A costs 4+2=6, which improves the direct tentative distance 7."
+    },
+    {
+      "id": "cn-route-071",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Router R has cost 3 to neighbor A, and A advertises distance 8 to destination D. What is the candidate route cost through A?",
+      "answer": "11",
+      "explanation": "The Bellman-Ford candidate adds the first link and advertised remainder: 3+8=11."
+    },
+    {
+      "id": "cn-route-072",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A routing database shows no path from source S to vertex Z. What should Dijkstra return for Z?",
+      "options": [
+        "An unreachable marker such as infinity",
+        "Zero",
+        "The weight of the last scanned edge",
+        "The number of vertices"
+      ],
+      "answer": [
+        "An unreachable marker such as infinity"
+      ],
+      "explanation": "If relaxation never reaches Z, its tentative distance remains infinity, indicating there is no path from S."
+    },
+    {
+      "id": "cn-route-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does a router use its link-state topology database for?",
+      "options": [
+        "To compute routes over the known graph",
+        "To store application data",
+        "To translate every IP address to a MAC address",
+        "To record only its own forwarding packets"
+      ],
+      "answer": [
+        "To compute routes over the known graph"
+      ],
+      "explanation": "The database represents routers and link metrics. Shortest-path computation on that graph yields next-hop routes."
+    },
+    {
+      "id": "cn-route-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A shortest-path problem has a negative edge but no negative cycle. Which algorithm among these handles the case?",
+      "options": [
+        "Bellman-Ford",
+        "Dijkstra as-is",
+        "Prim",
+        "Kruskal"
+      ],
+      "answer": [
+        "Bellman-Ford"
+      ],
+      "explanation": "Bellman-Ford permits negative edge weights and detects reachable negative cycles; standard Dijkstra assumes nonnegative costs."
+    },
+    {
+      "id": "cn-route-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "With a binary heap and adjacency lists, what is the usual Dijkstra time bound for a connected sparse graph?",
+      "options": [
+        "O(E log V)",
+        "O(V^3)",
+        "O(log V)",
+        "O(E^2)"
+      ],
+      "answer": [
+        "O(E log V)"
+      ],
+      "explanation": "For a connected sparse graph E is at least V-1, so O((V+E)log V) simplifies to O(E log V)."
+    },
+    {
+      "id": "cn-route-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router receives an older link-state advertisement than the one in its database. What is the safe action?",
+      "options": [
+        "Keep the newer stored version and discard the stale copy",
+        "Replace the current state with the old copy",
+        "Add both versions as separate links",
+        "Set the origin cost to zero"
+      ],
+      "answer": [
+        "Keep the newer stored version and discard the stale copy"
+      ],
+      "explanation": "Freshness identifiers allow the router to avoid rolling its topology database back to obsolete information."
+    },
+    {
+      "id": "cn-route-077",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A route through A has local link cost 6 and advertised remaining distance 5. A route through B has local cost 3 and advertised distance 10. What metric is selected?",
+      "answer": "11",
+      "explanation": "Via A costs 6+5=11; via B costs 3+10=13. The selected metric is 11."
+    },
+    {
+      "id": "cn-route-078",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the maximum edge count of a simple path through 15 distinct routers?",
+      "answer": "14",
+      "explanation": "A simple path through V distinct vertices contains at most V-1 edges, so the maximum is 14."
+    },
+    {
+      "id": "cn-route-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When two next hops give equal minimum routing metrics, what does the shortest-path computation establish?",
+      "options": [
+        "Both are valid minimum-cost choices",
+        "Neither route is usable",
+        "The route with more hops is strictly cheaper",
+        "The metrics must be added together"
+      ],
+      "answer": [
+        "Both are valid minimum-cost choices"
+      ],
+      "explanation": "Equal values both attain the minimum. A forwarding implementation may pick one or use both if multipath is supported."
+    },
+    {
+      "id": "cn-route-080",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph has S-A=1, S-B=4, A-B=1, A-C=6, B-C=2, and C-T=3. What shortest distance does Dijkstra find from S to T?",
+      "answer": "7",
+      "explanation": "The route S-A-B-C-T costs 1+1+2+3=7. Going from A directly to C costs 10 total, so 7 is shorter."
+    },
+    {
+      "id": "cn-route-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A distance-vector route uses neighbor N, and the link to N fails. Why must the router invalidate that next hop before forwarding more packets?",
+      "options": [
+        "The advertised route through N is no longer physically reachable from this router",
+        "The destination IP changes",
+        "Every other neighbor becomes unreachable",
+        "The route metric has to become negative"
+      ],
+      "answer": [
+        "The advertised route through N is no longer physically reachable from this router"
+      ],
+      "explanation": "The first hop is part of the route. A failed adjacency means packets cannot be forwarded along that entry, even if the remaining advertised distance is finite."
+    },
+    {
+      "id": "cn-route-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement best describes split horizon?",
+      "options": [
+        "Do not advertise a route back on the interface from which it was learned",
+        "Advertise every route with zero cost",
+        "Delete a route whenever its destination is distant",
+        "Send link-state advertisements only to the source"
+      ],
+      "answer": [
+        "Do not advertise a route back on the interface from which it was learned"
+      ],
+      "explanation": "Split horizon prevents a router from telling a neighbor that it can reach a destination via that same neighbor."
+    },
+    {
+      "id": "cn-route-083",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the effect of a negative cycle reachable from the source in Bellman-Ford?",
+      "options": [
+        "Distances to vertices reachable from that cycle have no finite minimum",
+        "It makes every edge weight zero",
+        "It prevents the algorithm from reaching the source",
+        "It only affects unreachable vertices"
+      ],
+      "answer": [
+        "Distances to vertices reachable from that cycle have no finite minimum"
+      ],
+      "explanation": "Repeated traversal of the reachable negative cycle can reduce a walk cost without bound for its downstream vertices."
+    },
+    {
+      "id": "cn-route-084",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A candidate route has edge costs 7, 2, 6, and 1 under an additive metric. What is its total cost?",
+      "answer": "16",
+      "explanation": "The additive path metric is the sum 7+2+6+1=16."
+    },
+    {
+      "id": "cn-route-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Dijkstra distance labels are correct?",
+      "options": [
+        "A tentative label is the best route found so far",
+        "A finalized label is shortest when weights are nonnegative",
+        "Relaxing an edge can decrease a tentative label",
+        "A finalized label can increase later in the same run"
+      ],
+      "answer": [
+        "A tentative label is the best route found so far",
+        "A finalized label is shortest when weights are nonnegative",
+        "Relaxing an edge can decrease a tentative label"
+      ],
+      "explanation": "Tentative labels can improve as paths are explored. Under nonnegative weights, extracting the minimum finalizes it and later relaxations cannot increase or decrease it."
+    },
+    {
+      "id": "cn-route-086",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Router A reaches D via B at link cost 2; B advertises distance 9. An alternative via C costs 5 plus advertised distance 4. What is A's chosen distance?",
+      "answer": "9",
+      "explanation": "The route through B costs 2+9=11. Through C it costs 5+4=9, so A selects distance 9."
+    },
+    {
+      "id": "cn-route-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "After how many standard complete passes does Bellman-Ford guarantee shortest distances in a graph with 20 vertices and no reachable negative cycle?",
+      "options": [
+        "19",
+        "20",
+        "400",
+        "1"
+      ],
+      "answer": [
+        "19"
+      ],
+      "explanation": "Every shortest simple path uses at most V-1 edges, so at most 19 complete relaxation passes suffice."
+    },
+    {
+      "id": "cn-route-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which behaviors can help limit distance-vector count-to-infinity or transient loops?",
+      "options": [
+        "Split horizon",
+        "Poisoned reverse",
+        "Triggered route updates",
+        "Advertising a stale finite route as current"
+      ],
+      "answer": [
+        "Split horizon",
+        "Poisoned reverse",
+        "Triggered route updates"
+      ],
+      "explanation": "Split horizon and poisoned reverse prevent some feedback routes. Triggered updates speed notification after changes; stale finite advertisements can prolong incorrect routing."
+    },
+    {
+      "id": "cn-route-089",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A route from S to T uses links with weights 8, 3, 5, and 2. What is its additive metric?",
+      "answer": "18",
+      "explanation": "The route metric is the sum of its edge weights: 8+3+5+2=18."
+    },
+    {
+      "id": "cn-route-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link-state advertisement sequence number increases for an origin router. What does a higher valid sequence typically indicate?",
+      "options": [
+        "A newer version of that origin's link information",
+        "A lower cost on every edge",
+        "A shorter path to every destination",
+        "A larger router identifier"
+      ],
+      "answer": [
+        "A newer version of that origin's link information"
+      ],
+      "explanation": "The sequence number orders updates from the same origin, allowing routers to identify newer topology state."
+    },
+    {
+      "id": "cn-route-091",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "Edges S-A=6, S-B=2, B-A=1, A-T=5, and B-T=9 have positive weights. What is the shortest distance from S to T?",
+      "answer": "8",
+      "explanation": "The path S-B-A-T costs 2+1+5=8. The direct route S-A-T costs 11 and S-B-T costs 11."
+    },
+    {
+      "id": "cn-route-092",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about distance-vector route computation are correct?",
+      "options": [
+        "A neighbor route candidate includes the local link cost",
+        "The minimum candidate determines the best metric",
+        "The next hop is the neighbor that realizes the selected candidate",
+        "A router must know every non-neighbor link weight"
+      ],
+      "answer": [
+        "A neighbor route candidate includes the local link cost",
+        "The minimum candidate determines the best metric",
+        "The next hop is the neighbor that realizes the selected candidate"
+      ],
+      "explanation": "For each neighbor v, the candidate is c(x,v)+d_v(y). The smallest determines both the metric and the next hop; a complete global graph is unnecessary."
+    },
+    {
+      "id": "cn-route-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link-state router has not yet received a flooded link-cost increase. What limitation does this create?",
+      "options": [
+        "Its locally computed route can still reflect the old topology",
+        "It can infer the new metric from the destination IP",
+        "It must mark every destination unreachable",
+        "It can no longer run Dijkstra"
+      ],
+      "answer": [
+        "Its locally computed route can still reflect the old topology"
+      ],
+      "explanation": "A router can compute only from information in its database. Until the updated LSA arrives, it may continue using a route based on the earlier cost."
+    },
+    {
+      "id": "cn-route-094",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph has 17 vertices. What is the maximum number of edges in a simple path that visits each vertex at most once?",
+      "answer": "16",
+      "explanation": "A simple path through at most 17 vertices has at most 17-1=16 edges."
+    },
+    {
+      "id": "cn-route-095",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about shortest-path algorithms used in routing are correct?",
+      "options": [
+        "Dijkstra uses a greedy minimum-tentative-distance selection",
+        "Bellman-Ford repeatedly relaxes edges",
+        "Dijkstra requires nonnegative edge weights for its standard correctness proof",
+        "Bellman-Ford cannot detect a reachable negative cycle"
+      ],
+      "answer": [
+        "Dijkstra uses a greedy minimum-tentative-distance selection",
+        "Bellman-Ford repeatedly relaxes edges",
+        "Dijkstra requires nonnegative edge weights for its standard correctness proof"
+      ],
+      "explanation": "Dijkstra selects and finalizes minimum labels under nonnegative weights. Bellman-Ford relaxes edges and can detect a reachable negative cycle after the V-1-pass bound."
+    },
+    {
+      "id": "cn-route-096",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "At router X, candidate routes to P cost 17 via A, 12 via B, and 14 via C. What is the chosen metric?",
+      "answer": "12",
+      "explanation": "The route update selects the minimum of the candidate totals: min(17,12,14)=12."
+    },
+    {
+      "id": "cn-route-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why is a shortest subpath of a shortest route itself shortest between the same intermediate endpoints?",
+      "options": [
+        "Replacing it with a cheaper subpath would make the full route cheaper",
+        "Because every link has equal weight",
+        "Because routing graphs are always trees",
+        "Because the subpath must contain one edge"
+      ],
+      "answer": [
+        "Replacing it with a cheaper subpath would make the full route cheaper"
+      ],
+      "explanation": "If an intermediate subpath were not shortest, substituting a cheaper one would reduce the total route cost, contradicting that the original route was shortest."
+    },
+    {
+      "id": "cn-route-098",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A link-state router receives a fresh LSA from origin R. Which actions are appropriate?",
+      "options": [
+        "Update R's entry in the topology database",
+        "Flood the new version to eligible neighbors",
+        "Recompute routes if the topology change can affect them",
+        "Add the LSA metric to every existing path unconditionally"
+      ],
+      "answer": [
+        "Update R's entry in the topology database",
+        "Flood the new version to eligible neighbors",
+        "Recompute routes if the topology change can affect them"
+      ],
+      "explanation": "A fresh LSA replaces the origin's prior topology state and is propagated. Shortest-path routes are recalculated from the resulting graph; metrics are not blindly added to every path."
+    },
+    {
+      "id": "cn-route-099",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a route X-A-C-D, the link metrics are 4 from X to A, 7 from A to C, and 2 from C to D. What is the total cost?",
+      "answer": "13",
+      "explanation": "An additive route metric sums each link: 4+7+2=13."
+    },
+    {
+      "id": "cn-route-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a Dijkstra run with nonnegative weights, a vertex has just been extracted with the smallest tentative distance. Which statement is true?",
+      "options": [
+        "That distance is final and need not be decreased later",
+        "Its distance is only a lower bound and can always increase",
+        "It must be unreachable",
+        "Its predecessor must be the source"
+      ],
+      "answer": [
+        "That distance is final and need not be decreased later"
+      ],
+      "explanation": "The greedy selection property guarantees optimality for the smallest tentative label when weights are nonnegative. Its predecessor can be any prior vertex on a shortest path."
+    }
+  ]
+}

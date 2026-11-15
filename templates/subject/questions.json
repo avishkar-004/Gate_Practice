@@ -1,0 +1,21 @@
+{
+  "topics": [
+    {
+      "title": "Example Topic",
+      "subtitle": "Short topic description",
+      "icon": "?"
+    }
+  ],
+  "questions": [
+    {
+      "id": "my-subject-example-001",
+      "topicIndex": 0,
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Replace this example with a GATE-level question.",
+      "options": ["Option A", "Option B", "Option C", "Option D"],
+      "answer": ["Option A"],
+      "explanation": "Explain the reasoning and why the answer is correct."
+    }
+  ]
+}

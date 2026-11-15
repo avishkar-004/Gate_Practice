@@ -1,0 +1,1334 @@
+{
+  "topicIndex": 0,
+  "questions": [
+    {
+      "id": "coa-isa-001",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A machine uses byte addresses and a 32-bit instruction format with a 6-bit opcode, two register fields of 5 bits each, and a signed PC-relative displacement. The PC is incremented before the branch target is formed. The current instruction is at byte address 0x120, and the displacement field contains -7. What is the target byte address? Assume the displacement is measured in bytes.",
+      "answer": "285",
+      "explanation": "The next-instruction PC is 0x120+4=0x124=292. PC-relative target = 292+(-7)=285."
+    },
+    {
+      "id": "coa-isa-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An instruction contains a 12-bit immediate field and uses sign extension to a 32-bit operand. Which 32-bit value is supplied when the immediate bits are 0xF80?",
+      "options": [
+        "0x00000F80",
+        "0xFFFFF80",
+        "0xFFFFFF80",
+        "0x00000F7F"
+      ],
+      "answer": [
+        "0xFFFFFF80"
+      ],
+      "explanation": "The most significant bit of the 12-bit value 0xF80 is 1. Sign extension replicates that bit into the upper 20 bits, yielding 0xFFFFFF80."
+    },
+    {
+      "id": "coa-isa-003",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 24-bit instruction has an 8-bit opcode and uses the remaining bits as an unsigned immediate. What is the largest positive immediate representable?",
+      "answer": "65535",
+      "explanation": "The immediate field has 24-8=16 bits. Its largest unsigned value is 2^16-1=65,535."
+    },
+    {
+      "id": "coa-isa-004",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A load instruction supports (i) register indirect, (ii) memory indirect, and (iii) base-plus-displacement addressing. Which statements are necessarily true, assuming ordinary byte-addressable memory?",
+      "options": [
+        "Register indirect uses the contents of a register as the effective address.",
+        "Memory indirect requires reading a memory location to obtain the effective address before reading the operand.",
+        "Base-plus-displacement computes an effective address by adding a displacement to a base value.",
+        "All three modes require the same number of memory accesses to obtain the operand."
+      ],
+      "answer": [
+        "Register indirect uses the contents of a register as the effective address.",
+        "Memory indirect requires reading a memory location to obtain the effective address before reading the operand.",
+        "Base-plus-displacement computes an effective address by adding a displacement to a base value."
+      ],
+      "explanation": "Register indirect and base-plus-displacement form the effective address without an extra pointer read. Memory indirect first fetches the pointer from memory, then fetches the operand, so the access counts need not be equal."
+    },
+    {
+      "id": "coa-isa-005",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A byte-addressed processor has 16-bit instructions. A branch's signed 8-bit displacement is expressed in 2-byte instruction words and is relative to the address of the branch instruction itself. The branch is at address 0x2A0 and its displacement is -5. Give the target address in decimal.",
+      "answer": "662",
+      "explanation": "The displacement in bytes is -5×2=-10. Since this ISA defines the base as the branch instruction address, target=0x2A0-10=672-10=662."
+    },
+    {
+      "id": "coa-isa-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit instruction uses a 6-bit opcode, two 5-bit register specifiers, and a 16-bit displacement. Which conclusion follows if all 32-bit patterns are syntactically assigned to instructions?",
+      "options": [
+        "There are 64 opcodes and 65,536 displacement patterns per opcode/register pair.",
+        "There are 32 opcodes because one opcode bit is reserved for sign.",
+        "There are 2^16 registers.",
+        "The displacement can address only 16 bytes."
+      ],
+      "answer": [
+        "There are 64 opcodes and 65,536 displacement patterns per opcode/register pair."
+      ],
+      "explanation": "A 6-bit opcode has 2^6=64 encodings; each register field has 2^5 choices and the 16-bit displacement has 2^16 bit patterns. A signed interpretation changes the numeric range, not the number of patterns."
+    },
+    {
+      "id": "coa-isa-007",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An instruction set has 48 architecturally visible registers. How many bits are required in a fixed-width register specifier to encode every register?",
+      "answer": "6",
+      "explanation": "Five bits encode only 32 values. The minimum field width is ceil(log2 48)=6 bits, which provides 64 encodings."
+    },
+    {
+      "id": "coa-isa-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An ISA defines `ADD R1, R2, #9` as `R1 ← R2 + 9`. Which statement best describes the source operand `#9`?",
+      "options": [
+        "It is encoded as an immediate constant in the instruction.",
+        "It is a memory address whose contents are added.",
+        "It names register 9.",
+        "It is the address of the next instruction."
+      ],
+      "answer": [
+        "It is encoded as an immediate constant in the instruction."
+      ],
+      "explanation": "The `#` notation denotes an immediate operand. The value is part of the instruction encoding and is not fetched from memory as a separate operand."
+    },
+    {
+      "id": "coa-isa-009",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit byte-addressed machine has a 16-bit base register value 0xFFF0. A signed 16-bit displacement of +48 is added, and the effective address is truncated to 16 bits. What is the effective address in decimal?",
+      "answer": "32",
+      "explanation": "0xFFF0 is 65,520. Adding 48 gives 65,568. Truncating modulo 2^16 gives 65,568-65,536=32."
+    },
+    {
+      "id": "coa-isa-010",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which are valid reasons for using PC-relative addressing for control-transfer instructions?",
+      "options": [
+        "It allows the same code to be relocated while preserving nearby branch targets.",
+        "A signed displacement can reach targets before and after the branch.",
+        "It eliminates all branch range limits.",
+        "It can encode a branch target without storing the full absolute address."
+      ],
+      "answer": [
+        "It allows the same code to be relocated while preserving nearby branch targets.",
+        "A signed displacement can reach targets before and after the branch.",
+        "It can encode a branch target without storing the full absolute address."
+      ],
+      "explanation": "The displacement is relative to the current PC, so relocation preserves the relation and a signed value reaches in either direction. Its field width still imposes a finite range."
+    },
+    {
+      "id": "coa-isa-011",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A fixed-length instruction is 20 bits wide. It reserves 5 bits for opcode and 3 bits for mode, with no other fields. How many bits remain for an address field?",
+      "answer": "12",
+      "explanation": "The address field uses the remaining 20-5-3=12 instruction bits."
+    },
+    {
+      "id": "coa-isa-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 16-bit instruction is at address 0x0100. It has a 4-bit opcode and a 12-bit signed PC-relative displacement in halfword units, based on the address of the following instruction. The displacement is encoded as 0xFFD. What is the branch target?",
+      "options": [
+        "0x00FC",
+        "0x00FE",
+        "0x0100",
+        "0x1006"
+      ],
+      "answer": [
+        "0x00FC"
+      ],
+      "explanation": "The following instruction address is 0x0102. The 12-bit two's-complement value 0xFFD is -3. In halfword units this is -6 bytes, so target=0x0102-6=0x00FC."
+    },
+    {
+      "id": "coa-isa-013",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An indexed mode computes EA = base + index × scale + displacement. With 32-bit arithmetic, base=0x1000, index=13, scale=4 bytes and displacement=-12, what is EA in decimal?",
+      "answer": "4136",
+      "explanation": "0x1000=4096. The scaled index is 13×4=52. Thus EA=4096+52-12=4136."
+    },
+    {
+      "id": "coa-isa-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An instruction uses pre-decrement addressing with a register R initially equal to 100. The operand is one 4-byte word. Which effective address is used and what is the final R value?",
+      "options": [
+        "EA=96, R=96",
+        "EA=100, R=96",
+        "EA=104, R=104",
+        "EA=96, R=100"
+      ],
+      "answer": [
+        "EA=96, R=96"
+      ],
+      "explanation": "Pre-decrement updates the register before the memory access. R becomes 100-4=96, and that updated value is used as the effective address."
+    },
+    {
+      "id": "coa-isa-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "For post-increment addressing of a 4-byte operand, R initially contains address 200. Which pair (effective address, final R) is correct?",
+      "options": [
+        "(204, 204)",
+        "(200, 204)",
+        "(200, 200)",
+        "(196, 200)"
+      ],
+      "answer": [
+        "(200, 204)"
+      ],
+      "explanation": "Post-increment uses the original register value for this operand, then increments R by the operand size. Therefore EA=200 and final R=204."
+    },
+    {
+      "id": "coa-isa-016",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack grows toward lower addresses. Its stack pointer addresses the current top element. A PUSH of a 4-byte value first decrements SP by 4 and then stores the value. If SP starts at 0x800, what is the address written, in decimal?",
+      "answer": "2044",
+      "explanation": "0x800=2048. The pre-decrement makes SP=2048-4=2044, which is the address written."
+    },
+    {
+      "id": "coa-isa-017",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ISA has 32-bit instructions and byte addresses. A load can use base-plus-displacement with a signed displacement. Which statements are correct?",
+      "options": [
+        "The displacement can represent negative offsets from the base.",
+        "The effective address is formed from the base and displacement before the data read.",
+        "Increasing displacement width while keeping instruction width fixed may require reducing space for another field.",
+        "The displacement must be an absolute address."
+      ],
+      "answer": [
+        "The displacement can represent negative offsets from the base.",
+        "The effective address is formed from the base and displacement before the data read.",
+        "Increasing displacement width while keeping instruction width fixed may require reducing space for another field."
+      ],
+      "explanation": "A signed offset permits access on either side of the base. The EA is computed before the operand is read. Fixed instruction width creates a field-allocation tradeoff; the displacement is not inherently an absolute address."
+    },
+    {
+      "id": "coa-isa-018",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A byte-addressed machine has 64-bit addresses. A direct-address instruction has a 10-bit opcode, a 6-bit register field and a 20-bit address field. How many high-order address bits cannot be specified directly by this instruction?",
+      "answer": "44",
+      "explanation": "The instruction specifies the low-order 20 bits of a 64-bit address, leaving 64-20=44 high-order bits to be supplied by some other convention or register."
+    },
+    {
+      "id": "coa-isa-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A byte-addressed ISA has 4-byte instructions and a signed 10-bit PC-relative field interpreted in units of 4 bytes from the next instruction. What is the smallest and largest byte offset from that next-instruction PC?",
+      "options": [
+        "-2048 and +2044",
+        "-4096 and +4092",
+        "-512 and +511",
+        "-2044 and +2048"
+      ],
+      "answer": [
+        "-2048 and +2044"
+      ],
+      "explanation": "A signed 10-bit field ranges from -512 to +511. Multiplying by 4 gives offsets -2048 through +2044 bytes."
+    },
+    {
+      "id": "coa-isa-020",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A byte-addressed system has a 32-bit instruction. The opcode is 7 bits, the mode is 3 bits, and three register operands each require a 5-bit specifier. How many bits remain for a signed constant field?",
+      "answer": "7",
+      "explanation": "The listed fields use 7+3+(3×5)=25 bits. The remaining width is 32-25=7 bits."
+    },
+    {
+      "id": "coa-isa-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor has 32-bit byte addresses, but a branch instruction stores only a signed 16-bit PC-relative displacement. Which statement is correct?",
+      "options": [
+        "The branch can reach every address in the 4-GiB space.",
+        "The branch can reach a bounded interval around the PC; a longer transfer may need another sequence.",
+        "The target must lie in the same cache line.",
+        "The target is always the displacement interpreted as an absolute address."
+      ],
+      "answer": [
+        "The branch can reach a bounded interval around the PC; a longer transfer may need another sequence."
+      ],
+      "explanation": "The signed field encodes only a finite set of offsets. A target outside its range requires a longer sequence, such as loading an address into a register and jumping indirectly."
+    },
+    {
+      "id": "coa-isa-022",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a 32-bit byte-addressed machine, a 4-byte load uses a base register B=0x2000 and a signed 12-bit displacement -24. The architecture wraps effective-address arithmetic modulo 2^32. Give the effective address in hexadecimal.",
+      "answer": "0x1FE8",
+      "explanation": "The signed displacement is -24 decimal, or -0x18. Therefore EA=0x2000-0x18=0x1FE8; no 32-bit wrap occurs in this example."
+    },
+    {
+      "id": "coa-isa-023",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statements distinguish an operand from an effective address correctly?",
+      "options": [
+        "An immediate constant is an operand value, not a memory effective address.",
+        "For a load, the effective address identifies where the memory operand is located.",
+        "In register-direct mode, the register contents are the operand value.",
+        "Every operand value is itself a memory address."
+      ],
+      "answer": [
+        "An immediate constant is an operand value, not a memory effective address.",
+        "For a load, the effective address identifies where the memory operand is located.",
+        "In register-direct mode, the register contents are the operand value."
+      ],
+      "explanation": "Operands can be constants, register contents or memory values. An effective address is used when a memory location must be identified; it is not synonymous with every operand."
+    },
+    {
+      "id": "coa-isa-024",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 32-bit ISA has 128 general-purpose registers. An instruction contains two register source fields and one destination field. What is the total number of instruction bits consumed by those three register specifiers?",
+      "answer": "21",
+      "explanation": "128 registers require log2(128)=7 bits per specifier. Three fields consume 3×7=21 bits."
+    },
+    {
+      "id": "coa-isa-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A byte-addressed machine has 16-bit instructions. A branch field contains signed value -2 and is scaled by the instruction length. The PC base is the address of the next instruction. If the branch is at 0x500, what is the target address?",
+      "options": [
+        "0x4FE",
+        "0x500",
+        "0x504",
+        "0x4F8"
+      ],
+      "answer": [
+        "0x4FE"
+      ],
+      "explanation": "The next-instruction address is 0x502. The scaled displacement is -2×2=-4 bytes. The target is 0x502-4=0x4FE."
+    },
+    {
+      "id": "coa-isa-026",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A PC-relative branch uses a signed 9-bit displacement in units of 2 bytes. The base is the address of the next instruction, 0x7A2. What is the lowest target address reachable? Give the answer in hexadecimal.",
+      "answer": "0x5A2",
+      "explanation": "A signed 9-bit displacement ranges down to -2^8=-256 units. At 2 bytes per unit, the minimum offset is -512 bytes (0x200). Thus 0x7A2-0x200=0x5A2."
+    },
+    {
+      "id": "coa-isa-027",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An instruction has a 5-bit opcode and a 6-bit register field. If the register field must identify one of 80 registers, what is the smallest register-field width that permits all registers to be named?",
+      "options": [
+        "6 bits",
+        "7 bits",
+        "8 bits",
+        "9 bits"
+      ],
+      "answer": [
+        "7 bits"
+      ],
+      "explanation": "Seven bits encode 128 distinct registers, enough for 80. Six bits encode only 64. The minimum is ceil(log2 80)=7 bits; six bits encode only 64 registers."
+    },
+    {
+      "id": "coa-isa-028",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor supports a load with base-plus-displacement and a store with register-indirect addressing. Assume both operands are 4 bytes and the base register contains 0x3000. Which statements are correct?",
+      "options": [
+        "For load displacement -4, the EA is 0x2FFC.",
+        "For store through a register containing 0x3000, the memory EA is 0x3000.",
+        "The load's displacement is necessarily interpreted as an absolute address.",
+        "If the load destination register is also used as the base, the ISA must define which value is used."
+      ],
+      "answer": [
+        "For load displacement -4, the EA is 0x2FFC.",
+        "For store through a register containing 0x3000, the memory EA is 0x3000.",
+        "If the load destination register is also used as the base, the ISA must define which value is used."
+      ],
+      "explanation": "Base-plus-displacement adds the signed offset to the base: 0x3000-4=0x2FFC. Register indirect uses the register contents as the EA. A read/write overlap requires architectural semantics, such as reading the old base value before write-back."
+    },
+    {
+      "id": "coa-isa-029",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A byte-addressed machine uses 8-byte instructions. A PC-relative branch field is a signed 6-bit quantity in instruction units, relative to the next instruction. If its encoded value is 0b111101 and the next PC is 1000, what is the target address?",
+      "answer": "976",
+      "explanation": "The 6-bit two's-complement value 111101 is -3. Scaling gives -3×8=-24 bytes. Target=1000-24=976."
+    },
+    {
+      "id": "coa-isa-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An architecture specifies that an instruction's immediate field is zero-extended before addition. The 8-bit field is 0xE2. What value is added to a 32-bit register?",
+      "options": [
+        "226",
+        "-30",
+        "0xFFFFFFE2",
+        "-226"
+      ],
+      "answer": [
+        "226"
+      ],
+      "explanation": "Zero extension fills upper bits with zero. 0xE2 is 14×16+2=226, so the 32-bit operand is 0x000000E2."
+    },
+    {
+      "id": "coa-isa-031",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An instruction has a 10-bit signed immediate. What is the smallest integer it can represent after sign extension?",
+      "answer": "-512",
+      "explanation": "An n-bit two's-complement value ranges from -2^(n-1) to 2^(n-1)-1. For n=10, the minimum is -2^9=-512."
+    },
+    {
+      "id": "coa-isa-032",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which properties are associated with a load-store ISA?",
+      "options": [
+        "Arithmetic instructions normally operate on registers.",
+        "Explicit load/store instructions transfer data between registers and memory.",
+        "An arithmetic instruction may directly add two arbitrary memory operands without loading them.",
+        "Memory addressing modes are commonly concentrated in load/store instructions."
+      ],
+      "answer": [
+        "Arithmetic instructions normally operate on registers.",
+        "Explicit load/store instructions transfer data between registers and memory.",
+        "Memory addressing modes are commonly concentrated in load/store instructions."
+      ],
+      "explanation": "A load-store design performs arithmetic on registers and uses explicit memory-transfer instructions. Direct memory-to-memory arithmetic is characteristic of some other ISA styles, not the usual load-store model."
+    },
+    {
+      "id": "coa-isa-033",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit instruction devotes 6 bits to opcode, 5 bits to a base register, and 14 bits to a signed byte displacement. The remaining bits form a destination register field. How many registers can be named by that field?",
+      "answer": "128",
+      "explanation": "The destination field has 32-6-5-14=7 bits, so it can encode 2^7=128 distinct register identifiers."
+    },
+    {
+      "id": "coa-isa-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch target must be 4-byte aligned. An instruction stores a signed 12-bit displacement in 4-byte units relative to the next PC. The next PC is 0x1000 and the encoded field is 0x7FF. What target is selected?",
+      "options": [
+        "0x2FFC",
+        "0x1FFC",
+        "0x0FFC",
+        "0x1007"
+      ],
+      "answer": [
+        "0x2FFC"
+      ],
+      "explanation": "The maximum positive 12-bit signed value is 2047. In 4-byte units, offset=8188=0x1FFC. Adding to 0x1000 gives 0x2FFC, which remains aligned."
+    },
+    {
+      "id": "coa-isa-035",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A byte-addressable ISA has 64-bit instructions. The opcode uses 8 bits, two register fields use 6 bits each, and a mode field uses 4 bits. The rest of the instruction is a signed displacement. How many bits wide is the displacement?",
+      "answer": "40",
+      "explanation": "The named fields use 8+6+6+4=24 bits. The displacement occupies 64-24=40 bits."
+    },
+    {
+      "id": "coa-isa-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An instruction uses memory-indirect addressing: its address field A points to a memory word containing the effective address. The operand is also in memory. Ignoring instruction fetch and assuming no cache, how many data-memory reads are needed to obtain the operand?",
+      "options": [
+        "One",
+        "Two",
+        "Three",
+        "Zero"
+      ],
+      "answer": [
+        "Two"
+      ],
+      "explanation": "The first data read fetches the pointer stored at A. The second read fetches the operand from the effective address contained in that pointer."
+    },
+    {
+      "id": "coa-isa-037",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit ISA has both register-direct and register-indirect operands. Which statements are correct?",
+      "options": [
+        "Register-direct names a register whose contents are the operand.",
+        "Register-indirect names a register whose contents are used as a memory address.",
+        "Register-indirect always causes a memory access if the instruction only computes an address and does not dereference it.",
+        "The same register specifier bits can have different interpretation depending on the addressing mode."
+      ],
+      "answer": [
+        "Register-direct names a register whose contents are the operand.",
+        "Register-indirect names a register whose contents are used as a memory address.",
+        "The same register specifier bits can have different interpretation depending on the addressing mode."
+      ],
+      "explanation": "The mode controls whether the register value is itself the operand or is used as an address. A memory read occurs only if the operation dereferences that address."
+    },
+    {
+      "id": "coa-isa-038",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A jump instruction stores a 24-bit unsigned word address. The machine is byte-addressable with 4-byte instructions, and the stored field is shifted left by 2 to form the byte address. How many distinct byte addresses can be represented by this field?",
+      "answer": "16777216",
+      "explanation": "A 24-bit field has 2^24=16,777,216 encodings. Shifting each left by two changes alignment and range, but not the number of distinct encoded targets."
+    },
+    {
+      "id": "coa-isa-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit instruction format has a 6-bit opcode, 5-bit source register, 5-bit destination register and 16-bit immediate. The instruction adds the sign-extended immediate to the source register. Which immediate encodings produce a negative operand?",
+      "options": [
+        "Those whose most significant immediate bit is 1",
+        "Those whose least significant bit is 1",
+        "Those with an even number of 1 bits",
+        "None; a 16-bit immediate is always unsigned"
+      ],
+      "answer": [
+        "Those whose most significant immediate bit is 1"
+      ],
+      "explanation": "Under two's-complement sign extension, the most significant bit of the immediate is its sign bit. A 1 in that position yields a negative 32-bit value."
+    },
+    {
+      "id": "coa-isa-040",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An ISA has 96 opcodes, encoded in a fixed-width opcode field. What is the minimum number of opcode bits required?",
+      "answer": "7",
+      "explanation": "Six bits encode 64 opcodes, which is insufficient. Seven bits encode 128, so the minimum width is ceil(log2 96)=7."
+    },
+    {
+      "id": "coa-isa-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A base register contains 0x4000. An instruction's scaled-index mode computes EA = base + 4×index, with a 32-bit index interpreted unsigned. If index=0xFFFFFFFE, and arithmetic wraps modulo 2^32, what is EA?",
+      "options": [
+        "0x3FF8",
+        "0x3FFC",
+        "0x4008",
+        "0xFFFFFFF8"
+      ],
+      "answer": [
+        "0x3FF8"
+      ],
+      "explanation": "The unsigned index is 2^32-2. Multiplying by 4 modulo 2^32 gives 2^32-8. Adding 0x4000 and wrapping yields 0x3FF8."
+    },
+    {
+      "id": "coa-isa-042",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "An ISA has variable-length instructions. Which statements are generally true?",
+      "options": [
+        "Instruction boundaries may require decoding length information.",
+        "The PC increment need not be the same for every instruction.",
+        "Every instruction must occupy exactly one memory word.",
+        "A PC-relative branch base may depend on the ISA's definition of the PC during execution."
+      ],
+      "answer": [
+        "Instruction boundaries may require decoding length information.",
+        "The PC increment need not be the same for every instruction.",
+        "A PC-relative branch base may depend on the ISA's definition of the PC during execution."
+      ],
+      "explanation": "With variable length, instruction decoding determines the next boundary and PC advance. Branch semantics must specify whether the PC refers to the current or next instruction (or another defined point)."
+    },
+    {
+      "id": "coa-isa-043",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A signed 13-bit PC-relative branch displacement is measured in 8-byte units. The next PC equals 0x5000. What is the greatest target address reachable? Give a hexadecimal answer.",
+      "answer": "0xCFF8",
+      "explanation": "The maximum signed 13-bit value is 2^12-1=4095. Scaling gives 4095×8=32760=0x7FF8. Adding to 0x5000 yields 0xCFF8."
+    },
+    {
+      "id": "coa-isa-044",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An ISA uses a 16-bit immediate in a 32-bit ADD instruction. The ISA specifies that the immediate is sign-extended. Which operation is performed for immediate bits 0x8000?",
+      "options": [
+        "Add -32768",
+        "Add +32768",
+        "Add 32767",
+        "Add 0"
+      ],
+      "answer": [
+        "Add -32768"
+      ],
+      "explanation": "0x8000 is the most negative 16-bit two's-complement value, -2^15=-32768. Sign extension preserves that value in 32 bits."
+    },
+    {
+      "id": "coa-isa-045",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit instruction uses a 6-bit opcode and a 5-bit register field. Its remaining 21 bits are divided into a 9-bit signed displacement and a mode field. How many distinct modes can the field encode?",
+      "answer": "4096",
+      "explanation": "The mode field width is 21-9=12 bits, so it has 2^12=4096 possible encodings."
+    },
+    {
+      "id": "coa-isa-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A jump instruction forms its target by concatenating the upper 4 bits of the next PC with a 26-bit field shifted left by 2. Which property of this encoding is correct?",
+      "options": [
+        "It reaches only addresses in the same 256-MiB region selected by those upper bits.",
+        "It can reach any 32-bit byte address without restrictions.",
+        "It can represent unaligned byte addresses.",
+        "It needs a memory-indirect read to form every target."
+      ],
+      "answer": [
+        "It reaches only addresses in the same 256-MiB region selected by those upper bits."
+      ],
+      "explanation": "The 28-bit field supplies bits [29:2] after shifting, while the upper four bits come from the next PC. Thus the target remains in the region determined by those upper bits and is 4-byte aligned."
+    },
+    {
+      "id": "coa-isa-047",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A `LOAD R, [B + d]` instruction reads a 4-byte value. The ISA defines the displacement as signed and the effective address as byte-addressed. Which statements are correct?",
+      "options": [
+        "A displacement of -1 can make the access unaligned.",
+        "The value of d is added to B; it is not multiplied by four unless the ISA explicitly specifies scaling.",
+        "If B=0x1000 and d=-8, the starting byte address is 0x0FF8.",
+        "A 4-byte operand always has an address divisible by four."
+      ],
+      "answer": [
+        "A displacement of -1 can make the access unaligned.",
+        "The value of d is added to B; it is not multiplied by four unless the ISA explicitly specifies scaling.",
+        "If B=0x1000 and d=-8, the starting byte address is 0x0FF8."
+      ],
+      "explanation": "Byte offsets are not implicitly scaled. Negative offsets are allowed, and unaligned addresses are possible unless alignment is enforced by the ISA or implementation."
+    },
+    {
+      "id": "coa-isa-048",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 16-bit instruction reserves 5 bits for its opcode. The next two fields are equal-width register specifiers; one remaining bit is unused. What is the maximum number of registers each specifier can name?",
+      "answer": "32",
+      "explanation": "The two register fields share 16-5=11 bits, so equal integer widths can be at most 5 bits each (10 bits total). Each 5-bit field names 2^5=32 registers; one bit remains unused or reserved."
+    },
+    {
+      "id": "coa-isa-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An instruction's effective-address expression is `EA = (R2) + 12`, where parentheses denote register contents. R2 contains 0x500 and memory[0x50C] contains 0xA7. For a load, what value is loaded?",
+      "options": [
+        "0x50C",
+        "0x500",
+        "0xA7",
+        "12"
+      ],
+      "answer": [
+        "0xA7"
+      ],
+      "explanation": "The base-plus-displacement calculation gives EA=0x500+12=0x50C. A load reads the memory operand at that address, so the loaded value is memory[0x50C]=0xA7."
+    },
+    {
+      "id": "coa-isa-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ISA has 32-bit fixed-length instructions and byte addresses. A branch field is 18 bits signed and scaled by 4 bytes relative to the next PC. A branch is at 0x10000000. Is a target at 0x10080004 encodable by this instruction?",
+      "options": [
+        "Yes, it is exactly at the maximum positive displacement.",
+        "No, it is one four-byte unit beyond the maximum positive displacement.",
+        "No, the target is behind the branch.",
+        "Yes, because the field is interpreted as unsigned."
+      ],
+      "answer": [
+        "No, it is one four-byte unit beyond the maximum positive displacement."
+      ],
+      "explanation": "The next PC is 0x10000004. The target difference is 0x80000=524,288 bytes, or 131,072 four-byte units. A signed 18-bit field has maximum +131,071, so the target is one unit out of range; a longer transfer sequence or another addressing form is needed."
+    },
+    {
+      "id": "coa-isa-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A loop starts with R=0x1800 and executes `LOAD R0, [R+]` five times. The operand is one 8-byte element and post-increment occurs after each access. Which pair gives the address used by the fifth load and the final R?",
+      "options": [
+        "(0x1820, 0x1828)",
+        "(0x1828, 0x1830)",
+        "(0x1800, 0x1828)",
+        "(0x1820, 0x1820)"
+      ],
+      "answer": [
+        "(0x1820, 0x1828)"
+      ],
+      "explanation": "The five addresses are 0x1800, 0x1808, 0x1810, 0x1818, and 0x1820. After the fifth post-increment, R advances by 5×8=40=0x28 to 0x1828."
+    },
+    {
+      "id": "coa-isa-052",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A byte-addressed ISA defines `STORE [B + 4I - 12], R` with no implicit truncation and 32-bit effective-address arithmetic. Which statements are correct for B=0x1000 and I=3?",
+      "options": [
+        "The effective address is 0x0FFC.",
+        "Changing I by one changes the effective address by four bytes.",
+        "The displacement is applied after scaling I.",
+        "The formula describes memory-indirect addressing."
+      ],
+      "answer": [
+        "Changing I by one changes the effective address by four bytes.",
+        "The displacement is applied after scaling I."
+      ],
+      "explanation": "4I=12, so EA=0x1000+12-12=0x1000. The first option's 0x0FFC is therefore false. The index stride is 4 bytes, and this expression computes an address directly rather than loading a pointer from memory."
+    },
+    {
+      "id": "coa-isa-053",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A memory-indirect operand uses an address field A=0x40. The machine reads M[0x40]=0x180, then interprets 0x180 as the effective address and reads M[0x180]=73. What operand value is supplied?",
+      "answer": "73",
+      "explanation": "Memory indirect first follows the pointer at A: M[0x40]=0x180. It then fetches the operand from M[0x180], which is 73."
+    },
+    {
+      "id": "coa-isa-054",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A compiler emits `ADD R3, R3, #1` in a load-store ISA. Which architectural state changes as a direct result of this instruction, assuming a 4-byte fixed instruction, no exception and no condition-code update?",
+      "options": [
+        "R3 is incremented by one; memory is not accessed for the immediate operand.",
+        "Memory at address 1 is incremented.",
+        "The PC is incremented by one byte.",
+        "The value in register R1 is copied to R3."
+      ],
+      "answer": [
+        "R3 is incremented by one; memory is not accessed for the immediate operand."
+      ],
+      "explanation": "The second source is an immediate value encoded in the instruction. The arithmetic writes the sum to R3; it does not dereference address 1. Normal instruction sequencing advances the PC by instruction length, not by the immediate value."
+    },
+    {
+      "id": "coa-isa-055",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit register contains 0xFFFFFFF8. It is used as a signed byte displacement added to base 0x00001000, with effective-address arithmetic modulo 2^32. What is the resulting address in hexadecimal?",
+      "answer": "0x0FF8",
+      "explanation": "As a signed 32-bit two's-complement number, 0xFFFFFFF8 is -8. Thus EA=0x1000-8=0x0FF8."
+    },
+    {
+      "id": "coa-isa-056",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "An instruction uses an immediate operand rather than a memory operand. Which effects follow from this distinction?",
+      "options": [
+        "The operand bits are carried in the instruction encoding.",
+        "Changing the contents of memory at the numeric value of the immediate does not by itself change the operand.",
+        "The CPU must perform a data-memory read at the immediate value to obtain the operand.",
+        "The immediate field's width limits the set of directly representable constants."
+      ],
+      "answer": [
+        "The operand bits are carried in the instruction encoding.",
+        "Changing the contents of memory at the numeric value of the immediate does not by itself change the operand.",
+        "The immediate field's width limits the set of directly representable constants."
+      ],
+      "explanation": "An immediate is part of the instruction, so it is not fetched through a data-memory effective address. Its field width and signedness determine which values can be encoded directly."
+    },
+    {
+      "id": "coa-isa-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack grows toward lower addresses. SP points to the current top item. A POP instruction reads the item at SP and then adds 8 to SP. If SP=0x2F0 and M[0x2F0]=0x12345678, what value is popped and what is the final SP?",
+      "options": [
+        "Value 0x12345678, SP=0x2F8",
+        "Value 0x12345678, SP=0x2E8",
+        "Value M[0x2F8], SP=0x2F8",
+        "Value 0x2F0, SP=0x2F8"
+      ],
+      "answer": [
+        "Value 0x12345678, SP=0x2F8"
+      ],
+      "explanation": "This POP uses the old SP as the address, reads M[0x2F0], and then increments SP by 8. The growth direction describes push allocation; the instruction's explicit update defines this pop behavior."
+    },
+    {
+      "id": "coa-isa-058",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A two-dimensional array of 32-bit elements is stored in row-major order with 10 columns. Its first element is at byte address 0x4000. Using zero-based indices, what is the byte address of element A[3][7]?",
+      "answer": "16532",
+      "explanation": "The linear element offset is 3×10+7=37 elements. Each element occupies 4 bytes, so the byte offset is 148. Since 0x4000=16,384, the address is 16,384+148=16,532."
+    },
+    {
+      "id": "coa-isa-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a row-major array of 32-bit elements, the compiler calculates `base + 4 × (10i + j)` for A[i][j]. Which part of this expression is the effective address?",
+      "options": [
+        "The entire computed byte address, including base, row stride, column index and element scaling",
+        "Only the value of j",
+        "The memory contents at base",
+        "The immediate constant 4"
+      ],
+      "answer": [
+        "The entire computed byte address, including base, row stride, column index and element scaling"
+      ],
+      "explanation": "The effective address is the final location obtained after applying the base, row-major linearization, element-size scaling and indices. The individual terms are inputs to address formation, not the EA by themselves."
+    },
+    {
+      "id": "coa-isa-060",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor supports `LOAD R0, [R1 + R2×s + d]`. Which statements describe the roles of the terms correctly?",
+      "options": [
+        "R1 can serve as a base for a data structure.",
+        "R2 can select an element when s is the element size in bytes.",
+        "d can select a fixed field within each element.",
+        "The formula necessarily performs an additional pointer read from memory."
+      ],
+      "answer": [
+        "R1 can serve as a base for a data structure.",
+        "R2 can select an element when s is the element size in bytes.",
+        "d can select a fixed field within each element."
+      ],
+      "explanation": "The expression combines base, scaled index and displacement in one address calculation. It is not memory-indirect unless the ISA explicitly requires dereferencing an intermediate pointer."
+    },
+    {
+      "id": "coa-isa-061",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A load uses base B=0x10000, unsigned index I=37, element scale 8 and signed displacement -16. The address calculation is 32-bit and no wrap occurs. What is the effective address in hexadecimal?",
+      "answer": "0x10118",
+      "explanation": "The scaled index is 37×8=296=0x128. Applying the displacement gives offset 0x128-0x10=0x118. Therefore EA=0x10000+0x118=0x10118."
+    },
+    {
+      "id": "coa-isa-062",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An instruction field contains 0x0030. In one opcode it is interpreted as an immediate constant; in another opcode it is interpreted as a direct byte address. Which statement is correct?",
+      "options": [
+        "The bit pattern is the same, but the instruction's opcode/semantics determine its interpretation.",
+        "The field is always an address because it is 16 bits wide.",
+        "The field is always an immediate because 0x30 is small.",
+        "The interpretation depends only on the contents of memory at 0x30."
+      ],
+      "answer": [
+        "The bit pattern is the same, but the instruction's opcode/semantics determine its interpretation."
+      ],
+      "explanation": "Instruction fields do not have a universal meaning independent of the ISA definition. Opcode and addressing-mode semantics determine whether bits denote a value, register, address or other control information."
+    },
+    {
+      "id": "coa-isa-063",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit byte address is split into a 20-bit region number and a 12-bit offset within that region. A direct-address instruction supplies only the 12-bit offset, while a region register supplies the upper bits. What is the size of one region in bytes?",
+      "answer": "4096",
+      "explanation": "A 12-bit byte offset selects 2^12=4096 bytes within a region."
+    },
+    {
+      "id": "coa-isa-064",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program is relocated by adding the same constant K to all code and data addresses. Which instruction references remain valid without rewriting their encoded fields, assuming the relative target stays in range?",
+      "options": [
+        "A PC-relative branch whose source and target are both relocated by K.",
+        "An absolute direct address to a global variable.",
+        "A base-relative reference when the base register is initialized to the relocated base.",
+        "An immediate constant representing an unrelated integer literal."
+      ],
+      "answer": [
+        "A PC-relative branch whose source and target are both relocated by K.",
+        "A base-relative reference when the base register is initialized to the relocated base."
+      ],
+      "explanation": "Relative differences are unchanged when both endpoints move by K. A relocated base register also restores the correct base-relative address. The absolute address option becomes stale, while an unrelated literal is not a relocated address reference."
+    },
+    {
+      "id": "coa-isa-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch uses a signed displacement in halfword units relative to the next PC. The target instruction is at 0x800 and the branch's next PC is 0x820. What displacement must be encoded?",
+      "options": [
+        "-16",
+        "-32",
+        "+16",
+        "+32"
+      ],
+      "answer": [
+        "-16"
+      ],
+      "explanation": "The byte difference is 0x800-0x820=-0x20=-32 bytes. In 2-byte units, the encoded displacement is -32/2=-16."
+    },
+    {
+      "id": "coa-isa-066",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit byte address uses a 16-bit unsigned field as an offset in a base-plus-offset instruction. How many distinct byte locations can be selected relative to one fixed base, assuming no wrap and all offsets are allowed?",
+      "answer": "65536",
+      "explanation": "A 16-bit unsigned offset has 2^16=65,536 distinct values, from 0 through 65,535, so it can select that many byte locations relative to a fixed base."
+    },
+    {
+      "id": "coa-isa-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ISA has a 12-bit signed displacement but specifies that load/store displacements are scaled by the access size. For an 8-byte load with encoded displacement -3, what byte offset is added to the base?",
+      "options": [
+        "-24",
+        "-3",
+        "+24",
+        "-8"
+      ],
+      "answer": [
+        "-24"
+      ],
+      "explanation": "The ISA explicitly defines scaling by the access size. Therefore the byte offset is -3×8=-24 bytes."
+    },
+    {
+      "id": "coa-isa-068",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "When an ISA supports auto-increment addressing, which design details must be specified for unambiguous execution?",
+      "options": [
+        "Whether the old or updated register value supplies the effective address.",
+        "The amount by which the register changes, often tied to operand size.",
+        "Whether the update occurs before or after the memory access.",
+        "The color of the memory cell storing the operand."
+      ],
+      "answer": [
+        "Whether the old or updated register value supplies the effective address.",
+        "The amount by which the register changes, often tied to operand size.",
+        "Whether the update occurs before or after the memory access."
+      ],
+      "explanation": "Pre- versus post-update determines which address is accessed, and the increment amount determines the next register value. Physical cell color has no architectural meaning."
+    },
+    {
+      "id": "coa-isa-069",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A little-endian machine stores a 32-bit word 0x12345678 starting at byte address 0x100. A byte load uses direct addressing to read address 0x102. What byte value is returned?",
+      "answer": "52",
+      "explanation": "Little endian stores the least significant byte at the lowest address: address 0x100 holds 0x78, 0x101 holds 0x56, 0x102 holds 0x34, and 0x103 holds 0x12. Thus the loaded byte is 0x34=52 decimal."
+    },
+    {
+      "id": "coa-isa-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An instruction is `STORE [R0 + 2×R1], R2`. R0=1000, R1=7, and R2=55. Which statement gives the memory effect?",
+      "options": [
+        "The value 55 is written at byte address 1014.",
+        "The value 1014 is written at address 55.",
+        "The value 55 is added to R0.",
+        "The byte at address 1000 is incremented by 7."
+      ],
+      "answer": [
+        "The value 55 is written at byte address 1014."
+      ],
+      "explanation": "The effective address is R0+2×R1=1000+14=1014. STORE writes the source register value R2=55 to memory at that address."
+    },
+    {
+      "id": "coa-isa-071",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An assembler must encode a reference to a symbol whose final address is not known until linking. Which mechanisms can support this reference?",
+      "options": [
+        "A relocation entry for an absolute address field.",
+        "A PC-relative relocation whose displacement is resolved after placement.",
+        "A register-indirect sequence after loading the symbol address at runtime.",
+        "Assuming every symbol is located at address zero."
+      ],
+      "answer": [
+        "A relocation entry for an absolute address field.",
+        "A PC-relative relocation whose displacement is resolved after placement.",
+        "A register-indirect sequence after loading the symbol address at runtime."
+      ],
+      "explanation": "The linker can patch absolute or relative fields using relocation information. A runtime sequence can load the address into a register and dereference indirectly. Assuming address zero is not a general solution."
+    },
+    {
+      "id": "coa-isa-072",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit instruction's 16-bit signed immediate is sign-extended and then shifted left by 2 before being added to a base register. The field contains 0xFFFC. What signed byte offset is applied?",
+      "answer": "-16",
+      "explanation": "0xFFFC interpreted as signed 16-bit is -4. Sign extension preserves -4, and shifting left by 2 multiplies by 4, giving -16 bytes."
+    },
+    {
+      "id": "coa-isa-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A machine uses byte addresses and allows only aligned 4-byte loads. A base register is 0x1000 and the ISA computes EA=base+signed byte displacement without scaling. Which displacement causes an alignment fault?",
+      "options": [
+        "+6",
+        "+8",
+        "-4",
+        "+12"
+      ],
+      "answer": [
+        "+6"
+      ],
+      "explanation": "The resulting address is 0x1006 for displacement +6, which is not divisible by 4. The other effective addresses, 0x1008, 0x0FFC and 0x100C, are 4-byte aligned."
+    },
+    {
+      "id": "coa-isa-074",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statements about direct and indirect addressing are correct?",
+      "options": [
+        "In direct addressing, an instruction field supplies the effective address.",
+        "In memory-indirect addressing, a memory read obtains a pointer used as the effective address.",
+        "Register-indirect addressing stores the operand itself in the instruction's register-number field.",
+        "Indirect addressing can require an extra memory access compared with direct addressing."
+      ],
+      "answer": [
+        "In direct addressing, an instruction field supplies the effective address.",
+        "In memory-indirect addressing, a memory read obtains a pointer used as the effective address.",
+        "Indirect addressing can require an extra memory access compared with direct addressing."
+      ],
+      "explanation": "Direct addressing uses the encoded address; memory indirect follows a pointer stored at that address. Register indirect obtains an address from a register, not an operand value from the register-number bits themselves."
+    },
+    {
+      "id": "coa-isa-075",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit instruction uses 8 bits for opcode, 6 bits for each of two register operands, and a 12-bit displacement. The remaining bits would encode the addressing mode. How many bits remain for that mode field?",
+      "answer": "0",
+      "explanation": "The listed fields consume 8+6+6+12=32 bits, leaving zero bits for a mode field. The format as stated cannot encode a separate mode selector."
+    },
+    {
+      "id": "coa-isa-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ISA defines `LEA R5, [R2 + 12]` to compute an effective address without reading the addressed memory. R2=0x400 and M[0x40C]=99. What is written to R5?",
+      "options": [
+        "0x40C",
+        "99",
+        "0x400",
+        "12"
+      ],
+      "answer": [
+        "0x40C"
+      ],
+      "explanation": "LEA computes and returns the address expression, R2+12=0x40C. It does not load M[0x40C], so the value 99 is irrelevant."
+    },
+    {
+      "id": "coa-isa-077",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Consider `MOV R0, R1` and `LOAD R0, [R1]` in an ISA where brackets denote memory dereferencing. Which statements are correct?",
+      "options": [
+        "The first copies the contents of R1 into R0.",
+        "The second uses R1's contents as a memory address.",
+        "The second necessarily reads memory while the first does not.",
+        "Both instructions mean the same operation because they mention R1."
+      ],
+      "answer": [
+        "The first copies the contents of R1 into R0.",
+        "The second uses R1's contents as a memory address.",
+        "The second necessarily reads memory while the first does not."
+      ],
+      "explanation": "Register-direct source uses R1's value itself. Bracketed register-indirect addressing treats that value as the address of a memory operand, so LOAD performs a data-memory read."
+    },
+    {
+      "id": "coa-isa-078",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack pointer begins at 0x900. A PUSH instruction for an 8-byte item pre-decrements SP by 8 before storing; a second PUSH follows. At what address is the second item stored? Give a hexadecimal answer.",
+      "answer": "0x8F0",
+      "explanation": "After the first pre-decrement, SP=0x8F8 and the first item is stored there. The second pre-decrement produces SP=0x8F0, the address used for the second item."
+    },
+    {
+      "id": "coa-isa-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program is moved from address P to P+K. A branch instruction at P+20 targets P+100 using a PC-relative displacement based on the next instruction. If both the branch and target move by K, what happens to the encoded displacement?",
+      "options": [
+        "It remains unchanged.",
+        "It increases by K.",
+        "It decreases by K.",
+        "It must become an absolute address."
+      ],
+      "answer": [
+        "It remains unchanged."
+      ],
+      "explanation": "The branch and its target shift by the same amount, so their difference (target minus next PC) is unchanged. Therefore the relative displacement remains valid after relocation."
+    },
+    {
+      "id": "coa-isa-080",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack frame has base pointer FP=0x7000. A local variable is located at signed byte offset -20 from FP. What address does a base-plus-displacement load use?",
+      "answer": "0x6FEC",
+      "explanation": "Twenty bytes below 0x7000 is 0x7000-0x14=0x6FEC. The signed negative displacement selects a location below the frame base."
+    },
+    {
+      "id": "coa-isa-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a load instruction, let EA denote the effective address and M[x] the memory word at address x. Which equations correctly describe the operand in the stated mode?",
+      "options": [
+        "Direct address A: operand = M[A].",
+        "Register indirect R: operand = M[R].",
+        "Immediate constant c: operand = M[c].",
+        "Memory indirect A: operand = M[M[A]]."
+      ],
+      "answer": [
+        "Direct address A: operand = M[A].",
+        "Register indirect R: operand = M[R].",
+        "Memory indirect A: operand = M[M[A]]."
+      ],
+      "explanation": "Direct addressing makes A the EA; register indirect makes the register contents the EA; memory indirect first reads a pointer at A and then reads the operand through that pointer. An immediate operand is c itself, not M[c]."
+    },
+    {
+      "id": "coa-isa-082",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A branch instruction is at byte address 0x208 and has length 4 bytes. Its target is 0x1E0, and the displacement is measured in bytes relative to the next instruction. What signed displacement must be encoded?",
+      "answer": "-44",
+      "explanation": "The next PC is 0x20C. The displacement is target-nextPC=0x1E0-0x20C=-0x2C=-44 bytes."
+    },
+    {
+      "id": "coa-isa-083",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An ISA has a 12-bit unsigned immediate field. A program needs the constant 5000, which cannot fit in that field. Which is a valid general strategy if the ISA provides a wider-immediate instruction sequence?",
+      "options": [
+        "Construct the value using multiple instructions or a literal load.",
+        "Treat 5000 as a 12-bit value without changing its bit pattern.",
+        "Assume sign extension makes the field wider than 12 bits.",
+        "Read memory address 5000 even when the operand is meant to be a constant."
+      ],
+      "answer": [
+        "Construct the value using multiple instructions or a literal load."
+      ],
+      "explanation": "A 12-bit unsigned immediate represents at most 4095. A larger constant must be synthesized from multiple pieces/instructions or loaded from a literal pool, if the ISA supports those mechanisms."
+    },
+    {
+      "id": "coa-isa-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor provides both a short PC-relative branch and an indirect jump through a register. Which statements about using them are correct?",
+      "options": [
+        "The short branch can encode a compact transfer within its displacement range.",
+        "The register-indirect jump can target an address computed or loaded at runtime.",
+        "The short branch can always reach every address in a 64-bit space.",
+        "A register-indirect jump may require a prior instruction to place the target in the register."
+      ],
+      "answer": [
+        "The short branch can encode a compact transfer within its displacement range.",
+        "The register-indirect jump can target an address computed or loaded at runtime.",
+        "A register-indirect jump may require a prior instruction to place the target in the register."
+      ],
+      "explanation": "A narrow PC-relative field has finite range, while an indirect jump uses a register-supplied target. Preparing that register may require earlier instructions."
+    },
+    {
+      "id": "coa-isa-085",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit instruction supports up to three register fields, each naming one of 32 registers. An instruction uses two register operands and one 16-bit immediate. How many unused bits remain if the opcode is 6 bits and no mode field is present?",
+      "answer": "0",
+      "explanation": "Two register fields use 2×5=10 bits. Including the opcode and immediate gives 6+10+16=32 bits, so no bits remain unused."
+    },
+    {
+      "id": "coa-isa-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit ISA divides a memory address into a 4-bit segment selector and a 28-bit offset. The segment register contains base 0xA0000000; the offset field is 0x00123456. The effective address is segment base plus offset. What is the effective address?",
+      "options": [
+        "0xA0123456",
+        "0x00123456",
+        "0xB0000000",
+        "0xA0000004"
+      ],
+      "answer": [
+        "0xA0123456"
+      ],
+      "explanation": "The segment base contributes 0xA0000000 and the offset contributes 0x00123456. Their sum is 0xA0123456."
+    },
+    {
+      "id": "coa-isa-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A loop iterates over 32-bit integers with pointer P initially at the first element. Which instruction sequence accesses consecutive elements without recomputing a base-plus-index expression on every iteration?",
+      "options": [
+        "Load through [P], then increment P by 4.",
+        "Load through immediate constant 4, then leave P unchanged.",
+        "Load through [P+4] and decrement P by 4.",
+        "Load from address equal to the loaded element's value."
+      ],
+      "answer": [
+        "Load through [P], then increment P by 4."
+      ],
+      "explanation": "Each integer occupies 4 bytes. Register-indirect load uses the current P, and post-update by 4 makes P point to the next consecutive element."
+    },
+    {
+      "id": "coa-isa-088",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A direct-address instruction contains the 16-bit byte address 0xFFFE. It reads a 4-byte word, and the ISA wraps address arithmetic modulo 2^16. What is the address of the fourth byte read? Give a hexadecimal answer.",
+      "answer": "0x0001",
+      "explanation": "The four byte addresses are 0xFFFE, 0xFFFF, 0x0000 and 0x0001 after 16-bit wraparound. Thus the fourth byte is at 0x0001."
+    },
+    {
+      "id": "coa-isa-089",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statements about byte-addressed versus word-addressed machines are correct?",
+      "options": [
+        "On a byte-addressed machine, consecutive byte locations have consecutive addresses.",
+        "On a word-addressed machine, one address may identify an entire word.",
+        "A numeric address has the same byte interpretation on every architecture.",
+        "Converting a word address to a byte address requires knowing the number of bytes per word."
+      ],
+      "answer": [
+        "On a byte-addressed machine, consecutive byte locations have consecutive addresses.",
+        "On a word-addressed machine, one address may identify an entire word.",
+        "Converting a word address to a byte address requires knowing the number of bytes per word."
+      ],
+      "explanation": "Address units are architectural. A word address maps to a byte address by multiplying by bytes per word, so the unit size must be known."
+    },
+    {
+      "id": "coa-isa-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A processor has 2-byte and 4-byte instructions. The current PC is 0x100, and the decoded instruction is 2 bytes long. A branch displacement is relative to the next instruction. Which PC value is the displacement base?",
+      "options": [
+        "0x102",
+        "0x100",
+        "0x104",
+        "The target address itself"
+      ],
+      "answer": [
+        "0x102"
+      ],
+      "explanation": "The ISA says the base is the next instruction. Since this decoded instruction is 2 bytes, the next PC is 0x100+2=0x102."
+    },
+    {
+      "id": "coa-isa-091",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A reverse traversal uses `LOAD R0, [--P]` for 4-byte elements. P starts at address 0x240. What is the address used by the third load?",
+      "answer": "0x234",
+      "explanation": "Pre-decrement subtracts 4 before each access. The three effective addresses are 0x23C, 0x238 and 0x234; the third load uses 0x234."
+    },
+    {
+      "id": "coa-isa-092",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ISA encodes a displacement d and specifies EA = B + (d sign-extended to 32 bits). Which statements follow?",
+      "options": [
+        "A negative d can refer to bytes before B.",
+        "Sign extension preserves the signed numeric value of d.",
+        "A positive d becomes negative solely because its field is widened.",
+        "The field's width limits the range of relative locations directly reachable from B."
+      ],
+      "answer": [
+        "A negative d can refer to bytes before B.",
+        "Sign extension preserves the signed numeric value of d.",
+        "The field's width limits the range of relative locations directly reachable from B."
+      ],
+      "explanation": "Sign extension copies the sign bit while retaining the two's-complement value. Therefore positive values stay positive, negative values can address below the base, and finite field width imposes a finite range."
+    },
+    {
+      "id": "coa-isa-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 32-bit ISA has 64 registers. A three-operand ADD uses destination and two source register fields, each 6 bits. If the instruction also has an 8-bit opcode and a 10-bit immediate, how many bits remain for a mode field?",
+      "options": [
+        "The fields fit exactly",
+        "The fields exceed the instruction by 4 bits",
+        "The fields exceed the instruction by 2 bits",
+        "The fields exceed the instruction by 8 bits"
+      ],
+      "answer": [
+        "The fields exceed the instruction by 4 bits"
+      ],
+      "explanation": "The fields require 8+3×6+10=36 bits, which exceeds the 32-bit instruction by 4 bits. The format is impossible as stated; at least one field must shrink or the instruction must be extended."
+    },
+    {
+      "id": "coa-isa-094",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A return instruction uses register-indirect addressing through link register LR. A call has placed return address 0x5004 in LR. What address becomes the next PC when the return executes?",
+      "answer": "0x5004",
+      "explanation": "The indirect return uses the address stored in LR as the control-transfer target. Thus the next PC is 0x5004."
+    },
+    {
+      "id": "coa-isa-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A `CALL target` instruction at address 0x300 has length 4 bytes and saves the address of the following instruction in LR before transferring control. What value is saved in LR?",
+      "options": [
+        "0x304",
+        "0x300",
+        "target+4",
+        "0x2FC"
+      ],
+      "answer": [
+        "0x304"
+      ],
+      "explanation": "The return address is the address immediately after the 4-byte call, 0x300+4=0x304. The target determines the new PC, not the saved return address."
+    },
+    {
+      "id": "coa-isa-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Assume a 32-bit ISA with byte addresses. Which effective-address expressions use an index register scaled by 4?",
+      "options": [
+        "B + 4I + 8",
+        "B + I + 4",
+        "B + (I << 2)",
+        "M[B] + I"
+      ],
+      "answer": [
+        "B + 4I + 8",
+        "B + (I << 2)"
+      ],
+      "explanation": "Multiplying I by four or shifting I left by two creates a four-byte scaled index. The constant +4 is a displacement, and M[B]+I first dereferences B rather than scaling I."
+    },
+    {
+      "id": "coa-isa-097",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An absolute address field in an instruction refers to symbol X at 0x6200. The linker relocates the data segment by +0x1800 and must preserve the reference. What value should the relocated absolute field contain?",
+      "answer": "0x7A00",
+      "explanation": "The symbol's relocated address is 0x6200+0x1800=0x7A00. An absolute field must be updated to this new address by relocation."
+    },
+    {
+      "id": "coa-isa-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A load instruction uses the address expression `EA = PC + sign_extend(d)`, with PC defined as the address of the instruction following the load. If the load is at 0x400 and is 4 bytes long, what base is used for EA formation?",
+      "options": [
+        "0x404",
+        "0x400",
+        "0x408",
+        "The value stored in d"
+      ],
+      "answer": [
+        "0x404"
+      ],
+      "explanation": "The architecture defines PC as the following instruction's address for this mode. A 4-byte load at 0x400 therefore uses PC=0x404 before adding the sign-extended displacement."
+    },
+    {
+      "id": "coa-isa-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A load instruction uses an 8-bit field 0xF0. In one mode it is a signed byte displacement; in another it is a zero-extended unsigned byte offset. The base is 0x1000. Which pair gives the effective addresses (signed mode, unsigned mode)?",
+      "options": [
+        "(0x0FF0, 0x10F0)",
+        "(0x10F0, 0x0FF0)",
+        "(0x0F00, 0x10F0)",
+        "(0x10F0, 0x11F0)"
+      ],
+      "answer": [
+        "(0x0FF0, 0x10F0)"
+      ],
+      "explanation": "In signed mode, 0xF0 sign-extends to -16, so EA=0x1000-0x10=0x0FF0. In zero-extended mode, it is +240, so EA=0x1000+0xF0=0x10F0."
+    },
+    {
+      "id": "coa-isa-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A loop traverses an array of 8-byte elements using a pointer P. It must load the current element and then leave P pointing one past the last element after exactly n iterations. Which update is correct on each iteration?",
+      "options": [
+        "Load through [P], then add 8 to P.",
+        "Add 8 to P, then load through [P], for every iteration including the first.",
+        "Load through [P+8], then subtract 8 from P.",
+        "Load an immediate value equal to P, then leave P unchanged."
+      ],
+      "answer": [
+        "Load through [P], then add 8 to P."
+      ],
+      "explanation": "Each element occupies 8 consecutive bytes. Loading at the current P and then advancing by 8 accesses the current element before moving to the next; after n iterations P is one element past the last accessed item."
+    }
+  ]
+}

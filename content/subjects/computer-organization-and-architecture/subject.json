@@ -1,0 +1,7 @@
+{
+  "id": "computer-organization-and-architecture",
+  "title": "Computer Organization and Architecture",
+  "short": "COMPUTER ORGANIZATION & ARCHITECTURE",
+  "description": "Instruction sets, ALU, control, memory, I/O and pipelines",
+  "order": 40
+}

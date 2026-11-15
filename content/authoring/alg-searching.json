@@ -1,0 +1,1347 @@
+{
+  "topicIndex": 1,
+  "questions": [
+    {
+      "id": "alg-srch-001",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A linear search scans 37 distinct keys in order. How many key comparisons are made when the target is absent?",
+      "answer": "37",
+      "explanation": "An unsuccessful sequential search must inspect every key before concluding that the target is absent, so the comparison count is exactly 37."
+    },
+    {
+      "id": "alg-srch-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A successful sequential search examines a uniformly chosen position in an array of 49 elements. What is the expected number of key comparisons?",
+      "answer": "25",
+      "explanation": "The position is equally likely to be any value from 1 through 49. The mean is (1+49)/2=25 comparisons."
+    },
+    {
+      "id": "alg-srch-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An array of n distinct keys is in arbitrary order, and the target is guaranteed to be present. Which statements about comparison-based search are correct?",
+      "options": [
+        "Some input positions require n comparisons for a left-to-right scan",
+        "A deterministic algorithm may need n comparisons in the worst case",
+        "A comparison tree may distinguish the target position using at least n leaves",
+        "Binary search is valid without first ordering the array"
+      ],
+      "answer": [
+        "Some input positions require n comparisons for a left-to-right scan",
+        "A deterministic algorithm may need n comparisons in the worst case",
+        "A comparison tree may distinguish the target position using at least n leaves"
+      ],
+      "explanation": "With arbitrary order, the algorithm may need to rule out each earlier position before identifying the last key. The candidate locations form at least n distinguishable outcomes; binary search's discard argument depends on sorted order."
+    },
+    {
+      "id": "alg-srch-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Binary search is run on the sorted array [3, 8, 12, 19, 27, 31, 44, 52, 67]. Using low=0, high=8 and mid=floor((low+high)/2), which index is compared first?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "8"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "The first midpoint index is floor((0+8)/2)=4. With zero-based indexing, the key at that index is 27."
+    },
+    {
+      "id": "alg-srch-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In the same binary-search convention, search for 44 in [3, 8, 12, 19, 27, 31, 44, 52, 67]. Which sequence of indices is compared?",
+      "options": [
+        "4, 6",
+        "4, 7, 6",
+        "4, 5, 6",
+        "4, 7"
+      ],
+      "answer": [
+        "4, 6"
+      ],
+      "explanation": "Index 4 contains 27, so search right in [5,8]. With floor((5+8)/2)=6, the key 44 is found at index 6 on the second comparison."
+    },
+    {
+      "id": "alg-srch-006",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A conventional binary search with midpoint floor((low+high)/2) operates on 64 sorted entries. What is the maximum number of key comparisons for a successful search?",
+      "answer": "7",
+      "explanation": "The largest successful path in a balanced binary search tree with 64 keys has 7 comparisons. The height in nodes is floor(log₂64)+1=7."
+    },
+    {
+      "id": "alg-srch-007",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array contains 127 elements. Under ordinary binary search, what is the maximum number of comparisons for an unsuccessful search?",
+      "answer": "7",
+      "explanation": "An unsuccessful search follows a path to an external gap. A balanced decision tree for 127 keys has at most 7 comparisons on a miss, since 2^7−1=127 keys fit in seven levels."
+    },
+    {
+      "id": "alg-srch-008",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties are required for the usual O(log n) binary-search guarantee on an array?",
+      "options": [
+        "The elements are ordered consistently with the comparison",
+        "The search interval can be reduced by a constant fraction after a comparison",
+        "The array length is a power of two",
+        "The array supports constant-time access to a midpoint index"
+      ],
+      "answer": [
+        "The elements are ordered consistently with the comparison",
+        "The search interval can be reduced by a constant fraction after a comparison",
+        "The array supports constant-time access to a midpoint index"
+      ],
+      "explanation": "Sorted order makes the comparison eliminate an interval, and random access lets the midpoint be inspected in constant time. A power-of-two length is unnecessary; arbitrary lengths still give logarithmic search."
+    },
+    {
+      "id": "alg-srch-009",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "For a sorted array with duplicates, which modification returns the first occurrence of x?",
+      "options": [
+        "Stop at any equality",
+        "Continue searching left after equality and record the match",
+        "Continue searching right after equality and discard left half",
+        "Use linear search from the final midpoint only"
+      ],
+      "answer": [
+        "Continue searching left after equality and record the match"
+      ],
+      "explanation": "To find the first occurrence, equality is not a stopping condition. Record the current match and keep the candidate interval to its left until the lower bound is located."
+    },
+    {
+      "id": "alg-srch-010",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "The sorted array [2, 5, 5, 5, 9, 14, 20] is searched by lower_bound for key 5. With zero-based indexing, what index is returned?",
+      "answer": "1",
+      "explanation": "Lower_bound returns the first index whose value is at least the key. The first 5 appears at index 1, so that is the returned position."
+    },
+    {
+      "id": "alg-srch-011",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For [2, 5, 5, 5, 9, 14, 20], upper_bound for key 5 returns the first index whose value is strictly greater than 5. What index is returned?",
+      "answer": "4",
+      "explanation": "The entries equal to 5 occupy indices 1, 2, and 3. The first strictly greater value, 9, is at index 4."
+    },
+    {
+      "id": "alg-srch-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A lower_bound routine uses a half-open interval [lo,hi), with lo=0 and hi=n, and updates lo=mid+1 when A[mid]<x. What is the correct update when A[mid]≥x?",
+      "options": [
+        "hi=mid",
+        "hi=mid−1",
+        "lo=mid",
+        "lo=mid+1"
+      ],
+      "answer": [
+        "hi=mid"
+      ],
+      "explanation": "The midpoint may itself be the first qualifying element, so it must remain in the candidate range. Setting hi=mid shrinks the half-open interval while preserving that possibility."
+    },
+    {
+      "id": "alg-srch-013",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted list contains 80 values, of which 13 equal a particular key x. What is the number of occurrences found using lower_bound and upper_bound, if their results are L and U?",
+      "answer": "13",
+      "explanation": "The matching keys form the half-open index interval [L,U). Its length U−L equals the duplicate count, which is 13."
+    },
+    {
+      "id": "alg-srch-014",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about finding a key in a sorted array with repeated values are correct?",
+      "options": [
+        "A standard binary search may return any one matching index",
+        "Lower_bound and upper_bound delimit the equal-key range",
+        "The number of occurrences is upper_bound(x)−lower_bound(x)",
+        "A duplicate key makes binary search asymptotically linear"
+      ],
+      "answer": [
+        "A standard binary search may return any one matching index",
+        "Lower_bound and upper_bound delimit the equal-key range",
+        "The number of occurrences is upper_bound(x)−lower_bound(x)"
+      ],
+      "explanation": "Ordinary search can stop at any equality. Boundary searches identify the full contiguous duplicate range; duplicates do not change the logarithmic comparison complexity."
+    },
+    {
+      "id": "alg-srch-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A target is equally likely to be at any position 1 through n in a sequential scan, and the scan stops on a match. Which expression is the expected comparison count?",
+      "options": [
+        "n/2",
+        "(n+1)/2",
+        "log₂n",
+        "n−1"
+      ],
+      "answer": [
+        "(n+1)/2"
+      ],
+      "explanation": "The comparison count equals the target's one-based position. Averaging the arithmetic sequence 1,2,…,n gives (n+1)/2."
+    },
+    {
+      "id": "alg-srch-016",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sequential search finds the target at position k with probability 0.5, at position 2k with probability 0.3, and reports absence after n comparisons with probability 0.2. Let n=50 and k=10. Find the expected number of comparisons.",
+      "answer": "21",
+      "explanation": "The weighted average is 0.5?10+0.3?20+0.2?50=5+6+10=21 comparisons."
+    },
+    {
+      "id": "alg-srch-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In exponential search on a sorted array, the target is at index 37. Which powers-of-two probes are used to bracket it before binary search?",
+      "options": [
+        "1, 2, 4, 8, 16, 32, 64",
+        "0, 1, 3, 7, 15, 31",
+        "1, 4, 9, 16, 25, 36",
+        "2, 4, 8, 16, 32 only"
+      ],
+      "answer": [
+        "1, 2, 4, 8, 16, 32, 64"
+      ],
+      "explanation": "The exponential phase probes indices 1,2,4,8,16,32,64. Since the target index 37 lies between the last two probes, binary search is restricted to that bracket."
+    },
+    {
+      "id": "alg-srch-018",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Exponential search probes indices 1,2,4,8,? until the probe reaches or exceeds position 1,000,000. How many probes are made in this bracketing phase?",
+      "answer": "21",
+      "explanation": "The largest power of two below one million is 2^19=524,288, while 2^20=1,048,576 reaches or exceeds it. Counting probe indices 2^0 through 2^20 gives 21 probes."
+    },
+    {
+      "id": "alg-srch-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Exponential search is used for a target at position i in an unbounded sorted array. What is its comparison complexity in terms of i?",
+      "options": [
+        "Θ(1)",
+        "Θ(log i)",
+        "Θ(i)",
+        "Θ(i log i)"
+      ],
+      "answer": [
+        "Θ(log i)"
+      ],
+      "explanation": "The exponential phase takes Θ(log i) probes to find a bracket, and binary search within that bracket also takes Θ(log i) comparisons. Their sum remains Θ(log i)."
+    },
+    {
+      "id": "alg-srch-020",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish binary search on an array from binary search on a singly linked list?",
+      "options": [
+        "Both may use logarithmically many key comparisons",
+        "Finding the middle of a linked-list interval can take linear traversal time",
+        "Array midpoint access is O(1) under the usual model",
+        "A linked-list implementation automatically has O(log n) total time"
+      ],
+      "answer": [
+        "Both may use logarithmically many key comparisons",
+        "Finding the middle of a linked-list interval can take linear traversal time",
+        "Array midpoint access is O(1) under the usual model"
+      ],
+      "explanation": "The comparison count can be logarithmic in either representation, but linked-list midpoint navigation is not constant time. Repeated traversal can raise total time to Θ(n), unlike random-access arrays."
+    },
+    {
+      "id": "alg-srch-021",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sequential search is applied to 18 distinct keys. The target is known to be either the 4th or the 16th key with equal probability. What is the expected number of comparisons?",
+      "answer": "10",
+      "explanation": "The two equally likely outcomes cost 4 and 16 comparisons. Their average is (4+16)/2=10."
+    },
+    {
+      "id": "alg-srch-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary search uses mid=floor((lo+hi)/2) on the inclusive interval [0,10]. If A[mid] is smaller than x, which interval remains possible?",
+      "options": [
+        "[0,mid−1]",
+        "[mid+1,10]",
+        "[mid,10]",
+        "[0,10]"
+      ],
+      "answer": [
+        "[mid+1,10]"
+      ],
+      "explanation": "Because A[mid]<x and the array is sorted, neither mid nor any earlier index can contain x. The remaining candidate interval begins at mid+1."
+    },
+    {
+      "id": "alg-srch-023",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Binary search searches the 15-element array [1,3,5,…,29] for key 18. With floor midpoint and zero-based inclusive bounds, how many key comparisons are made before failure?",
+      "answer": "4",
+      "explanation": "The midpoint values are 15, 23, 19, and 17. The interval becomes empty after the fourth comparison, so the unsuccessful search uses four comparisons."
+    },
+    {
+      "id": "alg-srch-024",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a binary search over a sorted array, which statements about loop invariants are valid?",
+      "options": [
+        "The target, if present, remains within the candidate interval",
+        "Every discarded index is known not to contain the target",
+        "A correct invariant must state that the midpoint is always the target",
+        "The interval should shrink on every iteration"
+      ],
+      "answer": [
+        "The target, if present, remains within the candidate interval",
+        "Every discarded index is known not to contain the target",
+        "The interval should shrink on every iteration"
+      ],
+      "explanation": "The invariant preserves all possible target positions and justifies discarded regions. Progress requires strict interval shrinkage; the midpoint need not equal the target until the algorithm terminates successfully."
+    },
+    {
+      "id": "alg-srch-025",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A search key is absent from an unsorted array of n distinct values. What is the worst-case number of key comparisons for a sequential search?",
+      "options": [
+        "1",
+        "⌈log₂ n⌉",
+        "n",
+        "n−1"
+      ],
+      "answer": [
+        "n"
+      ],
+      "explanation": "To establish absence, every array element must be checked. Thus the worst-case comparison count is exactly n."
+    },
+    {
+      "id": "alg-srch-026",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary search examines at most 8 keys along any successful path. What is the maximum number of keys a perfectly balanced search structure can contain at depth 8, counting the root as depth 1?",
+      "answer": "255",
+      "explanation": "A full binary tree with 8 levels contains 1+2+4+…+128=2^8−1=255 keys. Each root-to-key path then has at most eight comparisons."
+    },
+    {
+      "id": "alg-srch-027",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorted array has 1000 positions and a key appears at indices 412 through 418 inclusive. What does the pair (lower_bound, upper_bound) return?",
+      "options": [
+        "(412,418)",
+        "(412,419)",
+        "(413,419)",
+        "(419,412)"
+      ],
+      "answer": [
+        "(412,419)"
+      ],
+      "explanation": "Lower_bound points to the first matching index, 412. Upper_bound points one past the last match, 419, so the equal range is [412,419)."
+    },
+    {
+      "id": "alg-srch-028",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions can make interpolation search's expected performance better than binary search on a sorted array?",
+      "options": [
+        "Keys are approximately uniformly distributed over the value range",
+        "The array is sorted",
+        "The key values are highly clustered with large gaps",
+        "The data model supports estimating position from key value"
+      ],
+      "answer": [
+        "Keys are approximately uniformly distributed over the value range",
+        "The array is sorted",
+        "The data model supports estimating position from key value"
+      ],
+      "explanation": "Interpolation search estimates a likely index from the key's value and can achieve expected O(log log n) under suitable uniform-distribution assumptions. Clustering can make estimates poor and worst-case time linear."
+    },
+    {
+      "id": "alg-srch-029",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array has 31 elements. How many comparisons does a successful binary search make for the element at index 30 when midpoint uses floor and bounds are inclusive?",
+      "answer": "5",
+      "explanation": "The search follows the rightmost path: indices 15, 23, 27, 29, then 30. Thus the element is found after five comparisons."
+    },
+    {
+      "id": "alg-srch-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operation is performed by a binary-search lower_bound routine when A[mid] is equal to x?",
+      "options": [
+        "Return immediately",
+        "Set hi=mid and continue left",
+        "Set lo=mid+1 and continue right",
+        "Swap the midpoint with the first element"
+      ],
+      "answer": [
+        "Set hi=mid and continue left"
+      ],
+      "explanation": "Equality does not prove that mid is the first occurrence. Retaining mid as the upper boundary and searching left preserves the possibility of an earlier equal value."
+    },
+    {
+      "id": "alg-srch-031",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A conventional binary search tests a 33-element sorted array for an absent key larger than all entries. With inclusive bounds and floor midpoint, how many comparisons occur?",
+      "answer": "6",
+      "explanation": "The rightmost branch compares indices 16,24,28,30,31,32 before the interval becomes empty. This makes six comparisons."
+    },
+    {
+      "id": "alg-srch-032",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A file is stored on a tape that supports sequential access only. Which conclusions about searching are valid?",
+      "options": [
+        "A midpoint record is not available in O(1) time without repositioning",
+        "Binary search's comparison bound alone does not determine elapsed access time",
+        "A sequential scan can be appropriate despite Θ(n) comparisons",
+        "The tape's physical medium makes the records sorted automatically"
+      ],
+      "answer": [
+        "A midpoint record is not available in O(1) time without repositioning",
+        "Binary search's comparison bound alone does not determine elapsed access time",
+        "A sequential scan can be appropriate despite Θ(n) comparisons"
+      ],
+      "explanation": "The cost model must include the time to reach a record. Sequential media can make midpoint access expensive, so a logarithmic number of comparisons need not imply logarithmic total access time."
+    },
+    {
+      "id": "alg-srch-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A search procedure on a sorted array compares x with the last element first. If x is larger, it stops. What can be concluded about its comparison count in that case?",
+      "options": [
+        "It uses one comparison",
+        "It must use log₂n comparisons",
+        "It must scan all n elements",
+        "It uses zero comparisons"
+      ],
+      "answer": [
+        "It uses one comparison"
+      ],
+      "explanation": "The explicit last-element test determines that x exceeds every key in the sorted array. The search can report absence after this single comparison."
+    },
+    {
+      "id": "alg-srch-034",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A linear search checks an array of 40 keys in order. The target is at zero-based index 17. How many key comparisons are made?",
+      "answer": "18",
+      "explanation": "Sequential search starts at index zero and compares each key through index 17, for 17+1=18 comparisons."
+    },
+    {
+      "id": "alg-srch-035",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the comparison complexity of searching are correct?",
+      "options": [
+        "Searching an unsorted array for an arbitrary key has a linear worst-case lower bound",
+        "A sorted array supports logarithmic comparison search",
+        "Preprocessing by sorting can be worthwhile for many subsequent queries",
+        "Sorting once makes every future query O(1)"
+      ],
+      "answer": [
+        "Searching an unsorted array for an arbitrary key has a linear worst-case lower bound",
+        "A sorted array supports logarithmic comparison search",
+        "Preprocessing by sorting can be worthwhile for many subsequent queries"
+      ],
+      "explanation": "Without order, an unsuccessful search may need to inspect every item. Sorting enables binary search, and its one-time cost can be amortized over multiple queries, but each binary-search query remains logarithmic."
+    },
+    {
+      "id": "alg-srch-036",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array has 200 elements. A lower_bound operation returns index 200. How many occurrences of the searched key are present?",
+      "answer": "0",
+      "explanation": "Index 200 is the one-past-the-end position, meaning no element is greater than or equal to the key. Therefore there are no matching occurrences."
+    },
+    {
+      "id": "alg-srch-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorted array contains repeated keys. Which search result is guaranteed by an ordinary binary search that stops as soon as equality is found?",
+      "options": [
+        "The first occurrence",
+        "The last occurrence",
+        "Some occurrence, but not necessarily a boundary occurrence",
+        "The number of occurrences"
+      ],
+      "answer": [
+        "Some occurrence, but not necessarily a boundary occurrence"
+      ],
+      "explanation": "The equality test certifies a match only. Without continuing toward one side, the algorithm has no reason to select the first or last duplicate or count the whole range."
+    },
+    {
+      "id": "alg-srch-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array has 1023 distinct elements. What is the maximum number of comparisons in a successful binary search?",
+      "answer": "10",
+      "explanation": "A full balanced search tree with 1023=2^10−1 keys has ten levels. The deepest successful path therefore contains ten comparisons."
+    },
+    {
+      "id": "alg-srch-039",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary search uses inclusive bounds and sets mid=low+(high−low)/2. Which statements are correct?",
+      "options": [
+        "The expression avoids overflow that may occur in (low+high)/2",
+        "For nonnegative low≤high, it chooses the lower midpoint",
+        "It changes the asymptotic comparison count",
+        "It prevents an off-by-one error in every possible update scheme"
+      ],
+      "answer": [
+        "The expression avoids overflow that may occur in (low+high)/2",
+        "For nonnegative low≤high, it chooses the lower midpoint"
+      ],
+      "explanation": "Computing the difference first avoids overflowing the sum of two large indices, and integer division selects the lower midpoint. Correct interval updates still matter; this expression does not by itself fix all boundary bugs."
+    },
+    {
+      "id": "alg-srch-040",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A successful linear search on n equally likely positions has expected comparisons (n+1)/2. What is this expectation for n=99?",
+      "options": [
+        "49",
+        "49.5",
+        "50",
+        "99"
+      ],
+      "answer": [
+        "50"
+      ],
+      "explanation": "The mean of positions 1 through 99 is (1+99)/2=50 comparisons."
+    },
+    {
+      "id": "alg-srch-041",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sequential search checks 23 elements. The target is absent with probability 0.2; otherwise its successful position is uniformly distributed. What is the expected number of comparisons?",
+      "answer": "16.4",
+      "explanation": "A successful search averages (23+1)/2=12 comparisons, while absence costs 23. With 0.6 probability of a successful search and 0.4 probability of absence, the expectation is 0.6?12+0.4?23=7.2+9.2=16.4."
+    },
+    {
+      "id": "alg-srch-042",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about searching a monotone predicate over integer answers are correct?",
+      "options": [
+        "Binary search can locate the first true value if false values precede true values",
+        "The predicate need not be stored as an explicit sorted array",
+        "The search interval must be chosen to contain a transition or a known boundary",
+        "Binary search remains correct if the predicate alternates arbitrarily"
+      ],
+      "answer": [
+        "Binary search can locate the first true value if false values precede true values",
+        "The predicate need not be stored as an explicit sorted array",
+        "The search interval must be chosen to contain a transition or a known boundary"
+      ],
+      "explanation": "The correctness argument needs a monotone yes/no condition and valid bracketing. It works on an implicit answer space; an arbitrary alternating predicate cannot justify discarding half the candidates."
+    },
+    {
+      "id": "alg-srch-043",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary search over the integer interval [−20, 44] seeks the first feasible value for a monotone predicate. How many candidate integers are initially present?",
+      "answer": "65",
+      "explanation": "The interval is inclusive, so its size is 44−(−20)+1=65 possible integer answers."
+    },
+    {
+      "id": "alg-srch-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A search on a sorted array has duplicate keys and uses the test A[mid]≥x to move the upper bound left. What boundary is it computing?",
+      "options": [
+        "The first index with A[i]≥x",
+        "The last index with A[i]≤x",
+        "An arbitrary occurrence of x",
+        "The insertion position after all copies of x"
+      ],
+      "answer": [
+        "The first index with A[i]≥x"
+      ],
+      "explanation": "Moving left whenever the midpoint is at least x preserves the earliest qualifying position as a candidate. The resulting index is lower_bound, including the insertion position when x is absent."
+    },
+    {
+      "id": "alg-srch-045",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorted array has length n and contains a target in a contiguous run of duplicates. Which procedures can find the run's boundaries in O(log n) comparisons?",
+      "options": [
+        "Run lower_bound(x) and upper_bound(x)",
+        "Find any occurrence, then scan all equal neighbors",
+        "Run two modified binary searches, one for each boundary",
+        "Use an ordinary search and infer multiplicity from its midpoint"
+      ],
+      "answer": [
+        "Run lower_bound(x) and upper_bound(x)",
+        "Run two modified binary searches, one for each boundary"
+      ],
+      "explanation": "Each boundary can be located by a logarithmic binary search. Scanning neighbors takes time proportional to the run length, and an arbitrary matching midpoint gives no multiplicity information."
+    },
+    {
+      "id": "alg-srch-046",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array of 63 elements is searched by binary search for a key smaller than every element. With inclusive bounds and floor midpoint, how many comparisons are made?",
+      "answer": "6",
+      "explanation": "The leftmost path examines indices 31, 15, 7, 3, 1, and 0. After six comparisons the interval is empty."
+    },
+    {
+      "id": "alg-srch-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary-search decision tree for n distinct keys has internal nodes for comparisons and leaves for outcomes. Why are unsuccessful-search gaps also relevant to worst-case analysis?",
+      "options": [
+        "They are possible outcomes that require paths through the decision tree",
+        "They are always found in zero comparisons",
+        "They reduce the number of keys that must be distinguished",
+        "They exist only when duplicate keys are present"
+      ],
+      "answer": [
+        "They are possible outcomes that require paths through the decision tree"
+      ],
+      "explanation": "An absent key can fall into any of the n+1 gaps between keys. The algorithm must reach a leaf identifying the relevant gap, so miss paths contribute to worst-case depth."
+    },
+    {
+      "id": "alg-srch-048",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which choices are valid ways to search an answer space for the minimum feasible integer, given a monotone feasibility test?",
+      "options": [
+        "Maintain one known infeasible boundary and one known feasible boundary",
+        "Check the midpoint and discard the half that cannot contain the first feasible answer",
+        "Stop only when the boundary indices are adjacent",
+        "Discard either half regardless of the predicate result"
+      ],
+      "answer": [
+        "Maintain one known infeasible boundary and one known feasible boundary",
+        "Check the midpoint and discard the half that cannot contain the first feasible answer",
+        "Stop only when the boundary indices are adjacent"
+      ],
+      "explanation": "The invariant brackets the transition; each midpoint result preserves the appropriate feasible/infeasible boundary. Termination at adjacent indices identifies the first feasible integer, while arbitrary discarding breaks correctness."
+    },
+    {
+      "id": "alg-srch-049",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For a sorted array [4, 9, 12, 17, 23, 28, 31], binary search for 23 starts with low=0 and high=6. Which index is compared on the second iteration after the initial midpoint comparison?",
+      "answer": "5",
+      "explanation": "The first midpoint is index 3 containing 17, which is smaller than 23. The new interval is [4,6], whose midpoint is index 5."
+    },
+    {
+      "id": "alg-srch-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array supports binary search in O(log n) comparisons. If accessing the midpoint itself costs Θ(n), what can be said about total time?",
+      "options": [
+        "It remains O(log n)",
+        "It can be O(n log n) under that access model",
+        "It must be Θ(1)",
+        "It becomes O(log log n)"
+      ],
+      "answer": [
+        "It can be O(n log n) under that access model"
+      ],
+      "explanation": "There are O(log n) comparisons, but each midpoint access may cost Θ(n). Multiplying the per-iteration access cost by the number of iterations gives an O(nlog n) upper bound."
+    },
+    {
+      "id": "alg-srch-051",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursive binary search halves a range of 1000 elements, rounding the remaining size upward. What is the maximum number of recursive calls before the range has size at most one?",
+      "answer": "10",
+      "explanation": "Repeated ceiling-halving gives sizes 1000, 500, 250, 125, 63, 32, 16, 8, 4, 2, 1. Ten reductions are required to reach size one."
+    },
+    {
+      "id": "alg-srch-052",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which situations justify preprocessing data into sorted order before answering queries?",
+      "options": [
+        "Many searches will reuse the same data",
+        "The data changes so frequently that sorting dominates all query work",
+        "Queries require predecessor or successor positions",
+        "The input is guaranteed to be searched exactly once and sorting costs Θ(n log n)"
+      ],
+      "answer": [
+        "Many searches will reuse the same data",
+        "Queries require predecessor or successor positions"
+      ],
+      "explanation": "The sorting cost can be amortized over many queries, and ordered data supports boundary queries efficiently. For one search in arbitrary data, sorting first is typically more expensive than a single linear scan."
+    },
+    {
+      "id": "alg-srch-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary search maintains a half-open interval [lo,hi). When lo=hi, what does termination mean for a lower_bound search?",
+      "options": [
+        "The insertion position has been found",
+        "The key is guaranteed to be present",
+        "The array contains no elements",
+        "The algorithm has not made progress"
+      ],
+      "answer": [
+        "The insertion position has been found"
+      ],
+      "explanation": "The loop has narrowed all possible first-qualifying positions to one index. That index may point to a value at least x or equal n, the one-past-the-end insertion position."
+    },
+    {
+      "id": "alg-srch-054",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A uniform successful sequential search on 121 elements has what expected comparison count?",
+      "answer": "61",
+      "explanation": "The target's position is uniform from 1 to 121, so the mean comparisons are (1+121)/2=61."
+    },
+    {
+      "id": "alg-srch-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorted array contains n elements. A binary search misses a key smaller than all values. Which statement about the final lower_bound result is correct?",
+      "options": [
+        "It is index 0",
+        "It is index n−1",
+        "It is index n",
+        "It is undefined"
+      ],
+      "answer": [
+        "It is index 0"
+      ],
+      "explanation": "Every element is at least the absent key, so the first qualifying position is the beginning of the array, index zero."
+    },
+    {
+      "id": "alg-srch-056",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which cases can cause interpolation search to perform Θ(n) probes in the worst case?",
+      "options": [
+        "Keys are heavily clustered rather than uniformly distributed",
+        "The target is near one end and probe estimates repeatedly advance by one",
+        "The array is sorted with nearly uniform spacing",
+        "The value-to-position estimate is accurate at each step"
+      ],
+      "answer": [
+        "Keys are heavily clustered rather than uniformly distributed",
+        "The target is near one end and probe estimates repeatedly advance by one"
+      ],
+      "explanation": "Interpolation's position estimate can be badly skewed on nonuniform data, causing only one-element progress and linear probes. Uniform spacing supports its stronger expected behavior, not a worse case."
+    },
+    {
+      "id": "alg-srch-057",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a sorted array, x appears at indices 7, 8, 9, 10, and 11. What is the size of the equal range returned by lower_bound(x) and upper_bound(x)?",
+      "answer": "5",
+      "explanation": "The half-open equal range is [7,12), whose length is 12−7=5 matching elements."
+    },
+    {
+      "id": "alg-srch-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A monotone predicate is false for answers 0 through 37 and true from 38 onward. Binary search maintains lo=0 known false and hi=100 known true until hi−lo=1. What does hi equal at termination?",
+      "options": [
+        "37",
+        "38",
+        "50",
+        "100"
+      ],
+      "answer": [
+        "38"
+      ],
+      "explanation": "The invariant keeps lo on the false side and hi on the true side. When adjacent, hi is the first feasible answer, which is 38."
+    },
+    {
+      "id": "alg-srch-059",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about sentinel-based linear search are correct?",
+      "options": [
+        "A sentinel can remove a separate end-of-array test from each iteration",
+        "The sentinel must not alter the logical result for an absent key",
+        "A sentinel always reduces the number of key comparisons to O(log n)",
+        "The array may need an extra slot or temporary modification"
+      ],
+      "answer": [
+        "A sentinel can remove a separate end-of-array test from each iteration",
+        "The sentinel must not alter the logical result for an absent key",
+        "The array may need an extra slot or temporary modification"
+      ],
+      "explanation": "Placing the target as a sentinel guarantees loop termination without a bounds check on every step. A post-check distinguishes a real match from the sentinel; the method remains linear and needs safe storage for it."
+    },
+    {
+      "id": "alg-srch-060",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An array contains 26 distinct items in random order. The target's position is uniformly random and is known to be present. What is the expected number of sequential comparisons?",
+      "answer": "13.5",
+      "explanation": "The mean of positions 1 through 26 is (1+26)/2=13.5 comparisons."
+    },
+    {
+      "id": "alg-srch-061",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A binary search is performed on a descending array. Which change is necessary for correctness?",
+      "options": [
+        "Reverse the comparison direction when deciding which half to keep",
+        "Use a midpoint rounded upward only",
+        "Require a power-of-two array size",
+        "Replace the comparison with equality only"
+      ],
+      "answer": [
+        "Reverse the comparison direction when deciding which half to keep"
+      ],
+      "explanation": "Binary search relies on a consistent ordering, but that order may be ascending or descending. The branch conditions must match the direction so that the half containing the target is retained."
+    },
+    {
+      "id": "alg-srch-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array has values [1, 4, 7, 10, 13, 16, 19, 22]. Using lower_bound, what insertion index is returned for key 11?",
+      "answer": "4",
+      "explanation": "The first array value at least 11 is 13, located at zero-based index 4. Lower_bound returns that index even though 11 is absent."
+    },
+    {
+      "id": "alg-srch-063",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements are true for binary search on a sorted array of length n?",
+      "options": [
+        "Its worst-case comparison count is Θ(log n)",
+        "It can be implemented iteratively using O(1) auxiliary space",
+        "A recursive implementation uses O(log n) stack frames",
+        "Its worst-case time is Θ(n) on a random-access array"
+      ],
+      "answer": [
+        "Its worst-case comparison count is Θ(log n)",
+        "It can be implemented iteratively using O(1) auxiliary space",
+        "A recursive implementation uses O(log n) stack frames"
+      ],
+      "explanation": "Each comparison halves the remaining interval. Iteration needs only bounds and a midpoint, while recursion retains one frame per halving; neither makes the random-access worst case linear."
+    },
+    {
+      "id": "alg-srch-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A data set is unsorted and must answer 1000 exact-membership queries. Sorting costs Θ(n log n), and each binary query costs Θ(log n). Ignoring constants, which total bound applies after sorting?",
+      "options": [
+        "Θ(n+1000)",
+        "Θ(n log n+1000 log n)",
+        "Θ(1000n)",
+        "Θ(log(n+1000))"
+      ],
+      "answer": [
+        "Θ(n log n+1000 log n)"
+      ],
+      "explanation": "The total includes one preprocessing sort and 1000 binary searches. Each query costs logarithmic time, so the combined bound is nlogn+1000logn."
+    },
+    {
+      "id": "alg-srch-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A full binary search tree contains 255 keys. How many comparisons are needed on its deepest successful path if the root is compared first?",
+      "answer": "8",
+      "explanation": "Since 255=2^8−1, a perfect tree has eight levels. A deepest key is reached after eight comparisons."
+    },
+    {
+      "id": "alg-srch-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When searching a sorted array for x using a lower-bound routine, the final index equals n. What does this imply?",
+      "options": [
+        "Every array element is less than x",
+        "Every array element is greater than x",
+        "x appears exactly once",
+        "The array is not sorted"
+      ],
+      "answer": [
+        "Every array element is less than x"
+      ],
+      "explanation": "Lower_bound returns n when no element is at least x. Thus all array values are strictly below x; the key may be absent above the maximum."
+    },
+    {
+      "id": "alg-srch-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which implementation details prevent common binary-search errors?",
+      "options": [
+        "Use a clearly defined inclusive or half-open interval",
+        "Ensure every update strictly reduces the interval",
+        "Choose a midpoint expression that avoids index overflow",
+        "Use the same termination and update conditions for every interval convention"
+      ],
+      "answer": [
+        "Use a clearly defined inclusive or half-open interval",
+        "Ensure every update strictly reduces the interval",
+        "Choose a midpoint expression that avoids index overflow"
+      ],
+      "explanation": "Boundary conventions determine valid updates and termination. Strict progress prevents infinite loops, and safe midpoint arithmetic avoids overflow. Inclusive and half-open versions require different update rules."
+    },
+    {
+      "id": "alg-srch-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An unsuccessful sequential search has n=30. The target is absent with probability 0.25; otherwise its successful position is uniformly distributed. Find the expected number of comparisons.",
+      "answer": "19.125",
+      "explanation": "A successful search averages (30+1)/2=15.5 comparisons, while a miss costs 30. The expectation is 0.75?15.5+0.25?30=11.625+7.5=19.125."
+    },
+    {
+      "id": "alg-srch-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorted array has n keys and a query asks for the predecessor of x, defined as the greatest key strictly less than x. Which search primitive is most directly useful?",
+      "options": [
+        "lower_bound(x), then inspect the previous position",
+        "upper_bound(x), then inspect the previous position",
+        "A linear scan is required",
+        "An arbitrary equality search"
+      ],
+      "answer": [
+        "lower_bound(x), then inspect the previous position"
+      ],
+      "explanation": "Lower_bound gives the first position whose value is at least x. The preceding position, when it exists, is therefore the greatest key strictly less than x."
+    },
+    {
+      "id": "alg-srch-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array has 20 elements and the key appears 6 times. If lower_bound returns 4, what does upper_bound return?",
+      "answer": "10",
+      "explanation": "The equal-key interval is half-open and has length six. Therefore U−4=6, so U=10."
+    },
+    {
+      "id": "alg-srch-071",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A search algorithm uses comparisons to locate one of n possible present keys in an unordered array. Which statements are correct in the worst case?",
+      "options": [
+        "A successful algorithm may have to inspect all n positions",
+        "The worst-case number of comparisons is Ω(n)",
+        "The input permutation can make the target appear last in scan order",
+        "A deterministic algorithm can guarantee O(log n) comparisons without extra indexing"
+      ],
+      "answer": [
+        "A successful algorithm may have to inspect all n positions",
+        "The worst-case number of comparisons is Ω(n)",
+        "The input permutation can make the target appear last in scan order"
+      ],
+      "explanation": "With no ordering or auxiliary index, the target can be hidden at the last unchecked position. An adversary can force a linear number of inspections; logarithmic search needs additional structure."
+    },
+    {
+      "id": "alg-srch-072",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary search on an inclusive interval sets mid=(low+high)/2 using integer division. If low=12 and high=13, which index is chosen?",
+      "options": [
+        "11",
+        "12",
+        "13",
+        "12.5"
+      ],
+      "answer": [
+        "12"
+      ],
+      "explanation": "Integer division truncates floor((12+13)/2)=12. This is the lower of the two middle positions."
+    },
+    {
+      "id": "alg-srch-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array has 100 distinct elements. How many successful key positions are examined in a full left-to-right scan if each possible target position must be queried once?",
+      "answer": "5050",
+      "explanation": "The comparison costs sum to 1+2+…+100=100×101/2=5050 over all target positions."
+    },
+    {
+      "id": "alg-srch-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary search is run on an array sorted by employee ID, but the query compares employee names. What is the central correctness problem?",
+      "options": [
+        "The ordering used by the search is inconsistent with the array order",
+        "The array length is too large",
+        "Binary search cannot compare strings",
+        "The midpoint must be a floating-point index"
+      ],
+      "answer": [
+        "The ordering used by the search is inconsistent with the array order"
+      ],
+      "explanation": "A binary-search comparison must be monotone across the array according to the same key order used to sort it. Comparing a different field does not justify discarding either half."
+    },
+    {
+      "id": "alg-srch-075",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which facts about exponential search on a sorted array are correct?",
+      "options": [
+        "It first probes indices that grow geometrically",
+        "It is useful when the target is near the beginning or the array size is unknown",
+        "After bracketing, binary search locates the key",
+        "Its worst-case comparison count is Θ(n) for a target at index i"
+      ],
+      "answer": [
+        "It first probes indices that grow geometrically",
+        "It is useful when the target is near the beginning or the array size is unknown",
+        "After bracketing, binary search locates the key"
+      ],
+      "explanation": "Doubling probe indices brackets a target at position i in O(log i) probes; a binary search in that bracket costs O(log i) more. The bound is logarithmic in i, not linear."
+    },
+    {
+      "id": "alg-srch-076",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary search on a sorted array of 70 elements compares at most how many keys on a successful search?",
+      "answer": "7",
+      "explanation": "Since 2^6=64<70≤128=2^7, a balanced search tree needs at most seven levels, hence seven successful comparisons."
+    },
+    {
+      "id": "alg-srch-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary-search routine for the first element ≥x uses lo=0, hi=n and while lo<hi. If A[mid]<x, why is lo set to mid+1?",
+      "options": [
+        "Index mid cannot be the first qualifying position",
+        "Index mid must be the answer",
+        "All indices greater than mid are invalid",
+        "The upper boundary must remain unchanged"
+      ],
+      "answer": [
+        "Index mid cannot be the first qualifying position"
+      ],
+      "explanation": "When A[mid]<x, the midpoint itself fails the predicate, as do all earlier entries in a sorted array. Therefore the first qualifying index must be strictly greater than mid."
+    },
+    {
+      "id": "alg-srch-078",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array contains 12 copies of x beginning at index 30. What index does upper_bound(x) return?",
+      "answer": "42",
+      "explanation": "The matching range has length 12 and starts at 30. Upper_bound is the one-past-the-end index 30+12=42."
+    },
+    {
+      "id": "alg-srch-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A collection is searched repeatedly, but insertions and deletions are frequent. Which factors affect whether maintaining sorted order is worthwhile?",
+      "options": [
+        "Cost of updates needed to preserve order",
+        "Number and cost of queries between updates",
+        "Whether the representation supports efficient insertion at the required position",
+        "The fact that binary search eliminates all update costs"
+      ],
+      "answer": [
+        "Cost of updates needed to preserve order",
+        "Number and cost of queries between updates",
+        "Whether the representation supports efficient insertion at the required position"
+      ],
+      "explanation": "The tradeoff includes maintenance work and query volume. An array offers fast binary-search access but may require linear shifts for updates; search efficiency does not erase those costs."
+    },
+    {
+      "id": "alg-srch-080",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A target is equally likely to be at any of 40 positions in a sequentially searched list. What is the worst possible successful comparison count?",
+      "options": [
+        "20",
+        "20.5",
+        "40",
+        "41"
+      ],
+      "answer": [
+        "40"
+      ],
+      "explanation": "The target at the last position requires examining all 40 elements. The expected count differs, but the worst-case successful count is 40."
+    },
+    {
+      "id": "alg-srch-081",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary-search implementation uses half-open bounds [lo,hi) and finds a key at index 6 in the array [1,4,7,10,13,16,19,22,25,28,31,34]. With mid=floor((lo+hi)/2), how many comparisons are made?",
+      "answer": "3",
+      "explanation": "Initially mid=6, where the value is 19, greater than 16. The next interval is [0,6), with mid=3 and value 10; then [4,6) has mid=5 and value 16. The total is three comparisons."
+    },
+    {
+      "id": "alg-srch-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary-search algorithm returns an index p with A[p]=x. What additional search is required to determine whether x occurs more than once?",
+      "options": [
+        "Search for the first and last occurrence or compute both bounds",
+        "None; equality proves uniqueness",
+        "Search only to the right until the first smaller key",
+        "Compare x with the array length"
+      ],
+      "answer": [
+        "Search for the first and last occurrence or compute both bounds"
+      ],
+      "explanation": "An arbitrary match gives no information about duplicates outside its path. Lower_bound and upper_bound locate the entire equal range, whose length determines multiplicity."
+    },
+    {
+      "id": "alg-srch-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which arguments establish a lower bound of Ω(log n) comparisons for searching among n ordered keys in the comparison model?",
+      "options": [
+        "A binary comparison decision tree of height h has at most 2^h leaves",
+        "The search must distinguish n possible successful keys",
+        "Therefore h must be at least log₂n",
+        "The number of comparisons is at least n²"
+      ],
+      "answer": [
+        "A binary comparison decision tree of height h has at most 2^h leaves",
+        "The search must distinguish n possible successful keys",
+        "Therefore h must be at least log₂n"
+      ],
+      "explanation": "A height-h binary tree has at most 2^h leaves. Distinguishing n possible successful outcomes requires at least n leaves, so h≥log₂n. This proves a logarithmic, not quadratic, lower bound."
+    },
+    {
+      "id": "alg-srch-084",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A linear search checks a list with 15 elements. The target is equally likely to be at position 3 or position 11. Find the expected number of comparisons.",
+      "answer": "7",
+      "explanation": "The two outcomes require 3 and 11 comparisons. With equal probability the expectation is (3+11)/2=7."
+    },
+    {
+      "id": "alg-srch-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A rotated sorted array contains distinct values and was originally increasing. Which search strategy can still achieve O(log n) time?",
+      "options": [
+        "At each midpoint, identify the sorted half and test whether x lies in its range",
+        "Run ordinary binary search without considering rotation",
+        "Scan every element from left to right",
+        "Sort the array before every comparison"
+      ],
+      "answer": [
+        "At each midpoint, identify the sorted half and test whether x lies in its range"
+      ],
+      "explanation": "At least one half around the midpoint remains sorted. Comparing x with that half's endpoints determines whether to retain it or the other half, preserving logarithmic interval shrinkage."
+    },
+    {
+      "id": "alg-srch-086",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A lower_bound search returns index 0 for key x in a nonempty sorted array. What can be inferred about the first value?",
+      "answer": [
+        "A[0] is at least x"
+      ],
+      "explanation": "Lower_bound is the first index whose value is not less than x. If that index is zero, the first element already satisfies A[0]?x.",
+      "options": [
+        "A[0] is at least x",
+        "A[0] is strictly less than x",
+        "The key occurs exactly once",
+        "No ordering conclusion is possible"
+      ]
+    },
+    {
+      "id": "alg-srch-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about binary search on a monotone Boolean predicate P(0),…,P(n−1) are correct?",
+      "options": [
+        "If P is false then true, binary search can find the first true index",
+        "If P is true then false, a mirrored search can find the last true index",
+        "An arbitrary nonmonotone predicate permits the same halving proof",
+        "A known sentinel on each side can simplify boundary handling"
+      ],
+      "answer": [
+        "If P is false then true, binary search can find the first true index",
+        "If P is true then false, a mirrored search can find the last true index",
+        "A known sentinel on each side can simplify boundary handling"
+      ],
+      "explanation": "Monotonicity lets each predicate result eliminate half the candidate positions. The direction determines which boundary is sought; sentinels make endpoint invariants explicit, while arbitrary predicates provide no such guarantee."
+    },
+    {
+      "id": "alg-srch-088",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A sequential scan examines 1, 2, …, n items for each of n equally likely successful targets, one query per position. What is the average comparisons per query?",
+      "options": [
+        "n/2",
+        "(n+1)/2",
+        "n",
+        "n(n+1)/2"
+      ],
+      "answer": [
+        "(n+1)/2"
+      ],
+      "explanation": "The total across the n possible successful positions is n(n+1)/2. Dividing by n equally likely queries gives an average of (n+1)/2."
+    },
+    {
+      "id": "alg-srch-089",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A search repeatedly retains about one third of a sorted array by comparing against two pivots. What is its worst-case comparison complexity?",
+      "answer": [
+        "?(log n)"
+      ],
+      "explanation": "Each iteration reduces the candidate interval by a constant factor. It therefore takes logarithmically many iterations, and the two comparisons per iteration change only a constant factor.",
+      "options": [
+        "?(1)",
+        "?(log n)",
+        "?(n)",
+        "?(n log n)"
+      ]
+    },
+    {
+      "id": "alg-srch-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the worst-case number of comparisons in binary search are valid?",
+      "options": [
+        "It is logarithmic in the array size",
+        "A non-power-of-two size still gives logarithmic search",
+        "The exact count depends on midpoint and interval conventions",
+        "Every unsuccessful query takes the same number of comparisons"
+      ],
+      "answer": [
+        "It is logarithmic in the array size",
+        "A non-power-of-two size still gives logarithmic search",
+        "The exact count depends on midpoint and interval conventions"
+      ],
+      "explanation": "Repeated halving yields Θ(log n) comparisons regardless of whether n is a power of two. Exact paths vary by size and implementation, and misses can terminate at different depths."
+    },
+    {
+      "id": "alg-srch-091",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For a sorted array [2, 6, 6, 6, 6, 10], how many elements equal 6, as computed by upper_bound(6)−lower_bound(6)?",
+      "answer": "4",
+      "explanation": "The four copies occupy indices 1 through 4. The lower bound is 1 and upper bound is 5, giving 5−1=4 occurrences."
+    },
+    {
+      "id": "alg-srch-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A search over a monotone feasibility function finds the largest true integer. Which invariant is appropriate?",
+      "options": [
+        "lo is known true and hi is known false",
+        "lo is known false and hi is known true",
+        "Both boundaries must be true",
+        "Neither boundary needs a known predicate value"
+      ],
+      "answer": [
+        "lo is known true and hi is known false"
+      ],
+      "explanation": "To find the largest feasible answer, maintain a feasible lower boundary and an infeasible upper boundary. When they become adjacent, lo is the largest true value."
+    },
+    {
+      "id": "alg-srch-093",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A monotone predicate has its first true value at 73 within the inclusive answer range [0,127]. A binary search maintains false lo and true hi and stops when hi−lo=1. What is the final hi?",
+      "answer": "73",
+      "explanation": "The invariant preserves the transition between known false and known true values. Once adjacent, hi is the smallest feasible value, which is 73."
+    },
+    {
+      "id": "alg-srch-094",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about search complexity when queries are repeated are correct?",
+      "options": [
+        "Preprocessing cost should be included in total cost",
+        "With q binary searches after sorting, query work is Θ(q log n)",
+        "If q is large, sorting may reduce total work compared with q linear scans",
+        "The cost of maintaining order under updates is always zero"
+      ],
+      "answer": [
+        "Preprocessing cost should be included in total cost",
+        "With q binary searches after sorting, query work is Θ(q log n)",
+        "If q is large, sorting may reduce total work compared with q linear scans"
+      ],
+      "explanation": "The full bound includes sorting and query costs, Θ(nlogn+qlogn). For enough queries this can beat Θ(qn), but insertions or deletions can add maintenance cost."
+    },
+    {
+      "id": "alg-srch-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorted array contains n distinct values. An algorithm compares x with a midpoint and then discards half the interval. Which property makes the discarded half safe to ignore?",
+      "options": [
+        "The sorted order makes comparison outcomes monotone by index",
+        "The array is stored contiguously",
+        "The target is guaranteed to be present",
+        "The midpoint is always the median value of all possible keys"
+      ],
+      "answer": [
+        "The sorted order makes comparison outcomes monotone by index"
+      ],
+      "explanation": "If A[mid]<x, all earlier keys are also below x; if A[mid]>x, all later keys are above x. Sorted order justifies eliminating the corresponding half."
+    },
+    {
+      "id": "alg-srch-096",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A successful sequential search has target position uniformly distributed among 1 through 80. What is the expected comparison count?",
+      "answer": "40.5",
+      "explanation": "The mean of the integer positions 1 and 80 is (1+80)/2=40.5 comparisons."
+    },
+    {
+      "id": "alg-srch-097",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which design choices are compatible with a correct binary search for the first array element satisfying a monotone predicate?",
+      "options": [
+        "Use a half-open interval and return lo when lo=hi",
+        "If the midpoint satisfies the predicate, retain it as a possible answer",
+        "If the midpoint fails, discard it and all earlier positions",
+        "Return the last tested midpoint without maintaining a boundary invariant"
+      ],
+      "answer": [
+        "Use a half-open interval and return lo when lo=hi",
+        "If the midpoint satisfies the predicate, retain it as a possible answer",
+        "If the midpoint fails, discard it and all earlier positions"
+      ],
+      "explanation": "The candidate invariant retains a satisfying midpoint as the possible first true point and removes failing positions and everything before them. The converged boundary, not an arbitrary last midpoint, is the result."
+    },
+    {
+      "id": "alg-srch-098",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A key appears in a sorted array at indices 20 through 24 inclusive. Which pair gives its lower and upper bounds?",
+      "options": [
+        "(20,24)",
+        "(20,25)",
+        "(21,25)",
+        "(25,20)"
+      ],
+      "answer": [
+        "(20,25)"
+      ],
+      "explanation": "The lower boundary is the first matching index, 20. The upper boundary is one past the final match, index 25, so the interval contains five entries."
+    },
+    {
+      "id": "alg-srch-099",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A linear search checks a list of 60 keys. The target is equally likely at positions 10 and 50, and absence is impossible. What is the expected number of comparisons?",
+      "answer": "30",
+      "explanation": "The two equally likely successful positions require 10 and 50 comparisons. Their mean is (10+50)/2=30."
+    },
+    {
+      "id": "alg-srch-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorted array is stored in a data structure where predecessor access from a node is O(1), but locating the middle node of a range still requires traversal. Which statement best describes applying binary search?",
+      "options": [
+        "The comparison count may be logarithmic while total traversal time is linear or worse",
+        "Both comparisons and total time are necessarily logarithmic",
+        "It is impossible to compare keys in this representation",
+        "Predecessor access makes random midpoint access constant time"
+      ],
+      "answer": [
+        "The comparison count may be logarithmic while total traversal time is linear or worse"
+      ],
+      "explanation": "Binary search's comparison complexity assumes efficient midpoint access. Traversing to each midpoint costs time, so the total running time can be much larger than the logarithmic number of key comparisons."
+    }
+  ]
+}

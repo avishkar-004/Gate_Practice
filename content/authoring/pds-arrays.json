@@ -1,0 +1,1472 @@
+{
+  "topicIndex": 2,
+  "questions": [
+    {
+      "id": "pds-arr-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a zero-based array of n elements stored contiguously, what is the worst-case number of elements shifted to insert a new item at index 0 when capacity is available?",
+      "options": [
+        "n",
+        "n-1",
+        "1",
+        "log2(n)"
+      ],
+      "answer": [
+        "n"
+      ],
+      "explanation": "Every existing element must move one position right to open index zero, so n elements are shifted in the worst case."
+    },
+    {
+      "id": "pds-arr-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why does direct access to A[i] in a contiguous array take constant time under the usual RAM model?",
+      "options": [
+        "Its address is computed from the base address and i times the element size",
+        "The array is searched sequentially until index i",
+        "The element is copied to the beginning first",
+        "The array stores a linked pointer for each index"
+      ],
+      "answer": [
+        "Its address is computed from the base address and i times the element size"
+      ],
+      "explanation": "The address calculation is base+i*element_size and takes constant arithmetic operations, independent of the array length."
+    },
+    {
+      "id": "pds-arr-003",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A row-major matrix has 12 columns and elements of 4 bytes. What is the byte offset of element A[7][5] from A[0][0], using zero-based indices?",
+      "answer": "356",
+      "explanation": "The linear index is 7*12+5=89. Multiplying by four bytes per element gives an offset of 356 bytes."
+    },
+    {
+      "id": "pds-arr-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For an R by C row-major matrix with zero-based indices, which formula gives the linear element index of A[i][j]?",
+      "options": [
+        "i*C+j",
+        "j*R+i",
+        "i+j",
+        "i*C+j+1"
+      ],
+      "answer": [
+        "i*C+j"
+      ],
+      "explanation": "Each preceding row contributes C elements, then j elements in the current row, giving i*C+j."
+    },
+    {
+      "id": "pds-arr-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A C matrix A has row-major layout. Which loop order accesses a[i][j] with good spatial locality in the inner loop?",
+      "answer": [
+        "i outer and j inner"
+      ],
+      "explanation": "In row-major storage, consecutive columns within a row are adjacent in memory. Keeping j in the inner loop walks contiguous elements and uses cache lines effectively.",
+      "options": [
+        "i outer and j inner",
+        "j outer and i inner",
+        "Any order has identical locality",
+        "Visit only the diagonal"
+      ]
+    },
+    {
+      "id": "pds-arr-006",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A row-major three-dimensional array B[2][3][4] is flattened to one-based element positions. What is the one-based position of B[1][2][3] using zero-based subscripts?",
+      "answer": "24",
+      "explanation": "The zero-based linear index is ((1*3)+2)*4+3=23. Converting to a one-based position gives 24."
+    },
+    {
+      "id": "pds-arr-007",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many bytes are required for a row-major 4 by 7 integer matrix when each integer occupies 4 bytes and no extra padding is stored between elements?",
+      "answer": "112",
+      "explanation": "The matrix contains 4*7=28 integer elements. At four bytes each, the storage is 28*4=112 bytes."
+    },
+    {
+      "id": "pds-arr-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An array of n elements must be left-rotated by k positions in place using the reversal method. Which sequence performs the rotation with O(1) extra space?",
+      "answer": [
+        "Reverse [0,k-1], reverse [k,n-1], then reverse the whole array"
+      ],
+      "explanation": "Reversing each partition and then the full array restores the order within both blocks while moving the first k items to the end. It uses constant auxiliary storage and linear time.",
+      "options": [
+        "Reverse [0,k-1], reverse [k,n-1], then reverse the whole array",
+        "Reverse the whole array once",
+        "Sort the array, then reverse it",
+        "Shift every element left k times using a temporary array of size n"
+      ]
+    },
+    {
+      "id": "pds-arr-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a sorted array of n elements, what is the worst-case number of comparisons for binary search?",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(log n)"
+      ],
+      "explanation": "Each comparison discards approximately half the remaining interval, so the number of levels grows logarithmically."
+    },
+    {
+      "id": "pds-arr-010",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about searching an unsorted array of n values are correct?",
+      "options": [
+        "An absent key may require examining all n entries",
+        "A linear scan has worst-case time Theta(n)",
+        "Binary search is correct without any ordering or preprocessing",
+        "A scan has worst-case time O(log n)"
+      ],
+      "answer": [
+        "An absent key may require examining all n entries",
+        "A linear scan has worst-case time Theta(n)"
+      ],
+      "explanation": "When the key is absent, a scan cannot stop early and must inspect every item. Without order or preprocessing, binary search cannot safely discard a half."
+    },
+    {
+      "id": "pds-arr-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An array-based list with spare capacity inserts an element at index k. Which expression best describes the number of elements shifted in the worst case?",
+      "options": [
+        "n-k",
+        "k",
+        "n+k",
+        "log k"
+      ],
+      "answer": [
+        "n-k"
+      ],
+      "explanation": "Elements at indices k through n-1 shift right, which is n-k items. Inserting at the end requires no shifts."
+    },
+    {
+      "id": "pds-arr-012",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about deleting an item from a packed array while preserving order are correct?",
+      "options": [
+        "Deleting index k shifts n-k-1 later entries left",
+        "Deleting the last entry requires no suffix shift",
+        "Deleting any index always takes O(1) time",
+        "Compaction can preserve the relative order of remaining entries"
+      ],
+      "answer": [
+        "Deleting index k shifts n-k-1 later entries left",
+        "Deleting the last entry requires no suffix shift",
+        "Compaction can preserve the relative order of remaining entries"
+      ],
+      "explanation": "All items after k move left to fill the gap, except when k is last. This compaction preserves the order but can take linear time."
+    },
+    {
+      "id": "pds-arr-013",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A dynamic array doubles capacity whenever it is full. Which statements about appending are correct?",
+      "options": [
+        "An individual resizing append can take Theta(n) time",
+        "Append has amortized O(1) time over a sequence of operations",
+        "The total number of copied elements over m appends is O(m)",
+        "Every append has worst-case O(1) time"
+      ],
+      "answer": [
+        "An individual resizing append can take Theta(n) time",
+        "Append has amortized O(1) time over a sequence of operations",
+        "The total number of copied elements over m appends is O(m)"
+      ],
+      "explanation": "A resize copies the current array, causing a linear worst-case operation. Geometric growth makes the total copies linear over many appends, yielding constant amortized cost."
+    },
+    {
+      "id": "pds-arr-014",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "An initially empty dynamic array doubles capacity from 1 whenever full. After 9 appends, what is its capacity?",
+      "answer": "16",
+      "explanation": "The capacities after growth are 1, 2, 4, 8, and 16. The ninth item requires growth from 8 to 16."
+    },
+    {
+      "id": "pds-arr-015",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about contiguous arrays are correct?",
+      "options": [
+        "They support constant-time indexed access under the RAM model",
+        "Inserting at the front can require shifting all existing elements",
+        "Every middle insertion is constant time",
+        "Their elements are individually allocated as linked nodes"
+      ],
+      "answer": [
+        "They support constant-time indexed access under the RAM model",
+        "Inserting at the front can require shifting all existing elements"
+      ],
+      "explanation": "Indexing is calculated arithmetically from the base. Opening space near the front shifts later entries, while array elements are contiguous rather than separate linked nodes."
+    },
+    {
+      "id": "pds-arr-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A prefix-sum array P is defined by P[0]=0 and P[i+1]=P[i]+A[i]. How many array accesses are needed to answer a range-sum query A[l..r] after preprocessing?",
+      "options": [
+        "Two prefix accesses and one subtraction",
+        "r-l+1 accesses and additions",
+        "One access per array element in A",
+        "Theta(log n) accesses using binary search"
+      ],
+      "answer": [
+        "Two prefix accesses and one subtraction"
+      ],
+      "explanation": "The range sum is P[r+1]-P[l], so two prefix values and one subtraction answer each query in constant time."
+    },
+    {
+      "id": "pds-arr-017",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "For A=[3,-2,5,1,-4], define P[0]=0 and P[i+1]=P[i]+A[i]. What is the sum of A[1..3]?",
+      "answer": "4",
+      "explanation": "P[4]-P[1]=(3-2+5+1)-3=4, which is also -2+5+1."
+    },
+    {
+      "id": "pds-arr-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An array A of length n is rotated left by k positions, where 0<=k<n. Which original index becomes the first element?",
+      "options": [
+        "k",
+        "n-k",
+        "k-1",
+        "n-1"
+      ],
+      "answer": [
+        "k"
+      ],
+      "explanation": "A left rotation by k moves the original element at index k to index zero."
+    },
+    {
+      "id": "pds-arr-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An in-place reversal algorithm swaps symmetric elements until the indices meet. How many swaps are required for an array of length n?",
+      "options": [
+        "floor(n/2)",
+        "n-1",
+        "ceil(log2 n)",
+        "n"
+      ],
+      "answer": [
+        "floor(n/2)"
+      ],
+      "explanation": "Each swap handles two elements, so exactly floor(n/2) symmetric pairs are exchanged."
+    },
+    {
+      "id": "pds-arr-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A loop executes for i=0; i<n; i+=3. How many iterations occur for positive n?",
+      "options": [
+        "ceil(n/3)",
+        "floor(n/3)",
+        "n-3",
+        "3n"
+      ],
+      "answer": [
+        "ceil(n/3)"
+      ],
+      "explanation": "The visited indices are 0,3,6,... strictly below n. Their count is the ceiling of n divided by 3."
+    },
+    {
+      "id": "pds-arr-021",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A nested loop runs for i=1..20 and j=1..i, inclusive. How many total inner iterations occur?",
+      "answer": "210",
+      "explanation": "The total is 1+2+...+20=20*21/2=210 iterations."
+    },
+    {
+      "id": "pds-arr-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A loop uses i=1; while (i<n) i*=2. What is its time complexity as a function of n?",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(sqrt(n))",
+        "Theta(n log n)"
+      ],
+      "answer": [
+        "Theta(log n)"
+      ],
+      "explanation": "The loop variable doubles each iteration, so it reaches n after logarithmically many iterations."
+    },
+    {
+      "id": "pds-arr-023",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations on a fixed-size contiguous array can require worst-case Theta(n) work?",
+      "options": [
+        "Searching an unsorted array for an absent key",
+        "Inserting at index zero while shifting elements",
+        "Deleting at index zero while preserving order",
+        "Reading an element at a known index"
+      ],
+      "answer": [
+        "Searching an unsorted array for an absent key",
+        "Inserting at index zero while shifting elements",
+        "Deleting at index zero while preserving order"
+      ],
+      "explanation": "An absent-key scan inspects all values. Front insertion and ordered deletion shift a linear number of entries; known-index access is constant time. "
+    },
+    {
+      "id": "pds-arr-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A matrix A has 4 rows and 7 columns in row-major storage. How many elements precede A[3][2]?",
+      "options": [
+        "23",
+        "21",
+        "24",
+        "25"
+      ],
+      "answer": [
+        "23"
+      ],
+      "explanation": "There are 3 complete rows before row 3, contributing 21 elements, plus two elements before column 2 in that row: 23."
+    },
+    {
+      "id": "pds-arr-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a nonnegative array, a sliding window is used to find the longest subarray whose sum is at most K. Why can the left endpoint move only forward when the current sum exceeds K?",
+      "options": [
+        "Removing elements from the left cannot increase the sum",
+        "The array is sorted by value",
+        "The sum is always unchanged by removal",
+        "The right endpoint must move backward"
+      ],
+      "answer": [
+        "Removing elements from the left cannot increase the sum"
+      ],
+      "explanation": "With nonnegative entries, removing the leftmost element cannot increase the window sum. Therefore advancing the left endpoint restores feasibility without revisiting earlier positions."
+    },
+    {
+      "id": "pds-arr-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A two-pointer method searches for a pair summing to X in a sorted increasing array. If the current sum is too small, which pointer moves?",
+      "options": [
+        "The left pointer moves right",
+        "The right pointer moves left",
+        "Both pointers move left",
+        "The smaller value is replaced by X"
+      ],
+      "answer": [
+        "The left pointer moves right"
+      ],
+      "explanation": "Moving the left pointer to a larger value is the only direction that can increase the sum while preserving the candidate order."
+    },
+    {
+      "id": "pds-arr-027",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two sorted arrays of lengths m and n are merged into one sorted array by the standard two-pointer procedure. What is the worst-case time?",
+      "options": [
+        "Theta(m+n)",
+        "Theta(mn)",
+        "Theta(log(m+n))",
+        "Theta(m log n)"
+      ],
+      "answer": [
+        "Theta(m+n)"
+      ],
+      "explanation": "Each input element is copied once, so the total work is linear in the combined lengths."
+    },
+    {
+      "id": "pds-arr-028",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A sorted array [1,2,2,2,5,5,8] is compacted in place to unique values while preserving order. How many elements remain?",
+      "answer": "4",
+      "explanation": "The distinct values are 1, 2, 5, and 8. Stable compaction retains one occurrence of each, leaving four elements."
+    },
+    {
+      "id": "pds-arr-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In stable in-place compaction of a sorted array, what invariant does a write index typically maintain?",
+      "options": [
+        "The prefix before it contains exactly the unique values seen so far",
+        "It always equals the current read index squared",
+        "It marks the smallest unseen value",
+        "It stores the number of duplicate pairs in the suffix"
+      ],
+      "answer": [
+        "The prefix before it contains exactly the unique values seen so far"
+      ],
+      "explanation": "After processing a prefix, the write region contains the unique elements from that prefix in original sorted order."
+    },
+    {
+      "id": "pds-arr-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For an array A of length n, what is the worst-case number of comparisons needed to find its maximum by a single scan?",
+      "options": [
+        "n-1",
+        "n",
+        "log2(n)",
+        "n(n-1)/2"
+      ],
+      "answer": [
+        "n-1"
+      ],
+      "explanation": "The first element initializes the maximum. Each of the remaining n-1 elements is compared once against the current maximum."
+    },
+    {
+      "id": "pds-arr-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the worst-case number of comparisons required to find both minimum and maximum using the simple independent-scan approach?",
+      "options": [
+        "2n-2",
+        "n-1",
+        "floor(3n/2)-2",
+        "log2(n)"
+      ],
+      "answer": [
+        "2n-2"
+      ],
+      "explanation": "One scan performs n-1 comparisons for the maximum and another n-1 for the minimum, totaling 2n-2. Pairwise methods can improve this bound."
+    },
+    {
+      "id": "pds-arr-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can pairwise min-max scanning use fewer comparisons than two independent scans?",
+      "options": [
+        "Each pair is first compared internally, then its smaller and larger values update separate extrema",
+        "It sorts the whole array first",
+        "It avoids comparing any elements",
+        "It relies on the array being sorted"
+      ],
+      "answer": [
+        "Each pair is first compared internally, then its smaller and larger values update separate extrema"
+      ],
+      "explanation": "For each pair, one comparison identifies a local low and high; only these candidates are compared with the global minimum and maximum."
+    },
+    {
+      "id": "pds-arr-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Kadane's algorithm for maximum subarray sum maintains a current ending sum. What update is applied at each element x?",
+      "options": [
+        "max(x, current+x)",
+        "min(x, current-x)",
+        "current*x",
+        "current+x only, regardless of sign"
+      ],
+      "answer": [
+        "max(x, current+x)"
+      ],
+      "explanation": "The best subarray ending here either starts at x or extends the prior ending subarray. Taking the maximum handles negative accumulated sums."
+    },
+    {
+      "id": "pds-arr-034",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For A=[-3,4,-1,2,-6,5], what is the maximum contiguous subarray sum?",
+      "answer": "5",
+      "explanation": "The subarray [4,-1,2] sums to 5. The final singleton 5 also gives 5, and no other contiguous segment is larger."
+    },
+    {
+      "id": "pds-arr-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An array of n integers is scanned once while maintaining a running sum and the best sum seen. What is the auxiliary space usage?",
+      "options": [
+        "Theta(1)",
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(n^2)"
+      ],
+      "answer": [
+        "Theta(1)"
+      ],
+      "explanation": "Only a fixed number of scalar variables are maintained, so extra storage is constant with respect to n."
+    },
+    {
+      "id": "pds-arr-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An array has a length n and an element is accessed by a known index. Which property is required for the usual O(1) access bound?",
+      "options": [
+        "The elements are stored contiguously with known element size",
+        "The array is sorted",
+        "All values are distinct",
+        "The array length is a power of two"
+      ],
+      "answer": [
+        "The elements are stored contiguously with known element size"
+      ],
+      "explanation": "Contiguous storage lets the address be calculated from the base and index without traversing preceding elements."
+    },
+    {
+      "id": "pds-arr-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A circular buffer of capacity C maps a logical index i to a physical array slot. Which common mapping handles wraparound?",
+      "options": [
+        "i mod C",
+        "i*C",
+        "floor(i/C)",
+        "C-i"
+      ],
+      "answer": [
+        "i mod C"
+      ],
+      "explanation": "Modulo capacity wraps indices back to the beginning of the backing array when they reach its end."
+    },
+    {
+      "id": "pds-arr-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circular buffer has capacity 11 and head index 8. After advancing the head by 7 positions, what is its new physical index?",
+      "answer": "4",
+      "explanation": "The wrapped index is (8+7) mod 11=15 mod 11=4."
+    },
+    {
+      "id": "pds-arr-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorted array is rotated at an unknown pivot. Which property can support logarithmic search for a key?",
+      "options": [
+        "At least one of the two halves around the midpoint is sorted",
+        "The minimum element is always at index zero",
+        "Both halves are always unsorted",
+        "The array must contain no duplicates in every variant"
+      ],
+      "answer": [
+        "At least one of the two halves around the midpoint is sorted"
+      ],
+      "explanation": "A midpoint divides the array so at least one side remains sorted, allowing elimination of a half based on the key range. Duplicates can complicate progress."
+    },
+    {
+      "id": "pds-arr-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In an array with all distinct elements, how many comparisons are sufficient to find a peak using binary search on the slope between adjacent entries?",
+      "options": [
+        "O(log n)",
+        "O(n)",
+        "O(n log n)",
+        "O(1) for all inputs"
+      ],
+      "answer": [
+        "O(log n)"
+      ],
+      "explanation": "Comparing adjacent values indicates a direction containing a peak. Repeatedly discarding half the range gives logarithmic search."
+    },
+    {
+      "id": "pds-arr-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A difference array D represents range additions to A. To add x to every A[l..r], what two updates are made when a sentinel slot exists?",
+      "options": [
+        "D[l]+=x and D[r+1]-=x",
+        "D[l]-=x and D[r]+=x",
+        "Add x to every D index in [l,r]",
+        "Swap D[l] and D[r]"
+      ],
+      "answer": [
+        "D[l]+=x and D[r+1]-=x"
+      ],
+      "explanation": "The prefix sum of D reconstructs A. Starting an addition at l and canceling it after r uses +x at l and -x at r+1."
+    },
+    {
+      "id": "pds-arr-042",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "A difference array receives +5 on range [2,6] and -3 on range [4,8]. What net addition applies at index 5?",
+      "answer": "2",
+      "explanation": "Index 5 lies in both ranges. Its net change is +5-3=+2."
+    },
+    {
+      "id": "pds-arr-043",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For an array A, let P[i] be the sum of elements before index i. Which formula gives the sum on half-open interval [l,r)?",
+      "options": [
+        "P[r]-P[l]",
+        "P[l]-P[r]",
+        "P[r+1]-P[l]",
+        "P[r]*P[l]"
+      ],
+      "answer": [
+        "P[r]-P[l]"
+      ],
+      "explanation": "The prefix through positions before r minus the prefix before l leaves exactly A[l] through A[r-1]."
+    },
+    {
+      "id": "pds-arr-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a two-dimensional prefix-sum table P, which combination gives the sum of rectangle rows r1..r2 and columns c1..c2, inclusive?",
+      "options": [
+        "P[r2+1][c2+1]-P[r1][c2+1]-P[r2+1][c1]+P[r1][c1]",
+        "P[r2][c2]-P[r1][c1]",
+        "P[r1][c2]+P[r2][c1]",
+        "P[r2+1][c2+1]+P[r1][c1]"
+      ],
+      "answer": [
+        "P[r2+1][c2+1]-P[r1][c2+1]-P[r2+1][c1]+P[r1][c1]"
+      ],
+      "explanation": "Subtract the strips above and left of the rectangle, then add back their overlap once. This inclusion-exclusion formula gives the rectangle sum."
+    },
+    {
+      "id": "pds-arr-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "After O(RC) preprocessing of a two-dimensional prefix-sum table, what is the query time for one axis-aligned rectangle sum?",
+      "options": [
+        "O(1)",
+        "O(R+C)",
+        "O(log(RC))",
+        "O(RC)"
+      ],
+      "answer": [
+        "O(1)"
+      ],
+      "explanation": "Four table values and a constant number of additions/subtractions return the rectangle sum, independent of its area."
+    },
+    {
+      "id": "pds-arr-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the standard time complexity of multiplying two dense n by n matrices using the classical triple loop?",
+      "options": [
+        "Theta(n^3)",
+        "Theta(n^2)",
+        "Theta(n log n)",
+        "Theta(2^n)"
+      ],
+      "answer": [
+        "Theta(n^3)"
+      ],
+      "explanation": "There are n^2 output cells and each accumulates n products, producing n^3 arithmetic operations."
+    },
+    {
+      "id": "pds-arr-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For matrix multiplication C[i][j]+=A[i][k]*B[k][j] in row-major storage, which loop order gives contiguous access to B in the innermost loop?",
+      "options": [
+        "i outer, k middle, j inner",
+        "i outer, j middle, k inner",
+        "j outer, i middle, k inner",
+        "k outer, j middle, i inner"
+      ],
+      "answer": [
+        "i outer, k middle, j inner"
+      ],
+      "explanation": "With j innermost, B[k][j] and C[i][j] advance across adjacent columns, improving spatial locality in row-major layouts."
+    },
+    {
+      "id": "pds-arr-048",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about transposing a square matrix in place are correct?",
+      "options": [
+        "Each off-diagonal pair A[i][j], A[j][i] is swapped once",
+        "Diagonal entries remain in their original positions",
+        "Restricting swaps to i<j avoids processing each pair twice",
+        "Every matrix entry must be moved into a temporary array"
+      ],
+      "answer": [
+        "Each off-diagonal pair A[i][j], A[j][i] is swapped once",
+        "Diagonal entries remain in their original positions",
+        "Restricting swaps to i<j avoids processing each pair twice"
+      ],
+      "explanation": "The transpose exchanges symmetric off-diagonal cells. Diagonal cells are unchanged, and iterating over one triangle swaps each pair exactly once."
+    },
+    {
+      "id": "pds-arr-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorted array contains duplicate keys. What is the worst-case time to find the first occurrence with a modified binary search?",
+      "options": [
+        "O(log n)",
+        "O(n)",
+        "O(1)",
+        "O(n log n)"
+      ],
+      "answer": [
+        "O(log n)"
+      ],
+      "explanation": "After finding an equal value the search continues left, halving the remaining interval until the boundary is identified."
+    },
+    {
+      "id": "pds-arr-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "To count occurrences of x in a sorted array with duplicates in O(log n), what should be found?",
+      "options": [
+        "The first index of x and the first index greater than x",
+        "One occurrence and then a full scan",
+        "The minimum and maximum array values",
+        "The insertion position of every distinct key"
+      ],
+      "answer": [
+        "The first index of x and the first index greater than x"
+      ],
+      "explanation": "Two binary searches find the half-open interval of x values. Subtracting the boundary indices gives the count."
+    },
+    {
+      "id": "pds-arr-051",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a sorted array, the first occurrence of 6 is at index 4 and the first element greater than 6 is at index 11. How many occurrences of 6 are present?",
+      "answer": "7",
+      "explanation": "The matching entries occupy indices 4 through 10, so the half-open range length is 11-4=7."
+    },
+    {
+      "id": "pds-arr-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A fixed-width window of length k slides one position. After its first sum is known, what constant-time update advances it?",
+      "options": [
+        "Subtract the outgoing value and add the incoming value",
+        "Recompute all k values and divide by k",
+        "Sort the window",
+        "Multiply the prior sum by k"
+      ],
+      "answer": [
+        "Subtract the outgoing value and add the incoming value"
+      ],
+      "explanation": "Removing the leaving element and adding the entering element updates the sum in O(1), rather than scanning the entire window."
+    },
+    {
+      "id": "pds-arr-053",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For A=[4,-1,2,10,3], what is the largest sum among contiguous subarrays of length exactly 3?",
+      "answer": "15",
+      "explanation": "The three window sums are 5, 11, and 15. The last window [2,10,3] yields 15."
+    },
+    {
+      "id": "pds-arr-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why does a sliding-window greedy method for sum-at-most-K constraints generally fail with negative array elements?",
+      "options": [
+        "Removing a negative left element can increase the window sum",
+        "Negative values make array indexing invalid",
+        "The right endpoint cannot move",
+        "Prefix sums cannot represent negative values"
+      ],
+      "answer": [
+        "Removing a negative left element can increase the window sum"
+      ],
+      "explanation": "With negatives the sum is not monotone under removal: discarding a negative element can raise it, so the usual feasibility argument breaks."
+    },
+    {
+      "id": "pds-arr-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An equilibrium index i has equal sums strictly to its left and right. Given total sum and a running left sum, what is the time to find one?",
+      "options": [
+        "O(n)",
+        "O(n^2)",
+        "O(log n)",
+        "O(1) for arbitrary input"
+      ],
+      "answer": [
+        "O(n)"
+      ],
+      "explanation": "At each index, the right sum is total-left-A[i]. One pass updates the left sum and checks equality."
+    },
+    {
+      "id": "pds-arr-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For A=[2,-1,4,3,-2], what is an equilibrium index using zero-based indexing, if one exists?",
+      "answer": "2",
+      "explanation": "At index 2, the left sum is 2-1=1 and the right sum is 3-2=1."
+    },
+    {
+      "id": "pds-arr-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A two-dimensional prefix table stores sums over top-left rectangles. How many table entries are needed to answer one arbitrary rectangle-sum query?",
+      "options": [
+        "Four",
+        "Two",
+        "Three",
+        "One"
+      ],
+      "answer": [
+        "Four"
+      ],
+      "explanation": "Inclusion-exclusion uses the prefix values at the lower-right, above, left, and overlapping corner positions."
+    },
+    {
+      "id": "pds-arr-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sparse n by n matrix is stored as one (row,column,value) triple per nonzero. Ignoring metadata, when is this smaller in scalar slots than dense storage?",
+      "options": [
+        "When 3z<n^2 for z nonzeros",
+        "When z>n^2",
+        "For every nonempty matrix",
+        "Only when n is prime"
+      ],
+      "answer": [
+        "When 3z<n^2 for z nonzeros"
+      ],
+      "explanation": "Dense storage uses n^2 scalar values; triplet storage uses about 3z scalars. It is smaller under this model when 3z<n^2."
+    },
+    {
+      "id": "pds-arr-059",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop executes for i=1; i<=64; i*=2. How many body executions occur?",
+      "answer": "7",
+      "explanation": "The values are 1, 2, 4, 8, 16, 32, and 64: seven executions."
+    },
+    {
+      "id": "pds-arr-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two separate loops each run n iterations with constant work per iteration. What is their combined asymptotic time?",
+      "options": [
+        "Theta(n)",
+        "Theta(n^2)",
+        "Theta(log n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "Their costs add to n+n=2n, which is Theta(n). Sequential loops are not multiplied as nested loops are."
+    },
+    {
+      "id": "pds-arr-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A single pass stably compacts retained array items in place, reading each item once and writing each retained item once. What is the running time?",
+      "options": [
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(n^2)",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "There is constant work for each of the n input entries, so the total is linear."
+    },
+    {
+      "id": "pds-arr-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A permutation on n positions has k disjoint cycles including fixed points. How many swaps suffice to realize it?",
+      "options": [
+        "n-k",
+        "n-1",
+        "k",
+        "n+k"
+      ],
+      "answer": [
+        "n-k"
+      ],
+      "explanation": "A cycle of length l requires l-1 swaps. Summing over cycle lengths gives n-k swaps."
+    },
+    {
+      "id": "pds-arr-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A permutation of 8 positions has nontrivial cycle lengths 3 and 2; the remaining positions are fixed. How many swaps suffice?",
+      "answer": "3",
+      "explanation": "There are five cycles total: lengths 3, 2, 1, 1, 1. The minimum swap count is 8-5=3."
+    },
+    {
+      "id": "pds-arr-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An array has distinct values from 1 through n except for one missing value. Which calculation recovers the missing value?",
+      "options": [
+        "n(n+1)/2 minus the array sum",
+        "The array product divided by n",
+        "The maximum minus the minimum",
+        "The array length squared minus its sum"
+      ],
+      "answer": [
+        "n(n+1)/2 minus the array sum"
+      ],
+      "explanation": "The expected sum of 1 through n is n(n+1)/2; subtracting the observed sum leaves the missing value."
+    },
+    {
+      "id": "pds-arr-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "The values 1 through 8 appear in an array except one value; the array sum is 33. What is missing?",
+      "answer": "3",
+      "explanation": "The complete sum is 8*9/2=36. The absent value is 36-33=3."
+    },
+    {
+      "id": "pds-arr-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "How much work is needed to sum the main diagonal of a square n by n matrix?",
+      "options": [
+        "Theta(n)",
+        "Theta(n^2)",
+        "Theta(log n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "The algorithm visits the n diagonal cells exactly once and performs constant work at each."
+    },
+    {
+      "id": "pds-arr-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a naive row-major matrix transpose, what is the primary locality issue?",
+      "options": [
+        "One of the read or write traversals may stride through noncontiguous memory",
+        "The output contains twice as many values",
+        "Every element changes its numeric value",
+        "The matrix cannot be traversed by columns"
+      ],
+      "answer": [
+        "One of the read or write traversals may stride through noncontiguous memory"
+      ],
+      "explanation": "A row-major layout places columns far apart by row width. A transpose often reads or writes one side with a stride, reducing spatial locality."
+    },
+    {
+      "id": "pds-arr-068",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about array prefix-sum techniques are correct?",
+      "options": [
+        "A 1-D prefix table answers static range sums in O(1) after O(n) preprocessing",
+        "A 2-D prefix table answers rectangle sums using four table values",
+        "A prefix table alone supports arbitrary range updates in O(1)",
+        "A range query must visit every element in the range"
+      ],
+      "answer": [
+        "A 1-D prefix table answers static range sums in O(1) after O(n) preprocessing",
+        "A 2-D prefix table answers rectangle sums using four table values"
+      ],
+      "explanation": "Prefix tables answer static sums by subtracting boundary sums; two-dimensional inclusion-exclusion uses four entries. Updates may require rebuilding or a different data structure."
+    },
+    {
+      "id": "pds-arr-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A strictly increasing array is rotated at an unknown pivot. Why can binary search discard one half when looking for a key?",
+      "options": [
+        "At least one half is sorted and its value range can be checked",
+        "The pivot is always the midpoint",
+        "Both halves contain identical values",
+        "The minimum remains at index zero"
+      ],
+      "answer": [
+        "At least one half is sorted and its value range can be checked"
+      ],
+      "explanation": "With distinct values, one side of the midpoint is sorted. Comparing the key with that side's endpoints reveals whether it can lie there."
+    },
+    {
+      "id": "pds-arr-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sorted array search returns the first index whose value is at least x, or n if none exists. What is that position called?",
+      "options": [
+        "The lower-bound insertion position",
+        "The last occurrence of x",
+        "The maximum element index",
+        "The count of values greater than x"
+      ],
+      "answer": [
+        "The lower-bound insertion position"
+      ],
+      "explanation": "The lower bound divides values less than x from those at least x, giving the insertion position that preserves sorted order."
+    },
+    {
+      "id": "pds-arr-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A merge-based algorithm counts inversions while sorting an array. What is its running time?",
+      "options": [
+        "Theta(n log n)",
+        "Theta(n^2)",
+        "Theta(log n)",
+        "Theta(n)"
+      ],
+      "answer": [
+        "Theta(n log n)"
+      ],
+      "explanation": "It divides the input recursively and counts cross-inversions during linear merges, yielding logarithmic levels of linear work."
+    },
+    {
+      "id": "pds-arr-072",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a sorted-array pair-sum search, the current endpoint values sum to more than X. Which pointer moves?",
+      "options": [
+        "The right pointer moves left",
+        "The left pointer moves right",
+        "Both pointers move right",
+        "Neither pointer can be moved"
+      ],
+      "answer": [
+        "The right pointer moves left"
+      ],
+      "explanation": "Decreasing the larger endpoint is the move that can lower the sum while retaining every potentially valid pair."
+    },
+    {
+      "id": "pds-arr-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "With randomized pivots, what is the expected time of quickselect for finding the kth smallest item?",
+      "options": [
+        "Theta(n)",
+        "Theta(n log n)",
+        "Theta(log n)",
+        "Theta(n^2) expected"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "Expected partition sizes shrink geometrically, so total work is linear, though a poor sequence of pivots can take quadratic time."
+    },
+    {
+      "id": "pds-arr-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If quickselect repeatedly partitions an n-item array into sizes 0 and n-1, what is its worst-case running time?",
+      "options": [
+        "Theta(n^2)",
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(log n)"
+      ],
+      "answer": [
+        "Theta(n^2)"
+      ],
+      "explanation": "The work sums n+(n-1)+...+1 when each partition removes only one element, producing a quadratic sum."
+    },
+    {
+      "id": "pds-arr-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For i=0..n-1, an inner loop runs j=i..n-1. How many inner iterations occur in total?",
+      "options": [
+        "n(n+1)/2",
+        "n^2",
+        "n(n-1)/2",
+        "2n"
+      ],
+      "answer": [
+        "n(n+1)/2"
+      ],
+      "explanation": "The counts are n,n-1,...,1. Their sum is n(n+1)/2."
+    },
+    {
+      "id": "pds-arr-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An outer loop doubles its index each pass and an inner loop scans n elements. What is total time?",
+      "options": [
+        "Theta(n log n)",
+        "Theta(n^2)",
+        "Theta(log n)",
+        "Theta(n)"
+      ],
+      "answer": [
+        "Theta(n log n)"
+      ],
+      "explanation": "There are logarithmically many outer iterations and each inner scan costs linear time."
+    },
+    {
+      "id": "pds-arr-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For dense matrices A(m by n) and B(n by p), what is the classical multiplication time?",
+      "options": [
+        "Theta(mnp)",
+        "Theta(m+n+p)",
+        "Theta(mn+p)",
+        "Theta(m^2+n^2+p^2)"
+      ],
+      "answer": [
+        "Theta(mnp)"
+      ],
+      "explanation": "There are m*p output cells and each accumulates n products, for m*n*p arithmetic operations."
+    },
+    {
+      "id": "pds-arr-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Let A have dimensions m by n and B have dimensions n by p. Which statements about their classical matrix product are correct?",
+      "options": [
+        "A*B is defined and has dimensions m by p",
+        "The classical algorithm takes Theta(mnp) arithmetic operations",
+        "The product is defined only when m=p",
+        "The result contains m*p entries"
+      ],
+      "answer": [
+        "A*B is defined and has dimensions m by p",
+        "The classical algorithm takes Theta(mnp) arithmetic operations",
+        "The result contains m*p entries"
+      ],
+      "explanation": "The shared inner dimension n makes the product valid. It has m rows and p columns; each of its m*p entries uses n multiply-add terms."
+    },
+    {
+      "id": "pds-arr-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What are the dimensions of the transpose of an R by C matrix?",
+      "options": [
+        "C by R",
+        "R by C",
+        "R+C by R+C",
+        "1 by R*C"
+      ],
+      "answer": [
+        "C by R"
+      ],
+      "explanation": "Transposition exchanges rows and columns, so R rows and C columns become C rows and R columns."
+    },
+    {
+      "id": "pds-arr-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In row-major storage, which pair of entries in the same row is adjacent in memory?",
+      "options": [
+        "A[i][j] and A[i][j+1]",
+        "A[i][j] and A[i+1][j]",
+        "A[i][j] and A[i+2][j+2]",
+        "Any pair in one column"
+      ],
+      "answer": [
+        "A[i][j] and A[i][j+1]"
+      ],
+      "explanation": "A row is stored contiguously, so neighboring column positions are consecutive elements in memory."
+    },
+    {
+      "id": "pds-arr-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a row-major matrix with C columns and element size s bytes, what is the byte stride between A[i][j] and A[i+1][j]?",
+      "options": [
+        "C*s",
+        "s",
+        "i*C*s",
+        "j*s"
+      ],
+      "answer": [
+        "C*s"
+      ],
+      "explanation": "Moving down one row advances C elements. Multiplying the row width by the element size gives a stride of C*s bytes."
+    },
+    {
+      "id": "pds-arr-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why must a product-except-self algorithm handle zeros separately if it uses total-product division?",
+      "options": [
+        "Division by a product containing zero is invalid",
+        "Multiplication is not associative",
+        "Arrays cannot contain zero",
+        "The output length changes"
+      ],
+      "answer": [
+        "Division by a product containing zero is invalid"
+      ],
+      "explanation": "If any element is zero, the total product is zero and division cannot recover each position. Counting zeros or using prefix/suffix products avoids this issue."
+    },
+    {
+      "id": "pds-arr-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An array contains n+1 values drawn from 1..n and has at least one repeated value. Which statements are correct?",
+      "options": [
+        "A duplicate is guaranteed by the pigeonhole principle",
+        "A functional graph can be formed by mapping each index to the value stored there",
+        "Floyd cycle detection can find a duplicate with O(1) extra space under the stated constraints",
+        "A hash set requires O(1) total space for arbitrary n"
+      ],
+      "answer": [
+        "A duplicate is guaranteed by the pigeonhole principle",
+        "A functional graph can be formed by mapping each index to the value stored there",
+        "Floyd cycle detection can find a duplicate with O(1) extra space under the stated constraints"
+      ],
+      "explanation": "There are more entries than possible values, so a duplicate exists. The value mapping creates a cycle structure; Floyd detects it without a growing auxiliary set."
+    },
+    {
+      "id": "pds-arr-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An array of n elements is reversed in place by swapping symmetric pairs. Which statements are correct?",
+      "options": [
+        "The running time is Theta(n)",
+        "The auxiliary space is O(1)",
+        "The number of swaps is floor(n/2)",
+        "A temporary array of length n is necessary"
+      ],
+      "answer": [
+        "The running time is Theta(n)",
+        "The auxiliary space is O(1)",
+        "The number of swaps is floor(n/2)"
+      ],
+      "explanation": "Each symmetric pair is swapped once, producing floor(n/2) swaps and linear time. A temporary scalar is sufficient, so auxiliary space is constant."
+    },
+    {
+      "id": "pds-arr-085",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many nonempty contiguous subarrays does an array of length 12 have?",
+      "answer": "78",
+      "explanation": "There are n(n+1)/2 choices of start and end with start<=end: 12*13/2=78."
+    },
+    {
+      "id": "pds-arr-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For an array of n elements, how many contiguous subarrays have length exactly k, where 1<=k<=n?",
+      "options": [
+        "n-k+1",
+        "n+k-1",
+        "n*k",
+        "n/k"
+      ],
+      "answer": [
+        "n-k+1"
+      ],
+      "explanation": "The starting index ranges from 0 through n-k, giving n-k+1 possible windows."
+    },
+    {
+      "id": "pds-arr-087",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An array has length 20. How many contiguous subarrays have length exactly 6?",
+      "answer": "15",
+      "explanation": "The possible starting positions are 0 through 14, so the count is 20-6+1=15."
+    },
+    {
+      "id": "pds-arr-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "How many unordered index pairs (i,j) with i<j exist in an array of n elements?",
+      "options": [
+        "n(n-1)/2",
+        "n^2",
+        "2n",
+        "n!"
+      ],
+      "answer": [
+        "n(n-1)/2"
+      ],
+      "explanation": "Choose two distinct indices without ordering; the count is n choose 2."
+    },
+    {
+      "id": "pds-arr-089",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many unordered pairs of distinct indices are there in an array of length 15?",
+      "answer": "105",
+      "explanation": "An array of length 15 has 15*14/2=105 unordered pairs of distinct indices. Each pair corresponds to one choice of two different positions."
+    },
+    {
+      "id": "pds-arr-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sequence is queried frequently by random index and rarely modified in the middle. Which representation is usually suitable?",
+      "options": [
+        "A contiguous array",
+        "A singly linked list",
+        "A stack with no indexing",
+        "A pointer-only queue"
+      ],
+      "answer": [
+        "A contiguous array"
+      ],
+      "explanation": "An array provides constant-time indexed access with low per-element overhead, matching frequent random reads and few middle updates."
+    },
+    {
+      "id": "pds-arr-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ordered array maintains sorted order. What is the worst-case time to insert a new item while preserving that order?",
+      "options": [
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(1)",
+        "Theta(n log n)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "Binary search locates the insertion point quickly, but the suffix may require a linear number of moves."
+    },
+    {
+      "id": "pds-arr-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stored prefix-sum array P is explicitly maintained. What is the worst-case time to update P after changing A[k]?",
+      "options": [
+        "Theta(n)",
+        "Theta(1)",
+        "Theta(log n)",
+        "Theta(n^2)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "Every later prefix includes A[k], so direct maintenance may require updating a linear suffix of P."
+    },
+    {
+      "id": "pds-arr-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which formula gives the number of nonempty contiguous subarrays of an n-element array?",
+      "options": [
+        "n(n+1)/2",
+        "n^2",
+        "2^n",
+        "n-1"
+      ],
+      "answer": [
+        "n(n+1)/2"
+      ],
+      "explanation": "Each subarray is determined by a start and end with start<=end; summing by start yields n+(n-1)+...+1."
+    },
+    {
+      "id": "pds-arr-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a row-major matrix, which nested-loop order generally gives sequential accesses for the innermost loop?",
+      "options": [
+        "Rows outer, columns inner",
+        "Columns outer, rows inner",
+        "Diagonal outer, rows inner",
+        "Any order has identical locality"
+      ],
+      "answer": [
+        "Rows outer, columns inner"
+      ],
+      "explanation": "A row is contiguous in memory, so iterating columns in the inner loop accesses neighboring cells."
+    },
+    {
+      "id": "pds-arr-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "How many element slots are needed for a dense R by C matrix representation?",
+      "options": [
+        "R*C",
+        "R+C",
+        "R-C",
+        "R^C"
+      ],
+      "answer": [
+        "R*C"
+      ],
+      "explanation": "A dense matrix stores one value for every row-column pair, yielding R times C entries."
+    },
+    {
+      "id": "pds-arr-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about binary search on an array are correct?",
+      "options": [
+        "The searched range must be ordered by the comparison relation",
+        "Each midpoint comparison can eliminate about half the remaining candidates",
+        "Its worst-case comparisons are Theta(log n)",
+        "It is correct on every unsorted array without preprocessing"
+      ],
+      "answer": [
+        "The searched range must be ordered by the comparison relation",
+        "Each midpoint comparison can eliminate about half the remaining candidates",
+        "Its worst-case comparisons are Theta(log n)"
+      ],
+      "explanation": "Sorted order supports discarding a half based on a midpoint comparison. The remaining interval shrinks geometrically, giving logarithmic worst-case comparisons."
+    },
+    {
+      "id": "pds-arr-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A dynamic-array append triggers a resize and copies n existing elements. What is the time of that individual append?",
+      "options": [
+        "Theta(n)",
+        "Theta(1)",
+        "Theta(log n)",
+        "Theta(n log n)"
+      ],
+      "answer": [
+        "Theta(n)"
+      ],
+      "explanation": "A resizing append can allocate a new block and copy all current entries, which is linear for that operation even though amortized append is constant."
+    },
+    {
+      "id": "pds-arr-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stable partition groups elements by a predicate. What property does stable guarantee?",
+      "options": [
+        "Relative order is preserved within each group",
+        "The entire array is sorted",
+        "The algorithm uses O(1) extra space",
+        "Every element moves exactly once"
+      ],
+      "answer": [
+        "Relative order is preserved within each group"
+      ],
+      "explanation": "Stability preserves the original order among elements assigned to each group; it does not sort within the groups."
+    },
+    {
+      "id": "pds-arr-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a row-major matrix, what is the locality effect of traversing a column top-to-bottom?",
+      "options": [
+        "The access stride is the row width, so locality is worse than row traversal",
+        "Every access is to an adjacent element",
+        "The traversal is impossible without transposing",
+        "The algorithm visits only diagonal entries"
+      ],
+      "answer": [
+        "The access stride is the row width, so locality is worse than row traversal"
+      ],
+      "explanation": "A fixed-column traversal jumps by C elements between rows, unlike consecutive-column accesses within a row."
+    },
+    {
+      "id": "pds-arr-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why is appending to a dynamic array with geometric capacity growth amortized O(1)?",
+      "options": [
+        "The total copied elements over many resizes is bounded by a geometric sum",
+        "Each append always copies exactly one element",
+        "The array never reallocates",
+        "A resize copies only the first element"
+      ],
+      "answer": [
+        "The total copied elements over many resizes is bounded by a geometric sum"
+      ],
+      "explanation": "Doubling makes the total copied elements over m appends O(m), so average append cost is constant."
+    }
+  ]
+}

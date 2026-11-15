@@ -1,0 +1,1377 @@
+{
+  "topicIndex": 0,
+  "questions": [
+    {
+      "id": "alg-asym-001",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Let f(n)=7n^2+4n log_2 n+9 and g(n)=n^2. Which relation is tight?",
+      "options": [
+        "f(n)=Θ(g(n))",
+        "f(n)=o(g(n))",
+        "g(n)=o(f(n))",
+        "f(n)=Θ(n^2 log n)"
+      ],
+      "answer": [
+        "f(n)=Θ(g(n))"
+      ],
+      "explanation": "The quadratic term dominates n log n and n. Dividing f by n² gives 7+4log(n)/n+9/n², which tends to the positive constant 7, so the ratio is bounded above and below by positive constants."
+    },
+    {
+      "id": "alg-asym-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "For f(n)=n^3 and g(n)=2^n, which statement holds as n tends to infinity?",
+      "options": [
+        "f(n)=o(g(n))",
+        "g(n)=o(f(n))",
+        "f(n)=Θ(g(n))",
+        "Neither function is eventually bounded by the other"
+      ],
+      "answer": [
+        "f(n)=o(g(n))"
+      ],
+      "explanation": "Any fixed-degree polynomial grows more slowly than an exponential with base greater than one. For example, the ratio n³/2ⁿ tends to zero, establishing little-o rather than merely a loose O bound."
+    },
+    {
+      "id": "alg-asym-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which claims follow from the definitions of asymptotic notation for eventually nonnegative functions?",
+      "options": [
+        "f=Θ(g) implies f=O(g)",
+        "f=o(g) implies f=O(g)",
+        "f=O(g) and g=O(f) imply f=Θ(g)",
+        "f=O(g) implies f=Ω(g)"
+      ],
+      "answer": [
+        "f=Θ(g) implies f=O(g)",
+        "f=o(g) implies f=O(g)",
+        "f=O(g) and g=O(f) imply f=Θ(g)"
+      ],
+      "explanation": "Theta is the intersection of O and Ω, and little-o is a stricter upper bound, hence also O. An O relation alone supplies no lower bound; f may grow strictly more slowly than g."
+    },
+    {
+      "id": "alg-asym-004",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For n≥2, T(n)=T(⌊n/2⌋)+1 with T(1)=0. What is T(31)?",
+      "answer": "4",
+      "explanation": "The argument sequence is 31, 15, 7, 3, 1. Four recurrence applications reduce the input to the base case, so the value is 4."
+    },
+    {
+      "id": "alg-asym-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Suppose f(n)=O(g(n)) and g(n)=O(h(n)). Which conclusion is guaranteed?",
+      "options": [
+        "f(n)=O(h(n))",
+        "h(n)=O(f(n))",
+        "f(n)=Θ(h(n))",
+        "f(n)=o(h(n))"
+      ],
+      "answer": [
+        "f(n)=O(h(n))"
+      ],
+      "explanation": "Big-O is transitive: constants c1,c2 and thresholds can be combined so that f(n)≤c1g(n)≤c1c2h(n) for all sufficiently large n. No matching lower bound follows."
+    },
+    {
+      "id": "alg-asym-006",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop executes for i=1,2,4,8,… while i≤1000. How many iterations occur?",
+      "answer": "10",
+      "explanation": "The executed values are 2^0 through 2^9=512; the next is 1024 and fails the condition. Thus there are ten iterations, equal to floor(log₂1000)+1."
+    },
+    {
+      "id": "alg-asym-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For f(n)=n log n and g(n)=n^(1.1), which asymptotic relation is correct?",
+      "options": [
+        "f(n)=o(g(n))",
+        "g(n)=o(f(n))",
+        "f(n)=Θ(g(n))",
+        "f(n)=Ω(g(n)) and f(n)=O(g(n)) both fail"
+      ],
+      "answer": [
+        "f(n)=o(g(n))"
+      ],
+      "explanation": "The ratio is log(n)/n^0.1, which tends to zero. Any positive polynomial power eventually dominates a logarithmic factor, even when the power difference is small."
+    },
+    {
+      "id": "alg-asym-008",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Let f and g be eventually positive, and f(n)=Θ(g(n)). Which statements must be true?",
+      "options": [
+        "g(n)=Θ(f(n))",
+        "f(n)=O(g(n))",
+        "There are positive constants c1,c2 such that c1g(n)≤f(n)≤c2g(n) eventually",
+        "f(n)/g(n) must converge"
+      ],
+      "answer": [
+        "g(n)=Θ(f(n))",
+        "f(n)=O(g(n))",
+        "There are positive constants c1,c2 such that c1g(n)≤f(n)≤c2g(n) eventually"
+      ],
+      "explanation": "Theta is symmetric and means a two-sided constant-factor bound, which includes Big-O. The ratio need only remain between positive constants; it may oscillate and need not converge."
+    },
+    {
+      "id": "alg-asym-009",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm performs n(n−1)/2 comparisons. Find the exact comparison count for n=40.",
+      "answer": "780",
+      "explanation": "The triangular sum is 40×39/2. Dividing 40 by 2 first gives 20×39=780 comparisons."
+    },
+    {
+      "id": "alg-asym-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence has the form T(n)=3T(n/2)+n, with T(1)=Θ(1). Which asymptotic solution follows from the Master theorem?",
+      "options": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n^(log_2 3))",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(n^(log_2 3))"
+      ],
+      "explanation": "Here a=3, b=2, so the critical term is n^(log₂3), whose exponent is about 1.585. The additive n is polynomially smaller, so the recursion-tree leaves dominate."
+    },
+    {
+      "id": "alg-asym-011",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which functions are Θ(n²) for positive integer n?",
+      "options": [
+        "5n²+17n+2",
+        "n²−100n for all sufficiently large n",
+        "n² log n",
+        "0.01n²"
+      ],
+      "answer": [
+        "5n²+17n+2",
+        "n²−100n for all sufficiently large n",
+        "0.01n²"
+      ],
+      "explanation": "Constant multiples and lower-order additive terms do not change a polynomial's asymptotic class. The n²log n term grows by an unbounded logarithmic factor and is not Θ(n²)."
+    },
+    {
+      "id": "alg-asym-012",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A routine executes the inner operation once for every pair (i,j) satisfying 1≤j<i≤n. How many operations occur at n=25?",
+      "answer": "300",
+      "explanation": "For each i, there are i−1 choices of j. Summing gives 0+1+…+24=25×24/2=300 ordered index pairs."
+    },
+    {
+      "id": "alg-asym-013",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which function is asymptotically largest among the following as n grows?",
+      "options": [
+        "n^2",
+        "n^2 log_2 n",
+        "n^2+2^n",
+        "n^3"
+      ],
+      "answer": [
+        "n^2+2^n"
+      ],
+      "explanation": "The sum n²+2ⁿ is dominated by its exponential term. Exponential growth eventually exceeds every listed polynomial-logarithmic function."
+    },
+    {
+      "id": "alg-asym-014",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Let T(n)=T(n−1)+n and T(0)=0. Which statements are correct?",
+      "options": [
+        "T(n)=n(n+1)/2",
+        "T(n)=Θ(n²)",
+        "The recurrence tree has n nonempty levels with costs 1 through n",
+        "T(n)=Θ(n log n)"
+      ],
+      "answer": [
+        "T(n)=n(n+1)/2",
+        "T(n)=Θ(n²)",
+        "The recurrence tree has n nonempty levels with costs 1 through n"
+      ],
+      "explanation": "Repeated expansion yields T(n)=n+(n−1)+…+1, the triangular number. Its exact sum is quadratic, while n log n is asymptotically smaller."
+    },
+    {
+      "id": "alg-asym-015",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+n with T(1)=1 and n a power of two, compute T(16).",
+      "answer": "80",
+      "explanation": "Each of the four internal levels contributes total nonrecursive work 16, and the 16 leaves contribute 16. Equivalently T(n)=n log₂n+n, so T(16)=64+16=80."
+    },
+    {
+      "id": "alg-asym-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm first sorts n records in Θ(n log n) time and then scans them once. What is the total asymptotic running time?",
+      "options": [
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n log n)",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(n log n)"
+      ],
+      "explanation": "Sequential phases add their costs: Θ(n log n)+Θ(n). The sorting term dominates the linear scan, leaving Θ(n log n)."
+    },
+    {
+      "id": "alg-asym-017",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary-search-like process reduces a problem from n to at most one quarter of its previous size each step. Starting with n=1024, how many reductions are needed to reach size 1?",
+      "answer": "5",
+      "explanation": "After k reductions the size is at most 1024/4^k. Since 4^5=1024, five reductions suffice; four leave a size of 4."
+    },
+    {
+      "id": "alg-asym-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Given f(n)=O(g(n)) and f(n)=Ω(g(n)), what is the strongest standard conclusion?",
+      "options": [
+        "f(n)=Θ(g(n))",
+        "f(n)=o(g(n))",
+        "g(n)=o(f(n))",
+        "f(n)=O(1)"
+      ],
+      "answer": [
+        "f(n)=Θ(g(n))"
+      ],
+      "explanation": "The upper and lower constant-factor bounds together are exactly the definition of Theta, assuming the functions are eventually nonnegative."
+    },
+    {
+      "id": "alg-asym-019",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the logarithm base in asymptotic analysis are correct for fixed bases greater than one?",
+      "options": [
+        "log_2 n=Θ(log_10 n)",
+        "Changing the base multiplies a logarithm by a constant",
+        "log_2 n and log_10 n differ by an unbounded factor",
+        "The base can matter when the logarithm is raised to a varying exponent"
+      ],
+      "answer": [
+        "log_2 n=Θ(log_10 n)",
+        "Changing the base multiplies a logarithm by a constant"
+      ],
+      "explanation": "The change-of-base identity gives log_a n=log_b n/log_b a, a constant multiple for fixed bases. Thus the ratio is bounded; the other claims do not hold in this setting."
+    },
+    {
+      "id": "alg-asym-020",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A nested loop has i from 1 through n and j from 1 through 3i, performing one operation per iteration. At n=20, how many operations execute?",
+      "answer": "630",
+      "explanation": "For each i, the inner loop contributes 3i operations. The total is 3(1+…+20)=3×210=630."
+    },
+    {
+      "id": "alg-asym-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=4T(n/2)+n², with T(1)=Θ(1), which solution is correct?",
+      "options": [
+        "Θ(n²)",
+        "Θ(n² log n)",
+        "Θ(n³)",
+        "Θ(n log n)"
+      ],
+      "answer": [
+        "Θ(n² log n)"
+      ],
+      "explanation": "The critical exponent is n^(log₂4)=n², matching the additive work. Each of log₂n levels contributes Θ(n²), yielding Θ(n²log n)."
+    },
+    {
+      "id": "alg-asym-022",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Suppose an algorithm's running time is Θ(n log n). Which statements are necessarily true?",
+      "options": [
+        "It is O(n²)",
+        "It is Ω(n)",
+        "It is o(n²)",
+        "It is Θ(n²)"
+      ],
+      "answer": [
+        "It is O(n²)",
+        "It is Ω(n)",
+        "It is o(n²)"
+      ],
+      "explanation": "For sufficiently large n, n≤nlog n≤n² up to constants, and (nlog n)/n²=log n/n→0. The runtime is therefore not Θ(n²)."
+    },
+    {
+      "id": "alg-asym-023",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop repeatedly replaces n by floor(n/2), beginning at n=100, and stops once n=0. How many loop-body executions occur?",
+      "answer": "7",
+      "explanation": "The values entering the body are 100, 50, 25, 12, 6, 3, and 1. The next halving yields zero, so the body executes seven times."
+    },
+    {
+      "id": "alg-asym-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence satisfies T(n)=T(n/2)+T(n/4)+n for n>4 and T(n)=Θ(1) otherwise. Which asymptotic bound is tight?",
+      "options": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n^(log_2 3))",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(n)"
+      ],
+      "explanation": "The nonrecursive work is n. The total subproblem size shrinks geometrically: the next level has at most 3n/4 total size, then at most (3/4)²n, and so on. Summing this geometric series gives Θ(n)."
+    },
+    {
+      "id": "alg-asym-025",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which summations grow as Θ(n log n)?",
+      "options": [
+        "Σ from i=1 to n of i",
+        "Σ from i=1 to n of 1/i multiplied by n",
+        "Σ from i=1 to n of 1",
+        "Σ from i=1 to n of log i"
+      ],
+      "answer": [
+        "Σ from i=1 to n of 1/i multiplied by n",
+        "Σ from i=1 to n of log i"
+      ],
+      "explanation": "n times the harmonic sum is Θ(nlog n), and log(n!)=Σlog i=Θ(nlog n) by Stirling's approximation. The other two sums are Θ(n²) and Θ(n), respectively."
+    },
+    {
+      "id": "alg-asym-026",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm processes every unordered pair of distinct elements exactly once. How many pair-processing steps occur for an input of 60 elements?",
+      "answer": "1770",
+      "explanation": "The count is the binomial coefficient C(60,2)=60×59/2=1770. Unordered pairs are counted once, unlike ordered pairs which would be twice as many."
+    },
+    {
+      "id": "alg-asym-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which is the tight asymptotic bound for 3n log_2 n + 12n + 100?",
+      "options": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "answer": [
+        "Θ(n log n)"
+      ],
+      "explanation": "The n log n term grows faster than the linear and constant terms. Its constant coefficient does not affect the asymptotic class."
+    },
+    {
+      "id": "alg-asym-028",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For an algorithm that performs n^2 operations in the worst case but may terminate early, which statements are valid?",
+      "options": [
+        "Its worst-case time is O(n²)",
+        "Its best-case time must be Θ(n²)",
+        "Its worst-case time is Ω(n²) if some inputs require cn² operations for a fixed c>0",
+        "Its average-case time is determined without an input distribution"
+      ],
+      "answer": [
+        "Its worst-case time is O(n²)",
+        "Its worst-case time is Ω(n²) if some inputs require cn² operations for a fixed c>0"
+      ],
+      "explanation": "Worst-case upper and lower bounds require different evidence. An early exit can make best-case time smaller, while average-case analysis requires a probability model over inputs."
+    },
+    {
+      "id": "alg-asym-029",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm performs 2^k iterations, where k=floor(log_2 n). What is the iteration count when n=1000?",
+      "answer": "512",
+      "explanation": "floor(log₂1000)=9 because 2⁹=512≤1000<1024=2¹⁰. Therefore the loop performs 2⁹=512 iterations."
+    },
+    {
+      "id": "alg-asym-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement correctly compares n! and 2^n asymptotically?",
+      "options": [
+        "2^n=o(n!)",
+        "n!=o(2^n)",
+        "n!=Θ(2^n)",
+        "Their ratio remains bounded above and below by constants"
+      ],
+      "answer": [
+        "2^n=o(n!)"
+      ],
+      "explanation": "By Stirling's approximation, n! is approximately sqrt(2Ï€n)(n/e)^n. Its ratio to 2^n grows without bound, so 2^n is little-o of n!."
+    },
+    {
+      "id": "alg-asym-031",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For the recurrence T(n)=T(n−2)+1 with T(0)=T(1)=0, what is T(19)?",
+      "answer": "9",
+      "explanation": "Each recurrence step decreases n by two. From 19, the arguments are 19,17,…,1, giving nine applications before reaching the zero-valued base case T(1)."
+    },
+    {
+      "id": "alg-asym-032",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which functions are o(n^3)?",
+      "options": [
+        "n² log n",
+        "n^3/log n",
+        "4^n",
+        "n^2.9"
+      ],
+      "answer": [
+        "n² log n",
+        "n^3/log n",
+        "n^2.9"
+      ],
+      "explanation": "Dividing each polynomial-logarithmic candidate by n³ gives a ratio tending to zero. The exponential ratio 4ⁿ/n³ instead diverges, so it is not little-o of n³."
+    },
+    {
+      "id": "alg-asym-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Let T(n)=T(⌊n/3⌋)+T(⌈2n/3⌉)+n. What is the asymptotic solution?",
+      "options": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "answer": [
+        "Θ(n log n)"
+      ],
+      "explanation": "The two subproblem sizes sum to n, so each recursion level has total nonrecursive work Θ(n). The longest path has Θ(log n) levels because each child is at most about 2n/3, giving Θ(nlog n) total work."
+    },
+    {
+      "id": "alg-asym-034",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A triangular nested loop executes j iterations for each outer value i=1,…,30, where j ranges from 1 through i. Find the total number of inner iterations.",
+      "answer": "465",
+      "explanation": "The total is Σi from 1 to 30 = 30×31/2 = 465. This is quadratic in the number of outer iterations, despite the shrinking inner-loop range."
+    },
+    {
+      "id": "alg-asym-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=T(n/2)+n, which term dominates the total work for n a power of two?",
+      "options": [
+        "The root-level n work; total is Θ(n)",
+        "The leaves; total is Θ(log n)",
+        "Every level equally; total is Θ(n log n)",
+        "The deepest level; total is Θ(n²)"
+      ],
+      "answer": [
+        "The root-level n work; total is Θ(n)"
+      ],
+      "explanation": "At successive levels the work is n, n/2, n/4, and so on. Their sum is a geometric series below 2n, so the root level dominates within a constant factor."
+    },
+    {
+      "id": "alg-asym-036",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Assume f and g are positive for all sufficiently large n. Which implications are valid?",
+      "options": [
+        "f=Θ(g) implies log f=Θ(log g), when both logarithms are eventually positive",
+        "f=o(g) implies f/g tends to zero",
+        "f=O(g) implies f(n)≤g(n) eventually",
+        "f=Ω(g) is equivalent to g=O(f)"
+      ],
+      "answer": [
+        "f=Θ(g) implies log f=Θ(log g), when both logarithms are eventually positive",
+        "f=o(g) implies f/g tends to zero",
+        "f=Ω(g) is equivalent to g=O(f)"
+      ],
+      "explanation": "Theta ratios stay between positive constants, so taking logarithms preserves asymptotic logarithmic growth under the stated positivity conditions. Big-O permits an arbitrary constant multiplier, not necessarily one."
+    },
+    {
+      "id": "alg-asym-037",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A procedure doubles a counter starting at 3 until it becomes greater than 1000. How many doublings are performed?",
+      "answer": "9",
+      "explanation": "After k doublings the counter is 3×2^k. The least k with this greater than 1000 is 9, since 3×256=768 and 3×512=1536."
+    },
+    {
+      "id": "alg-asym-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive algorithm makes three subcalls on inputs of size n/2 and does Θ(n) additional work. Its recurrence is T(n)=3T(n/2)+Θ(n). Which asymptotic term describes T(n)?",
+      "options": [
+        "Θ(n log n)",
+        "Θ(n^(log_2 3))",
+        "Θ(n²)",
+        "Θ(3^n)"
+      ],
+      "answer": [
+        "Θ(n^(log_2 3))"
+      ],
+      "explanation": "The recursion tree has 3^i subproblems of size n/2^i. Its leaf count is n^(log₂3); because the combine work is below the critical exponent, the leaves dominate."
+    },
+    {
+      "id": "alg-asym-039",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop uses i=1, then i=i+3, stopping when i>28. How many times does its body run?",
+      "answer": "10",
+      "explanation": "The values are 1,4,7,10,13,16,19,22,25,28. There are ten values no greater than 28; the next value 31 terminates the loop."
+    },
+    {
+      "id": "alg-asym-040",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about worst-case and amortized complexity are correct?",
+      "options": [
+        "An O(1) amortized operation may take Θ(n) in an individual execution",
+        "A worst-case bound considers the maximum cost over inputs of a given size",
+        "Amortized analysis requires assigning probabilities to inputs",
+        "A sequence of operations can have O(1) amortized cost per operation while one operation is expensive"
+      ],
+      "answer": [
+        "An O(1) amortized operation may take Θ(n) in an individual execution",
+        "A worst-case bound considers the maximum cost over inputs of a given size",
+        "A sequence of operations can have O(1) amortized cost per operation while one operation is expensive"
+      ],
+      "explanation": "Amortized analysis bounds aggregate cost over every operation sequence, without probabilities. A rare expensive operation can be offset by many cheap ones, unlike a per-operation worst-case guarantee."
+    },
+    {
+      "id": "alg-asym-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm runs in Θ(n^2) time. If input size is multiplied by 3, by what factor does its leading asymptotic work scale?",
+      "options": [
+        "3",
+        "6",
+        "9",
+        "It cannot be estimated from Θ notation"
+      ],
+      "answer": [
+        "9"
+      ],
+      "explanation": "For a quadratic leading growth rate, replacing n with 3n multiplies the dominant term by 3²=9. Θ notation does not fix exact runtime constants, but it determines this asymptotic scaling factor."
+    },
+    {
+      "id": "alg-asym-042",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For n=2^k, a recursion tree has 4^i nodes at level i and each node at that level performs n/2^i work. What is the total work at level i=3 when n=64?",
+      "answer": "512",
+      "explanation": "At level three there are 4^3=64 nodes. Each performs 64/2^3=8 units, so the total for that level is 64?8=512 operations."
+    },
+    {
+      "id": "alg-asym-043",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a recurrence tree of T(n)=2T(n/2)+n, which descriptions are correct when n is a power of two?",
+      "options": [
+        "There are log₂n+1 levels including the leaves",
+        "The total nonrecursive work at each internal level is n",
+        "The number of leaves is n",
+        "The aggregate internal work is Θ(n log n)"
+      ],
+      "answer": [
+        "There are log₂n+1 levels including the leaves",
+        "The total nonrecursive work at each internal level is n",
+        "The number of leaves is n",
+        "The aggregate internal work is Θ(n log n)"
+      ],
+      "explanation": "At depth i there are 2^i nodes each costing n/2^i, totaling n. There are log₂n internal levels and n leaves, yielding Θ(nlog n) internal work plus Θ(n) leaf work."
+    },
+    {
+      "id": "alg-asym-044",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A routine uses Θ(n) space for a temporary array and Θ(log n) stack space. What is its total auxiliary space?",
+      "options": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(n)"
+      ],
+      "explanation": "The two space contributions add. The linear temporary array dominates the logarithmic recursion stack, so the total remains Θ(n)."
+    },
+    {
+      "id": "alg-asym-045",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop begins at i=5 and multiplies i by 3 after each iteration while i≤1000. How many iterations are performed?",
+      "answer": "5",
+      "explanation": "The tested values are 5, 15, 45, 135, and 405. The next is 1215, which exceeds 1000, so the body runs five times."
+    },
+    {
+      "id": "alg-asym-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For f(n)=n^(log_2 n) and g(n)=2^(n), which relation is correct for sufficiently large n?",
+      "options": [
+        "f(n)=o(g(n))",
+        "g(n)=o(f(n))",
+        "f(n)=Θ(g(n))",
+        "The ratio alternates between zero and infinity"
+      ],
+      "answer": [
+        "f(n)=o(g(n))"
+      ],
+      "explanation": "Rewrite f as 2^((log₂n)²). Since (log₂n)²=o(n), its exponent grows much more slowly than the exponent n in 2^n, making the ratio tend to zero."
+    },
+    {
+      "id": "alg-asym-047",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which functions belong to Θ(n log n)?",
+      "options": [
+        "n log_7 n",
+        "4n log_2 n+9n",
+        "log(n!)",
+        "n(log n)^2"
+      ],
+      "answer": [
+        "n log_7 n",
+        "4n log_2 n+9n",
+        "log(n!)"
+      ],
+      "explanation": "Fixed logarithm bases and constant multipliers preserve the class; Stirling gives log(n!)=Θ(nlog n). The extra logarithmic factor in n(log n)² makes that function asymptotically larger."
+    },
+    {
+      "id": "alg-asym-048",
+      "type": "NAT",
+      "difficulty": "CHALLENGING",
+      "prompt": "For n=32, a recursion tree has 2^i nodes at level i and each node contributes n/2^i work. What is the total work across the first four levels, i=0,1,2,3?",
+      "answer": "128",
+      "explanation": "Each of the four stated levels contributes 2^i?(32/2^i)=32 units. Therefore their combined work is 4?32=128 units."
+    },
+    {
+      "id": "alg-asym-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An algorithm solves two subproblems of size n/2 and combines them in Θ(n²) time. What is its asymptotic running time?",
+      "options": [
+        "Θ(n²)",
+        "Θ(n² log n)",
+        "Θ(n³)",
+        "Θ(n log n)"
+      ],
+      "answer": [
+        "Θ(n²)"
+      ],
+      "explanation": "At each level, the aggregate combine work is 2^i(n/2^i)²=n²/2^i. Summing this geometric series across levels gives Θ(n²), dominated by the upper levels."
+    },
+    {
+      "id": "alg-asym-050",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which methods can establish that f(n)=O(g(n))?",
+      "options": [
+        "Find constants c>0 and n₀ such that f(n)≤cg(n) for every n≥n₀",
+        "Show that limsup f(n)/g(n) is finite when g is eventually positive",
+        "Show that f(n)/g(n) tends to zero",
+        "Show only that f(n)≤g(n) for n=10^6"
+      ],
+      "answer": [
+        "Find constants c>0 and n₀ such that f(n)≤cg(n) for every n≥n₀",
+        "Show that limsup f(n)/g(n) is finite when g is eventually positive",
+        "Show that f(n)/g(n) tends to zero"
+      ],
+      "explanation": "The definition is an eventual constant-factor bound; a finite ratio limsup is an equivalent test under positivity. A ratio tending to zero is sufficient, while one finite input says nothing asymptotic."
+    },
+    {
+      "id": "alg-asym-051",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop performs n iterations, and each iteration scans a suffix whose length decreases from n to 1. Find the exact number of scanned elements for n=18.",
+      "answer": "171",
+      "explanation": "The suffix lengths sum to 18+17+…+1=18×19/2=171. This triangular sum is Θ(n²), even though the scan length shrinks each iteration."
+    },
+    {
+      "id": "alg-asym-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Let T(n)=T(n−1)+T(n−2)+1 with constant base cases. Which asymptotic growth class best describes T(n)?",
+      "options": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(φ^n), where φ=(1+√5)/2",
+        "Θ(2^n) exactly"
+      ],
+      "answer": [
+        "Θ(φ^n), where φ=(1+√5)/2"
+      ],
+      "explanation": "The homogeneous recurrence has characteristic equation r²=r+1, whose dominant root is φ. The additive constant does not change the exponential order, and the growth is Θ(φ^n), not exactly 2^n."
+    },
+    {
+      "id": "alg-asym-053",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A logarithmic loop starts with x=729 and repeatedly divides x by 3 while x>1. How many body executions occur?",
+      "answer": "6",
+      "explanation": "The successive values entering the loop body are 729, 243, 81, 27, 9, and 3. One more division produces 1 and terminates, for six executions."
+    },
+    {
+      "id": "alg-asym-054",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A comparison-based algorithm must distinguish all n! possible input permutations. Which lower-bound statements are valid in the worst case?",
+      "options": [
+        "It needs at least log₂(n!) comparisons",
+        "By Stirling's approximation this is Ω(n log n)",
+        "This lower bound applies to arbitrary non-comparison algorithms as well",
+        "The decision tree must have at least n! leaves"
+      ],
+      "answer": [
+        "It needs at least log₂(n!) comparisons",
+        "By Stirling's approximation this is Ω(n log n)",
+        "The decision tree must have at least n! leaves"
+      ],
+      "explanation": "A binary comparison decision tree with n! distinguishable outcomes needs height at least log₂(n!), which is Ω(nlog n). The argument relies on comparison outcomes and does not directly bound all non-comparison algorithms."
+    },
+    {
+      "id": "alg-asym-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "If an algorithm's running time is O(n log n), which is also a valid upper bound?",
+      "options": [
+        "O(n)",
+        "O(log n)",
+        "O(n²)",
+        "Ω(n²)"
+      ],
+      "answer": [
+        "O(n²)"
+      ],
+      "explanation": "For sufficiently large n, nlog n≤n², so a quadratic upper bound is valid though not tight. O(n) and O(log n) are smaller bounds and are not implied."
+    },
+    {
+      "id": "alg-asym-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A nested loop has i=1,…,12 and executes i² inner operations at outer iteration i. How many operations are performed in total?",
+      "answer": "650",
+      "explanation": "The sum of squares through 12 is 12×13×25/6=650. Its general growth is Θ(n³), unlike the triangular sum from a linear inner count."
+    },
+    {
+      "id": "alg-asym-057",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=aT(n/b)+f(n), with a≥1 and b>1 constants, the Master theorem compares f(n) to n^(log_b a). Which cases are correctly described?",
+      "options": [
+        "If f is polynomially smaller, the leaves dominate",
+        "If f matches the critical term up to log powers, an additional logarithmic factor appears",
+        "If f is polynomially larger and the regularity condition holds, the root-side work dominates",
+        "The theorem applies unchanged to every recurrence with unequal subproblem sizes"
+      ],
+      "answer": [
+        "If f is polynomially smaller, the leaves dominate",
+        "If f matches the critical term up to log powers, an additional logarithmic factor appears",
+        "If f is polynomially larger and the regularity condition holds, the root-side work dominates"
+      ],
+      "explanation": "These are the standard three Master theorem regimes for equal-sized subproblems. Unequal subproblem sizes require other methods, such as a recursion tree or Akra–Bazzi analysis."
+    },
+    {
+      "id": "alg-asym-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=2T(n/2)+n/log n, a direct application of the basic three-case Master theorem is inconclusive. What is the tight asymptotic solution for n=2^k?",
+      "options": [
+        "Θ(n)",
+        "Θ(n log log n)",
+        "Θ(n log n)",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(n log log n)"
+      ],
+      "explanation": "At depth i the aggregate cost is approximately n/(log(n/2^i))=n/(log n−i). Summing over levels is n times a harmonic sum over the logarithmic depth, giving Θ(n log log n)."
+    },
+    {
+      "id": "alg-asym-059",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm executes the inner statement for all integer pairs 1≤i≤j≤10. How many pairs are visited?",
+      "answer": "55",
+      "explanation": "For each i, j has 11−i possible values. The counts 10+9+…+1 sum to 10×11/2=55."
+    },
+    {
+      "id": "alg-asym-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence is T(n)=T(n/2)+T(n/4)+Θ(n). Why is T(n)=Θ(n) rather than Θ(n log n)?",
+      "options": [
+        "The total child input size is at most 3n/4, so work across levels decreases geometrically",
+        "There are no recursive calls",
+        "The recursion depth is constant",
+        "The root contributes only Θ(1) work"
+      ],
+      "answer": [
+        "The total child input size is at most 3n/4, so work across levels decreases geometrically"
+      ],
+      "explanation": "At each level, the sum of subproblem sizes contracts by at least a constant factor 3/4. Since each node contributes work proportional to its size, level costs form a geometric series dominated by the root."
+    },
+    {
+      "id": "alg-asym-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A procedure doubles a value initially equal to 7 until it is at least 5000. How many multiplications by 2 are required?",
+      "answer": "10",
+      "explanation": "After k doublings the value is 7×2^k. At k=9 it is 3584, below 5000; at k=10 it is 7168, so ten doublings are the minimum."
+    },
+    {
+      "id": "alg-asym-062",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statements correctly distinguish O, Ω, Θ, and o notation?",
+      "options": [
+        "O provides an asymptotic upper bound",
+        "Ω provides an asymptotic lower bound",
+        "Θ requires both an upper and a lower constant-factor bound",
+        "o requires only a constant-factor upper bound"
+      ],
+      "answer": [
+        "O provides an asymptotic upper bound",
+        "Ω provides an asymptotic lower bound",
+        "Θ requires both an upper and a lower constant-factor bound"
+      ],
+      "explanation": "Little-o means the ratio f/g tends to zero, a strictly stronger upper bound than O. It is not merely any constant-factor upper bound."
+    },
+    {
+      "id": "alg-asym-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Let T(n)=T(n/2)+Θ(log n). What is the solution for powers of two?",
+      "options": [
+        "Θ(log n)",
+        "Θ((log n)²)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "answer": [
+        "Θ((log n)²)"
+      ],
+      "explanation": "There are Θ(log n) levels. At successive levels the nonrecursive costs are log n, log n−1, …, 1, whose sum is Θ((log n)²)."
+    },
+    {
+      "id": "alg-asym-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A nested loop executes n−i iterations at iteration i for i=0,…,n−1. How many times does its body execute when n=32?",
+      "answer": "528",
+      "explanation": "The counts are 32+31+?+1. Their triangular sum is 32?33/2=528 executions."
+    },
+    {
+      "id": "alg-asym-065",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Suppose f(n)=Θ(n²) and g(n)=Θ(n² log n). Which comparisons are true?",
+      "options": [
+        "f(n)=o(g(n))",
+        "g(n)=Ï‰(f(n))",
+        "g(n)=O(f(n))",
+        "f(n)=O(g(n))"
+      ],
+      "answer": [
+        "f(n)=o(g(n))",
+        "g(n)=Ï‰(f(n))",
+        "f(n)=O(g(n))"
+      ],
+      "explanation": "The logarithmic factor grows without bound, so f/g tends to zero and g/f diverges. Thus f is little-o of g and is also O(g), while g is not O(f)."
+    },
+    {
+      "id": "alg-asym-066",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A program performs Θ(n) work and then calls a Θ(n²) subroutine once. What is its total running time?",
+      "options": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n³)",
+        "Θ(n² log n)"
+      ],
+      "answer": [
+        "Θ(n²)"
+      ],
+      "explanation": "The phases are sequential, so their costs add to Θ(n)+Θ(n²). The quadratic subroutine dominates the linear preliminary work."
+    },
+    {
+      "id": "alg-asym-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop tests i=2,4,8,… while i<200. How many iterations execute?",
+      "answer": "7",
+      "explanation": "The values satisfying the strict inequality are 2, 4, 8, 16, 32, 64, and 128. The next value, 256, fails the test, so there are seven iterations."
+    },
+    {
+      "id": "alg-asym-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For T(n)=8T(n/2)+n^3, what is the tight asymptotic bound?",
+      "options": [
+        "Θ(n³)",
+        "Θ(n³ log n)",
+        "Θ(n^4)",
+        "Θ(n log n)"
+      ],
+      "answer": [
+        "Θ(n³ log n)"
+      ],
+      "explanation": "The critical exponent is n^(log₂8)=n³, exactly matching the combine work. Each of log₂n levels contributes Θ(n³), giving Θ(n³log n)."
+    },
+    {
+      "id": "alg-asym-069",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which claims about lower bounds for comparison sorting are justified by the decision-tree argument?",
+      "options": [
+        "At least n! leaves are needed to distinguish all input orders",
+        "The worst-case height is at least log₂(n!)",
+        "The lower bound is Ω(n log n)",
+        "Every comparison sorting algorithm has worst-case exactly n log₂n comparisons"
+      ],
+      "answer": [
+        "At least n! leaves are needed to distinguish all input orders",
+        "The worst-case height is at least log₂(n!)",
+        "The lower bound is Ω(n log n)"
+      ],
+      "explanation": "The tree must distinguish all n! permutations and is binary, forcing height at least log₂(n!), which is Ω(nlog n). The argument is an asymptotic lower bound, not an exact cost for every algorithm."
+    },
+    {
+      "id": "alg-asym-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recurrence T(n)=T(n−1)+2n with T(0)=0 is evaluated at n=15. Compute T(15).",
+      "answer": "240",
+      "explanation": "Expanding gives 2Σi from 1 to 15 = 2×15×16/2 = 240. The recurrence therefore has quadratic growth."
+    },
+    {
+      "id": "alg-asym-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For f(n)=log(n!) and g(n)=n log n, which relation follows from Stirling's approximation?",
+      "options": [
+        "f(n)=Θ(g(n))",
+        "f(n)=o(g(n))",
+        "g(n)=o(f(n))",
+        "f(n)=Θ(n)"
+      ],
+      "answer": [
+        "f(n)=Θ(g(n))"
+      ],
+      "explanation": "Stirling gives log(n!)=nlog n−n+Θ(log n), where the leading nlog n term dominates. The ratio to nlog n tends to one for any fixed logarithm base."
+    },
+    {
+      "id": "alg-asym-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are polynomial-time bounds in n?",
+      "options": [
+        "O(n^7)",
+        "O(n^2 log n)",
+        "O(2^n)",
+        "O(n^(log_2 5))"
+      ],
+      "answer": [
+        "O(n^7)",
+        "O(n^2 log n)",
+        "O(n^(log_2 5))"
+      ],
+      "explanation": "A polynomial-time bound is at most n^c for some constant c. The logarithmic factor can be bounded by an additional polynomial power, and log₂5 is a constant exponent; 2^n is exponential."
+    },
+    {
+      "id": "alg-asym-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop starts at i=0, increments i by 4, and runs while i<30. How many body executions occur?",
+      "answer": "8",
+      "explanation": "The values are 0,4,8,12,16,20,24,28. Eight values satisfy i<30; the next value 32 stops the loop."
+    },
+    {
+      "id": "alg-asym-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A divide-and-conquer recurrence is T(n)=2T(n/2)+n/log n for n>2. Which technique is suitable because the basic Master theorem does not directly settle this boundary case?",
+      "options": [
+        "Recursion-tree summation",
+        "Assume T(n)=1 for every n",
+        "Ignore the additive term",
+        "Use the sorting lower bound"
+      ],
+      "answer": [
+        "Recursion-tree summation"
+      ],
+      "explanation": "The toll term is only a logarithmic factor below the critical n term, a boundary case outside the basic three-case Master theorem. Summing level costs exposes the harmonic accumulation and gives Θ(nloglog n)."
+    },
+    {
+      "id": "alg-asym-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Let f(n)=n?(1+sin n), for integer n, and g(n)=n?. Which relation is guaranteed from the elementary bound ?1?sin n?1?",
+      "options": [
+        "f(n)=O(g(n))",
+        "f(n)=Omega(g(n))",
+        "f(n)=Theta(g(n))",
+        "f(n)=omega(g(n))"
+      ],
+      "answer": [
+        "f(n)=O(g(n))"
+      ],
+      "explanation": "The sine bound gives 0?f(n)?2n^2, proving the asymptotic upper bound. It supplies no positive constant lower bound for all large integer n, so Omega and Theta cannot be concluded from this information alone."
+    },
+    {
+      "id": "alg-asym-076",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop visits all integer values of i from 1 through 25 and executes 2i+1 operations at each value. Find the total operations.",
+      "answer": "675",
+      "explanation": "The sum is Σ(2i+1)=2×25×26/2+25=650+25=675. The linear per-iteration work produces a quadratic total."
+    },
+    {
+      "id": "alg-asym-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An algorithm has recurrence T(n)=2T(n/2)+Θ(n log n). What is its asymptotic time?",
+      "options": [
+        "Θ(n log n)",
+        "Θ(n(log n)²)",
+        "Θ(n²)",
+        "Θ(n^(log_2 3))"
+      ],
+      "answer": [
+        "Θ(n(log n)²)"
+      ],
+      "explanation": "At recursion depth i, total subproblem size is n and each problem contributes a logarithmic factor about log n−i. Summing across Θ(log n) levels yields Θ(n(log n)²)."
+    },
+    {
+      "id": "alg-asym-078",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop repeatedly triples a counter starting at 1 and stops after the counter exceeds 10,000. How many loop-body executions occur if the test is before the multiplication?",
+      "answer": "9",
+      "explanation": "The tested values are 1,3,9,27,81,243,729,2187,6561. Each is at most 10,000; multiplying once more gives 19,683 and the next test fails, so there are nine executions."
+    },
+    {
+      "id": "alg-asym-079",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which conclusions can be drawn from a measured runtime of 2 seconds at n=1000 without any additional algorithmic information?",
+      "options": [
+        "The asymptotic complexity is Θ(n)",
+        "The algorithm took 2 seconds for that measured run",
+        "A single measurement does not determine its asymptotic class",
+        "Hardware and input characteristics can affect the observed time"
+      ],
+      "answer": [
+        "The algorithm took 2 seconds for that measured run",
+        "A single measurement does not determine its asymptotic class",
+        "Hardware and input characteristics can affect the observed time"
+      ],
+      "explanation": "Asymptotic analysis concerns growth across sufficiently large input sizes, not one observation. The measurement is factual for that run but cannot distinguish among many possible growth functions."
+    },
+    {
+      "id": "alg-asym-080",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Suppose T(n)=T(n/2)+Θ(1) and the recursion stops at n=1. What is the asymptotic number of recursive calls?",
+      "options": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "answer": [
+        "Θ(log n)"
+      ],
+      "explanation": "Halving the input requires about log₂n reductions before reaching one. Each reduction is one recursive call, so the call count and total time are Θ(log n)."
+    },
+    {
+      "id": "alg-asym-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a nonnegative function f(n)=O(n²), which statements necessarily follow?",
+      "options": [
+        "f(n)=O(n³)",
+        "f(n)=Ω(n²)",
+        "f(n)=o(n³)",
+        "f(n)=O(2^n)"
+      ],
+      "answer": [
+        "f(n)=O(n³)",
+        "f(n)=o(n³)",
+        "f(n)=O(2^n)"
+      ],
+      "explanation": "A quadratic upper bound is also an upper bound by any asymptotically faster function, and n²=o(n³) as well as n²=o(2ⁿ). No quadratic lower bound is implied."
+    },
+    {
+      "id": "alg-asym-082",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recurrence has T(1)=1 and T(n)=T(n/2)+3 for powers of two n. Find T(128).",
+      "answer": "22",
+      "explanation": "There are seven halvings from 128 to 1. Each adds three, so T(128)=1+3×7=22."
+    },
+    {
+      "id": "alg-asym-083",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which recurrence has a Θ(n log n) solution by equal work at each recursion-tree level?",
+      "options": [
+        "T(n)=2T(n/2)+n",
+        "T(n)=T(n/2)+n",
+        "T(n)=4T(n/2)+n",
+        "T(n)=2T(n/2)+1"
+      ],
+      "answer": [
+        "T(n)=2T(n/2)+n"
+      ],
+      "explanation": "With two half-size children, each level contains total subproblem size n, and the linear toll contributes Θ(n) at every one of Θ(log n) levels. The other recurrences have different level-cost patterns."
+    },
+    {
+      "id": "alg-asym-084",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An outer loop runs i=1 through 16; for each i, an inner loop runs j=1 through 2i−1. How many total inner iterations occur?",
+      "answer": "256",
+      "explanation": "The count is Σ(2i−1) for i=1,…,16, the sum of the first 16 odd integers. This equals 16²=256."
+    },
+    {
+      "id": "alg-asym-085",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statements about asymptotic upper bounds are correct?",
+      "options": [
+        "If f=O(g), then 7f=O(g) for a positive constant 7",
+        "If f=O(g), then f+g=O(g) when g is eventually nonnegative",
+        "If f=O(g) and g=O(h), then f=O(h)",
+        "If f=O(g), then g=O(f)"
+      ],
+      "answer": [
+        "If f=O(g), then 7f=O(g) for a positive constant 7",
+        "If f=O(g), then f+g=O(g) when g is eventually nonnegative",
+        "If f=O(g) and g=O(h), then f=O(h)"
+      ],
+      "explanation": "Constant scaling, addition of a function already bounded by g, and transitivity preserve Big-O. The reverse bound is not guaranteed; for example, 1=O(n) but n is not O(1)."
+    },
+    {
+      "id": "alg-asym-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For f(n)=n^(3/2) and g(n)=n log_2 n, which grows faster asymptotically?",
+      "options": [
+        "f(n)",
+        "g(n)",
+        "They are Θ-equivalent",
+        "Neither dominates the other"
+      ],
+      "answer": [
+        "f(n)"
+      ],
+      "explanation": "The ratio f/g=√n/log₂n tends to infinity. A polynomial factor n^ε eventually dominates any fixed logarithmic factor, so n^(3/2)=ω(nlog n)."
+    },
+    {
+      "id": "alg-asym-087",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A triangular loop executes for all integer pairs satisfying 0≤j≤i<15. How many pairs are processed?",
+      "answer": "120",
+      "explanation": "For each i, there are i+1 choices of j. The total is 1+2+…+15=15×16/2=120 pairs."
+    },
+    {
+      "id": "alg-asym-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recurrence T(n)=3T(n/3)+n/log n has n=3^k and a constant base case. Which asymptotic conclusion is correct?",
+      "options": [
+        "The recursion tree has Θ(log n) levels",
+        "The total work is Θ(n log log n)",
+        "Each level has exactly Θ(n/log n) work",
+        "A basic Master theorem case with f(n)=Θ(n) applies directly"
+      ],
+      "answer": [
+        "The recursion tree has Θ(log n) levels",
+        "The total work is Θ(n log log n)"
+      ],
+      "explanation": "At level i there are 3^i nodes of size n/3^i, so the total toll is n/(log n−i log 3). Summing this reciprocal sequence over Θ(log n) levels gives Θ(nloglog n), not a constant per level."
+    },
+    {
+      "id": "alg-asym-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If the input size doubles and an algorithm has Θ(n log n) time, which growth factor is approached for large n?",
+      "options": [
+        "2",
+        "Slightly more than 2, approaching 2",
+        "4",
+        "It approaches infinity"
+      ],
+      "answer": [
+        "Slightly more than 2, approaching 2"
+      ],
+      "explanation": "The ratio is (2n log(2n))/(nlog n)=2(1+log 2/log n), which tends to 2 from above. The logarithmic factor adds a diminishing relative increase."
+    },
+    {
+      "id": "alg-asym-090",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A routine scans an n×n matrix once and performs one constant-time action per entry. How many actions does it perform for n=37?",
+      "answer": "1369",
+      "explanation": "There are 37 rows and 37 columns, yielding 37²=1369 entries. The scan's time is Θ(n²)."
+    },
+    {
+      "id": "alg-asym-091",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "For T(n)=T(n−1)+Θ(1), with T(1)=Θ(1), what is the asymptotic running time?",
+      "options": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(n)"
+      ],
+      "explanation": "The recurrence decreases the argument by one and adds constant work at each of n−1 levels. The accumulated cost is linear."
+    },
+    {
+      "id": "alg-asym-092",
+      "type": "MSQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which expressions are Θ(n²) as n grows?",
+      "options": [
+        "Σ from i=1 to n of (2i−1)",
+        "Σ from i=1 to n of i",
+        "n²/100+6n",
+        "n²/log n"
+      ],
+      "answer": [
+        "Σ from i=1 to n of (2i−1)",
+        "Σ from i=1 to n of i",
+        "n²/100+6n"
+      ],
+      "explanation": "The first sum equals n²; the second equals n(n+1)/2; and the polynomial's quadratic term dominates. n²/log n is little-o(n²), so it is not Theta-equivalent."
+    },
+    {
+      "id": "alg-asym-093",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop starts with x=5 and applies x←2x+1 while x≤100. How many iterations are performed?",
+      "answer": "5",
+      "explanation": "The values tested are 5,11,23,47,95, then 191. The first five satisfy x≤100; after the fifth update the condition fails."
+    },
+    {
+      "id": "alg-asym-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Suppose an algorithm's running time is O(n^2), and a separate lower-bound argument proves Ω(n log n). What can be concluded?",
+      "options": [
+        "Its tight class is necessarily Θ(n²)",
+        "Its tight class is necessarily Θ(n log n)",
+        "The given bounds do not determine one tight Θ class",
+        "It must run in Θ(n³)"
+      ],
+      "answer": [
+        "The given bounds do not determine one tight Θ class"
+      ],
+      "explanation": "The upper and lower bounds leave a gap: many functions between nlog n and n² satisfy both. A matching asymptotic upper or lower bound is needed to establish a tight class."
+    },
+    {
+      "id": "alg-asym-095",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A loop processes every ordered pair (i,j) with 1≤i,j≤12 and i≠j. How many iterations occur?",
+      "answer": "132",
+      "explanation": "There are 12 choices for i and 11 choices for j distinct from i. Thus the ordered-pair count is 12×11=132."
+    },
+    {
+      "id": "alg-asym-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about recursion depth and total work are correct?",
+      "options": [
+        "A depth-Θ(log n) recursion can still have Θ(n²) total work",
+        "A recursion tree's total time is the sum of costs over all nodes",
+        "Depth alone is sufficient to determine total running time",
+        "A single path's cost can be a lower bound on total work"
+      ],
+      "answer": [
+        "A depth-Θ(log n) recursion can still have Θ(n²) total work",
+        "A recursion tree's total time is the sum of costs over all nodes",
+        "A single path's cost can be a lower bound on total work"
+      ],
+      "explanation": "Depth describes only the longest dependency chain. Branching can create many nodes, so total work sums all nodes; the cost of any one root-to-leaf path cannot exceed the total for nonnegative costs."
+    },
+    {
+      "id": "alg-asym-097",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm performs 5n+3 primitive operations. Which statement best describes its asymptotic time?",
+      "options": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "answer": [
+        "Θ(n)"
+      ],
+      "explanation": "The linear term grows without bound and dominates the constant. Positive constant factors and additive constants are suppressed in Theta notation."
+    },
+    {
+      "id": "alg-asym-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm takes n⌈log₂n⌉ basic steps according to its cost model. Evaluate the step count for n=64.",
+      "answer": "384",
+      "explanation": "Since log₂64=6 exactly, the ceiling is 6. The cost is 64×6=384 steps."
+    },
+    {
+      "id": "alg-asym-099",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which pairs have the first function in little-o of the second?",
+      "options": [
+        "log n and √n",
+        "n and n log n",
+        "n² and n^2.1",
+        "2^n and 3^n"
+      ],
+      "answer": [
+        "log n and √n",
+        "n and n log n",
+        "n² and n^2.1",
+        "2^n and 3^n"
+      ],
+      "explanation": "In every pair the ratio of the first function to the second tends to zero: logarithms are below positive powers, an extra log factor separates nlogn from n, and the larger polynomial or exponential base dominates."
+    },
+    {
+      "id": "alg-asym-100",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm has worst-case time Θ(n log n) and uses Θ(n) auxiliary memory. Which statement is correct?",
+      "options": [
+        "Its time is quadratic because its memory is linear",
+        "Its time and space bounds describe different resources",
+        "Its auxiliary space must include the input array",
+        "The space bound implies the time bound is Θ(n)"
+      ],
+      "answer": [
+        "Its time and space bounds describe different resources"
+      ],
+      "explanation": "Running time counts computational steps, while auxiliary space counts extra storage beyond the specified input. One asymptotic bound does not determine the other; linear space is compatible with nlogn time."
+    }
+  ]
+}

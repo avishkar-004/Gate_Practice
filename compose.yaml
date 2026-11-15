@@ -4,12 +4,14 @@ services:
     ports:
       - "${GATE_PRACTICE_PORT:-8081}:8080"
     environment:
-      APP_ROOT: /workspace
+      APP_ROOT: /frontend
+      CATALOG_PATH: /content/catalog.json
       DATABASE_PATH: /data/progress.sqlite3
       HOST: 0.0.0.0
       PORT: 8080
     volumes:
-      - ./:/workspace:ro
+      - ./frontend:/frontend:ro
+      - ./content:/content:ro
       - gate_practice_data:/data
     restart: unless-stopped
 

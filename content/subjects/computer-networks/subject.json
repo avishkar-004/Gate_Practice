@@ -1,0 +1,7 @@
+{
+  "id": "computer-networks",
+  "title": "Computer Networks",
+  "short": "COMPUTER NETWORKS",
+  "description": "Layering, switching, data link, routing, IPv4, TCP, DNS and HTTP",
+  "order": 30
+}

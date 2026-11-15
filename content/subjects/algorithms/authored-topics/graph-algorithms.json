@@ -1,0 +1,1410 @@
+{
+  "topicIndex": 7,
+  "questions": [
+    {
+      "id": "alg-graph-001",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In an unweighted graph, which traversal finds shortest paths in number of edges from a source?",
+      "options": [
+        "Breadth-first search",
+        "Depth-first search",
+        "A topological sort",
+        "Kruskal's algorithm"
+      ],
+      "answer": [
+        "Breadth-first search"
+      ],
+      "explanation": "BFS explores vertices in increasing distance layers. The first discovery of a vertex therefore uses a minimum-edge path from the source."
+    },
+    {
+      "id": "alg-graph-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a BFS tree rooted at s, a vertex v is at level 4. How many edges are in the shortest unweighted path from s to v?",
+      "answer": "4",
+      "explanation": "BFS level equals shortest-path distance measured in edges for an unweighted graph. Level 4 therefore corresponds to a path of four edges."
+    },
+    {
+      "id": "alg-graph-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about BFS are correct for an adjacency-list graph?",
+      "options": [
+        "Its running time is O(V+E)",
+        "It uses a queue",
+        "It can compute unweighted shortest-path distances",
+        "It requires all edge weights to be equal and positive"
+      ],
+      "answer": [
+        "Its running time is O(V+E)",
+        "It uses a queue",
+        "It can compute unweighted shortest-path distances"
+      ],
+      "explanation": "BFS scans each vertex and edge a constant number of times using a queue. The shortest-path guarantee applies to unweighted or equal-weight edges, including zero as a common unweighted model; positive edge weights are not required."
+    },
+    {
+      "id": "alg-graph-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph is represented by adjacency lists. What is the BFS time complexity over all vertices and edges?",
+      "options": [
+        "O(V+E)",
+        "O(V²)",
+        "O(E log V)",
+        "O(VE)"
+      ],
+      "answer": [
+        "O(V+E)"
+      ],
+      "explanation": "BFS initializes each vertex once and scans each adjacency-list edge once, leading to O(V+E) total time."
+    },
+    {
+      "id": "alg-graph-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A connected undirected graph has 12 vertices and 17 edges. How many edges does a BFS spanning tree contain?",
+      "answer": "11",
+      "explanation": "A spanning tree on 12 vertices has V−1=11 edges, independent of the number of extra graph edges."
+    },
+    {
+      "id": "alg-graph-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In DFS, a vertex is marked discovered when it is first entered. What is the main purpose of this mark?",
+      "options": [
+        "To avoid recursively exploring the same vertex indefinitely",
+        "To sort vertices by weight",
+        "To guarantee shortest paths",
+        "To count all spanning trees"
+      ],
+      "answer": [
+        "To avoid recursively exploring the same vertex indefinitely"
+      ],
+      "explanation": "Marking a vertex on discovery prevents repeated visits through cycles and ensures each vertex is processed a bounded number of times."
+    },
+    {
+      "id": "alg-graph-007",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about depth-first search are correct?",
+      "options": [
+        "It can be implemented using recursion or an explicit stack",
+        "It can find connected components in an undirected graph",
+        "Its discovery/finish times support edge classification",
+        "It always finds an unweighted shortest path"
+      ],
+      "answer": [
+        "It can be implemented using recursion or an explicit stack",
+        "It can find connected components in an undirected graph",
+        "Its discovery/finish times support edge classification"
+      ],
+      "explanation": "DFS explores deeply before backtracking and can be implemented recursively or iteratively. It supports connectivity and structural analyses, but unlike BFS it does not generally yield shortest paths."
+    },
+    {
+      "id": "alg-graph-008",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DFS forest of an undirected graph has 4 connected components. How many DFS trees are in the forest?",
+      "answer": "4",
+      "explanation": "A complete DFS over an undirected graph starts a new tree once for each undiscovered connected component, yielding four trees."
+    },
+    {
+      "id": "alg-graph-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph has a back edge during DFS. What does this imply?",
+      "options": [
+        "The graph contains a directed cycle",
+        "The graph is necessarily acyclic",
+        "The edge is a cross edge only",
+        "All vertices have the same finish time"
+      ],
+      "answer": [
+        "The graph contains a directed cycle"
+      ],
+      "explanation": "A back edge points from a vertex to an ancestor in the active DFS recursion stack, forming a directed cycle with the tree path back to that ancestor."
+    },
+    {
+      "id": "alg-graph-010",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements characterize a topological ordering?",
+      "options": [
+        "It is a linear ordering of vertices of a DAG",
+        "For every directed edge u→v, u appears before v",
+        "Every directed graph has at least one topological ordering",
+        "A directed cycle prevents a topological ordering"
+      ],
+      "answer": [
+        "It is a linear ordering of vertices of a DAG",
+        "For every directed edge u→v, u appears before v",
+        "A directed cycle prevents a topological ordering"
+      ],
+      "explanation": "A topological order respects every edge direction and exists exactly for directed acyclic graphs. A directed cycle imposes contradictory precedence constraints."
+    },
+    {
+      "id": "alg-graph-011",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DAG has vertices A,B,C,D and edges A→C, B→C, C→D. In the order B,A,C,D, how many directed edges point backward in the order?",
+      "answer": "0",
+      "explanation": "B and A both precede C, and C precedes D. Every edge points forward, so the ordering is topological and has zero backward edges."
+    },
+    {
+      "id": "alg-graph-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Kahn's topological-sort algorithm repeatedly removes a vertex of what current property?",
+      "options": [
+        "Indegree zero",
+        "Maximum outdegree",
+        "Smallest DFS finish time",
+        "Largest edge weight"
+      ],
+      "answer": [
+        "Indegree zero"
+      ],
+      "explanation": "A vertex with current indegree zero has no remaining prerequisite. Removing it and decrementing successor indegrees constructs a topological ordering."
+    },
+    {
+      "id": "alg-graph-013",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What can be concluded if Kahn's algorithm removes fewer vertices than the DAG input contains?",
+      "options": [
+        "The directed graph contains a cycle",
+        "Some vertices remain in a cyclic dependency region or depend on it",
+        "The graph must be undirected",
+        "A topological ordering was completed"
+      ],
+      "answer": [
+        "The directed graph contains a cycle",
+        "Some vertices remain in a cyclic dependency region or depend on it"
+      ],
+      "explanation": "If vertices remain, each has positive residual indegree. Following incoming dependencies in a finite directed graph eventually reveals a cycle; downstream vertices may also remain blocked."
+    },
+    {
+      "id": "alg-graph-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DAG's vertices are ordered by decreasing DFS finish time. What does this order provide?",
+      "options": [
+        "A topological ordering",
+        "A minimum spanning tree",
+        "An Euler circuit",
+        "A shortest-path tree for arbitrary weights"
+      ],
+      "answer": [
+        "A topological ordering"
+      ],
+      "explanation": "For a DAG, every edge u→v has finish time of u greater than finish time of v. Sorting by decreasing finish time therefore places u before v."
+    },
+    {
+      "id": "alg-graph-015",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A simple undirected graph has 8 vertices and is complete. How many edges does it contain?",
+      "answer": "28",
+      "explanation": "A complete simple undirected graph has V(V−1)/2 edges. For V=8, this is 8×7/2=28."
+    },
+    {
+      "id": "alg-graph-016",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about graph representations are correct?",
+      "options": [
+        "An adjacency matrix uses Θ(V²) space",
+        "An adjacency list uses Θ(V+E) space",
+        "Testing whether an edge exists is O(1) in an adjacency matrix",
+        "Iterating neighbors is usually efficient with adjacency lists"
+      ],
+      "answer": [
+        "An adjacency matrix uses Θ(V²) space",
+        "An adjacency list uses Θ(V+E) space",
+        "Testing whether an edge exists is O(1) in an adjacency matrix",
+        "Iterating neighbors is usually efficient with adjacency lists"
+      ],
+      "explanation": "Matrices allocate one cell per vertex pair and allow constant-time edge lookup. Lists store vertices and incident edges, making neighbor iteration efficient for sparse graphs."
+    },
+    {
+      "id": "alg-graph-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a sparse graph with E=O(V), which representation usually uses asymptotically less space?",
+      "options": [
+        "Adjacency list",
+        "Adjacency matrix",
+        "Both use Θ(V²)",
+        "Neither can represent it"
+      ],
+      "answer": [
+        "Adjacency list"
+      ],
+      "explanation": "An adjacency list uses Θ(V+E)=Θ(V) space for a sparse graph. An adjacency matrix always uses Θ(V²) space."
+    },
+    {
+      "id": "alg-graph-018",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An undirected graph has 9 vertices and every vertex has degree 4. How many edges does it have?",
+      "answer": "18",
+      "explanation": "By the handshaking lemma, the degree sum is 2E. Here 9×4=36=2E, so E=18."
+    },
+    {
+      "id": "alg-graph-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In an unweighted graph, BFS from s discovers v at level 5. What is the distance from s to v?",
+      "options": [
+        "5 edges",
+        "5 vertices total",
+        "At least 10 edges",
+        "It cannot be known"
+      ],
+      "answer": [
+        "5 edges"
+      ],
+      "explanation": "BFS level records the number of edges in a shortest path from the source. A vertex discovered at level five has distance five."
+    },
+    {
+      "id": "alg-graph-020",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about BFS and DFS differ in general?",
+      "options": [
+        "BFS uses a queue and explores by distance layers",
+        "DFS uses a stack-like discipline and explores deeply",
+        "BFS gives shortest paths in unweighted graphs",
+        "DFS always has lower time complexity than BFS"
+      ],
+      "answer": [
+        "BFS uses a queue and explores by distance layers",
+        "DFS uses a stack-like discipline and explores deeply",
+        "BFS gives shortest paths in unweighted graphs"
+      ],
+      "explanation": "Both traversals take O(V+E) on adjacency lists. Their frontier discipline differs, and only BFS provides shortest paths by edge count in general unweighted graphs."
+    },
+    {
+      "id": "alg-graph-021",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BFS queue begins with source s. The graph has edges s–a, s–b, a–c, b–d, and c–e. What is the shortest-path distance from s to e?",
+      "answer": "3",
+      "explanation": "A path s–a–c–e has three edges. BFS layers are s at 0, a and b at 1, c and d at 2, and e at 3."
+    },
+    {
+      "id": "alg-graph-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph is strongly connected when which condition holds?",
+      "options": [
+        "Every vertex can reach every other vertex",
+        "It has exactly one source vertex",
+        "Its underlying undirected graph is a tree",
+        "Every vertex has equal indegree and outdegree"
+      ],
+      "answer": [
+        "Every vertex can reach every other vertex"
+      ],
+      "explanation": "Strong connectivity requires directed paths in both directions between every pair of vertices."
+    },
+    {
+      "id": "alg-graph-023",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about strongly connected components (SCCs) are correct?",
+      "options": [
+        "Each SCC is a maximal strongly connected vertex set",
+        "Contracting each SCC produces a DAG",
+        "Kosaraju's algorithm uses DFS on the graph and its transpose",
+        "Every graph has exactly one SCC"
+      ],
+      "answer": [
+        "Each SCC is a maximal strongly connected vertex set",
+        "Contracting each SCC produces a DAG",
+        "Kosaraju's algorithm uses DFS on the graph and its transpose"
+      ],
+      "explanation": "SCCs partition directed vertices into maximal mutually reachable sets. The condensation graph is acyclic, and Kosaraju uses finishing order plus a traversal of the transpose."
+    },
+    {
+      "id": "alg-graph-024",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directed graph has 10 vertices partitioned into 4 strongly connected components. How many vertices belong to each component on average?",
+      "answer": "2.5",
+      "explanation": "The mean component size is total vertices divided by component count: 10/4=2.5."
+    },
+    {
+      "id": "alg-graph-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithm finds a minimum spanning tree by sorting edges and maintaining components?",
+      "options": [
+        "Kruskal's algorithm",
+        "BFS",
+        "Dijkstra's algorithm",
+        "Topological sorting"
+      ],
+      "answer": [
+        "Kruskal's algorithm"
+      ],
+      "explanation": "Kruskal sorts edges by weight and adds edges connecting distinct components, commonly using disjoint-set union."
+    },
+    {
+      "id": "alg-graph-026",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A connected graph has 6 vertices. How many edges does any spanning tree contain?",
+      "answer": "5",
+      "explanation": "A tree on V vertices has V−1 edges. For six vertices, the spanning tree has five edges."
+    },
+    {
+      "id": "alg-graph-027",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about minimum spanning trees are correct?",
+      "options": [
+        "An MST is defined for a connected undirected weighted graph",
+        "It minimizes the sum of selected edge weights",
+        "It contains V−1 edges",
+        "It necessarily gives shortest paths from a chosen source"
+      ],
+      "answer": [
+        "An MST is defined for a connected undirected weighted graph",
+        "It minimizes the sum of selected edge weights",
+        "It contains V−1 edges"
+      ],
+      "explanation": "An MST minimizes total tree weight and has V−1 edges. It does not necessarily preserve shortest paths from a source; that is a different optimization objective."
+    },
+    {
+      "id": "alg-graph-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Dijkstra's algorithm is applied to a graph with edge weights 2, 5, and 1. If the current distance to u is 7 and edge u→v has weight 5, what candidate distance is relaxed for v?",
+      "options": [
+        "2",
+        "5",
+        "12",
+        "35"
+      ],
+      "answer": [
+        "12"
+      ],
+      "explanation": "Relaxation considers d(u)+w(u,v)=7+5=12 as a candidate distance for v."
+    },
+    {
+      "id": "alg-graph-029",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directed path has edge weights 4, 2, and 7. What is its total path weight?",
+      "answer": "13",
+      "explanation": "Path weights add along the edges: 4+2+7=13."
+    },
+    {
+      "id": "alg-graph-030",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Dijkstra's algorithm are correct?",
+      "options": [
+        "It works with nonnegative edge weights",
+        "It can be implemented with a priority queue",
+        "It is generally incorrect with negative edges",
+        "It computes all-pairs shortest paths in O(V³) by definition"
+      ],
+      "answer": [
+        "It works with nonnegative edge weights",
+        "It can be implemented with a priority queue",
+        "It is generally incorrect with negative edges"
+      ],
+      "explanation": "Dijkstra is a single-source method relying on nonnegative weights. A priority queue supports minimum tentative-distance extraction; Floyd–Warshall is a standard all-pairs DP algorithm."
+    },
+    {
+      "id": "alg-graph-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithm can find shortest paths when negative edge weights exist, provided there is no reachable negative cycle?",
+      "options": [
+        "Bellman-Ford",
+        "Dijkstra",
+        "Prim",
+        "BFS"
+      ],
+      "answer": [
+        "Bellman-Ford"
+      ],
+      "explanation": "Bellman-Ford repeatedly relaxes all edges and supports negative weights. It can also detect a reachable negative cycle after V−1 passes."
+    },
+    {
+      "id": "alg-graph-032",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A graph has V=7 vertices. How many full edge-relaxation passes does Bellman-Ford perform before its negative-cycle check?",
+      "answer": "6",
+      "explanation": "Bellman-Ford needs at most V−1 passes to propagate shortest paths with at most V−1 edges. For seven vertices, this is six passes."
+    },
+    {
+      "id": "alg-graph-033",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions indicate a reachable negative cycle in Bellman-Ford analysis?",
+      "options": [
+        "After V−1 passes, some edge can still be relaxed",
+        "There is a path from the source to the cycle",
+        "Every edge weight is negative",
+        "A shortest path value is finite and stable"
+      ],
+      "answer": [
+        "After V−1 passes, some edge can still be relaxed",
+        "There is a path from the source to the cycle"
+      ],
+      "explanation": "A reachable negative cycle permits arbitrarily decreasing path costs. After V−1 passes, a further possible relaxation signals such a cycle; an unreachable negative cycle does not affect source distances."
+    },
+    {
+      "id": "alg-graph-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Floyd–Warshall updates distance d[i,j] through intermediate vertex k. Which recurrence is used?",
+      "options": [
+        "d[i,j]=min(d[i,j], d[i,k]+d[k,j])",
+        "d[i,j]=max(d[i,k], d[k,j])",
+        "d[i,j]=d[i,k]×d[k,j]",
+        "d[i,j]=d[i,j]+1"
+      ],
+      "answer": [
+        "d[i,j]=min(d[i,j], d[i,k]+d[k,j])"
+      ],
+      "explanation": "For each permitted intermediate k, the algorithm compares the existing route with a route from i to k followed by k to j."
+    },
+    {
+      "id": "alg-graph-035",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Floyd–Warshall is run on a graph with 5 vertices. How many intermediate-vertex iterations are performed?",
+      "answer": "5",
+      "explanation": "The algorithm considers each vertex as an allowed intermediate exactly once, so there are five outer iterations."
+    },
+    {
+      "id": "alg-graph-036",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Floyd–Warshall are correct?",
+      "options": [
+        "Its time complexity is O(V³)",
+        "It computes all-pairs shortest paths",
+        "It can handle negative edges if there is no negative cycle",
+        "It uses a greedy frontier expansion from one source"
+      ],
+      "answer": [
+        "Its time complexity is O(V³)",
+        "It computes all-pairs shortest paths",
+        "It can handle negative edges if there is no negative cycle"
+      ],
+      "explanation": "Floyd–Warshall is a triple-loop dynamic program for all pairs and allows negative edges absent negative cycles. It is not a single-source greedy algorithm."
+    },
+    {
+      "id": "alg-graph-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph has an edge u→v with weight −3 and a reachable negative cycle. What happens to the shortest-path distance for vertices reachable from that cycle?",
+      "options": [
+        "No finite minimum distance exists for affected vertices",
+        "The distance is always zero",
+        "Dijkstra returns the correct finite distance",
+        "The cycle can be ignored"
+      ],
+      "answer": [
+        "No finite minimum distance exists for affected vertices"
+      ],
+      "explanation": "Traversing a reachable negative cycle repeatedly decreases path cost without bound. For vertices reachable from it, a finite shortest-path value is undefined."
+    },
+    {
+      "id": "alg-graph-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An unweighted graph has a shortest path of 7 edges from s to t. What is the BFS distance label assigned to t?",
+      "answer": "7",
+      "explanation": "BFS distance is measured by the number of edges in a shortest path. Therefore t receives label seven."
+    },
+    {
+      "id": "alg-graph-039",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about DFS edge classification in a directed graph are correct?",
+      "options": [
+        "A back edge points to an ancestor in the DFS forest",
+        "A forward edge points to a descendant but is not a tree edge",
+        "A cross edge connects vertices with no ancestor-descendant relation",
+        "A back edge proves the graph is acyclic"
+      ],
+      "answer": [
+        "A back edge points to an ancestor in the DFS forest",
+        "A forward edge points to a descendant but is not a tree edge",
+        "A cross edge connects vertices with no ancestor-descendant relation"
+      ],
+      "explanation": "These categories use discovery/finish nesting in the DFS forest. Back edges indicate a directed cycle, while forward and cross edges have different ancestor relationships."
+    },
+    {
+      "id": "alg-graph-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a DAG, DFS finishes vertex u after all vertices reachable from u have finished. What does decreasing finish-time order ensure for every edge u→v?",
+      "options": [
+        "u appears before v",
+        "v appears before u",
+        "u and v are adjacent in the order",
+        "The edge is removed"
+      ],
+      "answer": [
+        "u appears before v"
+      ],
+      "explanation": "For a DAG there are no back edges, and every edge leads to a vertex that finishes earlier. Decreasing finish times therefore place u before v."
+    },
+    {
+      "id": "alg-graph-041",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An undirected graph has 10 vertices and 3 connected components. How many edges does a spanning forest contain if each component is connected internally?",
+      "answer": "7",
+      "explanation": "A spanning forest with c components and V vertices has V−c edges. Here 10−3=7."
+    },
+    {
+      "id": "alg-graph-042",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about connected components in an undirected graph are correct?",
+      "options": [
+        "A DFS from one unvisited vertex reaches every vertex in its component",
+        "Starting DFS again from each unvisited vertex enumerates components",
+        "Every connected component has a spanning tree",
+        "A disconnected graph has exactly one component"
+      ],
+      "answer": [
+        "A DFS from one unvisited vertex reaches every vertex in its component",
+        "Starting DFS again from each unvisited vertex enumerates components",
+        "Every connected component has a spanning tree"
+      ],
+      "explanation": "Traversal follows all reachable vertices, and repeating from unvisited vertices yields each component. A disconnected graph has at least two components."
+    },
+    {
+      "id": "alg-graph-043",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A topological ordering of a DAG is not unique. What does this indicate?",
+      "options": [
+        "At least one pair of currently incomparable vertices can appear in different valid orders",
+        "The graph contains a cycle",
+        "The graph is disconnected",
+        "Every edge has the same weight"
+      ],
+      "answer": [
+        "At least one pair of currently incomparable vertices can appear in different valid orders"
+      ],
+      "explanation": "If multiple topological orders exist, some vertices have no precedence constraint forcing one fixed relative order. A cycle would make every topological order impossible."
+    },
+    {
+      "id": "alg-graph-044",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directed acyclic graph has 6 vertices and a topological order. How many edges can point from a later vertex to an earlier vertex in that order?",
+      "answer": "0",
+      "explanation": "By definition, every directed edge must point forward in a topological order. Therefore no edge points backward."
+    },
+    {
+      "id": "alg-graph-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An undirected graph has an odd cycle. Which property is impossible?",
+      "options": [
+        "Being bipartite",
+        "Being connected",
+        "Having a spanning tree",
+        "Having a DFS traversal"
+      ],
+      "answer": [
+        "Being bipartite"
+      ],
+      "explanation": "A graph is bipartite if and only if it has no odd cycle. An odd cycle cannot be colored with two colors without adjacent equal colors."
+    },
+    {
+      "id": "alg-graph-046",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which methods can test whether an undirected graph is bipartite?",
+      "options": [
+        "Two-color vertices using BFS",
+        "Two-color vertices using DFS",
+        "Detect an odd cycle",
+        "Run topological sorting"
+      ],
+      "answer": [
+        "Two-color vertices using BFS",
+        "Two-color vertices using DFS",
+        "Detect an odd cycle"
+      ],
+      "explanation": "BFS or DFS can assign alternating colors and detect a conflict. The equivalent structural characterization is the absence of odd cycles; topological sorting applies to directed acyclic graphs."
+    },
+    {
+      "id": "alg-graph-047",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A bipartite graph coloring assigns color 0 to s. Every neighbor is assigned color 1. If a vertex is reached by a path of 6 edges from s, what color does it receive?",
+      "answer": "0",
+      "explanation": "Colors alternate at each edge. An even-length path returns to the source color, so after six edges the color is 0."
+    },
+    {
+      "id": "alg-graph-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph contains a self-loop. Which conclusion follows?",
+      "options": [
+        "It is not bipartite",
+        "It is necessarily a tree",
+        "It has no cycles",
+        "It must be disconnected"
+      ],
+      "answer": [
+        "It is not bipartite"
+      ],
+      "explanation": "A self-loop is an odd cycle of length one and requires its endpoint to have a different color from itself, which is impossible in a bipartite graph."
+    },
+    {
+      "id": "alg-graph-049",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about shortest paths in unweighted graphs are correct?",
+      "options": [
+        "BFS gives a shortest path by edge count",
+        "DFS discovery order need not give a shortest path",
+        "A shortest path can be reconstructed using parent pointers",
+        "All shortest paths between a pair must be unique"
+      ],
+      "answer": [
+        "BFS gives a shortest path by edge count",
+        "DFS discovery order need not give a shortest path",
+        "A shortest path can be reconstructed using parent pointers"
+      ],
+      "explanation": "BFS distances are optimal by layers, and parent pointers record one shortest path. Multiple distinct paths of the same minimum length may exist."
+    },
+    {
+      "id": "alg-graph-050",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An undirected tree has 20 vertices. How many edges does it have?",
+      "answer": "19",
+      "explanation": "Every tree has one fewer edge than vertices, so 20−1=19."
+    },
+    {
+      "id": "alg-graph-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a graph stored as an adjacency matrix, what is the time to scan all possible neighbors of one vertex?",
+      "options": [
+        "Θ(V)",
+        "Θ(E)",
+        "Θ(log V)",
+        "Θ(1)"
+      ],
+      "answer": [
+        "Θ(V)"
+      ],
+      "explanation": "The matrix row has one entry for every possible destination vertex. Scanning that row takes Θ(V) time regardless of the actual degree."
+    },
+    {
+      "id": "alg-graph-052",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about graph traversal complexity are correct?",
+      "options": [
+        "Adjacency-list BFS is O(V+E)",
+        "Adjacency-matrix BFS is O(V²)",
+        "A traversal of a disconnected graph must start from every component to visit all vertices",
+        "BFS and DFS have different asymptotic complexity on the same representation"
+      ],
+      "answer": [
+        "Adjacency-list BFS is O(V+E)",
+        "Adjacency-matrix BFS is O(V²)",
+        "A traversal of a disconnected graph must start from every component to visit all vertices"
+      ],
+      "explanation": "Adjacency lists scan actual edges; matrices scan all possible neighbors. BFS and DFS have the same asymptotic traversal cost for a fixed representation."
+    },
+    {
+      "id": "alg-graph-053",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A simple undirected graph has 15 edges. What is the sum of all vertex degrees?",
+      "answer": "30",
+      "explanation": "The handshaking lemma states that the sum of degrees equals 2E. For 15 edges, the sum is 30."
+    },
+    {
+      "id": "alg-graph-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A connected undirected graph has exactly V−1 edges. What can be concluded?",
+      "options": [
+        "It is a tree",
+        "It must contain a cycle",
+        "It is complete",
+        "It is directed"
+      ],
+      "answer": [
+        "It is a tree"
+      ],
+      "explanation": "A connected graph with V vertices and V−1 edges is acyclic and therefore a tree. Equivalently, it has the minimum number of edges needed for connectivity."
+    },
+    {
+      "id": "alg-graph-055",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which facts about a tree are correct?",
+      "options": [
+        "There is exactly one simple path between any two vertices",
+        "A tree with V vertices has V−1 edges",
+        "Removing any edge disconnects a tree",
+        "Adding any new edge creates a cycle"
+      ],
+      "answer": [
+        "There is exactly one simple path between any two vertices",
+        "A tree with V vertices has V−1 edges",
+        "Removing any edge disconnects a tree",
+        "Adding any new edge creates a cycle"
+      ],
+      "explanation": "These are equivalent structural properties of trees. A tree is connected and acyclic; removing an edge breaks connectivity, while an added edge closes the unique existing path into a cycle."
+    },
+    {
+      "id": "alg-graph-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directed graph has 7 vertices and is a DAG. How many edges must be reversed in a valid topological order?",
+      "answer": "0",
+      "explanation": "A topological ordering already places every edge's tail before its head. Thus no edge needs to be reversed."
+    },
+    {
+      "id": "alg-graph-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph has negative edge weights but no negative cycles. Which shortest-path method is appropriate for all-pairs distances?",
+      "options": [
+        "Floyd–Warshall",
+        "BFS",
+        "Prim",
+        "Kruskal"
+      ],
+      "answer": [
+        "Floyd–Warshall"
+      ],
+      "explanation": "Floyd–Warshall handles negative edges and computes all-pairs shortest paths, provided no negative cycle makes distances unbounded below."
+    },
+    {
+      "id": "alg-graph-058",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the Bellman–Ford algorithm are correct?",
+      "options": [
+        "Its standard time is O(VE)",
+        "It supports negative edge weights",
+        "It can detect a reachable negative cycle",
+        "It finalizes the closest unsettled vertex each iteration"
+      ],
+      "answer": [
+        "Its standard time is O(VE)",
+        "It supports negative edge weights",
+        "It can detect a reachable negative cycle"
+      ],
+      "explanation": "Bellman–Ford relaxes all edges for V−1 rounds and checks for further improvement. The closest-unsettled greedy rule describes Dijkstra, not Bellman–Ford."
+    },
+    {
+      "id": "alg-graph-059",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Bellman–Ford is run on a graph with 9 vertices and 20 edges. What is the asymptotic number of edge relaxations in its main V−1 passes?",
+      "answer": "160",
+      "explanation": "There are 8 passes over 20 edges, giving 8×20=160 relaxation attempts, excluding the final cycle-detection pass."
+    },
+    {
+      "id": "alg-graph-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Floyd–Warshall's triple loop has one iteration for each ordered pair (i,j) and each intermediate k. What is its time complexity?",
+      "options": [
+        "Θ(V³)",
+        "Θ(V²)",
+        "Θ(E log V)",
+        "Θ(VE)"
+      ],
+      "answer": [
+        "Θ(V³)"
+      ],
+      "explanation": "There are V choices for i, V for j, and V for k, giving V³ constant-time updates."
+    },
+    {
+      "id": "alg-graph-061",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about shortest-path algorithms are correct?",
+      "options": [
+        "BFS is suitable for unweighted edges",
+        "Dijkstra requires nonnegative edge weights",
+        "Bellman–Ford can handle negative edges",
+        "Prim minimizes source-to-vertex distances"
+      ],
+      "answer": [
+        "BFS is suitable for unweighted edges",
+        "Dijkstra requires nonnegative edge weights",
+        "Bellman–Ford can handle negative edges"
+      ],
+      "explanation": "BFS optimizes hop count, Dijkstra handles nonnegative weighted paths, and Bellman–Ford permits negative weights. Prim optimizes total spanning-tree weight, not source distances."
+    },
+    {
+      "id": "alg-graph-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a weighted graph, a path uses edges with weights 3, 8, and 2. What is its total weight?",
+      "answer": "13",
+      "explanation": "Add the weights along the path: 3+8+2=13."
+    },
+    {
+      "id": "alg-graph-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph has a negative cycle that is not reachable from source s. Does it invalidate Bellman–Ford distances from s?",
+      "options": [
+        "No, only reachable negative cycles affect source distances",
+        "Yes, every negative cycle affects every source",
+        "It makes all distances zero",
+        "It converts the graph into an undirected graph"
+      ],
+      "answer": [
+        "No, only reachable negative cycles affect source distances"
+      ],
+      "explanation": "A source-based shortest path can use only vertices reachable from that source. An unreachable negative cycle cannot be traversed from s and does not affect its distances."
+    },
+    {
+      "id": "alg-graph-064",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about topological sorting are correct?",
+      "options": [
+        "A DAG may have multiple valid topological orders",
+        "A topological order can be found in O(V+E)",
+        "Every edge u→v requires u before v",
+        "A topological order exists for every directed graph"
+      ],
+      "answer": [
+        "A DAG may have multiple valid topological orders",
+        "A topological order can be found in O(V+E)",
+        "Every edge u→v requires u before v"
+      ],
+      "explanation": "Kahn's algorithm or DFS computes an order in linear graph time. The order is not necessarily unique, and cycles make it impossible."
+    },
+    {
+      "id": "alg-graph-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DAG has 8 vertices and 10 edges. How many total indegree decrements does Kahn's algorithm perform when all vertices are removed?",
+      "answer": "10",
+      "explanation": "Each directed edge contributes one to a destination's indegree and is processed once when its source is removed. Thus there are 10 decrements."
+    },
+    {
+      "id": "alg-graph-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An undirected graph has a BFS tree rooted at s. What do tree edges guarantee about endpoint levels?",
+      "options": [
+        "Their levels differ by exactly one",
+        "Their levels are always equal",
+        "Their weights are equal",
+        "They are all bridges"
+      ],
+      "answer": [
+        "Their levels differ by exactly one"
+      ],
+      "explanation": "A BFS tree edge connects a vertex to the parent that discovered it, so the child's level is exactly one more than the parent's."
+    },
+    {
+      "id": "alg-graph-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about DFS discovery and finishing times are correct?",
+      "options": [
+        "A vertex's discovery time precedes its finishing time",
+        "Ancestor intervals are nested",
+        "They can support topological sorting of a DAG",
+        "They directly give shortest-path distances in an unweighted graph"
+      ],
+      "answer": [
+        "A vertex's discovery time precedes its finishing time",
+        "Ancestor intervals are nested",
+        "They can support topological sorting of a DAG"
+      ],
+      "explanation": "DFS timestamps create nested intervals for ancestor relationships and decreasing finish times yield a topological order in a DAG. They do not replace BFS distance layers."
+    },
+    {
+      "id": "alg-graph-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A connected graph has 11 vertices. How many edges are in its DFS spanning tree?",
+      "answer": "10",
+      "explanation": "A DFS spanning tree on 11 connected vertices contains 11−1=10 tree edges."
+    },
+    {
+      "id": "alg-graph-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph's adjacency list has total degree sum 40 and is undirected. How many edges does it contain?",
+      "options": [
+        "10",
+        "20",
+        "40",
+        "80"
+      ],
+      "answer": [
+        "20"
+      ],
+      "explanation": "Each undirected edge appears in the adjacency lists of both endpoints, so the degree sum is 2E. Hence E=40/2=20."
+    },
+    {
+      "id": "alg-graph-070",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about undirected graph edge counts are correct for a simple graph?",
+      "options": [
+        "A vertex has degree at most V−1",
+        "The complete graph has V(V−1)/2 edges",
+        "The sum of all degrees is 2E",
+        "A self-loop contributes one to the degree sum"
+      ],
+      "answer": [
+        "A vertex has degree at most V−1",
+        "The complete graph has V(V−1)/2 edges",
+        "The sum of all degrees is 2E"
+      ],
+      "explanation": "A simple graph has no self-loops or parallel edges. Every edge contributes one degree to each endpoint, yielding 2E; loops are excluded by simplicity."
+    },
+    {
+      "id": "alg-graph-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A complete graph on 10 vertices has how many edges?",
+      "answer": "45",
+      "explanation": "The number of unordered vertex pairs is 10×9/2=45, one edge per pair."
+    },
+    {
+      "id": "alg-graph-072",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph has V vertices and E edges. A disjoint-set structure used by Kruskal performs which central operation?",
+      "options": [
+        "Determine whether two vertices currently belong to the same component",
+        "Find a shortest path between two vertices",
+        "Order vertices by BFS level",
+        "Compute all-pairs distances"
+      ],
+      "answer": [
+        "Determine whether two vertices currently belong to the same component"
+      ],
+      "explanation": "Find operations compare component representatives; union merges components after accepting an edge. This prevents cycles during Kruskal's MST construction."
+    },
+    {
+      "id": "alg-graph-073",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Kruskal's algorithm are correct?",
+      "options": [
+        "It sorts edges by nondecreasing weight",
+        "It maintains a forest of selected edges",
+        "It rejects an edge if both endpoints already share a component",
+        "It requires edge weights to be positive"
+      ],
+      "answer": [
+        "It sorts edges by nondecreasing weight",
+        "It maintains a forest of selected edges",
+        "It rejects an edge if both endpoints already share a component"
+      ],
+      "explanation": "Kruskal needs weight order and cycle avoidance; negative weights are allowed. The forest components are maintained using disjoint-set union."
+    },
+    {
+      "id": "alg-graph-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A connected graph has 8 vertices and its MST contains edge weights 1, 2, 3, 4, 5, 6, and 7. What is the total MST weight?",
+      "answer": "28",
+      "explanation": "The tree contains seven edges. Their weights sum to 1+2+3+4+5+6+7=28."
+    },
+    {
+      "id": "alg-graph-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement distinguishes an MST from a shortest-path tree?",
+      "options": [
+        "An MST minimizes total tree-edge weight, while a shortest-path tree preserves distances from a source",
+        "An MST is always a shortest-path tree",
+        "A shortest-path tree must include every graph edge",
+        "Both optimize the same objective"
+      ],
+      "answer": [
+        "An MST minimizes total tree-edge weight, while a shortest-path tree preserves distances from a source"
+      ],
+      "explanation": "The objectives differ: MST optimizes the sum over selected edges, while a shortest-path tree preserves distances from one chosen source. They can produce different trees."
+    },
+    {
+      "id": "alg-graph-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions make an edge safe to include in some minimum spanning tree under the cut property?",
+      "options": [
+        "It is a lightest edge crossing a cut",
+        "It has the largest weight in the graph",
+        "It lies entirely within one side of every cut",
+        "A unique lightest crossing edge is mandatory in every MST"
+      ],
+      "answer": [
+        "It is a lightest edge crossing a cut",
+        "A unique lightest crossing edge is mandatory in every MST"
+      ],
+      "explanation": "Any light edge crossing a cut is safe for some MST; if it is uniquely lightest across that cut, every MST must include it."
+    },
+    {
+      "id": "alg-graph-077",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A connected graph has 20 vertices. How many edges are in any spanning tree?",
+      "answer": "19",
+      "explanation": "A spanning tree contains V−1 edges. For 20 vertices that is 19."
+    },
+    {
+      "id": "alg-graph-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a directed acyclic graph, which method can compute longest path distances in linear time after topological sorting?",
+      "options": [
+        "Relax edges in topological order",
+        "Run Dijkstra with negative weights",
+        "Use Kruskal's algorithm",
+        "Perform BFS from every vertex only"
+      ],
+      "answer": [
+        "Relax edges in topological order"
+      ],
+      "explanation": "A topological order ensures every predecessor is processed before a vertex. Relaxing outgoing edges once in that order computes DAG longest-path values in O(V+E), even with negative weights."
+    },
+    {
+      "id": "alg-graph-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about shortest paths in a DAG are correct?",
+      "options": [
+        "They can be computed by edge relaxation in topological order",
+        "Negative edge weights are allowed",
+        "A DAG has no negative cycle",
+        "The algorithm requires a nonnegative-weight condition like Dijkstra"
+      ],
+      "answer": [
+        "They can be computed by edge relaxation in topological order",
+        "Negative edge weights are allowed",
+        "A DAG has no negative cycle"
+      ],
+      "explanation": "A DAG's topological order permits each edge to be relaxed once, handling negative weights safely because cycles do not exist. Dijkstra's nonnegative restriction is not needed."
+    },
+    {
+      "id": "alg-graph-080",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DAG has vertices s,a,b,t and edges s→a weight 2, s→b weight 5, a→t weight 7, b→t weight 1. What is the shortest distance from s to t?",
+      "answer": "6",
+      "explanation": "The path through a costs 2+7=9, while the path through b costs 5+1=6. The shortest distance is 6."
+    },
+    {
+      "id": "alg-graph-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph is represented by an adjacency matrix. What is the space complexity even if it has only O(V) edges?",
+      "options": [
+        "Θ(V²)",
+        "Θ(V+E)",
+        "Θ(E log V)",
+        "Θ(V)"
+      ],
+      "answer": [
+        "Θ(V²)"
+      ],
+      "explanation": "An adjacency matrix allocates a cell for every ordered or unordered vertex pair, so space remains quadratic independent of sparsity."
+    },
+    {
+      "id": "alg-graph-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about BFS parent pointers are correct?",
+      "options": [
+        "They define a shortest-path tree for reachable vertices",
+        "Following parents from a vertex reaches the source",
+        "A vertex's parent is always its numerically smallest neighbor",
+        "Unreachable vertices have no BFS parent from the source"
+      ],
+      "answer": [
+        "They define a shortest-path tree for reachable vertices",
+        "Following parents from a vertex reaches the source",
+        "Unreachable vertices have no BFS parent from the source"
+      ],
+      "explanation": "Each parent is the vertex that first discovered a node, so parent chains form shortest paths back to the source. An unreachable vertex is never assigned a parent by that BFS."
+    },
+    {
+      "id": "alg-graph-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BFS tree has source level 0 and a vertex at level 6. How many parent edges are followed from that vertex back to the source?",
+      "answer": "6",
+      "explanation": "Each parent step decreases the level by one. A level-6 vertex therefore follows six tree edges to reach level zero."
+    },
+    {
+      "id": "alg-graph-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph has no directed cycles. Which statement about its SCCs is necessarily true?",
+      "options": [
+        "Every SCC contains exactly one vertex",
+        "All vertices belong to one SCC",
+        "There are no SCCs",
+        "Each SCC must contain a directed cycle"
+      ],
+      "answer": [
+        "Every SCC contains exactly one vertex"
+      ],
+      "explanation": "Without directed cycles, no two distinct vertices can reach each other in both directions. Each vertex is therefore its own strongly connected component."
+    },
+    {
+      "id": "alg-graph-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the condensation graph of SCCs are correct?",
+      "options": [
+        "Each SCC becomes one vertex",
+        "Edges between components preserve intercomponent reachability",
+        "The condensation graph is a DAG",
+        "It must be strongly connected"
+      ],
+      "answer": [
+        "Each SCC becomes one vertex",
+        "Edges between components preserve intercomponent reachability",
+        "The condensation graph is a DAG"
+      ],
+      "explanation": "Contracting mutually reachable sets removes all directed cycles between components; otherwise those components would form one larger SCC. The resulting condensation graph is acyclic."
+    },
+    {
+      "id": "alg-graph-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph has 5 vertices. Floyd–Warshall initializes d[i,i] to what value when there is no negative cycle?",
+      "options": [
+        "0",
+        "1",
+        "∞",
+        "−∞"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "The empty path from a vertex to itself has weight zero, so the diagonal of the initial distance matrix is zero."
+    },
+    {
+      "id": "alg-graph-087",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A weighted graph has two routes from s to t: one with weights 4 and 8, another with weights 5, 2, and 3. What is the shortest route weight?",
+      "answer": "10",
+      "explanation": "The first path costs 4+8=12. The second costs 5+2+3=10, so the minimum is 10."
+    },
+    {
+      "id": "alg-graph-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the relaxation operation are correct?",
+      "options": [
+        "It replaces d[v] if d[u]+w(u,v) is smaller",
+        "It can improve a tentative distance",
+        "Repeated relaxation is central to Bellman–Ford",
+        "It is valid only for undirected graphs"
+      ],
+      "answer": [
+        "It replaces d[v] if d[u]+w(u,v) is smaller",
+        "It can improve a tentative distance",
+        "Repeated relaxation is central to Bellman–Ford"
+      ],
+      "explanation": "Relaxation checks whether a path through u improves the known estimate for v. It applies to directed or undirected edge representations and is fundamental to several shortest-path algorithms."
+    },
+    {
+      "id": "alg-graph-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BFS is run from s in an unweighted graph. If v is first discovered from u, what is the relationship between their distances?",
+      "options": [
+        "dist[v]=dist[u]+1",
+        "dist[v]=dist[u]",
+        "dist[v]=2dist[u]",
+        "No relationship is guaranteed"
+      ],
+      "answer": [
+        "dist[v]=dist[u]+1"
+      ],
+      "explanation": "Every BFS tree edge connects consecutive layers. A newly discovered neighbor receives distance one greater than its discovering vertex."
+    },
+    {
+      "id": "alg-graph-090",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An undirected graph has degrees 1, 2, 2, 3, and 4. How many edges are present?",
+      "answer": "6",
+      "explanation": "The degree sum is 1+2+2+3+4=12. By the handshaking lemma, the edge count is 12/2=6."
+    },
+    {
+      "id": "alg-graph-091",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about graph cycles and trees are correct?",
+      "options": [
+        "A connected acyclic undirected graph is a tree",
+        "A connected graph with V−1 edges is a tree",
+        "Every undirected graph has a spanning tree",
+        "A cycle has at least one edge whose removal preserves connectivity of that cycle's vertices"
+      ],
+      "answer": [
+        "A connected acyclic undirected graph is a tree",
+        "A connected graph with V−1 edges is a tree",
+        "A cycle has at least one edge whose removal preserves connectivity of that cycle's vertices"
+      ],
+      "explanation": "Connectedness plus acyclicity characterizes trees, as does connectedness with V−1 edges. Removing one edge from a cycle leaves an alternate path between its endpoints; disconnected graphs do not have a spanning tree over all vertices."
+    },
+    {
+      "id": "alg-graph-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithm is appropriate for all-pairs shortest paths in a dense graph with moderate V?",
+      "options": [
+        "Floyd–Warshall",
+        "BFS from one source only",
+        "Prim",
+        "Kruskal"
+      ],
+      "answer": [
+        "Floyd–Warshall"
+      ],
+      "explanation": "Floyd–Warshall computes distances for every ordered vertex pair in O(V³) time and O(V²) space, making it suitable for moderate dense graphs."
+    },
+    {
+      "id": "alg-graph-093",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An adjacency matrix for a graph with 40 vertices has how many entries?",
+      "answer": "1600",
+      "explanation": "A square adjacency matrix has V² entries, so 40²=1600 cells."
+    },
+    {
+      "id": "alg-graph-094",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about BFS on a disconnected undirected graph are correct?",
+      "options": [
+        "A BFS from one source visits only its connected component",
+        "A BFS forest can be built by starting from each unvisited vertex",
+        "Every component receives a separate tree in a full traversal",
+        "A single BFS necessarily reaches all vertices"
+      ],
+      "answer": [
+        "A BFS from one source visits only its connected component",
+        "A BFS forest can be built by starting from each unvisited vertex",
+        "Every component receives a separate tree in a full traversal"
+      ],
+      "explanation": "Reachability limits a single BFS to one component. Repeating from each unvisited vertex creates a BFS forest with one tree per component."
+    },
+    {
+      "id": "alg-graph-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph has a unique lightest edge crossing a particular cut. Which MST principle applies?",
+      "options": [
+        "The cut property requires this edge in every MST",
+        "The cycle property excludes the edge",
+        "The edge cannot be part of any spanning tree",
+        "The edge is relevant only to shortest paths"
+      ],
+      "answer": [
+        "The cut property requires this edge in every MST"
+      ],
+      "explanation": "The unique minimum-weight edge crossing a cut is safe and belongs to every minimum spanning tree."
+    },
+    {
+      "id": "alg-graph-096",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directed graph has 6 vertices, each with exactly one outgoing edge. What is the total number of directed edges?",
+      "answer": "6",
+      "explanation": "Summing the outdegrees gives the number of directed edges. Six vertices each contribute one outgoing edge, totaling six."
+    },
+    {
+      "id": "alg-graph-097",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithmic facts are true for a DAG?",
+      "options": [
+        "It admits a topological ordering",
+        "It contains no directed cycle",
+        "Shortest paths can be computed by topological edge relaxation even with negative weights",
+        "Dijkstra is always necessary for its shortest paths"
+      ],
+      "answer": [
+        "It admits a topological ordering",
+        "It contains no directed cycle",
+        "Shortest paths can be computed by topological edge relaxation even with negative weights"
+      ],
+      "explanation": "A DAG is exactly a directed graph with a topological ordering. Relaxing edges in that order computes shortest paths in linear time and supports negative edges; Dijkstra is unnecessary."
+    },
+    {
+      "id": "alg-graph-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BFS tree contains a vertex at level 0, four vertices at level 1, and six vertices at level 2. How many vertices are in these explored levels?",
+      "options": [
+        "6",
+        "10",
+        "11",
+        "12"
+      ],
+      "answer": [
+        "11"
+      ],
+      "explanation": "Count the disjoint BFS layers: 1+4+6=11 vertices have been discovered through level two."
+    },
+    {
+      "id": "alg-graph-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Kahn's algorithm processes a DAG by repeatedly removing a zero-indegree vertex. Which condition guarantees that the DAG has a unique topological ordering?",
+      "answer": [
+        "At every step there is exactly one zero-indegree vertex among the remaining vertices"
+      ],
+      "explanation": "A topological order is unique precisely when Kahn's process has no choice at any step. Multiple available zero-indegree vertices can be selected in different orders.",
+      "options": [
+        "Every vertex has outdegree at most one",
+        "At every step there is exactly one zero-indegree vertex among the remaining vertices",
+        "The graph has exactly one source initially",
+        "Every directed path has the same length"
+      ]
+    },
+    {
+      "id": "alg-graph-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph has negative edge weights but no negative cycles. Which algorithm can compute single-source shortest paths in O(VE) time?",
+      "options": [
+        "Bellman–Ford",
+        "Dijkstra",
+        "BFS",
+        "Prim"
+      ],
+      "answer": [
+        "Bellman–Ford"
+      ],
+      "explanation": "Bellman–Ford performs up to V−1 passes over all edges and supports negative weights. It detects reachable negative cycles with an additional pass."
+    }
+  ]
+}

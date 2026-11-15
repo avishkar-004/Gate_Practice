@@ -1,0 +1,1404 @@
+{
+  "topicIndex": 3,
+  "questions": [
+    {
+      "id": "alg-hash-001",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A hash table has 13 slots and uses h(k)=k mod 13. Which slot is selected for key 202?",
+      "answer": "7",
+      "explanation": "Dividing 202 by 13 leaves remainder 7, so the key maps to slot 7."
+    },
+    {
+      "id": "alg-hash-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A hash table uses h(k)=k mod 11. Which key collides with 47?",
+      "options": [
+        "35",
+        "36",
+        "38",
+        "40"
+      ],
+      "answer": [
+        "36"
+      ],
+      "explanation": "47 mod 11 is 3. Among the choices, 36 mod 11 is also 3, so it maps to the same slot."
+    },
+    {
+      "id": "alg-hash-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about collisions in hashing are correct?",
+      "options": [
+        "Two distinct keys can map to the same table index",
+        "A collision is unavoidable when more possible keys exist than slots",
+        "A good hash function eliminates collisions for every possible key set",
+        "Collision resolution is part of a hash-table design"
+      ],
+      "answer": [
+        "Two distinct keys can map to the same table index",
+        "A collision is unavoidable when more possible keys exist than slots",
+        "Collision resolution is part of a hash-table design"
+      ],
+      "explanation": "The finite table maps a larger key universe into fewer slots, so collisions can occur by the pigeonhole principle. A hash function may distribute keys well but cannot prevent all collisions in general."
+    },
+    {
+      "id": "alg-hash-004",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table has 20 slots and currently stores 15 keys. What is its load factor?",
+      "answer": "0.75",
+      "explanation": "The load factor is the number of stored keys divided by the number of slots: 15/20=0.75."
+    },
+    {
+      "id": "alg-hash-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A chained hash table stores n=48 keys in m=16 buckets. What is the average chain length?",
+      "options": [
+        "0.3",
+        "2",
+        "3",
+        "16"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "The load factor n/m is 48/16=3. Under uniform distribution this is the average number of keys per bucket."
+    },
+    {
+      "id": "alg-hash-006",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties apply to separate chaining?",
+      "options": [
+        "Each table slot can reference a collection of keys",
+        "The load factor can exceed one",
+        "Deletion can remove a key from its chain directly",
+        "Every unsuccessful search must probe every table slot"
+      ],
+      "answer": [
+        "Each table slot can reference a collection of keys",
+        "The load factor can exceed one",
+        "Deletion can remove a key from its chain directly"
+      ],
+      "explanation": "Chaining stores colliding elements in per-slot collections, so more keys than buckets are allowed and removal is local to a chain. An unsuccessful search normally examines only the relevant chain."
+    },
+    {
+      "id": "alg-hash-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Linear probing inserts keys 23, 43, 13 into an initially empty table of size 10 using h(k)=k mod 10. Where is key 13 stored?",
+      "options": [
+        "Index 3",
+        "Index 4",
+        "Index 5",
+        "Index 6"
+      ],
+      "answer": [
+        "Index 5"
+      ],
+      "explanation": "Key 23 occupies index 3. Key 43 collides there and takes index 4. Key 13 collides at 3 and 4, so it is placed at index 5."
+    },
+    {
+      "id": "alg-hash-008",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "With linear probing in a size-10 table, keys 23, 43, and 13 are inserted in that order using h(k)=k mod 10. How many occupied slots are inspected when searching successfully for 13?",
+      "answer": "3",
+      "explanation": "The search starts at home slot 3, then checks occupied slots 4 and 5. The matching key is the third inspected slot."
+    },
+    {
+      "id": "alg-hash-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A linear-probing table has occupied slots 4,5,6 and an empty slot 7. A key hashes to 5 and is stored at 6. How many slots are checked in a successful search for it?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "Searching begins at home slot 5, checks the occupied slot 5, then reaches the key at 6. The empty slot 7 is not examined."
+    },
+    {
+      "id": "alg-hash-010",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about primary clustering in linear probing are correct?",
+      "options": [
+        "Long contiguous occupied runs tend to attract further insertions",
+        "Clusters can merge when a new key is inserted between them",
+        "Primary clustering can increase probe lengths",
+        "Double hashing has the same primary-clustering behavior by definition"
+      ],
+      "answer": [
+        "Long contiguous occupied runs tend to attract further insertions",
+        "Clusters can merge when a new key is inserted between them",
+        "Primary clustering can increase probe lengths"
+      ],
+      "explanation": "Linear probing advances through contiguous slots, so keys that hash into or before a run extend it and neighboring runs can merge. Double hashing uses a key-dependent step and avoids this specific clustering pattern."
+    },
+    {
+      "id": "alg-hash-011",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a table of size 11 using linear probing, keys 22, 33, 44, and 55 are inserted in that order with h(k)=k mod 11. At which index is 55 stored?",
+      "answer": "3",
+      "explanation": "All four keys hash to index 0. Linear probing places them at indices 0,1,2,3 respectively, so 55 occupies index 3."
+    },
+    {
+      "id": "alg-hash-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why is a tombstone needed when deleting from an open-addressed table using linear probing?",
+      "options": [
+        "Replacing the deleted slot with empty could make a later key in the probe sequence unreachable",
+        "It lowers the load factor without changing search behavior",
+        "It prevents new insertions at that location",
+        "It converts probing into separate chaining"
+      ],
+      "answer": [
+        "Replacing the deleted slot with empty could make a later key in the probe sequence unreachable"
+      ],
+      "explanation": "Search stops at a truly empty slot. If deletion creates one inside a probe cluster, a search for a key stored later can terminate too early; a tombstone marks a deleted-but-previously-occupied position."
+    },
+    {
+      "id": "alg-hash-013",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations must treat a tombstone specially in open addressing?",
+      "options": [
+        "Search must continue past it",
+        "Insertion may remember it as a candidate slot but continue checking for an existing key",
+        "Search can stop immediately at it",
+        "A tombstone must be distinguished from a never-used empty slot"
+      ],
+      "answer": [
+        "Search must continue past it",
+        "Insertion may remember it as a candidate slot but continue checking for an existing key",
+        "A tombstone must be distinguished from a never-used empty slot"
+      ],
+      "explanation": "A tombstone cannot terminate a search because a matching key may occur farther along the probe sequence. Insertion can reuse one, but should first ensure the key is not already present beyond it."
+    },
+    {
+      "id": "alg-hash-014",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table has 50 slots and 35 stored keys. Compute its load factor as a decimal.",
+      "answer": "0.7",
+      "explanation": "The load factor is the stored-key count divided by the number of slots: 35/50=0.7 keys per slot on average."
+    },
+    {
+      "id": "alg-hash-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In open addressing, what constraint is normally required of the step size in double hashing for table size m?",
+      "options": [
+        "The step must be relatively prime to m",
+        "The step must equal m",
+        "The step must be zero",
+        "The step must share a nontrivial common factor with m"
+      ],
+      "answer": [
+        "The step must be relatively prime to m"
+      ],
+      "explanation": "A step relatively prime to m visits every table position before repeating. If the step shares a factor with m, the probe sequence may cover only a subset of slots."
+    },
+    {
+      "id": "alg-hash-016",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Double hashing uses h1(k)=k mod 13 and h2(k)=1+(k mod 12). For key k=26, what is the initial probe index?",
+      "answer": "0",
+      "explanation": "The first probe uses h1(k), and 26 mod 13=0. The second hash determines later step size, not the initial slot."
+    },
+    {
+      "id": "alg-hash-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For double hashing with table size 13 and step h2(k)=1+(k mod 12), what is the step for key 26?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "13"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "26 mod 12=2, so the step is 1+2=3. Since gcd(3,13)=1, this step can visit all slots."
+    },
+    {
+      "id": "alg-hash-018",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions support a full probe cycle in double hashing?",
+      "options": [
+        "The step size is relatively prime to the table size",
+        "A prime table size with a nonzero step smaller than the table size",
+        "A step size that is a multiple of the table size",
+        "For composite m, any nonzero step guarantees a full cycle"
+      ],
+      "answer": [
+        "The step size is relatively prime to the table size",
+        "A prime table size with a nonzero step smaller than the table size"
+      ],
+      "explanation": "A probe sequence covers every slot exactly when the step and table size are coprime. For prime m, every nonzero step below m is coprime; a multiple of m yields no movement, and a nonzero step for composite m may still fail."
+    },
+    {
+      "id": "alg-hash-019",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Quadratic probing uses h(k,i)=(h(k)+i²) mod 11, with h(k)=2. What is the probe index for i=3?",
+      "answer": "0",
+      "explanation": "The index is (2+3²) mod 11=(2+9) mod 11=0."
+    },
+    {
+      "id": "alg-hash-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can quadratic probing fail to find an empty slot even when the table is not full?",
+      "options": [
+        "Its probe sequence may visit only a subset of table positions",
+        "It always probes every location exactly once",
+        "It requires a linked list at each index",
+        "It makes the hash function non-deterministic"
+      ],
+      "answer": [
+        "Its probe sequence may visit only a subset of table positions"
+      ],
+      "explanation": "Quadratic offsets can repeat or cover only part of the table depending on m and the chosen formula. An unvisited empty slot does not help insertion, so parameter choices and load limits matter."
+    },
+    {
+      "id": "alg-hash-021",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish chaining from open addressing?",
+      "options": [
+        "Open addressing stores all keys within the table array",
+        "Chaining can store multiple colliding keys in a bucket collection",
+        "Open addressing requires an empty slot for insertion",
+        "Chaining has load factor at most one"
+      ],
+      "answer": [
+        "Open addressing stores all keys within the table array",
+        "Chaining can store multiple colliding keys in a bucket collection",
+        "Open addressing requires an empty slot for insertion"
+      ],
+      "explanation": "Open addressing resolves collisions by probing table cells and cannot insert beyond capacity. Chaining stores colliding keys externally or in bucket structures, allowing α>1."
+    },
+    {
+      "id": "alg-hash-022",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A chained table contains 84 keys in 21 buckets. What is the load factor?",
+      "answer": "4",
+      "explanation": "For chaining, α=n/m=84/21=4 keys per bucket on average."
+    },
+    {
+      "id": "alg-hash-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Under simple uniform hashing with chaining, what is the expected unsuccessful-search cost in terms of load factor α, ignoring the hash computation?",
+      "options": [
+        "Θ(1+α)",
+        "Θ(log α)",
+        "Θ(n log n)",
+        "Θ(m)"
+      ],
+      "answer": [
+        "Θ(1+α)"
+      ],
+      "explanation": "An unsuccessful search examines the chain at the hashed bucket. Under uniform hashing its expected length is α=n/m, so the cost is Θ(1+α), including constant overhead."
+    },
+    {
+      "id": "alg-hash-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A chained table has load factor α=6. Under uniform hashing, what is the expected number of stored keys examined for an unsuccessful search?",
+      "options": [
+        "0",
+        "3",
+        "6",
+        "12"
+      ],
+      "answer": [
+        "6"
+      ],
+      "explanation": "An unsuccessful search traverses the selected chain, whose expected length is n/m=α=6 under uniform hashing."
+    },
+    {
+      "id": "alg-hash-025",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which design choices can reduce expected collision costs in a hash table?",
+      "options": [
+        "Use a hash function that distributes the expected key set evenly",
+        "Resize when the load factor exceeds a chosen threshold",
+        "Choose a collision strategy suited to the operation and memory model",
+        "Use a constant hash value for every key"
+      ],
+      "answer": [
+        "Use a hash function that distributes the expected key set evenly",
+        "Resize when the load factor exceeds a chosen threshold",
+        "Choose a collision strategy suited to the operation and memory model"
+      ],
+      "explanation": "Good distribution and controlled load factor reduce collisions, while the resolution strategy affects cache locality and update behavior. A constant hash value sends all keys to one bucket."
+    },
+    {
+      "id": "alg-hash-026",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A hash table with 17 slots stores 12 keys. What is its load factor rounded to three decimal places?",
+      "answer": "0.706",
+      "explanation": "The load factor is 12/17≈0.705882. Rounded to three decimal places it is 0.706."
+    },
+    {
+      "id": "alg-hash-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A division-method hash function uses h(k)=k mod m. Which choice of m is commonly preferred to reduce simple patterns in keys?",
+      "options": [
+        "A prime not close to a power of 2",
+        "Zero",
+        "A large power of 2 in every case",
+        "The number of stored keys"
+      ],
+      "answer": [
+        "A prime not close to a power of 2"
+      ],
+      "explanation": "A prime table size not near a power of two often reduces artifacts from common key divisibility patterns. It is a heuristic, not a guarantee of uniform hashing."
+    },
+    {
+      "id": "alg-hash-028",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the multiplication method for hashing are valid?",
+      "options": [
+        "It can multiply a key by a constant and use selected fractional bits",
+        "Its behavior depends on the chosen constant and word representation",
+        "It guarantees no collisions for an arbitrary key universe",
+        "It can avoid relying solely on a key's low-order bits"
+      ],
+      "answer": [
+        "It can multiply a key by a constant and use selected fractional bits",
+        "Its behavior depends on the chosen constant and word representation",
+        "It can avoid relying solely on a key's low-order bits"
+      ],
+      "explanation": "The multiplication method mixes key bits through a constant and extracts a portion for the index. It still maps many keys into fewer slots, so collisions remain possible."
+    },
+    {
+      "id": "alg-hash-029",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A direct-address table represents keys 0 through 999. How many table entries are required if both endpoints are included?",
+      "answer": "1000",
+      "explanation": "The inclusive key universe contains 999−0+1=1000 possible values, so one direct-address entry per key requires 1000 entries."
+    },
+    {
+      "id": "alg-hash-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the principal space-time tradeoff of direct addressing compared with hashing?",
+      "options": [
+        "Direct addressing gives direct lookup but may allocate space proportional to the entire key universe",
+        "Direct addressing requires linear search for every key",
+        "Hashing always uses more memory and time",
+        "Direct addressing cannot support deletion"
+      ],
+      "answer": [
+        "Direct addressing gives direct lookup but may allocate space proportional to the entire key universe"
+      ],
+      "explanation": "A key can index its exact entry directly, giving O(1) access under the model. The table may be impractically large when the universe is much larger than the stored set."
+    },
+    {
+      "id": "alg-hash-031",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about universal hashing are correct?",
+      "options": [
+        "A family of hash functions is selected randomly from a designed family",
+        "It can bound collision probability for any fixed pair of distinct keys",
+        "It guarantees zero collisions in a finite table",
+        "It can protect expected performance from adversarially chosen keys under its assumptions"
+      ],
+      "answer": [
+        "A family of hash functions is selected randomly from a designed family",
+        "It can bound collision probability for any fixed pair of distinct keys",
+        "It can protect expected performance from adversarially chosen keys under its assumptions"
+      ],
+      "explanation": "Universal families limit the probability that a fixed key pair collides when the function is randomly selected. They do not make collisions impossible when keys outnumber slots."
+    },
+    {
+      "id": "alg-hash-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hash function is deterministic and public, and an attacker can choose all input keys. What risk does this create?",
+      "options": [
+        "The attacker may choose many keys that collide and cause long operations",
+        "The table becomes collision-free",
+        "The load factor must become zero",
+        "Every lookup becomes O(1) regardless of chaining"
+      ],
+      "answer": [
+        "The attacker may choose many keys that collide and cause long operations"
+      ],
+      "explanation": "A known weak hash can be targeted with colliding keys, degrading chains or probe sequences toward linear behavior. Randomized hashing or stronger keyed hashing can mitigate this threat."
+    },
+    {
+      "id": "alg-hash-033",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A chained hash table has 120 stored keys and 30 buckets. Under uniform hashing, what is the expected number of keys in the bucket selected by an unsuccessful search?",
+      "answer": "4",
+      "explanation": "The expected chain length is the load factor n/m=120/30=4."
+    },
+    {
+      "id": "alg-hash-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In open addressing with linear probing, what event allows an unsuccessful search to terminate?",
+      "options": [
+        "It reaches a slot that has never been occupied",
+        "It encounters a tombstone",
+        "It observes a key smaller than the query",
+        "It reaches the end of the physical array without wraparound"
+      ],
+      "answer": [
+        "It reaches a slot that has never been occupied"
+      ],
+      "explanation": "A never-used empty slot proves that insertion of the queried key would have stopped there. A tombstone does not provide that proof, so probing must continue."
+    },
+    {
+      "id": "alg-hash-035",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about deletion from a chained hash table are correct?",
+      "options": [
+        "A matching node can be removed from its chain",
+        "Deletion need not affect search paths in other buckets",
+        "A tombstone is required to preserve open-address probe sequences",
+        "The load factor decreases by one bucket count"
+      ],
+      "answer": [
+        "A matching node can be removed from its chain",
+        "Deletion need not affect search paths in other buckets"
+      ],
+      "explanation": "Chaining keeps colliding elements in a bucket collection, and deleting one removes that node. Tombstones address open-address probe sequences; load factor decreases by one key divided by bucket count."
+    },
+    {
+      "id": "alg-hash-036",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table grows from 16 to 32 buckets while retaining 20 keys. What is the new load factor?",
+      "answer": "0.625",
+      "explanation": "After resizing, α=20/32=0.625. The keys must be rehashed because their bucket indices may change with the table size."
+    },
+    {
+      "id": "alg-hash-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why must keys generally be reinserted or rehashed after an open-address table changes size?",
+      "options": [
+        "The hash indices and probe sequences depend on the table size",
+        "The key values change during resizing",
+        "The table becomes a linked list",
+        "The load factor is no longer defined"
+      ],
+      "answer": [
+        "The hash indices and probe sequences depend on the table size"
+      ],
+      "explanation": "For functions such as k mod m, changing m changes home positions and collision paths. Copying entries to the same indices can violate the probe invariants used by search."
+    },
+    {
+      "id": "alg-hash-038",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties are desirable for a hash function used in a hash table?",
+      "options": [
+        "Deterministically maps the same key to the same index while the table configuration is fixed",
+        "Distributes likely keys broadly across slots",
+        "Is inexpensive to compute",
+        "Maps every distinct key to a unique slot even when the key universe exceeds the table"
+      ],
+      "answer": [
+        "Deterministically maps the same key to the same index while the table configuration is fixed",
+        "Distributes likely keys broadly across slots",
+        "Is inexpensive to compute"
+      ],
+      "explanation": "Consistency, good distribution, and low computation cost are useful. A many-to-one mapping is unavoidable when the key universe exceeds the finite table size."
+    },
+    {
+      "id": "alg-hash-039",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table uses h(k)=k mod 17. What is the bucket index for key 1000?",
+      "answer": "14",
+      "explanation": "17×58=986, and 1000−986=14, so the remainder and bucket index are 14."
+    },
+    {
+      "id": "alg-hash-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A chained hash table's load factor doubles while the number of buckets is fixed. Under uniform hashing, what happens to the expected unsuccessful chain length?",
+      "options": [
+        "It doubles",
+        "It halves",
+        "It remains exactly one",
+        "It becomes logarithmic in the number of buckets"
+      ],
+      "answer": [
+        "It doubles"
+      ],
+      "explanation": "The expected chain length is α=n/m. With m fixed, doubling the number of stored keys doubles α and thus doubles the expected unsuccessful-search chain length."
+    },
+    {
+      "id": "alg-hash-041",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations have expected O(1) time in a well-sized hash table under suitable hashing assumptions?",
+      "options": [
+        "Lookup by exact key",
+        "Insertion of a new key",
+        "Deletion of a known key",
+        "Finding the minimum key without additional structure"
+      ],
+      "answer": [
+        "Lookup by exact key",
+        "Insertion of a new key",
+        "Deletion of a known key"
+      ],
+      "explanation": "Exact-key operations are expected constant time when collisions remain controlled and the load factor is bounded. Hashing does not preserve order, so finding a minimum generally requires scanning all keys."
+    },
+    {
+      "id": "alg-hash-042",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table with 64 slots stores 48 items. If resizing occurs whenever load factor exceeds 0.75, is the threshold exceeded? Answer 1 for yes and 0 for no.",
+      "answer": "0",
+      "explanation": "The load factor is 48/64=0.75, which equals but does not exceed the stated threshold. Therefore the answer is 0."
+    },
+    {
+      "id": "alg-hash-043",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A table resizes by doubling capacity whenever the load factor exceeds a fixed constant. What is the amortized insertion cost under standard assumptions?",
+      "options": [
+        "O(1)",
+        "O(log n) for every insertion",
+        "O(n) for every insertion",
+        "O(n log n)"
+      ],
+      "answer": [
+        "O(1)"
+      ],
+      "explanation": "A resizing insertion may rehash Θ(n) keys, but geometric capacity growth makes such events infrequent. The total rehashing over n insertions is O(n), yielding O(1) amortized cost per insertion."
+    },
+    {
+      "id": "alg-hash-044",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about amortized resizing of a hash table are correct when capacity doubles?",
+      "options": [
+        "A single insertion may trigger Θ(n) rehash work",
+        "Across n insertions, total rehash work is O(n)",
+        "Every insertion has worst-case O(1) time",
+        "The average amortized insertion cost is O(1)"
+      ],
+      "answer": [
+        "A single insertion may trigger Θ(n) rehash work",
+        "Across n insertions, total rehash work is O(n)",
+        "The average amortized insertion cost is O(1)"
+      ],
+      "explanation": "Geometric growth yields a linear total number of copied entries over an insertion sequence. Individual resize operations remain linear, so amortized constant time is not a worst-case guarantee for each operation."
+    },
+    {
+      "id": "alg-hash-045",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table starts with capacity 8 and doubles whenever it becomes full. After inserting 17 keys, what is its capacity, assuming resizing before the insertion that would exceed capacity?",
+      "answer": "32",
+      "explanation": "Capacity grows 8→16 when the ninth key is inserted and 16→32 when the seventeenth is inserted. Thus the final capacity is 32."
+    },
+    {
+      "id": "alg-hash-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement best describes secondary clustering in quadratic probing?",
+      "options": [
+        "Keys with the same initial hash often follow the same probe sequence",
+        "All keys follow one identical sequence regardless of hash",
+        "The table stores collisions in linked lists",
+        "It occurs only in separate chaining"
+      ],
+      "answer": [
+        "Keys with the same initial hash often follow the same probe sequence"
+      ],
+      "explanation": "Quadratic probing's offsets depend on the probe count but not the key. Keys sharing a home slot therefore follow the same sequence, a form of secondary clustering."
+    },
+    {
+      "id": "alg-hash-047",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish linear probing from double hashing?",
+      "options": [
+        "Linear probing uses a fixed unit step through slots",
+        "Double hashing can use a key-dependent step",
+        "Both can suffer primary clustering in the same way",
+        "Double hashing can generate many probe permutations"
+      ],
+      "answer": [
+        "Linear probing uses a fixed unit step through slots",
+        "Double hashing can use a key-dependent step",
+        "Double hashing can generate many probe permutations"
+      ],
+      "explanation": "Linear probing advances by one and creates primary clusters. Double hashing varies the step by key and can generate more distinct probe sequences when the step is coprime to the capacity."
+    },
+    {
+      "id": "alg-hash-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A table of size 11 uses double hashing with h1(k)=k mod 11 and step h2(k)=1+(k mod 10). Key 22 is inserted first, followed by key 33. Where is 33 stored?",
+      "answer": [
+        "4"
+      ],
+      "explanation": "Key 22 occupies slot 0. For key 33, h1=0 and h2=4, so its probes are 0, 4, 8, and so on. Slot 0 is occupied and slot 4 is free, so key 33 is stored at index 4.",
+      "options": [
+        "1",
+        "3",
+        "4",
+        "7"
+      ]
+    },
+    {
+      "id": "alg-hash-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A deletion marker in open addressing is later reused for insertion. What must the insertion algorithm still ensure?",
+      "options": [
+        "It must continue probing far enough to avoid inserting a duplicate key later in the sequence",
+        "It must stop every search at that marker",
+        "It must convert the entire cluster into a chain",
+        "It must increase the table size immediately"
+      ],
+      "answer": [
+        "It must continue probing far enough to avoid inserting a duplicate key later in the sequence"
+      ],
+      "explanation": "An existing copy may lie beyond the tombstone. A correct insertion remembers the reusable slot but continues the probe sequence to confirm that the key is absent before placing it."
+    },
+    {
+      "id": "alg-hash-050",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about hash-table search complexity are correct?",
+      "options": [
+        "Expected O(1) time requires assumptions about hashing and load",
+        "Worst-case search can be Θ(n)",
+        "A hash table supports sorted-order range queries in expected O(1)",
+        "Adversarial collisions can degrade operation costs"
+      ],
+      "answer": [
+        "Expected O(1) time requires assumptions about hashing and load",
+        "Worst-case search can be Θ(n)",
+        "Adversarial collisions can degrade operation costs"
+      ],
+      "explanation": "Average constant-time performance is conditional, not unconditional. If many keys collide, a chain or probe sequence can grow linearly; hashing also does not maintain sorted order for range queries."
+    },
+    {
+      "id": "alg-hash-051",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A chained table has 90 keys and 30 buckets. If keys are uniformly distributed, what is the expected number of keys in a selected bucket?",
+      "answer": "3",
+      "explanation": "The expected occupancy is the load factor 90/30=3 keys per bucket."
+    },
+    {
+      "id": "alg-hash-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a chained table, an unsuccessful search hashes to a bucket containing 5 keys. How many stored-key equality tests are needed if the chain is scanned completely?",
+      "options": [
+        "0",
+        "1",
+        "5",
+        "6"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "The query does not match any key, so all five nodes in the selected chain must be checked before reporting failure."
+    },
+    {
+      "id": "alg-hash-053",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a hash function's input domain and table range are correct?",
+      "options": [
+        "The hash function maps keys from a potentially large universe into a finite set of indices",
+        "Different keys can map to the same index",
+        "A collision does not imply the keys are equal",
+        "A hash value uniquely identifies the key in general"
+      ],
+      "answer": [
+        "The hash function maps keys from a potentially large universe into a finite set of indices",
+        "Different keys can map to the same index",
+        "A collision does not imply the keys are equal"
+      ],
+      "explanation": "Hashing compresses a large domain to a finite range, necessarily allowing collisions. Equal hash values do not establish key equality; the original key comparison is still needed."
+    },
+    {
+      "id": "alg-hash-054",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table size is 23. Using h(k)=k mod 23, find the slot for key 100.",
+      "answer": "8",
+      "explanation": "23×4=92 and 100−92=8, so the home slot is 8."
+    },
+    {
+      "id": "alg-hash-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A table uses open addressing and has no never-used slots remaining. What is true of insertion of a new key?",
+      "options": [
+        "It cannot succeed without resizing or deleting an entry",
+        "It always succeeds by creating a new bucket",
+        "It succeeds if the key hashes to slot zero",
+        "It changes the hash function automatically"
+      ],
+      "answer": [
+        "It cannot succeed without resizing or deleting an entry"
+      ],
+      "explanation": "Open addressing stores every key in a table slot. If all slots are occupied, no probe sequence can find a free location, so capacity must be increased or a key removed."
+    },
+    {
+      "id": "alg-hash-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A hash table has 40 slots and 10 stored keys. What percentage of its slots are occupied?",
+      "answer": "25",
+      "explanation": "The occupancy fraction is 10/40=0.25. Converting to a percentage gives 25%."
+    },
+    {
+      "id": "alg-hash-057",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are possible consequences of choosing a poor hash function for structured integer keys?",
+      "options": [
+        "Many keys may map to the same subset of slots",
+        "Expected chain lengths can become highly uneven",
+        "Open-address clusters may become longer",
+        "Correctness is guaranteed to fail even if collisions are resolved"
+      ],
+      "answer": [
+        "Many keys may map to the same subset of slots",
+        "Expected chain lengths can become highly uneven",
+        "Open-address clusters may become longer"
+      ],
+      "explanation": "A poor distribution harms performance through collisions and clustering. If collision resolution and equality checks are implemented correctly, poor distribution affects efficiency rather than logical correctness."
+    },
+    {
+      "id": "alg-hash-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why is a prime modulus often chosen in h(k)=k mod m for keys with regular numeric patterns?",
+      "options": [
+        "It can reduce systematic collisions caused by common factors with the key pattern",
+        "It makes collisions impossible",
+        "It guarantees a perfect hash for any input",
+        "It makes modulo computation independent of m"
+      ],
+      "answer": [
+        "It can reduce systematic collisions caused by common factors with the key pattern"
+      ],
+      "explanation": "A prime m avoids sharing many small factors with structured key increments, which can improve distribution. It remains a heuristic and does not eliminate collisions for arbitrary keys."
+    },
+    {
+      "id": "alg-hash-059",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A double-hashing table has size 17 and uses step h2(k)=1+(k mod 16). What step is used for key 45?",
+      "answer": "14",
+      "explanation": "45 mod 16=13, so the step is 1+13=14. Since 17 is prime and 14 is nonzero modulo 17, the sequence can visit all slots."
+    },
+    {
+      "id": "alg-hash-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An open-address table uses m=12 and a double-hash step of 8. How many distinct slots can the probe sequence visit before repeating?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "12"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "The sequence advances by 8 modulo 12. Its period is m/gcd(m,8)=12/4=3, so it visits only three distinct positions."
+    },
+    {
+      "id": "alg-hash-061",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about the load factor α=n/m are correct?",
+      "options": [
+        "For chaining, α can be greater than one",
+        "For open addressing, α must remain below one to leave room for insertion",
+        "A smaller α often reduces expected probe or chain costs",
+        "A load factor alone determines the exact location of every key"
+      ],
+      "answer": [
+        "For chaining, α can be greater than one",
+        "For open addressing, α must remain below one to leave room for insertion",
+        "A smaller α often reduces expected probe or chain costs"
+      ],
+      "explanation": "Chaining allows multiple keys per bucket, whereas open addressing requires a free slot. Lower occupancy generally improves search performance, but α does not reveal individual hash placements."
+    },
+    {
+      "id": "alg-hash-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table with 32 slots has load factor 0.625. How many keys are stored?",
+      "answer": "20",
+      "explanation": "Using ?=n/m, the key count is n=?m=0.625?32=20 stored keys."
+    },
+    {
+      "id": "alg-hash-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A chained table stores all n keys in one bucket. What is the worst-case time for an unsuccessful lookup in that bucket?",
+      "options": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "answer": [
+        "Θ(n)"
+      ],
+      "explanation": "The unsuccessful query must compare against every key in the single chain. The chain length is n, so the worst-case lookup time is linear."
+    },
+    {
+      "id": "alg-hash-064",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about lookup in an open-address table are correct?",
+      "options": [
+        "The probe sequence must be identical for lookup and insertion of a given key",
+        "A never-used empty slot proves the key is absent",
+        "A tombstone can be treated as never-used empty during search",
+        "A full probe cycle can detect that no slot is available"
+      ],
+      "answer": [
+        "The probe sequence must be identical for lookup and insertion of a given key",
+        "A never-used empty slot proves the key is absent",
+        "A full probe cycle can detect that no slot is available"
+      ],
+      "explanation": "Search must follow the same sequence used to place a key. Never-used emptiness ends a search, while tombstones require continued probing; a complete cycle indicates no reachable vacancy."
+    },
+    {
+      "id": "alg-hash-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "With h(k)=k mod 8 and linear probing, insert 10, 18, and 26 into an empty table. At which slot is key 26 stored?",
+      "answer": "4",
+      "explanation": "All three keys hash to slot 2. They occupy slots 2, 3, and 4 in insertion order under linear probing."
+    },
+    {
+      "id": "alg-hash-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hash table grows geometrically, and each resize rehashes every stored key. Why is the total rehash work over n insertions O(n)?",
+      "options": [
+        "Each key is copied only O(log n) times but capacities form a geometric series dominated by the last",
+        "No key is ever copied",
+        "Every resize costs O(1)",
+        "The number of resizes is exactly one"
+      ],
+      "answer": [
+        "Each key is copied only O(log n) times but capacities form a geometric series dominated by the last"
+      ],
+      "explanation": "Resize capacities double, so copied counts sum like 1+2+4+…+n=O(n). This aggregate bound yields constant amortized resize work per insertion."
+    },
+    {
+      "id": "alg-hash-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about hash-table resizing are correct?",
+      "options": [
+        "A resize can require Θ(n) rehash work",
+        "Geometric growth gives O(1) amortized insertion cost",
+        "A particular insertion can still take Θ(n)",
+        "Amortized O(1) means every operation takes constant worst-case time"
+      ],
+      "answer": [
+        "A resize can require Θ(n) rehash work",
+        "Geometric growth gives O(1) amortized insertion cost",
+        "A particular insertion can still take Θ(n)"
+      ],
+      "explanation": "Resizing is expensive for the operation that triggers it, but geometric growth spreads that cost across many insertions. Amortized bounds apply over sequences, not to each operation individually."
+    },
+    {
+      "id": "alg-hash-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A key has hash value 6 in a table of size 10. Under linear probing, slots 6,7,8 are occupied and slot 9 is empty. Where is the key inserted?",
+      "options": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": [
+        "9"
+      ],
+      "explanation": "Linear probing checks the home slot and then advances sequentially with wraparound. The first free position in the sequence 6,7,8,9 is index 9."
+    },
+    {
+      "id": "alg-hash-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A linear-probing table of size 10 has occupied slots 8, 9, and 0. A key hashes to 8 and is stored at slot 0. How many slots are checked in a successful lookup?",
+      "answer": "3",
+      "explanation": "The probe sequence starts at 8, wraps to 9, then reaches the key at 0. Three occupied slots are inspected."
+    },
+    {
+      "id": "alg-hash-070",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about wraparound in open addressing are correct?",
+      "options": [
+        "Probe indices are interpreted modulo table size",
+        "A linear probe can continue from slot m−1 to slot 0",
+        "A probe sequence may terminate after a full cycle",
+        "Wrapping makes duplicate keys impossible"
+      ],
+      "answer": [
+        "Probe indices are interpreted modulo table size",
+        "A linear probe can continue from slot m−1 to slot 0",
+        "A probe sequence may terminate after a full cycle"
+      ],
+      "explanation": "Modulo arithmetic wraps indices at the array boundary. After all m distinct slots are examined, the sequence has completed a cycle; wrapping does not prevent equal keys or duplicate insertions by itself."
+    },
+    {
+      "id": "alg-hash-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In linear probing, key x is stored several positions after its home slot. During lookup, what is the correct stopping rule before finding x?",
+      "options": [
+        "Stop only at x or at a never-used empty slot",
+        "Stop at the first tombstone",
+        "Stop after exactly two probes",
+        "Stop at any key larger than x"
+      ],
+      "answer": [
+        "Stop only at x or at a never-used empty slot"
+      ],
+      "explanation": "Keys are not ordered along a probe cluster, so a different key or tombstone does not prove x is absent. A never-used empty slot is the valid absence certificate."
+    },
+    {
+      "id": "alg-hash-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table has 200 buckets and 50 stored keys. What is the average chain length under uniform hashing?",
+      "answer": "0.25",
+      "explanation": "The load factor and expected chain length are n/m=50/200=0.25."
+    },
+    {
+      "id": "alg-hash-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A table has m slots, and a second hash function yields step d. What is the number of distinct positions in the probe cycle?",
+      "options": [
+        "m/gcd(m,d)",
+        "m×d",
+        "gcd(m,d)",
+        "m−d"
+      ],
+      "answer": [
+        "m/gcd(m,d)"
+      ],
+      "explanation": "The smallest positive t for which td is divisible by m is m/gcd(m,d). This is the period of adding d modulo m and determines how many slots are visited."
+    },
+    {
+      "id": "alg-hash-074",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which design properties make a chained hash table appropriate for a key set with frequent deletions?",
+      "options": [
+        "A key can be removed from its chain without preserving a probe path",
+        "The load factor may exceed one",
+        "The table can grow chains without immediately requiring an empty array slot",
+        "Deletion requires leaving a tombstone in every bucket"
+      ],
+      "answer": [
+        "A key can be removed from its chain without preserving a probe path",
+        "The load factor may exceed one",
+        "The table can grow chains without immediately requiring an empty array slot"
+      ],
+      "explanation": "Chaining handles deletion by removing the corresponding node, and bucket lists can contain multiple keys. Tombstones are associated with open addressing, not required in chains."
+    },
+    {
+      "id": "alg-hash-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A hash table with 24 buckets has 18 keys. If 6 more keys are inserted without resizing, what is the resulting load factor?",
+      "answer": "1",
+      "explanation": "There are now 24 keys in 24 buckets, so α=24/24=1."
+    },
+    {
+      "id": "alg-hash-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Under uniform hashing, a chained table's average successful search examines approximately what number of list elements when the chain order is arbitrary?",
+      "options": [
+        "1+α/2",
+        "1/(1−α)",
+        "log₂α",
+        "m/n"
+      ],
+      "answer": [
+        "1+α/2"
+      ],
+      "explanation": "For a successful search, the stored key is equally likely to be at any position in its chain. Averaging the scan length over chain positions yields approximately 1+α/2 under uniform hashing."
+    },
+    {
+      "id": "alg-hash-077",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A chained hash table has load factor α=8. Using the approximation 1+α/2, how many list elements are examined in an average successful search?",
+      "answer": "5",
+      "explanation": "Substitute α=8 into 1+α/2: 1+8/2=5 expected element examinations."
+    },
+    {
+      "id": "alg-hash-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about expected hashing bounds are appropriate?",
+      "options": [
+        "They depend on a distribution assumption or randomized hash choice",
+        "Worst-case complexity may remain linear",
+        "An expected O(1) bound is not a guarantee for every operation",
+        "The expectation is always over the machine's execution time only"
+      ],
+      "answer": [
+        "They depend on a distribution assumption or randomized hash choice",
+        "Worst-case complexity may remain linear",
+        "An expected O(1) bound is not a guarantee for every operation"
+      ],
+      "explanation": "Expected bounds average over keys, hash functions, or both under explicit assumptions. A particular operation or adversarial table can still incur linear work; the expectation is not necessarily about hardware timing."
+    },
+    {
+      "id": "alg-hash-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A table uses a universal family where each fixed pair of distinct keys collides with probability at most 1/m. What is the expected number of colliding stored keys with a query key among n stored keys?",
+      "options": [
+        "At most (n−1)/m",
+        "At least n/m",
+        "Exactly m",
+        "At most n²"
+      ],
+      "answer": [
+        "At most (n−1)/m"
+      ],
+      "explanation": "There are n−1 other stored keys. By linearity of expectation, summing their individual collision probabilities gives at most (n−1)/m."
+    },
+    {
+      "id": "alg-hash-080",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a size-10 linear-probing table, keys 12 and 22 are inserted with h(k)=k mod 10. How many probes are needed to insert 22?",
+      "answer": "2",
+      "explanation": "Both keys hash to slot 2. The first occupies slot 2; inserting 22 checks slot 2, then finds slot 3 free, for two probes."
+    },
+    {
+      "id": "alg-hash-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hash table uses separate chaining. Two keys collide at bucket b. Which statement is true about their physical storage?",
+      "options": [
+        "Both can be stored in the collection associated with b",
+        "One must be moved to the next table index",
+        "The second key cannot be inserted",
+        "The hash function must be changed before insertion"
+      ],
+      "answer": [
+        "Both can be stored in the collection associated with b"
+      ],
+      "explanation": "Separate chaining resolves a collision by retaining multiple keys in the same bucket's linked list or other collection. No open-address probe to another table slot is required."
+    },
+    {
+      "id": "alg-hash-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about hash-table keys are correct?",
+      "options": [
+        "Equality must be checked after a hash match",
+        "Unequal keys may have equal hashes",
+        "Equal keys should produce equal hashes under a consistent hash function",
+        "Equal hash values prove key equality"
+      ],
+      "answer": [
+        "Equality must be checked after a hash match",
+        "Unequal keys may have equal hashes",
+        "Equal keys should produce equal hashes under a consistent hash function"
+      ],
+      "explanation": "A hash collision does not imply key equality, so exact-key operations still compare keys. The consistency contract requires equal keys to hash equally, while the converse is not guaranteed."
+    },
+    {
+      "id": "alg-hash-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table size is 19 and h(k)=k mod 19. Find the home slot for key 1001.",
+      "answer": "13",
+      "explanation": "19×52=988 and 1001−988=13, so the home index is 13."
+    },
+    {
+      "id": "alg-hash-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A chained hash table is resized to twice as many buckets. Why may the chains change even though keys are unchanged?",
+      "options": [
+        "The bucket index is recomputed using the new table size",
+        "Every key is automatically modified",
+        "The load factor becomes undefined",
+        "Chaining no longer permits collisions"
+      ],
+      "answer": [
+        "The bucket index is recomputed using the new table size"
+      ],
+      "explanation": "Hash indices are typically calculated modulo the bucket count. Doubling the table changes bucket assignments, so keys are redistributed during rehashing."
+    },
+    {
+      "id": "alg-hash-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about load thresholds and performance are correct?",
+      "options": [
+        "A lower threshold can trigger more frequent resizing",
+        "A high open-addressing load factor usually increases probe lengths",
+        "Chaining can continue to accept keys when α>1",
+        "A chosen threshold guarantees worst-case constant search time"
+      ],
+      "answer": [
+        "A lower threshold can trigger more frequent resizing",
+        "A high open-addressing load factor usually increases probe lengths",
+        "Chaining can continue to accept keys when α>1"
+      ],
+      "explanation": "Thresholds trade memory against resizing frequency. High occupancy increases clustering and probes in open addressing; chaining permits α above one. No load threshold eliminates adversarial worst-case collisions."
+    },
+    {
+      "id": "alg-hash-086",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A hash table has 100 slots and 60 keys. How many additional keys can it accept under open addressing before it becomes completely full, ignoring tombstone reuse?",
+      "options": [
+        "20",
+        "40",
+        "60",
+        "100"
+      ],
+      "answer": [
+        "40"
+      ],
+      "explanation": "Open addressing stores at most one key per slot. With 100 slots and 60 occupied, 100−60=40 free slots remain."
+    },
+    {
+      "id": "alg-hash-087",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table uses h(k)=k mod 9 and linear probing. Slots 0,1,2 are occupied; key 38 is inserted. At which slot does it land?",
+      "answer": "3",
+      "explanation": "38 mod 9=2. Slot 2 is occupied, followed by occupied slots 0 and 1 after wraparound; the next available slot is 3."
+    },
+    {
+      "id": "alg-hash-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In the preceding size-9 linear-probing table, why does the search for a key stored at index 3 begin at index 2?",
+      "options": [
+        "The search repeats the key's home hash and follows the same probe sequence",
+        "The search always begins at the first occupied slot",
+        "The stored index replaces the key's hash value",
+        "The search starts at the previous insertion's final slot"
+      ],
+      "answer": [
+        "The search repeats the key's home hash and follows the same probe sequence"
+      ],
+      "explanation": "Open-address search must reproduce the deterministic probe path used during insertion. It begins at h(38)=2 and advances through occupied positions until the key or a never-used empty slot is found."
+    },
+    {
+      "id": "alg-hash-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which strategies can reduce the impact of hash flooding in a service that accepts attacker-controlled keys?",
+      "options": [
+        "Use keyed or randomized hashing",
+        "Set resource limits and monitor unusually long chains or probes",
+        "Use a public weak hash that attackers can target",
+        "Resize or switch strategies when pathological behavior is detected"
+      ],
+      "answer": [
+        "Use keyed or randomized hashing",
+        "Set resource limits and monitor unusually long chains or probes",
+        "Resize or switch strategies when pathological behavior is detected"
+      ],
+      "explanation": "Randomized hashing makes precomputed collisions harder to target, while limits and monitoring constrain damage. A public weak function gives an attacker information to construct collision-heavy input."
+    },
+    {
+      "id": "alg-hash-090",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A hash table with 128 buckets stores 96 keys. Compute its load factor.",
+      "answer": "0.75",
+      "explanation": "The load factor is the number of stored keys divided by capacity: 96/128=0.75."
+    },
+    {
+      "id": "alg-hash-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A double-hashing probe sequence has table size 15 and step 6. How many distinct slots can it visit?",
+      "options": [
+        "3",
+        "5",
+        "6",
+        "15"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "The period is m/gcd(m,d)=15/gcd(15,6)=15/3=5, so only five distinct slots are visited."
+    },
+    {
+      "id": "alg-hash-092",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions are sufficient for a double-hashing probe sequence to cover every slot?",
+      "options": [
+        "gcd(step,m)=1",
+        "The table size is prime and 1≤step<m",
+        "The step is a multiple of m",
+        "The step is nonzero modulo a prime table size"
+      ],
+      "answer": [
+        "gcd(step,m)=1",
+        "The table size is prime and 1≤step<m",
+        "The step is nonzero modulo a prime table size"
+      ],
+      "explanation": "A modular step visits all residues precisely when it is coprime to m. Every nonzero step is coprime with prime m; a multiple of m yields no movement."
+    },
+    {
+      "id": "alg-hash-093",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A chained table has 45 keys and 15 buckets. If an unsuccessful search examines the whole selected chain, what is its expected number of key comparisons under uniform hashing?",
+      "answer": "3",
+      "explanation": "The expected chain length is the load factor 45/15=3, so an unsuccessful search makes three key comparisons on average."
+    },
+    {
+      "id": "alg-hash-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A table with separate chaining has n=100 keys and m=10 buckets. Which is the strongest immediate conclusion about average chain length?",
+      "options": [
+        "It is 10",
+        "It is 1",
+        "It is at most 1",
+        "It is exactly 100 for every bucket"
+      ],
+      "answer": [
+        "It is 10"
+      ],
+      "explanation": "The arithmetic average is n/m=100/10=10 keys per bucket. Individual chain lengths may vary around this average."
+    },
+    {
+      "id": "alg-hash-095",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements correctly describe the distinction between a hash code and a bucket index?",
+      "options": [
+        "A hash code may be reduced modulo table capacity to obtain an index",
+        "Resizing can change an index even if a key's hash code is unchanged",
+        "A hash code must be unique for every key",
+        "A bucket index is always the original key value"
+      ],
+      "answer": [
+        "A hash code may be reduced modulo table capacity to obtain an index",
+        "Resizing can change an index even if a key's hash code is unchanged"
+      ],
+      "explanation": "Implementations often compute a hash code first and map it into the current capacity. Capacity changes can alter the index, and collisions mean hash codes need not be unique."
+    },
+    {
+      "id": "alg-hash-096",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A table uses h(k)=k mod 7. What is the home slot of key 100?",
+      "answer": "2",
+      "explanation": "100 divided by 7 leaves remainder 2, giving home slot 2."
+    },
+    {
+      "id": "alg-hash-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operation is generally not supported efficiently by an ordinary hash table without additional structure?",
+      "options": [
+        "Find the smallest key",
+        "Test exact-key membership",
+        "Insert a key",
+        "Delete a known key"
+      ],
+      "answer": [
+        "Find the smallest key"
+      ],
+      "explanation": "Hashing does not maintain an order relation among entries. Finding the minimum generally requires examining all keys unless an auxiliary ordered structure is maintained."
+    },
+    {
+      "id": "alg-hash-098",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about expected constant-time dictionary operations are correct?",
+      "options": [
+        "They are expected bounds, not unconditional worst-case guarantees",
+        "A bounded load factor helps maintain performance",
+        "A correct implementation still compares keys for equality",
+        "The hash table remains sorted by key"
+      ],
+      "answer": [
+        "They are expected bounds, not unconditional worst-case guarantees",
+        "A bounded load factor helps maintain performance",
+        "A correct implementation still compares keys for equality"
+      ],
+      "explanation": "Average O(1) behavior depends on distribution and occupancy assumptions. Exact key equality resolves collisions, and a hash table does not maintain sorted order."
+    },
+    {
+      "id": "alg-hash-099",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An open-address table of size 20 is 85% full. How many slots are occupied?",
+      "answer": "17",
+      "explanation": "Eighty-five percent of 20 is 0.85×20=17 occupied slots."
+    },
+    {
+      "id": "alg-hash-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hash table uses linear probing and is nearly full. Which change most directly reduces expected probe lengths for future operations?",
+      "options": [
+        "Increase capacity and rehash the keys",
+        "Decrease the table size",
+        "Replace every key with its current index",
+        "Stop checking for equality after a collision"
+      ],
+      "answer": [
+        "Increase capacity and rehash the keys"
+      ],
+      "explanation": "Growing the table reduces the load factor and spreads keys across more slots. The keys must be rehashed for the new capacity; skipping equality checks would break correctness."
+    }
+  ]
+}
