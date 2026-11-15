@@ -1,0 +1,1463 @@
+{
+  "topicIndex": 7,
+  "questions": [
+    {
+      "id": "cn-http-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP is primarily an",
+      "options": [
+        "application-layer protocol for transferring web resources",
+        "transport-layer protocol providing reliable bytes",
+        "network-layer routing protocol",
+        "link-layer framing protocol"
+      ],
+      "answer": [
+        "application-layer protocol for transferring web resources"
+      ],
+      "explanation": "HTTP defines request and response semantics for web resources at the application layer; it typically runs over TCP or QUIC-based transport."
+    },
+    {
+      "id": "cn-http-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A standard HTTP request contains a",
+      "options": [
+        "request line, headers, optional body",
+        "TCP handshake, IP route, body",
+        "DNS answer, ARP cache, checksum",
+        "response code, server certificate only"
+      ],
+      "answer": [
+        "request line, headers, optional body"
+      ],
+      "explanation": "An HTTP/1.1 request begins with method, target, and version, followed by headers, a blank line, and an optional message body."
+    },
+    {
+      "id": "cn-http-003",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In an HTTP request line, GET is the",
+      "options": [
+        "method",
+        "status code",
+        "header field",
+        "URI fragment"
+      ],
+      "answer": [
+        "method"
+      ],
+      "explanation": "The method token specifies the action requested, such as GET, POST, PUT, or DELETE."
+    },
+    {
+      "id": "cn-http-004",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many decimal digits are in the HTTP status code 404?",
+      "answer": "3",
+      "explanation": "HTTP status codes are three-digit numeric codes; 404 has three digits."
+    },
+    {
+      "id": "cn-http-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP status code 200 belongs to which class?",
+      "options": [
+        "2xx success",
+        "3xx redirection",
+        "4xx client error",
+        "5xx server error"
+      ],
+      "answer": [
+        "2xx success"
+      ],
+      "explanation": "Status codes 200-299 indicate successful handling of the request; 200 specifically means OK."
+    },
+    {
+      "id": "cn-http-006",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are HTTP method names?",
+      "options": [
+        "GET",
+        "POST",
+        "PUT",
+        "HTML"
+      ],
+      "answer": [
+        "GET",
+        "POST",
+        "PUT"
+      ],
+      "explanation": "GET, POST, and PUT are methods. HTML is a markup language, not an HTTP method."
+    },
+    {
+      "id": "cn-http-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A GET request is intended primarily to",
+      "options": [
+        "retrieve a representation of a resource",
+        "submit an entity for processing only",
+        "delete the target resource",
+        "establish a TLS connection"
+      ],
+      "answer": [
+        "retrieve a representation of a resource"
+      ],
+      "explanation": "GET requests a representation of a resource and is defined as a safe method in normal HTTP semantics."
+    },
+    {
+      "id": "cn-http-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP method POST is commonly used to",
+      "options": [
+        "submit data for processing or resource-specific actions",
+        "retrieve only cached content",
+        "negotiate an IP address",
+        "close a TCP connection"
+      ],
+      "answer": [
+        "submit data for processing or resource-specific actions"
+      ],
+      "explanation": "POST asks the target resource to process the enclosed representation according to resource-specific semantics."
+    },
+    {
+      "id": "cn-http-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An HTTP response begins with a",
+      "options": [
+        "status line",
+        "request line",
+        "DNS question",
+        "TCP sequence number"
+      ],
+      "answer": [
+        "status line"
+      ],
+      "explanation": "An HTTP/1.1 response begins with a status line containing the version, status code, and reason phrase, followed by headers and optional body."
+    },
+    {
+      "id": "cn-http-010",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many standard status-code classes exist in HTTP, labeled 1xx through 5xx?",
+      "answer": "5",
+      "explanation": "HTTP status codes are grouped into five classes: informational, success, redirection, client error, and server error."
+    },
+    {
+      "id": "cn-http-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP status code 301 indicates",
+      "options": [
+        "permanent redirection",
+        "temporary service unavailability",
+        "successful creation",
+        "unauthorized access"
+      ],
+      "answer": [
+        "permanent redirection"
+      ],
+      "explanation": "301 Moved Permanently indicates that the target resource has a new permanent URI; clients may update stored links according to semantics."
+    },
+    {
+      "id": "cn-http-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP status code 302 is in the",
+      "options": [
+        "3xx redirection class",
+        "2xx success class",
+        "4xx client error class",
+        "5xx server error class"
+      ],
+      "answer": [
+        "3xx redirection class"
+      ],
+      "explanation": "Status 302 Found is a redirection response, belonging to the 3xx class."
+    },
+    {
+      "id": "cn-http-013",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What is the numeric HTTP status code for Not Found?",
+      "answer": "404",
+      "explanation": "HTTP 404 is the standard Not Found response indicating that no current representation was found for the target resource."
+    },
+    {
+      "id": "cn-http-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP 400 indicates",
+      "options": [
+        "a client error due to a malformed or invalid request",
+        "successful completion",
+        "server overload",
+        "permanent redirection"
+      ],
+      "answer": [
+        "a client error due to a malformed or invalid request"
+      ],
+      "explanation": "400 Bad Request is a 4xx response indicating that the server cannot process the request due to perceived client error."
+    },
+    {
+      "id": "cn-http-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP 401 generally indicates",
+      "options": [
+        "authentication is required or has failed",
+        "the resource is permanently removed",
+        "the server encountered an internal error",
+        "the request succeeded with no content"
+      ],
+      "answer": [
+        "authentication is required or has failed"
+      ],
+      "explanation": "401 Unauthorized indicates that valid authentication credentials are required or were not accepted."
+    },
+    {
+      "id": "cn-http-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP 403 differs from 401 because 403 generally means",
+      "options": [
+        "the server understood the request but refuses authorization",
+        "the client must always send a password",
+        "the resource was not found",
+        "the server is redirecting the client"
+      ],
+      "answer": [
+        "the server understood the request but refuses authorization"
+      ],
+      "explanation": "403 Forbidden indicates refusal to fulfill the request, while 401 is associated with an authentication challenge or missing/invalid credentials."
+    },
+    {
+      "id": "cn-http-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What does an HTTP Internal Server Error response indicate?",
+      "options": [
+        "an internal server error",
+        "a client-side malformed request",
+        "a successful response",
+        "a permanent redirect"
+      ],
+      "answer": [
+        "an internal server error"
+      ],
+      "explanation": "500 Internal Server Error is a generic server-side failure response."
+    },
+    {
+      "id": "cn-http-018",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Which status code represents Service Unavailable?",
+      "answer": "503",
+      "explanation": "HTTP 503 indicates that the server is temporarily unable to handle the request, often due to overload or maintenance."
+    },
+    {
+      "id": "cn-http-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP status 204 means",
+      "options": [
+        "the request succeeded and there is no response content",
+        "the resource moved permanently",
+        "the request is unauthorized",
+        "the server failed internally"
+      ],
+      "answer": [
+        "the request succeeded and there is no response content"
+      ],
+      "explanation": "204 No Content indicates successful processing with no response body to return."
+    },
+    {
+      "id": "cn-http-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP headers are used to",
+      "options": [
+        "carry metadata about the request or response",
+        "replace the TCP header",
+        "store the router's forwarding table",
+        "define the DNS hierarchy"
+      ],
+      "answer": [
+        "carry metadata about the request or response"
+      ],
+      "explanation": "Headers convey metadata such as content type, caching directives, authentication, and connection behavior."
+    },
+    {
+      "id": "cn-http-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP is stateless at the protocol level because",
+      "options": [
+        "each request can be understood independently without built-in per-client session state",
+        "it cannot use cookies",
+        "it never carries headers",
+        "it only supports static files"
+      ],
+      "answer": [
+        "each request can be understood independently without built-in per-client session state"
+      ],
+      "explanation": "HTTP semantics do not inherently maintain a session across requests; applications add state using cookies, tokens, or other mechanisms."
+    },
+    {
+      "id": "cn-http-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP cookies are commonly used to",
+      "options": [
+        "carry state identifiers between client requests",
+        "replace DNS records",
+        "negotiate the TCP three-way handshake",
+        "route packets between networks"
+      ],
+      "answer": [
+        "carry state identifiers between client requests"
+      ],
+      "explanation": "Cookies let a server associate subsequent requests with state such as a session, while HTTP itself remains stateless at the protocol level."
+    },
+    {
+      "id": "cn-http-023",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A cookie expires 86400 seconds after creation. How many hours is that?",
+      "answer": "24",
+      "explanation": "There are 3600 seconds per hour, and 86400/3600=24 hours."
+    },
+    {
+      "id": "cn-http-024",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about HTTP cookies are true?",
+      "options": [
+        "A server can send Set-Cookie in a response",
+        "A browser can send Cookie in later requests",
+        "Cookies can help maintain application sessions",
+        "Cookies are stored by DNS root servers"
+      ],
+      "answer": [
+        "A server can send Set-Cookie in a response",
+        "A browser can send Cookie in later requests",
+        "Cookies can help maintain application sessions"
+      ],
+      "explanation": "Set-Cookie instructs the client to store cookie state; later Cookie headers return it to the server. DNS servers are unrelated."
+    },
+    {
+      "id": "cn-http-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTPS is HTTP carried over",
+      "options": [
+        "TLS-protected transport, conventionally TCP for HTTP/1.1 and HTTP/2",
+        "UDP without encryption only",
+        "ARP",
+        "ICMP"
+      ],
+      "answer": [
+        "TLS-protected transport, conventionally TCP for HTTP/1.1 and HTTP/2"
+      ],
+      "explanation": "HTTPS protects HTTP communication using TLS; HTTP/1.1 and HTTP/2 conventionally use TCP, while HTTP/3 uses QUIC over UDP."
+    },
+    {
+      "id": "cn-http-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TLS server authentication in HTTPS commonly uses",
+      "options": [
+        "a certificate validated against a trust store",
+        "a DNS MX record alone",
+        "the TCP window field",
+        "an IPv4 header checksum"
+      ],
+      "answer": [
+        "a certificate validated against a trust store"
+      ],
+      "explanation": "The server presents a certificate binding its identity to a public key, which the client validates through a trusted certification chain and hostname checks."
+    },
+    {
+      "id": "cn-http-027",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many bytes are in a standard TLS record header?",
+      "answer": "5",
+      "explanation": "A TLS record header is five bytes in common TLS record framing."
+    },
+    {
+      "id": "cn-http-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP/1.1 persistent connections allow",
+      "options": [
+        "multiple request-response exchanges over one TCP connection",
+        "one request per connection only",
+        "a client to skip DNS permanently",
+        "responses to be sent without ordering in all cases"
+      ],
+      "answer": [
+        "multiple request-response exchanges over one TCP connection"
+      ],
+      "explanation": "Persistent connections reuse a TCP connection for multiple exchanges, reducing connection setup overhead."
+    },
+    {
+      "id": "cn-http-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP/1.1 pipelining permits a client to",
+      "options": [
+        "send multiple requests without waiting for each response",
+        "send responses before requests",
+        "use multiple DNS names in one packet",
+        "avoid TCP acknowledgments"
+      ],
+      "answer": [
+        "send multiple requests without waiting for each response"
+      ],
+      "explanation": "Pipelining sends several requests on one connection before receiving prior responses, though response ordering and head-of-line issues limit it."
+    },
+    {
+      "id": "cn-http-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP/2 multiplexing improves over HTTP/1.1 pipelining by",
+      "options": [
+        "interleaving multiple streams on one connection",
+        "using one TCP connection per header",
+        "eliminating all TCP loss effects",
+        "changing every HTTP request into UDP"
+      ],
+      "answer": [
+        "interleaving multiple streams on one connection"
+      ],
+      "explanation": "HTTP/2 multiplexes independent streams over one connection, allowing frames from different streams to interleave, though TCP loss can still block all streams."
+    },
+    {
+      "id": "cn-http-031",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are features of HTTP/2?",
+      "options": [
+        "Binary framing layer",
+        "Multiplexed streams",
+        "Header compression using HPACK",
+        "One TCP connection per request is mandatory"
+      ],
+      "answer": [
+        "Binary framing layer",
+        "Multiplexed streams",
+        "Header compression using HPACK"
+      ],
+      "explanation": "HTTP/2 uses binary frames, multiplexes streams, and compresses headers with HPACK. It commonly reuses a connection rather than requiring one per request."
+    },
+    {
+      "id": "cn-http-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP/2 server push was designed to",
+      "options": [
+        "allow a server to send resources associated with a response before explicit requests",
+        "encrypt all cookies automatically",
+        "replace TLS certificates",
+        "fragment TCP at routers"
+      ],
+      "answer": [
+        "allow a server to send resources associated with a response before explicit requests"
+      ],
+      "explanation": "Server push allowed a server to proactively send resources it anticipated the client would need, although browser support and usage have been limited."
+    },
+    {
+      "id": "cn-http-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP/3 uses which transport protocol?",
+      "options": [
+        "QUIC",
+        "TCP",
+        "SCTP only",
+        "ICMP"
+      ],
+      "answer": [
+        "QUIC"
+      ],
+      "explanation": "HTTP/3 maps HTTP semantics to QUIC, which runs over UDP and provides streams, reliability, and TLS 1.3 integration."
+    },
+    {
+      "id": "cn-http-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "How many independent bidirectional streams can HTTP/3 use within one QUIC connection, in principle?",
+      "answer": [
+        "Many independent streams, subject to negotiated limits"
+      ],
+      "explanation": "QUIC supports many independently multiplexed streams in one connection. The protocol permits large stream counts, while practical limits are negotiated by endpoints.",
+      "options": [
+        "Many independent streams, subject to negotiated limits",
+        "Exactly one",
+        "At most two",
+        "Exactly 255"
+      ]
+    },
+    {
+      "id": "cn-http-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "QUIC can reduce transport head-of-line blocking compared with HTTP/2 over TCP because",
+      "options": [
+        "loss in one stream need not block delivery of data in other streams",
+        "it disables retransmissions",
+        "it uses no congestion control",
+        "it guarantees packets never drop"
+      ],
+      "answer": [
+        "loss in one stream need not block delivery of data in other streams"
+      ],
+      "explanation": "QUIC streams are independently ordered, so a lost packet containing data for one stream need not block delivery of other streams' already received data."
+    },
+    {
+      "id": "cn-http-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP message framing in HTTP/1.1 can use Content-Length to",
+      "options": [
+        "state the body length in octets",
+        "state the DNS TTL",
+        "set the TCP receive window",
+        "identify the TLS certificate"
+      ],
+      "answer": [
+        "state the body length in octets"
+      ],
+      "explanation": "Content-Length gives the number of octets in the message body, allowing the receiver to identify its end when applicable."
+    },
+    {
+      "id": "cn-http-037",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An HTTP response body has Content-Length 4096. How many body octets are specified?",
+      "answer": "4096",
+      "explanation": "Content-Length is measured in octets; the value 4096 specifies a 4096-octet body."
+    },
+    {
+      "id": "cn-http-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Chunked transfer coding in HTTP/1.1 allows",
+      "options": [
+        "a message body to be sent in chunks when its full length is not known in advance",
+        "the TCP stream to be reordered",
+        "headers to be encrypted without TLS",
+        "DNS records to be compressed"
+      ],
+      "answer": [
+        "a message body to be sent in chunks when its full length is not known in advance"
+      ],
+      "explanation": "Chunked transfer coding frames the body in size-labelled chunks and terminates with a zero-size chunk, supporting streaming without a known upfront length."
+    },
+    {
+      "id": "cn-http-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP Host header is important in HTTP/1.1 because",
+      "options": [
+        "multiple hostnames can share one server IP address",
+        "it carries the client's MAC address",
+        "it specifies the TCP congestion window",
+        "it replaces the request target"
+      ],
+      "answer": [
+        "multiple hostnames can share one server IP address"
+      ],
+      "explanation": "Host identifies the target authority, enabling name-based virtual hosting when many domains share one IP address."
+    },
+    {
+      "id": "cn-http-040",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An HTTP request includes Host: www.example.com. How many domain-name labels are present, excluding any trailing root dot?",
+      "answer": "3",
+      "explanation": "The labels are www, example, and com, totaling three."
+    },
+    {
+      "id": "cn-http-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An HTTP cache can reuse a stored response when",
+      "options": [
+        "the response's caching directives permit reuse and it is fresh or successfully revalidated",
+        "the status code is always 404",
+        "the request uses POST only",
+        "the DNS TTL is zero"
+      ],
+      "answer": [
+        "the response's caching directives permit reuse and it is fresh or successfully revalidated"
+      ],
+      "explanation": "HTTP caching follows freshness and validation rules expressed through directives such as Cache-Control, Expires, and validators."
+    },
+    {
+      "id": "cn-http-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The Cache-Control directive max-age=60 means a response is fresh for up to",
+      "options": [
+        "60 seconds",
+        "60 minutes",
+        "60 requests",
+        "60 bytes"
+      ],
+      "answer": [
+        "60 seconds"
+      ],
+      "explanation": "max-age is expressed in seconds, so 60 sets a freshness lifetime of one minute."
+    },
+    {
+      "id": "cn-http-043",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An HTTP response has max-age=1800 seconds. How many minutes is this?",
+      "answer": "30",
+      "explanation": "1800 seconds divided by 60 seconds per minute equals 30 minutes."
+    },
+    {
+      "id": "cn-http-044",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which HTTP headers can participate in cache validation?",
+      "options": [
+        "ETag",
+        "Last-Modified",
+        "If-None-Match",
+        "Content-Length only"
+      ],
+      "answer": [
+        "ETag",
+        "Last-Modified",
+        "If-None-Match"
+      ],
+      "explanation": "ETag and Last-Modified are validators; If-None-Match carries an ETag condition for validation. Content-Length describes body size, not freshness validation."
+    },
+    {
+      "id": "cn-http-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An ETag is used as",
+      "options": [
+        "a validator identifying a particular representation version",
+        "a TCP port",
+        "an IP subnet mask",
+        "a DNS name server"
+      ],
+      "answer": [
+        "a validator identifying a particular representation version"
+      ],
+      "explanation": "ETag is an opaque validator for a selected representation; clients can use it in conditional requests to check whether the representation changed."
+    },
+    {
+      "id": "cn-http-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A client sends If-None-Match and the representation is unchanged. The server can respond with",
+      "options": [
+        "304 Not Modified",
+        "200 Created",
+        "404 Not Found",
+        "500 Internal Server Error"
+      ],
+      "answer": [
+        "304 Not Modified"
+      ],
+      "explanation": "304 indicates that the selected representation has not changed relative to the supplied validator, allowing the client to reuse its cached body."
+    },
+    {
+      "id": "cn-http-047",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many digits are in HTTP status code 304?",
+      "answer": "3",
+      "explanation": "HTTP status codes use three decimal digits; 304 has three digits."
+    },
+    {
+      "id": "cn-http-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A conditional GET with If-Modified-Since can reduce transfer by receiving",
+      "options": [
+        "304 Not Modified when the representation has not changed",
+        "204 No Content always",
+        "a DNS referral",
+        "a TCP SYN-ACK"
+      ],
+      "answer": [
+        "304 Not Modified when the representation has not changed"
+      ],
+      "explanation": "If the resource has not changed since the supplied date, the server may return 304 without retransmitting the representation body."
+    },
+    {
+      "id": "cn-http-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP Cache-Control directive no-store tells caches to",
+      "options": [
+        "not store the request or response",
+        "store the response permanently",
+        "revalidate after every byte",
+        "cache only DNS records"
+      ],
+      "answer": [
+        "not store the request or response"
+      ],
+      "explanation": "no-store prohibits caches from storing the request or response, subject to the directive's defined semantics."
+    },
+    {
+      "id": "cn-http-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The Cache-Control directive no-cache means a cache",
+      "options": [
+        "must validate with the origin before reusing the response",
+        "must never store the response",
+        "must store it forever",
+        "should use UDP instead of TCP"
+      ],
+      "answer": [
+        "must validate with the origin before reusing the response"
+      ],
+      "explanation": "no-cache permits storage but requires successful validation before reuse; no-store is the directive that prohibits storage."
+    },
+    {
+      "id": "cn-http-051",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are HTTP conditional request headers?",
+      "options": [
+        "If-Modified-Since",
+        "If-None-Match",
+        "If-Match",
+        "Accept-Language"
+      ],
+      "answer": [
+        "If-Modified-Since",
+        "If-None-Match",
+        "If-Match"
+      ],
+      "explanation": "If-Modified-Since and If-None-Match are common validators; If-Match is also a precondition. Accept-Language negotiates representation language."
+    },
+    {
+      "id": "cn-http-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP Vary header tells a cache that",
+      "options": [
+        "the response may differ based on specified request headers",
+        "the server's IP address changed",
+        "the response body is chunked",
+        "the client must use a new TCP port"
+      ],
+      "answer": [
+        "the response may differ based on specified request headers"
+      ],
+      "explanation": "Vary identifies request-header fields that influenced representation selection, so caches maintain separate variants accordingly."
+    },
+    {
+      "id": "cn-http-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If a response includes Vary: Accept-Encoding, a cache should distinguish variants based on",
+      "options": [
+        "the request's Accept-Encoding value",
+        "the client's source port",
+        "the DNS TTL",
+        "the HTTP status code only"
+      ],
+      "answer": [
+        "the request's Accept-Encoding value"
+      ],
+      "explanation": "The response representation may depend on whether the client accepts gzip, br, or identity encoding, so the cache key must account for Accept-Encoding."
+    },
+    {
+      "id": "cn-http-054",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A cache stores 4 variants for a resource based on Vary dimensions. How many stored variants are there?",
+      "answer": "4",
+      "explanation": "The stated cache contains four distinct representation variants, one for each relevant request-header combination."
+    },
+    {
+      "id": "cn-http-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP Content-Type header specifies",
+      "options": [
+        "the media type of the representation",
+        "the TCP payload length",
+        "the server's DNS zone",
+        "the client's language only"
+      ],
+      "answer": [
+        "the media type of the representation"
+      ],
+      "explanation": "Content-Type identifies the media type, such as text/html or application/json, and may include parameters like charset."
+    },
+    {
+      "id": "cn-http-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The Content-Encoding header describes",
+      "options": [
+        "a coding applied to the representation, such as gzip",
+        "the character set only",
+        "the TCP congestion algorithm",
+        "the encryption certificate"
+      ],
+      "answer": [
+        "a coding applied to the representation, such as gzip"
+      ],
+      "explanation": "Content-Encoding indicates a representation coding applied to the body, such as gzip, which the recipient decodes."
+    },
+    {
+      "id": "cn-http-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Accept-Language is an example of",
+      "options": [
+        "content negotiation metadata",
+        "a response status code",
+        "a connection teardown flag",
+        "a DNS resource record"
+      ],
+      "answer": [
+        "content negotiation metadata"
+      ],
+      "explanation": "Clients use Accept-Language to express language preferences; servers may select a representation and describe it with Content-Language."
+    },
+    {
+      "id": "cn-http-058",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A request lists three language preferences in Accept-Language. How many preference entries are specified?",
+      "answer": "3",
+      "explanation": "The header lists three language ranges, so it expresses three preference entries."
+    },
+    {
+      "id": "cn-http-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP content negotiation can select a representation based on",
+      "options": [
+        "media type, language, or content coding preferences",
+        "the client's TCP sequence number",
+        "the router's TTL value",
+        "the DNS root server identifier"
+      ],
+      "answer": [
+        "media type, language, or content coding preferences"
+      ],
+      "explanation": "Negotiation may consider Accept, Accept-Language, and Accept-Encoding to choose an appropriate representation variant."
+    },
+    {
+      "id": "cn-http-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 406 Not Acceptable response indicates",
+      "options": [
+        "the server cannot provide a representation matching the request's stated preferences",
+        "the resource was created",
+        "the request body is too large",
+        "the server is permanently redirected"
+      ],
+      "answer": [
+        "the server cannot provide a representation matching the request's stated preferences"
+      ],
+      "explanation": "406 is a client-error response used when acceptable representations cannot be supplied according to negotiation preferences."
+    },
+    {
+      "id": "cn-http-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An HTTP request using the HEAD method asks the server to",
+      "options": [
+        "return headers that would accompany a GET response, without the response body",
+        "delete the resource",
+        "return only the body",
+        "open a TCP listener"
+      ],
+      "answer": [
+        "return headers that would accompany a GET response, without the response body"
+      ],
+      "explanation": "HEAD is like GET but asks for response metadata without transferring the representation content."
+    },
+    {
+      "id": "cn-http-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP method OPTIONS is commonly used to",
+      "options": [
+        "ask about communication options supported by a target resource",
+        "retrieve a resource body only",
+        "permanently delete a URI",
+        "negotiate DNSSEC"
+      ],
+      "answer": [
+        "ask about communication options supported by a target resource"
+      ],
+      "explanation": "OPTIONS requests information about communication options for the target, including methods or cross-origin policy details in some contexts."
+    },
+    {
+      "id": "cn-http-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many letters are in the HTTP method name PATCH?",
+      "answer": "5",
+      "explanation": "PATCH consists of the five letters P-A-T-C-H."
+    },
+    {
+      "id": "cn-http-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP method semantics classify GET as safe because it",
+      "options": [
+        "is intended not to change server state",
+        "must always be encrypted",
+        "cannot include query parameters",
+        "never returns a body"
+      ],
+      "answer": [
+        "is intended not to change server state"
+      ],
+      "explanation": "A safe method is intended to be read-only in terms of requested semantics, though servers may still log or perform incidental actions."
+    },
+    {
+      "id": "cn-http-065",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which HTTP methods are idempotent by their defined semantics?",
+      "options": [
+        "GET",
+        "PUT",
+        "DELETE",
+        "POST in general"
+      ],
+      "answer": [
+        "GET",
+        "PUT",
+        "DELETE"
+      ],
+      "explanation": "GET, PUT, and DELETE are idempotent: repeating the same request has the same intended effect as one request. POST is not generally idempotent."
+    },
+    {
+      "id": "cn-http-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP idempotence means that",
+      "options": [
+        "repeating the same request has the same intended effect as performing it once",
+        "the response is always identical byte-for-byte",
+        "the request has no body",
+        "the operation is always safe"
+      ],
+      "answer": [
+        "repeating the same request has the same intended effect as performing it once"
+      ],
+      "explanation": "Idempotence concerns intended effect on server state; response status or incidental effects may differ across repetitions."
+    },
+    {
+      "id": "cn-http-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP method PUT commonly means",
+      "options": [
+        "create or replace the target resource representation",
+        "retrieve a resource without side effects",
+        "query a DNS server",
+        "close a TCP connection"
+      ],
+      "answer": [
+        "create or replace the target resource representation"
+      ],
+      "explanation": "PUT requests creation or replacement of the target resource's state with the enclosed representation, according to target semantics."
+    },
+    {
+      "id": "cn-http-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 201 Created response commonly indicates",
+      "options": [
+        "the request created one or more resources",
+        "the server is temporarily unavailable",
+        "the request was malformed",
+        "the response has no body by definition"
+      ],
+      "answer": [
+        "the request created one or more resources"
+      ],
+      "explanation": "201 indicates successful creation; a Location header may identify the newly created resource."
+    },
+    {
+      "id": "cn-http-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many digits are in status code 201?",
+      "answer": "3",
+      "explanation": "201 contains three decimal digits, as do standard HTTP status codes."
+    },
+    {
+      "id": "cn-http-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 429 Too Many Requests response indicates",
+      "options": [
+        "the client sent too many requests in a given time",
+        "the resource moved permanently",
+        "the server's DNS record expired",
+        "the TCP checksum failed"
+      ],
+      "answer": [
+        "the client sent too many requests in a given time"
+      ],
+      "explanation": "429 is a rate-limiting response; a Retry-After header may indicate when to retry."
+    },
+    {
+      "id": "cn-http-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 503 response may include Retry-After to",
+      "options": [
+        "suggest when the client should retry",
+        "specify the client's source port",
+        "set the DNS TTL",
+        "identify the TLS cipher"
+      ],
+      "answer": [
+        "suggest when the client should retry"
+      ],
+      "explanation": "Retry-After communicates a suggested delay or date before retrying after temporary unavailability."
+    },
+    {
+      "id": "cn-http-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are HTTP response status codes in the 5xx server-error class?",
+      "options": [
+        "500",
+        "502",
+        "503",
+        "404"
+      ],
+      "answer": [
+        "500",
+        "502",
+        "503"
+      ],
+      "explanation": "500, 502, and 503 are 5xx server errors. 404 is a 4xx client-error response."
+    },
+    {
+      "id": "cn-http-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "502 Bad Gateway indicates",
+      "options": [
+        "a gateway or proxy received an invalid response from an upstream server",
+        "the client is unauthorized",
+        "the resource was created",
+        "a name does not exist"
+      ],
+      "answer": [
+        "a gateway or proxy received an invalid response from an upstream server"
+      ],
+      "explanation": "502 indicates that a server acting as gateway or proxy received an invalid response from an upstream server while fulfilling the request."
+    },
+    {
+      "id": "cn-http-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What is the numeric status code for Gateway Timeout?",
+      "answer": "504",
+      "explanation": "HTTP 504 Gateway Timeout is a 5xx response indicating an upstream server did not respond in time."
+    },
+    {
+      "id": "cn-http-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 304 Not Modified response normally has",
+      "options": [
+        "no message body",
+        "a mandatory full representation body",
+        "a TCP FIN as its body",
+        "only a DNS referral"
+      ],
+      "answer": [
+        "no message body"
+      ],
+      "explanation": "304 is a cache validation response and does not include the selected representation content; the client uses its stored copy."
+    },
+    {
+      "id": "cn-http-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 206 Partial Content response is associated with",
+      "options": [
+        "a range request",
+        "a failed authentication challenge",
+        "a DNS zone transfer",
+        "a server timeout"
+      ],
+      "answer": [
+        "a range request"
+      ],
+      "explanation": "206 indicates that the server is returning a requested range of a representation, often with Content-Range metadata."
+    },
+    {
+      "id": "cn-http-077",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An HTTP byte range is bytes 0-99 inclusive. How many bytes are requested?",
+      "answer": "100",
+      "explanation": "The inclusive range contains 99-0+1=100 bytes."
+    },
+    {
+      "id": "cn-http-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP Range header allows a client to",
+      "options": [
+        "request a selected portion of a representation",
+        "set the server's TCP receive window",
+        "change the DNS name server",
+        "select the IP route"
+      ],
+      "answer": [
+        "request a selected portion of a representation"
+      ],
+      "explanation": "Range requests let clients request portions, useful for resumable downloads or media seeking when supported."
+    },
+    {
+      "id": "cn-http-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 416 response indicates",
+      "options": [
+        "the requested range is not satisfiable",
+        "the resource was created",
+        "the request is accepted for processing",
+        "a permanent redirect"
+      ],
+      "answer": [
+        "the requested range is not satisfiable"
+      ],
+      "explanation": "416 Range Not Satisfiable indicates that the requested byte range cannot be served, for example because it lies beyond the current representation length."
+    },
+    {
+      "id": "cn-http-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The Location header is commonly used with",
+      "options": [
+        "redirection responses or resource creation",
+        "TCP acknowledgments",
+        "DNS A records only",
+        "IP fragmentation"
+      ],
+      "answer": [
+        "redirection responses or resource creation"
+      ],
+      "explanation": "Location supplies a URI reference, often for a redirect target or the newly created resource in a 201 response."
+    },
+    {
+      "id": "cn-http-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The HTTP Authorization header is used to",
+      "options": [
+        "carry credentials or authorization information from the client",
+        "advertise the server's DNS address",
+        "set the content length",
+        "select a TCP route"
+      ],
+      "answer": [
+        "carry credentials or authorization information from the client"
+      ],
+      "explanation": "Authorization carries credentials or a token that the server can use to authenticate or authorize the request."
+    },
+    {
+      "id": "cn-http-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The WWW-Authenticate response header is commonly associated with",
+      "options": [
+        "401 Unauthorized",
+        "201 Created",
+        "304 Not Modified",
+        "301 Moved Permanently"
+      ],
+      "answer": [
+        "401 Unauthorized"
+      ],
+      "explanation": "A 401 response commonly includes WWW-Authenticate challenges describing authentication schemes the client can use."
+    },
+    {
+      "id": "cn-http-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An HTTP Basic authorization credential is encoded using Base64. Is Base64 itself encryption? Use 1 for yes and 0 for no.",
+      "answer": "0",
+      "explanation": "Base64 is a reversible encoding, not encryption; HTTPS is needed to protect credentials in transit."
+    },
+    {
+      "id": "cn-http-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Cross-Origin Resource Sharing (CORS) is enforced primarily by",
+      "options": [
+        "web browsers using HTTP response headers to control cross-origin script access",
+        "DNS root servers",
+        "TCP routers",
+        "Ethernet switches"
+      ],
+      "answer": [
+        "web browsers using HTTP response headers to control cross-origin script access"
+      ],
+      "explanation": "CORS is a browser security mechanism. Servers declare allowed origins and related policy through response headers, which browsers enforce for scripts."
+    },
+    {
+      "id": "cn-http-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A CORS preflight request uses the HTTP method",
+      "options": [
+        "OPTIONS",
+        "GET only",
+        "TRACE",
+        "CONNECT only"
+      ],
+      "answer": [
+        "OPTIONS"
+      ],
+      "explanation": "Browsers send an OPTIONS preflight to ask whether a cross-origin method and headers are permitted before the actual request when required."
+    },
+    {
+      "id": "cn-http-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which headers may appear in a CORS preflight exchange?",
+      "options": [
+        "Origin",
+        "Access-Control-Request-Method",
+        "Access-Control-Request-Headers",
+        "TCP-Window-Scale"
+      ],
+      "answer": [
+        "Origin",
+        "Access-Control-Request-Method",
+        "Access-Control-Request-Headers"
+      ],
+      "explanation": "The browser identifies the requesting origin, intended method, and non-simple headers. TCP window scaling is unrelated to CORS."
+    },
+    {
+      "id": "cn-http-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The Same-Origin Policy compares origin components including",
+      "options": [
+        "scheme, host, and port",
+        "path, query, and fragment only",
+        "MAC address and subnet mask",
+        "HTTP method and status code"
+      ],
+      "answer": [
+        "scheme, host, and port"
+      ],
+      "explanation": "An origin is the tuple of scheme, host, and port; differing any of these generally makes a different origin."
+    },
+    {
+      "id": "cn-http-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A reverse proxy can",
+      "options": [
+        "receive client HTTP requests and forward them to backend servers",
+        "replace the DNS hierarchy",
+        "assign TCP sequence numbers",
+        "guarantee an origin server never fails"
+      ],
+      "answer": [
+        "receive client HTTP requests and forward them to backend servers"
+      ],
+      "explanation": "A reverse proxy stands in front of backend servers, forwarding requests and often handling TLS, caching, routing, or load balancing."
+    },
+    {
+      "id": "cn-http-089",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A load balancer distributes requests evenly across 4 servers. If 20 requests are divided equally, how many go to each server?",
+      "answer": "5",
+      "explanation": "Equal distribution gives 20/4=5 requests per server."
+    },
+    {
+      "id": "cn-http-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP keep-alive reduces latency by",
+      "options": [
+        "reusing an existing connection for multiple exchanges",
+        "disabling all acknowledgments",
+        "removing HTTP headers",
+        "forcing each response to use UDP"
+      ],
+      "answer": [
+        "reusing an existing connection for multiple exchanges"
+      ],
+      "explanation": "Connection reuse avoids repeated transport handshakes and can reduce setup latency for multiple requests to the same origin."
+    },
+    {
+      "id": "cn-http-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP request smuggling can arise from",
+      "options": [
+        "front-end and back-end disagreement about message framing",
+        "a DNS TTL that is too short",
+        "a valid 404 response",
+        "an IPv4 address using /24"
+      ],
+      "answer": [
+        "front-end and back-end disagreement about message framing"
+      ],
+      "explanation": "If intermediaries interpret Content-Length and Transfer-Encoding inconsistently, an attacker may cause request boundaries to differ between front end and back end."
+    },
+    {
+      "id": "cn-http-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "To reduce HTTP request-smuggling risk, intermediaries should",
+      "options": [
+        "parse and normalize message framing consistently and reject ambiguous requests",
+        "accept conflicting length headers",
+        "ignore Transfer-Encoding always without validation",
+        "rely on DNSSEC only"
+      ],
+      "answer": [
+        "parse and normalize message framing consistently and reject ambiguous requests"
+      ],
+      "explanation": "Consistent parsing and rejection of ambiguous or conflicting framing prevents different hops from assigning different request boundaries."
+    },
+    {
+      "id": "cn-http-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which can be elements of HTTP request-target forms?",
+      "options": [
+        "Origin-form path and query",
+        "Absolute-form URI",
+        "Authority-form for CONNECT",
+        "IPv4 subnet mask"
+      ],
+      "answer": [
+        "Origin-form path and query",
+        "Absolute-form URI",
+        "Authority-form for CONNECT"
+      ],
+      "explanation": "HTTP defines origin-form, absolute-form, authority-form, and asterisk-form request targets. An IPv4 subnet mask is not a request-target form."
+    },
+    {
+      "id": "cn-http-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The CONNECT method is commonly used to",
+      "options": [
+        "establish a tunnel through a proxy, often for TLS",
+        "retrieve a web page body only",
+        "delete a cache entry",
+        "request a DNS PTR record"
+      ],
+      "answer": [
+        "establish a tunnel through a proxy, often for TLS"
+      ],
+      "explanation": "CONNECT asks a proxy to establish a tunnel to a target authority, commonly used for HTTPS through an HTTP proxy."
+    },
+    {
+      "id": "cn-http-095",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An HTTP URL has explicit port 8080. What port does the client use for that origin?",
+      "answer": "8080",
+      "explanation": "An explicit URI port takes precedence over the scheme's default port, so the client uses 8080."
+    },
+    {
+      "id": "cn-http-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An HTTP URI fragment such as #section is",
+      "options": [
+        "processed by the user agent and is not sent as part of the HTTP request target",
+        "sent to the DNS root",
+        "used as the TCP destination port",
+        "always included in the Host header"
+      ],
+      "answer": [
+        "processed by the user agent and is not sent as part of the HTTP request target"
+      ],
+      "explanation": "The fragment identifies a secondary resource location handled client-side; it is not transmitted in the HTTP request target to the server."
+    },
+    {
+      "id": "cn-http-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP response status 205 Reset Content asks the client to",
+      "options": [
+        "reset the document view that caused the request",
+        "cache the response forever",
+        "retry with a different DNS server",
+        "close the user's account"
+      ],
+      "answer": [
+        "reset the document view that caused the request"
+      ],
+      "explanation": "205 Reset Content indicates successful handling and asks the user agent to reset the document view that initiated the request."
+    },
+    {
+      "id": "cn-http-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many seconds are in an HTTP Retry-After delay of 2 minutes?",
+      "answer": "120",
+      "explanation": "Convert minutes to seconds by multiplying by 60. A delay of two minutes is 2*60=120 seconds."
+    },
+    {
+      "id": "cn-http-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 202 Accepted response indicates",
+      "options": [
+        "the request was accepted for processing but may not be complete",
+        "the resource was permanently deleted",
+        "the representation is unchanged",
+        "the request is forbidden"
+      ],
+      "answer": [
+        "the request was accepted for processing but may not be complete"
+      ],
+      "explanation": "202 means processing has been accepted but is not necessarily complete; the response should communicate current status or a monitor resource when possible."
+    },
+    {
+      "id": "cn-http-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "HTTP's extensible header field design allows",
+      "options": [
+        "new metadata fields to be introduced without changing the core message format",
+        "all clients to understand every new header automatically",
+        "headers to replace transport protocols",
+        "responses to omit status codes"
+      ],
+      "answer": [
+        "new metadata fields to be introduced without changing the core message format"
+      ],
+      "explanation": "HTTP permits extension fields, though recipients may ignore unrecognized fields unless the protocol or application requires specific handling."
+    }
+  ]
+}

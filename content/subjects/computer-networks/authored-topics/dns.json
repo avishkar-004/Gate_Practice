@@ -1,0 +1,1444 @@
+{
+  "topicIndex": 6,
+  "questions": [
+    {
+      "id": "cn-dns-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The Domain Name System primarily maps",
+      "options": [
+        "domain names to resource records such as IP addresses",
+        "MAC addresses to Ethernet frame checksums",
+        "TCP ports to process memory",
+        "subnet masks to hostnames only"
+      ],
+      "answer": [
+        "domain names to resource records such as IP addresses"
+      ],
+      "explanation": "DNS is a distributed naming system that stores diverse resource records, including address records that map names to IP addresses."
+    },
+    {
+      "id": "cn-dns-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS resolver commonly queries which port?",
+      "options": [
+        "53",
+        "25",
+        "80",
+        "443"
+      ],
+      "answer": [
+        "53"
+      ],
+      "explanation": "DNS traditionally uses port 53 for both UDP and TCP transport."
+    },
+    {
+      "id": "cn-dns-003",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which transports can DNS use on port 53?",
+      "options": [
+        "UDP",
+        "TCP",
+        "ICMP",
+        "ARP"
+      ],
+      "answer": [
+        "UDP",
+        "TCP"
+      ],
+      "explanation": "DNS commonly uses UDP for ordinary queries and TCP for zone transfers or responses that require reliable stream transport; both use port 53."
+    },
+    {
+      "id": "cn-dns-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS stub resolver sends a recursive query when it asks the resolver to",
+      "options": [
+        "return the final answer or an error after performing necessary lookups",
+        "return only a list of root servers",
+        "refuse to contact other DNS servers",
+        "translate an IP address to a MAC address"
+      ],
+      "answer": [
+        "return the final answer or an error after performing necessary lookups"
+      ],
+      "explanation": "With recursion desired, the contacted resolver performs the lookup process on behalf of the client and returns a final result or failure."
+    },
+    {
+      "id": "cn-dns-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In iterative DNS resolution, a server that lacks the answer may return",
+      "options": [
+        "a referral to another server",
+        "the final answer in every case",
+        "a TCP reset",
+        "an ARP request"
+      ],
+      "answer": [
+        "a referral to another server"
+      ],
+      "explanation": "An iterative server can refer the resolver to another authoritative server closer to the answer rather than performing the remaining lookup itself."
+    },
+    {
+      "id": "cn-dns-006",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many root DNS server identifier letters are commonly named, from A through M?",
+      "answer": "13",
+      "explanation": "The root server system has 13 named identifiers A through M, each implemented by many anycast instances worldwide."
+    },
+    {
+      "id": "cn-dns-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS resolver commonly begins an iterative lookup by querying a",
+      "options": [
+        "root server",
+        "web server",
+        "local DHCP client",
+        "mail user agent"
+      ],
+      "answer": [
+        "root server"
+      ],
+      "explanation": "The resolver starts at the DNS root, which refers it to the appropriate top-level domain servers."
+    },
+    {
+      "id": "cn-dns-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A root DNS server typically returns a referral to",
+      "options": [
+        "a TLD name server",
+        "the final A record for every domain",
+        "the client's default gateway",
+        "the authoritative server for every hostname directly"
+      ],
+      "answer": [
+        "a TLD name server"
+      ],
+      "explanation": "The root zone delegates top-level domains such as .com or .org to their TLD name servers; it usually does not hold individual host records."
+    },
+    {
+      "id": "cn-dns-009",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are common DNS record types and their purposes?",
+      "options": [
+        "A maps a name to an IPv4 address",
+        "AAAA maps a name to an IPv6 address",
+        "MX identifies mail exchangers",
+        "CNAME stores a TCP port number"
+      ],
+      "answer": [
+        "A maps a name to an IPv4 address",
+        "AAAA maps a name to an IPv6 address",
+        "MX identifies mail exchangers"
+      ],
+      "explanation": "A, AAAA, and MX are standard record types. CNAME creates an alias to another DNS name, not a TCP port mapping."
+    },
+    {
+      "id": "cn-dns-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An AAAA DNS record stores",
+      "options": [
+        "an IPv6 address",
+        "an IPv4 address",
+        "a mail server preference only",
+        "an alias target exclusively"
+      ],
+      "answer": [
+        "an IPv6 address"
+      ],
+      "explanation": "AAAA records map a DNS name to an IPv6 address; A records carry IPv4 addresses."
+    },
+    {
+      "id": "cn-dns-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A CNAME record represents",
+      "options": [
+        "an alias from one DNS name to another DNS name",
+        "an IPv4 network prefix",
+        "a mail exchanger preference",
+        "a reverse DNS pointer only"
+      ],
+      "answer": [
+        "an alias from one DNS name to another DNS name"
+      ],
+      "explanation": "CNAME specifies that an owner name is an alias whose canonical target is another domain name."
+    },
+    {
+      "id": "cn-dns-012",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many IPv4 addresses does one A resource record contain?",
+      "answer": "1",
+      "explanation": "An individual A record holds one IPv4 address; a name may have multiple A records."
+    },
+    {
+      "id": "cn-dns-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The MX record's preference value is used to",
+      "options": [
+        "order mail exchangers, with lower values preferred",
+        "specify the mail server's TCP port",
+        "set the sender's IP TTL",
+        "indicate the message size"
+      ],
+      "answer": [
+        "order mail exchangers, with lower values preferred"
+      ],
+      "explanation": "Lower MX preference numbers indicate more preferred mail exchangers; multiple records provide fallback choices."
+    },
+    {
+      "id": "cn-dns-014",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Two MX records have preferences 10 and 20. Which preference is tried first? Give the number.",
+      "answer": "10",
+      "explanation": "The smaller MX preference value has higher priority, so preference 10 is preferred over 20."
+    },
+    {
+      "id": "cn-dns-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A PTR record is primarily used for",
+      "options": [
+        "reverse lookup from an IP address to a name",
+        "mapping a name to an IPv4 address",
+        "signing a DNS zone",
+        "delegating a top-level domain"
+      ],
+      "answer": [
+        "reverse lookup from an IP address to a name"
+      ],
+      "explanation": "PTR records provide reverse DNS mappings, typically under in-addr.arpa for IPv4 or ip6.arpa for IPv6."
+    },
+    {
+      "id": "cn-dns-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The reverse DNS name for IPv4 address 192.0.2.7 is formed under",
+      "options": [
+        "7.2.0.192.in-addr.arpa",
+        "192.0.2.7.in-addr.arpa",
+        "2.0.192.7.in-addr.arpa",
+        "7.192.0.2.arpa"
+      ],
+      "answer": [
+        "7.2.0.192.in-addr.arpa"
+      ],
+      "explanation": "IPv4 reverse lookup reverses the octets and appends in-addr.arpa, giving 7.2.0.192.in-addr.arpa."
+    },
+    {
+      "id": "cn-dns-017",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many octets are reversed to form an IPv4 in-addr.arpa name?",
+      "answer": "4",
+      "explanation": "An IPv4 address has four octets, all reversed in the reverse DNS name."
+    },
+    {
+      "id": "cn-dns-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The DNS hierarchy has root at the top, followed by",
+      "options": [
+        "top-level domains, second-level domains, and lower labels",
+        "second-level domains, root, then TLDs",
+        "IP subnets, MAC addresses, then hostnames",
+        "mail domains only"
+      ],
+      "answer": [
+        "top-level domains, second-level domains, and lower labels"
+      ],
+      "explanation": "Below the root are TLDs, then delegated domains and subdomains represented by labels in the name."
+    },
+    {
+      "id": "cn-dns-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In DNS, the fully qualified domain name www.example.com. includes a final dot representing",
+      "options": [
+        "the DNS root",
+        "the local host",
+        "the top-level domain only",
+        "a wildcard label"
+      ],
+      "answer": [
+        "the DNS root"
+      ],
+      "explanation": "The trailing dot denotes the root label, making the name absolute and fully qualified rather than relative to a search suffix."
+    },
+    {
+      "id": "cn-dns-020",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many labels appear in www.example.com. if the root label is included?",
+      "answer": "4",
+      "explanation": "The labels are www, example, com, and the root label, totaling four."
+    },
+    {
+      "id": "cn-dns-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS resolver returns a cached answer only while",
+      "options": [
+        "its TTL has not expired",
+        "the client remains connected",
+        "the authoritative server is online",
+        "the answer contains an IPv4 address"
+      ],
+      "answer": [
+        "its TTL has not expired"
+      ],
+      "explanation": "Caching obeys each resource record's TTL; after it expires, the resolver should obtain fresh data before answering from cache."
+    },
+    {
+      "id": "cn-dns-022",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS record has TTL 3600 seconds. How many minutes is this?",
+      "answer": "60",
+      "explanation": "There are 60 seconds per minute; 3600 seconds equals 60 minutes."
+    },
+    {
+      "id": "cn-dns-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS TTL of zero generally means",
+      "options": [
+        "the record should not be cached for future use",
+        "the record is permanently cached",
+        "the domain does not exist",
+        "the record is authoritative only"
+      ],
+      "answer": [
+        "the record should not be cached for future use"
+      ],
+      "explanation": "A zero TTL indicates that a resolver should not retain the answer in cache beyond the immediate response."
+    },
+    {
+      "id": "cn-dns-024",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which DNS message fields or sections are present in a typical DNS response format?",
+      "options": [
+        "Header",
+        "Question section",
+        "Answer section",
+        "Authority/additional sections"
+      ],
+      "answer": [
+        "Header",
+        "Question section",
+        "Answer section",
+        "Authority/additional sections"
+      ],
+      "explanation": "DNS messages contain a header and question, answer, authority, and additional sections; some sections may be empty depending on the response."
+    },
+    {
+      "id": "cn-dns-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The DNS transaction ID is used to",
+      "options": [
+        "match a response to its outstanding query",
+        "identify the domain's IP address",
+        "select the TCP port",
+        "set the record TTL"
+      ],
+      "answer": [
+        "match a response to its outstanding query"
+      ],
+      "explanation": "The transaction identifier lets a requester correlate a reply with the query that initiated it, especially when multiple queries are pending."
+    },
+    {
+      "id": "cn-dns-026",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS message uses a 16-bit transaction ID. How many distinct identifiers can it represent?",
+      "answer": "65536",
+      "explanation": "A 16-bit field has 2^16 possible values, equal to 65,536."
+    },
+    {
+      "id": "cn-dns-027",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The DNS recursion desired (RD) bit is set by a client to",
+      "options": [
+        "request recursive service from the contacted resolver",
+        "indicate that the answer is cached",
+        "request reverse lookup only",
+        "disable UDP transport"
+      ],
+      "answer": [
+        "request recursive service from the contacted resolver"
+      ],
+      "explanation": "RD asks the contacted DNS server to perform recursion and return a final result, if it offers that service."
+    },
+    {
+      "id": "cn-dns-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The DNS recursion available (RA) bit indicates",
+      "options": [
+        "whether the server supports recursion",
+        "whether the query asked for an AAAA record",
+        "whether the response is truncated",
+        "whether the answer is authoritative"
+      ],
+      "answer": [
+        "whether the server supports recursion"
+      ],
+      "explanation": "RA reports whether recursive service is available from the responding server."
+    },
+    {
+      "id": "cn-dns-029",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS response has the TC (truncated) bit set. Is it truncated? Use 1 for yes and 0 for no.",
+      "answer": "1",
+      "explanation": "TC stands for truncated and indicates that the response was shortened, often prompting a retry over TCP."
+    },
+    {
+      "id": "cn-dns-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When a UDP DNS response is too large for the permitted message size, a client may",
+      "options": [
+        "retry using TCP",
+        "switch to ARP",
+        "ignore the answer section",
+        "send a FIN"
+      ],
+      "answer": [
+        "retry using TCP"
+      ],
+      "explanation": "A response with truncation set can lead the resolver to retry over TCP, which supports larger reliable DNS messages."
+    },
+    {
+      "id": "cn-dns-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNS zone transfers commonly use",
+      "options": [
+        "TCP",
+        "ICMP",
+        "ARP",
+        "UDP only"
+      ],
+      "answer": [
+        "TCP"
+      ],
+      "explanation": "AXFR/IXFR zone transfers use TCP for reliable transfer of potentially large zone data, though ordinary DNS queries commonly use UDP."
+    },
+    {
+      "id": "cn-dns-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An authoritative DNS server is one that",
+      "options": [
+        "serves records from zones for which it has authority",
+        "always performs recursion for clients",
+        "stores every DNS record worldwide",
+        "translates names directly to Ethernet addresses"
+      ],
+      "answer": [
+        "serves records from zones for which it has authority"
+      ],
+      "explanation": "An authoritative server holds or serves zone data for its delegated namespace and provides authoritative answers for those records."
+    },
+    {
+      "id": "cn-dns-033",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about authoritative and recursive DNS servers are true?",
+      "options": [
+        "A recursive resolver follows referrals on behalf of a client",
+        "An authoritative server answers from its zones",
+        "One server can provide both roles",
+        "A root server is authoritative for every hostname"
+      ],
+      "answer": [
+        "A recursive resolver follows referrals on behalf of a client",
+        "An authoritative server answers from its zones",
+        "One server can provide both roles"
+      ],
+      "explanation": "Recursive resolvers follow referrals for clients; authoritative servers answer from their zones; and one server can implement both roles. Root servers are authoritative for the root zone, not every hostname."
+    },
+    {
+      "id": "cn-dns-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The AA bit in a DNS response indicates",
+      "options": [
+        "the responding server's answer is authoritative",
+        "the answer is always cached",
+        "the query used TCP",
+        "the record has no TTL"
+      ],
+      "answer": [
+        "the responding server's answer is authoritative"
+      ],
+      "explanation": "AA means authoritative answer for the queried name, signaling that the response comes from an authoritative source."
+    },
+    {
+      "id": "cn-dns-035",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A resolver receives a DNS response with AA=1. Is the authoritative-answer bit set? Use 1 for yes and 0 for no.",
+      "answer": "1",
+      "explanation": "The AA flag value one indicates the response is marked authoritative."
+    },
+    {
+      "id": "cn-dns-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS NXDOMAIN response indicates",
+      "options": [
+        "the queried domain name does not exist",
+        "the name exists but has no A record only",
+        "the server is not reachable",
+        "the response is truncated"
+      ],
+      "answer": [
+        "the queried domain name does not exist"
+      ],
+      "explanation": "NXDOMAIN is the negative response code indicating the queried name does not exist in the DNS namespace."
+    },
+    {
+      "id": "cn-dns-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A NODATA response generally means",
+      "options": [
+        "the name exists but lacks the requested record type",
+        "the domain name itself does not exist",
+        "the resolver cannot reach any server",
+        "the TCP connection was reset"
+      ],
+      "answer": [
+        "the name exists but lacks the requested record type"
+      ],
+      "explanation": "NODATA indicates that the name exists but no record of the requested type is available at that name."
+    },
+    {
+      "id": "cn-dns-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS lookup returns three A records for one name. How many IPv4 addresses were returned?",
+      "answer": "3",
+      "explanation": "Each A record contains one IPv4 address; three A records return three addresses."
+    },
+    {
+      "id": "cn-dns-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNS round-robin can distribute clients by",
+      "options": [
+        "returning multiple address records in varying order",
+        "changing the client's subnet mask",
+        "altering TCP sequence numbers",
+        "assigning a different top-level domain per query"
+      ],
+      "answer": [
+        "returning multiple address records in varying order"
+      ],
+      "explanation": "A DNS server or resolver can vary the ordering of multiple A/AAAA records, spreading client selections across addresses, though it is not full load balancing."
+    },
+    {
+      "id": "cn-dns-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNS caching improves performance primarily by",
+      "options": [
+        "reducing repeated queries to authoritative servers",
+        "increasing IP header length",
+        "guaranteeing records never change",
+        "eliminating all recursive lookups"
+      ],
+      "answer": [
+        "reducing repeated queries to authoritative servers"
+      ],
+      "explanation": "Cached answers are served locally until TTL expiry, reducing lookup latency and upstream query load."
+    },
+    {
+      "id": "cn-dns-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS zone is",
+      "options": [
+        "a portion of the namespace administered as a unit",
+        "a TCP connection table",
+        "a subnet of IP addresses",
+        "a cache entry only"
+      ],
+      "answer": [
+        "a portion of the namespace administered as a unit"
+      ],
+      "explanation": "A zone is an administratively managed part of the DNS namespace, served by authoritative name servers and defined by zone data."
+    },
+    {
+      "id": "cn-dns-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The SOA record contains information such as",
+      "options": [
+        "zone authority, serial number, and timers",
+        "an IPv6 address only",
+        "a mail exchanger preference only",
+        "a TCP port mapping"
+      ],
+      "answer": [
+        "zone authority, serial number, and timers"
+      ],
+      "explanation": "The Start of Authority record identifies zone metadata including primary server, responsible party, serial, and refresh/retry/expiry timers."
+    },
+    {
+      "id": "cn-dns-043",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS SOA serial number is 32 bits. How many bits wide is it?",
+      "answer": "32",
+      "explanation": "The SOA serial field is a 32-bit unsigned integer used to track zone versions for transfers and synchronization."
+    },
+    {
+      "id": "cn-dns-044",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which values are commonly specified in an SOA record?",
+      "options": [
+        "Serial number",
+        "Refresh and retry intervals",
+        "Expire interval",
+        "TCP congestion window"
+      ],
+      "answer": [
+        "Serial number",
+        "Refresh and retry intervals",
+        "Expire interval"
+      ],
+      "explanation": "SOA metadata includes serial, refresh, retry, and expire timers (as well as minimum TTL-related information). TCP congestion state is unrelated."
+    },
+    {
+      "id": "cn-dns-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A secondary authoritative DNS server obtains zone data from a primary using",
+      "options": [
+        "zone transfer",
+        "ARP request",
+        "TCP handshake only",
+        "ICMP redirect"
+      ],
+      "answer": [
+        "zone transfer"
+      ],
+      "explanation": "Secondaries synchronize authoritative zone copies from a primary through AXFR or IXFR zone transfer mechanisms."
+    },
+    {
+      "id": "cn-dns-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An NS record identifies",
+      "options": [
+        "name servers authoritative for a zone or delegated domain",
+        "the IPv4 address of a host",
+        "a mail exchanger",
+        "the canonical name of an alias"
+      ],
+      "answer": [
+        "name servers authoritative for a zone or delegated domain"
+      ],
+      "explanation": "NS records list the authoritative name servers for a zone or delegation; glue A/AAAA records may accompany them."
+    },
+    {
+      "id": "cn-dns-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Glue records are used to",
+      "options": [
+        "provide address records for in-bailiwick name servers needed to reach the delegation",
+        "encrypt DNS responses",
+        "store all host aliases",
+        "prevent cache expiration"
+      ],
+      "answer": [
+        "provide address records for in-bailiwick name servers needed to reach the delegation"
+      ],
+      "explanation": "When a delegated name server is inside the delegated domain, glue provides its address to avoid a circular dependency during resolution."
+    },
+    {
+      "id": "cn-dns-048",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS name has two NS records. How many listed name-server hostnames does it have?",
+      "answer": "2",
+      "explanation": "Each NS record names one server; two NS records list two name-server hostnames."
+    },
+    {
+      "id": "cn-dns-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS resolver detects a delegation referral when a response provides",
+      "options": [
+        "NS records for a child zone",
+        "a TCP FIN",
+        "an IPv4 fragment offset",
+        "a DHCP lease"
+      ],
+      "answer": [
+        "NS records for a child zone"
+      ],
+      "explanation": "A delegation is represented by NS records identifying the child zone's authoritative name servers, often accompanied by glue."
+    },
+    {
+      "id": "cn-dns-050",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about DNS delegation are true?",
+      "options": [
+        "A parent zone can delegate a child zone using NS records",
+        "The child zone's authoritative servers serve its zone data",
+        "Glue may help resolve in-bailiwick name-server addresses",
+        "Delegation transfers the entire root zone to the child"
+      ],
+      "answer": [
+        "A parent zone can delegate a child zone using NS records",
+        "The child zone's authoritative servers serve its zone data",
+        "Glue may help resolve in-bailiwick name-server addresses"
+      ],
+      "explanation": "A parent zone delegates a child through NS records. Child authoritative servers serve that child records, and glue may supply addresses for in-bailiwick nameservers. Delegation does not transfer the root zone."
+    },
+    {
+      "id": "cn-dns-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNSSEC primarily provides",
+      "options": [
+        "data origin authentication and integrity for DNS data",
+        "confidentiality of all DNS queries",
+        "faster recursive lookup",
+        "automatic IP address allocation"
+      ],
+      "answer": [
+        "data origin authentication and integrity for DNS data"
+      ],
+      "explanation": "DNSSEC adds cryptographic signatures and chain-of-trust validation for authenticity and integrity; it does not encrypt queries or allocate addresses."
+    },
+    {
+      "id": "cn-dns-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNSSEC signatures are carried in which record type?",
+      "options": [
+        "RRSIG",
+        "CNAME",
+        "PTR",
+        "MX"
+      ],
+      "answer": [
+        "RRSIG"
+      ],
+      "explanation": "RRSIG records contain digital signatures covering DNS resource record sets."
+    },
+    {
+      "id": "cn-dns-053",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "If a DNSSEC-signed RRset has 4 records and a signature record is included separately, how many records are counted in the RRset itself?",
+      "answer": "4",
+      "explanation": "The RRSIG signs the RRset but is a separate DNS record; the RRset still contains its four data records."
+    },
+    {
+      "id": "cn-dns-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNSSEC DS record in a parent zone helps",
+      "options": [
+        "authenticate a child's DNSKEY during chain validation",
+        "map a hostname to IPv4",
+        "specify a recursive resolver's cache size",
+        "select a TCP congestion algorithm"
+      ],
+      "answer": [
+        "authenticate a child's DNSKEY during chain validation"
+      ],
+      "explanation": "A Delegation Signer record stores a digest of a child's DNSKEY, linking the parent's trust chain to the child zone."
+    },
+    {
+      "id": "cn-dns-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A validating resolver that cannot validate a required DNSSEC chain may",
+      "options": [
+        "return a validation failure such as SERVFAIL",
+        "silently mark the answer authoritative",
+        "rewrite the A record",
+        "send an ARP broadcast"
+      ],
+      "answer": [
+        "return a validation failure such as SERVFAIL"
+      ],
+      "explanation": "If validation is required and signatures or chain data fail checks, the resolver typically reports a failure rather than treating the data as secure."
+    },
+    {
+      "id": "cn-dns-056",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about DNSSEC are true?",
+      "options": [
+        "It signs RRsets",
+        "It provides integrity and origin authentication",
+        "It encrypts the queried domain name by itself",
+        "Trust is established through a chain from a trust anchor"
+      ],
+      "answer": [
+        "It signs RRsets",
+        "It provides integrity and origin authentication",
+        "Trust is established through a chain from a trust anchor"
+      ],
+      "explanation": "DNSSEC signs RRsets and provides data integrity and origin authentication through a chain from a trust anchor. It does not encrypt query names; encrypted DNS transport is separate."
+    },
+    {
+      "id": "cn-dns-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNS over TLS conventionally uses",
+      "options": [
+        "TCP port 853",
+        "UDP port 67",
+        "TCP port 25",
+        "UDP port 161"
+      ],
+      "answer": [
+        "TCP port 853"
+      ],
+      "explanation": "DNS over TLS conventionally uses TCP port 853 to protect DNS traffic with TLS."
+    },
+    {
+      "id": "cn-dns-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNS over HTTPS carries DNS messages inside",
+      "options": [
+        "HTTPS requests",
+        "ARP frames",
+        "ICMP echo payloads only",
+        "DHCP options"
+      ],
+      "answer": [
+        "HTTPS requests"
+      ],
+      "explanation": "DoH encapsulates DNS queries and responses in HTTPS, typically over port 443."
+    },
+    {
+      "id": "cn-dns-059",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "If a DNS query is carried over HTTPS on the conventional service port, what port number is used?",
+      "answer": "443",
+      "explanation": "HTTPS conventionally uses TCP port 443 for DNS over HTTPS deployments."
+    },
+    {
+      "id": "cn-dns-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Encrypted DNS transport such as DoT or DoH primarily protects",
+      "options": [
+        "DNS query confidentiality in transit",
+        "the truth of every DNS answer without validation",
+        "the destination web server from all attacks",
+        "the IP routing table"
+      ],
+      "answer": [
+        "DNS query confidentiality in transit"
+      ],
+      "explanation": "TLS encryption hides DNS message contents from passive observers on the path but does not itself prove that answers are authentic or correct."
+    },
+    {
+      "id": "cn-dns-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The DNS message opcode identifies",
+      "options": [
+        "the kind of query or operation requested",
+        "the transport port",
+        "the response TTL",
+        "the authoritative zone's serial number"
+      ],
+      "answer": [
+        "the kind of query or operation requested"
+      ],
+      "explanation": "Opcode identifies the DNS operation, such as a standard query, status request, or update."
+    },
+    {
+      "id": "cn-dns-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The DNS response code NXDOMAIN is an example of",
+      "options": [
+        "a negative response code",
+        "an address record",
+        "a transport protocol",
+        "a name-server delegation"
+      ],
+      "answer": [
+        "a negative response code"
+      ],
+      "explanation": "NXDOMAIN is a DNS response code indicating that the queried name does not exist."
+    },
+    {
+      "id": "cn-dns-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS label can contain at most how many octets?",
+      "answer": "63",
+      "explanation": "DNS wire-format labels are limited to 63 octets each."
+    },
+    {
+      "id": "cn-dns-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The maximum wire-format DNS name length is",
+      "options": [
+        "255 octets",
+        "63 octets",
+        "512 octets",
+        "1024 octets"
+      ],
+      "answer": [
+        "255 octets"
+      ],
+      "explanation": "A full DNS name is limited to 255 octets in wire format, including length fields and the terminating root label."
+    },
+    {
+      "id": "cn-dns-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS query for example.com with type A requests",
+      "options": [
+        "IPv4 address records",
+        "IPv6 address records",
+        "mail exchangers",
+        "reverse pointer records"
+      ],
+      "answer": [
+        "IPv4 address records"
+      ],
+      "explanation": "The A query type asks for IPv4 address resource records associated with the owner name."
+    },
+    {
+      "id": "cn-dns-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many bits are in an IPv6 address returned in an AAAA record?",
+      "answer": "128",
+      "explanation": "An IPv6 address has 128 bits; AAAA records contain such addresses."
+    },
+    {
+      "id": "cn-dns-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which DNS query types commonly return address information?",
+      "options": [
+        "A",
+        "AAAA",
+        "PTR",
+        "MX"
+      ],
+      "answer": [
+        "A",
+        "AAAA"
+      ],
+      "explanation": "A returns IPv4 addresses and AAAA returns IPv6 addresses. PTR provides reverse names and MX mail exchange information."
+    },
+    {
+      "id": "cn-dns-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNS name comparison is generally",
+      "options": [
+        "case-insensitive for ASCII letters",
+        "case-sensitive for every label",
+        "based on the server's local timezone",
+        "performed after converting to an IP address"
+      ],
+      "answer": [
+        "case-insensitive for ASCII letters"
+      ],
+      "explanation": "DNS domain names are case-insensitive in ASCII, although case may be preserved in presentation."
+    },
+    {
+      "id": "cn-dns-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The owner name in a DNS resource record identifies",
+      "options": [
+        "the domain name to which the record pertains",
+        "the resolver's network interface",
+        "the TCP sequence number",
+        "the number of bytes in the answer"
+      ],
+      "answer": [
+        "the domain name to which the record pertains"
+      ],
+      "explanation": "The owner name specifies the DNS name associated with the record's type and data."
+    },
+    {
+      "id": "cn-dns-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS response's answer section contains 5 resource records. How many answer records are present?",
+      "answer": "5",
+      "explanation": "The answer count is five, matching the five records in the response answer section."
+    },
+    {
+      "id": "cn-dns-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive resolver uses a negative cache to",
+      "options": [
+        "temporarily remember that a name or record type was not found",
+        "store only successful A records forever",
+        "avoid checking TTLs",
+        "encrypt NXDOMAIN responses"
+      ],
+      "answer": [
+        "temporarily remember that a name or record type was not found"
+      ],
+      "explanation": "Negative caching stores authoritative denial information for a limited period, reducing repeated queries for nonexistent names or absent types."
+    },
+    {
+      "id": "cn-dns-072",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNS cache poisoning attempts to",
+      "options": [
+        "insert false DNS data into a resolver's cache",
+        "increase the TTL of every valid record",
+        "fragment TCP segments",
+        "change an Ethernet switch's MAC table"
+      ],
+      "answer": [
+        "insert false DNS data into a resolver's cache"
+      ],
+      "explanation": "Cache poisoning seeks to cause a resolver to cache forged name-to-data mappings, redirecting users to incorrect destinations."
+    },
+    {
+      "id": "cn-dns-073",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which practices help reduce DNS cache-poisoning risk?",
+      "options": [
+        "Use unpredictable query identifiers and source ports",
+        "Validate DNSSEC when available and required",
+        "Accept unsolicited replies from any source",
+        "Match responses to outstanding queries"
+      ],
+      "answer": [
+        "Use unpredictable query identifiers and source ports",
+        "Validate DNSSEC when available and required",
+        "Match responses to outstanding queries"
+      ],
+      "explanation": "Unpredictability and strict response matching make forgery harder; DNSSEC validation authenticates signed data. Unsolicited replies should not be accepted."
+    },
+    {
+      "id": "cn-dns-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS resolver should match a response to a query using",
+      "options": [
+        "transaction ID and query/endpoint context",
+        "only the answer's TTL",
+        "the destination MAC address only",
+        "the domain's first letter"
+      ],
+      "answer": [
+        "transaction ID and query/endpoint context"
+      ],
+      "explanation": "Matching transaction identifiers, question data, and transport endpoint context helps reject unrelated or forged responses."
+    },
+    {
+      "id": "cn-dns-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS cache entry has a remaining TTL of 45 seconds. After 20 seconds, what TTL remains if no refresh occurs?",
+      "answer": "25",
+      "explanation": "TTL counts down with elapsed cache time; 45-20=25 seconds remain."
+    },
+    {
+      "id": "cn-dns-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When a DNS TTL expires in a recursive resolver, the resolver generally",
+      "options": [
+        "must refresh the data before using it as a valid cached answer",
+        "keeps using it forever",
+        "deletes the entire zone",
+        "changes the record type"
+      ],
+      "answer": [
+        "must refresh the data before using it as a valid cached answer"
+      ],
+      "explanation": "Once TTL expires, the cached record is stale and should not be served as an ordinary valid cache answer without refresh or a specific stale-answer policy."
+    },
+    {
+      "id": "cn-dns-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNS alias chain A CNAME B, B CNAME C, and C A-record 192.0.2.8 resolves A to",
+      "options": [
+        "192.0.2.8",
+        "B only",
+        "C only",
+        "NXDOMAIN"
+      ],
+      "answer": [
+        "192.0.2.8"
+      ],
+      "explanation": "The resolver follows CNAME targets until it reaches the terminal A record at C, yielding address 192.0.2.8 for the alias chain."
+    },
+    {
+      "id": "cn-dns-078",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A CNAME chain contains 3 alias links before an A record. How many CNAME records are followed?",
+      "answer": "3",
+      "explanation": "Each alias link corresponds to one CNAME record, so three links require following three CNAMEs."
+    },
+    {
+      "id": "cn-dns-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A CNAME owner name generally cannot coexist with",
+      "options": [
+        "other data records at that same owner name, except DNSSEC-related records",
+        "an A record at its target",
+        "an MX record at its target",
+        "a record in another zone"
+      ],
+      "answer": [
+        "other data records at that same owner name, except DNSSEC-related records"
+      ],
+      "explanation": "A CNAME makes the owner an alias, so it generally cannot have other data types at that same name, subject to protocol-defined exceptions such as DNSSEC records."
+    },
+    {
+      "id": "cn-dns-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A wildcard DNS record can synthesize an answer when",
+      "options": [
+        "no closer explicit name exists and the query matches the wildcard rules",
+        "every query is sent to the root",
+        "the TTL is zero",
+        "the name is an IP address"
+      ],
+      "answer": [
+        "no closer explicit name exists and the query matches the wildcard rules"
+      ],
+      "explanation": "Wildcard synthesis applies to otherwise nonexistent names under the relevant zone node; closer explicit names or delegations affect the result."
+    },
+    {
+      "id": "cn-dns-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An MX record points to",
+      "options": [
+        "a mail server hostname, which is resolved separately",
+        "a TCP connection directly",
+        "an IPv4 subnet mask",
+        "the user's mailbox contents"
+      ],
+      "answer": [
+        "a mail server hostname, which is resolved separately"
+      ],
+      "explanation": "MX RDATA names a mail exchanger host and preference; the mail server's A or AAAA records are looked up separately."
+    },
+    {
+      "id": "cn-dns-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A domain publishes an MX record pointing to mail.example.com but no address record for that host. The mail exchanger may be",
+      "options": [
+        "unreachable by name until address data is provided",
+        "automatically assigned the domain's A record",
+        "converted to a CNAME by the resolver",
+        "resolved through ARP globally"
+      ],
+      "answer": [
+        "unreachable by name until address data is provided"
+      ],
+      "explanation": "The MX target must ultimately resolve to an address; without an A/AAAA record or another valid resolution path, clients cannot connect to it."
+    },
+    {
+      "id": "cn-dns-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS response contains 2 MX records and 3 A records. How many resource records are in these two sets combined?",
+      "answer": "5",
+      "explanation": "The response has two MX records and three A records, totaling five records across the sets."
+    },
+    {
+      "id": "cn-dns-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about DNS CNAME records are true?",
+      "options": [
+        "The target is another domain name",
+        "Aliases may require additional queries or records to reach an address",
+        "A CNAME is itself an IP address",
+        "A CNAME owner generally cannot also have unrelated data records"
+      ],
+      "answer": [
+        "The target is another domain name",
+        "Aliases may require additional queries or records to reach an address",
+        "A CNAME owner generally cannot also have unrelated data records"
+      ],
+      "explanation": "A CNAME points to a canonical DNS name, not an address. Resolution follows the target, and CNAME owners generally cannot coexist with other ordinary data."
+    },
+    {
+      "id": "cn-dns-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNS uses a distributed hierarchy primarily to",
+      "options": [
+        "scale naming and delegate administration",
+        "avoid all caching",
+        "ensure every query reaches one central server",
+        "replace IP routing"
+      ],
+      "answer": [
+        "scale naming and delegate administration"
+      ],
+      "explanation": "The hierarchy and delegation distribute responsibility and load across root, TLD, and authoritative servers rather than relying on one global database."
+    },
+    {
+      "id": "cn-dns-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive resolver's cache may contain",
+      "options": [
+        "answers from many domains with remaining TTLs",
+        "only records from the root zone",
+        "only records with TTL zero",
+        "the entire global DNS database permanently"
+      ],
+      "answer": [
+        "answers from many domains with remaining TTLs"
+      ],
+      "explanation": "Resolvers cache records learned from different authorities until their TTLs expire; cache contents vary and are not permanent or complete."
+    },
+    {
+      "id": "cn-dns-087",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A cached DNS record starts with TTL 300 seconds. After 2 minutes, how many seconds remain?",
+      "answer": "180",
+      "explanation": "Two minutes is 120 seconds; 300-120=180 seconds remain."
+    },
+    {
+      "id": "cn-dns-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A resolver can answer from cache without contacting authoritative servers if",
+      "options": [
+        "a usable unexpired cached answer is present",
+        "the query is for an A record only",
+        "the domain is a TLD",
+        "the client sets RD to zero"
+      ],
+      "answer": [
+        "a usable unexpired cached answer is present"
+      ],
+      "explanation": "An unexpired cached record matching the query can be returned directly, avoiding an upstream lookup."
+    },
+    {
+      "id": "cn-dns-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If the answer is absent from cache, a recursive resolver may contact",
+      "options": [
+        "root, TLD, and authoritative servers through referrals",
+        "only the client's Ethernet switch",
+        "the destination web server first",
+        "only a DHCP server"
+      ],
+      "answer": [
+        "root, TLD, and authoritative servers through referrals"
+      ],
+      "explanation": "The resolver follows the DNS hierarchy from root to TLD to the authoritative zone, using referrals until it obtains the answer."
+    },
+    {
+      "id": "cn-dns-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which may be returned in the additional section of a DNS response?",
+      "options": [
+        "Glue A/AAAA records for name servers",
+        "A records related to an MX target",
+        "Unrelated random application data",
+        "Records that help avoid extra lookups"
+      ],
+      "answer": [
+        "Glue A/AAAA records for name servers",
+        "A records related to an MX target",
+        "Records that help avoid extra lookups"
+      ],
+      "explanation": "The additional section can include useful address data such as glue or mail-server addresses. It contains DNS resource records, not arbitrary application payload."
+    },
+    {
+      "id": "cn-dns-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Glue data is called glue because it",
+      "options": [
+        "helps connect a delegation to the address of an in-bailiwick name server",
+        "cryptographically signs every zone",
+        "joins two TCP streams",
+        "replaces all NS records"
+      ],
+      "answer": [
+        "helps connect a delegation to the address of an in-bailiwick name server"
+      ],
+      "explanation": "Glue supplies the address needed to contact a delegated nameserver whose name itself lies within the delegated namespace."
+    },
+    {
+      "id": "cn-dns-092",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DNS answer has TTL 7200 seconds. Express it in hours.",
+      "answer": "2",
+      "explanation": "There are 3600 seconds in an hour, so 7200 seconds equals two hours."
+    },
+    {
+      "id": "cn-dns-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which DNS record type maps a domain to a mail exchanger?",
+      "options": [
+        "MX",
+        "NS",
+        "SOA",
+        "PTR"
+      ],
+      "answer": [
+        "MX"
+      ],
+      "explanation": "MX records specify mail exchange hosts and preference values for a domain."
+    },
+    {
+      "id": "cn-dns-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which record type identifies a zone's authoritative name servers?",
+      "options": [
+        "NS",
+        "MX",
+        "TXT",
+        "SRV"
+      ],
+      "answer": [
+        "NS"
+      ],
+      "explanation": "NS records list the authoritative name servers associated with a zone or delegation."
+    },
+    {
+      "id": "cn-dns-095",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which DNS records can contain textual metadata or service information rather than simple host address mappings?",
+      "options": [
+        "TXT",
+        "SRV",
+        "SOA",
+        "AAAA"
+      ],
+      "answer": [
+        "TXT",
+        "SRV",
+        "SOA"
+      ],
+      "explanation": "TXT stores text, SRV identifies service endpoints and ports, and SOA contains zone metadata. AAAA stores an IPv6 address."
+    },
+    {
+      "id": "cn-dns-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An SRV record includes a port number because it identifies",
+      "options": [
+        "the transport endpoint for a named service",
+        "the source TCP sequence number",
+        "the domain's subnet prefix",
+        "the TTL of an A record"
+      ],
+      "answer": [
+        "the transport endpoint for a named service"
+      ],
+      "explanation": "SRV records publish service target, port, priority, and weight information for locating a service endpoint."
+    },
+    {
+      "id": "cn-dns-097",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An SRV record specifies service port 8443. What numeric port does it advertise?",
+      "answer": "8443",
+      "explanation": "The port field directly identifies TCP or UDP port 8443 for the target service."
+    },
+    {
+      "id": "cn-dns-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TXT record is commonly used to",
+      "options": [
+        "publish arbitrary textual data such as verification or email-policy data",
+        "map directly to an IPv4 address",
+        "delegate a zone to root",
+        "carry a TCP handshake"
+      ],
+      "answer": [
+        "publish arbitrary textual data such as verification or email-policy data"
+      ],
+      "explanation": "TXT records carry textual strings used by many applications and policies, including domain verification and email authentication frameworks."
+    },
+    {
+      "id": "cn-dns-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DNSSEC's RRSIG validity period is relevant because",
+      "options": [
+        "signatures are valid only within their inception and expiration times",
+        "it determines the TCP port",
+        "it is the same as a record TTL",
+        "it encrypts the resolver's cache"
+      ],
+      "answer": [
+        "signatures are valid only within their inception and expiration times"
+      ],
+      "explanation": "RRSIG records specify inception and expiration times; validators reject signatures used outside their validity interval."
+    },
+    {
+      "id": "cn-dns-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DNSSEC validating resolver checks the chain of trust from",
+      "options": [
+        "a configured trust anchor through signed delegations to the answer",
+        "the client's MAC address to the root server",
+        "the TCP source port to the MX record",
+        "the answer TTL to the default route"
+      ],
+      "answer": [
+        "a configured trust anchor through signed delegations to the answer"
+      ],
+      "explanation": "Validation follows DNSKEY and DS relationships from a trust anchor, verifying signatures along delegations to the target RRset."
+    }
+  ]
+}
