@@ -1,0 +1,17 @@
+services:
+  gate-practice:
+    build: .
+    ports:
+      - "${GATE_PRACTICE_PORT:-8081}:8080"
+    environment:
+      APP_ROOT: /workspace
+      DATABASE_PATH: /data/progress.sqlite3
+      HOST: 0.0.0.0
+      PORT: 8080
+    volumes:
+      - ./:/workspace:ro
+      - gate_practice_data:/data
+    restart: unless-stopped
+
+volumes:
+  gate_practice_data:

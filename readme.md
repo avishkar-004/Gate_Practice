@@ -60,14 +60,29 @@ General Aptitude is a common 15-mark component of the GATE paper. Refer to the o
 
 ## GATE CS Practice Lab
 
-Open `index.html` in a browser to use the static practice app. It works without a server and saves checked answers in the browser's local storage. Choose a subject, then a topic, to start practicing.
+The app contains two subjects: **Programming and Data Structures** and **Algorithms**. Each has eight topics with 100 GATE-style practice questions per topic (1,600 total). Questions include MCQs, multiple-select questions and numerical answers, with explanations shown after checking. These are practice problems written for this app, not reproduced official GATE questions.
 
-The app contains two subjects: **Programming and Data Structures** and **Algorithms**. Each has eight topics with 100 original GATE-style practice questions per topic (1,600 total). The bank includes single-answer MCQs, multiple-select questions, numerical answer questions, and worked explanations. These are practice problems written for this app, not reproduced official GATE questions.
+## Run with Docker
+
+Install Docker Desktop or Docker Engine with the Compose plugin, then from the project directory run:
+
+```sh
+docker compose up
+```
+
+Open [http://localhost:8081](http://localhost:8081). Compose starts the frontend and backend together. Subjects, topics and all questions are seeded into SQLite and served to the frontend by the API. Checked answers are global database state: every tab polls the same state, so a checked answer appears in other open tabs as well as after a browser reload.
+
+The SQLite file is stored in the named Docker volume `gate_practice_data`. `docker compose down` stops the app while keeping the database. Removing the volume (for example, `docker compose down -v`) deletes the database and all checked status. If port 8081 is occupied, set `GATE_PRACTICE_PORT` to another host port before starting.
+
+The question authoring sources are `questions.js` and `algorithm-questions.js`. After changing questions or subject metadata, regenerate the database seed with `node build_catalog.js`; the backend imports the updated catalog on its next API request. For changes to Python backend code, use `docker compose up --build`.
 
 Frontend files:
 
 - `index.html` — topic home and practice views
 - `styles.css` — responsive layout and styling
-- `app.js` — navigation, answer checking and local progress
-- `questions.js` — Programming and Data Structures question bank
-- `algorithm-questions.js` — Algorithms question bank
+- `app.js` — loads data from the API, renders practice and syncs checked state across tabs
+- `catalog.json` — generated database seed containing subjects, topics and questions
+- `questions.js` and `algorithm-questions.js` — question authoring sources
+- `build_catalog.js` — generates `catalog.json`
+- `server.py` — static file server, database seeding and SQLite API
+- `Dockerfile` and `compose.yaml` — single-command container setup

@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f3ed">
-  <title>GATE CS · Practice Lab</title>
+  <title>GATE CS - Practice Lab</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#" aria-label="GATE CS Practice Lab home"><span class="brand-mark">G</span><span>GATE <b>CS</b><small>Practice Lab</small></span></a>
-    <div class="top-meta"><span class="live-dot"></span> YOUR PERSONAL QUESTION BANK <span class="edition">2027 · CS</span></div>
+    <div class="top-meta"><span class="live-dot"></span> PRACTICE PROGRESS <span id="storage-state" class="edition">LOADING DATABASE</span></div>
   </header>
   <main id="app" class="shell">
     <section id="home-view">
@@ -19,12 +19,12 @@
         <div class="hero-card"><div class="card-orbit orbit-a"></div><div class="card-orbit orbit-b"></div><span class="card-kicker">QUESTION BANK</span><strong id="hero-count">1600</strong><span class="card-caption">GATE-style problems<br>100 in every topic</span><div class="card-rule"></div><div class="mini-stats"><span><b>MCQ</b><small>choose one</small></span><span><b>MSQ</b><small>choose all</small></span><span><b>NAT</b><small>enter value</small></span></div><span class="spark">✳</span></div>
       </div>
       <div id="subject-selection">
-        <div class="section-head"><div><p class="eyebrow">CHOOSE YOUR FOCUS</p><h2>Subjects <span class="muted">/ 02</span></h2></div><span class="small-note">Your progress is saved on this device</span></div>
+        <div class="section-head"><div><p class="eyebrow">CHOOSE YOUR FOCUS</p><h2>Subjects <span class="muted">/ 02</span></h2></div><span class="small-note">Subjects, questions and shared progress come from the database</span></div>
         <div id="subject-grid" class="subject-grid"></div>
       </div>
       <section id="topic-selection" class="hidden">
         <button class="back-link" id="subjects-back">← <span>All subjects</span></button>
-        <div class="section-head"><div><p class="eyebrow" id="subject-kicker"></p><h2 id="subject-heading">Topics</h2></div><span class="small-note">100 questions per topic · progress saved here</span></div>
+        <div class="section-head"><div><p class="eyebrow" id="subject-kicker"></p><h2 id="subject-heading">Topics</h2></div><span class="small-note">100 questions per topic · progress shared across tabs</span></div>
         <div id="topic-grid" class="topic-grid"></div>
       </section>
     </section>
@@ -38,9 +38,7 @@
       </div>
     </section>
   </main>
-  <footer><span>GATE CS PRACTICE LAB</span><span>Practice deliberately. Review honestly.</span><span>Static · works offline</span></footer>
-  <script src="questions.js"></script>
-  <script src="algorithm-questions.js"></script>
+  <footer><span>GATE CS PRACTICE LAB</span><span>Practice deliberately. Review honestly.</span><span>SQLITE-BACKED · SHARED PROGRESS</span></footer>
   <script src="app.js"></script>
 </body>
 </html>
