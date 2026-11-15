@@ -1,0 +1,1386 @@
+{
+  "topicIndex": 5,
+  "questions": [
+    {
+      "id": "pds-tree-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree has n nodes. What is the maximum possible number of nodes at depth d, where root depth is zero?",
+      "options": [
+        "2^d",
+        "d+1",
+        "2d+1",
+        "2^(d+1)-1"
+      ],
+      "answer": [
+        "2^d"
+      ],
+      "explanation": "Each node has at most two children, so a full binary expansion from the root produces at most 2^d nodes at depth d."
+    },
+    {
+      "id": "pds-tree-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A perfect binary tree has height 4 measured in edges. How many nodes does it contain?",
+      "answer": "31",
+      "explanation": "A perfect binary tree with edge-height h has 2^(h+1)-1 nodes. For h=4, this is 32-1=31."
+    },
+    {
+      "id": "pds-tree-003",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree has 20 nodes. What is the minimum possible height measured in edges?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "19"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "A binary tree of height h can contain at most 2^(h+1)-1 nodes. Height 3 supports only 15 nodes, while height 4 supports 31, so minimum height is 4."
+    },
+    {
+      "id": "pds-tree-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a full binary tree, every node has either zero or two children. If there are 12 internal nodes, how many leaves are there?",
+      "options": [
+        "13",
+        "12",
+        "24",
+        "25"
+      ],
+      "answer": [
+        "13"
+      ],
+      "explanation": "For a nonempty full binary tree, the number of leaves equals the number of internal nodes plus one, yielding 13 leaves."
+    },
+    {
+      "id": "pds-tree-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A full binary tree has 18 leaves. How many total nodes does it have?",
+      "answer": "35",
+      "explanation": "The number of internal nodes is leaves-1=17, so total nodes are 18+17=35."
+    },
+    {
+      "id": "pds-tree-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A complete binary tree with n nodes is stored in a zero-based array. For a node at index i, its left child index is",
+      "options": [
+        "2i+1",
+        "2i",
+        "2i+2",
+        "floor(i/2)"
+      ],
+      "answer": [
+        "2i+1"
+      ],
+      "explanation": "With zero-based indexing, the children of i are at indices 2i+1 and 2i+2; therefore the left child uses 2i+1."
+    },
+    {
+      "id": "pds-tree-007",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a zero-based array representation of a complete binary tree, what is the parent index of the node at index 14?",
+      "answer": "6",
+      "explanation": "The parent index is floor((i-1)/2). For i=14, floor(13/2)=6."
+    },
+    {
+      "id": "pds-tree-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A complete binary tree has n nodes. Which array indices contain leaves in a zero-based representation?",
+      "options": [
+        "floor(n/2) through n-1",
+        "0 through floor(n/2)-1",
+        "1 through n-1",
+        "Only index n-1"
+      ],
+      "answer": [
+        "floor(n/2) through n-1"
+      ],
+      "explanation": "For every index i>=floor(n/2), child indices are outside the occupied range. Thus those positions are leaves in the complete-tree array representation."
+    },
+    {
+      "id": "pds-tree-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree is traversed in inorder. Which order is used?",
+      "options": [
+        "Left subtree, root, right subtree",
+        "Root, left subtree, right subtree",
+        "Left subtree, right subtree, root",
+        "Root, right subtree, left subtree"
+      ],
+      "answer": [
+        "Left subtree, root, right subtree"
+      ],
+      "explanation": "Inorder traversal recursively visits the left subtree, then the root, then the right subtree."
+    },
+    {
+      "id": "pds-tree-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary search tree stores distinct keys. Its inorder traversal produces keys in",
+      "options": [
+        "strictly increasing order",
+        "decreasing order",
+        "level order",
+        "insertion order"
+      ],
+      "answer": [
+        "strictly increasing order"
+      ],
+      "explanation": "The BST invariant places smaller keys in the left subtree and larger keys in the right subtree. Inorder traversal therefore visits keys in sorted increasing order."
+    },
+    {
+      "id": "pds-tree-011",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which traversals can uniquely reconstruct a binary tree with distinct node labels when paired as indicated?",
+      "options": [
+        "Preorder and inorder",
+        "Postorder and inorder",
+        "Preorder and postorder for arbitrary binary trees",
+        "Level order and inorder"
+      ],
+      "answer": [
+        "Preorder and inorder",
+        "Postorder and inorder",
+        "Level order and inorder"
+      ],
+      "explanation": "Inorder partitions the left and right subtrees, while preorder or postorder identifies the root, allowing recursive reconstruction. Preorder/postorder alone may be ambiguous for a node with one child."
+    },
+    {
+      "id": "pds-tree-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST is constructed by inserting keys 5, 2, 8, 1, 3 in that order. What is the preorder traversal?",
+      "options": [
+        "5,2,1,3,8",
+        "1,2,3,5,8",
+        "1,3,2,8,5",
+        "5,8,2,3,1"
+      ],
+      "answer": [
+        "5,2,1,3,8"
+      ],
+      "explanation": "The root is 5; its left subtree rooted at 2 has children 1 and 3, and its right child is 8. Preorder visits root, left, then right."
+    },
+    {
+      "id": "pds-tree-013",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST contains keys 10, 5, 15, 2, 7, 12, 20 inserted in that order. What is the depth of key 7, with root depth zero?",
+      "answer": "2",
+      "explanation": "The path is 10 to 5 to 7, which contains two edges from the root."
+    },
+    {
+      "id": "pds-tree-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Searching for a key in a BST of height h takes worst-case time",
+      "options": [
+        "O(h)",
+        "O(log n) for every BST",
+        "O(1)",
+        "O(n log n) always"
+      ],
+      "answer": [
+        "O(h)"
+      ],
+      "explanation": "Search follows at most one root-to-leaf path, visiting O(h) nodes. This is logarithmic only when the tree height is logarithmic."
+    },
+    {
+      "id": "pds-tree-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST is built by inserting sorted keys 1,2,...,n without balancing. What is its height in edges?",
+      "options": [
+        "n-1",
+        "floor(log2 n)",
+        "ceil(log2 n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "n-1"
+      ],
+      "explanation": "Every key is inserted as the right child of the previous key, forming a chain of n nodes and height n-1."
+    },
+    {
+      "id": "pds-tree-016",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST contains 9 nodes and is a chain. What is its height measured in edges?",
+      "answer": "8",
+      "explanation": "A chain of n nodes has n-1 edges on its longest root-to-leaf path; for nine nodes, the height is eight."
+    },
+    {
+      "id": "pds-tree-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "To delete a BST node with two children, a common method replaces its key with",
+      "options": [
+        "its inorder successor or predecessor",
+        "the root key unconditionally",
+        "the minimum key in the entire tree only",
+        "its left child key"
+      ],
+      "answer": [
+        "its inorder successor or predecessor"
+      ],
+      "explanation": "The inorder successor (minimum of right subtree) or predecessor (maximum of left subtree) preserves BST ordering after replacement and removal."
+    },
+    {
+      "id": "pds-tree-018",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When deleting a BST node with two children using its inorder successor, which statements are true?",
+      "options": [
+        "The successor is the minimum key in the right subtree",
+        "The successor has no left child",
+        "The successor may have a right child",
+        "The successor is always a leaf"
+      ],
+      "answer": [
+        "The successor is the minimum key in the right subtree",
+        "The successor has no left child",
+        "The successor may have a right child"
+      ],
+      "explanation": "The successor is the minimum key in the right subtree, so it has no left child. It may still have a right child, which is why it need not be a leaf."
+    },
+    {
+      "id": "pds-tree-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST node has only a right child and is deleted. Which action preserves the BST structure?",
+      "options": [
+        "Link its parent directly to its right child",
+        "Replace it with null and discard its subtree",
+        "Swap it with the root",
+        "Move the right child to the leftmost position of the tree"
+      ],
+      "answer": [
+        "Link its parent directly to its right child"
+      ],
+      "explanation": "A node with one child is removed by linking its parent to that child, preserving all descendants and their ordering."
+    },
+    {
+      "id": "pds-tree-020",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST contains 7 distinct keys. How many null child links are present in the conventional pointer representation?",
+      "answer": "8",
+      "explanation": "A binary tree with n nodes has 2n child-pointer fields and n-1 actual edges, leaving 2n-(n-1)=n+1 null links; for n=7 this is 8."
+    },
+    {
+      "id": "pds-tree-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The postorder traversal of a binary tree is 2,4,3,8,7,5, and its inorder traversal is 2,3,4,5,7,8. What is the root?",
+      "options": [
+        "5",
+        "2",
+        "8",
+        "3"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "In postorder the final value is the root, so the root is 5. Inorder then separates left keys 2,3,4 from right keys 7,8."
+    },
+    {
+      "id": "pds-tree-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree has preorder traversal A,B,D,E,C,F and inorder traversal D,B,E,A,F,C. What is the postorder traversal?",
+      "options": [
+        "D,E,B,F,C,A",
+        "D,B,E,F,C,A",
+        "A,B,D,E,C,F",
+        "D,E,F,C,B,A"
+      ],
+      "answer": [
+        "D,E,B,F,C,A"
+      ],
+      "explanation": "Preorder identifies A as root; inorder splits left subtree D,B,E and right subtree F,C. Recursively their postorders are D,E,B and F,C, followed by A."
+    },
+    {
+      "id": "pds-tree-023",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A perfect binary tree has 8 leaves. How many internal nodes does it have?",
+      "answer": "7",
+      "explanation": "In a full binary tree, internal nodes equal leaves minus one. A perfect binary tree is full, so it has 8-1=7 internal nodes."
+    },
+    {
+      "id": "pds-tree-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree with n nodes has how many edges if it is nonempty and connected?",
+      "options": [
+        "n-1",
+        "n",
+        "2n",
+        "n+1"
+      ],
+      "answer": [
+        "n-1"
+      ],
+      "explanation": "Every tree with n vertices has exactly n-1 edges, independent of its shape."
+    },
+    {
+      "id": "pds-tree-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree has 10 nodes. What is the minimum possible number of leaves?",
+      "options": [
+        "1",
+        "2",
+        "5",
+        "10"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "A chain-shaped binary tree can have one leaf at its terminal node, and no nonempty finite tree can have zero leaves. Thus the minimum is one."
+    },
+    {
+      "id": "pds-tree-026",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a binary tree with n nodes are true?",
+      "options": [
+        "It has n-1 edges",
+        "It has n+1 null child pointers in a pointer representation",
+        "The number of leaves may be n",
+        "It must have height floor(log2 n)"
+      ],
+      "answer": [
+        "It has n-1 edges",
+        "It has n+1 null child pointers in a pointer representation",
+        "The number of leaves may be n"
+      ],
+      "explanation": "A tree has n-1 edges and 2n child pointers, leaving n+1 nulls. A chain of n nodes has n leaves only when n=1, and a singleton is a valid binary tree. Height is not fixed by node count."
+    },
+    {
+      "id": "pds-tree-027",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A complete binary tree has height 3 measured in edges. What is the minimum number of nodes it can have?",
+      "options": [
+        "8",
+        "4",
+        "7",
+        "15"
+      ],
+      "answer": [
+        "8"
+      ],
+      "explanation": "A complete tree with height 3 must fill the first three levels with 7 nodes and have at least one node at depth 3, so the minimum is 8."
+    },
+    {
+      "id": "pds-tree-028",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A complete binary tree of height 3 has the minimum number of nodes possible for that height. How many nodes does it have?",
+      "answer": "8",
+      "explanation": "It must contain all levels through depth 2 (7 nodes) and at least one node at depth 3, totaling 8."
+    },
+    {
+      "id": "pds-tree-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a complete binary tree stored in a zero-based array, node i has a right child at index",
+      "options": [
+        "2i+2",
+        "2i+1",
+        "floor(i/2)",
+        "2i"
+      ],
+      "answer": [
+        "2i+2"
+      ],
+      "explanation": "For zero-based indexing, the right child index is 2i+2; the left child is 2i+1."
+    },
+    {
+      "id": "pds-tree-030",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a zero-based array representation, a complete binary tree node at index 9 has which parent index?",
+      "answer": "4",
+      "explanation": "The parent index is floor((i-1)/2). For node index 9, floor(8/2)=4."
+    },
+    {
+      "id": "pds-tree-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which traversal of a BST produces keys in nonincreasing order without changing the tree?",
+      "options": [
+        "Right, root, left",
+        "Left, root, right",
+        "Root, left, right",
+        "Left, right, root"
+      ],
+      "answer": [
+        "Right, root, left"
+      ],
+      "explanation": "Reverse inorder visits the right subtree, root, then left subtree, so keys appear in decreasing order for a BST with distinct keys."
+    },
+    {
+      "id": "pds-tree-032",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST contains keys 40, 20, 60, 10, 30, 50, 70. What is the inorder successor of 40?",
+      "answer": "50",
+      "explanation": "The successor is the smallest key greater than 40, which is the minimum of its right subtree rooted at 60, namely 50."
+    },
+    {
+      "id": "pds-tree-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a BST with distinct keys, the predecessor of node x with a nonempty left subtree is",
+      "options": [
+        "the maximum key in x's left subtree",
+        "the minimum key in x's right subtree",
+        "always x.parent",
+        "the root of the tree"
+      ],
+      "answer": [
+        "the maximum key in x's left subtree"
+      ],
+      "explanation": "If a left subtree exists, its greatest value is the closest smaller key, hence the inorder predecessor. If absent, an ancestor-based rule is used."
+    },
+    {
+      "id": "pds-tree-034",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations on an unbalanced BST with n nodes can take O(n) worst-case time?",
+      "options": [
+        "Search for a key",
+        "Insert a key",
+        "Find the minimum key",
+        "Inorder traversal"
+      ],
+      "answer": [
+        "Search for a key",
+        "Insert a key",
+        "Find the minimum key",
+        "Inorder traversal"
+      ],
+      "explanation": "A degenerate BST can have height n-1, making search, insertion, and minimum search linear. Inorder traversal visits all n nodes and is always linear."
+    },
+    {
+      "id": "pds-tree-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST's left subtree contains keys less than the root and its right subtree contains keys greater than the root. Which condition must also hold recursively?",
+      "options": [
+        "Every subtree satisfies the same ordering rule",
+        "Only direct children need satisfy ordering",
+        "The left subtree must be complete",
+        "The root must be the median key"
+      ],
+      "answer": [
+        "Every subtree satisfies the same ordering rule"
+      ],
+      "explanation": "The BST invariant applies recursively to all descendants, not just immediate child values; otherwise search may discard a subtree containing a valid key."
+    },
+    {
+      "id": "pds-tree-036",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST contains 11 distinct keys and has height 10. What is the maximum number of comparisons required in a successful search?",
+      "answer": "11",
+      "explanation": "A chain of height 10 contains 11 nodes. Searching for the deepest key compares against each node along the path, totaling 11 comparisons."
+    },
+    {
+      "id": "pds-tree-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Inserting a key equal to an existing key into a BST requires",
+      "options": [
+        "a duplicate-key policy such as reject, count, or consistently place duplicates",
+        "always placing it at the root",
+        "discarding the entire subtree",
+        "rotating the tree randomly"
+      ],
+      "answer": [
+        "a duplicate-key policy such as reject, count, or consistently place duplicates"
+      ],
+      "explanation": "The standard distinct-key BST invariant does not specify duplicates. An implementation must define a consistent policy, such as storing counts or choosing one side."
+    },
+    {
+      "id": "pds-tree-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST with distinct keys has root key 50. Which interval must contain every key in its right subtree?",
+      "options": [
+        "Greater than 50",
+        "Less than 50",
+        "Equal to 50",
+        "No ordering constraint exists"
+      ],
+      "answer": [
+        "Greater than 50"
+      ],
+      "explanation": "All keys in the right subtree must be greater than the root under the strict BST invariant, not merely the root's immediate right child."
+    },
+    {
+      "id": "pds-tree-039",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST has keys 25, 15, 35, 10, 20, 30, 40. How many nodes are visited when searching successfully for key 30?",
+      "answer": "3",
+      "explanation": "The search visits 25, then 35, then 30, making three node visits."
+    },
+    {
+      "id": "pds-tree-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree is called complete if",
+      "options": [
+        "all levels except possibly the last are full, and last-level nodes are as far left as possible",
+        "every internal node has two children",
+        "all leaves have equal depth",
+        "every node has exactly one child"
+      ],
+      "answer": [
+        "all levels except possibly the last are full, and last-level nodes are as far left as possible"
+      ],
+      "explanation": "Completeness requires filled upper levels and a left-packed final level. The other descriptions refer to different or impossible tree properties."
+    },
+    {
+      "id": "pds-tree-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A perfect binary tree has height 5 measured in edges. How many leaves does it have?",
+      "options": [
+        "32",
+        "16",
+        "31",
+        "63"
+      ],
+      "answer": [
+        "32"
+      ],
+      "explanation": "A perfect binary tree has 2^h leaves at depth h. With height 5, it has 2^5=32 leaves."
+    },
+    {
+      "id": "pds-tree-042",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A perfect binary tree has height 6. How many leaves does it have?",
+      "answer": "64",
+      "explanation": "The number of leaves at depth h in a perfect binary tree is 2^h, yielding 64 for h=6."
+    },
+    {
+      "id": "pds-tree-043",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A full binary tree has 9 internal nodes. What is its total number of nodes?",
+      "options": [
+        "19",
+        "18",
+        "10",
+        "17"
+      ],
+      "answer": [
+        "19"
+      ],
+      "explanation": "A full binary tree with I internal nodes has I+1 leaves, so total nodes are I+(I+1)=2I+1=19."
+    },
+    {
+      "id": "pds-tree-044",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A full binary tree has 24 leaves. How many internal nodes does it have?",
+      "answer": "23",
+      "explanation": "For any nonempty full binary tree, leaves are one more than internal nodes; hence I=24-1=23."
+    },
+    {
+      "id": "pds-tree-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree is height-balanced if",
+      "options": [
+        "the heights of its two child subtrees differ by at most one at every node",
+        "all leaves have the same depth",
+        "each node has two children",
+        "its inorder traversal is sorted"
+      ],
+      "answer": [
+        "the heights of its two child subtrees differ by at most one at every node"
+      ],
+      "explanation": "Height balance is a local condition comparing left and right subtree heights at every node. Equal leaf depth is stronger and describes a perfect tree."
+    },
+    {
+      "id": "pds-tree-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree has height 0 under the edge-count convention. How many nodes does it contain?",
+      "options": [
+        "1",
+        "0",
+        "2",
+        "It depends on whether it is complete"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "A single-node tree has no edges from root to descendants, so its height is zero under the edge convention."
+    },
+    {
+      "id": "pds-tree-047",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary tree has a root-to-leaf path of 9 edges. What is the minimum number of nodes on that path?",
+      "answer": "10",
+      "explanation": "A path with nine edges contains ten vertices, including both endpoints."
+    },
+    {
+      "id": "pds-tree-048",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which traversals are depth-first traversals of a binary tree?",
+      "options": [
+        "Preorder",
+        "Inorder",
+        "Postorder",
+        "Level order"
+      ],
+      "answer": [
+        "Preorder",
+        "Inorder",
+        "Postorder"
+      ],
+      "explanation": "Preorder, inorder, and postorder recursively explore subtrees depth first. Level order is breadth first and uses a queue."
+    },
+    {
+      "id": "pds-tree-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a binary tree with distinct labels, preorder and postorder traversals alone generally",
+      "options": [
+        "do not uniquely determine the tree",
+        "always uniquely determine the tree",
+        "determine only the root but no other nodes",
+        "are identical for every tree"
+      ],
+      "answer": [
+        "do not uniquely determine the tree"
+      ],
+      "explanation": "A node with one child can be assigned as either left or right child without changing preorder and postorder, so shape may be ambiguous."
+    },
+    {
+      "id": "pds-tree-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree has preorder A,B,C and postorder C,B,A. How many skewed shapes are consistent if each node has exactly one child except the leaf?",
+      "options": [
+        "4",
+        "1",
+        "2",
+        "3"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "Each of the two parent-child edges can independently orient as left or right while preserving preorder and postorder, giving 2^2=4 shapes."
+    },
+    {
+      "id": "pds-tree-051",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary tree has 15 nodes. What is its number of edges?",
+      "answer": "14",
+      "explanation": "Any connected acyclic tree with n vertices has n-1 edges, so 15 nodes give 14 edges."
+    },
+    {
+      "id": "pds-tree-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The level-order traversal of a binary tree visits nodes in",
+      "options": [
+        "nondecreasing order of depth",
+        "inorder key order",
+        "postorder",
+        "decreasing depth"
+      ],
+      "answer": [
+        "nondecreasing order of depth"
+      ],
+      "explanation": "A queue processes all shallower nodes before deeper nodes, so level-order traversal visits nodes in nondecreasing depth."
+    },
+    {
+      "id": "pds-tree-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST contains keys 8,3,10,1,6,14,4,7,13 inserted in that order. What is the minimum key?",
+      "options": [
+        "1",
+        "3",
+        "4",
+        "8"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "The minimum key in a BST is found by repeatedly following left children. From root 8, then 3, then 1, so the minimum is 1."
+    },
+    {
+      "id": "pds-tree-054",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST contains 8,3,10,1,6,14,4,7,13. What is the maximum key?",
+      "answer": "14",
+      "explanation": "The maximum is the rightmost node. Following right links from 8 reaches 10 and then 14."
+    },
+    {
+      "id": "pds-tree-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a BST, finding the minimum key takes O(h) time because",
+      "options": [
+        "the search follows left-child links until none remains",
+        "the keys must first be sorted",
+        "the tree must be traversed in postorder",
+        "the minimum is always at the root"
+      ],
+      "answer": [
+        "the search follows left-child links until none remains"
+      ],
+      "explanation": "The minimum is the leftmost node; its depth is at most the tree height h, so a single leftward path suffices."
+    },
+    {
+      "id": "pds-tree-056",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When deleting a BST node, which cases need no replacement key from elsewhere in the tree?",
+      "options": [
+        "The node is a leaf",
+        "The node has only a left child",
+        "The node has only a right child",
+        "The node has two children"
+      ],
+      "answer": [
+        "The node is a leaf",
+        "The node has only a left child",
+        "The node has only a right child"
+      ],
+      "explanation": "Leaf removal and one-child bypass need only local parent-child link changes. Two-child deletion typically finds a successor or predecessor elsewhere in the subtree."
+    },
+    {
+      "id": "pds-tree-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "After deleting a BST node with two children using its inorder successor, the successor is removed from",
+      "options": [
+        "its original location in the right subtree",
+        "the root of the entire tree always",
+        "the left subtree's maximum location",
+        "the tree is rebuilt from scratch"
+      ],
+      "answer": [
+        "its original location in the right subtree"
+      ],
+      "explanation": "The successor key is copied or moved to the deleted node, then the successor is removed from its original right-subtree position; it has no left child there."
+    },
+    {
+      "id": "pds-tree-058",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST node has right subtree rooted at 30, whose left chain is 25 then 22. What key is its inorder successor?",
+      "answer": "22",
+      "explanation": "The successor is the minimum in the right subtree, reached by following left links from 30 to 25 to 22."
+    },
+    {
+      "id": "pds-tree-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST search for x visits a node with key k. If x<k, which subtree can be discarded?",
+      "options": [
+        "The right subtree",
+        "The left subtree",
+        "Both subtrees",
+        "Neither subtree"
+      ],
+      "answer": [
+        "The right subtree"
+      ],
+      "explanation": "By the BST invariant, all keys in the right subtree exceed k and therefore exceed x when x<k; the target cannot be there."
+    },
+    {
+      "id": "pds-tree-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST node's left child is 5 and its right child is 15. Which root value satisfies the immediate-child ordering condition?",
+      "options": [
+        "10",
+        "4",
+        "16",
+        "5"
+      ],
+      "answer": [
+        "10"
+      ],
+      "explanation": "The root must be strictly between the left child key 5 and right child key 15; 10 satisfies this local condition."
+    },
+    {
+      "id": "pds-tree-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree is complete when its last level is",
+      "options": [
+        "filled from left to right with no gaps",
+        "filled from right to left",
+        "always completely full",
+        "allowed to contain gaps if height-balanced"
+      ],
+      "answer": [
+        "filled from left to right with no gaps"
+      ],
+      "explanation": "A complete tree has all levels full except possibly the last, and nodes on the last level occupy the leftmost positions with no gaps."
+    },
+    {
+      "id": "pds-tree-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A complete binary tree has 14 nodes. What is the index of its last node in a zero-based array representation?",
+      "answer": "13",
+      "explanation": "The nodes occupy contiguous array positions from index zero through n-1; for 14 nodes the last index is 13."
+    },
+    {
+      "id": "pds-tree-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a one-based array representation of a complete binary tree, the children of node i are at",
+      "options": [
+        "2i and 2i+1",
+        "2i+1 and 2i+2",
+        "floor(i/2) and floor(i/2)+1",
+        "i-1 and i+1"
+      ],
+      "answer": [
+        "2i and 2i+1"
+      ],
+      "explanation": "With one-based indexing, left and right child indices are 2i and 2i+1, respectively; the parent is at floor(i/2)."
+    },
+    {
+      "id": "pds-tree-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a one-based complete binary tree array, what is the parent index of node 19?",
+      "answer": "9",
+      "explanation": "The parent index is floor(i/2), giving floor(19/2)=9."
+    },
+    {
+      "id": "pds-tree-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A full binary tree is also known as a",
+      "options": [
+        "proper binary tree",
+        "complete binary tree",
+        "perfect binary tree",
+        "binary search tree"
+      ],
+      "answer": [
+        "proper binary tree"
+      ],
+      "explanation": "A full (proper/strict) binary tree requires each node to have either zero or two children. It need not be complete or perfect."
+    },
+    {
+      "id": "pds-tree-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Every perfect binary tree is",
+      "options": [
+        "full and complete",
+        "only full, never complete",
+        "only complete, never full",
+        "a binary search tree"
+      ],
+      "answer": [
+        "full and complete"
+      ],
+      "explanation": "Every internal node in a perfect tree has two children and all levels are filled, so it is both full and complete."
+    },
+    {
+      "id": "pds-tree-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish full, complete, and perfect binary trees correctly?",
+      "options": [
+        "A full tree gives every node zero or two children",
+        "A complete tree fills each level left to right",
+        "A perfect tree has all leaves at the same depth and every internal node has two children",
+        "Every complete tree is perfect"
+      ],
+      "answer": [
+        "A full tree gives every node zero or two children",
+        "A complete tree fills each level left to right",
+        "A perfect tree has all leaves at the same depth and every internal node has two children"
+      ],
+      "explanation": "Full concerns child counts, complete concerns left-packed levels, and perfect satisfies both full branching and equal leaf depth. A complete tree may have a partially filled last level."
+    },
+    {
+      "id": "pds-tree-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST's inorder traversal is 2,5,8,11,14. What is the key at the root?",
+      "options": [
+        "Any one of 2,5,8,11,14 depending on shape",
+        "Always 8",
+        "Always 2",
+        "Always 14"
+      ],
+      "answer": [
+        "Any one of 2,5,8,11,14 depending on shape"
+      ],
+      "explanation": "Inorder order constrains the sorted sequence but not the shape or root; any listed key can be root in some BST with the others placed accordingly."
+    },
+    {
+      "id": "pds-tree-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST has keys 2,5,8,11,14 and root 8. How many keys lie in its left subtree?",
+      "answer": "2",
+      "explanation": "The keys smaller than root 8 are 2 and 5, so there are two keys in the left subtree."
+    },
+    {
+      "id": "pds-tree-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a BST, the inorder predecessor of a node with a nonempty left subtree is found by",
+      "options": [
+        "taking the rightmost node of the left subtree",
+        "taking the leftmost node of the right subtree",
+        "moving to the parent once",
+        "taking the root"
+      ],
+      "answer": [
+        "taking the rightmost node of the left subtree"
+      ],
+      "explanation": "The predecessor is the greatest key smaller than the node. If a left subtree exists, its maximum is the rightmost node."
+    },
+    {
+      "id": "pds-tree-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST search for key 42 visits keys 50, 25, 40, 45 and then finds the key absent. Which next comparison direction follows from visiting 45?",
+      "options": [
+        "Left",
+        "Right",
+        "Return to 50",
+        "Search both children"
+      ],
+      "answer": [
+        "Left"
+      ],
+      "explanation": "Since 42<45, the search next follows the left child of 45. If that link is null, the key is absent."
+    },
+    {
+      "id": "pds-tree-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST search visits 50, 25, 40, 45 while searching for 42. How many comparisons have been made when absence is determined at the null child of 45?",
+      "answer": "4",
+      "explanation": "The search compares the target with four stored keys: 50, 25, 40, and 45. Reaching the null child requires no key comparison."
+    },
+    {
+      "id": "pds-tree-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST is built from a uniformly random insertion order of distinct keys. Its expected height is typically",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(1)",
+        "Theta(n squared)"
+      ],
+      "answer": [
+        "Theta(log n)"
+      ],
+      "explanation": "Random insertion tends to produce logarithmic expected height, though worst-case insertion orders still produce a chain of linear height."
+    },
+    {
+      "id": "pds-tree-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An AVL tree is a BST that additionally maintains",
+      "options": [
+        "a height-balance condition at every node",
+        "complete shape at every size",
+        "all leaves at equal depth",
+        "heap order"
+      ],
+      "answer": [
+        "a height-balance condition at every node"
+      ],
+      "explanation": "AVL trees preserve BST ordering and require the heights of left and right child subtrees to differ by at most one at every node."
+    },
+    {
+      "id": "pds-tree-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An AVL node has left-subtree height 4 and right-subtree height 2. What is the absolute balance-factor magnitude?",
+      "answer": "2",
+      "explanation": "The absolute difference between the two subtree heights is |4-2|=2, exceeding the AVL limit of one."
+    },
+    {
+      "id": "pds-tree-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about AVL trees are true?",
+      "options": [
+        "They are binary search trees",
+        "Their height is O(log n)",
+        "A rotation can restore balance after insertion",
+        "Their worst-case search time is O(n)"
+      ],
+      "answer": [
+        "They are binary search trees",
+        "Their height is O(log n)",
+        "A rotation can restore balance after insertion"
+      ],
+      "explanation": "AVL balance guarantees logarithmic height, and rotations restore the invariant after updates. Search follows a path proportional to height, hence O(log n)."
+    },
+    {
+      "id": "pds-tree-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A rotation in a BST is designed to",
+      "options": [
+        "change local shape while preserving inorder key order",
+        "sort all keys from scratch",
+        "delete a leaf",
+        "convert the tree to a heap"
+      ],
+      "answer": [
+        "change local shape while preserving inorder key order"
+      ],
+      "explanation": "A rotation rearranges a small subtree and pointer links while preserving relative inorder ordering, so the BST property remains valid."
+    },
+    {
+      "id": "pds-tree-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A left rotation at node x promotes",
+      "options": [
+        "x's right child",
+        "x's left child",
+        "x's parent",
+        "the minimum key in the tree"
+      ],
+      "answer": [
+        "x's right child"
+      ],
+      "explanation": "In a left rotation, x's right child y becomes the local root, x becomes y's left child, and y's former left subtree becomes x's right subtree."
+    },
+    {
+      "id": "pds-tree-079",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary tree contains 6 internal nodes, each with exactly two children. How many leaves does it have?",
+      "answer": "7",
+      "explanation": "For a full binary tree, leaves equal internal nodes plus one; six internal nodes therefore imply seven leaves."
+    },
+    {
+      "id": "pds-tree-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree has 9 leaves and every internal node has exactly two children. What is the total number of nodes?",
+      "options": [
+        "17",
+        "16",
+        "18",
+        "9"
+      ],
+      "answer": [
+        "17"
+      ],
+      "explanation": "There are 8 internal nodes because leaves=internal+1. Total nodes are 9+8=17."
+    },
+    {
+      "id": "pds-tree-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a binary tree, the height of an empty tree is often defined as -1 when height counts edges. What is the height of a single-node tree under this convention?",
+      "options": [
+        "0",
+        "-1",
+        "1",
+        "2"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "The root has no edges to descendants, so its edge-height is zero. The empty-tree value -1 makes leaf height 0 under the usual recurrence."
+    },
+    {
+      "id": "pds-tree-082",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary tree has a root and two children, and no other nodes. What is its height in edges?",
+      "answer": "1",
+      "explanation": "The longest root-to-leaf path contains one edge, so the tree height is one."
+    },
+    {
+      "id": "pds-tree-083",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree with n nodes is represented by pointers. Which traversal necessarily visits all n nodes exactly once?",
+      "options": [
+        "Any standard tree traversal",
+        "Only preorder",
+        "Only inorder",
+        "Only postorder"
+      ],
+      "answer": [
+        "Any standard tree traversal"
+      ],
+      "explanation": "Preorder, inorder, postorder, and level order each visit every reachable node once when correctly implemented."
+    },
+    {
+      "id": "pds-tree-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties are guaranteed for a binary search tree with distinct keys?",
+      "options": [
+        "Inorder traversal is increasing",
+        "All keys in a node's left subtree are smaller than that node",
+        "All keys in a node's right subtree are larger than that node",
+        "The tree is height-balanced"
+      ],
+      "answer": [
+        "Inorder traversal is increasing",
+        "All keys in a node's left subtree are smaller than that node",
+        "All keys in a node's right subtree are larger than that node"
+      ],
+      "explanation": "The BST ordering invariant makes inorder increasing and constrains every key in each node's entire left and right subtrees. Height balance is not guaranteed."
+    },
+    {
+      "id": "pds-tree-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST has root 20, left subtree keys 5 and 15, and right subtree keys 25 and 30. Which is its inorder traversal?",
+      "options": [
+        "5,15,20,25,30",
+        "20,5,15,25,30",
+        "5,20,15,25,30",
+        "30,25,20,15,5"
+      ],
+      "answer": [
+        "5,15,20,25,30"
+      ],
+      "explanation": "Inorder visits all left-subtree keys in sorted order, then root 20, then sorted right-subtree keys."
+    },
+    {
+      "id": "pds-tree-086",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST has 12 nodes and height 11. What is the maximum number of nodes visited in an unsuccessful search that follows the longest path to a null child?",
+      "answer": "12",
+      "explanation": "The search can compare against every node on a longest root-to-leaf chain. With 12 nodes in a chain, it makes 12 key comparisons before reaching null."
+    },
+    {
+      "id": "pds-tree-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If a BST is perfectly balanced and contains n nodes, its height is",
+      "options": [
+        "Theta(log n)",
+        "Theta(n)",
+        "Theta(sqrt n)",
+        "Theta(1)"
+      ],
+      "answer": [
+        "Theta(log n)"
+      ],
+      "explanation": "A balanced binary tree has exponentially many possible nodes as height grows, so height is logarithmic in n."
+    },
+    {
+      "id": "pds-tree-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST node has no left child and has a right child. Its inorder successor is",
+      "options": [
+        "the minimum node in its right subtree",
+        "its left child",
+        "always its parent",
+        "the maximum node in the tree"
+      ],
+      "answer": [
+        "the minimum node in its right subtree"
+      ],
+      "explanation": "With a right subtree, the successor is its minimum, reached by following left links from the right child."
+    },
+    {
+      "id": "pds-tree-089",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST contains 18 keys. How many nodes are visited by a complete inorder traversal?",
+      "answer": "18",
+      "explanation": "An inorder traversal visits each node exactly once, so it visits all 18 nodes."
+    },
+    {
+      "id": "pds-tree-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree's postorder traversal visits the root",
+      "options": [
+        "after both subtrees",
+        "before the left subtree",
+        "between the left and right subtrees",
+        "only if it is a leaf"
+      ],
+      "answer": [
+        "after both subtrees"
+      ],
+      "explanation": "Postorder recursively visits left and right subtrees before processing their parent root."
+    },
+    {
+      "id": "pds-tree-091",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which traversal pairs can uniquely identify a binary tree with distinct labels?",
+      "options": [
+        "Inorder plus preorder",
+        "Inorder plus postorder",
+        "Inorder plus level order",
+        "Preorder plus postorder for every arbitrary binary tree"
+      ],
+      "answer": [
+        "Inorder plus preorder",
+        "Inorder plus postorder",
+        "Inorder plus level order"
+      ],
+      "explanation": "Inorder with preorder, postorder, or level order uniquely partitions distinct labels into subtrees recursively. Preorder and postorder alone are ambiguous for arbitrary trees."
+    },
+    {
+      "id": "pds-tree-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For reconstructing a binary tree from inorder and postorder, which traversal element identifies the root of the current subtree?",
+      "options": [
+        "The last element of its postorder segment",
+        "The first element of its inorder segment",
+        "The first element of its postorder segment",
+        "The median of its inorder segment"
+      ],
+      "answer": [
+        "The last element of its postorder segment"
+      ],
+      "explanation": "Postorder processes left subtree, right subtree, then root; therefore the last element in a subtree's postorder segment is its root."
+    },
+    {
+      "id": "pds-tree-093",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary tree has 5 nodes and each node has two child-pointer fields. How many null child pointers are there?",
+      "answer": "6",
+      "explanation": "There are 10 total child-pointer fields and 4 actual edges, leaving 10-4=6 null pointers; equivalently n+1."
+    },
+    {
+      "id": "pds-tree-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A BST insertion of a new key follows one root-to-null path. Its running time is proportional to",
+      "options": [
+        "the tree height",
+        "the number of leaves only",
+        "the square of the number of nodes",
+        "the inorder rank only"
+      ],
+      "answer": [
+        "the tree height"
+      ],
+      "explanation": "At each node the comparison selects one child, so insertion visits nodes along a single path whose length is bounded by tree height."
+    },
+    {
+      "id": "pds-tree-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operation on an ordinary BST can be done in O(h) time, where h is its height?",
+      "options": [
+        "Find the successor of a known node",
+        "Sort an unrelated array",
+        "Access the node at index k in O(1)",
+        "Return all keys in O(1)"
+      ],
+      "answer": [
+        "Find the successor of a known node"
+      ],
+      "explanation": "Successor search follows either a leftmost path in the right subtree or ancestor links, requiring at most a path proportional to height."
+    },
+    {
+      "id": "pds-tree-096",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A BST has 7 nodes. Its root has a left child and a right child; the left child has two children; the right child has one child. What is the number of leaves?",
+      "answer": "3",
+      "explanation": "The two children of the left child are leaves, and the right child's one child is a leaf. There are three leaves."
+    },
+    {
+      "id": "pds-tree-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary tree has exactly one node at every depth from 0 through h. What is its shape and node count?",
+      "options": [
+        "A chain with h+1 nodes",
+        "A perfect tree with 2^(h+1)-1 nodes",
+        "A complete tree with 2^h nodes",
+        "A full tree with 2h nodes"
+      ],
+      "answer": [
+        "A chain with h+1 nodes"
+      ],
+      "explanation": "One node per depth forms a single root-to-leaf chain. Depths 0 through h contain h+1 nodes."
+    },
+    {
+      "id": "pds-tree-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A tree with n nodes has height h measured in edges. Which bounds always hold for a nonempty tree?",
+      "options": [
+        "h+1<=n and n<=2^(h+1)-1 for a binary tree",
+        "n<=h and h<=2n",
+        "h=n and n=2^h",
+        "n<=2h for every tree"
+      ],
+      "answer": [
+        "h+1<=n and n<=2^(h+1)-1 for a binary tree"
+      ],
+      "explanation": "A longest path of h edges contains h+1 distinct nodes. A binary tree of height h has at most 1+2+...+2^h=2^(h+1)-1 nodes."
+    },
+    {
+      "id": "pds-tree-099",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary tree has height 2. What is the maximum possible number of nodes?",
+      "answer": "7",
+      "explanation": "There can be at most 1+2+4=7 nodes across depths 0, 1, and 2."
+    },
+    {
+      "id": "pds-tree-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The root of a BST is deleted when it has two children. After replacement with the successor, which property must still hold?",
+      "options": [
+        "All remaining left keys are smaller and all right keys are larger than the root key",
+        "The root must have no children",
+        "The tree must become complete",
+        "The inorder sequence must reverse"
+      ],
+      "answer": [
+        "All remaining left keys are smaller and all right keys are larger than the root key"
+      ],
+      "explanation": "The successor is the smallest key in the original right subtree; replacing the root with it and removing its old node preserves strict BST ordering."
+    }
+  ]
+}

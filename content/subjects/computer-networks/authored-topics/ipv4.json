@@ -1,0 +1,1362 @@
+{
+  "topicIndex": 4,
+  "questions": [
+    {
+      "id": "cn-ipv4-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An IPv4 address contains how many bits?",
+      "options": [
+        "32",
+        "16",
+        "48",
+        "128"
+      ],
+      "answer": [
+        "32"
+      ],
+      "explanation": "IPv4 addresses are 32-bit values, conventionally written as four decimal octets."
+    },
+    {
+      "id": "cn-ipv4-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many bits are in the host portion of a /27 IPv4 prefix?",
+      "answer": "5",
+      "explanation": "A /27 uses 27 network bits, leaving 32-27=5 host bits."
+    },
+    {
+      "id": "cn-ipv4-003",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The subnet mask corresponding to /26 is",
+      "options": [
+        "255.255.255.192",
+        "255.255.255.128",
+        "255.255.255.224",
+        "255.255.255.0"
+      ],
+      "answer": [
+        "255.255.255.192"
+      ],
+      "explanation": "A /26 mask has 26 leading one bits: 24 bits fill the first three octets and two bits in the fourth produce 192."
+    },
+    {
+      "id": "cn-ipv4-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "How many total IPv4 addresses are in a /28 subnet?",
+      "options": [
+        "16",
+        "32",
+        "14",
+        "8"
+      ],
+      "answer": [
+        "16"
+      ],
+      "explanation": "A /28 leaves four host bits, giving 2^4=16 total addresses including network and broadcast addresses."
+    },
+    {
+      "id": "cn-ipv4-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A /29 subnet has 8 total addresses. Under conventional subnetting, how many are assignable to hosts?",
+      "answer": "6",
+      "explanation": "Two addresses are reserved for the network identifier and directed broadcast, leaving 8-2=6 host addresses."
+    },
+    {
+      "id": "cn-ipv4-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For subnet 192.168.1.64/26, what is its directed broadcast address?",
+      "options": [
+        "192.168.1.127",
+        "192.168.1.64",
+        "192.168.1.126",
+        "192.168.1.255"
+      ],
+      "answer": [
+        "192.168.1.127"
+      ],
+      "explanation": "A /26 block has 64 addresses. The block beginning at .64 ends at .127, which is its broadcast address."
+    },
+    {
+      "id": "cn-ipv4-007",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For subnet 10.0.0.0/20, what is the third octet of the last address in the subnet?",
+      "answer": "15",
+      "explanation": "A /20 mask spans one full second octet and four bits of the third; the block covers third-octet values 0 through 15."
+    },
+    {
+      "id": "cn-ipv4-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which address is the network address for host 172.16.35.91/20?",
+      "options": [
+        "172.16.32.0",
+        "172.16.0.0",
+        "172.16.35.0",
+        "172.16.47.255"
+      ],
+      "answer": [
+        "172.16.32.0"
+      ],
+      "explanation": "A /20 has a block size of 16 in the third octet. Value 35 lies in the 32-47 block, so the network is 172.16.32.0."
+    },
+    {
+      "id": "cn-ipv4-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A host has address 192.0.2.130/25. What is the broadcast address of its subnet?",
+      "options": [
+        "192.0.2.255",
+        "192.0.2.127",
+        "192.0.2.128",
+        "192.0.2.254"
+      ],
+      "answer": [
+        "192.0.2.255"
+      ],
+      "explanation": "A /25 divides the last octet into blocks 0-127 and 128-255. Address .130 belongs to the latter, whose broadcast is .255."
+    },
+    {
+      "id": "cn-ipv4-010",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many usable host addresses are in a conventional /24 IPv4 subnet?",
+      "answer": "254",
+      "explanation": "A /24 has 2^8=256 total addresses; network and broadcast are reserved, leaving 254."
+    },
+    {
+      "id": "cn-ipv4-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which prefix length provides at least 50 usable host addresses in a conventional subnet while using the fewest total addresses?",
+      "options": [
+        "/26",
+        "/27",
+        "/28",
+        "/25"
+      ],
+      "answer": [
+        "/26"
+      ],
+      "explanation": "A /27 has 32 total and 30 usable, insufficient. A /26 has 64 total and 62 usable, the smallest block meeting 50."
+    },
+    {
+      "id": "cn-ipv4-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An organization needs 1000 usable host addresses in one conventional IPv4 subnet. What is the shortest required prefix length?",
+      "answer": [
+        "/22"
+      ],
+      "explanation": "A /22 leaves 10 host bits, giving 1024 total and 1022 usable addresses. A /23 provides only 510 usable, so /22 is the shortest prefix meeting the requirement.",
+      "options": [
+        "/22",
+        "/23",
+        "/21",
+        "/24"
+      ]
+    },
+    {
+      "id": "cn-ipv4-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which IPv4 address block is reserved for private networks?",
+      "options": [
+        "10.0.0.0/8",
+        "11.0.0.0/8",
+        "100.0.0.0/8",
+        "192.0.0.0/8"
+      ],
+      "answer": [
+        "10.0.0.0/8"
+      ],
+      "explanation": "10.0.0.0/8 is one of the three RFC 1918 private IPv4 ranges; the other blocks are 172.16.0.0/12 and 192.168.0.0/16."
+    },
+    {
+      "id": "cn-ipv4-014",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are RFC 1918 private IPv4 address ranges?",
+      "options": [
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "169.254.0.0/16"
+      ],
+      "answer": [
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16"
+      ],
+      "explanation": "RFC 1918 defines 10/8, 172.16/12, and 192.168/16 as private-use ranges. 169.254/16 is link-local, not an RFC 1918 private range."
+    },
+    {
+      "id": "cn-ipv4-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The IPv4 address 127.0.0.1 is conventionally used for",
+      "options": [
+        "loopback",
+        "broadcast to the local subnet",
+        "link-local configuration",
+        "multicast"
+      ],
+      "answer": [
+        "loopback"
+      ],
+      "explanation": "The 127.0.0.0/8 block is reserved for loopback testing within the local host; 127.0.0.1 is the common loopback address."
+    },
+    {
+      "id": "cn-ipv4-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An IPv4 packet's TTL field is decremented by",
+      "options": [
+        "each router that forwards it",
+        "the sender once only",
+        "each switch at layer 2",
+        "the destination host only"
+      ],
+      "answer": [
+        "each router that forwards it"
+      ],
+      "explanation": "Routers decrement TTL when forwarding. If it reaches zero, the packet is discarded, preventing indefinite routing loops."
+    },
+    {
+      "id": "cn-ipv4-017",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An IPv4 packet starts with TTL 64 and passes through 7 routers. What TTL remains after forwarding?",
+      "answer": "57",
+      "explanation": "Each router decrements the TTL by one, so 64-7=57 remains after seven forwarding events."
+    },
+    {
+      "id": "cn-ipv4-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the purpose of the IPv4 header checksum?",
+      "options": [
+        "Detect errors in the IPv4 header",
+        "Detect errors in the payload end-to-end",
+        "Provide packet authentication",
+        "Compute the TCP checksum"
+      ],
+      "answer": [
+        "Detect errors in the IPv4 header"
+      ],
+      "explanation": "The IPv4 checksum covers only the IPv4 header and is recomputed when fields such as TTL change. Transport checksums cover transport data and pseudo-header fields."
+    },
+    {
+      "id": "cn-ipv4-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router fragments an IPv4 datagram when",
+      "options": [
+        "the outgoing link MTU is smaller than the datagram and fragmentation is permitted",
+        "the destination is on the same subnet",
+        "TTL is greater than 1",
+        "the header checksum is zero"
+      ],
+      "answer": [
+        "the outgoing link MTU is smaller than the datagram and fragmentation is permitted"
+      ],
+      "explanation": "If a packet exceeds the next-link MTU, IPv4 fragmentation may split it unless the DF flag prohibits fragmentation."
+    },
+    {
+      "id": "cn-ipv4-020",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An IPv4 datagram of total length 4000 bytes has a 20-byte header and crosses an MTU of 1500 bytes. What is the largest fragment payload size, assuming no options?",
+      "answer": "1480",
+      "explanation": "A fragment's total size cannot exceed 1500. Subtracting the 20-byte header allows a maximum payload of 1480 bytes, already a multiple of eight."
+    },
+    {
+      "id": "cn-ipv4-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An IPv4 header has IHL=6. How many bytes are in the header?",
+      "options": [
+        "24",
+        "6",
+        "20",
+        "60"
+      ],
+      "answer": [
+        "24"
+      ],
+      "explanation": "IHL is measured in 32-bit words. Six words contain 6*4=24 bytes, including options beyond the minimum 20-byte header."
+    },
+    {
+      "id": "cn-ipv4-022",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An IPv4 header has IHL=7. How many bytes of options and padding does it contain?",
+      "answer": "8",
+      "explanation": "The header length is 7*4=28 bytes. The fixed header is 20 bytes, leaving 8 bytes for options and padding."
+    },
+    {
+      "id": "cn-ipv4-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The IPv4 Total Length field specifies",
+      "options": [
+        "the total datagram size including header and payload",
+        "payload size only",
+        "header size only",
+        "the MTU of the outgoing link"
+      ],
+      "answer": [
+        "the total datagram size including header and payload"
+      ],
+      "explanation": "Total Length counts all bytes of the IPv4 datagram, including the IPv4 header and payload."
+    },
+    {
+      "id": "cn-ipv4-024",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An IPv4 datagram has Total Length 1500 and IHL 5. How many payload bytes does it contain?",
+      "answer": "1480",
+      "explanation": "IHL 5 gives a 20-byte header. Payload length is 1500-20=1480 bytes."
+    },
+    {
+      "id": "cn-ipv4-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In IPv4 fragmentation, the fragment offset is measured in units of",
+      "options": [
+        "8 bytes",
+        "1 byte",
+        "4 bytes",
+        "16 bytes"
+      ],
+      "answer": [
+        "8 bytes"
+      ],
+      "explanation": "The 13-bit fragment offset encodes the position of fragment data in 8-byte units, allowing the field to cover a large datagram."
+    },
+    {
+      "id": "cn-ipv4-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A non-final IPv4 fragment carries 1472 bytes of payload. Is its payload aligned to the required 8-byte boundary?",
+      "options": [
+        "Yes, 1472 is divisible by 8",
+        "No, every fragment must carry 1500 bytes",
+        "No, offsets are in 16-byte units",
+        "Alignment applies only to the first fragment"
+      ],
+      "answer": [
+        "Yes, 1472 is divisible by 8"
+      ],
+      "explanation": "All non-final fragment payload lengths must be multiples of eight. 1472/8=184, so it is aligned."
+    },
+    {
+      "id": "cn-ipv4-027",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A fragment has offset field value 125. At what byte position does its payload begin in the original datagram?",
+      "answer": "1000",
+      "explanation": "Fragment offset units are eight bytes, so the payload begins at 125*8=1000 bytes."
+    },
+    {
+      "id": "cn-ipv4-028",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which IPv4 flags relate directly to fragmentation?",
+      "options": [
+        "DF (Don't Fragment)",
+        "MF (More Fragments)",
+        "Reserved flag",
+        "ECN"
+      ],
+      "answer": [
+        "DF (Don't Fragment)",
+        "MF (More Fragments)"
+      ],
+      "explanation": "DF prohibits fragmentation; MF indicates that more fragments follow. ECN is a separate congestion-notification field, and the reserved flag is not a fragmentation control."
+    },
+    {
+      "id": "cn-ipv4-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If the DF bit is set and a packet exceeds the outgoing link MTU, a router typically",
+      "options": [
+        "drops it and may send ICMP Destination Unreachable, Fragmentation Needed",
+        "fragments it regardless",
+        "forwards it unchanged on the smaller link",
+        "sets MF and splits the payload"
+      ],
+      "answer": [
+        "drops it and may send ICMP Destination Unreachable, Fragmentation Needed"
+      ],
+      "explanation": "DF prohibits fragmentation. The router drops the oversized packet and can notify the source with the appropriate ICMP message."
+    },
+    {
+      "id": "cn-ipv4-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "IPv4 routers normally fragment a datagram",
+      "options": [
+        "only when necessary for an outgoing MTU and DF is clear",
+        "at every hop",
+        "only when TTL is one",
+        "whenever a packet is addressed to a broadcast"
+      ],
+      "answer": [
+        "only when necessary for an outgoing MTU and DF is clear"
+      ],
+      "explanation": "Fragmentation is performed when a datagram exceeds a link MTU and is allowed by DF; otherwise it is forwarded intact or dropped."
+    },
+    {
+      "id": "cn-ipv4-031",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 4000-byte IPv4 datagram with a 20-byte header is fragmented for MTU 1500. If the first fragment carries 1480 payload bytes, what is the offset field of the second fragment?",
+      "answer": "185",
+      "explanation": "The second fragment starts after 1480 payload bytes. Its offset is 1480/8=185 units."
+    },
+    {
+      "id": "cn-ipv4-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "IPv4 fragment reassembly is performed by",
+      "options": [
+        "the destination host",
+        "every router along the path",
+        "the sender before transmission",
+        "the first switch"
+      ],
+      "answer": [
+        "the destination host"
+      ],
+      "explanation": "Routers may fragment, but fragments are normally reassembled by the destination host, reducing the work routers must repeat at each hop."
+    },
+    {
+      "id": "cn-ipv4-033",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which IPv4 header fields can differ among fragments of the same original datagram?",
+      "options": [
+        "Total Length",
+        "Fragment Offset",
+        "MF flag",
+        "Identification"
+      ],
+      "answer": [
+        "Total Length",
+        "Fragment Offset",
+        "MF flag"
+      ],
+      "explanation": "Total length, offset, and MF vary per fragment. The Identification value is copied across fragments so the destination can group them."
+    },
+    {
+      "id": "cn-ipv4-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The IPv4 Identification field is used primarily to",
+      "options": [
+        "associate fragments belonging to the same original datagram",
+        "identify the destination application",
+        "specify the route",
+        "carry the source port"
+      ],
+      "answer": [
+        "associate fragments belonging to the same original datagram"
+      ],
+      "explanation": "Fragments of one datagram share an identification value, allowing the destination to group them for reassembly."
+    },
+    {
+      "id": "cn-ipv4-035",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A router decrements TTL from 2 to 1 while forwarding an IPv4 packet. Is the packet discarded at that router? Use 1 for yes and 0 for no.",
+      "answer": "0",
+      "explanation": "The router decrements TTL to one, which remains positive, so it may forward the packet. It is discarded when TTL reaches zero."
+    },
+    {
+      "id": "cn-ipv4-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When IPv4 TTL expires, a router commonly sends which message to the source?",
+      "options": [
+        "ICMP Time Exceeded",
+        "TCP RST",
+        "ARP Reply",
+        "ICMP Echo Reply"
+      ],
+      "answer": [
+        "ICMP Time Exceeded"
+      ],
+      "explanation": "A router that discards a packet because TTL reached zero commonly returns an ICMP Time Exceeded message."
+    },
+    {
+      "id": "cn-ipv4-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The IPv4 Protocol field identifies",
+      "options": [
+        "the next-layer payload protocol",
+        "the source network prefix",
+        "the router's outgoing interface",
+        "the packet's time-to-live"
+      ],
+      "answer": [
+        "the next-layer payload protocol"
+      ],
+      "explanation": "The Protocol field identifies the encapsulated payload, such as TCP or UDP, so the destination IP layer can demultiplex it."
+    },
+    {
+      "id": "cn-ipv4-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What is the decimal value of the IPv4 Protocol field for TCP?",
+      "answer": "6",
+      "explanation": "The assigned IPv4 Protocol number for TCP is 6."
+    },
+    {
+      "id": "cn-ipv4-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The IPv4 Protocol field value for UDP is",
+      "options": [
+        "17",
+        "6",
+        "1",
+        "58"
+      ],
+      "answer": [
+        "17"
+      ],
+      "explanation": "UDP is assigned IP protocol number 17; TCP uses 6 and ICMP uses 1 in IPv4."
+    },
+    {
+      "id": "cn-ipv4-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "IPv4 provides a best-effort service, meaning it",
+      "options": [
+        "does not guarantee delivery, order, or duplicate suppression",
+        "guarantees every packet reaches destination",
+        "retransmits lost packets itself",
+        "reserves bandwidth for each flow"
+      ],
+      "answer": [
+        "does not guarantee delivery, order, or duplicate suppression"
+      ],
+      "explanation": "IP forwards datagrams without guaranteeing delivery, ordering, or retransmission. Reliable delivery is handled by higher-layer protocols when needed."
+    },
+    {
+      "id": "cn-ipv4-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A /30 subnet is commonly useful for a point-to-point IPv4 link because it provides",
+      "options": [
+        "2 usable host addresses",
+        "4 usable host addresses",
+        "6 usable host addresses",
+        "30 usable host addresses"
+      ],
+      "answer": [
+        "2 usable host addresses"
+      ],
+      "explanation": "A /30 contains four addresses: network, two host addresses, and broadcast. The two usable addresses fit a point-to-point link."
+    },
+    {
+      "id": "cn-ipv4-042",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A /30 subnet contains how many total IPv4 addresses?",
+      "answer": "4",
+      "explanation": "It leaves two host bits, giving 2^2=4 total addresses."
+    },
+    {
+      "id": "cn-ipv4-043",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A /31 prefix on a point-to-point link can use both addresses for endpoints under modern standards. How many endpoint addresses are available?",
+      "options": [
+        "2",
+        "0",
+        "1",
+        "30"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "For point-to-point links, /31 treats both addresses as host endpoints, avoiding network and broadcast reservation for that link type."
+    },
+    {
+      "id": "cn-ipv4-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which prefix is the longest among /16, /20, /24, and /28?",
+      "options": [
+        "/28",
+        "/16",
+        "/20",
+        "/24"
+      ],
+      "answer": [
+        "/28"
+      ],
+      "explanation": "A larger prefix length means more network bits and a smaller address block; /28 is the longest prefix among these choices."
+    },
+    {
+      "id": "cn-ipv4-045",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many addresses are contained in a /23 IPv4 block?",
+      "answer": "512",
+      "explanation": "There are 32-23=9 host bits, so the block contains 2^9=512 addresses."
+    },
+    {
+      "id": "cn-ipv4-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A host at 192.168.10.77/27 belongs to which network?",
+      "options": [
+        "192.168.10.64",
+        "192.168.10.32",
+        "192.168.10.0",
+        "192.168.10.96"
+      ],
+      "answer": [
+        "192.168.10.64"
+      ],
+      "explanation": "A /27 has blocks of 32 in the last octet. Address 77 lies in the block 64 through 95, whose network is .64."
+    },
+    {
+      "id": "cn-ipv4-047",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For 192.168.10.77/27, what is the last address in the subnet?",
+      "answer": "95",
+      "explanation": "The block starts at .64 and contains 32 addresses, ending at .95, the directed broadcast address."
+    },
+    {
+      "id": "cn-ipv4-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which host address is valid in subnet 192.168.4.128/26?",
+      "options": [
+        "192.168.4.190",
+        "192.168.4.128",
+        "192.168.4.191",
+        "192.168.4.192"
+      ],
+      "answer": [
+        "192.168.4.190"
+      ],
+      "explanation": "The subnet range is .128-.191; .128 is network, .191 is broadcast, and .192 is in the next subnet. .190 is a valid host."
+    },
+    {
+      "id": "cn-ipv4-049",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A /26 subnet has 64 addresses. What is the third usable host address when the network address ends in .64?",
+      "answer": "67",
+      "explanation": "Usable addresses begin at .65, so the third is .67."
+    },
+    {
+      "id": "cn-ipv4-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For 192.168.5.0/23, what is the broadcast address?",
+      "options": [
+        "192.168.5.255",
+        "192.168.4.255",
+        "192.168.5.0",
+        "192.168.6.0"
+      ],
+      "answer": [
+        "192.168.5.255"
+      ],
+      "explanation": "A /23 block spans two consecutive third-octet values. Address 192.168.5.0/23 belongs to network 192.168.4.0 and broadcast 192.168.5.255."
+    },
+    {
+      "id": "cn-ipv4-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a network prefix /p, the number of host bits in IPv4 is",
+      "options": [
+        "32-p",
+        "p-32",
+        "32+p",
+        "p"
+      ],
+      "answer": [
+        "32-p"
+      ],
+      "explanation": "An IPv4 address has 32 bits total. The prefix uses p network bits, leaving 32-p host bits."
+    },
+    {
+      "id": "cn-ipv4-052",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A /18 prefix leaves how many host bits?",
+      "answer": "14",
+      "explanation": "There are 32 total bits; 32-18=14 bits remain for host numbering."
+    },
+    {
+      "id": "cn-ipv4-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A subnet mask has binary last octet 11110000. How many host bits are in that octet?",
+      "options": [
+        "4",
+        "0",
+        "8",
+        "3"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "The four leading ones belong to the network prefix, while the four trailing zeros are host bits."
+    },
+    {
+      "id": "cn-ipv4-054",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are valid dotted-decimal subnet masks?",
+      "options": [
+        "255.255.255.0",
+        "255.255.255.192",
+        "255.255.255.250",
+        "255.255.254.0"
+      ],
+      "answer": [
+        "255.255.255.0",
+        "255.255.255.192",
+        "255.255.254.0"
+      ],
+      "explanation": "A valid mask has contiguous one bits followed by contiguous zero bits. .0, .192, and .254 in the third octet satisfy this; .250 (11111010) has a one after a zero."
+    },
+    {
+      "id": "cn-ipv4-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The subnet mask 255.255.255.240 corresponds to prefix",
+      "options": [
+        "/28",
+        "/27",
+        "/29",
+        "/24"
+      ],
+      "answer": [
+        "/28"
+      ],
+      "explanation": "The first three octets provide 24 one bits and 240 is 11110000, adding four more, for /28."
+    },
+    {
+      "id": "cn-ipv4-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many usable host addresses are in a /27 subnet under conventional network/broadcast reservation?",
+      "answer": "30",
+      "explanation": "A /27 has five host bits, hence 32 total addresses; subtract network and broadcast for 30 usable."
+    },
+    {
+      "id": "cn-ipv4-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router forwards a packet from one IPv4 subnet to another. Which field must it change at each forwarding hop?",
+      "options": [
+        "TTL",
+        "Source port",
+        "Destination MAC end-to-end",
+        "TCP sequence number"
+      ],
+      "answer": [
+        "TTL"
+      ],
+      "explanation": "Each router decrements IPv4 TTL to limit packet lifetime. Link-layer addresses are rewritten per hop, while transport ports and sequence numbers are not router-decremented."
+    },
+    {
+      "id": "cn-ipv4-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When a router forwards an IPv4 packet, it must update the header checksum because",
+      "options": [
+        "TTL changes",
+        "the payload is encrypted",
+        "the destination IP always changes",
+        "the protocol field is removed"
+      ],
+      "answer": [
+        "TTL changes"
+      ],
+      "explanation": "The IPv4 header checksum covers the header, including TTL. Decrementing TTL changes a covered field, so the checksum must be recomputed or updated."
+    },
+    {
+      "id": "cn-ipv4-059",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "If an IPv4 packet's header checksum is recomputed after changing TTL, how many 16-bit words are in a minimum 20-byte header?",
+      "answer": "10",
+      "explanation": "A 20-byte header contains 20/2=10 sixteen-bit words."
+    },
+    {
+      "id": "cn-ipv4-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The IPv4 source address in a packet normally identifies",
+      "options": [
+        "the sending host's network-layer address",
+        "the destination application process",
+        "the outgoing link MTU",
+        "the packet's transport protocol"
+      ],
+      "answer": [
+        "the sending host's network-layer address"
+      ],
+      "explanation": "The source IPv4 field carries the sender's network-layer address, subject to mechanisms such as NAT that may rewrite it in transit."
+    },
+    {
+      "id": "cn-ipv4-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A subnetting problem asks for at least 6 subnets from a /24. What is the minimum number of bits to borrow from host space?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "6"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Borrowing b bits creates 2^b subnets. Two bits create only four; three create eight, meeting the requirement."
+    },
+    {
+      "id": "cn-ipv4-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "If 3 bits are borrowed from a /24 prefix, what is the new prefix length?",
+      "answer": "27",
+      "explanation": "Adding three borrowed network bits changes /24 to /27."
+    },
+    {
+      "id": "cn-ipv4-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A /24 is divided into /27 subnets. How many equal-sized subnets are created?",
+      "options": [
+        "8",
+        "4",
+        "16",
+        "32"
+      ],
+      "answer": [
+        "8"
+      ],
+      "explanation": "The prefix grows by three bits, so the address space is divided into 2^3=8 equal blocks."
+    },
+    {
+      "id": "cn-ipv4-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Each /27 subnet carved from a /24 contains how many total addresses?",
+      "answer": "32",
+      "explanation": "A /27 leaves five host bits, so each block contains 2^5=32 addresses."
+    },
+    {
+      "id": "cn-ipv4-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A /24 must be subnetted to support at least 20 hosts per subnet. What is the longest suitable subnet prefix?",
+      "options": [
+        "/27",
+        "/28",
+        "/29",
+        "/26"
+      ],
+      "answer": [
+        "/27"
+      ],
+      "explanation": "A /27 provides 30 conventional usable host addresses. A /28 provides only 14, so /27 is the longest prefix meeting 20 hosts."
+    },
+    {
+      "id": "cn-ipv4-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A company needs 4 subnets with at least 50 hosts each from a /24. Which fixed-length prefix meets both needs?",
+      "options": [
+        "/26",
+        "/27",
+        "/28",
+        "/25"
+      ],
+      "answer": [
+        "/26"
+      ],
+      "explanation": "A /26 creates four subnets from the /24 and provides 62 usable addresses per subnet, meeting both needs."
+    },
+    {
+      "id": "cn-ipv4-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many usable hosts are in each /26 subnet under conventional rules?",
+      "answer": "62",
+      "explanation": "A /26 has six host bits for 64 total addresses; subtract network and broadcast to obtain 62 usable hosts."
+    },
+    {
+      "id": "cn-ipv4-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Variable-length subnet masking (VLSM) allows",
+      "options": [
+        "subnets of different sizes to be allocated from a larger block",
+        "only equal-sized subnet division",
+        "host bits to be omitted from addresses",
+        "routing without prefix lengths"
+      ],
+      "answer": [
+        "subnets of different sizes to be allocated from a larger block"
+      ],
+      "explanation": "VLSM assigns different prefix lengths to subnets according to their host requirements, improving address utilization."
+    },
+    {
+      "id": "cn-ipv4-069",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When allocating VLSM subnets from a block, which practices help avoid overlap and waste?",
+      "options": [
+        "Allocate larger required subnets first",
+        "Align each subnet start to its block size",
+        "Check that each allocated range is disjoint",
+        "Assign every subnet the same mask regardless of host need"
+      ],
+      "answer": [
+        "Allocate larger required subnets first",
+        "Align each subnet start to its block size",
+        "Check that each allocated range is disjoint"
+      ],
+      "explanation": "Largest-first allocation makes placement easier; correct alignment and disjoint ranges prevent overlap. VLSM specifically permits different masks."
+    },
+    {
+      "id": "cn-ipv4-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A /24 is divided to provide one subnet for 100 hosts and another for 50 hosts. Which allocation is feasible?",
+      "options": [
+        "/25 for 100 hosts and /26 for 50 hosts",
+        "/26 for 100 hosts and /27 for 50 hosts",
+        "/27 for 100 hosts and /28 for 50 hosts",
+        "/25 for both, because their total is 150"
+      ],
+      "answer": [
+        "/25 for 100 hosts and /26 for 50 hosts"
+      ],
+      "explanation": "A /25 provides 126 usable addresses and a /26 provides 62. The two blocks use 128+64=192 addresses and can fit in a /24 when properly aligned."
+    },
+    {
+      "id": "cn-ipv4-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A /25 block starts at 192.0.2.0. What is its broadcast address in the last octet?",
+      "answer": "127",
+      "explanation": "A /25 block has 128 addresses, from .0 through .127; .127 is the broadcast address."
+    },
+    {
+      "id": "cn-ipv4-072",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In CIDR, route aggregation reduces routing-table size by",
+      "options": [
+        "advertising one encompassing prefix for contiguous networks",
+        "splitting one prefix into many smaller routes",
+        "removing the network portion of every address",
+        "broadcasting routes to every host"
+      ],
+      "answer": [
+        "advertising one encompassing prefix for contiguous networks"
+      ],
+      "explanation": "Several contiguous aligned networks can be summarized by a shorter common prefix, reducing the number of route entries advertised."
+    },
+    {
+      "id": "cn-ipv4-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Four contiguous /24 networks can be summarized as what prefix length if they are properly aligned?",
+      "answer": "22",
+      "explanation": "Combining four aligned /24 blocks aggregates two network bits, producing a /22 route."
+    },
+    {
+      "id": "cn-ipv4-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The CIDR block 192.168.8.0/21 includes which third-octet range?",
+      "options": [
+        "8 through 15",
+        "0 through 7",
+        "8 through 23",
+        "16 through 23"
+      ],
+      "answer": [
+        "8 through 15"
+      ],
+      "explanation": "A /21 leaves three bits in the third octet, giving block size eight. Starting at 8, the range is 8-15."
+    },
+    {
+      "id": "cn-ipv4-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Longest-prefix matching selects the route with",
+      "options": [
+        "the greatest number of matching leading prefix bits",
+        "the fewest matching bits",
+        "the smallest numeric gateway address",
+        "the shortest path in hops regardless of prefix"
+      ],
+      "answer": [
+        "the greatest number of matching leading prefix bits"
+      ],
+      "explanation": "When multiple routes match a destination, routers choose the most specific route, which has the longest matching prefix."
+    },
+    {
+      "id": "cn-ipv4-076",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A routing table has matching routes /16, /20, and /24 for a destination. What is the selected prefix length under longest-prefix matching?",
+      "answer": "24",
+      "explanation": "The /24 route is the most specific matching route because it has the greatest number of leading network bits."
+    },
+    {
+      "id": "cn-ipv4-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If a destination matches both a /16 route and a /24 route, longest-prefix matching chooses",
+      "options": [
+        "the /24 route",
+        "the /16 route",
+        "whichever was inserted first",
+        "both routes equally"
+      ],
+      "answer": [
+        "the /24 route"
+      ],
+      "explanation": "The /24 route has more specific matching bits, so it takes precedence over the /16 route."
+    },
+    {
+      "id": "cn-ipv4-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An IPv4 default route is written as",
+      "options": [
+        "0.0.0.0/0",
+        "255.255.255.255/32",
+        "127.0.0.1/8",
+        "224.0.0.0/4"
+      ],
+      "answer": [
+        "0.0.0.0/0"
+      ],
+      "explanation": "The /0 prefix matches every IPv4 address and is used when no more specific route is available."
+    },
+    {
+      "id": "cn-ipv4-079",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many leading bits are matched by the IPv4 default route 0.0.0.0/0?",
+      "answer": "0",
+      "explanation": "A /0 route has a zero-length prefix and therefore matches no fixed leading bits."
+    },
+    {
+      "id": "cn-ipv4-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A router has routes 10.0.0.0/8 and 10.1.0.0/16. For destination 10.1.2.3, which route wins?",
+      "options": [
+        "10.1.0.0/16",
+        "10.0.0.0/8",
+        "Both with equal priority",
+        "Neither because the address is private"
+      ],
+      "answer": [
+        "10.1.0.0/16"
+      ],
+      "explanation": "Both prefixes match, but /16 is longer and more specific than /8, so the /16 route is selected."
+    },
+    {
+      "id": "cn-ipv4-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which IPv4 address is reserved as the limited broadcast address?",
+      "options": [
+        "255.255.255.255",
+        "0.0.0.0",
+        "127.255.255.255",
+        "224.0.0.1"
+      ],
+      "answer": [
+        "255.255.255.255"
+      ],
+      "explanation": "255.255.255.255 is the limited broadcast address, used for local-link broadcast and not forwarded by routers."
+    },
+    {
+      "id": "cn-ipv4-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The address 0.0.0.0 is commonly used to represent",
+      "options": [
+        "an unspecified address or default route prefix",
+        "the loopback interface",
+        "limited broadcast",
+        "multicast group zero"
+      ],
+      "answer": [
+        "an unspecified address or default route prefix"
+      ],
+      "explanation": "0.0.0.0 can denote an unspecified source address and forms the IPv4 default route when written as /0."
+    },
+    {
+      "id": "cn-ipv4-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many bits are set to 1 in subnet mask 255.255.252.0?",
+      "answer": "22",
+      "explanation": "The first two octets contribute 16 one bits; 252 is 11111100, adding six, for a /22 mask."
+    },
+    {
+      "id": "cn-ipv4-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A host uses subnet mask 255.255.255.248. What is its prefix length?",
+      "options": [
+        "/29",
+        "/28",
+        "/30",
+        "/24"
+      ],
+      "answer": [
+        "/29"
+      ],
+      "explanation": "The mask has 24 leading ones plus 11111000 (five more), giving 29 network bits."
+    },
+    {
+      "id": "cn-ipv4-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which address is a valid host in 10.20.4.0/23?",
+      "options": [
+        "10.20.5.200",
+        "10.20.4.0",
+        "10.20.5.255",
+        "10.20.6.1"
+      ],
+      "answer": [
+        "10.20.5.200"
+      ],
+      "explanation": "The /23 network spans 10.20.4.0 through 10.20.5.255. The first is network, the last is broadcast, and .5.200 is an interior host address."
+    },
+    {
+      "id": "cn-ipv4-086",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For 10.20.4.0/23, how many usable host addresses are there under conventional subnet rules?",
+      "answer": "510",
+      "explanation": "A /23 has nine host bits and 512 total addresses; subtract network and broadcast to get 510 usable hosts."
+    },
+    {
+      "id": "cn-ipv4-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about private IPv4 addressing are true?",
+      "options": [
+        "Private addresses are not globally unique",
+        "They are commonly translated by NAT for public Internet access",
+        "Routers on the public Internet do not forward RFC 1918 source/destination ranges as globally reachable addresses",
+        "Every private address is in 192.168.0.0/16"
+      ],
+      "answer": [
+        "Private addresses are not globally unique",
+        "They are commonly translated by NAT for public Internet access",
+        "Routers on the public Internet do not forward RFC 1918 source/destination ranges as globally reachable addresses"
+      ],
+      "explanation": "RFC 1918 spaces can be reused by different organizations and often use NAT at public boundaries. Private blocks also include 10/8 and 172.16/12."
+    },
+    {
+      "id": "cn-ipv4-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An IPv4 subnet's network address is found by",
+      "options": [
+        "bitwise AND of address and subnet mask",
+        "bitwise OR of address and mask",
+        "adding the mask to the address",
+        "inverting the address"
+      ],
+      "answer": [
+        "bitwise AND of address and subnet mask"
+      ],
+      "explanation": "AND retains the network bits and clears host bits, producing the network identifier."
+    },
+    {
+      "id": "cn-ipv4-089",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Compute the last octet of 192.168.1.77 AND 255.255.255.224.",
+      "answer": "64",
+      "explanation": "The mask's final octet is 224 (11100000), and 77 (01001101) AND 224 gives 01000000, decimal 64."
+    },
+    {
+      "id": "cn-ipv4-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A subnet mask must contain",
+      "options": [
+        "contiguous 1 bits followed by contiguous 0 bits",
+        "alternating 1 and 0 bits",
+        "exactly 24 one bits",
+        "only zero bits in the first octet"
+      ],
+      "answer": [
+        "contiguous 1 bits followed by contiguous 0 bits"
+      ],
+      "explanation": "A valid IPv4 subnet mask represents a prefix, so all network ones precede all host zeros without gaps."
+    },
+    {
+      "id": "cn-ipv4-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A subnet mask ending in binary 11101000 is invalid because",
+      "options": [
+        "a 1 bit occurs after a 0 bit",
+        "it has fewer than 32 bits",
+        "it has too many zero bits",
+        "masks cannot contain 1 bits in the last octet"
+      ],
+      "answer": [
+        "a 1 bit occurs after a 0 bit"
+      ],
+      "explanation": "Prefix masks require contiguous leading ones. 11101000 has a zero followed by a one, violating contiguity."
+    },
+    {
+      "id": "cn-ipv4-092",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A subnet mask has 20 one bits. What is its CIDR prefix length?",
+      "answer": "20",
+      "explanation": "CIDR prefix length is the number of leading one bits in the mask, here 20."
+    },
+    {
+      "id": "cn-ipv4-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The IPv4 address 169.254.10.20 is in the",
+      "options": [
+        "link-local address range",
+        "loopback range",
+        "multicast range",
+        "private 10/8 range"
+      ],
+      "answer": [
+        "link-local address range"
+      ],
+      "explanation": "169.254.0.0/16 is reserved for IPv4 link-local addressing, often used for automatic configuration when no DHCP lease is available."
+    },
+    {
+      "id": "cn-ipv4-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "IPv4 multicast addresses are in which range?",
+      "options": [
+        "224.0.0.0/4",
+        "192.168.0.0/16",
+        "127.0.0.0/8",
+        "169.254.0.0/16"
+      ],
+      "answer": [
+        "224.0.0.0/4"
+      ],
+      "explanation": "Class D addresses 224.0.0.0 through 239.255.255.255 form the IPv4 multicast range, represented by 224.0.0.0/4."
+    },
+    {
+      "id": "cn-ipv4-095",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "What is the first octet of the IPv4 multicast range's final address 239.255.255.255?",
+      "answer": "239",
+      "explanation": "The IPv4 multicast block spans first-octet values 224 through 239, so its final address begins with 239."
+    },
+    {
+      "id": "cn-ipv4-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An IPv4 directed broadcast is sent to",
+      "options": [
+        "all hosts on a specified subnet",
+        "one host on the local subnet",
+        "all routers on the Internet",
+        "a multicast group only"
+      ],
+      "answer": [
+        "all hosts on a specified subnet"
+      ],
+      "explanation": "A directed broadcast uses the host-bits-all-ones address of a particular subnet and is intended for all hosts on that subnet; forwarding is commonly restricted."
+    },
+    {
+      "id": "cn-ipv4-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A subnet with prefix /p has a directed broadcast address whose host bits are",
+      "options": [
+        "all 1s",
+        "all 0s",
+        "alternating 1s and 0s",
+        "equal to the prefix bits"
+      ],
+      "answer": [
+        "all 1s"
+      ],
+      "explanation": "The network address has all host bits zero, while the directed broadcast has every host bit set to one."
+    },
+    {
+      "id": "cn-ipv4-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For 192.0.2.128/26, what is the directed broadcast address in the last octet?",
+      "answer": "191",
+      "explanation": "The /26 block begins at .128 and spans 64 addresses, ending at .191, its directed broadcast address."
+    },
+    {
+      "id": "cn-ipv4-099",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which fields are part of the IPv4 base header?",
+      "options": [
+        "Source address",
+        "Destination address",
+        "TTL",
+        "TCP destination port"
+      ],
+      "answer": [
+        "Source address",
+        "Destination address",
+        "TTL"
+      ],
+      "explanation": "The IPv4 base header includes source and destination IP addresses and TTL. TCP ports belong to the transport header, not the IP header."
+    },
+    {
+      "id": "cn-ipv4-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "IPv4 address exhaustion motivated deployment of",
+      "options": [
+        "CIDR and address conservation, alongside IPv6",
+        "larger IPv4 header checksums",
+        "removal of subnet masks",
+        "mandatory fragmentation at every router"
+      ],
+      "answer": [
+        "CIDR and address conservation, alongside IPv6"
+      ],
+      "explanation": "CIDR enables flexible allocation and route aggregation, while NAT and private addressing conserve public addresses; IPv6 expands address capacity."
+    }
+  ]
+}

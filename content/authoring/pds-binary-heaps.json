@@ -1,0 +1,1416 @@
+{
+  "topicIndex": 6,
+  "questions": [
+    {
+      "id": "pds-heap-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A max-heap is represented in a zero-based array. For a node at index i, its parent index is",
+      "options": [
+        "floor((i-1)/2)",
+        "2i+1",
+        "2i+2",
+        "floor(i/2)+1"
+      ],
+      "answer": [
+        "floor((i-1)/2)"
+      ],
+      "explanation": "In a zero-based heap array, the parent of a nonroot node i is floor((i-1)/2)."
+    },
+    {
+      "id": "pds-heap-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a zero-based binary heap array, what is the right child index of node 6?",
+      "answer": "14",
+      "explanation": "The right child index is 2i+2, so for i=6 it is 14."
+    },
+    {
+      "id": "pds-heap-003",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a max-heap, which relation holds between every parent and its children?",
+      "options": [
+        "Parent key is at least each child key",
+        "Parent key is at most each child key",
+        "Keys increase from left to right at every level",
+        "Every node is greater than every node in the next level"
+      ],
+      "answer": [
+        "Parent key is at least each child key"
+      ],
+      "explanation": "The max-heap property constrains each parent to be no smaller than its children; it does not sort nodes within a level or across subtrees."
+    },
+    {
+      "id": "pds-heap-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement about the array representation of a binary heap is true?",
+      "options": [
+        "It is a complete binary tree",
+        "It is always a full binary tree",
+        "Its inorder traversal is sorted",
+        "Every leaf has the same depth"
+      ],
+      "answer": [
+        "It is a complete binary tree"
+      ],
+      "explanation": "A binary heap is structurally complete, with the final level filled from left to right, enabling compact array storage."
+    },
+    {
+      "id": "pds-heap-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary heap contains 31 elements. What is the index of its last element in a zero-based array?",
+      "answer": "30",
+      "explanation": "With n elements, occupied indices are 0 through n-1; the last index for 31 elements is 30."
+    },
+    {
+      "id": "pds-heap-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The maximum element in a max-heap is found in",
+      "options": [
+        "the root",
+        "the last array position",
+        "the leftmost leaf",
+        "either child of the root"
+      ],
+      "answer": [
+        "the root"
+      ],
+      "explanation": "Every parent is at least its descendants by repeated heap inequalities, so the global maximum is at the root."
+    },
+    {
+      "id": "pds-heap-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Inserting an element into a binary heap with n elements takes worst-case time",
+      "options": [
+        "O(log n)",
+        "O(1)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "answer": [
+        "O(log n)"
+      ],
+      "explanation": "The new element is placed at the next complete-tree position and may bubble up at most the heap height, which is O(log n)."
+    },
+    {
+      "id": "pds-heap-008",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A complete binary heap has 63 nodes. What is its height in edges?",
+      "answer": "5",
+      "explanation": "A perfect tree of height 5 has 2^6-1=63 nodes, so the heap height is 5."
+    },
+    {
+      "id": "pds-heap-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "During max-heap insertion, the new key is repeatedly swapped with its parent while",
+      "options": [
+        "the parent key is smaller",
+        "the parent key is larger",
+        "it reaches a leaf",
+        "the root has two children"
+      ],
+      "answer": [
+        "the parent key is smaller"
+      ],
+      "explanation": "To restore max-heap order, a newly inserted key moves upward while it exceeds its parent; the process stops when the parent is at least as large or root is reached."
+    },
+    {
+      "id": "pds-heap-010",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A max-heap has height 4. What is the maximum number of swaps needed to bubble up one inserted key?",
+      "answer": "4",
+      "explanation": "An insertion starts at a leaf at depth at most four and can swap once per edge on the path to the root."
+    },
+    {
+      "id": "pds-heap-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Removing the maximum element from a max-heap takes",
+      "options": [
+        "O(log n)",
+        "O(1)",
+        "O(n)",
+        "O(n squared)"
+      ],
+      "answer": [
+        "O(log n)"
+      ],
+      "explanation": "After removing the root, the last element is moved to the root and sifted downward at most the heap height, which is logarithmic."
+    },
+    {
+      "id": "pds-heap-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "After deleting the root of a max-heap, which element is moved to the root before heap restoration?",
+      "options": [
+        "The last element in level-order array storage",
+        "The smallest leaf",
+        "The root's left child always",
+        "The median element"
+      ],
+      "answer": [
+        "The last element in level-order array storage"
+      ],
+      "explanation": "Removing the final array element preserves completeness. Moving it to the root leaves one position to restore with sift-down."
+    },
+    {
+      "id": "pds-heap-013",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A max-heap root has children 14 and 18. During sift-down, which child should it be compared/swapped with first?",
+      "answer": "18",
+      "explanation": "To preserve the max-heap order, sift-down swaps with the larger child, which is 18."
+    },
+    {
+      "id": "pds-heap-014",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations on a binary max-heap have O(log n) worst-case time?",
+      "options": [
+        "Insert a key",
+        "Extract the maximum",
+        "Increase the key of a known node",
+        "Find an arbitrary key"
+      ],
+      "answer": [
+        "Insert a key",
+        "Extract the maximum",
+        "Increase the key of a known node"
+      ],
+      "explanation": "Insertion, extract-max, and increase-key can follow a path of heap height. Finding an arbitrary key has no ordering shortcut and may scan all n elements."
+    },
+    {
+      "id": "pds-heap-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Building a heap by inserting n keys one at a time has worst-case time",
+      "options": [
+        "O(n log n)",
+        "O(n)",
+        "O(log n)",
+        "O(n squared log n)"
+      ],
+      "answer": [
+        "O(n log n)"
+      ],
+      "explanation": "Each insertion may take O(log n), so n successive insertions have O(n log n) worst-case total time."
+    },
+    {
+      "id": "pds-heap-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Bottom-up build-heap on an array of n keys runs in",
+      "options": [
+        "O(n)",
+        "O(n log n)",
+        "O(log n)",
+        "O(n squared)"
+      ],
+      "answer": [
+        "O(n)"
+      ],
+      "explanation": "Most nodes are near leaves and sift down only a few levels. Summing node-height costs across all levels yields linear total time."
+    },
+    {
+      "id": "pds-heap-017",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Bottom-up build-heap on an array of 15 elements starts heapifying at what zero-based index?",
+      "answer": "6",
+      "explanation": "The last internal node is floor(n/2)-1. For n=15 this is floor(15/2)-1=6."
+    },
+    {
+      "id": "pds-heap-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In bottom-up heap construction, which nodes need sift-down processing?",
+      "options": [
+        "Internal nodes, in reverse level order",
+        "All leaves only",
+        "Only the root's children",
+        "Nodes from the root downward in preorder"
+      ],
+      "answer": [
+        "Internal nodes, in reverse level order"
+      ],
+      "explanation": "Leaves already satisfy heap order. Processing internal nodes bottom-up ensures child subtrees are heaps before each parent is sifted down."
+    },
+    {
+      "id": "pds-heap-019",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about bottom-up heap construction are true?",
+      "options": [
+        "It is O(n) time",
+        "It can be faster asymptotically than n successive insertions",
+        "It starts with leaves as trivial heaps",
+        "Its worst-case time is Theta(n log n)"
+      ],
+      "answer": [
+        "It is O(n) time",
+        "It can be faster asymptotically than n successive insertions",
+        "It starts with leaves as trivial heaps"
+      ],
+      "explanation": "Leaves are already heaps; internal nodes are processed bottom-up. The sum of potential sift-down distances is linear, whereas successive insertion has O(n log n) bound."
+    },
+    {
+      "id": "pds-heap-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A max-heap stores distinct values. If its root is 100, what can be concluded about the second-largest value?",
+      "options": [
+        "It is one of the root's children",
+        "It is the last array element",
+        "It is at depth 2",
+        "It is the left child"
+      ],
+      "answer": [
+        "It is one of the root's children"
+      ],
+      "explanation": "Any node other than the root is below one of its children in the heap tree, and the largest nonroot key must be one of the root's immediate children."
+    },
+    {
+      "id": "pds-heap-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A min-heap supports extract-min in",
+      "options": [
+        "O(log n)",
+        "O(1)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "answer": [
+        "O(log n)"
+      ],
+      "explanation": "The minimum is at the root. Replacing it with the final element and sifting down takes at most the heap height, O(log n)."
+    },
+    {
+      "id": "pds-heap-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a min-heap, the key at the root is",
+      "options": [
+        "no greater than any other key",
+        "no smaller than any other key",
+        "the median key",
+        "always the leftmost leaf"
+      ],
+      "answer": [
+        "no greater than any other key"
+      ],
+      "explanation": "The min-heap property ensures every parent is no greater than its children, so the root is a global minimum."
+    },
+    {
+      "id": "pds-heap-023",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A complete binary min-heap has 127 elements. What is its height in edges?",
+      "answer": "6",
+      "explanation": "Since 127=2^7-1, it is perfect with levels 0 through 6, so height is 6."
+    },
+    {
+      "id": "pds-heap-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which array index range contains leaves of a zero-based heap with n elements?",
+      "options": [
+        "floor(n/2) through n-1",
+        "0 through floor(n/2)-1",
+        "1 through n",
+        "Only index n-1"
+      ],
+      "answer": [
+        "floor(n/2) through n-1"
+      ],
+      "explanation": "An index i is a leaf when its left child 2i+1 is outside the occupied range. This begins at floor(n/2)."
+    },
+    {
+      "id": "pds-heap-025",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A zero-based heap has 20 elements. What is the last internal-node index?",
+      "answer": "9",
+      "explanation": "The last internal node is floor(n/2)-1=floor(20/2)-1=9."
+    },
+    {
+      "id": "pds-heap-026",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a binary heap are true?",
+      "options": [
+        "Its shape is complete",
+        "Its array supports O(1) access to the root",
+        "Its array is globally sorted",
+        "A search for an arbitrary key is O(log n) worst case"
+      ],
+      "answer": [
+        "Its shape is complete",
+        "Its array supports O(1) access to the root"
+      ],
+      "explanation": "Completeness allows compact array storage and provides the root at index zero. Heap order does not sort the array, and arbitrary-key search may be linear."
+    },
+    {
+      "id": "pds-heap-027",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A max-heap array is [50,30,40,10,20,35]. Is it a valid max-heap?",
+      "options": [
+        "Yes, every parent is at least its children",
+        "No, 30 is smaller than 40",
+        "No, 10 is greater than 20",
+        "No, the array must be sorted"
+      ],
+      "answer": [
+        "Yes, every parent is at least its children"
+      ],
+      "explanation": "The root 50 exceeds children 30 and 40; node 30 exceeds 10 and 20; node 40 exceeds 35. All parent-child constraints hold."
+    },
+    {
+      "id": "pds-heap-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A max-heap array is [40,25,35,10,30,20]. Which change is required to make it a valid max-heap?",
+      "options": [
+        "Swap 25 and 30",
+        "Swap 40 and 25",
+        "Swap 35 and 20",
+        "No change is needed"
+      ],
+      "answer": [
+        "Swap 25 and 30"
+      ],
+      "explanation": "At index 1, parent 25 is smaller than child 30 at index 4, violating heap order. Swapping these values fixes that relation without breaking the others."
+    },
+    {
+      "id": "pds-heap-029",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A min-heap array is [3,7,5,12,9,8]. What is the minimum number of parent-child violations?",
+      "answer": "0",
+      "explanation": "The root 3 is below 7 and 5; 7 is below 12 and 9; 5 is below 8. No parent-child relation violates min-heap order."
+    },
+    {
+      "id": "pds-heap-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a max-heap, a key at index i is increased. Which repair is generally needed?",
+      "options": [
+        "Sift it upward",
+        "Sift it downward",
+        "Rebuild the entire heap",
+        "Swap it with the root unconditionally"
+      ],
+      "answer": [
+        "Sift it upward"
+      ],
+      "explanation": "Increasing a key can make it larger than its parent, so the violation is along the parent path and is repaired by sift-up."
+    },
+    {
+      "id": "pds-heap-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a max-heap, a key at a known index is decreased. Which repair is generally needed?",
+      "options": [
+        "Sift it downward",
+        "Sift it upward",
+        "No repair can work",
+        "Move it to the final index"
+      ],
+      "answer": [
+        "Sift it downward"
+      ],
+      "explanation": "Decreasing a key may make it smaller than one or both children. Sifting down restores parent dominance along a downward path."
+    },
+    {
+      "id": "pds-heap-032",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A max-heap has height 5. A key is decreased at the root. What is the maximum number of downward swaps required?",
+      "answer": "5",
+      "explanation": "A root-to-leaf path contains at most five edges, so sift-down performs at most five swaps."
+    },
+    {
+      "id": "pds-heap-033",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which key updates in a max-heap may violate heap order in the upward direction?",
+      "options": [
+        "Increase a key at a known node",
+        "Decrease a key at a known node",
+        "Replace a key by a larger value",
+        "Replace a key by a smaller value"
+      ],
+      "answer": [
+        "Increase a key at a known node",
+        "Replace a key by a larger value"
+      ],
+      "explanation": "Increasing a key or replacing it by a larger value may exceed its parent and require sift-up. Decreasing a key can instead violate order with children."
+    },
+    {
+      "id": "pds-heap-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary heap is not a search tree because",
+      "options": [
+        "siblings and subtrees are not ordered by key ranges",
+        "its shape is complete",
+        "it is stored in an array",
+        "its root has maximum value"
+      ],
+      "answer": [
+        "siblings and subtrees are not ordered by key ranges"
+      ],
+      "explanation": "Heap order compares each parent only with its children; it does not require all keys in one subtree to be ordered relative to another subtree."
+    },
+    {
+      "id": "pds-heap-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The k-th largest element can be found by repeated extract-max from a max-heap in",
+      "options": [
+        "O(n+k log n) including heap construction",
+        "O(k)",
+        "O(log n)",
+        "O(n squared) always"
+      ],
+      "answer": [
+        "O(n+k log n) including heap construction"
+      ],
+      "explanation": "Build the heap in O(n), then perform k extractions at O(log n) each, for O(n+k log n)."
+    },
+    {
+      "id": "pds-heap-036",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A max-heap contains 100 elements. After extracting the maximum 4 times, how many elements remain?",
+      "answer": "96",
+      "explanation": "Each extraction removes exactly one element, leaving 100-4=96."
+    },
+    {
+      "id": "pds-heap-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A priority queue implemented by a binary heap provides which typical operation bounds?",
+      "options": [
+        "Insert and extract-priority in O(log n), peek in O(1)",
+        "All operations in O(1)",
+        "Search and delete arbitrary key in O(log n) without extra indexing",
+        "Build-heap in O(n log n) only"
+      ],
+      "answer": [
+        "Insert and extract-priority in O(log n), peek in O(1)"
+      ],
+      "explanation": "Heap insertion and extraction traverse a height path; the root provides constant-time peek. Arbitrary search is not logarithmic without additional indexing."
+    },
+    {
+      "id": "pds-heap-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In heapsort using a max-heap, after swapping the root with the last unsorted element, the heap size is",
+      "options": [
+        "reduced by one",
+        "increased by one",
+        "unchanged",
+        "halved"
+      ],
+      "answer": [
+        "reduced by one"
+      ],
+      "explanation": "The maximum is placed at the end of the array, which is excluded from the active heap. The remaining heap shrinks by one and is restored with sift-down."
+    },
+    {
+      "id": "pds-heap-039",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties hold for heapsort on an array using an in-place binary heap?",
+      "options": [
+        "Worst-case time is O(n log n)",
+        "Auxiliary space can be O(1)",
+        "It is stable in its standard form",
+        "It sorts in-place"
+      ],
+      "answer": [
+        "Worst-case time is O(n log n)",
+        "Auxiliary space can be O(1)",
+        "It sorts in-place"
+      ],
+      "explanation": "Heapsort runs in O(n log n) worst-case time, sorts in-place with O(1) auxiliary space, and is not stable in its standard form."
+    },
+    {
+      "id": "pds-heap-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Heapsort with a max-heap produces the sorted array in",
+      "options": [
+        "nondecreasing order",
+        "nonincreasing order",
+        "level-order heap layout",
+        "random order"
+      ],
+      "answer": [
+        "nondecreasing order"
+      ],
+      "explanation": "Repeatedly moving the maximum to the final unsorted position places values from largest to smallest at the array's right end, yielding ascending order overall."
+    },
+    {
+      "id": "pds-heap-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A d-ary heap is a complete tree in which each internal node can have at most",
+      "options": [
+        "d children",
+        "2d children",
+        "d-1 children",
+        "log d children"
+      ],
+      "answer": [
+        "d children"
+      ],
+      "explanation": "The branching factor d specifies the maximum number of children per node. A binary heap is the special case d=2."
+    },
+    {
+      "id": "pds-heap-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a d-ary heap, increasing d generally",
+      "options": [
+        "reduces height but increases the number of children inspected during sift-down",
+        "increases height and reduces children",
+        "makes all operations O(1)",
+        "has no effect on height"
+      ],
+      "answer": [
+        "reduces height but increases the number of children inspected during sift-down"
+      ],
+      "explanation": "Larger branching factors reduce the number of levels for n nodes, but choosing the best child during sift-down requires inspecting up to d children."
+    },
+    {
+      "id": "pds-heap-043",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A perfect 4-ary tree has height 2 measured in edges. How many nodes does it contain?",
+      "answer": "21",
+      "explanation": "A full 4-ary tree through depth 2 has 1+4+16=21 nodes."
+    },
+    {
+      "id": "pds-heap-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary min-heap is used to implement a priority queue. Which element is removed by extract-min?",
+      "options": [
+        "The root",
+        "The last inserted element",
+        "The last array element",
+        "An arbitrary leaf"
+      ],
+      "answer": [
+        "The root"
+      ],
+      "explanation": "The root stores the minimum by heap order. Extract-min removes it, then repairs the heap after moving the final element to root."
+    },
+    {
+      "id": "pds-heap-045",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary min-heap stores 12 elements. How many elements are removed after 5 successful extract-min operations?",
+      "answer": "5",
+      "explanation": "Each extract-min removes one item, so five successful operations remove five elements."
+    },
+    {
+      "id": "pds-heap-046",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations on a binary heap have O(1) worst-case time?",
+      "options": [
+        "Read the root priority",
+        "Read the heap size when maintained",
+        "Find an arbitrary key",
+        "Return the array element at a given index"
+      ],
+      "answer": [
+        "Read the root priority",
+        "Read the heap size when maintained",
+        "Return the array element at a given index"
+      ],
+      "explanation": "The root, a maintained size counter, and an array element at a supplied index can be read directly in constant time. Searching for an arbitrary key may require scanning the heap."
+    },
+    {
+      "id": "pds-heap-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A max-heap's root is removed and the heap has n>1 elements. Why is sift-down necessary after moving the last element to root?",
+      "options": [
+        "The moved element may be smaller than a child",
+        "The tree may cease to be complete",
+        "The array may become unsorted",
+        "The root must always be the most recently inserted key"
+      ],
+      "answer": [
+        "The moved element may be smaller than a child"
+      ],
+      "explanation": "The last element may not dominate its children, violating max-heap order at the root. The complete shape is preserved because the final slot is removed."
+    },
+    {
+      "id": "pds-heap-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A min-heap contains distinct values. What is the second-smallest element guaranteed to be?",
+      "options": [
+        "One of the root's children",
+        "The last array element",
+        "The rightmost leaf",
+        "The left child"
+      ],
+      "answer": [
+        "One of the root's children"
+      ],
+      "explanation": "The minimum is at root; the second-smallest must be the minimum among its children because any deeper node has an ancestor child no greater than it."
+    },
+    {
+      "id": "pds-heap-049",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A min-heap root has children 4 and 9, and all other nodes are descendants of these children. What is the second-smallest key?",
+      "answer": "4",
+      "explanation": "The minimum is the root. The least remaining value must be among root's children, and min(4,9)=4."
+    },
+    {
+      "id": "pds-heap-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A heap's array representation allows parent and child positions to be computed in",
+      "options": [
+        "O(1) time",
+        "O(log n) time",
+        "O(n) time",
+        "O(n log n) time"
+      ],
+      "answer": [
+        "O(1) time"
+      ],
+      "explanation": "Index arithmetic computes parent and child locations directly without traversing pointers, requiring constant time."
+    },
+    {
+      "id": "pds-heap-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A min-heap array is [2,5,3,9,7,8]. Which operation can return a value in O(1) time?",
+      "options": [
+        "Find the minimum",
+        "Find the maximum",
+        "Find the median",
+        "Find the predecessor of 7"
+      ],
+      "answer": [
+        "Find the minimum"
+      ],
+      "explanation": "The minimum is at the root, array index zero. The maximum and median are not generally known from heap order without additional work."
+    },
+    {
+      "id": "pds-heap-052",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A max-heap has 16 elements. How many leaves does its complete binary tree contain?",
+      "answer": "8",
+      "explanation": "In a zero-based heap, leaves occupy indices floor(n/2) through n-1. For n=16, there are 8 leaves."
+    },
+    {
+      "id": "pds-heap-053",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a complete binary tree with n nodes stored in a heap array are correct?",
+      "options": [
+        "All occupied indices form a prefix starting at zero",
+        "The final level, if partial, is filled left to right",
+        "The height is floor(log2 n)",
+        "Every node has exactly two children"
+      ],
+      "answer": [
+        "All occupied indices form a prefix starting at zero",
+        "The final level, if partial, is filled left to right",
+        "The height is floor(log2 n)"
+      ],
+      "explanation": "The array occupies a prefix and the final tree level is left-packed. A complete binary tree has logarithmic height floor(log2 n); nodes can have fewer than two children."
+    },
+    {
+      "id": "pds-heap-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary heap with n elements has height",
+      "options": [
+        "floor(log2 n)",
+        "ceil(log2 n) for every n",
+        "n-1",
+        "sqrt(n)"
+      ],
+      "answer": [
+        "floor(log2 n)"
+      ],
+      "explanation": "The last occupied level is depth floor(log2 n), since a complete tree has 2^h through 2^(h+1)-1 nodes at height h."
+    },
+    {
+      "id": "pds-heap-055",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A complete binary heap has 100 elements. What is its height in edges?",
+      "answer": "6",
+      "explanation": "Since 2^6=64<=100<128=2^7, the height is floor(log2 100)=6."
+    },
+    {
+      "id": "pds-heap-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a max-heap, after a new key is appended at the end, which direction can restore heap order?",
+      "options": [
+        "Upward toward the root",
+        "Downward toward a leaf",
+        "Both directions are always required",
+        "No movement is needed"
+      ],
+      "answer": [
+        "Upward toward the root"
+      ],
+      "explanation": "The new key is a leaf, so it cannot violate order with its children. Only its relationship to ancestors can be invalid, repaired by sift-up."
+    },
+    {
+      "id": "pds-heap-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a min-heap, after replacing the root with the last element, which direction is used to restore heap order?",
+      "options": [
+        "Downward toward a leaf",
+        "Upward toward the root",
+        "Toward the leftmost leaf only",
+        "No repair is needed"
+      ],
+      "answer": [
+        "Downward toward a leaf"
+      ],
+      "explanation": "The root's children may be smaller than the replacement, while there is no parent above root. Sift-down addresses the possible violation."
+    },
+    {
+      "id": "pds-heap-058",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary heap has height 7. What is the maximum number of comparisons of children during one sift-down, assuming one comparison selects the better child at each level?",
+      "answer": "7",
+      "explanation": "At most one child-selection comparison is made at each of the seven levels traversed, giving seven such comparisons (excluding parent comparison)."
+    },
+    {
+      "id": "pds-heap-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A heap is built from an array using repeated insertions. If each insertion costs O(log n), what is the resulting upper bound for n insertions?",
+      "options": [
+        "O(n log n)",
+        "O(n)",
+        "O(log n)",
+        "O(n squared log n)"
+      ],
+      "answer": [
+        "O(n log n)"
+      ],
+      "explanation": "Summing n logarithmic upper bounds gives O(n log n). Bottom-up build-heap improves this to O(n), but that is a different construction method."
+    },
+    {
+      "id": "pds-heap-060",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are advantages of a binary heap for priority-queue implementation?",
+      "options": [
+        "Compact array storage",
+        "O(1) access to the top-priority item",
+        "O(log n) insertion and extraction",
+        "O(log n) search for any arbitrary key"
+      ],
+      "answer": [
+        "Compact array storage",
+        "O(1) access to the top-priority item",
+        "O(log n) insertion and extraction"
+      ],
+      "explanation": "A heap uses compact array storage, provides constant-time access to the top priority, and supports logarithmic insert/extract. Arbitrary-key search is not logarithmic in general."
+    },
+    {
+      "id": "pds-heap-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A max-heap stores priorities 90,70,80,20,50,60,75 in level order. What is the array after extracting the maximum and restoring heap order?",
+      "options": [
+        "[80,70,75,20,50,60]",
+        "[75,70,80,20,50,60]",
+        "[80,70,75,20,50,60,90]",
+        "[70,50,80,20,60,75]"
+      ],
+      "answer": [
+        "[80,70,75,20,50,60]"
+      ],
+      "explanation": "Move last key 75 to root and remove 90. Compare 75 with children 70 and 80, swap with 80; the resulting heap is [80,70,75,20,50,60]."
+    },
+    {
+      "id": "pds-heap-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A min-heap array is [4,8,6,12,10,9]. After inserting 3, what is the resulting heap array?",
+      "options": [
+        "[3,8,4,12,10,9,6]",
+        "[3,4,6,12,10,9,8]",
+        "[4,8,6,12,10,9,3]",
+        "[3,8,6,12,10,9,4]"
+      ],
+      "answer": [
+        "[3,8,4,12,10,9,6]"
+      ],
+      "explanation": "Append 3 at index 6, swap with parent 6 at index 2, then swap with root 4. This yields [3,8,4,12,10,9,6]."
+    },
+    {
+      "id": "pds-heap-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A max-heap array is [40,25,35,10,20,30]. After inserting 50 and bubbling up, what is the root value?",
+      "answer": "50",
+      "explanation": "50 swaps with parent 35 at index 2, then with root 40, so the root becomes 50."
+    },
+    {
+      "id": "pds-heap-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A heap insertion of a value performs swaps along a root-to-leaf path. What is the maximum path length for n elements?",
+      "options": [
+        "O(log n)",
+        "O(n)",
+        "O(sqrt n)",
+        "O(1)"
+      ],
+      "answer": [
+        "O(log n)"
+      ],
+      "explanation": "A complete binary tree has logarithmic height, so a bubble-up path contains at most O(log n) edges."
+    },
+    {
+      "id": "pds-heap-065",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about extracting from a max-heap are true?",
+      "options": [
+        "The root is the maximum",
+        "The final array element is moved to the root",
+        "The active heap size decreases by one",
+        "Sift-down may swap with the smaller child"
+      ],
+      "answer": [
+        "The root is the maximum",
+        "The final array element is moved to the root",
+        "The active heap size decreases by one"
+      ],
+      "explanation": "The root is maximum, the final element replaces it, and the active size decreases by one. Sift-down in a max-heap chooses the larger child, not the smaller."
+    },
+    {
+      "id": "pds-heap-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When sifting down in a max-heap, if a node is smaller than both children, it should be swapped with",
+      "options": [
+        "the larger child",
+        "the smaller child",
+        "both children simultaneously",
+        "the parent"
+      ],
+      "answer": [
+        "the larger child"
+      ],
+      "explanation": "Swapping with the larger child ensures the promoted value remains at least as large as the other child, maintaining heap order at that level."
+    },
+    {
+      "id": "pds-heap-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A max-heap node has children 12 and 17, and its key is 9. Which value becomes the parent after one sift-down swap?",
+      "answer": "17",
+      "explanation": "The larger child 17 is promoted to the parent's position during max-heap sift-down."
+    },
+    {
+      "id": "pds-heap-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A min-heap's sift-down operation chooses the smaller child because",
+      "options": [
+        "the promoted child must be no greater than its sibling",
+        "the larger child is always a leaf",
+        "the root must be the largest",
+        "the array is sorted"
+      ],
+      "answer": [
+        "the promoted child must be no greater than its sibling"
+      ],
+      "explanation": "Promoting the smaller child keeps it no greater than the sibling, which is necessary for both children to remain at least the new parent in a min-heap."
+    },
+    {
+      "id": "pds-heap-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A min-heap node has children 6 and 11 and key 15. Which child is selected for a sift-down swap?",
+      "answer": "6",
+      "explanation": "For min-heap restoration, choose the smaller child, 6, so the parent remains no greater than both children."
+    },
+    {
+      "id": "pds-heap-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary heap permits finding an arbitrary value by scanning its array. What is the worst-case time?",
+      "options": [
+        "O(n)",
+        "O(log n)",
+        "O(1)",
+        "O(n log n)"
+      ],
+      "answer": [
+        "O(n)"
+      ],
+      "explanation": "Heap order does not locate a target by key range; the key may be at any index, so a worst-case scan checks all n elements."
+    },
+    {
+      "id": "pds-heap-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A max-priority queue stores tasks by priority in a max-heap. If equal priorities are allowed, does heap order guarantee FIFO among tied tasks?",
+      "options": [
+        "No, additional sequence information or tie-breaking is needed",
+        "Yes, automatically",
+        "Yes, because heaps are complete",
+        "Only when the heap has odd size"
+      ],
+      "answer": [
+        "No, additional sequence information or tie-breaking is needed"
+      ],
+      "explanation": "Heap order constrains priority values but not the relative order of equal-priority items. Stable tie handling requires explicit arrival-order data and comparison rules."
+    },
+    {
+      "id": "pds-heap-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which information can be included in heap keys to provide deterministic tie-breaking?",
+      "options": [
+        "Priority value",
+        "Insertion timestamp or sequence number",
+        "Unique task identifier",
+        "Current array index only, if indices change after swaps"
+      ],
+      "answer": [
+        "Priority value",
+        "Insertion timestamp or sequence number",
+        "Unique task identifier"
+      ],
+      "explanation": "Priority is the primary field; a sequence number can preserve FIFO among ties, and a unique identifier can complete deterministic comparison. Array index changes during swaps, so it is not stable tie information."
+    },
+    {
+      "id": "pds-heap-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stable priority queue can compare pairs (priority, sequence). For equal priority, which sequence order preserves FIFO?",
+      "options": [
+        "Earlier sequence number first",
+        "Later sequence number first",
+        "Sequence number is ignored",
+        "Compare the task payload alphabetically only"
+      ],
+      "answer": [
+        "Earlier sequence number first"
+      ],
+      "explanation": "Assigning increasing sequence numbers at insertion and favoring the smaller number among equal priorities preserves arrival order."
+    },
+    {
+      "id": "pds-heap-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A heap has 10 items and uses a one-based array with index 1 as root. What is the left-child index of node 6?",
+      "answer": "12",
+      "explanation": "With one-based heap indexing, the left child index is 2i=12."
+    },
+    {
+      "id": "pds-heap-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A one-based heap array has a node at index i. Its right child is at index",
+      "options": [
+        "2i+1",
+        "2i",
+        "2i+2",
+        "floor(i/2)"
+      ],
+      "answer": [
+        "2i+1"
+      ],
+      "explanation": "One-based indexing gives left child 2i and right child 2i+1."
+    },
+    {
+      "id": "pds-heap-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A one-based heap stores n elements at indices 1 through n. Which index range contains leaves?",
+      "options": [
+        "floor(n/2)+1 through n",
+        "1 through floor(n/2)",
+        "0 through n-1",
+        "2 through n"
+      ],
+      "answer": [
+        "floor(n/2)+1 through n"
+      ],
+      "explanation": "Indices greater than floor(n/2) have left-child indices beyond n, so they are leaves."
+    },
+    {
+      "id": "pds-heap-077",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A one-based heap has 17 elements. What is the last internal-node index?",
+      "answer": "8",
+      "explanation": "The last internal node is floor(n/2)=floor(17/2)=8."
+    },
+    {
+      "id": "pds-heap-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The bottom-up heapify process can start at index floor(n/2)-1 because",
+      "options": [
+        "all later indices are leaves",
+        "the root is always a leaf",
+        "all earlier indices are already heaps",
+        "the array is sorted from the midpoint onward"
+      ],
+      "answer": [
+        "all later indices are leaves"
+      ],
+      "explanation": "In zero-based storage, nodes from floor(n/2) onward have no children. They are trivial heaps, so processing begins at the last internal node."
+    },
+    {
+      "id": "pds-heap-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which facts explain why bottom-up heap construction is linear?",
+      "options": [
+        "There are about n/2 leaves with zero sift-down distance",
+        "Only about n/4 nodes can move down one level",
+        "Only about n/8 nodes can move down two levels",
+        "Every node moves down log n levels"
+      ],
+      "answer": [
+        "There are about n/2 leaves with zero sift-down distance",
+        "Only about n/4 nodes can move down one level",
+        "Only about n/8 nodes can move down two levels"
+      ],
+      "explanation": "About n/2 leaves have zero height; fewer nodes can descend one or more levels as distance grows. The geometric weighted sum is O(n), unlike moving every node log n levels."
+    },
+    {
+      "id": "pds-heap-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The root of a max-heap is 100. What is the minimum possible key among all other nodes?",
+      "options": [
+        "It may be arbitrarily smaller subject to the key domain",
+        "It must be at least 50",
+        "It must be one of the root's children",
+        "It is the last leaf"
+      ],
+      "answer": [
+        "It may be arbitrarily smaller subject to the key domain"
+      ],
+      "explanation": "Heap order imposes an upper-bound relation from parent to child, but a descendant can have a very small value; there is no global lower bound from the root."
+    },
+    {
+      "id": "pds-heap-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A min-heap is used for Dijkstra's algorithm with adjacency lists and decrease-key support. What is the heap operation required when a shorter distance to a vertex is found?",
+      "options": [
+        "Decrease its key",
+        "Extract its key",
+        "Increase its key",
+        "Delete the root"
+      ],
+      "answer": [
+        "Decrease its key"
+      ],
+      "explanation": "A shorter tentative distance decreases that vertex's priority key in a min-priority queue, requiring decrease-key and upward repair."
+    },
+    {
+      "id": "pds-heap-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary heap priority queue without a direct handle to a vertex uses lazy insertion in Dijkstra's algorithm. How is a stale extracted entry recognized?",
+      "options": [
+        "Compare its stored distance with the current best distance",
+        "Check whether it is the last array element",
+        "Compare it with the heap root's parent",
+        "Rebuild the entire heap"
+      ],
+      "answer": [
+        "Compare its stored distance with the current best distance"
+      ],
+      "explanation": "When an old pair is extracted, if its distance exceeds the current best recorded distance for that vertex, it is stale and can be skipped."
+    },
+    {
+      "id": "pds-heap-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A shortest-path implementation inserts 3 tentative distance entries for the same vertex into a heap. If the best known distance is 12 and an extracted entry has distance 17, what is the distance gap indicating staleness?",
+      "answer": "5",
+      "explanation": "The extracted value exceeds the current best by 17-12=5, so it is stale."
+    },
+    {
+      "id": "pds-heap-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about using a binary heap in Prim's minimum spanning tree algorithm are correct?",
+      "options": [
+        "The heap can store candidate vertices keyed by best incident edge weight",
+        "Extract-min chooses a next vertex with minimum current key",
+        "A key decrease may be needed when a cheaper connecting edge is found",
+        "The heap itself guarantees the resulting graph is connected"
+      ],
+      "answer": [
+        "The heap can store candidate vertices keyed by best incident edge weight",
+        "Extract-min chooses a next vertex with minimum current key",
+        "A key decrease may be needed when a cheaper connecting edge is found"
+      ],
+      "explanation": "The heap stores each candidate vertex keyed by its best connecting edge; extract-min selects the cheapest candidate, and decrease-key updates improved edges. Connectivity depends on the graph, not the heap."
+    },
+    {
+      "id": "pds-heap-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a binary heap with n entries, decrease-key on a known node handle takes",
+      "options": [
+        "O(log n)",
+        "O(1)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "answer": [
+        "O(log n)"
+      ],
+      "explanation": "A decreased key in a min-heap bubbles upward along a root path whose length is O(log n)."
+    },
+    {
+      "id": "pds-heap-086",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A min-heap node at depth 3 has its key decreased enough to reach the root. What is the maximum number of swaps?",
+      "answer": "3",
+      "explanation": "A node at depth three has three edges to the root, so at most three upward swaps are needed."
+    },
+    {
+      "id": "pds-heap-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary heap is complete, but does that imply its array is sorted?",
+      "options": [
+        "No, only parent-child heap order is required",
+        "Yes, ascending for min-heaps",
+        "Yes, descending for max-heaps",
+        "Only if the heap has an even size"
+      ],
+      "answer": [
+        "No, only parent-child heap order is required"
+      ],
+      "explanation": "Completeness describes shape; heap order is local. Siblings and cousins are not necessarily sorted relative to each other."
+    },
+    {
+      "id": "pds-heap-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A max-heap array [90,70,80,20,60,75,65] is valid because",
+      "options": [
+        "each parent is at least its children",
+        "the array is decreasing",
+        "the leaves are sorted",
+        "the root is the median"
+      ],
+      "answer": [
+        "each parent is at least its children"
+      ],
+      "explanation": "Root 90 exceeds 70 and 80; 70 exceeds 20 and 60; 80 exceeds 75 and 65. These parent-child checks establish a valid max-heap."
+    },
+    {
+      "id": "pds-heap-089",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A min-heap array [2,6,4,9,8,7,5] has how many parent-child violations?",
+      "answer": "0",
+      "explanation": "Each parent is no greater than its children: 2<=6,4; 6<=9,8; and 4<=7,5. Thus there are no violations."
+    },
+    {
+      "id": "pds-heap-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In heapsort, the heap is built from an arbitrary array and then repeatedly reduced. What is the total worst-case running time?",
+      "options": [
+        "Theta(n log n)",
+        "Theta(n)",
+        "Theta(log n)",
+        "Theta(n squared)"
+      ],
+      "answer": [
+        "Theta(n log n)"
+      ],
+      "explanation": "Bottom-up build is O(n), followed by n extract-max operations costing O(log n) each. The total is Theta(n log n)."
+    },
+    {
+      "id": "pds-heap-091",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which structures can implement a priority queue with different operation trade-offs?",
+      "options": [
+        "Unsorted array",
+        "Sorted array",
+        "Binary heap",
+        "Linked list"
+      ],
+      "answer": [
+        "Unsorted array",
+        "Sorted array",
+        "Binary heap",
+        "Linked list"
+      ],
+      "explanation": "Unsorted arrays/lists, sorted arrays/lists, and binary heaps all support priority queues with different insertion and extraction costs."
+    },
+    {
+      "id": "pds-heap-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A priority queue implemented by an unsorted array supports insert in",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "answer": [
+        "O(1)"
+      ],
+      "explanation": "Appending an item to an unsorted array takes constant time, while extraction of an extreme priority generally requires a linear scan."
+    },
+    {
+      "id": "pds-heap-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A priority queue implemented by a sorted array supports find-min in",
+      "options": [
+        "O(1) if the minimum is kept at an endpoint",
+        "O(log n) always",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "answer": [
+        "O(1) if the minimum is kept at an endpoint"
+      ],
+      "explanation": "If the array is maintained in sorted order, the minimum lies at a known endpoint and is accessible in constant time; insertion may require shifting O(n) items."
+    },
+    {
+      "id": "pds-heap-094",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An unsorted array priority queue contains 40 elements. In the worst case, how many key comparisons are needed to extract the maximum?",
+      "answer": "39",
+      "explanation": "A linear scan can initialize the candidate from one element and compare the other 39 elements against it."
+    },
+    {
+      "id": "pds-heap-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary heap's height is logarithmic because it is",
+      "options": [
+        "complete",
+        "balanced by rotations",
+        "sorted",
+        "a binary search tree"
+      ],
+      "answer": [
+        "complete"
+      ],
+      "explanation": "Completeness ensures every level except the last is full and the last is left-packed, giving logarithmic height in the number of nodes."
+    },
+    {
+      "id": "pds-heap-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A max-heap supports delete-key for an arbitrary node in O(log n) when",
+      "options": [
+        "a handle to its array index is available",
+        "only the root is known",
+        "the heap is unsorted",
+        "all keys are equal"
+      ],
+      "answer": [
+        "a handle to its array index is available"
+      ],
+      "explanation": "With a handle, replace the target by the last element, remove the last slot, and sift up or down as needed, taking heap-height time."
+    },
+    {
+      "id": "pds-heap-097",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A heap has height 8. An arbitrary key replacement may require either sift-up or sift-down. What is the maximum number of swaps along one repair path?",
+      "answer": "8",
+      "explanation": "The repair follows at most one root-to-leaf path, whose length is bounded by heap height eight."
+    },
+    {
+      "id": "pds-heap-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "After replacing a heap element at index i by a new key, which repair direction is needed in a max-heap?",
+      "options": [
+        "Up if it exceeds its parent; otherwise down if below a child",
+        "Always up",
+        "Always down",
+        "Both up and down in separate full traversals"
+      ],
+      "answer": [
+        "Up if it exceeds its parent; otherwise down if below a child"
+      ],
+      "explanation": "Only one side of the local ordering can be violated based on the new key relative to its parent and children; the corresponding path is repaired."
+    },
+    {
+      "id": "pds-heap-099",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which comparisons identify whether a changed key in a max-heap requires sift-up or sift-down?",
+      "options": [
+        "Compare it with its parent when i is not root",
+        "If it is smaller than a child, sift-down may be needed",
+        "If it is greater than its parent, sift-up may be needed",
+        "Compare it with every heap element"
+      ],
+      "answer": [
+        "Compare it with its parent when i is not root",
+        "If it is smaller than a child, sift-down may be needed",
+        "If it is greater than its parent, sift-up may be needed"
+      ],
+      "explanation": "The parent comparison detects whether a larger value violates upward order; child comparisons detect a smaller value that may violate downward order. A full scan is unnecessary for a known index."
+    },
+    {
+      "id": "pds-heap-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A min-heap stores all distinct values 1 through 15. Which value is guaranteed at the root?",
+      "options": [
+        "1",
+        "8",
+        "15",
+        "Any value from 1 through 15"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "The root of a min-heap is the global minimum, which among these distinct keys is 1."
+    }
+  ]
+}

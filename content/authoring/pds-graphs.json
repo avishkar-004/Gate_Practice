@@ -1,0 +1,1441 @@
+{
+  "topicIndex": 7,
+  "questions": [
+    {
+      "id": "pds-graph-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An undirected simple graph has n vertices. What is the maximum possible number of edges?",
+      "options": [
+        "n(n-1)/2",
+        "n(n+1)/2",
+        "n^2",
+        "2n"
+      ],
+      "answer": [
+        "n(n-1)/2"
+      ],
+      "explanation": "A simple undirected graph has at most one edge per unordered pair of distinct vertices. There are n choose 2 such pairs."
+    },
+    {
+      "id": "pds-graph-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A simple undirected graph has 8 vertices and 11 edges. What is the sum of all vertex degrees?",
+      "answer": "22",
+      "explanation": "By the handshaking lemma, the degree sum is twice the edge count: 2*11=22."
+    },
+    {
+      "id": "pds-graph-003",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An undirected graph has degree sequence 3,2,2,1. How many edges does it have?",
+      "options": [
+        "4",
+        "8",
+        "3",
+        "5"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "The degree sum is 3+2+2+1=8. Each undirected edge contributes two to the degree sum, so there are 8/2=4 edges."
+    },
+    {
+      "id": "pds-graph-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a directed graph, the sum of all out-degrees is equal to",
+      "options": [
+        "the number of edges",
+        "twice the number of edges",
+        "the sum of in-degrees times two",
+        "the number of vertices"
+      ],
+      "answer": [
+        "the number of edges"
+      ],
+      "explanation": "Each directed edge contributes exactly one to the out-degree of its tail, so the out-degree sum equals the edge count. The in-degree sum does too."
+    },
+    {
+      "id": "pds-graph-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directed graph has 9 edges. What is the sum of all in-degrees?",
+      "answer": "9",
+      "explanation": "Each directed edge contributes one to the in-degree of its head, so the sum of in-degrees is nine."
+    },
+    {
+      "id": "pds-graph-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An undirected graph is connected if",
+      "options": [
+        "every pair of vertices is joined by a path",
+        "every vertex has degree at least two",
+        "it has exactly n-1 edges",
+        "it contains a cycle"
+      ],
+      "answer": [
+        "every pair of vertices is joined by a path"
+      ],
+      "explanation": "Connectivity requires a path between each pair. A connected graph may have leaves, may have cycles, and needs at least n-1 edges but not exactly n-1."
+    },
+    {
+      "id": "pds-graph-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A connected undirected graph with n vertices and n-1 edges is necessarily",
+      "options": [
+        "a tree",
+        "a complete graph",
+        "a cycle",
+        "disconnected"
+      ],
+      "answer": [
+        "a tree"
+      ],
+      "explanation": "A connected graph with n-1 edges is acyclic; if it had a cycle, removing a cycle edge would keep it connected with fewer than n-1 edges, impossible."
+    },
+    {
+      "id": "pds-graph-008",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A tree has 15 vertices. How many edges does it have?",
+      "answer": "14",
+      "explanation": "Every tree with n vertices has n-1 edges, giving 14 for n=15."
+    },
+    {
+      "id": "pds-graph-009",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about trees are true for a finite undirected tree with n>=2 vertices?",
+      "options": [
+        "It is connected",
+        "It is acyclic",
+        "It has n-1 edges",
+        "Every vertex has degree two"
+      ],
+      "answer": [
+        "It is connected",
+        "It is acyclic",
+        "It has n-1 edges"
+      ],
+      "explanation": "A finite tree is connected, acyclic, and has n-1 edges. A tree with n>=2 has leaves of degree one, so not every vertex has degree two."
+    },
+    {
+      "id": "pds-graph-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A forest has n vertices and c connected components. How many edges does it have?",
+      "options": [
+        "n-c",
+        "n-1",
+        "n+c",
+        "c-1"
+      ],
+      "answer": [
+        "n-c"
+      ],
+      "explanation": "Each tree component with vi vertices has vi-1 edges. Summing across c components gives n-c edges."
+    },
+    {
+      "id": "pds-graph-011",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A forest has 20 vertices and 4 connected components. How many edges does it have?",
+      "answer": "16",
+      "explanation": "A forest with n vertices and c components has n-c edges, so 20-4=16."
+    },
+    {
+      "id": "pds-graph-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An adjacency matrix for a simple undirected graph with n vertices uses",
+      "options": [
+        "Theta(n^2) space",
+        "Theta(n) space",
+        "Theta(m) space only",
+        "Theta(log n) space"
+      ],
+      "answer": [
+        "Theta(n^2) space"
+      ],
+      "explanation": "The matrix stores one entry for each ordered pair of vertices, requiring n squared cells even if the graph is sparse."
+    },
+    {
+      "id": "pds-graph-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An adjacency-list representation of an undirected graph with n vertices and m edges uses",
+      "options": [
+        "Theta(n+m) space",
+        "Theta(n^2) space always",
+        "Theta(m^2) space",
+        "Theta(log n) space"
+      ],
+      "answer": [
+        "Theta(n+m) space"
+      ],
+      "explanation": "It stores a list header per vertex and two adjacency entries per undirected edge, yielding Theta(n+m) storage."
+    },
+    {
+      "id": "pds-graph-014",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An undirected graph has 10 vertices and 7 edges. How many adjacency-list edge entries are stored in total?",
+      "answer": "14",
+      "explanation": "Each undirected edge appears once in each endpoint's adjacency list, so seven edges produce fourteen entries."
+    },
+    {
+      "id": "pds-graph-015",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations are O(1) in an adjacency-matrix representation, assuming vertex indices are known?",
+      "options": [
+        "Test whether edge (u,v) exists",
+        "Read the degree of u by scanning its row",
+        "Add an edge (u,v)",
+        "List all neighbors of u"
+      ],
+      "answer": [
+        "Test whether edge (u,v) exists",
+        "Add an edge (u,v)"
+      ],
+      "explanation": "A matrix cell directly tests an edge and can be updated to insert one in O(1). Degree and neighbor enumeration scan the row and take O(n)."
+    },
+    {
+      "id": "pds-graph-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a graph with n vertices and m edges, BFS using adjacency lists runs in",
+      "options": [
+        "O(n+m)",
+        "O(n^2) always",
+        "O(m log n)",
+        "O(nm)"
+      ],
+      "answer": [
+        "O(n+m)"
+      ],
+      "explanation": "Each vertex is enqueued once and each adjacency entry is examined once, for O(n+m) total time."
+    },
+    {
+      "id": "pds-graph-017",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An undirected graph has 9 vertices and 7 edges. How many adjacency-list edge entries will a full BFS inspect?",
+      "answer": "14",
+      "explanation": "Each undirected edge appears in both endpoints' adjacency lists, so seven edges produce 2*7=14 entries that are examined during a full traversal."
+    },
+    {
+      "id": "pds-graph-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "BFS in an unweighted graph finds a shortest path because it explores vertices in",
+      "options": [
+        "nondecreasing number of edges from the source",
+        "increasing vertex-label order",
+        "decreasing edge weight",
+        "postorder"
+      ],
+      "answer": [
+        "nondecreasing number of edges from the source"
+      ],
+      "explanation": "A FIFO queue processes all vertices at distance d before newly discovered vertices at distance d+1, so first discovery minimizes edge count."
+    },
+    {
+      "id": "pds-graph-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "DFS on a graph with adjacency lists runs in",
+      "options": [
+        "O(n+m)",
+        "O(n^2) only",
+        "O(m log n)",
+        "O(2^n)"
+      ],
+      "answer": [
+        "O(n+m)"
+      ],
+      "explanation": "A standard DFS marks each vertex once and scans each adjacency entry once, producing O(n+m) time."
+    },
+    {
+      "id": "pds-graph-020",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A connected undirected graph has 9 vertices and 12 edges. How many adjacency entries will a full DFS inspect?",
+      "answer": "24",
+      "explanation": "Each undirected edge contributes two adjacency entries, so 12 edges produce 24 entries inspected in a full traversal."
+    },
+    {
+      "id": "pds-graph-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In BFS, a vertex should typically be marked visited",
+      "options": [
+        "when it is enqueued",
+        "only when it is dequeued",
+        "after all its neighbors are processed",
+        "only if it is a leaf"
+      ],
+      "answer": [
+        "when it is enqueued"
+      ],
+      "explanation": "Marking on enqueue prevents multiple neighbors from inserting the same vertex repeatedly and ensures each vertex enters the queue at most once."
+    },
+    {
+      "id": "pds-graph-022",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In DFS on an undirected graph, an edge from a vertex to an already visited ancestor is commonly called a",
+      "options": [
+        "back edge",
+        "tree edge",
+        "cross edge only",
+        "forward edge"
+      ],
+      "answer": [
+        "back edge"
+      ],
+      "explanation": "In DFS of an undirected graph, non-tree edges connect a vertex to an ancestor and are classified as back edges; undirected graphs do not have forward/cross edges in the same way as directed DFS classification."
+    },
+    {
+      "id": "pds-graph-023",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which data structures are commonly used by iterative graph traversals?",
+      "options": [
+        "Queue for BFS",
+        "Stack for DFS",
+        "Priority queue for ordinary unweighted BFS",
+        "Visited set or array"
+      ],
+      "answer": [
+        "Queue for BFS",
+        "Stack for DFS",
+        "Visited set or array"
+      ],
+      "explanation": "BFS uses a queue and DFS uses a stack (explicitly or through recursion). Both require visited state. Ordinary unweighted BFS does not need a priority queue."
+    },
+    {
+      "id": "pds-graph-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph has V vertices and E edges. An adjacency matrix traversal of all possible neighbors for every vertex takes",
+      "options": [
+        "O(V^2)",
+        "O(V+E)",
+        "O(E log V)",
+        "O(log V)"
+      ],
+      "answer": [
+        "O(V^2)"
+      ],
+      "explanation": "For each vertex, the algorithm scans an entire matrix row of V entries, for V rows total V squared work."
+    },
+    {
+      "id": "pds-graph-025",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An adjacency matrix for a graph with 7 vertices contains how many cells?",
+      "answer": "49",
+      "explanation": "An adjacency matrix has one cell for each ordered pair of vertices, so it contains 7*7=49 cells."
+    },
+    {
+      "id": "pds-graph-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A simple undirected graph's adjacency matrix is",
+      "options": [
+        "symmetric with a zero diagonal",
+        "upper triangular only",
+        "asymmetric",
+        "filled with ones on the diagonal"
+      ],
+      "answer": [
+        "symmetric with a zero diagonal"
+      ],
+      "explanation": "Undirected adjacency is reciprocal, so A[u][v]=A[v][u]. A simple graph has no self-loops, giving zeros on the diagonal."
+    },
+    {
+      "id": "pds-graph-027",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about adjacency lists for an undirected simple graph are true?",
+      "options": [
+        "The sum of list lengths is 2m",
+        "An isolated vertex still has a list header",
+        "Testing adjacency may take O(degree(u)) by scanning u's list",
+        "Space is Theta(n^2) regardless of m"
+      ],
+      "answer": [
+        "The sum of list lengths is 2m",
+        "An isolated vertex still has a list header",
+        "Testing adjacency may take O(degree(u)) by scanning u's list"
+      ],
+      "explanation": "Each undirected edge contributes two entries; isolated vertices retain list headers; adjacency testing can scan one endpoint list. Space is O(n+m), not always quadratic."
+    },
+    {
+      "id": "pds-graph-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph is sparse when",
+      "options": [
+        "the number of edges is much smaller than V^2",
+        "every vertex has degree V-1",
+        "it has more than V^2 edges",
+        "it is necessarily a tree"
+      ],
+      "answer": [
+        "the number of edges is much smaller than V^2"
+      ],
+      "explanation": "A sparse graph has relatively few edges compared with the maximum possible quadratic number; trees are sparse examples but not the only ones."
+    },
+    {
+      "id": "pds-graph-029",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A simple undirected graph with 6 vertices is complete. How many edges does it have?",
+      "answer": "15",
+      "explanation": "A complete simple graph has n(n-1)/2 edges. For n=6 this is 6*5/2=15."
+    },
+    {
+      "id": "pds-graph-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A complete graph K_n has degree of every vertex equal to",
+      "options": [
+        "n-1",
+        "n",
+        "n/2",
+        "2n"
+      ],
+      "answer": [
+        "n-1"
+      ],
+      "explanation": "Each vertex is adjacent to all other n-1 vertices, with no self-loop."
+    },
+    {
+      "id": "pds-graph-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A bipartite graph is one whose vertices can be partitioned into two sets such that",
+      "options": [
+        "every edge crosses between the sets",
+        "every pair in each set has an edge",
+        "all vertices have degree two",
+        "it has no odd-length paths"
+      ],
+      "answer": [
+        "every edge crosses between the sets"
+      ],
+      "explanation": "A bipartite graph admits a two-coloring in which every edge joins opposite color classes. It may have odd-length paths, but it has no odd cycle."
+    },
+    {
+      "id": "pds-graph-032",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions imply an undirected graph is bipartite?",
+      "options": [
+        "It contains no odd cycle",
+        "It is 2-colorable",
+        "Every cycle has even length",
+        "It is connected"
+      ],
+      "answer": [
+        "It contains no odd cycle",
+        "It is 2-colorable",
+        "Every cycle has even length"
+      ],
+      "explanation": "Bipartiteness is equivalent to 2-colorability and to having no odd cycle, which also means every cycle is even. Connectivity is not required."
+    },
+    {
+      "id": "pds-graph-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A cycle graph C_n is bipartite exactly when",
+      "options": [
+        "n is even",
+        "n is odd",
+        "n is prime",
+        "n is a power of two"
+      ],
+      "answer": [
+        "n is even"
+      ],
+      "explanation": "An even cycle alternates between two color classes and returns consistently; an odd cycle creates a conflict at its closing edge."
+    },
+    {
+      "id": "pds-graph-034",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Is the cycle C_9 bipartite? Use 1 for yes and 0 for no.",
+      "answer": "0",
+      "explanation": "C_9 has odd length, so alternating two colors around the cycle forces adjacent endpoints to share a color. It is not bipartite."
+    },
+    {
+      "id": "pds-graph-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph with an odd cycle cannot be",
+      "options": [
+        "bipartite",
+        "connected",
+        "simple",
+        "undirected"
+      ],
+      "answer": [
+        "bipartite"
+      ],
+      "explanation": "Every cycle in a bipartite graph alternates between two partitions and therefore has even length, so an odd cycle rules bipartiteness out."
+    },
+    {
+      "id": "pds-graph-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A connected acyclic undirected graph with at least two vertices has",
+      "options": [
+        "at least two vertices of degree one",
+        "exactly one leaf",
+        "all vertices of degree two",
+        "no leaves"
+      ],
+      "answer": [
+        "at least two vertices of degree one"
+      ],
+      "explanation": "Every finite tree with at least two vertices has at least two leaves, which can be shown by taking endpoints of a longest simple path."
+    },
+    {
+      "id": "pds-graph-037",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A tree has 10 vertices. What is the average vertex degree?",
+      "answer": "1.8",
+      "explanation": "Its degree sum is 2(n-1)=18, so average degree is 18/10=1.8."
+    },
+    {
+      "id": "pds-graph-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In an undirected graph, a vertex of degree zero is called",
+      "options": [
+        "isolated",
+        "pendant",
+        "articulation",
+        "bridge"
+      ],
+      "answer": [
+        "isolated"
+      ],
+      "explanation": "A degree-zero vertex has no incident edge and is isolated. A pendant vertex has degree one."
+    },
+    {
+      "id": "pds-graph-039",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about graph connectivity are true?",
+      "options": [
+        "A graph with one connected component is connected",
+        "A connected graph has a path between every vertex pair",
+        "An isolated vertex forms a connected component",
+        "A disconnected graph must have a cycle"
+      ],
+      "answer": [
+        "A graph with one connected component is connected",
+        "A connected graph has a path between every vertex pair",
+        "An isolated vertex forms a connected component"
+      ],
+      "explanation": "A connected component is a maximal connected set, so an isolated vertex is a component of size one. Disconnected graphs need not contain cycles."
+    },
+    {
+      "id": "pds-graph-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The number of connected components of an undirected graph can be found by",
+      "options": [
+        "repeated BFS/DFS from each unvisited vertex",
+        "counting only its edges",
+        "sorting the vertex labels",
+        "running topological sort"
+      ],
+      "answer": [
+        "repeated BFS/DFS from each unvisited vertex"
+      ],
+      "explanation": "Start a traversal from each unvisited vertex. Each traversal discovers one component, and the total traversal work remains O(V+E)."
+    },
+    {
+      "id": "pds-graph-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph is strongly connected if",
+      "options": [
+        "every vertex can reach every other vertex",
+        "the underlying undirected graph is a tree",
+        "every vertex has equal in-degree and out-degree",
+        "it has no directed cycles"
+      ],
+      "answer": [
+        "every vertex can reach every other vertex"
+      ],
+      "explanation": "Strong connectivity requires a directed path from each vertex to every other vertex; the undirected underlying graph alone does not suffice."
+    },
+    {
+      "id": "pds-graph-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph is weakly connected if",
+      "options": [
+        "its underlying undirected graph is connected",
+        "it is strongly connected",
+        "each vertex has out-degree at least one",
+        "it is acyclic"
+      ],
+      "answer": [
+        "its underlying undirected graph is connected"
+      ],
+      "explanation": "Weak connectivity ignores edge directions and asks whether the underlying undirected graph is connected."
+    },
+    {
+      "id": "pds-graph-043",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directed graph has 6 vertices and is strongly connected. What is the minimum possible number of edges? ",
+      "answer": "6",
+      "explanation": "Each vertex must have at least one incoming and outgoing edge; a directed cycle through all six vertices achieves strong connectivity using six edges."
+    },
+    {
+      "id": "pds-graph-044",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about directed graphs are true?",
+      "options": [
+        "The sum of out-degrees equals the number of edges",
+        "The sum of in-degrees equals the number of edges",
+        "A strongly connected graph is weakly connected",
+        "A weakly connected graph is always strongly connected"
+      ],
+      "answer": [
+        "The sum of out-degrees equals the number of edges",
+        "The sum of in-degrees equals the number of edges",
+        "A strongly connected graph is weakly connected"
+      ],
+      "explanation": "Each directed edge contributes once to the out-degree sum and once to the in-degree sum. Strong connectivity implies weak connectivity, but not vice versa."
+    },
+    {
+      "id": "pds-graph-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed acyclic graph (DAG) is a directed graph with",
+      "options": [
+        "no directed cycle",
+        "no undirected path",
+        "exactly one source",
+        "equal in-degree and out-degree at every vertex"
+      ],
+      "answer": [
+        "no directed cycle"
+      ],
+      "explanation": "A DAG has no directed cycle. It may contain multiple sources and undirected paths."
+    },
+    {
+      "id": "pds-graph-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A topological ordering of a directed graph exists if and only if the graph is",
+      "options": [
+        "a DAG",
+        "strongly connected",
+        "complete",
+        "undirected"
+      ],
+      "answer": [
+        "a DAG"
+      ],
+      "explanation": "A topological order places every edge's source before its destination; such an ordering exists precisely when no directed cycle prevents a consistent order."
+    },
+    {
+      "id": "pds-graph-047",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithms can produce a topological ordering of a DAG?",
+      "options": [
+        "Kahn's indegree-based algorithm",
+        "DFS finishing-time order reversed",
+        "Dijkstra's algorithm",
+        "Prim's algorithm"
+      ],
+      "answer": [
+        "Kahn's indegree-based algorithm",
+        "DFS finishing-time order reversed"
+      ],
+      "explanation": "Kahn removes zero-indegree vertices; reverse DFS finishing-time order is also topological for a DAG. Dijkstra and Prim solve different graph problems."
+    },
+    {
+      "id": "pds-graph-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Kahn's algorithm for topological sorting repeatedly selects a vertex with",
+      "options": [
+        "indegree zero",
+        "outdegree zero only",
+        "maximum degree",
+        "minimum vertex label only"
+      ],
+      "answer": [
+        "indegree zero"
+      ],
+      "explanation": "A vertex with indegree zero has no remaining prerequisite edge, so it can be emitted next and its outgoing edges removed."
+    },
+    {
+      "id": "pds-graph-049",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DAG has vertices A,B,C with edges A->B and A->C. How many valid topological orders are there?",
+      "answer": "2",
+      "explanation": "A must appear first, while B and C can appear in either order, giving two topological orders."
+    },
+    {
+      "id": "pds-graph-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If Kahn's algorithm stops with vertices remaining, the graph contains",
+      "options": [
+        "a directed cycle",
+        "no edges",
+        "exactly one source",
+        "a spanning tree"
+      ],
+      "answer": [
+        "a directed cycle"
+      ],
+      "explanation": "In a remaining nonempty subgraph where every vertex has positive indegree, following predecessor edges must eventually repeat a vertex, forming a directed cycle."
+    },
+    {
+      "id": "pds-graph-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph is represented by adjacency lists. A DFS can detect a cycle in a directed graph using",
+      "options": [
+        "visited and recursion-stack/gray-state information",
+        "only total edge count",
+        "a min-heap",
+        "inorder traversal"
+      ],
+      "answer": [
+        "visited and recursion-stack/gray-state information"
+      ],
+      "explanation": "An edge to a currently active (gray) vertex indicates a back edge and therefore a directed cycle. A simple visited flag alone cannot distinguish active from completed vertices."
+    },
+    {
+      "id": "pds-graph-052",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directed graph has a DFS back edge to a gray vertex. Does this prove a directed cycle exists? Use 1 for yes and 0 for no.",
+      "answer": "1",
+      "explanation": "A gray vertex is an ancestor on the active DFS path. The back edge plus the tree path back to that ancestor forms a directed cycle."
+    },
+    {
+      "id": "pds-graph-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In an undirected DFS, a visited neighbor should be treated as a cycle edge only if it is not",
+      "options": [
+        "the parent vertex",
+        "a leaf",
+        "the starting vertex",
+        "a high-degree vertex"
+      ],
+      "answer": [
+        "the parent vertex"
+      ],
+      "explanation": "The edge back to the DFS parent is the same undirected tree edge and does not form a cycle. A visited non-parent neighbor indicates a cycle."
+    },
+    {
+      "id": "pds-graph-054",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about graph traversal forests are true?",
+      "options": [
+        "A DFS forest of a disconnected graph has one tree per component",
+        "A BFS from one source reaches only its connected component in an undirected graph",
+        "Starting BFS from each unvisited vertex can visit every component",
+        "A single BFS always visits every vertex in a disconnected graph"
+      ],
+      "answer": [
+        "A DFS forest of a disconnected graph has one tree per component",
+        "A BFS from one source reaches only its connected component in an undirected graph",
+        "Starting BFS from each unvisited vertex can visit every component"
+      ],
+      "explanation": "A traversal from one source covers only its component. Repeating from unvisited vertices creates a forest with one traversal tree per component and covers all vertices."
+    },
+    {
+      "id": "pds-graph-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A spanning tree of a connected undirected graph with n vertices contains",
+      "options": [
+        "n-1 edges",
+        "n edges",
+        "at most n-2 edges",
+        "n(n-1)/2 edges"
+      ],
+      "answer": [
+        "n-1 edges"
+      ],
+      "explanation": "A spanning tree is connected and acyclic on all n vertices, so it has exactly n-1 edges."
+    },
+    {
+      "id": "pds-graph-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A connected graph has 11 vertices. How many edges are in any spanning tree?",
+      "answer": "10",
+      "explanation": "Every spanning tree on n vertices has n-1 edges, giving ten."
+    },
+    {
+      "id": "pds-graph-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph with n vertices has a spanning forest with c components. How many forest edges are there?",
+      "options": [
+        "n-c",
+        "n-1",
+        "n+c",
+        "c"
+      ],
+      "answer": [
+        "n-c"
+      ],
+      "explanation": "Each component tree contributes vi-1 edges; summing yields total vertices minus component count."
+    },
+    {
+      "id": "pds-graph-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph with 8 vertices has a spanning forest of 5 edges. How many connected components does it have?",
+      "options": [
+        "3",
+        "2",
+        "5",
+        "8"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "A spanning forest with n vertices and c components has n-c edges. Here 5=8-c, so c=3."
+    },
+    {
+      "id": "pds-graph-059",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are valid ways to represent a weighted graph?",
+      "options": [
+        "Adjacency matrix storing weights",
+        "Adjacency lists storing neighbor-weight pairs",
+        "Edge list storing endpoint-weight triples",
+        "A single degree number per vertex"
+      ],
+      "answer": [
+        "Adjacency matrix storing weights",
+        "Adjacency lists storing neighbor-weight pairs",
+        "Edge list storing endpoint-weight triples"
+      ],
+      "explanation": "A weighted graph can store weights in a matrix, neighbor-weight adjacency lists, or endpoint-weight edge tuples. Degree counts alone lose weight and endpoint information."
+    },
+    {
+      "id": "pds-graph-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For an unweighted graph, an adjacency matrix entry A[u][v] is commonly",
+      "options": [
+        "1 if edge (u,v) exists and 0 otherwise",
+        "the shortest-path distance always",
+        "the degree of u",
+        "the DFS discovery time"
+      ],
+      "answer": [
+        "1 if edge (u,v) exists and 0 otherwise"
+      ],
+      "explanation": "The basic adjacency matrix records edge presence (or absence); distances and traversal times require separate computations or data."
+    },
+    {
+      "id": "pds-graph-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A connected undirected graph has a bridge e. Removing e",
+      "options": [
+        "increases the number of connected components",
+        "cannot change connectivity",
+        "creates a cycle",
+        "decreases the number of vertices"
+      ],
+      "answer": [
+        "increases the number of connected components"
+      ],
+      "explanation": "A bridge is an edge whose removal disconnects its component, increasing the number of components by one."
+    },
+    {
+      "id": "pds-graph-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A vertex is an articulation point if removing it and its incident edges",
+      "options": [
+        "increases the number of connected components",
+        "decreases the number of edges by exactly one",
+        "makes the graph complete",
+        "always isolates every neighbor"
+      ],
+      "answer": [
+        "increases the number of connected components"
+      ],
+      "explanation": "An articulation vertex is a cut vertex whose removal increases the number of connected components of the graph."
+    },
+    {
+      "id": "pds-graph-063",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions characterize a tree on n vertices?",
+      "options": [
+        "It is connected and has n-1 edges",
+        "It is acyclic and has n-1 edges",
+        "There is exactly one simple path between every pair of vertices",
+        "It is complete"
+      ],
+      "answer": [
+        "It is connected and has n-1 edges",
+        "It is acyclic and has n-1 edges",
+        "There is exactly one simple path between every pair of vertices"
+      ],
+      "explanation": "For a finite undirected graph, connected plus n-1 edges, acyclic plus n-1 edges, and a unique simple path between every pair are equivalent tree characterizations."
+    },
+    {
+      "id": "pds-graph-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A tree has 18 vertices and is rooted at one vertex. How many parent-child edges does the rooted tree have?",
+      "answer": "17",
+      "explanation": "Rooting changes no edges; a tree with 18 vertices has 17 edges."
+    },
+    {
+      "id": "pds-graph-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a connected undirected graph, a DFS tree edge is",
+      "options": [
+        "an edge used to first discover a vertex",
+        "any edge between two visited vertices",
+        "always a bridge",
+        "an edge connecting two roots"
+      ],
+      "answer": [
+        "an edge used to first discover a vertex"
+      ],
+      "explanation": "A DFS tree edge is the edge through which a previously unvisited vertex is discovered from its parent."
+    },
+    {
+      "id": "pds-graph-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "BFS tree distance from the source in an unweighted graph equals",
+      "options": [
+        "shortest-path length in number of edges",
+        "minimum total weight for any weights",
+        "DFS depth",
+        "vertex degree"
+      ],
+      "answer": [
+        "shortest-path length in number of edges"
+      ],
+      "explanation": "BFS levels correspond to minimum edge-count distances from the source in an unweighted graph."
+    },
+    {
+      "id": "pds-graph-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An unweighted graph has shortest distance 4 edges from source s to vertex v. At what BFS level is v discovered, with source at level 0?",
+      "answer": "4",
+      "explanation": "BFS level counts the number of edges in a shortest path; a four-edge path places v at level 4."
+    },
+    {
+      "id": "pds-graph-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a weighted graph with nonnegative edge weights, which algorithm finds single-source shortest paths?",
+      "options": [
+        "Dijkstra's algorithm",
+        "BFS in general",
+        "Kahn's algorithm",
+        "Kruskal's algorithm"
+      ],
+      "answer": [
+        "Dijkstra's algorithm"
+      ],
+      "explanation": "Dijkstra repeatedly finalizes the closest tentative vertex and supports nonnegative weights. BFS applies when all edges have equal unit cost."
+    },
+    {
+      "id": "pds-graph-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can ordinary BFS fail to find a minimum-weight path when edge weights differ?",
+      "options": [
+        "It minimizes number of edges, not sum of weights",
+        "It ignores all vertices with degree one",
+        "It requires a complete graph",
+        "It only works on directed graphs"
+      ],
+      "answer": [
+        "It minimizes number of edges, not sum of weights"
+      ],
+      "explanation": "BFS orders by hop count. A path with fewer edges can have greater total weight than one with more edges."
+    },
+    {
+      "id": "pds-graph-070",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithms are intended for finding a minimum spanning tree of a connected weighted undirected graph?",
+      "options": [
+        "Kruskal's algorithm",
+        "Prim's algorithm",
+        "Dijkstra's algorithm",
+        "Bellman-Ford algorithm"
+      ],
+      "answer": [
+        "Kruskal's algorithm",
+        "Prim's algorithm"
+      ],
+      "explanation": "Kruskal and Prim construct minimum spanning trees for connected weighted undirected graphs. Dijkstra and Bellman-Ford compute single-source shortest paths."
+    },
+    {
+      "id": "pds-graph-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Kruskal's algorithm considers edges in",
+      "options": [
+        "nondecreasing weight order",
+        "nonincreasing weight order",
+        "DFS discovery order",
+        "vertex-label order"
+      ],
+      "answer": [
+        "nondecreasing weight order"
+      ],
+      "explanation": "It adds the lightest edge that joins different components, so edges are considered in nondecreasing weight order."
+    },
+    {
+      "id": "pds-graph-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A spanning tree on 9 vertices contains how many edges?",
+      "answer": "8",
+      "explanation": "A spanning tree has n-1 edges, so with nine vertices it contains eight."
+    },
+    {
+      "id": "pds-graph-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Kruskal's algorithm uses a disjoint-set union structure primarily to",
+      "options": [
+        "test whether an edge's endpoints are already connected",
+        "find the shortest path between endpoints",
+        "sort adjacency lists",
+        "store vertex degrees"
+      ],
+      "answer": [
+        "test whether an edge's endpoints are already connected"
+      ],
+      "explanation": "If both endpoints are in the same component, adding the edge creates a cycle; DSU supports component checks and unions efficiently."
+    },
+    {
+      "id": "pds-graph-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A union-find structure with path compression and union by rank has amortized operation time",
+      "options": [
+        "near-constant, O(alpha(n))",
+        "O(n) exactly",
+        "O(log n) exactly",
+        "O(n log n) per operation"
+      ],
+      "answer": [
+        "near-constant, O(alpha(n))"
+      ],
+      "explanation": "The combination has inverse-Ackermann amortized time per operation, which is effectively constant for practical input sizes."
+    },
+    {
+      "id": "pds-graph-075",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Kruskal's algorithm are true?",
+      "options": [
+        "It can process edges sorted by weight",
+        "It rejects edges that create a cycle",
+        "It produces a minimum spanning forest for a disconnected graph",
+        "It requires all edge weights to be distinct for correctness"
+      ],
+      "answer": [
+        "It can process edges sorted by weight",
+        "It rejects edges that create a cycle",
+        "It produces a minimum spanning forest for a disconnected graph"
+      ],
+      "explanation": "Kruskal sorts edges, rejects cycle-forming edges, and on disconnected input returns a minimum spanning forest. Tied weights are allowed and may yield multiple valid optimal forests."
+    },
+    {
+      "id": "pds-graph-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Prim's algorithm grows a tree by repeatedly selecting",
+      "options": [
+        "the minimum-weight edge crossing from the current tree to an outside vertex",
+        "the globally largest edge",
+        "an arbitrary edge in the graph",
+        "the minimum degree vertex regardless of edge weight"
+      ],
+      "answer": [
+        "the minimum-weight edge crossing from the current tree to an outside vertex"
+      ],
+      "explanation": "Prim maintains a cut between included and excluded vertices and adds a minimum-weight crossing edge."
+    },
+    {
+      "id": "pds-graph-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a connected graph with V vertices and E edges, Prim's algorithm with a binary heap and adjacency lists runs in",
+      "options": [
+        "O((V+E) log V)",
+        "O(V^2) always",
+        "O(E^2)",
+        "O(log V)"
+      ],
+      "answer": [
+        "O((V+E) log V)"
+      ],
+      "explanation": "Heap operations for vertex priorities contribute O(log V) each across edge updates; standard binary-heap bound is O((V+E) log V)."
+    },
+    {
+      "id": "pds-graph-078",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A minimum spanning tree has total edge weight 23. If one edge of weight 8 is replaced by an alternative edge of weight 11 while preserving a spanning tree, what is the new total weight?",
+      "answer": "26",
+      "explanation": "The replacement increases total weight by 11-8=3, giving 23+3=26."
+    },
+    {
+      "id": "pds-graph-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The cut property for MSTs states that a minimum-weight edge crossing a cut",
+      "options": [
+        "belongs to some MST (and if unique, every MST)",
+        "can never be in an MST",
+        "must be the heaviest edge globally",
+        "is irrelevant to Prim and Kruskal"
+      ],
+      "answer": [
+        "belongs to some MST (and if unique, every MST)"
+      ],
+      "explanation": "A lightest edge crossing any cut is safe to include in an MST; if uniquely light, it belongs to every MST."
+    },
+    {
+      "id": "pds-graph-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The cycle property for a weighted undirected graph says a unique heaviest edge on a cycle",
+      "options": [
+        "belongs to no MST",
+        "belongs to every MST",
+        "must be selected first",
+        "makes the graph disconnected"
+      ],
+      "answer": [
+        "belongs to no MST"
+      ],
+      "explanation": "The unique heaviest edge can be omitted: the rest of the cycle provides a path between its endpoints with lower maximum weight, so it cannot be required in an MST."
+    },
+    {
+      "id": "pds-graph-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph with negative edge weights but no negative cycles is handled by which single-source shortest-path algorithm among these?",
+      "options": [
+        "Bellman-Ford",
+        "Dijkstra",
+        "BFS",
+        "Prim"
+      ],
+      "answer": [
+        "Bellman-Ford"
+      ],
+      "explanation": "Bellman-Ford supports negative edge weights and can detect negative cycles reachable from the source. Dijkstra's correctness requires nonnegative weights."
+    },
+    {
+      "id": "pds-graph-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Bellman-Ford relaxes every edge V-1 times because",
+      "options": [
+        "a shortest simple path uses at most V-1 edges",
+        "every graph has V-1 edges",
+        "each vertex has degree V-1",
+        "it must visit each cycle V-1 times"
+      ],
+      "answer": [
+        "a shortest simple path uses at most V-1 edges"
+      ],
+      "explanation": "A shortest path without a negative cycle can be made simple and therefore contains at most V-1 edges; each pass propagates paths one edge longer."
+    },
+    {
+      "id": "pds-graph-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A graph has 7 vertices. How many full edge-relaxation passes are sufficient for Bellman-Ford after initialization?",
+      "answer": "6",
+      "explanation": "The standard bound is V-1 passes; with V=7, six passes suffice."
+    },
+    {
+      "id": "pds-graph-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about shortest-path algorithms are true?",
+      "options": [
+        "BFS finds shortest paths by edge count in unweighted graphs",
+        "Dijkstra requires nonnegative edge weights",
+        "Bellman-Ford can detect a reachable negative cycle",
+        "Prim computes shortest paths from a source"
+      ],
+      "answer": [
+        "BFS finds shortest paths by edge count in unweighted graphs",
+        "Dijkstra requires nonnegative edge weights",
+        "Bellman-Ford can detect a reachable negative cycle"
+      ],
+      "explanation": "BFS minimizes edge count in unweighted graphs, Dijkstra assumes nonnegative weights, and Bellman-Ford can detect reachable negative cycles. Prim is an MST algorithm."
+    },
+    {
+      "id": "pds-graph-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A shortest-path relaxation for edge (u,v,w) updates dist[v] when",
+      "options": [
+        "dist[u]+w<dist[v]",
+        "dist[u]>dist[v]+w always",
+        "w<0",
+        "v has greater degree than u"
+      ],
+      "answer": [
+        "dist[u]+w<dist[v]"
+      ],
+      "explanation": "Relaxation replaces the current estimate when the path through u yields a strictly smaller candidate distance."
+    },
+    {
+      "id": "pds-graph-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a directed graph, a negative cycle is relevant to source s shortest paths when",
+      "options": [
+        "it is reachable from s",
+        "it has exactly V edges",
+        "it is disconnected from s",
+        "all its edges have equal weights"
+      ],
+      "answer": [
+        "it is reachable from s"
+      ],
+      "explanation": "Only a negative cycle reachable from the source can be traversed after starting at s and make path costs arbitrarily small."
+    },
+    {
+      "id": "pds-graph-087",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directed graph has a negative cycle in a component unreachable from source s. Does it make shortest-path distances from s undefined? Use 1 for yes, 0 for no.",
+      "answer": "0",
+      "explanation": "A source cannot reach that cycle, so paths from s cannot traverse it; it does not make source-reachable shortest distances undefined."
+    },
+    {
+      "id": "pds-graph-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A topological ordering of a DAG can be computed in",
+      "options": [
+        "O(V+E)",
+        "O(V^2) always",
+        "O(E log V)",
+        "O(2^V)"
+      ],
+      "answer": [
+        "O(V+E)"
+      ],
+      "explanation": "Kahn's algorithm or DFS scans each vertex and edge a constant number of times, giving linear time in the adjacency-list size."
+    },
+    {
+      "id": "pds-graph-089",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DAG has 8 vertices and 10 edges. What is the time order of Kahn's algorithm using adjacency lists?",
+      "answer": "18",
+      "explanation": "The running time is O(V+E); the sum V+E for this instance is 8+10=18 units of asymptotic input work."
+    },
+    {
+      "id": "pds-graph-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A DAG has a unique topological ordering if",
+      "options": [
+        "at each Kahn step there is exactly one zero-indegree vertex available",
+        "it has exactly one source",
+        "it is a tree",
+        "every vertex has out-degree one"
+      ],
+      "answer": [
+        "at each Kahn step there is exactly one zero-indegree vertex available"
+      ],
+      "explanation": "If multiple zero-indegree choices exist at a step, choosing them in either order yields distinct topological orders. A unique choice at each step ensures uniqueness."
+    },
+    {
+      "id": "pds-graph-091",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about topological orderings are true?",
+      "options": [
+        "Every directed edge goes from an earlier to a later vertex",
+        "A directed cycle prevents a topological ordering",
+        "A DAG may have multiple valid topological orders",
+        "Every DAG has exactly one source"
+      ],
+      "answer": [
+        "Every directed edge goes from an earlier to a later vertex",
+        "A directed cycle prevents a topological ordering",
+        "A DAG may have multiple valid topological orders"
+      ],
+      "explanation": "Topological order respects every directed edge; a directed cycle makes such an order impossible. A DAG can have several valid orders and can have multiple sources."
+    },
+    {
+      "id": "pds-graph-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph has edges A->C, B->C, and C->D. Which sequence is a valid topological ordering?",
+      "options": [
+        "A,B,C,D",
+        "C,A,B,D",
+        "A,C,D,B",
+        "D,C,A,B"
+      ],
+      "answer": [
+        "A,B,C,D"
+      ],
+      "explanation": "A and B must precede C, and C must precede D. A,B,C,D satisfies all precedence constraints."
+    },
+    {
+      "id": "pds-graph-093",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A DAG has two independent vertices A and B and no edges. How many topological orders does it have?",
+      "answer": "2",
+      "explanation": "With no precedence constraints, either A,B or B,A is valid, giving two orders."
+    },
+    {
+      "id": "pds-graph-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph's strongly connected components partition its vertices so that within each component",
+      "options": [
+        "every vertex is reachable from every other vertex",
+        "there are no paths between any vertices",
+        "all edge weights are equal",
+        "the component is a tree"
+      ],
+      "answer": [
+        "every vertex is reachable from every other vertex"
+      ],
+      "explanation": "Strong connectivity is mutual reachability; maximal sets of mutually reachable vertices form disjoint SCCs covering the graph."
+    },
+    {
+      "id": "pds-graph-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Contracting each strongly connected component of a directed graph produces a condensation graph that is",
+      "options": [
+        "a DAG",
+        "a complete graph",
+        "strongly connected unless there is one component",
+        "an undirected tree"
+      ],
+      "answer": [
+        "a DAG"
+      ],
+      "explanation": "If the component graph had a directed cycle, all SCCs on that cycle would be mutually reachable and should be one component. Therefore condensation is acyclic."
+    },
+    {
+      "id": "pds-graph-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithms compute strongly connected components in O(V+E) time?",
+      "options": [
+        "Kosaraju's algorithm",
+        "Tarjan's algorithm",
+        "Kahn's algorithm",
+        "Kruskal's algorithm"
+      ],
+      "answer": [
+        "Kosaraju's algorithm",
+        "Tarjan's algorithm"
+      ],
+      "explanation": "Kosaraju and Tarjan compute SCCs in O(V+E). Kahn topologically sorts a DAG, while Kruskal constructs a minimum spanning forest."
+    },
+    {
+      "id": "pds-graph-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Kosaraju's SCC algorithm performs DFS on the graph transpose in the order determined by",
+      "options": [
+        "decreasing finishing time from a first DFS",
+        "increasing vertex degree",
+        "increasing discovery time",
+        "edge weight order"
+      ],
+      "answer": [
+        "decreasing finishing time from a first DFS"
+      ],
+      "explanation": "The first DFS finishing order is reversed; processing the transpose in decreasing finish time separates SCCs correctly."
+    },
+    {
+      "id": "pds-graph-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directed graph has 5 vertices, each reachable from every other vertex. How many strongly connected components does it have?",
+      "answer": "1",
+      "explanation": "All vertices are mutually reachable, so the entire graph is a single maximal strongly connected component."
+    },
+    {
+      "id": "pds-graph-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directed graph with V vertices is strongly connected if",
+      "options": [
+        "for every ordered pair u,v there is a directed path u to v",
+        "every vertex has out-degree V-1",
+        "it has exactly V edges",
+        "its underlying graph is acyclic"
+      ],
+      "answer": [
+        "for every ordered pair u,v there is a directed path u to v"
+      ],
+      "explanation": "Strong connectivity requires directed reachability for every ordered pair, not a specific degree or edge count."
+    },
+    {
+      "id": "pds-graph-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A graph algorithm uses a visited array initialized false. Why should each vertex be marked before recursively exploring its neighbors?",
+      "options": [
+        "To prevent infinite recursion on cycles and duplicate processing",
+        "To ensure adjacency lists are sorted",
+        "To reduce the number of graph edges",
+        "To make all paths shortest"
+      ],
+      "answer": [
+        "To prevent infinite recursion on cycles and duplicate processing"
+      ],
+      "explanation": "Marking on discovery prevents revisiting a vertex through cycles or multiple paths and limits processing to once per vertex."
+    }
+  ]
+}

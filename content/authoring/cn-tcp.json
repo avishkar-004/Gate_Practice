@@ -1,0 +1,1431 @@
+{
+  "topicIndex": 5,
+  "questions": [
+    {
+      "id": "cn-tcp-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP provides which service to applications?",
+      "options": [
+        "Reliable, ordered byte stream",
+        "Unreliable datagram delivery",
+        "Message-preserving record service",
+        "Network-layer routing"
+      ],
+      "answer": [
+        "Reliable, ordered byte stream"
+      ],
+      "explanation": "TCP provides a connection-oriented, reliable, ordered byte stream. It does not preserve application message boundaries."
+    },
+    {
+      "id": "cn-tcp-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which TCP header field identifies the first data byte carried in a segment?",
+      "options": [
+        "Sequence number",
+        "Acknowledgment number",
+        "Window size",
+        "Urgent pointer"
+      ],
+      "answer": [
+        "Sequence number"
+      ],
+      "explanation": "The TCP sequence number identifies the sequence-space position of the first payload byte (or control sequence point) in that segment."
+    },
+    {
+      "id": "cn-tcp-003",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP segment starts at sequence number 1000 and carries 500 data bytes. What sequence number acknowledges all those bytes?",
+      "answer": "1500",
+      "explanation": "The next expected byte follows the 500 bytes starting at 1000, so the acknowledgment number is 1000+500=1500."
+    },
+    {
+      "id": "cn-tcp-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP ACK number of 2501 indicates that the receiver",
+      "options": [
+        "expects byte 2501 next",
+        "has received byte 2501 only",
+        "sent 2501 bytes",
+        "has a window of 2501 bytes"
+      ],
+      "answer": [
+        "expects byte 2501 next"
+      ],
+      "explanation": "TCP acknowledgments are cumulative: ACK 2501 confirms all bytes up to 2500 and requests 2501 next."
+    },
+    {
+      "id": "cn-tcp-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The TCP three-way handshake is",
+      "options": [
+        "SYN, SYN-ACK, ACK",
+        "SYN, ACK, FIN",
+        "ACK, SYN, FIN",
+        "FIN, FIN-ACK, ACK"
+      ],
+      "answer": [
+        "SYN, SYN-ACK, ACK"
+      ],
+      "explanation": "The active opener sends SYN, the peer responds with SYN-ACK, and the opener completes the connection with ACK."
+    },
+    {
+      "id": "cn-tcp-006",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many TCP segments are sent in the standard three-way handshake?",
+      "answer": "3",
+      "explanation": "The handshake consists of SYN, SYN-ACK, and the final ACK, totaling three segments."
+    },
+    {
+      "id": "cn-tcp-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The initial sequence number in TCP is used to",
+      "options": [
+        "identify byte positions and support reliable ordering",
+        "select the IP route",
+        "advertise the receive window only",
+        "identify the destination port"
+      ],
+      "answer": [
+        "identify byte positions and support reliable ordering"
+      ],
+      "explanation": "Sequence numbers label the byte stream so TCP can detect gaps, reorder data, acknowledge bytes, and distinguish connection incarnations."
+    },
+    {
+      "id": "cn-tcp-008",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which TCP flags are involved in connection setup and teardown?",
+      "options": [
+        "SYN",
+        "ACK",
+        "FIN",
+        "PSH"
+      ],
+      "answer": [
+        "SYN",
+        "ACK",
+        "FIN"
+      ],
+      "explanation": "SYN and ACK establish/synchronize a connection; FIN signals a half-close during orderly termination. PSH is not a setup/teardown control flag."
+    },
+    {
+      "id": "cn-tcp-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's cumulative acknowledgment mechanism means an ACK for byte k+1",
+      "options": [
+        "confirms receipt of all bytes through k",
+        "confirms only byte k+1",
+        "requests retransmission of every byte before k",
+        "advertises a congestion window of k+1"
+      ],
+      "answer": [
+        "confirms receipt of all bytes through k"
+      ],
+      "explanation": "Cumulative ACK k+1 states that all preceding bytes through k have arrived contiguously and byte k+1 is next expected."
+    },
+    {
+      "id": "cn-tcp-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If TCP receives out-of-order data beyond a missing byte, it typically",
+      "options": [
+        "buffers it and repeats the ACK for the next missing byte",
+        "delivers it immediately as an ordered stream",
+        "discards the entire connection",
+        "changes the source port"
+      ],
+      "answer": [
+        "buffers it and repeats the ACK for the next missing byte"
+      ],
+      "explanation": "TCP preserves byte order by buffering out-of-order segments and acknowledging the next contiguous byte expected, often producing duplicate ACKs."
+    },
+    {
+      "id": "cn-tcp-011",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A receiver has contiguous bytes through sequence 799 and then receives bytes 900-999. What cumulative ACK number does it send?",
+      "answer": "800",
+      "explanation": "It still lacks byte 800, so its next expected byte and cumulative acknowledgment number remain 800."
+    },
+    {
+      "id": "cn-tcp-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's advertised receive window primarily provides",
+      "options": [
+        "flow control",
+        "congestion control only",
+        "routing control",
+        "error correction at the link layer"
+      ],
+      "answer": [
+        "flow control"
+      ],
+      "explanation": "The receive window tells the sender how much additional data the receiver can buffer, preventing receiver-buffer overflow. Congestion window separately limits network load."
+    },
+    {
+      "id": "cn-tcp-013",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP receiver advertises window 6000 bytes and has 2000 unacknowledged bytes outstanding at the sender. Under a simple window interpretation, how many more bytes may be sent?",
+      "answer": "4000",
+      "explanation": "The outstanding data consumes 2000 of the 6000-byte advertised window, leaving 6000-2000=4000 bytes available."
+    },
+    {
+      "id": "cn-tcp-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP flow control is implemented using the",
+      "options": [
+        "receiver-advertised window",
+        "IP TTL",
+        "TCP urgent pointer",
+        "source port number"
+      ],
+      "answer": [
+        "receiver-advertised window"
+      ],
+      "explanation": "The receiver advertises available buffer capacity as a window, and the sender limits unacknowledged data accordingly."
+    },
+    {
+      "id": "cn-tcp-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP congestion control differs from flow control because congestion control protects",
+      "options": [
+        "the network path from overload",
+        "the receiver application from all malformed data",
+        "the DNS server from queries",
+        "the routing table from stale entries"
+      ],
+      "answer": [
+        "the network path from overload"
+      ],
+      "explanation": "Congestion control adapts the sender's load to network capacity; flow control matches sending to the receiving endpoint's buffer capacity."
+    },
+    {
+      "id": "cn-tcp-016",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which quantities commonly constrain TCP sending data in flight?",
+      "options": [
+        "Receiver advertised window (rwnd)",
+        "Congestion window (cwnd)",
+        "Minimum of rwnd and cwnd",
+        "TCP source port only"
+      ],
+      "answer": [
+        "Receiver advertised window (rwnd)",
+        "Congestion window (cwnd)",
+        "Minimum of rwnd and cwnd"
+      ],
+      "explanation": "The sender's usable send window is bounded by both the receiver's buffer advertisement and congestion control; the effective amount is limited by the smaller window."
+    },
+    {
+      "id": "cn-tcp-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In slow start, TCP's congestion window grows approximately",
+      "options": [
+        "exponentially per RTT until a threshold or loss event",
+        "linearly by one MSS per RTT from the first segment",
+        "not at all",
+        "as the square of the receive window"
+      ],
+      "answer": [
+        "exponentially per RTT until a threshold or loss event"
+      ],
+      "explanation": "Slow start approximately doubles cwnd each RTT because ACKs for current data permit a similar amount of new data to be sent, until reaching a threshold or congestion signal."
+    },
+    {
+      "id": "cn-tcp-018",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP sender begins slow start with cwnd=1 MSS. Ignoring losses, what cwnd is expected after 4 RTTs?",
+      "answer": "16",
+      "explanation": "Slow start approximately doubles cwnd each RTT: 1, 2, 4, 8, then 16 MSS after four RTTs."
+    },
+    {
+      "id": "cn-tcp-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "During congestion avoidance, classic TCP increases cwnd approximately",
+      "options": [
+        "linearly by about one MSS per RTT",
+        "doubles cwnd every ACK",
+        "sets cwnd to zero each RTT",
+        "proportional to the packet loss rate only"
+      ],
+      "answer": [
+        "linearly by about one MSS per RTT"
+      ],
+      "explanation": "After slow start, congestion avoidance uses additive increase, roughly one maximum segment size per round-trip time."
+    },
+    {
+      "id": "cn-tcp-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP fast retransmit is commonly triggered by",
+      "options": [
+        "three duplicate ACKs",
+        "one successful ACK",
+        "the receive window becoming nonzero",
+        "a FIN flag"
+      ],
+      "answer": [
+        "three duplicate ACKs"
+      ],
+      "explanation": "Three duplicate ACKs suggest a segment was lost while later data arrived; the sender retransmits the missing segment without waiting for the retransmission timer."
+    },
+    {
+      "id": "cn-tcp-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "On a TCP retransmission timeout, a classic congestion-control response typically",
+      "options": [
+        "retransmits the oldest unacknowledged segment and reduces congestion window",
+        "increases the congestion window exponentially",
+        "closes the connection immediately",
+        "sets the receive window to zero"
+      ],
+      "answer": [
+        "retransmits the oldest unacknowledged segment and reduces congestion window"
+      ],
+      "explanation": "A timeout signals likely congestion. TCP retransmits outstanding data and reduces its sending rate, commonly resetting cwnd to a small initial value."
+    },
+    {
+      "id": "cn-tcp-022",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP connection sends 1000 bytes starting at sequence number 5000. What ACK number acknowledges all bytes?",
+      "answer": "6000",
+      "explanation": "The bytes occupy sequence positions 5000 through 5999; the next expected sequence number is 6000."
+    },
+    {
+      "id": "cn-tcp-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's maximum segment size (MSS) usually counts",
+      "options": [
+        "TCP payload bytes, excluding TCP and IP headers",
+        "the full Ethernet frame",
+        "IP header plus TCP header only",
+        "application messages including retransmissions"
+      ],
+      "answer": [
+        "TCP payload bytes, excluding TCP and IP headers"
+      ],
+      "explanation": "MSS is the largest TCP data payload in a segment; IP and TCP headers are not included in the MSS value."
+    },
+    {
+      "id": "cn-tcp-024",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An IP MTU is 1500 bytes, IPv4 header is 20 bytes, and TCP header is 20 bytes with no options. What is the MSS?",
+      "answer": "1460",
+      "explanation": "Subtract the 20-byte IP and 20-byte TCP headers from 1500 to obtain a 1460-byte TCP payload."
+    },
+    {
+      "id": "cn-tcp-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP uses a checksum to detect corruption in",
+      "options": [
+        "TCP header and data, with an IP pseudo-header",
+        "only the TCP header",
+        "only application data",
+        "the Ethernet frame including its trailer"
+      ],
+      "answer": [
+        "TCP header and data, with an IP pseudo-header"
+      ],
+      "explanation": "The TCP checksum covers its header and data plus a pseudo-header containing IP source/destination, protocol, and segment length fields."
+    },
+    {
+      "id": "cn-tcp-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP is connection-oriented because",
+      "options": [
+        "endpoints establish and maintain per-connection state",
+        "it reserves a dedicated physical circuit",
+        "it always uses the same IP route",
+        "it preserves application message boundaries"
+      ],
+      "answer": [
+        "endpoints establish and maintain per-connection state"
+      ],
+      "explanation": "TCP maintains connection state such as sequence numbers, windows, and control state after a handshake; it does not reserve a physical circuit."
+    },
+    {
+      "id": "cn-tcp-027",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP connection is identified by a four-tuple. How many fields are in that tuple?",
+      "answer": "4",
+      "explanation": "The TCP four-tuple consists of source IP, source port, destination IP, and destination port."
+    },
+    {
+      "id": "cn-tcp-028",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which fields are part of the TCP connection four-tuple?",
+      "options": [
+        "Source IP address",
+        "Source port",
+        "Destination IP address",
+        "Destination port"
+      ],
+      "answer": [
+        "Source IP address",
+        "Source port",
+        "Destination IP address",
+        "Destination port"
+      ],
+      "explanation": "The transport connection endpoint pair is identified by source and destination IP addresses together with source and destination port numbers."
+    },
+    {
+      "id": "cn-tcp-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A server uses TCP port 443 by convention for",
+      "options": [
+        "HTTPS",
+        "DNS",
+        "SMTP",
+        "SSH"
+      ],
+      "answer": [
+        "HTTPS"
+      ],
+      "explanation": "TCP port 443 is the conventional port for HTTPS. DNS commonly uses port 53, SMTP 25, and SSH 22."
+    },
+    {
+      "id": "cn-tcp-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP port numbers are used to",
+      "options": [
+        "demultiplex transport data to application processes",
+        "identify IP subnets",
+        "choose router paths",
+        "detect link-layer collisions"
+      ],
+      "answer": [
+        "demultiplex transport data to application processes"
+      ],
+      "explanation": "Ports identify application endpoints at hosts, allowing the transport layer to deliver segments to the correct process or socket."
+    },
+    {
+      "id": "cn-tcp-031",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many bits are in a TCP port number?",
+      "answer": "16",
+      "explanation": "TCP ports are 16-bit fields, representing values from 0 through 65535."
+    },
+    {
+      "id": "cn-tcp-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP receiver's advertised window is zero. The sender should generally",
+      "options": [
+        "stop sending new data and use probes or timers to detect reopening",
+        "continue transmitting at full rate",
+        "send a FIN immediately",
+        "increase its congestion window"
+      ],
+      "answer": [
+        "stop sending new data and use probes or timers to detect reopening"
+      ],
+      "explanation": "A zero window means the receiver has no advertised buffer space. The sender pauses normal data and may send persist probes to learn when space opens."
+    },
+    {
+      "id": "cn-tcp-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP persist behavior is used to",
+      "options": [
+        "avoid deadlock when a zero window later opens",
+        "recover from a routing loop",
+        "renegotiate IP addresses",
+        "perform DNS resolution"
+      ],
+      "answer": [
+        "avoid deadlock when a zero window later opens"
+      ],
+      "explanation": "Persist probes ensure the sender discovers a window update even if the update is lost, avoiding a permanent zero-window deadlock."
+    },
+    {
+      "id": "cn-tcp-034",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A receiver advertises a 16-bit window value of 5000 without window scaling. What maximum unscaled byte-window value does the field express?",
+      "answer": "5000",
+      "explanation": "The advertised window field directly represents 5000 bytes when window scaling is not used."
+    },
+    {
+      "id": "cn-tcp-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP window scaling is negotiated during",
+      "options": [
+        "connection establishment",
+        "every data segment independently",
+        "connection teardown only",
+        "ARP resolution"
+      ],
+      "answer": [
+        "connection establishment"
+      ],
+      "explanation": "The window scale option is exchanged in SYN segments during the handshake and scales subsequent advertised receive windows."
+    },
+    {
+      "id": "cn-tcp-036",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which TCP control flags consume sequence number space?",
+      "options": [
+        "SYN",
+        "FIN",
+        "ACK by itself",
+        "RST"
+      ],
+      "answer": [
+        "SYN",
+        "FIN"
+      ],
+      "explanation": "SYN and FIN each consume one sequence number. An ACK-only segment with no data does not consume sequence space; RST does not either."
+    },
+    {
+      "id": "cn-tcp-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP FIN consumes",
+      "options": [
+        "one sequence number",
+        "zero sequence numbers",
+        "one byte per MSS",
+        "the entire advertised window"
+      ],
+      "answer": [
+        "one sequence number"
+      ],
+      "explanation": "FIN occupies one position in the sequence space, even though it carries no application data, so it must be acknowledged."
+    },
+    {
+      "id": "cn-tcp-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP segment with sequence number 700 carries 10 data bytes and a FIN. What ACK number acknowledges both the data and FIN?",
+      "answer": "711",
+      "explanation": "Ten data bytes advance the sequence to 710, and FIN consumes one additional sequence number, so the acknowledgment is 711."
+    },
+    {
+      "id": "cn-tcp-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's orderly close is often called a four-segment exchange because",
+      "options": [
+        "each direction independently sends FIN and receives ACK",
+        "four FINs are mandatory",
+        "each endpoint sends two SYNs",
+        "the connection always sends four data segments"
+      ],
+      "answer": [
+        "each direction independently sends FIN and receives ACK"
+      ],
+      "explanation": "Each direction closes its sending half separately. A typical exchange has FIN, ACK, FIN, ACK, though segments can sometimes be combined."
+    },
+    {
+      "id": "cn-tcp-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP permits a half-closed connection when",
+      "options": [
+        "one endpoint has sent FIN but can still receive data",
+        "both endpoints have reset",
+        "the SYN has not been acknowledged",
+        "the receive window is zero"
+      ],
+      "answer": [
+        "one endpoint has sent FIN but can still receive data"
+      ],
+      "explanation": "FIN closes only the sender's direction. The peer may continue sending data until it closes its own direction."
+    },
+    {
+      "id": "cn-tcp-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP endpoint in TIME-WAIT primarily waits to",
+      "options": [
+        "allow delayed duplicate segments to expire and retransmit the final ACK if needed",
+        "receive a new SYN from the same connection immediately",
+        "complete DNS resolution",
+        "free the receive window"
+      ],
+      "answer": [
+        "allow delayed duplicate segments to expire and retransmit the final ACK if needed"
+      ],
+      "explanation": "TIME-WAIT protects against delayed duplicates from the old connection and allows retransmission of the final ACK if the peer did not receive it."
+    },
+    {
+      "id": "cn-tcp-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In the usual active close, the endpoint that sends the first FIN enters",
+      "options": [
+        "FIN-WAIT states",
+        "LISTEN",
+        "SYN-SENT",
+        "CLOSED immediately"
+      ],
+      "answer": [
+        "FIN-WAIT states"
+      ],
+      "explanation": "The active closer moves through FIN-WAIT-1 and FIN-WAIT-2 while its FIN is acknowledged and it waits for the peer's FIN."
+    },
+    {
+      "id": "cn-tcp-043",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many bytes of sequence space are consumed by a TCP segment carrying 100 data bytes and a SYN flag?",
+      "answer": "101",
+      "explanation": "Data consumes 100 sequence numbers and SYN consumes one, for 101 total sequence-space positions."
+    },
+    {
+      "id": "cn-tcp-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP can deliver a byte stream to an application in chunks that differ from the sender's write calls because",
+      "options": [
+        "TCP does not preserve record boundaries",
+        "TCP randomly reorders bytes",
+        "the receiver discards sequence numbers",
+        "IP changes the application data"
+      ],
+      "answer": [
+        "TCP does not preserve record boundaries"
+      ],
+      "explanation": "TCP guarantees ordered bytes but not application message boundaries. A read may return part, one, or several application writes."
+    },
+    {
+      "id": "cn-tcp-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An application requires message boundaries over TCP. What should it do?",
+      "options": [
+        "Add framing, such as a length field or delimiter",
+        "Assume each read returns one write",
+        "Use TCP sequence numbers as message delimiters",
+        "Set the IP TTL"
+      ],
+      "answer": [
+        "Add framing, such as a length field or delimiter"
+      ],
+      "explanation": "TCP has no record boundaries, so the application protocol must frame messages, for example with fixed lengths, delimiters, or explicit lengths."
+    },
+    {
+      "id": "cn-tcp-046",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are responsibilities of TCP?",
+      "options": [
+        "Reliable retransmission of lost data",
+        "In-order byte-stream delivery",
+        "Flow control",
+        "IP route selection"
+      ],
+      "answer": [
+        "Reliable retransmission of lost data",
+        "In-order byte-stream delivery",
+        "Flow control"
+      ],
+      "explanation": "TCP handles reliability, ordering, and flow control. Network-layer routing selects paths and is not TCP's responsibility."
+    },
+    {
+      "id": "cn-tcp-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's retransmission timeout (RTO) is based primarily on",
+      "options": [
+        "estimated round-trip time and its variation",
+        "the receiver's port number",
+        "the IP identification field",
+        "the number of open sockets only"
+      ],
+      "answer": [
+        "estimated round-trip time and its variation"
+      ],
+      "explanation": "TCP estimates RTT and variation to adapt RTO; a timer expiration signals likely loss and triggers retransmission."
+    },
+    {
+      "id": "cn-tcp-048",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP sender's retransmission timer expires 3 times for the same segment. How many timeout events have occurred?",
+      "answer": "3",
+      "explanation": "Each expiration is one timeout event; three expirations mean three events for that segment."
+    },
+    {
+      "id": "cn-tcp-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP uses exponential backoff after repeated timeouts to",
+      "options": [
+        "avoid sending too aggressively during persistent congestion",
+        "increase throughput immediately",
+        "reduce packet header length",
+        "reorder the byte stream"
+      ],
+      "answer": [
+        "avoid sending too aggressively during persistent congestion"
+      ],
+      "explanation": "Doubling the retransmission timeout after successive expirations spaces retries further apart, reducing load when the path may be congested."
+    },
+    {
+      "id": "cn-tcp-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The TCP delayed-ACK strategy may",
+      "options": [
+        "wait briefly to acknowledge data, possibly combining ACK with outgoing data",
+        "delay all data until connection close",
+        "acknowledge only FIN segments",
+        "replace retransmission timers"
+      ],
+      "answer": [
+        "wait briefly to acknowledge data, possibly combining ACK with outgoing data"
+      ],
+      "explanation": "A receiver may delay an ACK briefly to piggyback it on outgoing data or acknowledge multiple segments, while adhering to protocol timing constraints."
+    },
+    {
+      "id": "cn-tcp-051",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP sender has cwnd=12 MSS and rwnd=8 MSS. Ignoring other limits, what is the maximum data in flight in MSS units?",
+      "answer": "8",
+      "explanation": "The usable sending window is bounded by min(cwnd,rwnd)=min(12,8)=8 MSS."
+    },
+    {
+      "id": "cn-tcp-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In additive-increase/multiplicative-decrease congestion control, a congestion signal typically causes",
+      "options": [
+        "a multiplicative reduction of cwnd",
+        "cwnd to double immediately",
+        "the receiver window to increase",
+        "the connection to change ports"
+      ],
+      "answer": [
+        "a multiplicative reduction of cwnd"
+      ],
+      "explanation": "A congestion signal causes TCP to reduce congestion window multiplicatively, while congestion avoidance increases it gradually through additive increase."
+    },
+    {
+      "id": "cn-tcp-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "If TCP detects loss via three duplicate ACKs, it can often retransmit before timeout because",
+      "options": [
+        "duplicate ACKs indicate later data arrived beyond a gap",
+        "the receive window is always zero",
+        "the sender has received a FIN",
+        "the ACK number increases by one per duplicate"
+      ],
+      "answer": [
+        "duplicate ACKs indicate later data arrived beyond a gap"
+      ],
+      "explanation": "Repeated ACKs for the same next-expected byte imply later segments arrived while one sequence range is missing, providing evidence of loss."
+    },
+    {
+      "id": "cn-tcp-054",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which events can lead TCP to retransmit data?",
+      "options": [
+        "Retransmission timeout",
+        "Fast retransmit triggered by duplicate ACKs",
+        "Application calling read",
+        "A checksum failure detected by receiver with no ACK progress"
+      ],
+      "answer": [
+        "Retransmission timeout",
+        "Fast retransmit triggered by duplicate ACKs",
+        "A checksum failure detected by receiver with no ACK progress"
+      ],
+      "explanation": "Timeout and duplicate ACK mechanisms trigger retransmission. A read is local delivery; checksum failure typically results in missing ACK progress rather than a direct receiver request."
+    },
+    {
+      "id": "cn-tcp-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP selective acknowledgment (SACK) allows a receiver to",
+      "options": [
+        "report noncontiguous blocks of data received beyond a gap",
+        "increase the IP MTU",
+        "select a different source port",
+        "disable cumulative ACKs"
+      ],
+      "answer": [
+        "report noncontiguous blocks of data received beyond a gap"
+      ],
+      "explanation": "SACK reports received byte ranges beyond the cumulative ACK point, helping the sender retransmit only missing data."
+    },
+    {
+      "id": "cn-tcp-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP receiver cumulatively ACKs through byte 999 and SACK reports bytes 1100-1299. How many bytes are reported in the SACK block?",
+      "answer": "200",
+      "explanation": "The inclusive range 1100 through 1299 contains 1299-1100+1=200 bytes."
+    },
+    {
+      "id": "cn-tcp-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's checksum is end-to-end because it is computed by",
+      "options": [
+        "the sender and verified by the receiving TCP endpoint",
+        "each router along the path",
+        "the Ethernet switch only",
+        "the DNS resolver"
+      ],
+      "answer": [
+        "the sender and verified by the receiving TCP endpoint"
+      ],
+      "explanation": "The sender computes the checksum and the receiving TCP implementation verifies it; routers do not recompute the TCP checksum during normal forwarding."
+    },
+    {
+      "id": "cn-tcp-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP segment is lost but subsequent segments arrive. The receiver's cumulative ACK usually",
+      "options": [
+        "remains at the next missing byte",
+        "jumps to the highest byte received",
+        "becomes zero",
+        "acknowledges only the segment header"
+      ],
+      "answer": [
+        "remains at the next missing byte"
+      ],
+      "explanation": "Cumulative acknowledgment cannot advance past a gap; it continues to identify the first byte not yet received contiguously."
+    },
+    {
+      "id": "cn-tcp-059",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A receiver has contiguous bytes through 1999. What ACK number does it send?",
+      "answer": "2000",
+      "explanation": "The next expected byte after 1999 is 2000, so the cumulative ACK value is 2000."
+    },
+    {
+      "id": "cn-tcp-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's receive buffer stores out-of-order segments so it can",
+      "options": [
+        "reassemble a contiguous ordered byte stream before delivery",
+        "compute the sender's IP address",
+        "replace the routing table",
+        "preserve Ethernet frame boundaries"
+      ],
+      "answer": [
+        "reassemble a contiguous ordered byte stream before delivery"
+      ],
+      "explanation": "Buffering out-of-order ranges allows TCP to deliver bytes in sequence once gaps arrive, preserving its ordered byte-stream service."
+    },
+    {
+      "id": "cn-tcp-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The TCP urgent pointer is meaningful when",
+      "options": [
+        "the URG flag is set",
+        "the SYN flag is set",
+        "the receive window is zero",
+        "the IP TTL is one"
+      ],
+      "answer": [
+        "the URG flag is set"
+      ],
+      "explanation": "The urgent pointer field is interpreted in conjunction with the URG control bit, which indicates urgent data semantics."
+    },
+    {
+      "id": "cn-tcp-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP segment with SYN set can also carry",
+      "options": [
+        "TCP options such as MSS and window scale",
+        "an IPv4 subnet mask",
+        "a DNS resource record",
+        "an Ethernet MAC address"
+      ],
+      "answer": [
+        "TCP options such as MSS and window scale"
+      ],
+      "explanation": "TCP options such as MSS, window scale, SACK permitted, and timestamps are commonly negotiated in SYN segments."
+    },
+    {
+      "id": "cn-tcp-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "The minimum TCP header without options is how many bytes?",
+      "answer": "20",
+      "explanation": "The fixed TCP header is 20 bytes; options can extend it up to a larger data-offset limit."
+    },
+    {
+      "id": "cn-tcp-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The TCP Data Offset field specifies",
+      "options": [
+        "TCP header length in 32-bit words",
+        "payload length in bytes",
+        "the receive window in segments",
+        "the sequence-number width"
+      ],
+      "answer": [
+        "TCP header length in 32-bit words"
+      ],
+      "explanation": "Data Offset gives the size of the TCP header in 32-bit words, locating where payload begins."
+    },
+    {
+      "id": "cn-tcp-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP Data Offset value is 8. How many bytes are in the TCP header?",
+      "answer": "32",
+      "explanation": "The data offset counts 32-bit words; eight words equal 8*4=32 bytes."
+    },
+    {
+      "id": "cn-tcp-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP timestamps are useful for",
+      "options": [
+        "RTT measurement and protection against wrapped sequence numbers",
+        "selecting the IP route",
+        "advertising application message boundaries",
+        "encoding port numbers"
+      ],
+      "answer": [
+        "RTT measurement and protection against wrapped sequence numbers"
+      ],
+      "explanation": "The timestamp option supports more accurate RTT measurement and PAWS, which protects against confusion from old segments after sequence numbers wrap."
+    },
+    {
+      "id": "cn-tcp-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which TCP options may be negotiated or carried in TCP headers?",
+      "options": [
+        "MSS",
+        "Window scale",
+        "SACK permitted or SACK blocks",
+        "IPv4 subnet mask"
+      ],
+      "answer": [
+        "MSS",
+        "Window scale",
+        "SACK permitted or SACK blocks"
+      ],
+      "explanation": "MSS, window scaling, and SACK are TCP options. Subnet masks are not TCP header options."
+    },
+    {
+      "id": "cn-tcp-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP receiver sends a duplicate ACK with the same acknowledgment number as before. This can indicate",
+      "options": [
+        "a gap remains in the received byte stream",
+        "the entire connection is closed",
+        "the sender's port changed",
+        "all bytes are acknowledged"
+      ],
+      "answer": [
+        "a gap remains in the received byte stream"
+      ],
+      "explanation": "A repeated cumulative ACK indicates the next expected byte has not arrived, often because a segment is missing while later data arrived."
+    },
+    {
+      "id": "cn-tcp-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP receiver expects byte 4000. It receives a segment beginning at 4020 with 30 data bytes. What cumulative ACK does it send?",
+      "answer": "4000",
+      "explanation": "The missing byte 4000 prevents cumulative progress; bytes beyond the gap do not change the next expected sequence number."
+    },
+    {
+      "id": "cn-tcp-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP retransmits a segment after timeout using",
+      "options": [
+        "the same sequence-space data range",
+        "a new application port",
+        "a new connection identifier always",
+        "a different byte sequence number for the same data"
+      ],
+      "answer": [
+        "the same sequence-space data range"
+      ],
+      "explanation": "Retransmission resends the unacknowledged sequence-space range so the receiver can recognize duplicate data and acknowledge it cumulatively."
+    },
+    {
+      "id": "cn-tcp-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP sequence numbers are 32-bit and wrap modulo",
+      "options": [
+        "2^32",
+        "2^16",
+        "2^8",
+        "2^64"
+      ],
+      "answer": [
+        "2^32"
+      ],
+      "explanation": "TCP sequence numbers are 32 bits, so arithmetic wraps modulo 2^32."
+    },
+    {
+      "id": "cn-tcp-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many distinct values can a 32-bit TCP sequence number represent?",
+      "answer": "4294967296",
+      "explanation": "There are 2^32 distinct values, equal to 4,294,967,296."
+    },
+    {
+      "id": "cn-tcp-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's checksum pseudo-header includes IP source and destination addresses to",
+      "options": [
+        "protect correct delivery to the intended network endpoints",
+        "reduce the TCP header size",
+        "set congestion window",
+        "permit IP fragmentation"
+      ],
+      "answer": [
+        "protect correct delivery to the intended network endpoints"
+      ],
+      "explanation": "The pseudo-header binds the TCP segment checksum to endpoint IP addresses and protocol, helping detect misdelivery or corruption in relevant fields."
+    },
+    {
+      "id": "cn-tcp-074",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about TCP and UDP are true?",
+      "options": [
+        "TCP provides a reliable ordered byte stream",
+        "UDP preserves datagram boundaries",
+        "TCP includes flow control",
+        "UDP performs a three-way handshake"
+      ],
+      "answer": [
+        "TCP provides a reliable ordered byte stream",
+        "UDP preserves datagram boundaries",
+        "TCP includes flow control"
+      ],
+      "explanation": "TCP offers ordered stream and flow control; UDP preserves datagram messages but has no TCP-style handshake or built-in reliability."
+    },
+    {
+      "id": "cn-tcp-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP server can distinguish simultaneous client connections to the same listening port using",
+      "options": [
+        "the connection's endpoint tuple",
+        "only the server port",
+        "the client's sequence number alone",
+        "the IP TTL"
+      ],
+      "answer": [
+        "the connection's endpoint tuple"
+      ],
+      "explanation": "Connections are distinguished by source/destination IP addresses and ports, allowing many clients to connect to one server port concurrently."
+    },
+    {
+      "id": "cn-tcp-076",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many endpoints are represented by the TCP source/destination IP-and-port four-tuple?",
+      "answer": "2",
+      "explanation": "The four fields identify two endpoints: a source endpoint and a destination endpoint."
+    },
+    {
+      "id": "cn-tcp-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The TCP state LISTEN means the endpoint is",
+      "options": [
+        "waiting for incoming connection requests",
+        "waiting for a FIN acknowledgment after active close",
+        "actively retransmitting data",
+        "fully closed with no socket"
+      ],
+      "answer": [
+        "waiting for incoming connection requests"
+      ],
+      "explanation": "A listening socket awaits incoming SYN requests to establish new connections."
+    },
+    {
+      "id": "cn-tcp-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP client in SYN-SENT has typically",
+      "options": [
+        "sent a SYN and awaits a response",
+        "received a FIN and awaits close",
+        "completed a normal close",
+        "received all application data"
+      ],
+      "answer": [
+        "sent a SYN and awaits a response"
+      ],
+      "explanation": "SYN-SENT is the active-open state after transmitting SYN while waiting for SYN-ACK or another response."
+    },
+    {
+      "id": "cn-tcp-079",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In the standard handshake, which ACK number does the client send if the server's SYN has sequence number 9000?",
+      "answer": "9001",
+      "explanation": "SYN consumes one sequence number, so the acknowledgment is the server's initial sequence number plus one: 9001."
+    },
+    {
+      "id": "cn-tcp-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP RST segment is used to",
+      "options": [
+        "reset or abort a connection",
+        "gracefully half-close one direction",
+        "acknowledge all prior data",
+        "negotiate window scaling"
+      ],
+      "answer": [
+        "reset or abort a connection"
+      ],
+      "explanation": "RST abruptly resets a connection, unlike FIN's orderly half-close semantics."
+    },
+    {
+      "id": "cn-tcp-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Nagle's algorithm is intended to",
+      "options": [
+        "reduce transmission of many tiny TCP segments by coalescing small writes",
+        "increase the IP MTU",
+        "guarantee low latency for every interactive application",
+        "replace congestion control"
+      ],
+      "answer": [
+        "reduce transmission of many tiny TCP segments by coalescing small writes"
+      ],
+      "explanation": "Nagle's algorithm buffers small data until outstanding data is acknowledged or enough data accumulates, reducing tiny-packet overhead; it may affect latency."
+    },
+    {
+      "id": "cn-tcp-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The delayed-ACK and Nagle interaction can increase latency for some small request-response exchanges because",
+      "options": [
+        "each side may wait for the other event before sending or acknowledging small data",
+        "TCP sequence numbers stop advancing",
+        "the IP layer fragments every packet",
+        "the receiver window is permanently zero"
+      ],
+      "answer": [
+        "each side may wait for the other event before sending or acknowledging small data"
+      ],
+      "explanation": "Delayed ACK waits briefly, while Nagle may hold a small write until an ACK; their interaction can create an avoidable delay in some patterns."
+    },
+    {
+      "id": "cn-tcp-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP sender transmits 3 segments and receives 3 cumulative ACKs, each acknowledging one full segment. How many segments remain unacknowledged?",
+      "answer": "0",
+      "explanation": "Each of the three segments has been cumulatively acknowledged, leaving none outstanding."
+    },
+    {
+      "id": "cn-tcp-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's congestion window is maintained by",
+      "options": [
+        "the sender",
+        "the receiver only",
+        "each router separately",
+        "the DNS resolver"
+      ],
+      "answer": [
+        "the sender"
+      ],
+      "explanation": "The TCP sender maintains cwnd as its estimate of permissible in-flight data based on congestion-control feedback."
+    },
+    {
+      "id": "cn-tcp-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's receive window is advertised by",
+      "options": [
+        "the receiver",
+        "the sender's router",
+        "the application server's DNS record",
+        "the link-layer switch"
+      ],
+      "answer": [
+        "the receiver"
+      ],
+      "explanation": "The receiving endpoint advertises its available buffer capacity in the TCP window field."
+    },
+    {
+      "id": "cn-tcp-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about rwnd and cwnd are correct?",
+      "options": [
+        "rwnd reflects receiver buffer availability",
+        "cwnd reflects sender congestion control",
+        "the effective send window is generally limited by min(rwnd,cwnd)",
+        "rwnd is measured in router hops"
+      ],
+      "answer": [
+        "rwnd reflects receiver buffer availability",
+        "cwnd reflects sender congestion control",
+        "the effective send window is generally limited by min(rwnd,cwnd)"
+      ],
+      "explanation": "The receiver advertises rwnd and sender maintains cwnd. Outstanding bytes must fit within both limits, so the smaller constrains sending."
+    },
+    {
+      "id": "cn-tcp-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP zero-window probe is sent to",
+      "options": [
+        "discover whether the receiver's window has reopened",
+        "establish a new connection",
+        "request an IP address",
+        "trigger fast retransmit of a missing segment"
+      ],
+      "answer": [
+        "discover whether the receiver's window has reopened"
+      ],
+      "explanation": "Persist probes test whether a receiver that advertised zero has freed buffer space, including when a window update may have been lost."
+    },
+    {
+      "id": "cn-tcp-088",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP connection has a 4-tuple of source IP, source port, destination IP, and destination port. If the source port changes, how many tuple fields differ?",
+      "answer": "1",
+      "explanation": "Only the source-port field differs; the other three tuple fields remain the same."
+    },
+    {
+      "id": "cn-tcp-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP listening socket is not itself identified by",
+      "options": [
+        "a specific remote endpoint tuple before a client connects",
+        "a local port",
+        "a local IP address or wildcard address",
+        "the transport protocol"
+      ],
+      "answer": [
+        "a specific remote endpoint tuple before a client connects"
+      ],
+      "explanation": "A listener is bound to local address/port (and protocol) but does not yet have a particular remote endpoint; each established connection has a full tuple."
+    },
+    {
+      "id": "cn-tcp-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The SYN flood attack targets TCP by",
+      "options": [
+        "creating many half-open connection states",
+        "sending valid DNS answers",
+        "forging IPv4 subnet masks",
+        "reordering already acknowledged bytes"
+      ],
+      "answer": [
+        "creating many half-open connection states"
+      ],
+      "explanation": "A SYN flood sends many connection requests without completing handshakes, consuming server resources for half-open state."
+    },
+    {
+      "id": "cn-tcp-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's TIME-WAIT state is typically held by",
+      "options": [
+        "the endpoint that performs the active close",
+        "every intermediate router",
+        "the DNS server",
+        "the endpoint that remains in LISTEN"
+      ],
+      "answer": [
+        "the endpoint that performs the active close"
+      ],
+      "explanation": "The active closer usually enters TIME-WAIT after acknowledging the peer's FIN, protecting the connection against delayed duplicates and allowing final-ACK retransmission."
+    },
+    {
+      "id": "cn-tcp-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A client in TIME-WAIT waits 2MSL. If MSL is 30 seconds, how long is TIME-WAIT?",
+      "options": [
+        "60",
+        "30",
+        "90",
+        "120"
+      ],
+      "answer": [
+        "60"
+      ],
+      "explanation": "TIME-WAIT lasts 2 times the maximum segment lifetime. With an MSL of 30 seconds, that interval is 2*30=60 seconds."
+    },
+    {
+      "id": "cn-tcp-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP connection's reliable delivery is based on",
+      "options": [
+        "sequence numbers, acknowledgments, and retransmissions",
+        "IP fragmentation alone",
+        "DNS caching",
+        "Ethernet collision detection"
+      ],
+      "answer": [
+        "sequence numbers, acknowledgments, and retransmissions"
+      ],
+      "explanation": "Sequence numbers identify bytes, ACKs report contiguous receipt, and retransmission recovers missing data; together these mechanisms provide reliability."
+    },
+    {
+      "id": "cn-tcp-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP segment with no data and only an ACK flag set generally",
+      "options": [
+        "does not consume sequence number space",
+        "consumes one sequence number",
+        "consumes one sequence number per header byte",
+        "resets sequence number to zero"
+      ],
+      "answer": [
+        "does not consume sequence number space"
+      ],
+      "explanation": "ACK alone consumes no sequence space. Data bytes and SYN/FIN each consume sequence positions."
+    },
+    {
+      "id": "cn-tcp-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A segment has 250 data bytes, no SYN/FIN, starting sequence 900. What is the sequence number of the next byte?",
+      "options": [
+        "1150",
+        "900",
+        "1151",
+        "1250"
+      ],
+      "answer": [
+        "1150"
+      ],
+      "explanation": "The payload spans 250 byte positions starting at 900, so the next sequence number is 900+250=1150."
+    },
+    {
+      "id": "cn-tcp-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP connection termination can be asymmetric because",
+      "options": [
+        "each direction of the byte stream closes independently",
+        "only clients may send FIN",
+        "FIN immediately resets both directions",
+        "the IP header has separate source and destination TTLs"
+      ],
+      "answer": [
+        "each direction of the byte stream closes independently"
+      ],
+      "explanation": "TCP is full duplex; a FIN closes one sending direction while the other may continue sending until its own FIN."
+    },
+    {
+      "id": "cn-tcp-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP endpoint receives FIN after all prior data is in order. The FIN indicates",
+      "options": [
+        "the peer will send no more data",
+        "the peer requests retransmission",
+        "the connection must reset immediately",
+        "the receive window is zero"
+      ],
+      "answer": [
+        "the peer will send no more data"
+      ],
+      "explanation": "FIN is an orderly end-of-stream signal from the peer; the receiving application can still send data in the opposite direction."
+    },
+    {
+      "id": "cn-tcp-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP sender's cwnd grows from 10 MSS by additive increase for 5 RTTs, one MSS per RTT. What is cwnd afterward, ignoring loss?",
+      "options": [
+        "15",
+        "10",
+        "20",
+        "50"
+      ],
+      "answer": [
+        "15"
+      ],
+      "explanation": "Additive increase adds 5 MSS over five RTTs, yielding 10+5=15 MSS."
+    },
+    {
+      "id": "cn-tcp-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The TCP SYN cookie technique helps defend against",
+      "options": [
+        "SYN floods that create many half-open states",
+        "DNS cache poisoning",
+        "IPv4 fragmentation overlap",
+        "BGP route leaks"
+      ],
+      "answer": [
+        "SYN floods that create many half-open states"
+      ],
+      "explanation": "SYN cookies encode state in the server's initial sequence number, allowing it to defer allocating connection state until the final ACK arrives."
+    },
+    {
+      "id": "cn-tcp-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "TCP's congestion control aims to",
+      "options": [
+        "share network capacity while avoiding persistent overload",
+        "guarantee zero packet loss",
+        "make every flow have identical throughput in all conditions",
+        "replace router queue management"
+      ],
+      "answer": [
+        "share network capacity while avoiding persistent overload"
+      ],
+      "explanation": "Congestion control adapts sending to path conditions, reducing sustained overload and helping flows share available network capacity."
+    }
+  ]
+}

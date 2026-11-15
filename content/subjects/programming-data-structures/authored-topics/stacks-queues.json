@@ -1,0 +1,1442 @@
+{
+  "topicIndex": 4,
+  "questions": [
+    {
+      "id": "pds-sq-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack initially empty receives push(4), push(7), pop(), push(9), push(2), pop(). What is the top element afterward?",
+      "options": [
+        "9",
+        "2",
+        "7",
+        "4"
+      ],
+      "answer": [
+        "9"
+      ],
+      "explanation": "The first pop removes 7, leaving 4. After pushing 9 and 2, the final pop removes 2, so 9 is on top."
+    },
+    {
+      "id": "pds-sq-002",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An empty stack receives 12 pushes and 5 pops. How many elements remain?",
+      "answer": "7",
+      "explanation": "Each push adds one and each pop removes one, so the resulting size is 12-5=7."
+    },
+    {
+      "id": "pds-sq-003",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which structure is required to evaluate a postfix expression in one left-to-right scan?",
+      "options": [
+        "Stack",
+        "Queue",
+        "Binary search tree",
+        "Max heap"
+      ],
+      "answer": [
+        "Stack"
+      ],
+      "explanation": "Operands are pushed; an operator pops its operands and pushes the result. This last-in-first-out behavior is implemented naturally by a stack."
+    },
+    {
+      "id": "pds-sq-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Evaluate the postfix expression 8 2 3 * +. What is the result?",
+      "options": [
+        "14",
+        "30",
+        "24",
+        "13"
+      ],
+      "answer": [
+        "14"
+      ],
+      "explanation": "The multiplication is evaluated first: 2*3=6. Then 8+6=14."
+    },
+    {
+      "id": "pds-sq-005",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Evaluate the postfix expression 5 1 2 + 4 * + 3 -. Give the result.",
+      "answer": "14",
+      "explanation": "Compute 1+2=3, then 3*4=12, then 5+12=17, and finally 17-3=14."
+    },
+    {
+      "id": "pds-sq-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When evaluating postfix expression a b -, which operand is popped first and what is computed?",
+      "options": [
+        "Pop b, then a, and compute a-b",
+        "Pop a, then b, and compute a-b",
+        "Pop b, then a, and compute b-a",
+        "The order is irrelevant for subtraction"
+      ],
+      "answer": [
+        "Pop b, then a, and compute a-b"
+      ],
+      "explanation": "The top operand b is popped first as the right operand; the next popped value a is the left operand. The result must preserve the original subtraction order."
+    },
+    {
+      "id": "pds-sq-007",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which expressions can be evaluated using a stack in one scan without operator precedence parsing?",
+      "options": [
+        "A postfix expression",
+        "A prefix expression scanned from right to left",
+        "Balanced-parentheses matching",
+        "An infix expression with arbitrary precedence and no parentheses or precedence rules"
+      ],
+      "answer": [
+        "A postfix expression",
+        "A prefix expression scanned from right to left",
+        "Balanced-parentheses matching"
+      ],
+      "explanation": "Postfix and reverse-scanned prefix are directly stack-evaluable. Parenthesis matching uses a stack; arbitrary infix still needs precedence/associativity rules."
+    },
+    {
+      "id": "pds-sq-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For an array-based stack with capacity C, which condition indicates overflow before a push when top is the index of the current top and initially -1?",
+      "options": [
+        "top=C-1",
+        "top=0",
+        "top=-1",
+        "top>C"
+      ],
+      "answer": [
+        "top=C-1"
+      ],
+      "explanation": "With zero-based storage, the last valid position is C-1. A push overflows when that position is already occupied."
+    },
+    {
+      "id": "pds-sq-009",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An array stack has capacity 10 and top=-1 initially. After 7 successful pushes and 3 successful pops, what is top?",
+      "answer": "3",
+      "explanation": "Seven pushes leave top at index 6. Three pops reduce it to index 3, corresponding to four remaining elements."
+    },
+    {
+      "id": "pds-sq-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A queue is implemented by a circular array of capacity C with one slot left unused to distinguish full from empty. Which full condition is used?",
+      "options": [
+        "(rear+1) mod C = front",
+        "rear=front",
+        "rear=C-1",
+        "front=0"
+      ],
+      "answer": [
+        "(rear+1) mod C = front"
+      ],
+      "explanation": "With one reserved slot, the queue is full when advancing rear by one modulo C would collide with front."
+    },
+    {
+      "id": "pds-sq-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a circular queue of capacity 8 using all slots and an explicit size field, rear is at index 7. Where is the next enqueued element stored?",
+      "options": [
+        "Index 0",
+        "Index 7",
+        "Index 8",
+        "Index 6"
+      ],
+      "answer": [
+        "Index 0"
+      ],
+      "explanation": "Circular indexing wraps modulo capacity. The next position after index 7 in an array of length 8 is index 0."
+    },
+    {
+      "id": "pds-sq-012",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circular queue has capacity 9 and front index 6. What index follows front after one dequeue, using modulo indexing?",
+      "answer": "7",
+      "explanation": "A dequeue advances front to (6+1) mod 9, which is 7."
+    },
+    {
+      "id": "pds-sq-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A queue implemented by a singly linked list maintains both head and tail pointers. What is the worst-case time for enqueue and dequeue respectively?",
+      "options": [
+        "O(1), O(1)",
+        "O(n), O(1)",
+        "O(1), O(n)",
+        "O(n), O(n)"
+      ],
+      "answer": [
+        "O(1), O(1)"
+      ],
+      "explanation": "Enqueue links the new node at tail in constant time, while dequeue removes head in constant time and updates tail when the queue becomes empty."
+    },
+    {
+      "id": "pds-sq-014",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about stacks and queues are true?",
+      "options": [
+        "A stack is LIFO",
+        "A queue is FIFO",
+        "A deque supports insertion and deletion at both ends",
+        "A standard queue permits deletion at both ends"
+      ],
+      "answer": [
+        "A stack is LIFO",
+        "A queue is FIFO",
+        "A deque supports insertion and deletion at both ends"
+      ],
+      "explanation": "Stacks remove the most recently inserted item; queues remove the earliest inserted item. A deque supports both ends, unlike a standard queue."
+    },
+    {
+      "id": "pds-sq-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sequence of push and pop operations on an initially empty stack is valid only if",
+      "options": [
+        "Every pop has a preceding unmatched push",
+        "The number of pushes equals the number of pops in every prefix",
+        "The final operation is a pop",
+        "Every push is immediately followed by a pop"
+      ],
+      "answer": [
+        "Every pop has a preceding unmatched push"
+      ],
+      "explanation": "At every prefix, the number of pops cannot exceed the number of preceding pushes. A valid sequence may end with elements still on the stack."
+    },
+    {
+      "id": "pds-sq-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Consider operations push A, push B, pop, push C, pop, pop on an empty stack. What sequence of items is returned by the three pops, from first to last?",
+      "answer": [
+        "B, C, A"
+      ],
+      "explanation": "The first pop returns B. After pushing C, the next pop returns C, and the final pop returns A; the sequence is B, C, A.",
+      "options": [
+        "B, C, A",
+        "A, C, B",
+        "B, A, C",
+        "C, B, A"
+      ]
+    },
+    {
+      "id": "pds-sq-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which data structure can implement a stack with amortized O(1) push using a dynamically resized array?",
+      "options": [
+        "Dynamic array that doubles when full",
+        "Fixed array without overflow handling",
+        "Sorted linked list",
+        "Binary heap"
+      ],
+      "answer": [
+        "Dynamic array that doubles when full"
+      ],
+      "explanation": "When full, doubling capacity copies O(n) elements but occurs infrequently. Across a sequence of pushes, total copying is O(n), yielding amortized constant push time."
+    },
+    {
+      "id": "pds-sq-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A dynamic array stack doubles capacity when full. Starting with capacity 1, how many element copies occur during 8 pushes, assuming each resize copies all existing elements?",
+      "options": [
+        "7",
+        "8",
+        "15",
+        "4"
+      ],
+      "answer": [
+        "7"
+      ],
+      "explanation": "Resizes occur before pushes 2, 3, 5, and 9. During eight pushes, copied counts are 1, 2, and 4, totaling seven."
+    },
+    {
+      "id": "pds-sq-019",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which claims about amortized analysis of a doubling stack are correct?",
+      "options": [
+        "A single push may take Theta(n) due to resizing",
+        "A sequence of n pushes takes O(n) total time",
+        "Every push has worst-case O(1) time",
+        "The amortized cost per push is O(1)"
+      ],
+      "answer": [
+        "A single push may take Theta(n) due to resizing",
+        "A sequence of n pushes takes O(n) total time",
+        "The amortized cost per push is O(1)"
+      ],
+      "explanation": "A resizing push can copy all existing items, so its individual worst-case is linear. The geometric sum of copies is linear overall, giving constant amortized cost."
+    },
+    {
+      "id": "pds-sq-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A queue is implemented using two stacks: enqueue pushes onto S1; dequeue pops from S2, transferring all S1 items to S2 only when S2 is empty. What is the amortized cost per operation?",
+      "options": [
+        "O(1)",
+        "O(n)",
+        "O(log n)",
+        "O(n squared)"
+      ],
+      "answer": [
+        "O(1)"
+      ],
+      "explanation": "Each element is pushed onto S1 once, transferred and pushed onto S2 at most once, then popped once. Total stack operations are linear over the sequence, giving constant amortized cost."
+    },
+    {
+      "id": "pds-sq-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An initially empty queue supports enqueue and dequeue. Which output sequence results from enqueue(1), enqueue(2), dequeue(), enqueue(3), dequeue(), dequeue()?",
+      "options": [
+        "1,2,3",
+        "2,1,3",
+        "1,3,2",
+        "3,2,1"
+      ],
+      "answer": [
+        "1,2,3"
+      ],
+      "explanation": "A queue removes in insertion order: the first dequeue returns 1, then 2, and the final dequeue returns 3."
+    },
+    {
+      "id": "pds-sq-022",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A queue initially contains 4 elements. It receives 13 enqueues and 9 dequeues, with no underflow. How many elements remain?",
+      "answer": "8",
+      "explanation": "The queue size changes by 13-9=4; adding its initial size yields 8."
+    },
+    {
+      "id": "pds-sq-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A circular queue uses front as the index of the first element and size as the number of elements in a capacity-C array. What is the rear index when size>0?",
+      "options": [
+        " (front+size-1) mod C",
+        " (front+size) mod C",
+        " (front-1) mod C",
+        " size mod C"
+      ],
+      "answer": [
+        " (front+size-1) mod C"
+      ],
+      "explanation": "Starting from front, the size occupied positions end at offset size-1. Modulo C wraps the resulting rear index around the array."
+    },
+    {
+      "id": "pds-sq-024",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circular queue has capacity 11, front=8, and size=5. What is the rear index?",
+      "answer": "1",
+      "explanation": "The rear is (8+5-1) mod 11 = 12 mod 11 = 1."
+    },
+    {
+      "id": "pds-sq-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A circular queue of capacity C leaves one array slot unused. If front=rear, the queue is",
+      "options": [
+        "empty",
+        "full",
+        "of size C",
+        "in an invalid state"
+      ],
+      "answer": [
+        "empty"
+      ],
+      "explanation": "With one-slot-empty encoding, front equals rear for empty. Full is distinguished by the next rear position equaling front."
+    },
+    {
+      "id": "pds-sq-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a one-slot-empty circular queue of capacity 10, front=4 and rear=3. What is the queue state?",
+      "options": [
+        "Full",
+        "Empty",
+        "Contains one element",
+        "Invalid because rear is less than front"
+      ],
+      "answer": [
+        "Full"
+      ],
+      "explanation": "The next position after rear is (3+1) mod 10=4, equal to front, satisfying the full condition."
+    },
+    {
+      "id": "pds-sq-027",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which techniques can distinguish full from empty in a circular array queue?",
+      "options": [
+        "Maintain an explicit element count",
+        "Leave one array slot unused",
+        "Maintain a separate full flag",
+        "Compare front and rear alone while using every slot"
+      ],
+      "answer": [
+        "Maintain an explicit element count",
+        "Leave one array slot unused",
+        "Maintain a separate full flag"
+      ],
+      "explanation": "A count or a full flag provides extra state. Leaving one slot unused makes pointer equality uniquely indicate empty; pointers alone with all slots used are ambiguous."
+    },
+    {
+      "id": "pds-sq-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A deque is stored in a circular array. Which operation pair can be supported in O(1) time at both ends?",
+      "options": [
+        "Insert and delete at either front or rear",
+        "Search by value at either end",
+        "Sort and merge the deque",
+        "Access predecessor of every element"
+      ],
+      "answer": [
+        "Insert and delete at either front or rear"
+      ],
+      "explanation": "A deque (double-ended queue) supports constant-time endpoint operations in a circular array, subject to available capacity or resize behavior."
+    },
+    {
+      "id": "pds-sq-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A monotonic deque is used to compute sliding-window maxima. Which property should its stored values satisfy from front to rear?",
+      "options": [
+        "Nonincreasing order",
+        "Nondecreasing order",
+        "Strictly alternating high and low",
+        "Unsorted order"
+      ],
+      "answer": [
+        "Nonincreasing order"
+      ],
+      "explanation": "For maxima, values are kept in nonincreasing order. Smaller values at the rear are removed when a larger new value arrives because they cannot be future maxima."
+    },
+    {
+      "id": "pds-sq-030",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "For a sliding window of width 3 over values 2, 5, 1, 4, 3, how many window maxima are produced?",
+      "answer": "3",
+      "explanation": "There are 5-3+1=3 complete windows, each producing one maximum."
+    },
+    {
+      "id": "pds-sq-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When processing a new value x for sliding-window maximum, why may smaller values at the deque's rear be removed?",
+      "options": [
+        "They are dominated by x for every future window containing x",
+        "They have already been output as maxima",
+        "They occur before the current window",
+        "They are always duplicates"
+      ],
+      "answer": [
+        "They are dominated by x for every future window containing x"
+      ],
+      "explanation": "The newer x is larger and remains in future windows at least as long as earlier values. Any smaller earlier candidate cannot become the maximum before x expires."
+    },
+    {
+      "id": "pds-sq-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack is used to check balanced parentheses. On reading a closing delimiter, what should the algorithm do?",
+      "options": [
+        "Check that the stack top is the matching opening delimiter, then pop",
+        "Push the closing delimiter",
+        "Clear the stack",
+        "Ignore its type and increment a counter"
+      ],
+      "answer": [
+        "Check that the stack top is the matching opening delimiter, then pop"
+      ],
+      "explanation": "Matching types and nesting require checking the most recent unmatched opener. A counter alone cannot distinguish bracket types or proper nesting."
+    },
+    {
+      "id": "pds-sq-033",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which delimiter strings are balanced under standard properly nested parentheses/brackets rules?",
+      "options": [
+        "([])",
+        "([)]",
+        "(()())",
+        "())("
+      ],
+      "answer": [
+        "([])",
+        "(()())"
+      ],
+      "explanation": "Balanced strings close the most recently opened delimiter of the matching type. The first and third strings obey nesting; the others do not."
+    },
+    {
+      "id": "pds-sq-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For an input string of length n, what are the time and auxiliary-space complexities of stack-based balanced-parenthesis checking?",
+      "options": [
+        "O(n) time and O(n) space",
+        "O(n squared) time and O(1) space",
+        "O(log n) time and O(n) space",
+        "O(1) time and O(1) space"
+      ],
+      "answer": [
+        "O(n) time and O(n) space"
+      ],
+      "explanation": "Each character is examined once and at most O(n) opening delimiters may be stored on the stack."
+    },
+    {
+      "id": "pds-sq-035",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "While scanning the prefix '(([]', how many unmatched opening delimiters are on the stack after the final character?",
+      "answer": "3",
+      "explanation": "The two parentheses and one bracket have been opened; the closing bracket matches only the most recent bracket, leaving two parentheses and the opening bracket? Actually sequence '(' '(' '[' ']' leaves two unmatched opening parentheses."
+    },
+    {
+      "id": "pds-sq-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In infix-to-postfix conversion, when a left-associative operator of precedence p is read, which stacked operators should generally be popped first?",
+      "options": [
+        "Operators of greater or equal precedence",
+        "Only operators of lower precedence",
+        "No operators before the next operand",
+        "All operators including left parentheses"
+      ],
+      "answer": [
+        "Operators of greater or equal precedence"
+      ],
+      "explanation": "For a left-associative incoming operator, prior operators of equal or higher precedence must be emitted first so the postfix evaluation preserves grouping and associativity."
+    },
+    {
+      "id": "pds-sq-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The infix expression a-b-c is evaluated with subtraction left-associative. Its postfix form is",
+      "options": [
+        "a b - c -",
+        "a b c - -",
+        "a b - - c",
+        "a b c -"
+      ],
+      "answer": [
+        "a b - c -"
+      ],
+      "explanation": "Left associativity groups it as (a-b)-c. The corresponding postfix sequence performs the first subtraction before the second."
+    },
+    {
+      "id": "pds-sq-038",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many operators are present in the postfix expression 4 5 + 6 2 - *?",
+      "answer": "3",
+      "explanation": "The expression contains addition, subtraction, and multiplication, for three operator tokens."
+    },
+    {
+      "id": "pds-sq-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A postfix expression contains n operands and b binary operators and is a single valid expression. What relation must hold between n and b?",
+      "options": [
+        "n=b+1",
+        "n=b",
+        "b=n+1",
+        "n=2b"
+      ],
+      "answer": [
+        "n=b+1"
+      ],
+      "explanation": "Each binary operator combines two existing expression components into one, reducing the component count by one. Starting with n operands and ending with one requires b=n-1."
+    },
+    {
+      "id": "pds-sq-040",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "During evaluation of a valid postfix expression containing only binary operators, which invariants hold after each token is processed?",
+      "options": [
+        "The stack contains values of completed subexpressions",
+        "An operator requires at least two stack values",
+        "Applying a binary operator reduces stack size by one",
+        "The stack size always equals the number of operands seen"
+      ],
+      "answer": [
+        "The stack contains values of completed subexpressions",
+        "An operator requires at least two stack values",
+        "Applying a binary operator reduces stack size by one"
+      ],
+      "explanation": "Operands add one stack value and binary operators consume two and add one. Thus the size depends on operators too, and every operator needs two values."
+    },
+    {
+      "id": "pds-sq-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack supports push, pop, and an auxiliary operation that returns the minimum element. Which approach gives O(1) worst-case time for all three?",
+      "options": [
+        "Maintain a second stack of minima",
+        "Scan all stack elements on each query",
+        "Keep the stack sorted in an array",
+        "Use a queue instead"
+      ],
+      "answer": [
+        "Maintain a second stack of minima"
+      ],
+      "explanation": "A parallel min-stack records the minimum at each depth, so the current minimum is available at its top and updates track push and pop."
+    },
+    {
+      "id": "pds-sq-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "When pushing x onto a stack with a min-stack, what should be pushed onto the min-stack if it stores one minimum per main-stack depth?",
+      "options": [
+        "min(x,current minimum)",
+        "x only",
+        "max(x,current minimum)",
+        "Nothing unless x is negative"
+      ],
+      "answer": [
+        "min(x,current minimum)"
+      ],
+      "explanation": "The new minimum at that depth is the smaller of x and the previous minimum. This allows the minimum to be retrieved in constant time and restored after pop."
+    },
+    {
+      "id": "pds-sq-043",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A stack's contents from bottom to top are 8, 3, 6, 2. If a min-stack stores one prefix minimum per element, what is the current minimum?",
+      "answer": "2",
+      "explanation": "The minimum of the prefix ending at the top is min(8,3,6,2)=2."
+    },
+    {
+      "id": "pds-sq-044",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations can be implemented in O(1) worst-case time using an auxiliary stack alongside a standard stack?",
+      "options": [
+        "Return the current minimum",
+        "Return the current maximum",
+        "Return the median",
+        "Return the top element"
+      ],
+      "answer": [
+        "Return the current minimum",
+        "Return the current maximum",
+        "Return the top element"
+      ],
+      "explanation": "A second stack can track minima and another can track maxima. The median generally requires more elaborate order information; top is directly available from the main stack."
+    },
+    {
+      "id": "pds-sq-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack is implemented by a singly linked list with the top at head. What is the time for push and pop?",
+      "options": [
+        "O(1) each",
+        "O(n) each",
+        "O(1) push and O(n) pop",
+        "O(n) push and O(1) pop"
+      ],
+      "answer": [
+        "O(1) each"
+      ],
+      "explanation": "Inserting and removing the head node each require constant pointer updates, independent of stack size."
+    },
+    {
+      "id": "pds-sq-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack is implemented by a singly linked list with the top at tail and no predecessor link. What is the worst-case time for pop?",
+      "options": [
+        "O(n)",
+        "O(1)",
+        "O(log n)",
+        "O(n squared)"
+      ],
+      "answer": [
+        "O(n)"
+      ],
+      "explanation": "Removing the tail requires locating its predecessor by traversing from the head, which takes linear time."
+    },
+    {
+      "id": "pds-sq-047",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A stack receives pushes of values 1 through 5, then two pops, then pushes 6 and 7, then one pop. What is the top value?",
+      "answer": "6",
+      "explanation": "After pushing 1..5, popping twice leaves 3 on top. Push 6 then 7, and pop removes 7, leaving 6 on top."
+    },
+    {
+      "id": "pds-sq-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which permutation can be produced by a stack from input sequence 1,2,3, with pushes in input order and arbitrary pops?",
+      "options": [
+        "2,1,3",
+        "3,1,2",
+        "1,3,2 is impossible",
+        "2,3,1 is impossible"
+      ],
+      "answer": [
+        "2,1,3"
+      ],
+      "explanation": "Push 1 and 2, pop 2 then 1, then push and pop 3; this yields 2,1,3."
+    },
+    {
+      "id": "pds-sq-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For a stack permutation, input items arrive in increasing order 1,2,3,4. Can output 3,1,2,4 be produced?",
+      "options": [
+        "No, after outputting 3, item 2 remains above item 1",
+        "Yes, push all four then pop in order",
+        "Yes, because every item appears once",
+        "Yes, by rotating the stack"
+      ],
+      "answer": [
+        "No, after outputting 3, item 2 remains above item 1"
+      ],
+      "explanation": "To output 3, the stack must have 1,2,3 with 3 on top. After popping 3, 2 is above 1, so 1 cannot be next."
+    },
+    {
+      "id": "pds-sq-050",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which output sequences are possible from input 1,2,3,4 using a single stack and preserving input push order?",
+      "options": [
+        "2,1,4,3",
+        "3,2,1,4",
+        "3,1,2,4",
+        "1,2,3,4"
+      ],
+      "answer": [
+        "2,1,4,3",
+        "3,2,1,4",
+        "1,2,3,4"
+      ],
+      "explanation": "Each feasible output can be obtained by pushing the needed prefix and popping in LIFO order. Sequence 3,1,2 is impossible because 2 blocks 1 after 3 is popped."
+    },
+    {
+      "id": "pds-sq-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A queue is implemented using two stacks with the transfer-on-empty rule. An element enqueued most recently can be dequeued immediately only if",
+      "options": [
+        "All older elements have already been dequeued",
+        "The element is also pushed onto S2",
+        "The queue has odd length",
+        "S1 is empty"
+      ],
+      "answer": [
+        "All older elements have already been dequeued"
+      ],
+      "explanation": "FIFO order requires every earlier enqueued element to leave first. The two-stack implementation preserves that order through its transfer process."
+    },
+    {
+      "id": "pds-sq-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A two-stack queue receives enqueue(A), enqueue(B), enqueue(C), dequeue(), enqueue(D), dequeue(). Which item is returned by the second dequeue?",
+      "answer": [
+        "B"
+      ],
+      "explanation": "The first dequeue returns A after transfer. B remains at the top of the output stack, so the second dequeue returns B.",
+      "options": [
+        "B",
+        "A",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "id": "pds-sq-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A priority queue differs from a FIFO queue because it",
+      "options": [
+        "Removes an element according to its priority key",
+        "Always removes the newest element",
+        "Always removes the oldest element",
+        "Supports only insertion at the rear"
+      ],
+      "answer": [
+        "Removes an element according to its priority key"
+      ],
+      "explanation": "A priority queue selects the highest- or lowest-priority item according to its ordering rule, rather than insertion chronology."
+    },
+    {
+      "id": "pds-sq-054",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which applications naturally use a queue or deque rather than a stack as the primary ordering discipline?",
+      "options": [
+        "Breadth-first graph traversal",
+        "Round-robin scheduling",
+        "Level-order tree traversal",
+        "Depth-first graph traversal implemented iteratively"
+      ],
+      "answer": [
+        "Breadth-first graph traversal",
+        "Round-robin scheduling",
+        "Level-order tree traversal"
+      ],
+      "explanation": "BFS, round-robin scheduling, and level-order traversal process items in arrival order. Iterative DFS typically uses a stack."
+    },
+    {
+      "id": "pds-sq-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Breadth-first search uses a queue. In an unweighted graph, what does first discovery of a vertex from source s establish?",
+      "options": [
+        "A shortest path in number of edges from s",
+        "A maximum-weight path from s",
+        "A depth-first finishing time",
+        "That the vertex has no alternate path"
+      ],
+      "answer": [
+        "A shortest path in number of edges from s"
+      ],
+      "explanation": "BFS explores vertices in nondecreasing distance from the source, so the first discovery uses the fewest edges in an unweighted graph."
+    },
+    {
+      "id": "pds-sq-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A tree has 1 root, 3 nodes at depth 1, and 5 nodes at depth 2. During level-order traversal, how many nodes are dequeued?",
+      "answer": "9",
+      "explanation": "Every node is enqueued and dequeued exactly once; the total number is 1+3+5=9."
+    },
+    {
+      "id": "pds-sq-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A queue is used for BFS on a graph with V vertices and E edges represented by adjacency lists. What is the total time complexity?",
+      "options": [
+        "O(V+E)",
+        "O(V squared)",
+        "O(E log V)",
+        "O(log V)"
+      ],
+      "answer": [
+        "O(V+E)"
+      ],
+      "explanation": "Each vertex is enqueued and dequeued once, and every adjacency-list edge is examined once, giving O(V+E)."
+    },
+    {
+      "id": "pds-sq-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In an array-based circular queue, why is modulo arithmetic used to update indices?",
+      "options": [
+        "To wrap an index from the last array position back to zero",
+        "To sort queued values",
+        "To detect duplicate elements",
+        "To resize the array automatically"
+      ],
+      "answer": [
+        "To wrap an index from the last array position back to zero"
+      ],
+      "explanation": "Modulo capacity maps an incremented endpoint back into the valid index range when it passes the last slot."
+    },
+    {
+      "id": "pds-sq-059",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circular buffer has capacity 13. If rear is at index 11, what is the index after advancing rear by 5 positions modulo capacity?",
+      "answer": "3",
+      "explanation": "Advance rear five steps with wraparound: (11+5) mod 13 equals 16 mod 13, which is index 3."
+    },
+    {
+      "id": "pds-sq-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A bounded queue receives an enqueue when it is full. Which policy is not determined by the queue abstraction itself?",
+      "options": [
+        "Reject, block, or overwrite according to the implementation contract",
+        "Remove the front item in every implementation",
+        "Increase capacity in every implementation",
+        "Silently corrupt the queue"
+      ],
+      "answer": [
+        "Reject, block, or overwrite according to the implementation contract"
+      ],
+      "explanation": "The abstract queue specifies FIFO ordering, while overflow handling depends on design: reject, block, resize, or overwrite may be chosen."
+    },
+    {
+      "id": "pds-sq-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A recursive procedure uses a stack of activation records. For recursion depth d, what is the maximum number of simultaneously active records?",
+      "options": [
+        "Theta(d)",
+        "Theta(1)",
+        "Theta(log d)",
+        "Theta(d squared)"
+      ],
+      "answer": [
+        "Theta(d)"
+      ],
+      "explanation": "Each call remains active until its recursive work returns, so a chain of d nested calls has d activation records simultaneously on the call stack."
+    },
+    {
+      "id": "pds-sq-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A recursive function makes one nested call per decrement from n=12 to the base case n=0. What is the maximum number of active non-base calls?",
+      "answer": "12",
+      "explanation": "The calls for arguments 12 down through 1 are active before the base call returns, totaling 12 non-base activation records."
+    },
+    {
+      "id": "pds-sq-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Tail recursion can be converted to iteration by",
+      "options": [
+        "Replacing the recursive call with a loop update when no work remains after the call",
+        "Storing all return values in a queue",
+        "Sorting the activation records",
+        "Duplicating each call"
+      ],
+      "answer": [
+        "Replacing the recursive call with a loop update when no work remains after the call"
+      ],
+      "explanation": "In tail recursion, the recursive call is the final action. A loop can update parameters and repeat without preserving a pending computation for return."
+    },
+    {
+      "id": "pds-sq-064",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about recursive versus iterative DFS are correct?",
+      "options": [
+        "Recursive DFS uses the language call stack",
+        "Iterative DFS commonly uses an explicit stack",
+        "Both can run in O(V+E) with adjacency lists",
+        "BFS and DFS always visit vertices in identical order"
+      ],
+      "answer": [
+        "Recursive DFS uses the language call stack",
+        "Iterative DFS commonly uses an explicit stack",
+        "Both can run in O(V+E) with adjacency lists"
+      ],
+      "explanation": "Both DFS versions can mark vertices and examine each edge once, taking O(V+E) with adjacency lists. They may produce differing traversal orders, and BFS uses a queue."
+    },
+    {
+      "id": "pds-sq-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An iterative algorithm simulates recursive preorder tree traversal. When should a node be output to match preorder?",
+      "options": [
+        "When the node is first popped/entered, before its children",
+        "After both children finish",
+        "Only when it is pushed twice",
+        "At the end of the traversal"
+      ],
+      "answer": [
+        "When the node is first popped/entered, before its children"
+      ],
+      "explanation": "Preorder visits root before left and right subtrees. In an iterative simulation the node is processed upon entry, with child push order chosen appropriately."
+    },
+    {
+      "id": "pds-sq-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary tree has 31 nodes. A stack-based DFS pushes each node once and pops each node once. How many total push and pop operations occur?",
+      "answer": "62",
+      "explanation": "Each of 31 nodes is pushed once and popped once, for 31+31=62 operations."
+    },
+    {
+      "id": "pds-sq-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "To simulate recursive inorder traversal iteratively, which action occurs after descending to the leftmost node?",
+      "options": [
+        "Pop a node, visit it, then move to its right subtree",
+        "Visit every node when pushed",
+        "Move to the left child after popping and never revisit",
+        "Use a FIFO queue"
+      ],
+      "answer": [
+        "Pop a node, visit it, then move to its right subtree"
+      ],
+      "explanation": "The stack stores deferred ancestors. Once no left child remains, the top node is visited, then traversal proceeds into its right subtree."
+    },
+    {
+      "id": "pds-sq-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An expression tree is traversed in postorder to produce postfix notation. What is the visit order?",
+      "options": [
+        "Left subtree, right subtree, root",
+        "Root, left, right",
+        "Left, root, right",
+        "Right, root, left"
+      ],
+      "answer": [
+        "Left subtree, right subtree, root"
+      ],
+      "explanation": "Postorder visits both operand subtrees before the operator at the root, producing operands before their operation in postfix notation."
+    },
+    {
+      "id": "pds-sq-069",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which traversals of an expression tree with binary operators produce standard notation forms?",
+      "options": [
+        "Preorder produces prefix",
+        "Inorder with parentheses produces infix",
+        "Postorder produces postfix",
+        "Level order always produces an equivalent unparenthesized infix expression"
+      ],
+      "answer": [
+        "Preorder produces prefix",
+        "Inorder with parentheses produces infix",
+        "Postorder produces postfix"
+      ],
+      "explanation": "Root-left-right yields prefix; left-root-right yields infix when grouping is represented; left-right-root yields postfix. Level order does not generally encode expression structure as infix."
+    },
+    {
+      "id": "pds-sq-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A full binary expression tree has 7 leaves and only binary internal operators. How many operator nodes does it have?",
+      "answer": "6",
+      "explanation": "For a full binary tree, leaves equal internal nodes plus one. Thus 7 leaves imply 6 internal operator nodes."
+    },
+    {
+      "id": "pds-sq-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack is used to reverse a sequence of n items. How many push and pop operations are required in total?",
+      "options": [
+        "2n",
+        "n",
+        "n squared",
+        "log2 n"
+      ],
+      "answer": [
+        "2n"
+      ],
+      "explanation": "Each item is pushed once and popped once, resulting in 2n stack operations."
+    },
+    {
+      "id": "pds-sq-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A queue receives n=17 elements and then drains completely. How many enqueue and dequeue operations are performed altogether?",
+      "answer": "34",
+      "explanation": "There are 17 enqueues and 17 dequeues, giving 34 operations."
+    },
+    {
+      "id": "pds-sq-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A circular queue has capacity 6, uses one unused slot, and currently has front=2 and rear=5. How many elements are stored?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "The occupied positions after front through rear are 3, 4, and 5, giving three elements; equivalently (rear-front+6) mod 6=3."
+    },
+    {
+      "id": "pds-sq-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circular queue of capacity 7 with one slot unused has front=5 and rear=2. How many elements are stored?",
+      "answer": "4",
+      "explanation": "(2-5+7) mod 7=4 elements are stored in the wrapped interval after front through rear."
+    },
+    {
+      "id": "pds-sq-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A circular queue is empty when front=rear. On the first enqueue in a representation that stores front as the first occupied index and rear as the next free index, which pointer relationship holds afterward?",
+      "options": [
+        "rear=(front+1) mod C",
+        "rear=front",
+        "front=(rear+1) mod C",
+        "rear=C"
+      ],
+      "answer": [
+        "rear=(front+1) mod C"
+      ],
+      "explanation": "One item occupies the front position, so rear advances once to the next free slot modulo capacity."
+    },
+    {
+      "id": "pds-sq-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are valid implementation strategies for a queue using an array?",
+      "options": [
+        "Shift all elements after each dequeue",
+        "Use circular indices",
+        "Use a dynamically resized circular buffer",
+        "Use two stacks"
+      ],
+      "answer": [
+        "Shift all elements after each dequeue",
+        "Use circular indices",
+        "Use a dynamically resized circular buffer",
+        "Use two stacks"
+      ],
+      "explanation": "Shifting is valid but makes dequeue O(n); circular indices and a dynamic circular buffer are common direct implementations. Two stacks also implement a queue while preserving FIFO behavior."
+    },
+    {
+      "id": "pds-sq-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A queue implementation shifts all remaining array elements left after every dequeue. What is the worst-case dequeue time?",
+      "options": [
+        "O(n)",
+        "O(1)",
+        "O(log n)",
+        "O(n log n)"
+      ],
+      "answer": [
+        "O(n)"
+      ],
+      "explanation": "Removing the front by shifting requires moving up to n-1 elements, so worst-case time is linear."
+    },
+    {
+      "id": "pds-sq-078",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An array queue contains 9 elements. It performs 6 dequeues, shifting each remaining element once per dequeue. How many element moves are made in total?",
+      "answer": "33",
+      "explanation": "The moves are 8+7+6+5+4+3=33 after successive removals."
+    },
+    {
+      "id": "pds-sq-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A circular queue avoids shifting after dequeue by",
+      "options": [
+        "Advancing the front index modulo the array capacity",
+        "Copying every element to index zero",
+        "Reversing the queue",
+        "Sorting elements by insertion time"
+      ],
+      "answer": [
+        "Advancing the front index modulo the array capacity"
+      ],
+      "explanation": "Advancing front marks the next occupied array position without moving stored elements. Modulo arithmetic handles wraparound."
+    },
+    {
+      "id": "pds-sq-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A queue is implemented as a circular singly linked list with only a tail pointer. Where is the front element found?",
+      "options": [
+        "tail.next",
+        "tail",
+        "tail.prev",
+        "The middle node"
+      ],
+      "answer": [
+        "tail.next"
+      ],
+      "explanation": "The tail's next link points to the front of the circular list, making both enqueue at rear and dequeue at front constant time."
+    },
+    {
+      "id": "pds-sq-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A circular singly linked list with tail pointer is used as a queue. After enqueueing x into an empty queue, what should tail and tail.next reference?",
+      "options": [
+        "Both reference x",
+        "tail references null and tail.next references x",
+        "tail references x.next and tail.next references null",
+        "Both remain null"
+      ],
+      "answer": [
+        "Both reference x"
+      ],
+      "explanation": "A one-node circular queue has its sole node as both rear and front. Its next link points to itself, so tail and tail.next both identify x."
+    },
+    {
+      "id": "pds-sq-082",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a circular linked queue with tail pointer, enqueue y into a nonempty queue whose old tail is t. Which updates are correct?",
+      "options": [
+        "y.next=t.next; t.next=y; tail=y",
+        "t.next=y; y.next=null; tail=t",
+        "y.next=t; t.next=y; tail=t.next",
+        "tail.next=y; y.next=tail; tail unchanged"
+      ],
+      "answer": [
+        "y.next=t.next; t.next=y; tail=y"
+      ],
+      "explanation": "The old tail's successor is the front. The new node must point to that front, the old tail must point to the new node, and the new node becomes tail."
+    },
+    {
+      "id": "pds-sq-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circular linked queue currently has 6 nodes. After 10 enqueues and 12 dequeues, assuming dequeues are valid, how many nodes remain?",
+      "answer": "4",
+      "explanation": "The count changes from six by +10-12, resulting in four nodes; the stated sequence is feasible since the maximum occupancy is 16 before removals."
+    },
+    {
+      "id": "pds-sq-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A queue stores tasks with arrival times and service durations. Which discipline guarantees service in arrival order regardless of duration?",
+      "options": [
+        "FIFO queue",
+        "Stack",
+        "Max heap keyed by duration",
+        "Min heap keyed by duration"
+      ],
+      "answer": [
+        "FIFO queue"
+      ],
+      "explanation": "A FIFO queue removes tasks in the order they arrived. Priority queues keyed by duration may reorder tasks, and a stack reverses arrival order."
+    },
+    {
+      "id": "pds-sq-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which data structures support O(1) amortized insertion and removal at both ends?",
+      "options": [
+        "Deque implemented by a circular dynamic array",
+        "Doubly linked list with endpoint pointers",
+        "Singly linked list with only a head pointer",
+        "Binary search tree"
+      ],
+      "answer": [
+        "Deque implemented by a circular dynamic array",
+        "Doubly linked list with endpoint pointers"
+      ],
+      "explanation": "A circular dynamic array and a doubly linked list can support both endpoint operations in constant amortized or worst-case time. A singly linked head-only list cannot remove the tail in constant time."
+    },
+    {
+      "id": "pds-sq-086",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An input-restricted deque permits insertion at one end but deletion at both ends. A deletion at the rear is",
+      "options": [
+        "Allowed",
+        "Forbidden",
+        "Allowed only when empty",
+        "Equivalent to insertion"
+      ],
+      "answer": [
+        "Allowed"
+      ],
+      "explanation": "The restriction applies to insertion: it is permitted at only one end. Deletion remains permitted at either end."
+    },
+    {
+      "id": "pds-sq-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A queue receives items A,B,C,D. Two dequeues occur, followed by enqueue E and dequeue. Which item is returned by the third dequeue?",
+      "options": [
+        "C",
+        "A",
+        "D",
+        "E"
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "The first two dequeues remove A and B. E is added after D, so the next dequeue removes C."
+    },
+    {
+      "id": "pds-sq-088",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A deque initially contains 4 items. It performs 7 insertions and 5 deletions, all valid. What is its final size?",
+      "answer": "6",
+      "explanation": "The deque begins with four items. Seven insertions and five valid deletions change the size by a net increase of two, giving six."
+    },
+    {
+      "id": "pds-sq-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack can be implemented using two queues by making push costly. Which operation sequence maintains the newest item at the front of the primary queue?",
+      "options": [
+        "On push, enqueue new item in auxiliary queue, move all primary items behind it, then swap queues",
+        "On pop, move all primary items into the auxiliary queue",
+        "Always dequeue the primary queue for pop",
+        "Sort both queues after every operation"
+      ],
+      "answer": [
+        "On push, enqueue new item in auxiliary queue, move all primary items behind it, then swap queues"
+      ],
+      "explanation": "Enqueueing the new value first in the auxiliary queue and transferring old values behind it makes the new value the front. Swapping roles then allows O(1) pop from the primary queue."
+    },
+    {
+      "id": "pds-sq-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about implementing one ADT using another are correct?",
+      "options": [
+        "A queue can be implemented using two stacks",
+        "A stack can be implemented using two queues",
+        "A queue can be implemented using a single ordinary stack with no recursion or extra state",
+        "The implementation may trade cost between operations while preserving behavior"
+      ],
+      "answer": [
+        "A queue can be implemented using two stacks",
+        "A stack can be implemented using two queues",
+        "The implementation may trade cost between operations while preserving behavior"
+      ],
+      "explanation": "Two stacks can provide FIFO and two queues can provide LIFO. A single stack alone cannot generally reorder to FIFO without extra mechanisms; operation costs can be shifted."
+    },
+    {
+      "id": "pds-sq-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A bounded circular queue of capacity C uses a count variable. Which count values correspond to empty and full?",
+      "options": [
+        "0 and C",
+        "0 and C-1",
+        "1 and C",
+        "C and 0"
+      ],
+      "answer": [
+        "0 and C"
+      ],
+      "explanation": "The explicit count ranges from zero elements to C elements inclusive. This distinguishes empty from full even when front equals rear in both states."
+    },
+    {
+      "id": "pds-sq-092",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A circular queue has capacity 12 and count=9. How many additional elements can be enqueued before it becomes full?",
+      "answer": "3",
+      "explanation": "The remaining capacity is C-count=12-9=3."
+    },
+    {
+      "id": "pds-sq-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack's push and pop operations are used to reverse a string. If the input is A,B,C,D in that order, what is the output when characters are popped?",
+      "options": [
+        "D,C,B,A",
+        "A,B,C,D",
+        "B,A,D,C",
+        "C,D,A,B"
+      ],
+      "answer": [
+        "D,C,B,A"
+      ],
+      "explanation": "The last character pushed is the first popped, so the output is the reverse order."
+    },
+    {
+      "id": "pds-sq-094",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A string of 7 distinct characters is pushed one by one onto a stack and then fully popped. How many inversions relative to the original order does the output have?",
+      "answer": "21",
+      "explanation": "The reversal places every pair in opposite order, giving n(n-1)/2=7*6/2=21 inversions."
+    },
+    {
+      "id": "pds-sq-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A queue is used to perform level-order traversal of a tree. When processing a node, when are its children enqueued?",
+      "options": [
+        "After the node is dequeued, in left-to-right order",
+        "Before the root is enqueued",
+        "Only after all nodes at every level are processed",
+        "At the front of the queue"
+      ],
+      "answer": [
+        "After the node is dequeued, in left-to-right order"
+      ],
+      "explanation": "The current node is removed, then its children are appended at the rear. Enqueueing left before right yields left-to-right traversal within each level."
+    },
+    {
+      "id": "pds-sq-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A tree has maximum branching factor b and height h. What is the worst-case auxiliary queue space for level-order traversal?",
+      "options": [
+        "O(b^h) in the broadest level",
+        "O(h) always",
+        "O(1)",
+        "O(log b)"
+      ],
+      "answer": [
+        "O(b^h) in the broadest level"
+      ],
+      "explanation": "The queue may hold an entire widest level. A full b-ary tree's last level can contain Theta(b^h) nodes, so queue space is proportional to maximum width."
+    },
+    {
+      "id": "pds-sq-097",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties of a queue make it suitable for breadth-first search?",
+      "options": [
+        "It processes vertices in order of discovery",
+        "It supports FIFO removal",
+        "It ensures vertices at distance d are processed before those at distance d+1",
+        "It selects the smallest numeric vertex label first"
+      ],
+      "answer": [
+        "It processes vertices in order of discovery",
+        "It supports FIFO removal",
+        "It ensures vertices at distance d are processed before those at distance d+1"
+      ],
+      "explanation": "FIFO order preserves nondecreasing discovery distance in an unweighted graph; the queue does not order vertices by their labels."
+    },
+    {
+      "id": "pds-sq-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "In a BFS tree of an unweighted graph, a vertex at distance 6 from the source is discovered. What is the minimum number of BFS levels that must have been processed before its level is processed?",
+      "answer": "6",
+      "explanation": "Vertices at distances 0 through 5 are processed in earlier levels, so six levels precede the level-6 processing."
+    },
+    {
+      "id": "pds-sq-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack-based algorithm checks whether a string is a palindrome by pushing the first half and comparing against the second half. Which case requires special handling for odd length?",
+      "options": [
+        "Skip the single middle character",
+        "Push the middle character twice",
+        "Reverse the whole string first",
+        "Reject all odd-length strings"
+      ],
+      "answer": [
+        "Skip the single middle character"
+      ],
+      "explanation": "For an odd-length string, the middle character has no counterpart, so it must be skipped before comparing the remaining second half with popped characters."
+    },
+    {
+      "id": "pds-sq-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A stack stores the indices of elements in a next-greater-element algorithm. Each index is pushed and popped at most once. What is the total time for n elements?",
+      "options": [
+        "O(n)",
+        "O(n squared)",
+        "O(log n)",
+        "O(1)"
+      ],
+      "answer": [
+        "O(n)"
+      ],
+      "explanation": "Although there may be a while loop inside the scan, each index enters and leaves the stack at most once. The total number of stack operations is linear."
+    }
+  ]
+}
