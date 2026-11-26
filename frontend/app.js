@@ -17,6 +17,14 @@
   function current(){ return subjects[activeSubject]; }
   function topicQuestions(index){ return current().bank.filter(q=>q.topicIndex===index); }
   function wasChecked(q){ return Boolean(progress[statusKey(activeSubject,q.id)]); }
+  function shuffledOptions(options){
+    const shuffled=[...options];
+    for(let i=shuffled.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
+    }
+    return shuffled;
+  }
 
   async function loadCatalog(){
     const result=await fetch('/api/catalog',{cache:'no-store'});
@@ -123,7 +131,7 @@
       response=`<label class="sr-only" for="nat-answer">Your numeric answer</label><input class="answer-input" id="nat-answer" type="text" inputmode="decimal" placeholder="Enter your answer" ${checked?'disabled':''}>`;
     }else{
       const inputType=q.type==='MSQ'?'checkbox':'radio';
-      response=`<div class="options">${q.options.map(option=>{const chosen=checked&&checked.response.includes(option);return `<label class="option ${chosen?'selected':''}"><input type="${inputType}" name="answer" value="${escapeHtml(option)}" ${chosen?'checked':''} ${checked?'disabled':''}><span>${escapeHtml(option)}</span></label>`;}).join('')}</div>`;
+      response=`<div class="options">${shuffledOptions(q.options).map(option=>{const chosen=checked&&checked.response.includes(option);return `<label class="option ${chosen?'selected':''}"><input type="${inputType}" name="answer" value="${escapeHtml(option)}" ${chosen?'checked':''} ${checked?'disabled':''}><span>${escapeHtml(option)}</span></label>`;}).join('')}</div>`;
     }
     $('#question-panel').innerHTML=`<div class="question-meta"><span class="type-tag">${q.type}${q.type==='MSQ'?' · SELECT ALL':''}</span><span class="difficulty-tag">${q.difficulty}</span><span class="question-index">${String(activeQuestion+1).padStart(2,'0')} / ${String(qs.length).padStart(2,'0')}</span></div>
       <p class="question-text">${escapeHtml(q.prompt)}</p>${response}${checked?feedbackHtml(q,checked):''}
