@@ -1,0 +1,1525 @@
+{
+  "topicIndex": 5,
+  "questions": [
+    {
+      "id": "os-dead-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system has one instance of each resource type. Its resource-allocation graph contains a directed cycle. What follows?",
+      "options": [
+        "The system is deadlocked",
+        "The system is necessarily safe",
+        "Deadlock is possible but not implied",
+        "All processes can finish immediately"
+      ],
+      "answer": [
+        "The system is deadlocked"
+      ],
+      "explanation": "With single-instance resource types, a directed cycle is sufficient for deadlock: each process waits for a resource held by the next process in the cycle."
+    },
+    {
+      "id": "os-dead-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A resource-allocation graph has a cycle, but some resource types have multiple instances. What is the strongest conclusion?",
+      "options": [
+        "Deadlock may exist, but the cycle alone is not conclusive",
+        "Deadlock is certain",
+        "The system is safe",
+        "No process is waiting"
+      ],
+      "answer": [
+        "Deadlock may exist, but the cycle alone is not conclusive"
+      ],
+      "explanation": "Multiple instances may allow an additional available unit to satisfy a request and break the cycle, so a cycle is necessary but not sufficient."
+    },
+    {
+      "id": "os-dead-003",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In a wait-for graph, an edge Pi ? Pj means:",
+      "options": [
+        "Pi is waiting for a resource held by Pj",
+        "Pj is waiting for Pi to terminate",
+        "Pi has allocated a resource to Pj",
+        "Pi and Pj share a CPU"
+      ],
+      "answer": [
+        "Pi is waiting for a resource held by Pj"
+      ],
+      "explanation": "A wait-for edge represents a process blocked for a resource currently held by another process. A cycle can identify deadlock under single-instance assumptions."
+    },
+    {
+      "id": "os-dead-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Three single-instance resources are held in a cycle P0?P1?P2?P0. Which processes are deadlocked?",
+      "options": [
+        "P0, P1, and P2",
+        "P0 only",
+        "P1 and P2 only",
+        "No process because cycle length is odd"
+      ],
+      "answer": [
+        "P0, P1, and P2"
+      ],
+      "explanation": "Each process in the cycle waits on the next for a resource held within the same cycle. With single instances, all three are deadlocked."
+    },
+    {
+      "id": "os-dead-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process requests resources only when it can obtain its entire maximum claim at once. Which deadlock condition is removed?",
+      "options": [
+        "Hold and wait",
+        "Mutual exclusion",
+        "No preemption",
+        "Circular wait"
+      ],
+      "answer": [
+        "Hold and wait"
+      ],
+      "explanation": "Granting a process its entire resource requirement before it begins prevents it from holding some resources while waiting for additional ones."
+    },
+    {
+      "id": "os-dead-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system requires resources to be acquired in an increasing global order. Which condition is prevented?",
+      "options": [
+        "Circular wait",
+        "Mutual exclusion",
+        "No preemption",
+        "Hold and wait"
+      ],
+      "answer": [
+        "Circular wait"
+      ],
+      "explanation": "Strictly increasing acquisition order makes it impossible to follow a cycle of decreasing dependencies back to the start, preventing circular wait."
+    },
+    {
+      "id": "os-dead-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system can forcibly reclaim a resource from a process when its request cannot be met. Which condition is relaxed?",
+      "options": [
+        "No preemption",
+        "Circular wait",
+        "Mutual exclusion",
+        "Hold and wait"
+      ],
+      "answer": [
+        "No preemption"
+      ],
+      "explanation": "Permitting preemption means an allocated resource can be taken away under defined conditions. This removes the no-preemption condition."
+    },
+    {
+      "id": "os-dead-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A request is denied even though resources are free because granting it would leave no safe sequence. This is:",
+      "options": [
+        "deadlock avoidance",
+        "deadlock detection",
+        "deadlock recovery",
+        "deadlock ignorance"
+      ],
+      "answer": [
+        "deadlock avoidance"
+      ],
+      "explanation": "Avoidance evaluates whether a tentative allocation preserves a safe sequence and may defer a feasible request if it would produce an unsafe state."
+    },
+    {
+      "id": "os-dead-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A state is unsafe. Which statement is correct?",
+      "options": [
+        "Deadlock is not guaranteed, but safe completion cannot be guaranteed",
+        "Deadlock has definitely occurred",
+        "All processes are already blocked",
+        "The system has no allocated resources"
+      ],
+      "answer": [
+        "Deadlock is not guaranteed, but safe completion cannot be guaranteed"
+      ],
+      "explanation": "Unsafe means there is no guaranteed safe sequence under the model. Some executions may still finish, so it does not prove present deadlock."
+    },
+    {
+      "id": "os-dead-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In Banker?s algorithm, a process has Max=(7,4), Allocation=(2,1). What is Need?",
+      "options": [
+        "(5,3)",
+        "(9,5)",
+        "(2,1)",
+        "(7,4)"
+      ],
+      "answer": [
+        "(5,3)"
+      ],
+      "explanation": "Need is the maximum additional demand: Max ? Allocation = (7?2, 4?1) = (5,3)."
+    },
+    {
+      "id": "os-dead-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Available=(2,3). P0 Need=(1,2), P1 Need=(3,1). Which process can finish first in the safety test?",
+      "options": [
+        "P0 only",
+        "P1 only",
+        "Both",
+        "Neither"
+      ],
+      "answer": [
+        "P0 only"
+      ],
+      "explanation": "P0?s need fits componentwise within Available. P1 needs three units of the first resource while only two are free."
+    },
+    {
+      "id": "os-dead-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Available=(1,2), P0 Need=(1,1) with Allocation=(2,0), and P1 Need=(2,1). Is P0?P1 a safe sequence?",
+      "options": [
+        "Yes",
+        "No, P0 cannot finish",
+        "No, P1 needs to finish first",
+        "Cannot determine without process priorities"
+      ],
+      "answer": [
+        "Yes"
+      ],
+      "explanation": "P0 can finish using (1,1) and releases (2,0), yielding Available=(3,2), which covers P1?s Need=(2,1)."
+    },
+    {
+      "id": "os-dead-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Available=(1,0). P0 Need=(2,0), P1 Need=(1,0), and P2 Need=(0,1). Which process can finish first?",
+      "options": [
+        "P1 only",
+        "P0 only",
+        "P2 only",
+        "All three"
+      ],
+      "answer": [
+        "P1 only"
+      ],
+      "explanation": "P1?s need fits the available vector. P0 lacks one unit of the first resource, and P2 lacks the second resource entirely."
+    },
+    {
+      "id": "os-dead-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process requests (1,0) resources. Available=(2,1), Need=(1,1). What checks does Banker?s request algorithm perform before tentative allocation?",
+      "options": [
+        "Request ? Need and Request ? Available",
+        "Request ? Need and Available=0",
+        "Only whether the process has the smallest PID",
+        "Only whether Max is less than Allocation"
+      ],
+      "answer": [
+        "Request ? Need and Request ? Available"
+      ],
+      "explanation": "A request exceeding declared remaining need is invalid; one exceeding current availability must wait. If both checks pass, the state is tentatively updated and tested for safety."
+    },
+    {
+      "id": "os-dead-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A Banker?s request passes Request?Need and Request?Available but makes the state unsafe. What should the algorithm do?",
+      "options": [
+        "Restore the old state and make the process wait",
+        "Grant the request permanently",
+        "Terminate every other process",
+        "Mark the process as completed"
+      ],
+      "answer": [
+        "Restore the old state and make the process wait"
+      ],
+      "explanation": "The algorithm tentatively grants the request only for the safety test. If no safe sequence exists, it rolls back the tentative allocation and delays the request."
+    },
+    {
+      "id": "os-dead-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system uses deadlock detection rather than avoidance. Which policy is characteristic?",
+      "options": [
+        "It may grant requests and periodically search for deadlock",
+        "It refuses every request that could be unsafe",
+        "It requires processes to declare maximum claims",
+        "It prevents circular wait by resource ordering"
+      ],
+      "answer": [
+        "It may grant requests and periodically search for deadlock"
+      ],
+      "explanation": "Detection permits allocations without ensuring a safe state, then searches for deadlock and invokes recovery if needed."
+    },
+    {
+      "id": "os-dead-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A detection algorithm identifies P0 and P1 deadlocked. Which action is a recovery strategy?",
+      "options": [
+        "Terminate one process to release its resources",
+        "Increase both process priorities",
+        "Add a new wait-for edge",
+        "Recompute their maximum claims only"
+      ],
+      "answer": [
+        "Terminate one process to release its resources"
+      ],
+      "explanation": "Terminating a victim process releases its held resources and can break the deadlock. Priority changes alone do not release resources."
+    },
+    {
+      "id": "os-dead-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A recovery algorithm rolls a process back to a checkpoint from before it acquired a resource. What is the purpose?",
+      "options": [
+        "Release resources and allow other processes to make progress",
+        "Make the process hold more resources",
+        "Prevent all future deadlocks by definition",
+        "Change the resource type count"
+      ],
+      "answer": [
+        "Release resources and allow other processes to make progress"
+      ],
+      "explanation": "Rolling back can undo the resource-holding state and free allocations so other processes can continue. It does not necessarily prevent future deadlocks."
+    },
+    {
+      "id": "os-dead-019",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A recovery method repeatedly chooses the same low-priority process as victim. What risk arises?",
+      "options": [
+        "That process may starve",
+        "The resource graph loses all edges",
+        "The system becomes safe automatically",
+        "No process can deadlock again"
+      ],
+      "answer": [
+        "That process may starve"
+      ],
+      "explanation": "Repeated victimization can prevent one process from completing, which is starvation. Recovery policies should account for past victim choices."
+    },
+    {
+      "id": "os-dead-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system has a deadlocked set of processes but also unrelated runnable processes. What is possible?",
+      "options": [
+        "Some processes continue executing while the deadlocked set remains stuck",
+        "The entire CPU must be idle",
+        "Every process is deadlocked",
+        "The OS must shut down"
+      ],
+      "answer": [
+        "Some processes continue executing while the deadlocked set remains stuck"
+      ],
+      "explanation": "Deadlock affects the processes in the cycle; unrelated processes can continue to execute and make progress."
+    },
+    {
+      "id": "os-dead-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process holds a printer and waits for a scanner, while another holds the scanner and waits for the printer. Both resources have one instance. What is the state?",
+      "options": [
+        "Deadlock",
+        "Safe state necessarily",
+        "Starvation only",
+        "No deadlock because devices are different types"
+      ],
+      "answer": [
+        "Deadlock"
+      ],
+      "explanation": "Each process waits for the single resource held by the other, creating a cycle with no available instance. This is deadlock."
+    },
+    {
+      "id": "os-dead-022",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process holds a resource and requests another, but the requested resource is free. Is it deadlocked?",
+      "options": [
+        "No; the request can be granted, subject to policy",
+        "Yes, because it holds and waits",
+        "Yes, because two resources are involved",
+        "Cannot ever be resolved"
+      ],
+      "answer": [
+        "No; the request can be granted, subject to policy"
+      ],
+      "explanation": "A free requested resource can be granted, so the process is not blocked on that request. Hold-and-wait alone is not sufficient for deadlock."
+    },
+    {
+      "id": "os-dead-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which distinction between deadlock and starvation is correct?",
+      "options": [
+        "Deadlock involves a circular wait set; starvation can affect one process while others progress",
+        "Starvation always includes a resource cycle",
+        "Deadlock means a process waits too long for CPU only",
+        "They are identical"
+      ],
+      "answer": [
+        "Deadlock involves a circular wait set; starvation can affect one process while others progress"
+      ],
+      "explanation": "Deadlock is a cyclic resource-wait condition. Starvation is unfair indefinite postponement and can occur even while the system makes overall progress."
+    },
+    {
+      "id": "os-dead-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An OS ignores deadlocks and assumes they are rare. Which broad strategy is this?",
+      "options": [
+        "Ostrich approach",
+        "Banker?s algorithm",
+        "Wait-for graph detection",
+        "Resource ordering"
+      ],
+      "answer": [
+        "Ostrich approach"
+      ],
+      "explanation": "The ostrich approach accepts the possibility of deadlock and takes no special preventive or detection action, often because the cost is judged too high."
+    },
+    {
+      "id": "os-dead-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process requests a resource and is placed in a queue. Does that alone imply deadlock?",
+      "options": [
+        "No; it may be ordinary waiting and eventually progress",
+        "Yes, any queue is a cycle",
+        "Yes, a process in a queue is terminated",
+        "No, resource queues cannot contain blocked processes"
+      ],
+      "answer": [
+        "No; it may be ordinary waiting and eventually progress"
+      ],
+      "explanation": "Waiting for an unavailable resource is normal. Deadlock requires a persistent circular dependency with no progress path, not merely queueing."
+    },
+    {
+      "id": "os-dead-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In a resource-allocation graph, a request edge Pi?Rj means:",
+      "options": [
+        "Pi is waiting for an instance of Rj",
+        "Rj is allocated to Pi",
+        "Pi has released Rj",
+        "Pi and Rj are identical nodes"
+      ],
+      "answer": [
+        "Pi is waiting for an instance of Rj"
+      ],
+      "explanation": "A request edge points from a process to a resource type and records an outstanding request. Allocation edges point from a resource instance to a process."
+    },
+    {
+      "id": "os-dead-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An allocation edge Rj?Pi represents:",
+      "options": [
+        "An instance of Rj is assigned to Pi",
+        "Pi is requesting Rj",
+        "Rj is requesting Pi",
+        "Pi has terminated"
+      ],
+      "answer": [
+        "An instance of Rj is assigned to Pi"
+      ],
+      "explanation": "An allocation edge from a resource instance to a process indicates that the resource is currently held by that process."
+    },
+    {
+      "id": "os-dead-028",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process declares a maximum claim larger than the total number of resources in the system. What does Banker?s algorithm do with the claim?",
+      "options": [
+        "The claim is invalid under the model",
+        "It grants all resources immediately",
+        "It treats the process as already deadlocked",
+        "It changes the resource total"
+      ],
+      "answer": [
+        "The claim is invalid under the model"
+      ],
+      "explanation": "A valid maximum claim cannot exceed the system?s total resources for that type. Otherwise no state can satisfy the declared maximum."
+    },
+    {
+      "id": "os-dead-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system has one resource type with 4 identical instances. P0 holds 2 and waits for 1; P1 holds 1 and waits for 1; one instance is free. What can be concluded?",
+      "options": [
+        "At least one waiting request can be granted, so this is not a deadlock",
+        "Both are deadlocked because they wait",
+        "The graph cycle proves deadlock",
+        "No process can complete"
+      ],
+      "answer": [
+        "At least one waiting request can be granted, so this is not a deadlock"
+      ],
+      "explanation": "The free instance can satisfy one request. That process can potentially finish and release its allocation, so the stated waiting alone is not deadlock."
+    },
+    {
+      "id": "os-dead-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A resource type has multiple instances. A process is waiting, but a free instance exists. Why might it still not proceed?",
+      "options": [
+        "The request may need multiple resource types or be constrained by policy",
+        "A free instance can never be allocated",
+        "The process must be terminated",
+        "Multiple instances imply starvation"
+      ],
+      "answer": [
+        "The request may need multiple resource types or be constrained by policy"
+      ],
+      "explanation": "Although a free unit helps, the process may need additional resource types or the system may defer allocation for safety. A single free unit does not guarantee immediate completion."
+    },
+    {
+      "id": "os-dead-031",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A state is unsafe because no safe sequence can be found under declared maximum claims. Can the processes nevertheless all finish in one actual execution?",
+      "options": [
+        "Yes; actual requests may be less than their maximum claims",
+        "No; unsafe means deadlock has already happened",
+        "No; all processes must be blocked",
+        "Only if the system adds resources"
+      ],
+      "answer": [
+        "Yes; actual requests may be less than their maximum claims"
+      ],
+      "explanation": "Unsafe means completion is not guaranteed for all possible future claims. If actual demands are smaller or requests arrive favorably, all processes can still complete."
+    },
+    {
+      "id": "os-dead-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For multiple instances per resource type, which data does the standard detection algorithm use?",
+      "options": [
+        "Available, Allocation, and outstanding Request vectors",
+        "Only process priorities",
+        "Only a wait-for graph cycle",
+        "Only maximum claims"
+      ],
+      "answer": [
+        "Available, Allocation, and outstanding Request vectors"
+      ],
+      "explanation": "The detection algorithm uses currently available instances, each process?s allocation, and its current outstanding request to find a completion sequence."
+    },
+    {
+      "id": "os-dead-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A detection algorithm finds a process whose outstanding request is ? Work. What is the next logical step in the test?",
+      "options": [
+        "Assume it can finish and add its Allocation to Work",
+        "Subtract its Allocation from Work",
+        "Terminate it immediately",
+        "Mark all other processes deadlocked"
+      ],
+      "answer": [
+        "Assume it can finish and add its Allocation to Work"
+      ],
+      "explanation": "If its request can be met, the process can finish and release its held resources. The test adds its Allocation to Work and continues."
+    },
+    {
+      "id": "os-dead-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Available=(0,0). P0 holds (1,0) and requests (0,1); P1 holds (0,1) and requests (1,0). With one instance of each resource, what is the state?",
+      "options": [
+        "P0 and P1 are deadlocked",
+        "P0 can finish immediately",
+        "P1 can finish immediately",
+        "The state is safe because each holds one resource"
+      ],
+      "answer": [
+        "P0 and P1 are deadlocked"
+      ],
+      "explanation": "Neither request can be met from Available=(0,0). Each process holds the resource the other needs, forming a single-instance circular wait with no process able to finish."
+    },
+    {
+      "id": "os-dead-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system has Available=(1,0). P0 holds (1,0) and requests (0,1); P1 holds (0,1) and requests (1,0). What is the outcome?",
+      "options": [
+        "Both processes are deadlocked",
+        "P0 can finish immediately",
+        "P1 can finish immediately",
+        "The system is safe because one unit is available"
+      ],
+      "answer": [
+        "P1 can finish immediately"
+      ],
+      "explanation": "P1?s request (1,0) is available, so it can finish and release (0,1). That gives P0 the second resource it needs; the state is not deadlocked."
+    },
+    {
+      "id": "os-dead-036",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A deadlock prevention policy allows preemption of CPU time but not a non-shareable printer. Does CPU preemption remove the printer deadlock condition?",
+      "options": [
+        "No; deadlock conditions concern resources in the wait cycle",
+        "Yes, any preemption removes no-preemption for all resources",
+        "Yes, because CPU is a resource",
+        "No, because printers cannot be allocated"
+      ],
+      "answer": [
+        "No; deadlock conditions concern resources in the wait cycle"
+      ],
+      "explanation": "Preempting CPU time does not permit reclaiming the printer. The relevant no-preemption condition still applies to the resources involved in the cycle."
+    },
+    {
+      "id": "os-dead-037",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which policy is an example of deadlock prevention rather than avoidance?",
+      "options": [
+        "Impose a resource acquisition order",
+        "Run Banker?s safety test before each grant",
+        "Detect cycles and kill a victim",
+        "Ignore deadlock"
+      ],
+      "answer": [
+        "Impose a resource acquisition order"
+      ],
+      "explanation": "A resource ordering rule structurally prevents circular wait. Banker?s is avoidance; cycle search is detection; ignoring is the ostrich approach."
+    },
+    {
+      "id": "os-dead-038",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system grants all requests and later runs a wait-for cycle detector for single-instance resources. This is:",
+      "options": [
+        "deadlock detection",
+        "deadlock prevention",
+        "deadlock avoidance",
+        "safe-state allocation"
+      ],
+      "answer": [
+        "deadlock detection"
+      ],
+      "explanation": "The system allows potentially unsafe allocations and later detects a cycle. This is detection rather than prevention or avoidance."
+    },
+    {
+      "id": "os-dead-039",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An OS denies a process?s request because it exceeds its declared Need. What does that indicate?",
+      "options": [
+        "The request is invalid under the maximum-claim model",
+        "The request is necessarily deadlocked",
+        "The system is unsafe only because of CPU time",
+        "The process has completed"
+      ],
+      "answer": [
+        "The request is invalid under the maximum-claim model"
+      ],
+      "explanation": "A request above Need exceeds the process?s declared remaining maximum claim and violates the model. It is rejected as invalid."
+    },
+    {
+      "id": "os-dead-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process requests more units of a resource than are currently Available, but within its Need. What does Banker?s request algorithm do?",
+      "options": [
+        "Make the process wait until enough units are available",
+        "Grant the request and reclaim later",
+        "Mark the request invalid",
+        "Terminate the process"
+      ],
+      "answer": [
+        "Make the process wait until enough units are available"
+      ],
+      "explanation": "If Request ? Need but Request > Available, the request is not invalid; it must wait until the resources become available."
+    },
+    {
+      "id": "os-dead-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Available=(3,2). P0 Need=(3,2), Allocation=(1,0); P1 Need=(1,1), Allocation=(0,2). Which safe sequence works?",
+      "options": [
+        "P0 then P1",
+        "P1 then P0",
+        "Neither order",
+        "No sequence exists"
+      ],
+      "answer": [
+        "P0 then P1"
+      ],
+      "explanation": "P0 can first finish using exactly (3,2), then releases (1,0), yielding (4,2), enough for P1?s (1,1). Thus P0?P1 is safe."
+    },
+    {
+      "id": "os-dead-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Available=(1,1). P0 Need=(2,0), P1 Need=(0,1), Allocation of P1=(1,0). Which process can complete first?",
+      "options": [
+        "P1",
+        "P0",
+        "Both",
+        "Neither"
+      ],
+      "answer": [
+        "P1"
+      ],
+      "explanation": "P1?s need (0,1) fits availability. It can finish and release (1,0), after which P0 can obtain its needed second unit of the first resource."
+    },
+    {
+      "id": "os-dead-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A safe sequence is P2, P0, P1. What does this order mean?",
+      "options": [
+        "Each process can obtain remaining needs and finish in that order",
+        "The CPU must schedule them in that order regardless of requests",
+        "Only P2 can ever run",
+        "The system has no resource allocations"
+      ],
+      "answer": [
+        "Each process can obtain remaining needs and finish in that order"
+      ],
+      "explanation": "The sequence is a proof of safety: P2 can finish first, then its release enables P0, and so on. It is not necessarily the actual CPU schedule."
+    },
+    {
+      "id": "os-dead-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two resource types have instances R=2 and S=3. A process declares Max=(3,1). What is true?",
+      "options": [
+        "The claim is invalid because it exceeds total R instances",
+        "The claim is valid and safe",
+        "The process is already deadlocked",
+        "The system must allocate (3,1)"
+      ],
+      "answer": [
+        "The claim is invalid because it exceeds total R instances"
+      ],
+      "explanation": "A process cannot claim three instances of R when only two exist system-wide. Banker?s model requires each maximum not exceed total resources."
+    },
+    {
+      "id": "os-dead-045",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A resource graph contains a cycle but at least one process outside the cycle can release a needed instance. What can happen?",
+      "options": [
+        "The cycle may be broken and processes may progress",
+        "The cycle is always permanent deadlock",
+        "The outside process must be deadlocked too",
+        "The system must reboot"
+      ],
+      "answer": [
+        "The cycle may be broken and processes may progress"
+      ],
+      "explanation": "An outside process can finish and release a resource that satisfies a request in the cycle. With multiple instances or external progress, the cycle may not persist."
+    },
+    {
+      "id": "os-dead-046",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which is a limitation of deadlock prevention?",
+      "options": [
+        "It can reduce resource utilization or impose restrictive rules",
+        "It always requires maximum claims",
+        "It only works after deadlock occurs",
+        "It guarantees optimal throughput"
+      ],
+      "answer": [
+        "It can reduce resource utilization or impose restrictive rules"
+      ],
+      "explanation": "Prevention often denies sharing patterns or forces all-at-once allocation/order, potentially reducing utilization and concurrency."
+    },
+    {
+      "id": "os-dead-047",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which is a limitation of deadlock avoidance?",
+      "options": [
+        "It may require advance knowledge of maximum resource needs",
+        "It cannot use Available counts",
+        "It always allows unsafe grants",
+        "It needs no runtime state"
+      ],
+      "answer": [
+        "It may require advance knowledge of maximum resource needs"
+      ],
+      "explanation": "Banker-style avoidance depends on maximum claims and current allocation data, which may be difficult to know accurately in advance."
+    },
+    {
+      "id": "os-dead-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which is a limitation of deadlock detection and recovery?",
+      "options": [
+        "Deadlock may persist until detected, and recovery can lose work",
+        "It cannot detect any cycle",
+        "It requires every process to declare Max",
+        "It prevents all resource contention"
+      ],
+      "answer": [
+        "Deadlock may persist until detected, and recovery can lose work"
+      ],
+      "explanation": "Detection allows deadlock to occur and recovery may terminate or roll back work. Detection frequency and recovery cost are practical concerns."
+    },
+    {
+      "id": "os-dead-049",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process holds a resource, requests another, and all processes follow a global order. Can a circular wait form?",
+      "options": [
+        "No, if the order is obeyed consistently",
+        "Yes, always",
+        "Only if there are multiple CPUs",
+        "Only if the process has a child"
+      ],
+      "answer": [
+        "No, if the order is obeyed consistently"
+      ],
+      "explanation": "A consistent total ordering forbids acquiring a lower-ranked resource while holding a higher one, preventing a circular dependency."
+    },
+    {
+      "id": "os-dead-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A deadlocked process is terminated. Which event directly helps other processes?",
+      "options": [
+        "Its allocated resources are released",
+        "Its maximum claim is increased",
+        "All resource types become shareable",
+        "The wait-for graph gains an edge"
+      ],
+      "answer": [
+        "Its allocated resources are released"
+      ],
+      "explanation": "Termination frees held resources, which may satisfy another process?s pending request and allow a chain of completions."
+    },
+    {
+      "id": "os-dead-051",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An algorithm detects deadlock in a system with one instance per resource type. What graph is commonly examined?",
+      "options": [
+        "Wait-for graph",
+        "Page table",
+        "File allocation graph only",
+        "CPU burst graph"
+      ],
+      "answer": [
+        "Wait-for graph"
+      ],
+      "explanation": "A wait-for graph removes resource nodes and connects a process to the process holding the resource it awaits. A cycle signals deadlock under single-instance assumptions."
+    },
+    {
+      "id": "os-dead-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process P is not part of a detected deadlock cycle but is waiting for a resource held by a deadlocked process. What is possible?",
+      "options": [
+        "P is blocked indirectly and may progress after recovery",
+        "P is necessarily part of the cycle",
+        "P can finish without that resource",
+        "P is a zombie"
+      ],
+      "answer": [
+        "P is blocked indirectly and may progress after recovery"
+      ],
+      "explanation": "P may wait on a deadlocked holder without itself lying on the cycle. Releasing resources through recovery can unblock it."
+    },
+    {
+      "id": "os-dead-053",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system uses timeouts to declare a resource request deadlocked after 10 seconds. What is the concern?",
+      "options": [
+        "A slow but live operation can be mistaken for deadlock",
+        "Timeouts make deadlock impossible",
+        "A 10-second timeout proves a cycle",
+        "All processes terminate at once"
+      ],
+      "answer": [
+        "A slow but live operation can be mistaken for deadlock"
+      ],
+      "explanation": "Long waits are not proof of a circular resource dependency. A timeout can produce false positives if legitimate work is slow."
+    },
+    {
+      "id": "os-dead-054",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system has a single instance of each resource type and an acyclic resource-allocation graph. What can be concluded?",
+      "options": [
+        "There is no deadlock",
+        "The state must be safe for all future requests",
+        "No process is blocked",
+        "Every resource is free"
+      ],
+      "answer": [
+        "There is no deadlock"
+      ],
+      "explanation": "With single-instance resource types, absence of a cycle implies no deadlock at present. It does not necessarily guarantee safety under future requests."
+    },
+    {
+      "id": "os-dead-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has maximum claim 5 and current allocation 3 for one resource. What is its remaining Need?",
+      "options": [
+        "2",
+        "8",
+        "3",
+        "5"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "Need equals maximum claim minus current allocation: 5 ? 3 = 2 additional units."
+    },
+    {
+      "id": "os-dead-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In Banker?s algorithm, after a process completes, what happens to Work in the safety test?",
+      "options": [
+        "Its current Allocation is added to Work",
+        "Its Max is subtracted from Available",
+        "Its Need is added to Allocation",
+        "Work is reset to zero"
+      ],
+      "answer": [
+        "Its current Allocation is added to Work"
+      ],
+      "explanation": "The safety test models completion by returning held resources to the pool, so Work increases by that process?s Allocation."
+    },
+    {
+      "id": "os-dead-057",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A resource can be safely preempted from a process and restored later. How can this help avoid deadlock?",
+      "options": [
+        "It can break hold-and-wait or no-preemption dependencies",
+        "It creates circular wait",
+        "It guarantees no starvation",
+        "It changes all resources into sharable ones"
+      ],
+      "answer": [
+        "It can break hold-and-wait or no-preemption dependencies"
+      ],
+      "explanation": "Preemption can reclaim a resource to satisfy another request, breaking a deadlock condition, though it may require checkpointing and must be safe for that resource."
+    },
+    {
+      "id": "os-dead-058",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is starved due to repeated unfair scheduling, but it holds no resources and waits only for CPU. Is this a resource deadlock?",
+      "options": [
+        "No; it is CPU starvation, not necessarily deadlock",
+        "Yes, any infinite wait is deadlock",
+        "Yes, because CPU is a resource",
+        "No process can starve for CPU"
+      ],
+      "answer": [
+        "No; it is CPU starvation, not necessarily deadlock"
+      ],
+      "explanation": "Indefinite CPU postponement is starvation. Without a cyclic dependency preventing progress, it is not resource deadlock."
+    },
+    {
+      "id": "os-dead-059",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system has a safe sequence but the scheduler never runs the first process in that sequence. What is true?",
+      "options": [
+        "The resource state is safe, but scheduling unfairness can still prevent progress",
+        "The state becomes deadlocked immediately",
+        "Safety guarantees fair CPU scheduling",
+        "Banker?s algorithm controls the scheduler"
+      ],
+      "answer": [
+        "The resource state is safe, but scheduling unfairness can still prevent progress"
+      ],
+      "explanation": "Safety is a resource-allocation property. It does not guarantee CPU scheduling fairness or ensure the system actually follows the safe sequence."
+    },
+    {
+      "id": "os-dead-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process requests a resource that is free, but the OS denies it due to a policy unrelated to safety. Does this prove deadlock avoidance is operating?",
+      "options": [
+        "No; denial alone does not identify the policy",
+        "Yes, every denial is Banker?s algorithm",
+        "Yes, because a free resource is unsafe",
+        "No, deadlock can only happen with free resources"
+      ],
+      "answer": [
+        "No; denial alone does not identify the policy"
+      ],
+      "explanation": "A denial could result from access control, quotas, or another policy. Avoidance specifically uses safe-state analysis."
+    },
+    {
+      "id": "os-dead-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A system has 12 identical resources. P0 holds 3, P1 holds 4, and P2 holds 2. How many are Available?",
+      "answer": "3",
+      "explanation": "The processes hold 3 + 4 + 2 = 9 resources. With 12 total, 12 ? 9 = 3 are available."
+    },
+    {
+      "id": "os-dead-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has Max=(9,5) and Allocation=(4,2). What is the sum of its Need components?",
+      "answer": "8",
+      "explanation": "Need=(9?4,5?2)=(5,3). The components sum to 8."
+    },
+    {
+      "id": "os-dead-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Available=(2,2); a process needs (1,2) and releases (3,0). What is the first component of new Available?",
+      "answer": "5",
+      "explanation": "The resulting vector is (2,2)+(3,0)=(5,2), so the first component is 5."
+    },
+    {
+      "id": "os-dead-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A wait-for graph has a directed cycle containing 5 processes. Under single-instance resources, how many processes in that cycle are deadlocked?",
+      "answer": "5",
+      "explanation": "With single-instance resource types, every process in the cycle waits on another cycle member, so all five are deadlocked."
+    },
+    {
+      "id": "os-dead-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "There are 8 instances of a resource. P0 holds 3, P1 holds 2, and P2 holds 1. How many instances remain available?",
+      "answer": "2",
+      "explanation": "Allocated instances total 3 + 2 + 1 = 6. Of eight, two remain."
+    },
+    {
+      "id": "os-dead-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process declares Max=10 and currently holds 7 units. What is Need?",
+      "answer": "3",
+      "explanation": "Remaining claim is Max ? Allocation = 10 ? 7 = 3 units."
+    },
+    {
+      "id": "os-dead-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Available=(4,3); P0 Need=(2,2), Allocation=(1,0). What is the first Available component after P0 finishes?",
+      "answer": "5",
+      "explanation": "P0 can complete and release (1,0), so Available=(5,3); its first component is 5."
+    },
+    {
+      "id": "os-dead-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A semaphore/resource system has 7 total units and 2 are free. What is the number currently allocated?",
+      "answer": "5",
+      "explanation": "Allocated equals total minus available: 7 ? 2 = 5 units."
+    },
+    {
+      "id": "os-dead-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Available=(1,1); P0 Need=(1,1), Allocation=(2,0). What is the second Available component after P0 completes?",
+      "answer": "1",
+      "explanation": "P0 releases (2,0), leaving the second component at 1 in Available=(3,1)."
+    },
+    {
+      "id": "os-dead-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process holds 2 units and requests 3 more. If the system has 6 units total and 1 available, how many additional units must become available before the request can be met?",
+      "answer": "2",
+      "explanation": "The process requests three units while only one is available, so an additional 3 ? 1 = 2 units must be released."
+    },
+    {
+      "id": "os-dead-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A system has 4 resource types and a wait-for cycle with 3 distinct process nodes. How many process nodes are in the cycle?",
+      "answer": "3",
+      "explanation": "The cycle is stated to contain three distinct process nodes; the number of resource types does not change that count."
+    },
+    {
+      "id": "os-dead-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "P0 holds 1 of 3 resource units and requests 1 more. P1 holds 1 and requests 1 more. How many units are Available?",
+      "answer": "1",
+      "explanation": "Two of the three instances are allocated. One remains available, so at least one pending request can be considered for allocation."
+    },
+    {
+      "id": "os-dead-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has Max=8 and Need=5. What is its current Allocation?",
+      "answer": "3",
+      "explanation": "Need = Max ? Allocation, so Allocation = Max ? Need = 8 ? 5 = 3."
+    },
+    {
+      "id": "os-dead-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Available=(3,1); a process needs (2,1) and releases (0,2). What is the sum of Available components after completion?",
+      "answer": "6",
+      "explanation": "After release Available=(3,3), whose components sum to 6."
+    },
+    {
+      "id": "os-dead-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A system has 6 resource units. Three processes hold 1, 2, and 1 units. How many units are not currently allocated?",
+      "answer": "2",
+      "explanation": "The allocations sum to 1 + 2 + 1 = 4. Six total minus four allocated leaves two."
+    },
+    {
+      "id": "os-dead-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which facts are true about a safe sequence?",
+      "options": [
+        "Each process can obtain its remaining need when it is considered",
+        "A completed process releases its allocation",
+        "It proves at least one completion order exists",
+        "It fixes the actual CPU schedule"
+      ],
+      "answer": [
+        "Each process can obtain its remaining need when it is considered",
+        "A completed process releases its allocation",
+        "It proves at least one completion order exists"
+      ],
+      "explanation": "A safe sequence simulates feasible resource completion and releases. It proves an order exists but does not dictate the scheduler?s actual CPU order."
+    },
+    {
+      "id": "os-dead-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about resource-allocation graph cycles are correct?",
+      "options": [
+        "For single-instance types, a cycle implies deadlock",
+        "For multiple-instance types, a cycle alone is not sufficient",
+        "An allocation edge points from resource to process",
+        "A request edge points from process to resource"
+      ],
+      "answer": [
+        "For single-instance types, a cycle implies deadlock",
+        "For multiple-instance types, a cycle alone is not sufficient",
+        "An allocation edge points from resource to process",
+        "A request edge points from process to resource"
+      ],
+      "explanation": "These graph interpretations are standard. Cycle sufficiency depends on the single-instance assumption; with multiple instances, additional units may permit progress."
+    },
+    {
+      "id": "os-dead-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are deadlock prevention strategies?",
+      "options": [
+        "Enforce resource ordering",
+        "Require all needed resources at once",
+        "Permit preemption where safe",
+        "Run Banker?s algorithm before granting each request"
+      ],
+      "answer": [
+        "Enforce resource ordering",
+        "Require all needed resources at once",
+        "Permit preemption where safe"
+      ],
+      "explanation": "Ordering, all-at-once requests, and safe preemption remove necessary deadlock conditions. Banker?s algorithm is avoidance, not prevention."
+    },
+    {
+      "id": "os-dead-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish avoidance from detection?",
+      "options": [
+        "Avoidance checks safety before granting",
+        "Detection may allow deadlock and search later",
+        "Avoidance generally uses future maximum claims",
+        "Detection always requires declared maximum claims"
+      ],
+      "answer": [
+        "Avoidance checks safety before granting",
+        "Detection may allow deadlock and search later",
+        "Avoidance generally uses future maximum claims"
+      ],
+      "explanation": "Avoidance evaluates tentative grants using safety information, often maximum claims. Detection checks current allocation and requests and need not use maximum claims."
+    },
+    {
+      "id": "os-dead-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are possible deadlock recovery methods?",
+      "options": [
+        "Terminate a victim process",
+        "Preempt a resource if safe",
+        "Roll back to a checkpoint",
+        "Increase CPU quantum only"
+      ],
+      "answer": [
+        "Terminate a victim process",
+        "Preempt a resource if safe",
+        "Roll back to a checkpoint"
+      ],
+      "explanation": "Termination, resource preemption, and rollback can break the resource dependency. Changing the CPU quantum alone does not release held resources."
+    },
+    {
+      "id": "os-dead-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about unsafe states are correct?",
+      "options": [
+        "They lack a guaranteed safe sequence",
+        "They may still complete under favorable actual demands",
+        "They are not identical to deadlock",
+        "They mean all processes are blocked"
+      ],
+      "answer": [
+        "They lack a guaranteed safe sequence",
+        "They may still complete under favorable actual demands",
+        "They are not identical to deadlock"
+      ],
+      "explanation": "Unsafe states remove the guarantee of completion for all possible future claims. Some executions may complete; the state need not be deadlocked or fully blocked."
+    },
+    {
+      "id": "os-dead-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties can make a resource unsuitable for preemption?",
+      "options": [
+        "Its state cannot be cleanly saved and restored",
+        "Taking it can corrupt an ongoing operation",
+        "It is an ordinary CPU time slice",
+        "It is safely checkpointable"
+      ],
+      "answer": [
+        "Its state cannot be cleanly saved and restored",
+        "Taking it can corrupt an ongoing operation"
+      ],
+      "explanation": "Some resources, such as a printer during an operation, cannot be reclaimed without inconsistent effects. CPU time is routinely preemptible; checkpointable resources may be recoverable."
+    },
+    {
+      "id": "os-dead-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about starvation and deadlock are true?",
+      "options": [
+        "Starvation can occur while other processes make progress",
+        "Deadlock involves a set of processes waiting cyclically",
+        "A deadlock victim can be repeatedly starved",
+        "Every starvation instance implies deadlock"
+      ],
+      "answer": [
+        "Starvation can occur while other processes make progress",
+        "Deadlock involves a set of processes waiting cyclically",
+        "A deadlock victim can be repeatedly starved"
+      ],
+      "explanation": "Starvation can happen independently of deadlock; deadlock has cyclic dependencies. Repeatedly choosing one recovery victim can itself cause starvation."
+    },
+    {
+      "id": "os-dead-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which information is needed for Banker?s safety check?",
+      "options": [
+        "Available resources",
+        "Allocation per process",
+        "Need per process",
+        "Disk file names"
+      ],
+      "answer": [
+        "Available resources",
+        "Allocation per process",
+        "Need per process"
+      ],
+      "explanation": "The safety algorithm uses available, allocated, and remaining need vectors to find a possible process completion order. File names are irrelevant."
+    },
+    {
+      "id": "os-dead-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which request conditions must hold before Banker?s algorithm tentatively grants a request?",
+      "options": [
+        "Request ? Need",
+        "Request ? Available",
+        "The resulting state must pass a safety test",
+        "Request must exceed Max"
+      ],
+      "answer": [
+        "Request ? Need",
+        "Request ? Available",
+        "The resulting state must pass a safety test"
+      ],
+      "explanation": "A valid request must stay within declared need and current availability, then pass the safety test after tentative allocation. It must not exceed maximum claim."
+    },
+    {
+      "id": "os-dead-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which outcomes are possible for a process outside a deadlock cycle?",
+      "options": [
+        "It can continue running",
+        "It can wait for a resource held by a deadlocked process",
+        "It is necessarily deadlocked",
+        "It may become unblocked after recovery"
+      ],
+      "answer": [
+        "It can continue running",
+        "It can wait for a resource held by a deadlocked process",
+        "It may become unblocked after recovery"
+      ],
+      "explanation": "A process outside the cycle may run or be blocked indirectly by a cycle member, and recovery can release the resource it needs."
+    },
+    {
+      "id": "os-dead-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are reasons an OS may choose to ignore deadlocks?",
+      "options": [
+        "Detection and recovery have costs",
+        "Deadlocks may be rare for a workload",
+        "Restart may be an acceptable operational response",
+        "Ignoring them mathematically prevents cycles"
+      ],
+      "answer": [
+        "Detection and recovery have costs",
+        "Deadlocks may be rare for a workload",
+        "Restart may be an acceptable operational response"
+      ],
+      "explanation": "The ostrich approach may be chosen when deadlocks are rare or recovery is simple. It does not prevent the deadlock conditions or cycles."
+    },
+    {
+      "id": "os-dead-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about resource ordering are correct?",
+      "options": [
+        "Every resource type receives an ordering rank",
+        "Processes must acquire in increasing rank",
+        "The policy prevents circular wait if followed",
+        "The policy guarantees maximum utilization"
+      ],
+      "answer": [
+        "Every resource type receives an ordering rank",
+        "Processes must acquire in increasing rank",
+        "The policy prevents circular wait if followed"
+      ],
+      "explanation": "A total order and monotonic acquisition prevent circular wait. This can restrict order choices and does not guarantee maximum utilization."
+    },
+    {
+      "id": "os-dead-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which problems can arise from resource preemption as a deadlock strategy?",
+      "options": [
+        "A process may need rollback",
+        "Some resource state may be difficult to restore",
+        "Victim selection can cause starvation",
+        "Preemption always preserves application correctness"
+      ],
+      "answer": [
+        "A process may need rollback",
+        "Some resource state may be difficult to restore",
+        "Victim selection can cause starvation"
+      ],
+      "explanation": "Preemption can require restoring a consistent checkpoint and careful victim choice. It is unsafe for some resources and can repeatedly harm one process."
+    },
+    {
+      "id": "os-dead-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about wait-for graphs are correct?",
+      "options": [
+        "They contain process nodes only",
+        "An edge represents waiting on a resource held by another process",
+        "A cycle is sufficient for single-instance resources",
+        "They directly encode the number of instances of each resource type"
+      ],
+      "answer": [
+        "They contain process nodes only",
+        "An edge represents waiting on a resource held by another process",
+        "A cycle is sufficient for single-instance resources"
+      ],
+      "explanation": "Wait-for graphs collapse resource nodes into process-to-process dependencies. They identify cycles for single-instance resources but do not directly encode multi-instance counts."
+    },
+    {
+      "id": "os-dead-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Available=(2,1), P0 Need=(2,1), Allocation=(1,0), P1 Need=(3,0). Is P0?P1 a safe sequence?",
+      "options": [
+        "Yes",
+        "No, P0 needs more than available",
+        "No, P1 must finish first",
+        "Cannot determine without priorities"
+      ],
+      "answer": [
+        "Yes"
+      ],
+      "explanation": "P0 can complete with exactly the available vector and then releases (1,0), making Available=(3,1), which covers P1?s Need=(3,0)."
+    },
+    {
+      "id": "os-dead-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Available=(1,0), P0 Need=(2,0), P1 Need=(0,1). Which process can complete first in a safety test?",
+      "options": [
+        "Neither",
+        "P0 only",
+        "P1 only",
+        "Both"
+      ],
+      "answer": [
+        "Neither"
+      ],
+      "explanation": "P0 lacks one unit of the first resource and P1 lacks the second resource, of which none is available. No process can be selected first."
+    },
+    {
+      "id": "os-dead-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A single-instance wait-for graph has edges P0?P1, P1?P2, and P2?P0. How many processes are deadlocked?",
+      "options": [
+        "3",
+        "1",
+        "2",
+        "0"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "The three edges form a cycle containing all three processes. Under the single-instance assumption, every process in that cycle is deadlocked."
+    },
+    {
+      "id": "os-dead-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system detects a cycle among P0 and P1, then terminates P0. What must be reassessed next?",
+      "options": [
+        "Whether P1 and other waiters can proceed after P0 releases resources",
+        "Whether P0 can continue its old execution",
+        "Whether all resource types become shareable",
+        "Whether the CPU has more cores"
+      ],
+      "answer": [
+        "Whether P1 and other waiters can proceed after P0 releases resources"
+      ],
+      "explanation": "Terminating P0 releases its resources. The system should update allocations and determine which blocked processes can now proceed or whether another cycle remains."
+    },
+    {
+      "id": "os-dead-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process?s maximum claim is 6, and it currently holds 4. It requests 3 more. How should Banker?s algorithm classify the request before safety testing?",
+      "options": [
+        "Invalid because it exceeds Need",
+        "Valid and immediately granted",
+        "Wait only because Available is unknown",
+        "A deadlock cycle"
+      ],
+      "answer": [
+        "Invalid because it exceeds Need"
+      ],
+      "explanation": "Remaining Need is 6?4=2, so a request for 3 exceeds the declared maximum claim and is invalid before availability or safety checks."
+    },
+    {
+      "id": "os-dead-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which state information is necessary to determine whether a process can finish next in Banker?s safety test?",
+      "options": [
+        "Its Need vector",
+        "Current Work/Available vector",
+        "Its Allocation vector for future release",
+        "Its source-code length"
+      ],
+      "answer": [
+        "Its Need vector",
+        "Current Work/Available vector",
+        "Its Allocation vector for future release"
+      ],
+      "explanation": "The test compares Need with Work, then adds Allocation to Work if the process can finish. Source-code length is unrelated."
+    },
+    {
+      "id": "os-dead-097",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about an unsafe state are valid?",
+      "options": [
+        "The system may still avoid deadlock in the actual execution",
+        "Avoidance would refuse a grant that makes the state unsafe",
+        "Unsafe is a lack of guarantee, not proof of current deadlock",
+        "Every unsafe state contains a wait-for cycle"
+      ],
+      "answer": [
+        "The system may still avoid deadlock in the actual execution",
+        "Avoidance would refuse a grant that makes the state unsafe",
+        "Unsafe is a lack of guarantee, not proof of current deadlock"
+      ],
+      "explanation": "Unsafe states may complete if actual demands are favorable, but avoidance preserves a guarantee by rejecting unsafe tentative grants. An unsafe state need not already contain a cycle."
+    },
+    {
+      "id": "os-dead-098",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which process-selection policies can lead to starvation?",
+      "options": [
+        "Repeatedly choosing newer requests over an old request",
+        "Reader preference that continually admits readers",
+        "Unfair mutex wakeup order",
+        "A strict FIFO queue with finite service times"
+      ],
+      "answer": [
+        "Repeatedly choosing newer requests over an old request",
+        "Reader preference that continually admits readers",
+        "Unfair mutex wakeup order"
+      ],
+      "explanation": "These unfair policies can indefinitely postpone a particular waiter. A strict FIFO queue with finite service time prevents indefinite bypass under its assumptions."
+    },
+    {
+      "id": "os-dead-099",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are assumptions or data used by the classic Banker?s model?",
+      "options": [
+        "Processes declare maximum resource needs",
+        "Resource counts are finite",
+        "Allocation and Available are tracked",
+        "Processes can never release resources"
+      ],
+      "answer": [
+        "Processes declare maximum resource needs",
+        "Resource counts are finite",
+        "Allocation and Available are tracked"
+      ],
+      "explanation": "Banker?s tracks finite resources, declared maximum claims, current allocations, and availability. Processes release allocations when they complete."
+    },
+    {
+      "id": "os-dead-100",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a single-instance resource cycle are correct?",
+      "options": [
+        "Every process in the cycle waits on another in the cycle",
+        "No process in the cycle can finish without external change",
+        "The cycle proves deadlock under the standard model",
+        "Processes outside the cycle are automatically deadlocked too"
+      ],
+      "answer": [
+        "Every process in the cycle waits on another in the cycle",
+        "No process in the cycle can finish without external change",
+        "The cycle proves deadlock under the standard model"
+      ],
+      "explanation": "A cycle creates mutual waiting among its members, establishing deadlock with one instance per type. Unrelated processes outside it are not automatically deadlocked."
+    }
+  ]
+}

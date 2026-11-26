@@ -1,0 +1,1597 @@
+{
+  "topicIndex": 0,
+  "questions": [
+    {
+      "id": "os-sys-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A user program invokes a system call to read a file. Which sequence best describes the protection transition?",
+      "options": [
+        "The wrapper places arguments, executes a trap/syscall instruction, and the CPU enters privileged kernel code",
+        "The process directly branches to the disk controller firmware in user mode",
+        "The CPU changes to kernel mode only after the disk returns data",
+        "The shell switches the process into kernel mode before every library call"
+      ],
+      "answer": [
+        "The wrapper places arguments, executes a trap/syscall instruction, and the CPU enters privileged kernel code"
+      ],
+      "explanation": "The user-level wrapper prepares the ABI arguments; a controlled syscall instruction transfers execution to a kernel entry point with privilege checks."
+    },
+    {
+      "id": "os-sys-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A C library function returns a cached value without entering the kernel. Which statement is correct?",
+      "options": [
+        "It is a library/API call but not a system call on that execution",
+        "Every library function is necessarily a system call",
+        "It must still cause a mode switch because it is written in C",
+        "It is a hardware interrupt"
+      ],
+      "answer": [
+        "It is a library/API call but not a system call on that execution"
+      ],
+      "explanation": "A library API may be implemented entirely in user space. Only operations that request kernel service need the syscall transition."
+    },
+    {
+      "id": "os-sys-003",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program calls printf to print a short string to a terminal. Which is generally true on a buffered stream?",
+      "options": [
+        "printf may only update a user-space buffer; a later flush may invoke write",
+        "printf always maps to exactly one write system call",
+        "printf executes in kernel mode until the text is displayed",
+        "The terminal driver is called directly from the application"
+      ],
+      "answer": [
+        "printf may only update a user-space buffer; a later flush may invoke write"
+      ],
+      "explanation": "Formatted I/O is a library operation. Buffering can combine or defer output, so the number and timing of write syscalls need not match printf calls."
+    },
+    {
+      "id": "os-sys-004",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process requests an operation requiring privileged access. Why does the ISA provide a syscall/trap mechanism?",
+      "options": [
+        "It transfers control to a validated kernel entry while changing privilege in a controlled way",
+        "It lets user code set the processor privilege bit directly",
+        "It disables memory protection for the duration of the process",
+        "It lets the process choose any kernel instruction address"
+      ],
+      "answer": [
+        "It transfers control to a validated kernel entry while changing privilege in a controlled way"
+      ],
+      "explanation": "The controlled entry mechanism prevents arbitrary user code from gaining kernel privilege or jumping into an unchecked kernel location."
+    },
+    {
+      "id": "os-sys-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system call blocks waiting for disk input. What normally happens to the caller while the device is working?",
+      "options": [
+        "The kernel blocks it and schedules another ready thread or process",
+        "The caller continues executing the syscall instruction in a tight loop in user mode",
+        "The caller is terminated because disk I/O is asynchronous",
+        "The device interrupts the CPU continuously until completion"
+      ],
+      "answer": [
+        "The kernel blocks it and schedules another ready thread or process"
+      ],
+      "explanation": "A blocking call changes the caller to a waiting state. The CPU can execute another ready context until an interrupt or completion event wakes it."
+    },
+    {
+      "id": "os-sys-006",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process performs a syscall and the operation completes immediately. Which transition is still required?",
+      "options": [
+        "User mode to kernel mode and then return to user mode",
+        "No privilege transition occurs because no wait was needed",
+        "The process must be context-switched to a different process",
+        "The CPU must reboot into the boot loader"
+      ],
+      "answer": [
+        "User mode to kernel mode and then return to user mode"
+      ],
+      "explanation": "Even a fast syscall enters privileged code; blocking and process context switches are separate possibilities, not mandatory parts of every syscall."
+    },
+    {
+      "id": "os-sys-007",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which event is asynchronous with respect to the instruction stream currently executing?",
+      "options": [
+        "A device interrupt signaling completion of I/O",
+        "A system call instruction executed by the current process",
+        "A synchronous page fault caused by its load instruction",
+        "A breakpoint trap at its current instruction"
+      ],
+      "answer": [
+        "A device interrupt signaling completion of I/O"
+      ],
+      "explanation": "A hardware interrupt can arrive independently of the current instruction. A syscall, page fault, or breakpoint is synchronous with execution."
+    },
+    {
+      "id": "os-sys-008",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A user process executes an invalid opcode. Which description best fits the resulting exception?",
+      "options": [
+        "It is a synchronous event caused by the current instruction and handled by the kernel",
+        "It is an asynchronous device interrupt",
+        "It is a voluntary system call that must return normally",
+        "It is an I/O completion notification"
+      ],
+      "answer": [
+        "It is a synchronous event caused by the current instruction and handled by the kernel"
+      ],
+      "explanation": "An exception is tied to execution of a particular instruction; the kernel handles it according to architecture and OS policy, often by signaling the process."
+    },
+    {
+      "id": "os-sys-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall asks the kernel to copy 64 bytes from user memory. Why must the kernel validate the user pointer?",
+      "options": [
+        "A malformed pointer must not let privileged code access arbitrary kernel or unmapped memory",
+        "User pointers are always physical addresses",
+        "The MMU cannot translate addresses during kernel execution",
+        "All user pointers become invalid immediately at a syscall"
+      ],
+      "answer": [
+        "A malformed pointer must not let privileged code access arbitrary kernel or unmapped memory"
+      ],
+      "explanation": "Kernel code is privileged, so it must safely validate or use fault-tolerant copy routines when accessing user-controlled addresses."
+    },
+    {
+      "id": "os-sys-010",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall returns -1 and sets errno in a POSIX-style wrapper. What does this convention indicate?",
+      "options": [
+        "The wrapper reports a kernel operation failure and exposes an error code",
+        "The CPU encountered a fatal hardware fault in every case",
+        "The process has necessarily been terminated",
+        "The kernel will automatically retry the call until success"
+      ],
+      "answer": [
+        "The wrapper reports a kernel operation failure and exposes an error code"
+      ],
+      "explanation": "Many syscall interfaces return a failure sentinel and communicate a specific error through errno; failure does not imply process termination."
+    },
+    {
+      "id": "os-sys-011",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process requests creation of a new process. Which service category does fork-like functionality belong to?",
+      "options": [
+        "Process control",
+        "File management",
+        "Device management only",
+        "Information maintenance only"
+      ],
+      "answer": [
+        "Process control"
+      ],
+      "explanation": "Creating, terminating, and waiting for processes are process-control services, even if implementations differ across operating systems."
+    },
+    {
+      "id": "os-sys-012",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process invokes open on a pathname. Which service category is most directly requested?",
+      "options": [
+        "File management",
+        "Process scheduling",
+        "Clock management",
+        "Memory compaction"
+      ],
+      "answer": [
+        "File management"
+      ],
+      "explanation": "Opening a named file and obtaining a handle is a file-system service; later read/write operations use the returned descriptor or handle."
+    },
+    {
+      "id": "os-sys-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which pair is correctly classified as a communication-related system-call operation?",
+      "options": [
+        "Creating a pipe and sending a message",
+        "Changing a process priority and setting a timer",
+        "Allocating a page table and mapping a file",
+        "Reading the system clock and obtaining process ID"
+      ],
+      "answer": [
+        "Creating a pipe and sending a message"
+      ],
+      "explanation": "Pipes and message send/receive interfaces establish or use communication channels between execution contexts."
+    },
+    {
+      "id": "os-sys-014",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A CPU runs user code, enters the kernel for a syscall, and returns to the same process without blocking. Has a process context switch necessarily occurred?",
+      "options": [
+        "No; a privilege transition can return to the same process without scheduling another one",
+        "Yes; every syscall switches to a different process",
+        "Yes; entering kernel mode destroys the process context",
+        "No; syscalls execute outside both user and kernel contexts"
+      ],
+      "answer": [
+        "No; a privilege transition can return to the same process without scheduling another one"
+      ],
+      "explanation": "Mode/privilege transitions change execution privilege; a process context switch changes which process or thread is scheduled. One does not imply the other."
+    },
+    {
+      "id": "os-sys-015",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "The kernel services a syscall, then a timer interrupt is pending and another process has higher scheduling priority. What may happen before the original caller resumes?",
+      "options": [
+        "The scheduler may dispatch another process, so the caller resumes later",
+        "The syscall return address is discarded permanently",
+        "The interrupted process becomes a kernel thread",
+        "The timer interrupt converts the syscall into an exception"
+      ],
+      "answer": [
+        "The scheduler may dispatch another process, so the caller resumes later"
+      ],
+      "explanation": "After handling the syscall and pending interrupt, scheduling policy may select another runnable context. The original process remains resumable."
+    },
+    {
+      "id": "os-sys-016",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall copies a structure from user space into a kernel buffer before using it. What security property does this primarily support?",
+      "options": [
+        "Isolation from concurrent user changes and unsafe direct use of user-controlled memory",
+        "Guaranteed atomicity of all device operations",
+        "Elimination of the need for access checks",
+        "Prevention of all denial-of-service attacks"
+      ],
+      "answer": [
+        "Isolation from concurrent user changes and unsafe direct use of user-controlled memory"
+      ],
+      "explanation": "Copying and validating user data into kernel-owned storage can avoid repeated access faults and some time-of-check/time-of-use hazards, though correct synchronization is still needed."
+    },
+    {
+      "id": "os-sys-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement distinguishes a trap from an external interrupt in the usual OS terminology?",
+      "options": [
+        "A trap is synchronous with the executing instruction; an external interrupt is asynchronous",
+        "A trap is always caused by a disk, while an interrupt is always caused by the timer",
+        "A trap is handled only in user mode",
+        "An interrupt cannot transfer control to the kernel"
+      ],
+      "answer": [
+        "A trap is synchronous with the executing instruction; an external interrupt is asynchronous"
+      ],
+      "explanation": "A syscall trap or synchronous exception is caused by the current instruction; external interrupts originate independently, for example from devices or a timer."
+    },
+    {
+      "id": "os-sys-018",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process calls read(fd, buf, 1000), but a pipe currently contains 300 bytes and its writer remains open. Which result is generally permitted?",
+      "options": [
+        "The call may return 300 bytes without filling the entire requested count",
+        "It must wait until exactly 1000 bytes are available",
+        "It must return 1000 bytes, padding the remainder with zeros",
+        "It must return an error because the request was partial"
+      ],
+      "answer": [
+        "The call may return 300 bytes without filling the entire requested count"
+      ],
+      "explanation": "Many read interfaces permit short reads. Applications must inspect the returned byte count and loop when they require a fixed amount."
+    },
+    {
+      "id": "os-sys-019",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall accepts a file descriptor integer. Why is the integer not itself a kernel pointer?",
+      "options": [
+        "It is an index/handle resolved through per-process kernel-managed descriptor state",
+        "It is a physical address encoded in decimal",
+        "The kernel dereferences it as user memory",
+        "It identifies a CPU register reserved for file data"
+      ],
+      "answer": [
+        "It is an index/handle resolved through per-process kernel-managed descriptor state"
+      ],
+      "explanation": "A file descriptor is a small identifier into a process descriptor table; the kernel resolves it to an open-file object and associated state."
+    },
+    {
+      "id": "os-sys-020",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A user program calls a system-call wrapper with an invalid syscall number. The safest kernel behavior is to",
+      "options": [
+        "reject it with a defined error rather than dispatch arbitrary kernel code",
+        "treat it as a valid kernel function pointer",
+        "allow the user to select a privileged entry address",
+        "restart the CPU"
+      ],
+      "answer": [
+        "reject it with a defined error rather than dispatch arbitrary kernel code"
+      ],
+      "explanation": "The syscall number must be checked against the supported interface; invalid numbers are rejected to preserve the kernel boundary."
+    },
+    {
+      "id": "os-sys-021",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A workload makes 120 system calls. Each kernel entry/return costs 0.8 microseconds, excluding the service work. What is the total entry/return overhead in microseconds?",
+      "answer": "96",
+      "explanation": "Each call costs 0.8 microseconds for entry and return combined. Total overhead is 120*0.8=96 microseconds."
+    },
+    {
+      "id": "os-sys-022",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A syscall wrapper incurs 0.4 microseconds on entry and 0.5 microseconds on return. For 200 calls, what is total transition overhead in microseconds?",
+      "answer": "180",
+      "explanation": "One call costs 0.4+0.5=0.9 microseconds. Across 200 calls the total is 180 microseconds."
+    },
+    {
+      "id": "os-sys-023",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program replaces 1000 separate one-byte writes with one 1000-byte write. If syscall transition overhead dominates and is constant per call, the change primarily reduces",
+      "options": [
+        "The number of kernel crossings from 1000 to 1",
+        "The number of bytes delivered to the device",
+        "The TCP/IP headers per byte in every case",
+        "The need for the process to hold a file descriptor"
+      ],
+      "answer": [
+        "The number of kernel crossings from 1000 to 1"
+      ],
+      "explanation": "Batching buffered output can reduce syscall frequency dramatically, though it does not necessarily change the amount of payload or lower-layer framing."
+    },
+    {
+      "id": "os-sys-024",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A read syscall returns after copying data from a kernel page cache rather than waiting for storage. Which conclusion is warranted?",
+      "options": [
+        "The call still crosses into the kernel, but a physical-device wait may be avoided",
+        "No system call occurred because data was cached",
+        "The process must have performed DMA directly",
+        "The file descriptor is converted into a thread ID"
+      ],
+      "answer": [
+        "The call still crosses into the kernel, but a physical-device wait may be avoided"
+      ],
+      "explanation": "A cache hit avoids a storage wait, not the syscall or privilege transition. Kernel-managed caches commonly satisfy reads without device I/O."
+    },
+    {
+      "id": "os-sys-025",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which actions typically require entering the kernel because they request protected operating-system services?",
+      "options": [
+        "Create a process",
+        "Change a file descriptor table entry",
+        "Read a CPU register with an ordinary user-mode instruction",
+        "Request a blocking read from a device file"
+      ],
+      "answer": [
+        "Create a process",
+        "Change a file descriptor table entry",
+        "Request a blocking read from a device file"
+      ],
+      "explanation": "Process creation, descriptor manipulation, and device reads request kernel-managed services. Ordinary user-accessible register reads may remain in user mode."
+    },
+    {
+      "id": "os-sys-026",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process executes a syscall that returns an error immediately. Which statement about CPU mode is correct?",
+      "options": [
+        "The CPU still entered kernel mode to validate and reject the request",
+        "The kernel never ran because the result was an error",
+        "An error return implies a hardware interrupt occurred",
+        "The syscall is converted into a user-level function call"
+      ],
+      "answer": [
+        "The CPU still entered kernel mode to validate and reject the request"
+      ],
+      "explanation": "Invalid arguments are normally checked by kernel code after entry; returning an error does not undo the privilege transition that already occurred."
+    },
+    {
+      "id": "os-sys-027",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hardware interrupt arrives while a process is in user mode. What does the CPU generally do before executing the interrupt handler?",
+      "options": [
+        "Save sufficient execution state and transfer to a privileged interrupt entry",
+        "Ask the user process to call the handler as a normal function",
+        "Switch directly to another process without kernel code",
+        "Erase the interrupted process registers"
+      ],
+      "answer": [
+        "Save sufficient execution state and transfer to a privileged interrupt entry"
+      ],
+      "explanation": "Interrupt entry preserves enough state to resume or schedule the interrupted context and transfers control to kernel code under privileged execution."
+    },
+    {
+      "id": "os-sys-028",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which event is most directly associated with a synchronous exception rather than an external interrupt?",
+      "options": [
+        "A user instruction divides by zero",
+        "A network interface signals packet arrival",
+        "A periodic timer expires",
+        "A storage controller signals completion"
+      ],
+      "answer": [
+        "A user instruction divides by zero"
+      ],
+      "explanation": "A divide-by-zero fault is caused by the instruction being executed, so it is synchronous. Device and timer events are asynchronous."
+    },
+    {
+      "id": "os-sys-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A page fault occurs during a system call while the kernel copies from a user buffer. What must a robust kernel do?",
+      "options": [
+        "Handle or safely report the fault without corrupting kernel state",
+        "Assume every user pointer remains mapped forever",
+        "Allow the faulting user instruction to overwrite kernel text",
+        "Disable address translation for the process"
+      ],
+      "answer": [
+        "Handle or safely report the fault without corrupting kernel state"
+      ],
+      "explanation": "User memory can be unmapped or inaccessible even during a syscall. Kernel copy routines must handle faults safely and preserve kernel invariants."
+    },
+    {
+      "id": "os-sys-030",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An application uses a library routine that internally calls getpid, which is implemented as a syscall on the target OS. How many kernel transitions does the library routine require?",
+      "options": [
+        "At least one for the getpid syscall, unless the OS/library provides a user-space fast path",
+        "Exactly zero because the application called a library function",
+        "Exactly two syscalls for every library function",
+        "One transition per source-code line in the application"
+      ],
+      "answer": [
+        "At least one for the getpid syscall, unless the OS/library provides a user-space fast path"
+      ],
+      "explanation": "The library wrapper itself is not necessarily a syscall, but if it invokes the kernel interface, that operation causes a controlled transition."
+    },
+    {
+      "id": "os-sys-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement about a system-call ABI is correct?",
+      "options": [
+        "It defines conventions such as syscall numbers, argument locations and result/error handling",
+        "It defines only the visual format of shell commands",
+        "It is the same as a disk file system",
+        "It allows applications to depend on kernel internal data structures"
+      ],
+      "answer": [
+        "It defines conventions such as syscall numbers, argument locations and result/error handling"
+      ],
+      "explanation": "An ABI specifies the low-level contract between user programs and the kernel, including how calls and arguments are represented and returned."
+    },
+    {
+      "id": "os-sys-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can the same high-level library API have different syscall behavior on two operating systems?",
+      "options": [
+        "The API may be implemented using different kernel interfaces or user-space mechanisms",
+        "System calls are fixed by the C language standard",
+        "All kernels use identical syscall numbers",
+        "The processor forbids OS-specific implementations"
+      ],
+      "answer": [
+        "The API may be implemented using different kernel interfaces or user-space mechanisms"
+      ],
+      "explanation": "High-level APIs are portable abstractions; operating systems may provide distinct syscalls, combine operations, or satisfy some behavior in user space."
+    },
+    {
+      "id": "os-sys-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall transfers a 64-bit argument in two 32-bit registers on an ABI. What is the key requirement?",
+      "options": [
+        "User and kernel sides must agree on register order and representation",
+        "The kernel may infer the argument from the process name",
+        "The application can choose arbitrary registers on each call without a convention",
+        "The OS must copy the argument to disk before entry"
+      ],
+      "answer": [
+        "User and kernel sides must agree on register order and representation"
+      ],
+      "explanation": "The ABI fixes how multiword values are split and ordered; mismatched conventions would make the kernel interpret a different value."
+    },
+    {
+      "id": "os-sys-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall has a pointer and a length argument. What validation is most relevant before copying length bytes?",
+      "options": [
+        "Check that the range is representable and safely accessible in the caller address space",
+        "Check only that the pointer is nonzero",
+        "Check that length equals the page size",
+        "Assume pointer+length cannot overflow"
+      ],
+      "answer": [
+        "Check that the range is representable and safely accessible in the caller address space"
+      ],
+      "explanation": "A nonzero pointer may still be unmapped or invalid, and arithmetic on pointer plus length can overflow. Safe range validation/copying is required."
+    },
+    {
+      "id": "os-sys-035",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which can happen during a syscall that waits for a device?",
+      "options": [
+        "The caller transitions to a waiting state",
+        "The scheduler runs another ready thread",
+        "A device interrupt later signals completion",
+        "The caller must busy-wait until the device is ready"
+      ],
+      "answer": [
+        "The caller transitions to a waiting state",
+        "The scheduler runs another ready thread",
+        "A device interrupt later signals completion"
+      ],
+      "explanation": "Blocking I/O can deschedule the caller; device completion commonly arrives by interrupt and wakes it. Busy-waiting is not required for a blocking syscall."
+    },
+    {
+      "id": "os-sys-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall implementation copies a user string one byte at a time until it sees a null terminator. What risk must it handle?",
+      "options": [
+        "The string may cross into an unmapped page before a terminator is found",
+        "A null terminator causes an automatic process switch",
+        "The kernel cannot read bytes from user space at all",
+        "Strings are always exactly one page long"
+      ],
+      "answer": [
+        "The string may cross into an unmapped page before a terminator is found"
+      ],
+      "explanation": "User memory may end or become invalid at a page boundary. Kernel code must bound the scan and handle faults safely."
+    },
+    {
+      "id": "os-sys-037",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process invokes close on a descriptor. Which object is most directly removed from the per-process table?",
+      "options": [
+        "The descriptor-table reference to an open-file description",
+        "The file?s disk blocks in every case",
+        "The process control block",
+        "The inode from all directories"
+      ],
+      "answer": [
+        "The descriptor-table reference to an open-file description"
+      ],
+      "explanation": "Closing a descriptor releases that process-local handle/reference; the underlying open-file object and file data may remain reachable through other references."
+    },
+    {
+      "id": "os-sys-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two descriptors are created by duplicating one open descriptor. What may they share?",
+      "options": [
+        "The same open-file description, including a shared file offset",
+        "Independent kernel processes",
+        "A single descriptor number in separate process tables only",
+        "The same user stack"
+      ],
+      "answer": [
+        "The same open-file description, including a shared file offset"
+      ],
+      "explanation": "Duplicated descriptors can refer to the same open-file description, so file status and offset may be shared even though descriptor integers differ."
+    },
+    {
+      "id": "os-sys-039",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process calls lseek on one descriptor duplicated from another. What happens to the other descriptor if both refer to the same open-file description?",
+      "options": [
+        "Its file offset changes as well",
+        "It is closed automatically",
+        "Its process is terminated",
+        "Its descriptor integer is rewritten"
+      ],
+      "answer": [
+        "Its file offset changes as well"
+      ],
+      "explanation": "The offset belongs to the shared open-file description, not independently to each descriptor-table entry, so changing it through either affects the shared offset."
+    },
+    {
+      "id": "os-sys-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process calls exec-like functionality after fork. Which statement is generally correct?",
+      "options": [
+        "The calling process image is replaced while its process identity is retained",
+        "A new process is always created by exec alone",
+        "The parent process is replaced",
+        "All open files are necessarily closed"
+      ],
+      "answer": [
+        "The calling process image is replaced while its process identity is retained"
+      ],
+      "explanation": "Exec replaces the calling process address-space image with a new program; it does not by itself create a new process. Open descriptors may persist depending on close-on-exec flags."
+    },
+    {
+      "id": "os-sys-041",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "After fork-like process creation, both parent and child return from the call. Which value distinguishes their return paths?",
+      "options": [
+        "The parent receives the child identifier; the child receives zero",
+        "Both receive zero",
+        "The parent receives zero; the child receives the parent identifier",
+        "Only the child returns from the call"
+      ],
+      "answer": [
+        "The parent receives the child identifier; the child receives zero"
+      ],
+      "explanation": "The conventional fork interface returns different values in the two execution contexts so each can identify whether it is the parent or child."
+    },
+    {
+      "id": "os-sys-042",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process calls wait on a child that has already terminated but has not yet been reaped. What can wait do?",
+      "options": [
+        "Return the child status immediately and reap its termination record",
+        "Block until the child is created again",
+        "Restart the child at its last instruction",
+        "Convert the child into a thread"
+      ],
+      "answer": [
+        "Return the child status immediately and reap its termination record"
+      ],
+      "explanation": "A terminated child may remain as a zombie until its parent collects status. A wait call can return that status and release the process-table record."
+    },
+    {
+      "id": "os-sys-043",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A parent exits while a child continues executing. Which general OS behavior applies?",
+      "options": [
+        "The child can be reparented to a designated system process or supervisor",
+        "The child must always be killed at the same instant",
+        "The child becomes a kernel thread",
+        "The child loses its address space immediately"
+      ],
+      "answer": [
+        "The child can be reparented to a designated system process or supervisor"
+      ],
+      "explanation": "Operating systems define reparenting/adoption behavior for orphaned children; parent termination alone does not universally require killing a live child."
+    },
+    {
+      "id": "os-sys-044",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a fork-then-exec process-launch pattern are correct?",
+      "options": [
+        "fork creates a child execution context",
+        "exec replaces the calling process image",
+        "The child can close or redirect descriptors before exec",
+        "exec necessarily changes the process identifier"
+      ],
+      "answer": [
+        "fork creates a child execution context",
+        "exec replaces the calling process image",
+        "The child can close or redirect descriptors before exec"
+      ],
+      "explanation": "Fork-like creation makes a child; exec replaces that child?s program image. Descriptor setup can occur first, and exec generally preserves the process identity."
+    },
+    {
+      "id": "os-sys-045",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall returns a file descriptor 0. What is the correct interpretation?",
+      "options": [
+        "Zero is a valid descriptor value; success depends on the interface?s error convention",
+        "Zero always means failure for every syscall",
+        "The kernel returned a null pointer",
+        "The file has zero bytes"
+      ],
+      "answer": [
+        "Zero is a valid descriptor value; success depends on the interface?s error convention"
+      ],
+      "explanation": "File descriptors are nonnegative small integers. Many Unix-like interfaces report errors with -1, making zero a valid success result."
+    },
+    {
+      "id": "os-sys-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall result is 0, but a separate output parameter contains a byte count. Which interpretation is safest?",
+      "options": [
+        "Interpret the return value and output parameter according to that syscall?s documented contract",
+        "Assume zero always means no operation occurred",
+        "Assume the output parameter is ignored",
+        "Treat every output parameter as a kernel address"
+      ],
+      "answer": [
+        "Interpret the return value and output parameter according to that syscall?s documented contract"
+      ],
+      "explanation": "System-call result conventions vary. The caller must use the defined contract rather than infer meaning from a value used by other calls."
+    },
+    {
+      "id": "os-sys-047",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A device driver maps a user buffer for DMA. Why may the kernel pin or otherwise stabilize the pages?",
+      "options": [
+        "The device must not DMA into physical pages that are freed or remapped during the transfer",
+        "DMA can access only filesystems",
+        "Pinning converts the buffer into a syscall number",
+        "The user process must become privileged"
+      ],
+      "answer": [
+        "The device must not DMA into physical pages that are freed or remapped during the transfer"
+      ],
+      "explanation": "DMA occurs independently of CPU execution, so the OS may need to keep backing pages resident and correctly mapped until the device completes."
+    },
+    {
+      "id": "os-sys-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process invokes ioctl on a device descriptor. What does this typically represent?",
+      "options": [
+        "A device- or driver-specific control operation",
+        "A standard operation to create a new process",
+        "A mandatory page replacement call",
+        "A DNS query made by the kernel"
+      ],
+      "answer": [
+        "A device- or driver-specific control operation"
+      ],
+      "explanation": "ioctl is a generic interface for device-specific control requests where ordinary read/write operations are insufficient."
+    },
+    {
+      "id": "os-sys-049",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why should an OS expose a narrow system-call interface rather than all kernel functions directly?",
+      "options": [
+        "It limits and validates privileged operations while preserving implementation flexibility",
+        "It prevents applications from using libraries",
+        "It guarantees no bugs can exist in the kernel",
+        "It makes every syscall execute in constant time"
+      ],
+      "answer": [
+        "It limits and validates privileged operations while preserving implementation flexibility"
+      ],
+      "explanation": "A controlled ABI provides a security boundary and abstraction. It also lets the kernel change internal implementation without exposing internal functions."
+    },
+    {
+      "id": "os-sys-050",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall?s user argument points to a structure whose size differs across 32-bit and 64-bit ABIs. What design issue arises?",
+      "options": [
+        "Structure layout and pointer-width compatibility must be defined or translated",
+        "The kernel cannot support either ABI",
+        "All fields automatically expand to 64 bits",
+        "The syscall number becomes the structure size"
+      ],
+      "answer": [
+        "Structure layout and pointer-width compatibility must be defined or translated"
+      ],
+      "explanation": "ABI layout, alignment and pointer width affect how user structures are interpreted; compat layers may translate older layouts."
+    },
+    {
+      "id": "os-sys-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system call returns EINTR because a signal interrupted a blocking operation before completion. What should a robust caller consider?",
+      "options": [
+        "Retrying may be appropriate, but it must follow the specific call?s partial-progress semantics",
+        "The kernel guarantees the operation completed fully",
+        "The process has necessarily received SIGKILL",
+        "The descriptor is permanently invalid"
+      ],
+      "answer": [
+        "Retrying may be appropriate, but it must follow the specific call?s partial-progress semantics"
+      ],
+      "explanation": "Some interfaces can return partial progress or EINTR; callers should inspect the result and retry only according to that operation?s documented semantics."
+    },
+    {
+      "id": "os-sys-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A blocking read is interrupted after transferring some bytes. Which outcome is possible on common POSIX-style interfaces?",
+      "options": [
+        "It may return the number of bytes transferred rather than discard progress",
+        "It must always return -1 with no progress reported",
+        "It must restart from the original file offset without reporting bytes",
+        "It must terminate the process"
+      ],
+      "answer": [
+        "It may return the number of bytes transferred rather than discard progress"
+      ],
+      "explanation": "Read may return a short positive count if some bytes were transferred before interruption. Applications need to account for partial completion."
+    },
+    {
+      "id": "os-sys-053",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall checks a pathname in user memory and later uses the same user pointer again. What class of bug could arise if the memory changes between checks?",
+      "options": [
+        "Time-of-check to time-of-use inconsistency",
+        "Belady?s anomaly",
+        "Count-to-infinity",
+        "Priority inversion"
+      ],
+      "answer": [
+        "Time-of-check to time-of-use inconsistency"
+      ],
+      "explanation": "User memory can be modified concurrently. Re-reading after validation may observe different data, so safe kernels copy or otherwise stabilize input where required."
+    },
+    {
+      "id": "os-sys-054",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which practices are appropriate when handling user pointers inside a kernel syscall?",
+      "options": [
+        "Validate ranges and lengths for overflow",
+        "Use safe copy routines that handle page faults",
+        "Assume non-null means readable",
+        "Avoid trusting user-controlled structure fields without checking"
+      ],
+      "answer": [
+        "Validate ranges and lengths for overflow",
+        "Use safe copy routines that handle page faults",
+        "Avoid trusting user-controlled structure fields without checking"
+      ],
+      "explanation": "A pointer can be non-null yet invalid, and lengths can overflow. Safe copies plus validation of fields maintain the privilege boundary."
+    },
+    {
+      "id": "os-sys-055",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A user process passes a huge length that would overflow pointer-plus-length arithmetic. What should the kernel do?",
+      "options": [
+        "Detect the overflow and reject the request before accessing the range",
+        "Wrap the address and continue copying",
+        "Disable address translation",
+        "Treat the length as a valid zero without checking"
+      ],
+      "answer": [
+        "Detect the overflow and reject the request before accessing the range"
+      ],
+      "explanation": "Range computations must be checked for overflow; otherwise a malicious length can make an invalid range appear small or valid."
+    },
+    {
+      "id": "os-sys-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall copies a user-provided count into kernel memory, then iterates exactly that many records. What additional check is needed?",
+      "options": [
+        "Check the count against interface limits and allocation-size overflow",
+        "Check only that the first record exists",
+        "Assume memory allocation cannot fail",
+        "Convert the count to a pointer without validation"
+      ],
+      "answer": [
+        "Check the count against interface limits and allocation-size overflow"
+      ],
+      "explanation": "A bounded count prevents denial-of-service and allocation arithmetic overflow; each copied record still needs field validation as appropriate."
+    },
+    {
+      "id": "os-sys-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A kernel syscall runs with interrupts disabled for a long time while scanning a user array. What is the main systems concern?",
+      "options": [
+        "It can increase interrupt latency and harm system responsiveness",
+        "It improves fairness automatically",
+        "It makes user pointers inherently safe",
+        "It guarantees the scan cannot be preempted by hardware"
+      ],
+      "answer": [
+        "It can increase interrupt latency and harm system responsiveness"
+      ],
+      "explanation": "Long interrupt-disabled regions delay servicing device and timer interrupts. Kernels keep such critical sections short and avoid unbounded user-controlled work there."
+    },
+    {
+      "id": "os-sys-058",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system call executes in kernel mode but on behalf of a user process. Which statement is correct?",
+      "options": [
+        "The current process context can remain associated with the call even though execution is privileged",
+        "The kernel must create a separate process for every syscall",
+        "Kernel mode means the scheduler cannot run",
+        "The calling process address space disappears"
+      ],
+      "answer": [
+        "The current process context can remain associated with the call even though execution is privileged"
+      ],
+      "explanation": "Syscalls commonly execute on the caller?s kernel stack/context while retaining its process identity and resources; blocking or preemption may later change the running context."
+    },
+    {
+      "id": "os-sys-059",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A synchronous syscall is entered through a software instruction. What information must the kernel entry path obtain or preserve to return correctly?",
+      "options": [
+        "The saved user execution state, including a return location and relevant registers",
+        "Only the current wall-clock time",
+        "The full contents of every disk block",
+        "The parent process?s source code"
+      ],
+      "answer": [
+        "The saved user execution state, including a return location and relevant registers"
+      ],
+      "explanation": "The kernel must preserve enough architectural state to resume the caller with the defined result, including return address and registers per the ABI."
+    },
+    {
+      "id": "os-sys-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A kernel validates a syscall number but not the requested operation?s arguments. Which security principle is still violated?",
+      "options": [
+        "Complete mediation: each privileged operation must validate its relevant inputs",
+        "Least privilege is satisfied because the number was checked",
+        "The principle of locality",
+        "The end-to-end principle only"
+      ],
+      "answer": [
+        "Complete mediation: each privileged operation must validate its relevant inputs"
+      ],
+      "explanation": "Checking the syscall number does not make untrusted pointers, sizes, flags or object permissions safe. Each request?s relevant inputs must be validated."
+    },
+    {
+      "id": "os-sys-061",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system-call instruction transfers control through a table of approved entry points. Which security benefit follows?",
+      "options": [
+        "User code cannot select an arbitrary privileged instruction address as its entry",
+        "The kernel no longer needs argument validation",
+        "The process cannot be interrupted",
+        "The syscall executes without saving state"
+      ],
+      "answer": [
+        "User code cannot select an arbitrary privileged instruction address as its entry"
+      ],
+      "explanation": "A constrained entry mechanism directs requests to vetted kernel handlers rather than allowing a user process to jump into arbitrary privileged code."
+    },
+    {
+      "id": "os-sys-062",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A kernel switches from one process to another while returning from an interrupt. Which work distinguishes that from a simple syscall return to the same process?",
+      "options": [
+        "Saving the outgoing schedulable context and restoring another context",
+        "Changing every user data byte",
+        "Recompiling the incoming program",
+        "Reinitializing the machine firmware"
+      ],
+      "answer": [
+        "Saving the outgoing schedulable context and restoring another context"
+      ],
+      "explanation": "A process context switch preserves one execution context and restores another, often including address-space and register state; a same-process syscall return need not do that."
+    },
+    {
+      "id": "os-sys-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A kernel uses a separate kernel stack for each thread. Why is this useful during a syscall?",
+      "options": [
+        "It stores privileged call frames separately from the user stack",
+        "It removes the need for a process address space",
+        "It ensures every syscall is nonblocking",
+        "It stores only the syscall number permanently"
+      ],
+      "answer": [
+        "It stores privileged call frames separately from the user stack"
+      ],
+      "explanation": "Separate stacks isolate kernel frames from user-controlled stack data and let the kernel safely resume a thread after privileged work."
+    },
+    {
+      "id": "os-sys-064",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A vDSO-like user-space mapping provides a fast clock read. What is the intended advantage?",
+      "options": [
+        "Some queries avoid a full syscall transition while using kernel-maintained time data",
+        "The process can modify the hardware clock directly",
+        "The clock read becomes an asynchronous interrupt",
+        "All time accuracy checks are removed"
+      ],
+      "answer": [
+        "Some queries avoid a full syscall transition while using kernel-maintained time data"
+      ],
+      "explanation": "A vDSO can expose kernel-updated data and user-space code so common reads avoid entering the kernel, while kernel state remains authoritative."
+    },
+    {
+      "id": "os-sys-065",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall is interrupted by a signal before completion. Which behavior is possible depending on the call and signal policy?",
+      "options": [
+        "The call may be restarted or may return an interruption error",
+        "All syscalls are always restarted transparently",
+        "The signal is ignored because the kernel is running",
+        "The process is always converted into a zombie"
+      ],
+      "answer": [
+        "The call may be restarted or may return an interruption error"
+      ],
+      "explanation": "Restart semantics vary by syscall and signal configuration; callers must handle the documented return behavior."
+    },
+    {
+      "id": "os-sys-066",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are examples of OS services commonly exposed through system calls?",
+      "options": [
+        "Create or wait for a process",
+        "Open, read or write a file",
+        "Map memory into an address space",
+        "Change a local variable in user memory"
+      ],
+      "answer": [
+        "Create or wait for a process",
+        "Open, read or write a file",
+        "Map memory into an address space"
+      ],
+      "explanation": "Process management, file operations and address-space mapping require kernel-managed resources. Updating a local variable normally stays in user mode."
+    },
+    {
+      "id": "os-sys-067",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A user process attempts to write a kernel-only page. What mechanism normally prevents the write?",
+      "options": [
+        "Hardware memory protection raises a fault before the write is allowed",
+        "The C compiler silently changes the page permissions",
+        "The kernel polls every user store",
+        "The file system rejects the instruction"
+      ],
+      "answer": [
+        "Hardware memory protection raises a fault before the write is allowed"
+      ],
+      "explanation": "The MMU enforces page permissions on each access and raises a protection fault when user mode attempts a forbidden kernel-page write."
+    },
+    {
+      "id": "os-sys-068",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall returns before a device finishes a requested asynchronous transfer. What should the caller expect?",
+      "options": [
+        "A separate completion mechanism is needed to learn when the transfer finishes",
+        "The return proves every byte reached the device",
+        "The device interrupt becomes the syscall return value automatically",
+        "The kernel must have terminated the process"
+      ],
+      "answer": [
+        "A separate completion mechanism is needed to learn when the transfer finishes"
+      ],
+      "explanation": "Asynchronous I/O separates submission from completion; callers need a completion event or status query before treating the operation as finished."
+    },
+    {
+      "id": "os-sys-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hardware interrupt arrives while a process is in user mode. What does the CPU generally do before executing the handler?",
+      "options": [
+        "Save sufficient execution state and transfer to a privileged interrupt entry",
+        "Ask the process to call the handler as a normal function",
+        "Switch directly to another process without kernel code",
+        "Erase the interrupted process registers"
+      ],
+      "answer": [
+        "Save sufficient execution state and transfer to a privileged interrupt entry"
+      ],
+      "explanation": "Interrupt entry preserves enough state to resume or schedule the interrupted context and transfers control to kernel code under privileged execution."
+    },
+    {
+      "id": "os-sys-070",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall returns EINTR because a signal interrupted a blocking operation. What should a robust caller consider?",
+      "options": [
+        "Retrying may be appropriate, but it must follow the call?s partial-progress semantics",
+        "The kernel guarantees the operation completed fully",
+        "The process has necessarily received SIGKILL",
+        "The descriptor is permanently invalid"
+      ],
+      "answer": [
+        "Retrying may be appropriate, but it must follow the call?s partial-progress semantics"
+      ],
+      "explanation": "Some interfaces can return partial progress or EINTR; callers should inspect the result and retry only according to the operation?s documented semantics."
+    },
+    {
+      "id": "os-sys-071",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A kernel copies a user string until it finds a null terminator. What risk must it handle?",
+      "options": [
+        "The string may cross into an unmapped page before the terminator is found",
+        "A null terminator causes an automatic process switch",
+        "The kernel cannot read user memory at all",
+        "Strings are always exactly one page long"
+      ],
+      "answer": [
+        "The string may cross into an unmapped page before the terminator is found"
+      ],
+      "explanation": "User memory may end or become invalid at a page boundary. Kernel code must bound the scan and handle faults safely."
+    },
+    {
+      "id": "os-sys-072",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process changes its current working directory through a syscall. Is this normally global to all processes?",
+      "options": [
+        "No; current working directory is normally process-specific state",
+        "Yes; every process immediately changes directories",
+        "Only the kernel can have a working directory",
+        "It changes the DNS search path only"
+      ],
+      "answer": [
+        "No; current working directory is normally process-specific state"
+      ],
+      "explanation": "The working directory is normally maintained as part of a process context, so changing it affects that process."
+    },
+    {
+      "id": "os-sys-073",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An interrupt handler acknowledges a device and schedules deferred work. Why defer part of the work?",
+      "options": [
+        "Keep the immediate interrupt handler short so other interrupts are not delayed",
+        "Avoid ever entering kernel mode",
+        "Ensure the process runs before the device",
+        "Convert the interrupt into a syscall"
+      ],
+      "answer": [
+        "Keep the immediate interrupt handler short so other interrupts are not delayed"
+      ],
+      "explanation": "Minimal immediate work reduces interrupt latency; longer processing can run later in a context where blocking or scheduling is permitted."
+    },
+    {
+      "id": "os-sys-074",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A synchronous exception occurs at instruction address P. Which return choice depends on exception type?",
+      "options": [
+        "Resume at P or at the following instruction according to whether the faulting instruction should be retried",
+        "Always resume at address zero",
+        "Always resume at the next process",
+        "Never return to the interrupted context"
+      ],
+      "answer": [
+        "Resume at P or at the following instruction according to whether the faulting instruction should be retried"
+      ],
+      "explanation": "Faults may be retried after resolution, while traps may report completion and continue after the instruction; saved-PC semantics depend on the event."
+    },
+    {
+      "id": "os-sys-075",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process runs 10^6 user instructions and invokes a syscall every 1000 instructions. How many syscalls does it invoke?",
+      "options": [
+        "1000",
+        "100",
+        "10000",
+        "1000000"
+      ],
+      "answer": [
+        "1000"
+      ],
+      "explanation": "The call count is 10^6/10^3=10^3, or 1000 calls."
+    },
+    {
+      "id": "os-sys-076",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can hardware privilege modes not replace syscall argument validation?",
+      "options": [
+        "Privileged code can still be tricked into misusing invalid user-supplied values",
+        "The CPU cannot enter kernel mode",
+        "Arguments are encrypted by the MMU",
+        "User programs cannot pass pointers"
+      ],
+      "answer": [
+        "Privileged code can still be tricked into misusing invalid user-supplied values"
+      ],
+      "explanation": "Privilege restricts direct user access, but kernel handlers execute with authority and must validate all user-controlled inputs."
+    },
+    {
+      "id": "os-sys-077",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall changes an open-file offset through a descriptor duplicated from another. What can happen to the other descriptor?",
+      "options": [
+        "Its observed offset changes too if both refer to the same open-file description",
+        "It is closed automatically",
+        "Its process is terminated",
+        "Its descriptor integer is rewritten"
+      ],
+      "answer": [
+        "Its observed offset changes too if both refer to the same open-file description"
+      ],
+      "explanation": "Duplicated descriptors can share one open-file description, including its offset, so seeking through either changes the shared offset."
+    },
+    {
+      "id": "os-sys-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system call checks a syscall number but ignores whether the caller may access the target file. Which property is missing?",
+      "options": [
+        "Authorization of the requested object operation",
+        "Instruction decoding",
+        "Address alignment only",
+        "Interrupt prioritization"
+      ],
+      "answer": [
+        "Authorization of the requested object operation"
+      ],
+      "explanation": "A valid syscall number does not grant access to every object; the kernel must still check credentials and permissions for the requested operation."
+    },
+    {
+      "id": "os-sys-079",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A user process submits a very large buffer length. Which safety check is important before allocation or pointer arithmetic?",
+      "options": [
+        "Check size limits and arithmetic overflow",
+        "Check only that the pointer is nonzero",
+        "Assume allocation cannot fail",
+        "Convert the count directly into a physical address"
+      ],
+      "answer": [
+        "Check size limits and arithmetic overflow"
+      ],
+      "explanation": "A large length can overflow size computations or exhaust resources; validate bounds and handle allocation failure before accessing memory."
+    },
+    {
+      "id": "os-sys-080",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A kernel ABI assigns stable syscall numbers. What does this stability primarily support?",
+      "options": [
+        "Compatibility of user programs across kernel implementation changes",
+        "Identical execution time for every version",
+        "Unchanged internal function addresses",
+        "Automatic safety of all undocumented behavior"
+      ],
+      "answer": [
+        "Compatibility of user programs across kernel implementation changes"
+      ],
+      "explanation": "A stable user-visible ABI lets binaries continue working as kernel internals evolve, provided documented semantics are preserved."
+    },
+    {
+      "id": "os-sys-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations normally require a protected kernel service rather than only ordinary user-mode computation?",
+      "options": [
+        "Set a process scheduling priority",
+        "Create a file descriptor for a pathname",
+        "Add two local integers",
+        "Change a page mapping"
+      ],
+      "answer": [
+        "Set a process scheduling priority",
+        "Create a file descriptor for a pathname",
+        "Change a page mapping"
+      ],
+      "explanation": "Scheduling priority, descriptor creation, and page mapping affect kernel-managed resources. Integer addition uses user-mode instructions."
+    },
+    {
+      "id": "os-sys-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions can make a syscall block instead of returning immediately?",
+      "options": [
+        "Requested pipe data is unavailable while a writer remains open",
+        "A device operation waits for completion",
+        "A file descriptor number is syntactically valid",
+        "A mutex-like kernel object is unavailable"
+      ],
+      "answer": [
+        "Requested pipe data is unavailable while a writer remains open",
+        "A device operation waits for completion",
+        "A mutex-like kernel object is unavailable"
+      ],
+      "explanation": "A blocking read may await data, device operations may await completion, and synchronization calls may wait for a resource. A valid descriptor alone does not imply blocking."
+    },
+    {
+      "id": "os-sys-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about syscall arguments are correct?",
+      "options": [
+        "A pointer can be non-null yet invalid",
+        "A length can overflow range calculations",
+        "A kernel should trust user structure fields after copying them",
+        "A user buffer can become inaccessible during a copy"
+      ],
+      "answer": [
+        "A pointer can be non-null yet invalid",
+        "A length can overflow range calculations",
+        "A user buffer can become inaccessible during a copy"
+      ],
+      "explanation": "Non-null pointers can be unmapped, lengths can overflow, and mappings can change. Copying alone does not make unvalidated fields trustworthy."
+    },
+    {
+      "id": "os-sys-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A library implements gettimeofday-like behavior by reading a kernel-updated shared page in user mode. Which costs can be avoided on the fast path?",
+      "options": [
+        "A syscall entry/return transition",
+        "All memory access costs",
+        "The need for kernel-maintained time state",
+        "All synchronization or consistency checks"
+      ],
+      "answer": [
+        "A syscall entry/return transition"
+      ],
+      "explanation": "A user-space fast path may avoid privilege-transition overhead, but still reads shared memory and may need consistency checks against concurrent updates."
+    },
+    {
+      "id": "os-sys-085",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system call returns a positive number of bytes smaller than requested. What should the application generally do if it requires the full buffer?",
+      "options": [
+        "Advance by the returned count and issue further reads as needed",
+        "Assume the remaining bytes are zero",
+        "Treat every short read as a kernel crash",
+        "Repeat the same call without advancing the buffer"
+      ],
+      "answer": [
+        "Advance by the returned count and issue further reads as needed"
+      ],
+      "explanation": "The return count is progress. The caller should update the pointer and remaining length, and continue until the goal, EOF, or error."
+    },
+    {
+      "id": "os-sys-086",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process requests 4096 bytes in one read. The call returns 1536 bytes. How many bytes remain to be read to fill the requested amount?",
+      "answer": "2560",
+      "explanation": "Requested bytes minus completed bytes is 4096-1536=2560. A follow-up read should begin after the 1536-byte prefix."
+    },
+    {
+      "id": "os-sys-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process issues close on a descriptor while another descriptor refers to the same open-file object. What is generally true?",
+      "options": [
+        "Closing one descriptor need not destroy the shared open-file object",
+        "All aliases are closed unconditionally",
+        "The underlying file is deleted",
+        "The process terminates"
+      ],
+      "answer": [
+        "Closing one descriptor need not destroy the shared open-file object"
+      ],
+      "explanation": "Kernel objects can remain alive while references exist. Closing removes one reference; other descriptors or processes may still use the open-file description."
+    },
+    {
+      "id": "os-sys-088",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A kernel returns an error code from a syscall wrapper. Why is it unsafe for the application to assume no side effects occurred?",
+      "options": [
+        "Some operations may make partial progress before reporting an error",
+        "Errors can only occur before kernel entry",
+        "The kernel rolls back every syscall atomically",
+        "An error return means the process did not run"
+      ],
+      "answer": [
+        "Some operations may make partial progress before reporting an error"
+      ],
+      "explanation": "Calls such as read/write may transfer some bytes before an interruption or error. Their contracts specify whether partial effects are reported."
+    },
+    {
+      "id": "os-sys-089",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall performs a permission check and then blocks before using the resource. What concern can arise if permissions change while it waits?",
+      "options": [
+        "The kernel may need to revalidate policy when the operation resumes or commits",
+        "The CPU forgets the syscall number",
+        "The process address space becomes a file",
+        "The syscall automatically becomes asynchronous"
+      ],
+      "answer": [
+        "The kernel may need to revalidate policy when the operation resumes or commits"
+      ],
+      "explanation": "Long-running or blocking operations may need to recheck mutable authorization or object state before committing effects, depending on the security model."
+    },
+    {
+      "id": "os-sys-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An OS uses a monolithic kernel. Which description is most accurate at this level?",
+      "options": [
+        "Many core services execute in privileged kernel space, often in one kernel address space",
+        "Every service runs as a separate user process",
+        "System calls are unnecessary",
+        "Applications directly control devices"
+      ],
+      "answer": [
+        "Many core services execute in privileged kernel space, often in one kernel address space"
+      ],
+      "explanation": "A monolithic kernel places many services such as file systems and drivers in kernel space; this can reduce IPC overhead but increases privileged-code size."
+    },
+    {
+      "id": "os-sys-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A microkernel design moves many services to user-space servers. What trade-off is commonly involved?",
+      "options": [
+        "More isolation/modularity may require additional IPC and context-switch overhead",
+        "It eliminates all message passing",
+        "It gives applications unrestricted device access",
+        "It makes system calls impossible"
+      ],
+      "answer": [
+        "More isolation/modularity may require additional IPC and context-switch overhead"
+      ],
+      "explanation": "User-space servers can improve fault isolation and modularity, but service requests may require IPC and extra transitions compared with in-kernel calls."
+    },
+    {
+      "id": "os-sys-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A hardware interrupt handler is executing with interrupts masked. Why should this interval be bounded?",
+      "options": [
+        "Long masking delays other interrupts and increases response latency",
+        "It prevents any memory translation",
+        "It forces all processes to run",
+        "It guarantees device throughput increases"
+      ],
+      "answer": [
+        "Long masking delays other interrupts and increases response latency"
+      ],
+      "explanation": "Masking interrupts protects short critical operations, but extended masking prevents timely timer/device handling and can harm responsiveness."
+    },
+    {
+      "id": "os-sys-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system-call entry uses a kernel stack and saves a return frame. What does the saved frame enable?",
+      "options": [
+        "Restoring the caller?s execution state when the kernel returns or resumes it",
+        "Reconstructing the source code of the process",
+        "Recovering deleted file blocks",
+        "Choosing the domain name server"
+      ],
+      "answer": [
+        "Restoring the caller?s execution state when the kernel returns or resumes it"
+      ],
+      "explanation": "The saved register and return state lets the kernel resume the correct user instruction stream with syscall results placed according to the ABI."
+    },
+    {
+      "id": "os-sys-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall handler verifies that a user pointer range is valid, then another thread in the same process unmaps it before copy-in completes. What must the copy mechanism handle?",
+      "options": [
+        "A possible page fault or mapping change during the copy",
+        "The pointer automatically becomes a kernel pointer",
+        "The kernel may safely ignore the resulting fault",
+        "The other thread is necessarily killed"
+      ],
+      "answer": [
+        "A possible page fault or mapping change during the copy"
+      ],
+      "explanation": "Address-space mappings can change concurrently. Robust copy routines handle faults and synchronize or otherwise define behavior for such races."
+    },
+    {
+      "id": "os-sys-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process invokes a system call while holding a user-space mutex. The syscall blocks. What risk can this create for other threads in that process?",
+      "options": [
+        "They may be unable to progress if they need the held mutex",
+        "The kernel releases all user mutexes automatically",
+        "The mutex becomes a semaphore in the kernel",
+        "The process must be terminated"
+      ],
+      "answer": [
+        "They may be unable to progress if they need the held mutex"
+      ],
+      "explanation": "A blocked thread retains user-level locks unless the application releases them; another thread needing that lock can stall, producing application-level deadlock."
+    },
+    {
+      "id": "os-sys-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process performs a syscall that returns quickly, then the scheduler runs a different process before the caller executes again. Which statement is correct?",
+      "options": [
+        "The syscall itself need not have blocked; preemption can occur at a later scheduling point",
+        "A syscall return always guarantees immediate execution by its caller",
+        "The process must have been terminated",
+        "The scheduler cannot run after a syscall"
+      ],
+      "answer": [
+        "The syscall itself need not have blocked; preemption can occur at a later scheduling point"
+      ],
+      "explanation": "Returning from the kernel makes the process runnable, but scheduling policy and interrupts may choose another ready context before it runs again."
+    },
+    {
+      "id": "os-sys-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which exception is most naturally handled by correcting state and retrying the same instruction?",
+      "options": [
+        "A page fault for a valid page that was not resident",
+        "A breakpoint used to report completion after the instruction",
+        "A device interrupt",
+        "A process-exit syscall"
+      ],
+      "answer": [
+        "A page fault for a valid page that was not resident"
+      ],
+      "explanation": "After the OS loads and maps the valid missing page, retrying the faulting memory instruction allows it to complete normally."
+    },
+    {
+      "id": "os-sys-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A syscall table is indexed by a number in a register. What is the role of that number?",
+      "options": [
+        "Select the requested kernel service handler from the supported interface",
+        "Identify the caller?s source-code line",
+        "Specify the physical address of the handler chosen by user code",
+        "Set the process priority automatically"
+      ],
+      "answer": [
+        "Select the requested kernel service handler from the supported interface"
+      ],
+      "explanation": "The syscall number selects among defined services; the kernel validates it and dispatches to the corresponding implementation."
+    },
+    {
+      "id": "os-sys-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program invokes a function named read from a language runtime, which satisfies the request from an in-memory buffer. What is true?",
+      "options": [
+        "That particular call may not enter the kernel at all",
+        "Every function named read must trap",
+        "The kernel must perform a disk transfer",
+        "The buffer is necessarily a page cache"
+      ],
+      "answer": [
+        "That particular call may not enter the kernel at all"
+      ],
+      "explanation": "Names at the library/API layer do not guarantee a syscall. A runtime may fulfill buffered reads in user space and enter the kernel only when needed."
+    },
+    {
+      "id": "os-sys-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A kernel changes an internal structure but keeps syscall behavior and ABI unchanged. What is the expected effect on a correctly written application?",
+      "options": [
+        "It continues to work without knowing the internal change",
+        "It must read the new kernel structure directly",
+        "It must be recompiled for every internal refactoring",
+        "It gains kernel privilege"
+      ],
+      "answer": [
+        "It continues to work without knowing the internal change"
+      ],
+      "explanation": "The syscall abstraction hides kernel internals. Applications depend on the documented interface, not private implementation structures."
+    }
+  ]
+}

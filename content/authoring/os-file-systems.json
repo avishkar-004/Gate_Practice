@@ -1,0 +1,1476 @@
+{
+  "topicIndex": 10,
+  "questions": [
+    {
+      "id": "os-fs-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A file?s inode stores which information in a Unix-like file system?",
+      "options": [
+        "Metadata and pointers to data blocks",
+        "The file name in every directory",
+        "The file contents only",
+        "The process?s page table"
+      ],
+      "answer": [
+        "Metadata and pointers to data blocks"
+      ],
+      "explanation": "An inode records metadata such as ownership, permissions, timestamps, size, and block pointers. Directory entries map names to inode numbers."
+    },
+    {
+      "id": "os-fs-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A directory entry commonly maps a file name to:",
+      "options": [
+        "an inode number",
+        "the file?s entire contents",
+        "a CPU process ID",
+        "a disk scheduling priority"
+      ],
+      "answer": [
+        "an inode number"
+      ],
+      "explanation": "Directories associate names with inode identifiers. The inode then describes metadata and how to locate file data."
+    },
+    {
+      "id": "os-fs-003",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two hard links refer to the same inode. What happens if one link is removed?",
+      "options": [
+        "The file remains accessible through the other link",
+        "The inode is immediately destroyed",
+        "The other name is deleted too",
+        "The data blocks are always freed"
+      ],
+      "answer": [
+        "The file remains accessible through the other link"
+      ],
+      "explanation": "Unlinking one directory entry decrements the link count. The inode and data remain while another hard link still refers to it."
+    },
+    {
+      "id": "os-fs-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file?s link count reaches zero, but a process still has it open. What is typical Unix-like behavior?",
+      "options": [
+        "The storage is reclaimed after the last open reference closes",
+        "The process immediately terminates",
+        "The name is recreated automatically",
+        "The inode is copied for the process"
+      ],
+      "answer": [
+        "The storage is reclaimed after the last open reference closes"
+      ],
+      "explanation": "Removing the final name does not invalidate an open file description. The inode/data are released after the last open reference closes."
+    },
+    {
+      "id": "os-fs-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A symbolic link stores:",
+      "options": [
+        "a pathname referring to another file",
+        "the target inode?s data blocks directly",
+        "a duplicate copy of target contents",
+        "a process ID"
+      ],
+      "answer": [
+        "a pathname referring to another file"
+      ],
+      "explanation": "A symlink is a special file containing a path string. Path resolution follows that path to the target."
+    },
+    {
+      "id": "os-fs-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A hard link is created to a file. Which statement is true?",
+      "options": [
+        "Both names refer to the same underlying inode",
+        "The target contents are copied",
+        "The new name has a new inode with duplicate blocks",
+        "It can always cross file-system boundaries"
+      ],
+      "answer": [
+        "Both names refer to the same underlying inode"
+      ],
+      "explanation": "Hard links create another directory entry for the same inode; they do not copy contents and generally cannot cross file systems."
+    },
+    {
+      "id": "os-fs-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which allocation method stores each file in consecutive disk blocks?",
+      "options": [
+        "Contiguous allocation",
+        "Linked allocation",
+        "Indexed allocation",
+        "Hashed directory allocation"
+      ],
+      "answer": [
+        "Contiguous allocation"
+      ],
+      "explanation": "Contiguous allocation places file blocks consecutively, offering efficient sequential and direct access but complicating growth and causing external fragmentation."
+    },
+    {
+      "id": "os-fs-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which file allocation method stores a pointer in each block to the next block?",
+      "options": [
+        "Linked allocation",
+        "Contiguous allocation",
+        "Indexed allocation",
+        "Extent-only allocation"
+      ],
+      "answer": [
+        "Linked allocation"
+      ],
+      "explanation": "Linked allocation chains blocks through pointers, supporting growth but making random access slow and pointer corruption costly."
+    },
+    {
+      "id": "os-fs-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Indexed allocation uses an index block to:",
+      "options": [
+        "store pointers to a file?s data blocks",
+        "store directory names only",
+        "hold the process?s open-file table",
+        "record free CPU bursts"
+      ],
+      "answer": [
+        "store pointers to a file?s data blocks"
+      ],
+      "explanation": "An index block contains addresses of the file?s data blocks, enabling direct access without a linked traversal through preceding blocks."
+    },
+    {
+      "id": "os-fs-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file has 8 data blocks and block size is 1 KiB. What is its data size?",
+      "options": [
+        "8 KiB",
+        "1 KiB",
+        "9 KiB",
+        "8192 KiB"
+      ],
+      "answer": [
+        "8 KiB"
+      ],
+      "explanation": "Eight blocks of 1 KiB each contain 8 KiB of file data, ignoring metadata and allocation overhead."
+    },
+    {
+      "id": "os-fs-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file system uses 4 KiB blocks. A 10 KiB file occupies how many blocks under block allocation?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "10"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "The file needs ceil(10/4)=3 blocks. The last block is partially used."
+    },
+    {
+      "id": "os-fs-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "With 4 KiB blocks, a 10 KiB file has how much internal block fragmentation?",
+      "options": [
+        "2 KiB",
+        "4 KiB",
+        "0 KiB",
+        "6 KiB"
+      ],
+      "answer": [
+        "2 KiB"
+      ],
+      "explanation": "Three blocks allocate 12 KiB. The final block has 2 KiB unused, so internal fragmentation is 2 KiB."
+    },
+    {
+      "id": "os-fs-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A free-space bitmap uses one bit per 4 KiB block. A 1 GiB file system needs how many bitmap bits?",
+      "options": [
+        "262144",
+        "1048576",
+        "4096",
+        "131072"
+      ],
+      "answer": [
+        "262144"
+      ],
+      "explanation": "1 GiB is 2^30 bytes; divided by 2^12 bytes per block gives 2^18=262,144 blocks and thus bits."
+    },
+    {
+      "id": "os-fs-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A bitmap marks 1 as free and 0 as allocated. What does a run of 5 consecutive one bits represent?",
+      "options": [
+        "Five consecutive free blocks",
+        "Five allocated blocks",
+        "One five-byte file",
+        "Five inodes"
+      ],
+      "answer": [
+        "Five consecutive free blocks"
+      ],
+      "explanation": "Each set bit represents one free block under the stated convention. Five consecutive bits indicate a contiguous run of five free blocks."
+    },
+    {
+      "id": "os-fs-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which free-space structure can efficiently find contiguous runs using bit operations?",
+      "options": [
+        "Bitmap",
+        "Linked list only",
+        "Open-file table",
+        "Inode table"
+      ],
+      "answer": [
+        "Bitmap"
+      ],
+      "explanation": "A bitmap encodes block availability compactly, and runs of free bits can be searched using bit operations or word-level scans."
+    },
+    {
+      "id": "os-fs-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A linked free list stores each free block?s pointer in the block itself. What is a disadvantage?",
+      "options": [
+        "Finding a large contiguous run can require traversal",
+        "It uses no disk space",
+        "It guarantees constant-time allocation",
+        "It cannot represent free blocks"
+      ],
+      "answer": [
+        "Finding a large contiguous run can require traversal"
+      ],
+      "explanation": "A linked list can enumerate free blocks, but locating long contiguous runs generally requires traversing many entries."
+    },
+    {
+      "id": "os-fs-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A file descriptor is:",
+      "options": [
+        "a per-process handle to an open file description",
+        "the file?s inode",
+        "a disk block number",
+        "a directory entry name"
+      ],
+      "answer": [
+        "a per-process handle to an open file description"
+      ],
+      "explanation": "A file descriptor is a process-level integer handle. It refers to an open file description holding offset and status information."
+    },
+    {
+      "id": "os-fs-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "After fork, parent and child descriptors refer to the same open file description. What may they share?",
+      "options": [
+        "the current file offset",
+        "their process IDs",
+        "their private heaps",
+        "their current program counters"
+      ],
+      "answer": [
+        "the current file offset"
+      ],
+      "explanation": "Duplicated descriptors commonly reference one open file description, so file offset/status may be shared even though process execution state is separate."
+    },
+    {
+      "id": "os-fs-019",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two threads share a descriptor and concurrently read the same file. What issue can occur?",
+      "options": [
+        "Their reads can interact through a shared file offset",
+        "Each read gets a private offset automatically",
+        "The inode is duplicated",
+        "The file becomes a directory"
+      ],
+      "answer": [
+        "Their reads can interact through a shared file offset"
+      ],
+      "explanation": "A shared open file description has a shared offset. Concurrent reads can advance it in an order that affects which bytes each thread receives."
+    },
+    {
+      "id": "os-fs-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file is opened with append mode. What is the intended write behavior?",
+      "options": [
+        "Writes are directed to the current end of file",
+        "Writes always overwrite from offset zero",
+        "Reads are disabled",
+        "The file becomes immutable"
+      ],
+      "answer": [
+        "Writes are directed to the current end of file"
+      ],
+      "explanation": "Append mode positions writes at the end of file, commonly atomically with respect to other appenders under the relevant OS semantics."
+    },
+    {
+      "id": "os-fs-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process calls lseek to move the file offset beyond end of file and writes one byte. What can result?",
+      "options": [
+        "A sparse region of zeros between old EOF and the new byte",
+        "The file must allocate every intervening data block",
+        "The write is always rejected",
+        "The inode is replaced"
+      ],
+      "answer": [
+        "A sparse region of zeros between old EOF and the new byte"
+      ],
+      "explanation": "Many file systems support sparse files: unwritten regions may consume no data blocks and read back as zeros."
+    },
+    {
+      "id": "os-fs-022",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A directory is implemented as a linear list of name-inode pairs. What is lookup time in the worst case for n entries?",
+      "options": [
+        "O(n)",
+        "O(1)",
+        "O(log n) guaranteed",
+        "O(n?)"
+      ],
+      "answer": [
+        "O(n)"
+      ],
+      "explanation": "A linear search may inspect all n entries before finding a name or determining it is absent, giving O(n) worst-case lookup."
+    },
+    {
+      "id": "os-fs-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A hash-based directory indexes names. What is its expected lookup time with a good hash and controlled load?",
+      "options": [
+        "O(1)",
+        "O(n)",
+        "O(log n) always",
+        "O(2^n)"
+      ],
+      "answer": [
+        "O(1)"
+      ],
+      "explanation": "A well-sized hash table provides expected constant-time lookup, though collisions and resizing can affect worst-case cost."
+    },
+    {
+      "id": "os-fs-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file system has an inode with direct and single-indirect pointers. Why use indirect blocks?",
+      "options": [
+        "To address more data blocks than fit in direct pointers",
+        "To store CPU register state",
+        "To store the file name only",
+        "To avoid all metadata"
+      ],
+      "answer": [
+        "To address more data blocks than fit in direct pointers"
+      ],
+      "explanation": "An indirect block contains additional block addresses, extending maximum file size without placing every pointer directly in the inode."
+    },
+    {
+      "id": "os-fs-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A block is 4 KiB and each block pointer is 4 bytes. How many data-block pointers fit in one indirect block?",
+      "options": [
+        "1024",
+        "4096",
+        "256",
+        "4"
+      ],
+      "answer": [
+        "1024"
+      ],
+      "explanation": "4 KiB is 4096 bytes. Dividing by 4 bytes per pointer gives 1024 pointers."
+    },
+    {
+      "id": "os-fs-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A Unix-like file has 12 direct pointers, one single-indirect pointer, and block size 4 KiB with 4-byte addresses. What is the maximum data size using only direct and single-indirect blocks?",
+      "options": [
+        "4144 KiB",
+        "4096 KiB",
+        "48 KiB",
+        "4120 KiB"
+      ],
+      "answer": [
+        "4144 KiB"
+      ],
+      "explanation": "The indirect block addresses 1024 data blocks. Together with 12 direct blocks there are 1036 data blocks, totaling 1036?4=4144 KiB."
+    },
+    {
+      "id": "os-fs-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Journaling file systems record intended metadata changes before applying them. What is the main benefit?",
+      "options": [
+        "Improved crash consistency and faster recovery",
+        "No disk writes are needed",
+        "All user data is always duplicated",
+        "File names become encrypted"
+      ],
+      "answer": [
+        "Improved crash consistency and faster recovery"
+      ],
+      "explanation": "A journal records transactions so recovery can replay or discard incomplete metadata updates after a crash, reducing inconsistent structures and lengthy scans."
+    },
+    {
+      "id": "os-fs-028",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file system crash occurs after journal commit but before home-location metadata is updated. What can recovery do?",
+      "options": [
+        "Replay the committed journal transaction",
+        "Ignore every committed update",
+        "Delete the entire file system",
+        "Reboot each process"
+      ],
+      "answer": [
+        "Replay the committed journal transaction"
+      ],
+      "explanation": "Committed journal entries can be replayed to complete the metadata update, restoring a consistent state."
+    },
+    {
+      "id": "os-fs-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is a mount operation?",
+      "options": [
+        "Attaching a file system at a directory in the existing namespace",
+        "Copying every file to RAM",
+        "Creating an inode for each process",
+        "Formatting every disk block"
+      ],
+      "answer": [
+        "Attaching a file system at a directory in the existing namespace"
+      ],
+      "explanation": "Mounting integrates a file system?s root into a directory tree at a mount point, making its contents reachable through that namespace."
+    },
+    {
+      "id": "os-fs-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file system uses a hierarchical directory tree. An absolute pathname is resolved starting from:",
+      "options": [
+        "the root directory",
+        "the current working directory",
+        "the inode table end",
+        "the last opened file"
+      ],
+      "answer": [
+        "the root directory"
+      ],
+      "explanation": "An absolute path begins at the root of the namespace, whereas a relative path begins at the process?s current working directory."
+    },
+    {
+      "id": "os-fs-031",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file has 9 direct data pointers and block size 2 KiB. What maximum data fits through direct pointers alone?",
+      "options": [
+        "18 KiB",
+        "9 KiB",
+        "2 KiB",
+        "11 KiB"
+      ],
+      "answer": [
+        "18 KiB"
+      ],
+      "explanation": "Nine pointers address nine blocks. At 2 KiB per block, direct capacity is 9?2=18 KiB."
+    },
+    {
+      "id": "os-fs-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An index block is 2048 bytes and pointers are 8 bytes. How many block addresses fit?",
+      "options": [
+        "256",
+        "2048",
+        "512",
+        "128"
+      ],
+      "answer": [
+        "256"
+      ],
+      "explanation": "The number of pointers is 2048/8=256. This follows directly from the block or inode arithmetic specified in the question."
+    },
+    {
+      "id": "os-fs-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file uses linked allocation. Which access is especially inefficient?",
+      "options": [
+        "Random access to a far block",
+        "Sequential reading",
+        "Appending a new block",
+        "Finding the first block"
+      ],
+      "answer": [
+        "Random access to a far block"
+      ],
+      "explanation": "To reach block k, linked allocation may require following all previous block pointers. Sequential access is natural; random access is slow."
+    },
+    {
+      "id": "os-fs-034",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file uses contiguous allocation. Which operation can be efficient?",
+      "options": [
+        "Sequential and direct access",
+        "Growing without relocation",
+        "Eliminating external fragmentation",
+        "Sharing blocks among files automatically"
+      ],
+      "answer": [
+        "Sequential and direct access"
+      ],
+      "explanation": "Contiguous blocks support sequential and direct access efficiently. Growth may require adjacent space or relocation, and free-space fragmentation remains."
+    },
+    {
+      "id": "os-fs-035",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file uses indexed allocation. What is a key cost for a very small file?",
+      "options": [
+        "Index-block overhead",
+        "Slow access to the first data block always",
+        "Need for contiguous free space",
+        "No random access"
+      ],
+      "answer": [
+        "Index-block overhead"
+      ],
+      "explanation": "Indexed allocation may require an index block even for a small file, adding metadata/storage overhead."
+    },
+    {
+      "id": "os-fs-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A file system uses 8 KiB blocks. A 19 KiB file occupies how many blocks?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "19"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "It requires ceil(19/8)=3 blocks, with the last partially filled."
+    },
+    {
+      "id": "os-fs-037",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Using 8 KiB blocks, what internal fragmentation does a 19 KiB file incur?",
+      "options": [
+        "5 KiB",
+        "8 KiB",
+        "3 KiB",
+        "0 KiB"
+      ],
+      "answer": [
+        "5 KiB"
+      ],
+      "explanation": "Three blocks allocate 24 KiB. The unused space in the last block is 24?19=5 KiB."
+    },
+    {
+      "id": "os-fs-038",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk has 1,000,000 blocks. A free-space bitmap uses one bit per block. What is bitmap size in bytes, ignoring rounding?",
+      "options": [
+        "125000",
+        "1000000",
+        "8000000",
+        "12500"
+      ],
+      "answer": [
+        "125000"
+      ],
+      "explanation": "One million bits divided by eight bits per byte equals 125,000 bytes."
+    },
+    {
+      "id": "os-fs-039",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file system stores a free-space count and a list of free block addresses. What is a limitation of storing every address in one list?",
+      "options": [
+        "The list can become large and may require many reads",
+        "It cannot identify a single free block",
+        "It guarantees contiguous allocation",
+        "It duplicates file contents"
+      ],
+      "answer": [
+        "The list can become large and may require many reads"
+      ],
+      "explanation": "A very large free list consumes metadata space and may require additional storage or traversal to obtain blocks."
+    },
+    {
+      "id": "os-fs-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directory contains a hard link named a and another hard link named b to the same inode. How many inode objects represent these two names?",
+      "options": [
+        "1",
+        "2",
+        "0",
+        "3"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "Both directory entries refer to the same inode, so there is one inode object with a link count reflecting both names."
+    },
+    {
+      "id": "os-fs-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A hard link is removed while link count decreases from 2 to 1. What happens to the inode data?",
+      "options": [
+        "It remains because one link still references it",
+        "It is immediately freed",
+        "It becomes a symlink",
+        "It is copied to the remaining directory"
+      ],
+      "answer": [
+        "It remains because one link still references it"
+      ],
+      "explanation": "With one link remaining, the inode and contents stay reachable by the other hard link."
+    },
+    {
+      "id": "os-fs-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A symbolic link points to a pathname that is later removed. What can happen when the symlink is followed?",
+      "options": [
+        "It becomes a dangling link",
+        "The target is restored from the symlink",
+        "The symlink automatically converts to a hard link",
+        "The inode number is reused by the symlink"
+      ],
+      "answer": [
+        "It becomes a dangling link"
+      ],
+      "explanation": "The symlink stores a path, not a persistent reference to the target inode. If the target disappears, following it fails."
+    },
+    {
+      "id": "os-fs-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A hard link generally cannot cross file-system boundaries because:",
+      "options": [
+        "Inode numbers are meaningful within their file system",
+        "Files cannot be linked across directories",
+        "Hard links copy data blocks",
+        "Every file system uses the same global inode table"
+      ],
+      "answer": [
+        "Inode numbers are meaningful within their file system"
+      ],
+      "explanation": "Hard links refer directly to an inode in one file system. Another file system has a distinct inode namespace, so symlinks are used across boundaries."
+    },
+    {
+      "id": "os-fs-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A file is open and then renamed within the same file system. What happens to the open descriptor?",
+      "options": [
+        "It continues to refer to the same open file",
+        "It becomes invalid immediately",
+        "It changes to a descriptor for the directory",
+        "The file is copied on rename"
+      ],
+      "answer": [
+        "It continues to refer to the same open file"
+      ],
+      "explanation": "An open descriptor references the open file description/inode, not merely its pathname. Renaming the directory entry does not invalidate it."
+    },
+    {
+      "id": "os-fs-045",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file is deleted while open. Can the process continue reading through its descriptor?",
+      "options": [
+        "Yes, until it closes the descriptor",
+        "No, unlink closes all descriptors",
+        "Only if it is a directory",
+        "No, the process becomes orphaned"
+      ],
+      "answer": [
+        "Yes, until it closes the descriptor"
+      ],
+      "explanation": "Unlink removes a name. Existing open references remain valid; storage is reclaimed after the last reference closes."
+    },
+    {
+      "id": "os-fs-046",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A sparse file has a large hole. What may a read from the hole return?",
+      "options": [
+        "Zero bytes without allocated data blocks",
+        "Uninitialized disk contents",
+        "A protection fault",
+        "The inode contents"
+      ],
+      "answer": [
+        "Zero bytes without allocated data blocks"
+      ],
+      "explanation": "Sparse holes logically read as zeros even if no physical data blocks are allocated for the range."
+    },
+    {
+      "id": "os-fs-047",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file has size 0 but one allocated block due to metadata or preallocation. What is its logical content size?",
+      "options": [
+        "0 bytes",
+        "One block",
+        "The inode size",
+        "Unknown until read"
+      ],
+      "answer": [
+        "0 bytes"
+      ],
+      "explanation": "Logical file size is the inode?s size field, here zero. Allocation can include reserved blocks beyond current logical contents."
+    },
+    {
+      "id": "os-fs-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A file offset is 100 and a process writes 10 bytes. What is the new offset after a successful write?",
+      "options": [
+        "110",
+        "100",
+        "10",
+        "90"
+      ],
+      "answer": [
+        "110"
+      ],
+      "explanation": "A successful sequential write advances the open file offset by the number of bytes written: 100+10=110."
+    },
+    {
+      "id": "os-fs-049",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two descriptors are duplicated with dup and refer to the same open file description. What is true of their offsets?",
+      "options": [
+        "They share one file offset",
+        "Each has an independent offset",
+        "The offset is stored in the inode only",
+        "The second descriptor cannot read"
+      ],
+      "answer": [
+        "They share one file offset"
+      ],
+      "explanation": "Duplicated descriptors reference the same open file description, so reads/writes through either update the shared offset."
+    },
+    {
+      "id": "os-fs-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process opens the same file twice independently. Are the offsets necessarily shared?",
+      "options": [
+        "No; independent opens commonly create separate open file descriptions",
+        "Yes; all descriptors to an inode share offset",
+        "The file cannot be opened twice",
+        "Only the kernel has an offset"
+      ],
+      "answer": [
+        "No; independent opens commonly create separate open file descriptions"
+      ],
+      "explanation": "Separate open calls generally create distinct open file descriptions and independent offsets, even though both refer to the same inode."
+    },
+    {
+      "id": "os-fs-051",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file system stores permissions in an inode. A pathname is renamed. Which metadata remains associated with the file object?",
+      "options": [
+        "Ownership and mode bits",
+        "The old pathname string in the inode always",
+        "The parent process PID",
+        "The directory?s free-block bitmap"
+      ],
+      "answer": [
+        "Ownership and mode bits"
+      ],
+      "explanation": "Metadata such as owner and permissions belongs to the inode and remains when a directory entry is renamed."
+    },
+    {
+      "id": "os-fs-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A directory contains an entry that maps name x to inode 42. What does deleting that entry do?",
+      "options": [
+        "Removes that name-to-inode link and may decrement link count",
+        "Erases inode 42 immediately in all cases",
+        "Deletes every file with the same contents",
+        "Changes the file descriptor number"
+      ],
+      "answer": [
+        "Removes that name-to-inode link and may decrement link count"
+      ],
+      "explanation": "Removing a directory entry drops a link. Inode reclamation depends on remaining links and open references."
+    },
+    {
+      "id": "os-fs-053",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file system checks a journal after an unclean shutdown. Why can this be faster than scanning the entire disk?",
+      "options": [
+        "The journal limits recovery work to recent logged transactions",
+        "The journal contains every user-file byte",
+        "The scan is prohibited",
+        "The journal replaces all inodes"
+      ],
+      "answer": [
+        "The journal limits recovery work to recent logged transactions"
+      ],
+      "explanation": "A journal records recent metadata operations; replaying or discarding those transactions can restore consistency without a full-disk consistency scan."
+    },
+    {
+      "id": "os-fs-054",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A journal is in write-ahead mode. What must generally happen before a metadata update is committed to its home location?",
+      "options": [
+        "The corresponding log record is made durable first",
+        "The user process must terminate",
+        "Every disk block is zeroed",
+        "The inode is converted to a symlink"
+      ],
+      "answer": [
+        "The corresponding log record is made durable first"
+      ],
+      "explanation": "Write-ahead logging records intended changes before applying them, so recovery can replay a committed transaction after a crash."
+    },
+    {
+      "id": "os-fs-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A mount point is a directory that already contains files. What typically happens while another file system is mounted there?",
+      "options": [
+        "The mounted file system?s root hides the underlying directory contents",
+        "The underlying files are deleted",
+        "The mount fails necessarily",
+        "The mounted contents merge by copying"
+      ],
+      "answer": [
+        "The mounted file system?s root hides the underlying directory contents"
+      ],
+      "explanation": "The mount overlays the directory in namespace traversal. Underlying files are not deleted but are temporarily obscured."
+    },
+    {
+      "id": "os-fs-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A relative pathname begins resolution from:",
+      "options": [
+        "the current working directory",
+        "the root directory always",
+        "the inode table",
+        "the current disk cylinder"
+      ],
+      "answer": [
+        "the current working directory"
+      ],
+      "explanation": "Relative paths are interpreted from the process?s current working directory; absolute paths start at root."
+    },
+    {
+      "id": "os-fs-057",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file?s inode is known but its name is not. Why can the inode still be accessed?",
+      "options": [
+        "A descriptor or another hard link may refer to it",
+        "Inodes always contain every pathname",
+        "The kernel scans CPU registers",
+        "Names are unnecessary for every open"
+      ],
+      "answer": [
+        "A descriptor or another hard link may refer to it"
+      ],
+      "explanation": "An open descriptor can continue referencing an inode after rename/unlink, and other hard links may provide names. Inodes do not inherently store all names."
+    },
+    {
+      "id": "os-fs-058",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A directory is itself represented by an inode. What does its data commonly contain?",
+      "options": [
+        "Entries mapping names to inode identifiers",
+        "The entire contents of every child file",
+        "Only free data block addresses",
+        "CPU process states"
+      ],
+      "answer": [
+        "Entries mapping names to inode identifiers"
+      ],
+      "explanation": "Directory data stores name-to-inode mappings, while each child inode describes its own metadata and data locations."
+    },
+    {
+      "id": "os-fs-059",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file system?s block size increases. What tradeoff may occur?",
+      "options": [
+        "Fewer metadata pointers per byte of file data but more internal waste for small files",
+        "No change in fragmentation or metadata",
+        "Every file becomes smaller",
+        "Directory lookup becomes impossible"
+      ],
+      "answer": [
+        "Fewer metadata pointers per byte of file data but more internal waste for small files"
+      ],
+      "explanation": "Larger blocks can reduce pointer/metadata overhead for large files but increase unused space in partially filled final blocks, especially for small files."
+    },
+    {
+      "id": "os-fs-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A file is extended by one block under linked allocation. What is typically required?",
+      "options": [
+        "Allocate a free block and link it from the previous last block",
+        "Find an adjacent block necessarily",
+        "Rewrite every block pointer in the file",
+        "Move the inode to the disk end"
+      ],
+      "answer": [
+        "Allocate a free block and link it from the previous last block"
+      ],
+      "explanation": "Linked allocation can append a block anywhere in the free space and update the prior tail pointer, without requiring adjacency."
+    },
+    {
+      "id": "os-fs-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A file has 13 data blocks of 2 KiB each. What is the data size in KiB?",
+      "answer": "26",
+      "explanation": "Thirteen blocks at 2 KiB each provide 13?2=26 KiB."
+    },
+    {
+      "id": "os-fs-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 17 KiB file uses 4 KiB blocks. How many blocks are allocated?",
+      "answer": "5",
+      "explanation": "It needs ceil(17/4)=5 blocks. This follows directly from the block or inode arithmetic specified in the question."
+    },
+    {
+      "id": "os-fs-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 17 KiB file occupies 5 blocks of 4 KiB. What is internal fragmentation in KiB?",
+      "answer": "3",
+      "explanation": "Allocated capacity is 20 KiB, so unused final-block space is 20?17=3 KiB."
+    },
+    {
+      "id": "os-fs-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An index block is 4096 bytes and pointers are 4 bytes. How many data-block pointers fit?",
+      "answer": "1024",
+      "explanation": "4096/4=1024 pointers fit in the index block."
+    },
+    {
+      "id": "os-fs-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A bitmap tracks 2^20 disk blocks with one bit per block. How many bytes does it require?",
+      "answer": "131072",
+      "explanation": "2^20 bits divided by 8 equals 2^17 bytes, or 131,072 bytes."
+    },
+    {
+      "id": "os-fs-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A file has 15 hard links. One is removed. What is the remaining link count?",
+      "answer": "14",
+      "explanation": "Removing one hard-link directory entry decrements the link count from 15 to 14."
+    },
+    {
+      "id": "os-fs-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 100 MiB file is stored in 4 KiB blocks. How many data blocks are required?",
+      "answer": "25600",
+      "explanation": "100 MiB equals 102,400 KiB. Dividing by 4 KiB per block gives 25,600 blocks."
+    },
+    {
+      "id": "os-fs-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A file has size 5000 bytes and block size 4096. How many blocks does it occupy?",
+      "answer": "2",
+      "explanation": "The first block holds 4096 bytes and the remainder requires a second block."
+    },
+    {
+      "id": "os-fs-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 5000-byte file occupies two 4096-byte blocks. How many bytes of final-block space are unused?",
+      "answer": "3192",
+      "explanation": "Allocated capacity is 8192 bytes. Unused space is 8192?5000=3192 bytes."
+    },
+    {
+      "id": "os-fs-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A directory has 40 entries and a linear scan examines all of them for an absent name. How many entries are checked?",
+      "answer": "40",
+      "explanation": "An unsuccessful linear search must inspect all 40 entries."
+    },
+    {
+      "id": "os-fs-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A file?s current offset is 250. A write successfully writes 75 bytes. What is the new offset?",
+      "answer": "325",
+      "explanation": "A successful sequential write advances the shared open-file offset by 75: 250+75=325."
+    },
+    {
+      "id": "os-fs-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A file has 8 direct pointers and one indirect block holding 100 data pointers. How many data blocks are addressable?",
+      "answer": "108",
+      "explanation": "Eight direct blocks plus 100 indirectly addressed blocks total 108 data blocks."
+    },
+    {
+      "id": "os-fs-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "If each block is 8 KiB, what is the data capacity of 108 blocks in KiB?",
+      "answer": "864",
+      "explanation": "108?8=864 KiB of data can be addressed. This follows directly from the block or inode arithmetic specified in the question."
+    },
+    {
+      "id": "os-fs-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A free-space bitmap has 8000 bits. How many disk blocks does it track?",
+      "answer": "8000",
+      "explanation": "One bitmap bit represents one block, so it tracks 8000 blocks."
+    },
+    {
+      "id": "os-fs-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A file system has 16,384 blocks of 4 KiB each. What is its capacity in MiB?",
+      "answer": "64",
+      "explanation": "16,384?4 KiB=65,536 KiB=64 MiB. This follows directly from the block or inode arithmetic specified in the question."
+    },
+    {
+      "id": "os-fs-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which metadata is commonly stored in an inode?",
+      "options": [
+        "File size",
+        "Owner and permissions",
+        "Timestamps",
+        "Every pathname that refers to it"
+      ],
+      "answer": [
+        "File size",
+        "Owner and permissions",
+        "Timestamps"
+      ],
+      "explanation": "Inodes store file metadata such as size, ownership, permissions, and times. Directory entries store names that reference inode numbers."
+    },
+    {
+      "id": "os-fs-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about hard links are correct?",
+      "options": [
+        "They refer to the same inode",
+        "Removing one name need not delete data if another link remains",
+        "They generally cannot cross file systems",
+        "They store a pathname to the target"
+      ],
+      "answer": [
+        "They refer to the same inode",
+        "Removing one name need not delete data if another link remains",
+        "They generally cannot cross file systems"
+      ],
+      "explanation": "Hard links are additional names for one inode and affect link count. A pathname reference describes a symlink, not a hard link."
+    },
+    {
+      "id": "os-fs-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about symbolic links are correct?",
+      "options": [
+        "They store a path string",
+        "They can become dangling if the target is removed",
+        "They can generally cross file systems",
+        "They necessarily share the target inode"
+      ],
+      "answer": [
+        "They store a path string",
+        "They can become dangling if the target is removed",
+        "They can generally cross file systems"
+      ],
+      "explanation": "A symlink stores a pathname and may point across file systems. If the target disappears, the path becomes dangling; it has its own inode."
+    },
+    {
+      "id": "os-fs-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are characteristics of contiguous file allocation?",
+      "options": [
+        "Efficient sequential access",
+        "Efficient direct access",
+        "Growth can require relocation or new extents",
+        "No external fragmentation"
+      ],
+      "answer": [
+        "Efficient sequential access",
+        "Efficient direct access",
+        "Growth can require relocation or new extents"
+      ],
+      "explanation": "Contiguous layout makes sequential and random access efficient, but expansion and external fragmentation are concerns."
+    },
+    {
+      "id": "os-fs-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are characteristics of linked allocation?",
+      "options": [
+        "Easy sequential traversal",
+        "No need for contiguous free space",
+        "Poor random access without extra indexing",
+        "Each block must store a next pointer or equivalent"
+      ],
+      "answer": [
+        "Easy sequential traversal",
+        "No need for contiguous free space",
+        "Poor random access without extra indexing",
+        "Each block must store a next pointer or equivalent"
+      ],
+      "explanation": "Blocks can be anywhere and chained for sequential use, but traversal is needed for random access. Links or metadata connect blocks."
+    },
+    {
+      "id": "os-fs-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are advantages of indexed allocation?",
+      "options": [
+        "Supports direct access to file blocks",
+        "Data blocks need not be contiguous",
+        "An index block adds overhead",
+        "It requires all file blocks to be adjacent"
+      ],
+      "answer": [
+        "Supports direct access to file blocks",
+        "Data blocks need not be contiguous",
+        "An index block adds overhead"
+      ],
+      "explanation": "The index maps logical blocks to arbitrary physical blocks and permits direct access, at the cost of index metadata."
+    },
+    {
+      "id": "os-fs-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about file descriptors and open-file descriptions are correct?",
+      "options": [
+        "A descriptor is a process-level handle",
+        "Duplicated descriptors can share an offset",
+        "Independent opens commonly have separate offsets",
+        "The inode is the descriptor number"
+      ],
+      "answer": [
+        "A descriptor is a process-level handle",
+        "Duplicated descriptors can share an offset",
+        "Independent opens commonly have separate offsets"
+      ],
+      "explanation": "Descriptors refer to open-file descriptions. Duplication shares the underlying offset; separate open calls usually create independent open descriptions."
+    },
+    {
+      "id": "os-fs-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which operations can change the file offset?",
+      "options": [
+        "read",
+        "write",
+        "lseek",
+        "rename"
+      ],
+      "answer": [
+        "read",
+        "write",
+        "lseek"
+      ],
+      "explanation": "Sequential reads and writes advance the open-file offset; lseek changes it explicitly. Renaming a path does not move an open offset."
+    },
+    {
+      "id": "os-fs-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about sparse files are correct?",
+      "options": [
+        "A hole can read as zero bytes",
+        "A hole may consume no data blocks",
+        "Seeking past EOF and writing can create a hole",
+        "Every zero-valued range must occupy disk blocks"
+      ],
+      "answer": [
+        "A hole can read as zero bytes",
+        "A hole may consume no data blocks",
+        "Seeking past EOF and writing can create a hole"
+      ],
+      "explanation": "Sparse holes are logically zero-filled but may have no allocated blocks. Writing beyond EOF can create such a hole."
+    },
+    {
+      "id": "os-fs-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which structures may record free space?",
+      "options": [
+        "Bitmap",
+        "Linked free list",
+        "Grouping or counting structures",
+        "Process control block"
+      ],
+      "answer": [
+        "Bitmap",
+        "Linked free list",
+        "Grouping or counting structures"
+      ],
+      "explanation": "File systems use bitmaps, linked lists, grouping, or counts to track free blocks. PCBs track process execution state."
+    },
+    {
+      "id": "os-fs-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about journaling are correct?",
+      "options": [
+        "It can improve metadata crash consistency",
+        "Committed records can be replayed after a crash",
+        "It eliminates all possible data loss",
+        "It records transactions before or alongside home updates"
+      ],
+      "answer": [
+        "It can improve metadata crash consistency",
+        "Committed records can be replayed after a crash",
+        "It records transactions before or alongside home updates"
+      ],
+      "explanation": "Journaling supports recovery of filesystem updates, especially metadata. It does not necessarily journal all user data or eliminate every loss scenario."
+    },
+    {
+      "id": "os-fs-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about mounting are correct?",
+      "options": [
+        "It attaches a file system into a namespace at a mount point",
+        "The mounted root can obscure underlying directory entries",
+        "It copies the whole file system into the mount directory",
+        "It allows pathname traversal into the mounted system"
+      ],
+      "answer": [
+        "It attaches a file system into a namespace at a mount point",
+        "The mounted root can obscure underlying directory entries",
+        "It allows pathname traversal into the mounted system"
+      ],
+      "explanation": "Mounting joins namespaces at a directory. The underlying contents are hidden while mounted, not copied or deleted."
+    },
+    {
+      "id": "os-fs-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about directories are correct?",
+      "options": [
+        "A directory maps names to file identifiers",
+        "A directory can contain subdirectories",
+        "An absolute path begins at root",
+        "A relative path always begins at root"
+      ],
+      "answer": [
+        "A directory maps names to file identifiers",
+        "A directory can contain subdirectories",
+        "An absolute path begins at root"
+      ],
+      "explanation": "Directories map names to files and may form a hierarchy. Relative paths start at the current working directory."
+    },
+    {
+      "id": "os-fs-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which permissions are commonly associated with a file inode?",
+      "options": [
+        "Read",
+        "Write",
+        "Execute",
+        "CPU scheduling priority"
+      ],
+      "answer": [
+        "Read",
+        "Write",
+        "Execute"
+      ],
+      "explanation": "Read, write, and execute permissions control file access. Scheduling priority is process metadata."
+    },
+    {
+      "id": "os-fs-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about unlinking an open file are correct?",
+      "options": [
+        "The name is removed from its directory",
+        "Existing open descriptors can remain usable",
+        "Storage can be reclaimed after final references close",
+        "The process is forced to close immediately"
+      ],
+      "answer": [
+        "The name is removed from its directory",
+        "Existing open descriptors can remain usable",
+        "Storage can be reclaimed after final references close"
+      ],
+      "explanation": "Unlink removes a name. Existing open handles remain valid, and storage reclamation waits until no links or open references remain."
+    },
+    {
+      "id": "os-fs-091",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk block is 8 KiB and a file size is 33 KiB. How many blocks are allocated?",
+      "options": [
+        "5",
+        "4",
+        "8",
+        "33"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "Four blocks hold 32 KiB; a fifth is needed for the remaining 1 KiB."
+    },
+    {
+      "id": "os-fs-092",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file has 10 data blocks of 4 KiB and 2 indirect index blocks of 4 KiB each. Ignoring other metadata, how many KiB are allocated?",
+      "options": [
+        "48",
+        "40",
+        "8",
+        "50"
+      ],
+      "answer": [
+        "48"
+      ],
+      "explanation": "Data uses 10?4=40 KiB and index blocks use 2?4=8 KiB, totaling 48 KiB."
+    },
+    {
+      "id": "os-fs-093",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file system has 4096 blocks of 1 KiB. What is total capacity in MiB?",
+      "options": [
+        "4",
+        "1",
+        "2",
+        "8"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "4096?1 KiB=4096 KiB=4 MiB. The conversion uses 1024 KiB per MiB."
+    },
+    {
+      "id": "os-fs-094",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A directory contains 25 entries. A linear successful lookup finds the name at the last position. How many entries are examined?",
+      "options": [
+        "25",
+        "1",
+        "12",
+        "24"
+      ],
+      "answer": [
+        "25"
+      ],
+      "explanation": "In a linear search, the last-position match requires checking all 25 entries."
+    },
+    {
+      "id": "os-fs-095",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A file has 3 hard links, then one is removed. How many links remain?",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "0"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "Removing one of three directory links reduces the link count to two."
+    },
+    {
+      "id": "os-fs-096",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "How many 8 KiB allocation units are required to store a 33 KiB file?",
+      "answer": "5",
+      "explanation": "Four 8 KiB units hold only 32 KiB; a fifth block is required for the remaining 1 KiB."
+    },
+    {
+      "id": "os-fs-097",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 33 KiB file occupies 5 blocks of 8 KiB. How much internal fragmentation in KiB?",
+      "answer": "7",
+      "explanation": "Allocated capacity is 40 KiB. The final block has 40?33=7 KiB unused."
+    },
+    {
+      "id": "os-fs-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A bitmap tracks 65,536 blocks using one bit per block. How many bytes does it use?",
+      "answer": "8192",
+      "explanation": "65,536 bits divided by eight equals 8,192 bytes."
+    },
+    {
+      "id": "os-fs-099",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A file offset is 500. A read returns 120 bytes. What is the new offset?",
+      "answer": "620",
+      "explanation": "A successful sequential read advances offset by the number of bytes read: 500+120=620."
+    },
+    {
+      "id": "os-fs-100",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 2 KiB index block stores 8-byte pointers. How many pointers fit?",
+      "answer": "256",
+      "explanation": "2048 bytes divided by 8 bytes per pointer equals 256."
+    }
+  ]
+}

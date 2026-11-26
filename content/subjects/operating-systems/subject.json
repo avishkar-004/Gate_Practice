@@ -1,0 +1,7 @@
+{
+  "id": "operating-systems",
+  "title": "Operating Systems",
+  "short": "OPERATING SYSTEMS",
+  "description": "Processes, concurrency, scheduling, memory, virtual memory and file systems",
+  "order": 50
+}

@@ -1,0 +1,1525 @@
+{
+  "topicIndex": 3,
+  "questions": [
+    {
+      "id": "os-ipc-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two unrelated processes need to exchange a large volume of data repeatedly on one machine. Which IPC method often has the lowest per-message copying overhead after setup?",
+      "options": [
+        "shared memory",
+        "ordinary signal delivery",
+        "a process exit status",
+        "a named semaphore alone"
+      ],
+      "answer": [
+        "shared memory"
+      ],
+      "explanation": "Shared memory lets both processes access a common mapped region, avoiding repeated kernel-mediated copying of the payload. Synchronization is still required."
+    },
+    {
+      "id": "os-ipc-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Processes use shared memory for a producer-consumer buffer. What additional mechanism is needed to coordinate safe access?",
+      "options": [
+        "Synchronization such as semaphores or mutexes",
+        "A separate copy of the buffer per process",
+        "A new PID for each item",
+        "A CPU scheduling priority only"
+      ],
+      "answer": [
+        "Synchronization such as semaphores or mutexes"
+      ],
+      "explanation": "Shared memory provides common bytes but does not serialize conflicting accesses. Locks, semaphores, or another protocol must coordinate producers and consumers."
+    },
+    {
+      "id": "os-ipc-003",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An anonymous pipe is created before fork. Which processes can typically access it?",
+      "options": [
+        "The parent and its descendants that inherit its descriptors",
+        "Any process on the network",
+        "Only unrelated processes that know its name",
+        "Only the kernel"
+      ],
+      "answer": [
+        "The parent and its descendants that inherit its descriptors"
+      ],
+      "explanation": "An anonymous pipe is accessed through file descriptors. Forked descendants inherit descriptor references, whereas unrelated processes typically need another mechanism."
+    },
+    {
+      "id": "os-ipc-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A pipe has no data, but its write end remains open. What does a blocking read normally do?",
+      "options": [
+        "Wait until data arrives or all writers close",
+        "Return end-of-file immediately",
+        "Write a zero byte",
+        "Terminate the reader"
+      ],
+      "answer": [
+        "Wait until data arrives or all writers close"
+      ],
+      "explanation": "An empty pipe is not at EOF while a writer remains open. A blocking read waits for data; EOF is reported only after all write ends close."
+    },
+    {
+      "id": "os-ipc-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipe is empty and every write descriptor referring to it is closed. What does a read return?",
+      "options": [
+        "End-of-file",
+        "It blocks forever",
+        "A fabricated zero byte",
+        "An error indicating the reader is a zombie"
+      ],
+      "answer": [
+        "End-of-file"
+      ],
+      "explanation": "Once the buffer is empty and no writers remain, the reader observes EOF. The read does not wait for a writer that can no longer exist."
+    },
+    {
+      "id": "os-ipc-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process writes to a pipe after all read descriptors have closed. What is the usual consequence?",
+      "options": [
+        "A broken-pipe error or signal",
+        "The data is stored indefinitely",
+        "A new reader is created",
+        "The write succeeds and creates a FIFO"
+      ],
+      "answer": [
+        "A broken-pipe error or signal"
+      ],
+      "explanation": "With no readers, the write cannot be delivered; Unix-like systems typically report EPIPE and may send SIGPIPE."
+    },
+    {
+      "id": "os-ipc-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A parent intends to send data to its child through a pipe. Which end should the parent close after setting up the child?s descriptors if it will only write?",
+      "options": [
+        "The read end",
+        "The write end",
+        "Both ends",
+        "Neither end under any circumstance"
+      ],
+      "answer": [
+        "The read end"
+      ],
+      "explanation": "Closing unused ends is essential: the parent keeps the write end, while closing its read end prevents accidental reads and helps EOF detection in the child."
+    },
+    {
+      "id": "os-ipc-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A pipe has capacity 64 KiB and currently contains 60 KiB. A writer attempts a blocking write of 8 KiB. What is generally possible?",
+      "options": [
+        "The write may block until enough space becomes available",
+        "The entire write must always succeed immediately",
+        "The pipe discards its oldest 4 KiB",
+        "The reader is terminated"
+      ],
+      "answer": [
+        "The write may block until enough space becomes available"
+      ],
+      "explanation": "Only 4 KiB of space remains. A blocking writer may wait for a reader to consume data; atomicity and partial-write behavior depend on size and API guarantees."
+    },
+    {
+      "id": "os-ipc-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two processes need a persistent named byte stream accessible through the filesystem namespace. Which mechanism fits?",
+      "options": [
+        "FIFO (named pipe)",
+        "anonymous pipe only",
+        "exit status",
+        "shared stack"
+      ],
+      "answer": [
+        "FIFO (named pipe)"
+      ],
+      "explanation": "A FIFO has a filesystem name and can connect processes that did not inherit a common anonymous pipe descriptor. It provides stream semantics."
+    },
+    {
+      "id": "os-ipc-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A message queue stores two messages of different lengths. Which property distinguishes it from a byte-stream pipe?",
+      "options": [
+        "Message boundaries can be preserved",
+        "It can only transmit one byte",
+        "It requires the sender and receiver to run simultaneously",
+        "It is always shared memory"
+      ],
+      "answer": [
+        "Message boundaries can be preserved"
+      ],
+      "explanation": "Message queues retain discrete messages, while a pipe exposes an ordered byte stream without inherent message boundaries."
+    },
+    {
+      "id": "os-ipc-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A receiver requests messages of type 5 from a message queue containing types 2, 5, and 8. What can the queue provide?",
+      "options": [
+        "A message matching the requested type",
+        "Only the oldest message regardless of type",
+        "A direct pointer into the sender?s stack",
+        "A copy of the receiver process"
+      ],
+      "answer": [
+        "A message matching the requested type"
+      ],
+      "explanation": "Typed selection is a common message-queue feature, allowing a receiver to retrieve a chosen class of message rather than strictly the oldest."
+    },
+    {
+      "id": "os-ipc-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process sends a signal to another process. Which is the most accurate description?",
+      "options": [
+        "A limited asynchronous notification, generally not a bulk-data channel",
+        "A reliable arbitrary-length message stream",
+        "A shared memory mapping",
+        "A process creation operation"
+      ],
+      "answer": [
+        "A limited asynchronous notification, generally not a bulk-data channel"
+      ],
+      "explanation": "Signals notify a process of events and carry limited information. They are generally unsuitable for transferring large structured payloads."
+    },
+    {
+      "id": "os-ipc-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A shared-memory segment is mapped at different virtual addresses in two processes. Can both processes still access the same underlying bytes?",
+      "options": [
+        "Yes, virtual addresses can differ while mappings refer to the same shared pages",
+        "No, shared memory requires identical virtual addresses",
+        "Only if the processes have the same PID",
+        "Only after one process exits"
+      ],
+      "answer": [
+        "Yes, virtual addresses can differ while mappings refer to the same shared pages"
+      ],
+      "explanation": "Shared mappings can map the same physical pages at distinct virtual addresses. Processes use their own pointers to access the common storage."
+    },
+    {
+      "id": "os-ipc-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process stores a raw pointer in shared memory for another process to use. Why can this be unsafe?",
+      "options": [
+        "The pointer may not be valid at the other process?s mapping address",
+        "Pointers are prohibited in shared memory",
+        "The shared pages become read-only",
+        "The other process receives a different physical disk"
+      ],
+      "answer": [
+        "The pointer may not be valid at the other process?s mapping address"
+      ],
+      "explanation": "A virtual pointer is meaningful in one process?s address space. If the segment is mapped elsewhere in another process, the stored address may refer to unrelated memory."
+    },
+    {
+      "id": "os-ipc-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which IPC endpoint is commonly used for communication between processes on different machines?",
+      "options": [
+        "socket",
+        "anonymous pipe",
+        "process exit status",
+        "local mutex only"
+      ],
+      "answer": [
+        "socket"
+      ],
+      "explanation": "Sockets provide communication endpoints that can use local or network protocols. Anonymous pipes and ordinary exit statuses are not general network channels."
+    },
+    {
+      "id": "os-ipc-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A TCP socket provides a byte stream. What must an application do to distinguish two logical messages sent consecutively?",
+      "options": [
+        "Define framing, such as length prefixes or delimiters",
+        "Assume each send maps to one receive",
+        "Use a new process for every byte",
+        "Rely on TCP packet boundaries"
+      ],
+      "answer": [
+        "Define framing, such as length prefixes or delimiters"
+      ],
+      "explanation": "TCP preserves byte order but not application message boundaries. The application needs an explicit framing protocol to split the stream."
+    },
+    {
+      "id": "os-ipc-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A datagram socket transmits two datagrams of lengths 20 and 40 bytes. Which property is generally preserved at the receiving interface?",
+      "options": [
+        "The datagrams remain separate messages",
+        "They are concatenated into an unmarked byte stream",
+        "Their order is always guaranteed by every datagram protocol",
+        "They share one process stack"
+      ],
+      "answer": [
+        "The datagrams remain separate messages"
+      ],
+      "explanation": "Datagram APIs preserve message boundaries, unlike byte streams. Delivery and ordering depend on the protocol; UDP does not guarantee either."
+    },
+    {
+      "id": "os-ipc-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process pair communicates using shared memory. Which statement about data transfer is correct?",
+      "options": [
+        "Both processes can read and write the same mapped region",
+        "The kernel copies every load and store between them",
+        "Only the creator can access the region",
+        "The shared region has no address in either process"
+      ],
+      "answer": [
+        "Both processes can read and write the same mapped region"
+      ],
+      "explanation": "Each process maps the shared region into its address space and accesses it directly. The kernel establishes mappings but need not mediate each memory access."
+    },
+    {
+      "id": "os-ipc-019",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A producer and consumer share a ring buffer of capacity N. The producer increments a shared head index without synchronization while the consumer reads it. What is the principal issue?",
+      "options": [
+        "A data race can corrupt the protocol state",
+        "The pipe becomes full",
+        "The consumer?s PID changes",
+        "The buffer automatically serializes operations"
+      ],
+      "answer": [
+        "A data race can corrupt the protocol state"
+      ],
+      "explanation": "The head index is shared mutable state. Unsynchronized concurrent reads and writes can violate the ring-buffer invariants and lead to lost or inconsistent items."
+    },
+    {
+      "id": "os-ipc-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A message queue is full and the sender performs a blocking send. What happens?",
+      "options": [
+        "The sender may block until queue capacity is available",
+        "The oldest message is always overwritten",
+        "The queue grows without bound by definition",
+        "The receiver is terminated"
+      ],
+      "answer": [
+        "The sender may block until queue capacity is available"
+      ],
+      "explanation": "A bounded queue cannot accept more data when full. A blocking send waits for space; nonblocking APIs can instead report that the queue is full."
+    },
+    {
+      "id": "os-ipc-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A receiver blocks waiting on an empty message queue. A sender places a message in it. Which state transition is typical for the receiver?",
+      "options": [
+        "blocked to ready",
+        "running to terminated",
+        "ready to blocked",
+        "new to zombie"
+      ],
+      "answer": [
+        "blocked to ready"
+      ],
+      "explanation": "Arrival of a matching message satisfies the receiver?s wait condition and makes it ready. It still needs CPU dispatch to run."
+    },
+    {
+      "id": "os-ipc-022",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process sends an integer through a pipe by writing its in-memory representation. What portability issue can arise if the receiver uses a different architecture?",
+      "options": [
+        "Endianness and representation may differ",
+        "Pipes cannot carry integers",
+        "The process IDs must match",
+        "The pipe converts the integer to text automatically"
+      ],
+      "answer": [
+        "Endianness and representation may differ"
+      ],
+      "explanation": "A pipe transmits bytes without interpreting them. Different byte order, integer width, or representation can produce a different value at the receiver."
+    },
+    {
+      "id": "os-ipc-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two processes need a local request-response channel with bidirectional communication. Which is a common choice?",
+      "options": [
+        "Unix-domain socket",
+        "one-way anonymous pipe only",
+        "exit code",
+        "condition variable alone"
+      ],
+      "answer": [
+        "Unix-domain socket"
+      ],
+      "explanation": "A Unix-domain socket provides local bidirectional communication and supports request-response designs. A single ordinary pipe is unidirectional."
+    },
+    {
+      "id": "os-ipc-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has duplicated descriptors for both ends of a pipe but never closes its own write end. Its child reads until EOF. What can happen?",
+      "options": [
+        "The child may never see EOF after draining data",
+        "The child immediately gets EOF",
+        "The pipe changes into a message queue",
+        "The parent becomes a zombie"
+      ],
+      "answer": [
+        "The child may never see EOF after draining data"
+      ],
+      "explanation": "EOF requires every write reference to close. The parent?s lingering write descriptor keeps the pipe logically open even after the child drains it."
+    },
+    {
+      "id": "os-ipc-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A pipe write of size no larger than the platform?s PIPE_BUF is issued by each of two writers. What guarantee is commonly provided?",
+      "options": [
+        "Each write is not interleaved with bytes from the other such write",
+        "The writes are always received in creation order",
+        "The pipe becomes bidirectional",
+        "Each reader gets a separate copy automatically"
+      ],
+      "answer": [
+        "Each write is not interleaved with bytes from the other such write"
+      ],
+      "explanation": "POSIX atomicity for writes up to PIPE_BUF prevents interleaving of bytes from concurrent such writes. It does not generally guarantee which writer goes first."
+    },
+    {
+      "id": "os-ipc-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A pipe carries output from command A to command B. Which descriptor arrangement is needed for B to receive A?s output?",
+      "options": [
+        "A?s write end connected to B?s read end",
+        "Both processes write to the same end",
+        "A?s read end connected to B?s write end",
+        "B?s standard input connected to its own write end"
+      ],
+      "answer": [
+        "A?s write end connected to B?s read end"
+      ],
+      "explanation": "A pipeline connects the producer?s output descriptor to the pipe write end and the consumer?s input to the read end."
+    },
+    {
+      "id": "os-ipc-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A shared-memory producer writes a payload and then sets a ready flag without memory ordering. What may a consumer observe on a weakly ordered system?",
+      "options": [
+        "The ready flag before the payload becomes visible",
+        "The producer?s PID instead of the flag",
+        "A guaranteed consistent payload order",
+        "Automatic locking by the MMU"
+      ],
+      "answer": [
+        "The ready flag before the payload becomes visible"
+      ],
+      "explanation": "Without synchronization or ordering, stores may become visible in a different order. The consumer could observe readiness before all payload writes are visible."
+    },
+    {
+      "id": "os-ipc-028",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A program uses a semaphore to indicate that shared-memory data is ready. Which ordering is normally needed?",
+      "options": [
+        "Write data before signaling; wait before reading",
+        "Signal before writing; read before waiting",
+        "No ordering, because shared memory is atomic",
+        "Close the shared-memory descriptor before each read"
+      ],
+      "answer": [
+        "Write data before signaling; wait before reading"
+      ],
+      "explanation": "The producer must publish the payload before signaling. The consumer waits for the signal before reading, with the semaphore providing synchronization ordering."
+    },
+    {
+      "id": "os-ipc-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process sends a signal while the receiver has that signal blocked. What is generally true?",
+      "options": [
+        "The signal may remain pending until unblocked",
+        "The receiver must terminate immediately",
+        "The signal becomes a shared-memory message",
+        "The sender blocks until handled"
+      ],
+      "answer": [
+        "The signal may remain pending until unblocked"
+      ],
+      "explanation": "A blocked signal is typically marked pending and delivered when unblocked, subject to signal semantics. Blocking it does not itself force termination."
+    },
+    {
+      "id": "os-ipc-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A socket server calls accept on a listening stream socket. What does accept typically return?",
+      "options": [
+        "A new connected socket for one client",
+        "The server?s PID",
+        "The same listening socket after deletion",
+        "A shared-memory pointer"
+      ],
+      "answer": [
+        "A new connected socket for one client"
+      ],
+      "explanation": "Accept creates or returns a separate connected endpoint for a client, while the listening socket remains available for further connection requests."
+    },
+    {
+      "id": "os-ipc-031",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A producer sends one 9000-byte message over a stream socket. The receiver reads 3000 bytes per call. How many reads are minimally needed to obtain all bytes if every read returns the requested amount?",
+      "options": [
+        "3",
+        "1",
+        "2",
+        "9"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "The byte stream contains 9000 bytes, and each read obtains 3000. Thus 9000 / 3000 = 3 reads are required."
+    },
+    {
+      "id": "os-ipc-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sender writes 100 bytes to a TCP connection in one call. Is the receiver guaranteed to get exactly one 100-byte read?",
+      "options": [
+        "No; TCP preserves bytes, not write-call boundaries",
+        "Yes, every write maps to one read",
+        "No; TCP may reorder the byte stream",
+        "Yes, if both processes use the same CPU"
+      ],
+      "answer": [
+        "No; TCP preserves bytes, not write-call boundaries"
+      ],
+      "explanation": "TCP provides an ordered byte stream. The receiver may get the bytes in several reads or combine data from multiple writes."
+    },
+    {
+      "id": "os-ipc-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A UDP datagram of 1200 bytes is sent. The receiving application provides a buffer of only 800 bytes. What may happen?",
+      "options": [
+        "The datagram may be truncated or discarded beyond the buffer",
+        "The remaining 400 bytes arrive as a second datagram",
+        "The sender automatically retries the remainder",
+        "The socket changes to TCP"
+      ],
+      "answer": [
+        "The datagram may be truncated or discarded beyond the buffer"
+      ],
+      "explanation": "Datagram receive APIs deliver one message at a time; an undersized buffer can truncate the datagram (or report truncation), not split it into another datagram."
+    },
+    {
+      "id": "os-ipc-034",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A message queue receiver asks for a message but no matching type is present. What may a blocking receive do?",
+      "options": [
+        "Wait until a matching message arrives",
+        "Return a fabricated message",
+        "Terminate the sender",
+        "Change all message types to the requested type"
+      ],
+      "answer": [
+        "Wait until a matching message arrives"
+      ],
+      "explanation": "A blocking receive waits for an eligible message. If the API supports typed selection, other queued types may remain untouched."
+    },
+    {
+      "id": "os-ipc-035",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A shared-memory segment is mapped read-only in one process and read-write in another. Which statement is true?",
+      "options": [
+        "The access permissions can differ by process mapping",
+        "The segment must become read-only everywhere",
+        "Neither process can write",
+        "The read-only mapping forces a copy at every read"
+      ],
+      "answer": [
+        "The access permissions can differ by process mapping"
+      ],
+      "explanation": "Mapping protections are applied per address space. One process can be restricted to reads while another retains write access to the shared pages."
+    },
+    {
+      "id": "os-ipc-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process unlinks a named shared-memory object while another process still has it mapped. What is generally true on Unix-like systems?",
+      "options": [
+        "Existing mappings can remain usable until unmapped",
+        "All existing mappings vanish immediately",
+        "The other process is terminated",
+        "The object is converted into a FIFO"
+      ],
+      "answer": [
+        "Existing mappings can remain usable until unmapped"
+      ],
+      "explanation": "Unlink removes the name, but active mappings or references can keep the underlying object alive until they are released."
+    },
+    {
+      "id": "os-ipc-037",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A named FIFO is opened for reading in blocking mode before any writer opens it. What commonly happens?",
+      "options": [
+        "The open blocks until a writer opens the FIFO",
+        "It returns EOF immediately",
+        "It creates a writer process",
+        "It fails because FIFOs are unidirectional"
+      ],
+      "answer": [
+        "The open blocks until a writer opens the FIFO"
+      ],
+      "explanation": "Blocking FIFO opens can wait for a corresponding endpoint. Exact details depend on flags, but the reader commonly blocks until a writer appears."
+    },
+    {
+      "id": "os-ipc-038",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A named FIFO is opened with nonblocking read and no writer exists. What is commonly returned when it is read empty?",
+      "options": [
+        "EOF",
+        "A permanently blocking result",
+        "A fabricated zero byte",
+        "The PID of the next writer"
+      ],
+      "answer": [
+        "EOF"
+      ],
+      "explanation": "With no writer and no buffered data, a FIFO read commonly returns EOF. Nonblocking behavior matters especially while writers exist but no data is available."
+    },
+    {
+      "id": "os-ipc-039",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A sender and receiver use a local socket pair created by socketpair. What is a common property?",
+      "options": [
+        "Two connected endpoints are returned directly",
+        "A network server must call accept",
+        "The endpoints cannot be bidirectional",
+        "The endpoints are process IDs"
+      ],
+      "answer": [
+        "Two connected endpoints are returned directly"
+      ],
+      "explanation": "Socketpair creates a pair of connected sockets, often for local interprocess communication without a separate bind/listen/accept sequence."
+    },
+    {
+      "id": "os-ipc-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process uses a pipe for two-way communication between parent and child. What is usually needed?",
+      "options": [
+        "Two pipes, one for each direction",
+        "One pipe with the same descriptor used for both directions",
+        "A condition variable only",
+        "A single exit status"
+      ],
+      "answer": [
+        "Two pipes, one for each direction"
+      ],
+      "explanation": "Ordinary pipes are unidirectional byte streams. Two directions are commonly implemented using a pair of pipes, one per direction."
+    },
+    {
+      "id": "os-ipc-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A message queue is used between processes on one host. How does the receiver commonly obtain message contents?",
+      "options": [
+        "The kernel copies a queued message into its receive buffer",
+        "The receiver gets the sender?s stack pointer",
+        "The queue remaps the sender?s address space automatically",
+        "The kernel changes the sender?s PID"
+      ],
+      "answer": [
+        "The kernel copies a queued message into its receive buffer"
+      ],
+      "explanation": "Kernel-managed message queues usually copy message bytes into the receiver?s supplied buffer, isolating each process?s address space."
+    },
+    {
+      "id": "os-ipc-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process writes to shared memory and then exits. What happens to the bytes?",
+      "options": [
+        "They remain in the shared region while that region exists",
+        "They are automatically erased at process exit in every case",
+        "They are copied into the parent?s stack",
+        "They are converted into a message queue"
+      ],
+      "answer": [
+        "They remain in the shared region while that region exists"
+      ],
+      "explanation": "Shared-memory lifetime is governed by the segment/object lifecycle and mappings, not automatically by one process?s exit in every API."
+    },
+    {
+      "id": "os-ipc-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A producer-consumer buffer has capacity N and uses an empty-slot semaphore initialized to N. What does empty count represent?",
+      "options": [
+        "The number of available buffer slots",
+        "The number of consumed items",
+        "The number of active processes",
+        "The number of bytes in each item"
+      ],
+      "answer": [
+        "The number of available buffer slots"
+      ],
+      "explanation": "The empty semaphore tracks free capacity. A producer waits on it before inserting and signals the full-item count afterward."
+    },
+    {
+      "id": "os-ipc-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a bounded buffer, the full-item semaphore is initialized to 0. What does this encode initially?",
+      "options": [
+        "There are no produced items available to consume",
+        "The buffer has zero capacity",
+        "Every slot is locked by a consumer",
+        "The producer has terminated"
+      ],
+      "answer": [
+        "There are no produced items available to consume"
+      ],
+      "explanation": "At startup, the buffer contains no items. A consumer waiting on full blocks until a producer inserts an item and signals."
+    },
+    {
+      "id": "os-ipc-045",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A bounded buffer uses a mutex, empty=N, and full=0. Which producer ordering avoids deadlock when the buffer is full?",
+      "options": [
+        "Wait(empty), lock(mutex), insert, unlock, signal(full)",
+        "Lock(mutex), wait(empty), insert, signal(full), unlock",
+        "Wait(full), insert, signal(empty)",
+        "Signal(empty), lock(mutex), wait(full)"
+      ],
+      "answer": [
+        "Wait(empty), lock(mutex), insert, unlock, signal(full)"
+      ],
+      "explanation": "The producer first waits for capacity before taking the mutex. Otherwise it could hold the mutex while waiting for a consumer that needs that mutex to free a slot."
+    },
+    {
+      "id": "os-ipc-046",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In a producer-consumer solution, a consumer locks the mutex and then blocks on full while the buffer is empty. What is the bug?",
+      "options": [
+        "It may prevent producers from acquiring the mutex to add data",
+        "It frees all empty slots",
+        "It makes the pipe bidirectional",
+        "It guarantees fairness"
+      ],
+      "answer": [
+        "It may prevent producers from acquiring the mutex to add data"
+      ],
+      "explanation": "The consumer holds the mutex while waiting for an item. A producer then cannot enter the critical section to create that item, causing deadlock."
+    },
+    {
+      "id": "os-ipc-047",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process reads from a pipe after one writer closes its descriptor, while another writer descriptor remains open elsewhere. Does the reader see EOF?",
+      "options": [
+        "No, not until all write descriptors are closed and buffered bytes are drained",
+        "Yes, as soon as any writer closes",
+        "Yes, regardless of buffered bytes",
+        "Only after the reader closes its own end"
+      ],
+      "answer": [
+        "No, not until all write descriptors are closed and buffered bytes are drained"
+      ],
+      "explanation": "EOF requires no remaining write references and no buffered data. Closing one of multiple writer descriptors is insufficient."
+    },
+    {
+      "id": "os-ipc-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process inherits a pipe write descriptor across exec because it was not marked close-on-exec. What practical problem can occur?",
+      "options": [
+        "The new program may unintentionally keep the pipe open and delay EOF",
+        "The pipe becomes a socket",
+        "The parent loses its PID",
+        "The descriptor becomes read-only"
+      ],
+      "answer": [
+        "The new program may unintentionally keep the pipe open and delay EOF"
+      ],
+      "explanation": "An inherited write end can keep the pipe?s writer count nonzero. A reader waiting for EOF may therefore block even though the intended writer has finished."
+    },
+    {
+      "id": "os-ipc-049",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A socket is in listening state but the server has not called accept. What can happen to incoming connection requests?",
+      "options": [
+        "They may wait in a pending connection queue",
+        "They are delivered as shared-memory pages",
+        "They execute server code automatically",
+        "They change into datagrams"
+      ],
+      "answer": [
+        "They may wait in a pending connection queue"
+      ],
+      "explanation": "The kernel can queue completed or pending connection requests up to configured limits. The server must call accept to obtain a connected socket."
+    },
+    {
+      "id": "os-ipc-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A client closes its TCP write side but continues reading. What protocol operation does this resemble?",
+      "options": [
+        "Half-close",
+        "Process fork",
+        "Shared-memory detach",
+        "Datagram fragmentation"
+      ],
+      "answer": [
+        "Half-close"
+      ],
+      "explanation": "A TCP half-close signals that the endpoint will send no more bytes while it may continue receiving data from the peer."
+    },
+    {
+      "id": "os-ipc-051",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process sends a signal to another process that is currently blocked in a system call. What may happen?",
+      "options": [
+        "The call may be interrupted or restarted depending on signal and API behavior",
+        "The blocked call always completes successfully",
+        "The process?s memory becomes shared",
+        "The signal becomes a pipe byte"
+      ],
+      "answer": [
+        "The call may be interrupted or restarted depending on signal and API behavior"
+      ],
+      "explanation": "Signal delivery can interrupt certain blocking calls; whether the call returns an interruption error or restarts depends on API flags and signal semantics."
+    },
+    {
+      "id": "os-ipc-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A sender uses a signal to notify a receiver that shared-memory data is ready. What must the receiver still do?",
+      "options": [
+        "Read and validate the shared data using proper synchronization",
+        "Assume the signal carries the entire data payload",
+        "Call wait to reap the sender",
+        "Create a second shared-memory segment"
+      ],
+      "answer": [
+        "Read and validate the shared data using proper synchronization"
+      ],
+      "explanation": "A signal is only a notification. The receiver must access shared memory and use appropriate synchronization to ensure visibility and consistency."
+    },
+    {
+      "id": "os-ipc-053",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system?s pipe capacity is 4096 bytes. A nonblocking writer attempts to write 6000 bytes while the pipe is empty. What is generally permitted?",
+      "options": [
+        "A partial write or a would-block result, depending on API guarantees",
+        "The pipe capacity silently becomes 6000",
+        "The write must terminate the process",
+        "The data is split into a message queue"
+      ],
+      "answer": [
+        "A partial write or a would-block result, depending on API guarantees"
+      ],
+      "explanation": "Nonblocking writes can complete partially or fail with would-block when the request cannot be accepted atomically. Exact behavior depends on size and system guarantees."
+    },
+    {
+      "id": "os-ipc-054",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A message queue contains messages in order A, B, C. A receiver requests the first message of a particular type that is B?s type. What can happen?",
+      "options": [
+        "B can be selected while A remains queued",
+        "A must be removed first in all queue APIs",
+        "All messages are returned together",
+        "The queue is sorted by sender PID"
+      ],
+      "answer": [
+        "B can be selected while A remains queued"
+      ],
+      "explanation": "Typed message queue APIs can select a matching message even if an earlier nonmatching message remains in the queue."
+    },
+    {
+      "id": "os-ipc-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A shared-memory protocol uses a single Boolean ready flag and allows the producer to overwrite data before the consumer reads it. What failure is possible?",
+      "options": [
+        "The consumer can miss or read overwritten data",
+        "The flag becomes a process ID",
+        "The mapping automatically locks itself",
+        "The consumer receives a duplicate PID"
+      ],
+      "answer": [
+        "The consumer can miss or read overwritten data"
+      ],
+      "explanation": "A Boolean does not count how many items are pending. The producer can overwrite an unread item or collapse multiple events; a queue or sequence/count protocol is needed."
+    },
+    {
+      "id": "os-ipc-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two processes map the same shared memory but use different structure layouts due to version mismatch. What is a likely problem?",
+      "options": [
+        "They interpret the same bytes inconsistently",
+        "The OS remaps one process to a different PID",
+        "The memory becomes a pipe",
+        "All reads are automatically byte-swapped"
+      ],
+      "answer": [
+        "They interpret the same bytes inconsistently"
+      ],
+      "explanation": "Shared bytes have no inherent schema. Different offsets, sizes, or versions can cause each process to interpret the same data differently."
+    },
+    {
+      "id": "os-ipc-057",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process wants reliable ordered byte delivery across hosts. Which transport is the usual fit?",
+      "options": [
+        "TCP stream socket",
+        "UDP datagram socket",
+        "signal",
+        "anonymous pipe"
+      ],
+      "answer": [
+        "TCP stream socket"
+      ],
+      "explanation": "TCP provides a reliable ordered byte stream between network endpoints. UDP datagrams do not guarantee delivery or order."
+    },
+    {
+      "id": "os-ipc-058",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process wants message boundaries and tolerates loss or reordering over a network. Which transport may fit?",
+      "options": [
+        "UDP datagram socket",
+        "TCP stream socket",
+        "anonymous pipe",
+        "shared memory"
+      ],
+      "answer": [
+        "UDP datagram socket"
+      ],
+      "explanation": "UDP preserves datagram boundaries at the API but does not guarantee reliable delivery or ordering, matching the stated tolerance."
+    },
+    {
+      "id": "os-ipc-059",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A receiver reads a 10-byte pipe write in two calls of 4 and 6 bytes. What does the receiver observe?",
+      "options": [
+        "A 10-byte stream that can be consumed across multiple reads",
+        "Two preserved messages of lengths 4 and 6",
+        "A single read is guaranteed",
+        "The pipe reports EOF after 4 bytes"
+      ],
+      "answer": [
+        "A 10-byte stream that can be consumed across multiple reads"
+      ],
+      "explanation": "Pipes are byte streams. A write boundary does not force the reader to receive that data in one read call."
+    },
+    {
+      "id": "os-ipc-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A producer has written data into shared memory but crashes before signaling the consumer. What is a concern?",
+      "options": [
+        "The consumer may wait indefinitely despite data being present",
+        "The OS signals automatically in every protocol",
+        "The shared segment becomes a socket",
+        "The consumer sees an exit status as payload"
+      ],
+      "answer": [
+        "The consumer may wait indefinitely despite data being present"
+      ],
+      "explanation": "Data publication and notification are separate steps. If the producer fails between them, the consumer may wait unless the protocol includes recovery or timeouts."
+    },
+    {
+      "id": "os-ipc-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A pipe contains 120 bytes. A reader consumes 45 bytes. How many bytes remain buffered?",
+      "answer": "75",
+      "explanation": "A pipe is a byte stream. Consuming 45 of 120 leaves 120 ? 45 = 75 bytes."
+    },
+    {
+      "id": "os-ipc-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 10,000-byte stream is received in reads of at most 2,500 bytes. Assuming each read returns the maximum available amount, how many reads are needed?",
+      "answer": "4",
+      "explanation": "The bytes are divided into 10,000 / 2,500 = 4 chunks, so four reads retrieve the entire stream."
+    },
+    {
+      "id": "os-ipc-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A bounded buffer has capacity 12 and currently contains 9 items. How many empty-slot permits should be available?",
+      "answer": "3",
+      "explanation": "Free capacity is total capacity minus occupied slots: 12 ? 9 = 3 permits."
+    },
+    {
+      "id": "os-ipc-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A bounded buffer has capacity 15 and contains 4 items. What is the full-item semaphore count?",
+      "answer": "4",
+      "explanation": "The full count tracks available items for consumers. There are four buffered items, so the count is four."
+    },
+    {
+      "id": "os-ipc-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A producer inserts 8 items into an initially empty buffer of capacity 20, with no consumer. How many empty slots remain?",
+      "answer": "12",
+      "explanation": "Eight insertions occupy eight slots. The remaining capacity is 20 ? 8 = 12."
+    },
+    {
+      "id": "os-ipc-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Three 100-byte messages are sent through a message queue and none is received. How many payload bytes are queued, ignoring metadata?",
+      "answer": "300",
+      "explanation": "The queue retains three discrete messages. Payload storage totals 3 ? 100 = 300 bytes."
+    },
+    {
+      "id": "os-ipc-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A socket stream contains 8192 bytes. A receiver has already read 3072 bytes. How many bytes remain unread?",
+      "answer": "5120",
+      "explanation": "The unread remainder is 8192 ? 3072 = 5120 bytes. Stream sockets preserve the sequence of bytes, not message boundaries."
+    },
+    {
+      "id": "os-ipc-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A pipe has capacity 4096 bytes and currently holds 1024. How many additional bytes fit before it is full?",
+      "answer": "3072",
+      "explanation": "Available pipe capacity is 4096 ? 1024 = 3072 bytes. A larger blocking write may have to wait."
+    },
+    {
+      "id": "os-ipc-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A shared ring buffer has capacity 16 and currently contains 11 items. How many items can be added without consuming any?",
+      "answer": "5",
+      "explanation": "The ring has 16 total slots and 11 are occupied, leaving 5 free slots."
+    },
+    {
+      "id": "os-ipc-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A producer signals a semaphore once for each of 23 inserted items. The consumer has completed 17 waits. How many item permits remain, assuming no other operations?",
+      "answer": "6",
+      "explanation": "Each signal adds one permit and each successful wait consumes one. The remaining count is 23 ? 17 = 6."
+    },
+    {
+      "id": "os-ipc-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Two unidirectional pipes are used to create a parent-child request/response channel. How many pipe endpoints exist in total?",
+      "answer": "4",
+      "explanation": "Each pipe has a read endpoint and a write endpoint. Two pipes therefore have 2 ? 2 = 4 endpoints."
+    },
+    {
+      "id": "os-ipc-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A stream protocol sends a 4-byte length header followed by a 120-byte payload per frame. What is the total frame size in bytes?",
+      "answer": "124",
+      "explanation": "The frame consists of a 4-byte header and 120 payload bytes, giving 124 bytes total."
+    },
+    {
+      "id": "os-ipc-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A FIFO has 500 buffered bytes. The only writer closes, and the reader consumes 200 bytes. How many bytes remain before EOF is returned?",
+      "answer": "300",
+      "explanation": "Closing the final writer does not discard buffered data. After consuming 200 of 500 bytes, 300 remain; EOF follows once drained."
+    },
+    {
+      "id": "os-ipc-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A semaphore has count 9. Five successful waits and two signals occur. What is the final count?",
+      "answer": "6",
+      "explanation": "Each wait subtracts one and each signal adds one: 9 ? 5 + 2 = 6."
+    },
+    {
+      "id": "os-ipc-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A ring buffer capacity is 10. A consumer removes 3 items and a producer adds 6, starting from 4 items. How many items are present at the end?",
+      "answer": "7",
+      "explanation": "The occupancy is 4 ? 3 + 6 = 7, which is within the capacity of 10."
+    },
+    {
+      "id": "os-ipc-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are properties of ordinary anonymous pipes?",
+      "options": [
+        "They provide byte-stream communication",
+        "They are commonly accessed through file descriptors",
+        "They preserve application message boundaries automatically",
+        "They can connect parent and child after descriptor inheritance"
+      ],
+      "answer": [
+        "They provide byte-stream communication",
+        "They are commonly accessed through file descriptors",
+        "They can connect parent and child after descriptor inheritance"
+      ],
+      "explanation": "Pipes are descriptor-based byte streams and are often inherited across fork. They do not inherently preserve application message boundaries."
+    },
+    {
+      "id": "os-ipc-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which actions are important when setting up a one-way pipe between parent and child?",
+      "options": [
+        "Close unused read or write ends in each process",
+        "Connect producer output to the write end",
+        "Connect consumer input to the read end",
+        "Keep every descriptor open so EOF arrives sooner"
+      ],
+      "answer": [
+        "Close unused read or write ends in each process",
+        "Connect producer output to the write end",
+        "Connect consumer input to the read end"
+      ],
+      "explanation": "Closing unused ends prevents accidental blocking and enables correct EOF detection. The producer writes and consumer reads; extra open descriptors delay EOF."
+    },
+    {
+      "id": "os-ipc-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about shared memory are correct?",
+      "options": [
+        "It allows direct access to common mapped bytes",
+        "It requires synchronization for concurrent conflicting accesses",
+        "Processes may map it at different virtual addresses",
+        "It automatically defines message boundaries"
+      ],
+      "answer": [
+        "It allows direct access to common mapped bytes",
+        "It requires synchronization for concurrent conflicting accesses",
+        "Processes may map it at different virtual addresses"
+      ],
+      "explanation": "Shared memory exposes common bytes and mappings can differ in virtual address. The application defines structure and synchronization; boundaries are not automatic."
+    },
+    {
+      "id": "os-ipc-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are valid IPC mechanisms between unrelated local processes?",
+      "options": [
+        "Named FIFO",
+        "Message queue",
+        "Unix-domain socket",
+        "An anonymous pipe with no inherited descriptor and no transfer mechanism"
+      ],
+      "answer": [
+        "Named FIFO",
+        "Message queue",
+        "Unix-domain socket"
+      ],
+      "explanation": "Named FIFOs, kernel message queues, and Unix-domain sockets can establish communication between unrelated processes. An unreachable anonymous pipe cannot."
+    },
+    {
+      "id": "os-ipc-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are appropriate ways to frame messages over a TCP byte stream?",
+      "options": [
+        "Length prefix",
+        "Delimiter with escaping rules",
+        "Fixed-size records",
+        "Assume one receive call returns one send call"
+      ],
+      "answer": [
+        "Length prefix",
+        "Delimiter with escaping rules",
+        "Fixed-size records"
+      ],
+      "explanation": "Length fields, delimiters, or fixed record sizes can define application framing. TCP does not preserve send/receive call boundaries."
+    },
+    {
+      "id": "os-ipc-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties are generally associated with UDP datagrams?",
+      "options": [
+        "Message boundaries are preserved at the API",
+        "Delivery is not guaranteed",
+        "Ordering is not guaranteed",
+        "A receiver always obtains every datagram exactly once"
+      ],
+      "answer": [
+        "Message boundaries are preserved at the API",
+        "Delivery is not guaranteed",
+        "Ordering is not guaranteed"
+      ],
+      "explanation": "UDP delivers message-oriented datagrams but offers no general delivery, ordering, or exactly-once guarantee."
+    },
+    {
+      "id": "os-ipc-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about message queues are correct?",
+      "options": [
+        "They store discrete messages",
+        "They can decouple sender and receiver timing",
+        "A bounded queue can block or reject a send when full",
+        "They require sender and receiver to access one shared pointer"
+      ],
+      "answer": [
+        "They store discrete messages",
+        "They can decouple sender and receiver timing",
+        "A bounded queue can block or reject a send when full"
+      ],
+      "explanation": "Queues retain messages in kernel-managed storage and allow asynchronous communication. Capacity limits can cause blocking or errors; direct shared pointers are not required."
+    },
+    {
+      "id": "os-ipc-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about signals are correct?",
+      "options": [
+        "They are useful for asynchronous event notification",
+        "They are generally poor channels for large payloads",
+        "A blocked signal may remain pending",
+        "They provide a reliable ordered byte stream"
+      ],
+      "answer": [
+        "They are useful for asynchronous event notification",
+        "They are generally poor channels for large payloads",
+        "A blocked signal may remain pending"
+      ],
+      "explanation": "Signals notify events and can remain pending while blocked, but they do not provide arbitrary bulk transfer or stream ordering."
+    },
+    {
+      "id": "os-ipc-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which steps support a correct bounded-buffer producer protocol?",
+      "options": [
+        "Wait for an empty slot",
+        "Acquire the buffer mutex before modifying indices",
+        "Release the mutex after insertion",
+        "Signal that an item is available after insertion"
+      ],
+      "answer": [
+        "Wait for an empty slot",
+        "Acquire the buffer mutex before modifying indices",
+        "Release the mutex after insertion",
+        "Signal that an item is available after insertion"
+      ],
+      "explanation": "The producer must reserve capacity, modify buffer state under mutual exclusion, then publish item availability. This prevents overflow and races."
+    },
+    {
+      "id": "os-ipc-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which steps support a correct bounded-buffer consumer protocol?",
+      "options": [
+        "Wait for an available item",
+        "Acquire the mutex before removing it",
+        "Release the mutex after updating indices",
+        "Signal an empty slot after removal"
+      ],
+      "answer": [
+        "Wait for an available item",
+        "Acquire the mutex before removing it",
+        "Release the mutex after updating indices",
+        "Signal an empty slot after removal"
+      ],
+      "explanation": "The consumer waits for data, safely removes it under the mutex, and signals newly available capacity so producers can continue."
+    },
+    {
+      "id": "os-ipc-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which issues can arise from failing to close unused pipe descriptors?",
+      "options": [
+        "A reader may not observe EOF",
+        "A writer may not receive broken-pipe notification",
+        "The descriptor can keep a pipe endpoint logically open",
+        "The pipe automatically becomes bidirectional"
+      ],
+      "answer": [
+        "A reader may not observe EOF",
+        "A writer may not receive broken-pipe notification",
+        "The descriptor can keep a pipe endpoint logically open"
+      ],
+      "explanation": "Open references affect EOF and broken-pipe conditions. Keeping unused endpoints open can suppress those conditions; it does not change pipe directionality."
+    },
+    {
+      "id": "os-ipc-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about socket communication are correct?",
+      "options": [
+        "A stream socket may require application framing",
+        "A listening socket and accepted connection socket serve different roles",
+        "Unix-domain sockets can communicate locally",
+        "Every socket protocol guarantees reliable delivery"
+      ],
+      "answer": [
+        "A stream socket may require application framing",
+        "A listening socket and accepted connection socket serve different roles",
+        "Unix-domain sockets can communicate locally"
+      ],
+      "explanation": "Stream sockets need framing, and servers use a listening endpoint plus connected endpoints. Local sockets are supported; reliability depends on the protocol."
+    },
+    {
+      "id": "os-ipc-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about shared-memory pointers are correct?",
+      "options": [
+        "A raw pointer may be invalid in another process",
+        "Offsets from the segment base can support relocatable structures",
+        "The same physical pages can map at different virtual addresses",
+        "A pointer value is automatically translated between processes"
+      ],
+      "answer": [
+        "A raw pointer may be invalid in another process",
+        "Offsets from the segment base can support relocatable structures",
+        "The same physical pages can map at different virtual addresses"
+      ],
+      "explanation": "Virtual pointers are process-relative. Storing offsets allows relocation, and shared physical pages can be mapped differently; raw pointer translation is not automatic."
+    },
+    {
+      "id": "os-ipc-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which can help recover from a producer crash during shared-memory IPC?",
+      "options": [
+        "A robust process-shared mutex",
+        "A generation counter or sequence number",
+        "Timeout and liveness checks",
+        "Assuming every notification is delivered exactly once"
+      ],
+      "answer": [
+        "A robust process-shared mutex",
+        "A generation counter or sequence number",
+        "Timeout and liveness checks"
+      ],
+      "explanation": "Robust locks, explicit protocol state, and liveness detection help identify and recover from partial updates. Assuming perfect notification is unsafe."
+    },
+    {
+      "id": "os-ipc-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish a semaphore from a condition variable?",
+      "options": [
+        "A semaphore maintains a permit count",
+        "A condition-variable signal is not usually retained for future waiters",
+        "A semaphore wait can consume a permit signaled earlier",
+        "Both must always be used without a mutex"
+      ],
+      "answer": [
+        "A semaphore maintains a permit count",
+        "A condition-variable signal is not usually retained for future waiters",
+        "A semaphore wait can consume a permit signaled earlier"
+      ],
+      "explanation": "Semaphores retain counts; condition notifications do not generally persist. Condition variables are typically paired with a mutex and predicate."
+    },
+    {
+      "id": "os-ipc-091",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which choices are suitable for bidirectional local IPC?",
+      "options": [
+        "A Unix-domain stream socket",
+        "A socket pair",
+        "Two ordinary pipes",
+        "A single ordinary unidirectional pipe used only in its supported direction"
+      ],
+      "answer": [
+        "A Unix-domain stream socket",
+        "A socket pair",
+        "Two ordinary pipes"
+      ],
+      "explanation": "Unix-domain sockets, socket pairs, or two pipes can carry data in both directions. One ordinary pipe has one data direction."
+    },
+    {
+      "id": "os-ipc-092",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about pipe atomicity are correct?",
+      "options": [
+        "Small writes up to PIPE_BUF are commonly protected from interleaving",
+        "Atomicity does not guarantee which writer goes first",
+        "A large write is always one indivisible message",
+        "Pipe reads preserve each write boundary"
+      ],
+      "answer": [
+        "Small writes up to PIPE_BUF are commonly protected from interleaving",
+        "Atomicity does not guarantee which writer goes first"
+      ],
+      "explanation": "The PIPE_BUF guarantee concerns interleaving of suitably small writes, not scheduling order. Larger writes and read boundaries do not become atomic messages."
+    },
+    {
+      "id": "os-ipc-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which IPC mechanisms can preserve discrete records without application framing over a byte stream?",
+      "options": [
+        "Message queues",
+        "Datagram sockets",
+        "Pipes",
+        "TCP stream sockets"
+      ],
+      "answer": [
+        "Message queues",
+        "Datagram sockets"
+      ],
+      "explanation": "Message queues and datagram sockets preserve message units. Pipes and TCP expose streams, so applications must define framing."
+    },
+    {
+      "id": "os-ipc-094",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are consequences of a shared-memory design?",
+      "options": [
+        "Low overhead for repeated large data exchange",
+        "Application must design synchronization",
+        "Processes must agree on a data layout",
+        "Kernel copies each field on every access"
+      ],
+      "answer": [
+        "Low overhead for repeated large data exchange",
+        "Application must design synchronization",
+        "Processes must agree on a data layout"
+      ],
+      "explanation": "Shared mappings can reduce copying, but correctness depends on synchronization and a compatible data layout. Loads/stores access mapped pages directly."
+    },
+    {
+      "id": "os-ipc-095",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which events can wake a process blocked in IPC?",
+      "options": [
+        "Data arrives on an empty pipe",
+        "A message matching its queue receive arrives",
+        "A semaphore permit becomes available",
+        "A process changes its current working directory"
+      ],
+      "answer": [
+        "Data arrives on an empty pipe",
+        "A message matching its queue receive arrives",
+        "A semaphore permit becomes available"
+      ],
+      "explanation": "IPC waits become ready when their awaited resource or event occurs. An unrelated working-directory change does not satisfy these waits."
+    },
+    {
+      "id": "os-ipc-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A receiver needs to distinguish an empty pipe from a temporarily empty but still open pipe. Which condition distinguishes EOF?",
+      "options": [
+        "No data remains and every write descriptor is closed",
+        "No data is currently buffered",
+        "The writer has not yet called write",
+        "The reader has a nonblocking flag"
+      ],
+      "answer": [
+        "No data remains and every write descriptor is closed"
+      ],
+      "explanation": "An empty pipe can still receive future bytes while any write end remains open. EOF requires both an empty buffer and no remaining writers."
+    },
+    {
+      "id": "os-ipc-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process sends a 50 KiB structure through a pipe and the receiver reads 8 KiB at a time. What should the receiver do to reconstruct it?",
+      "options": [
+        "Accumulate bytes until the protocol-defined length is reached",
+        "Assume the first read contains the whole structure",
+        "Treat each read as a separate record",
+        "Use the sender PID as a delimiter"
+      ],
+      "answer": [
+        "Accumulate bytes until the protocol-defined length is reached"
+      ],
+      "explanation": "Pipes are streams, so one logical object can span multiple reads. The receiver must use framing, such as a known length, to reconstruct it."
+    },
+    {
+      "id": "os-ipc-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two process-shared mutexes protect the same data but are acquired in inconsistent order by two processes. What risk remains?",
+      "options": [
+        "Deadlock from circular lock ordering",
+        "Automatic deadlock prevention by shared memory",
+        "Message loss due to TCP",
+        "The data becomes immutable"
+      ],
+      "answer": [
+        "Deadlock from circular lock ordering"
+      ],
+      "explanation": "If one process holds mutex A while waiting for B and another holds B while waiting for A, neither can proceed. Shared memory does not prevent this cycle."
+    },
+    {
+      "id": "os-ipc-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TCP client calls send repeatedly until all bytes are accepted. Why may this loop be necessary?",
+      "options": [
+        "A send call can accept fewer bytes than requested",
+        "TCP preserves message boundaries and splits by call",
+        "The kernel rejects every second send",
+        "The peer must issue one receive per send"
+      ],
+      "answer": [
+        "A send call can accept fewer bytes than requested"
+      ],
+      "explanation": "Stream send calls may be partial, so robust code advances through the unsent suffix until the full buffer is accepted or an error occurs."
+    },
+    {
+      "id": "os-ipc-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A datagram receiver gets a zero-length UDP datagram. What does that mean?",
+      "options": [
+        "A valid datagram with an empty payload may have arrived",
+        "The peer necessarily closed the connection",
+        "The socket is always at EOF",
+        "A process became a zombie"
+      ],
+      "answer": [
+        "A valid datagram with an empty payload may have arrived"
+      ],
+      "explanation": "UDP is message-oriented and can carry a datagram with zero payload bytes. This differs from stream EOF semantics."
+    }
+  ]
+}

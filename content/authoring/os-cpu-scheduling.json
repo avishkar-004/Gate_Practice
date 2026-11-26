@@ -1,0 +1,1475 @@
+{
+  "topicIndex": 6,
+  "questions": [
+    {
+      "id": "os-cpu-001",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two processes arrive at time 0 with bursts P1=4 and P2=2. Under FCFS in that order, what is the average waiting time?",
+      "options": [
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "P1 waits zero and P2 waits four units. Their average waiting time is (0 + 4)/2 = 2."
+    },
+    {
+      "id": "os-cpu-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two processes arrive at time 0 with bursts P1=4 and P2=2. Under FCFS, what is the average turnaround time?",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "Completion times are 4 and 6; both arrive at zero, so average turnaround is (4 + 6)/2 = 5."
+    },
+    {
+      "id": "os-cpu-003",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two processes arrive together with bursts 4 and 2. Under non-preemptive SJF, what is the average waiting time?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "SJF runs the 2-unit burst first, then the 4-unit burst. Waiting times are 0 and 2, averaging 1."
+    },
+    {
+      "id": "os-cpu-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A CPU scheduler selects the process with the smallest predicted next CPU burst. Which algorithm is this?",
+      "options": [
+        "Shortest Job First",
+        "Round Robin",
+        "FCFS",
+        "Multilevel feedback queue"
+      ],
+      "answer": [
+        "Shortest Job First"
+      ],
+      "explanation": "SJF chooses the shortest estimated next CPU burst. Round Robin uses a quantum; FCFS follows arrival; feedback queues use dynamic class movement."
+    },
+    {
+      "id": "os-cpu-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A preemptive scheduler always runs the ready process with the least remaining CPU time. This is:",
+      "options": [
+        "Shortest Remaining Time First",
+        "Non-preemptive SJF",
+        "FCFS",
+        "Round Robin"
+      ],
+      "answer": [
+        "Shortest Remaining Time First"
+      ],
+      "explanation": "SRTF is the preemptive form of SJF: a newly arriving job can preempt the current one if its remaining time is smaller."
+    },
+    {
+      "id": "os-cpu-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process arrives with a shorter remaining burst than the currently running process under SRTF. What happens?",
+      "options": [
+        "The running process is preempted",
+        "The new process waits until the current burst ends",
+        "Both run simultaneously on one CPU",
+        "The current process terminates"
+      ],
+      "answer": [
+        "The running process is preempted"
+      ],
+      "explanation": "SRTF selects the minimum remaining time among ready processes. The arriving shorter job preempts the current process."
+    },
+    {
+      "id": "os-cpu-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Round Robin uses quantum q. A process has CPU burst 10 and q=4, with no context-switch cost. How many times does it receive CPU before completion?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "10"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "It runs for 4, then 4, then the remaining 2 units. Thus it receives three CPU turns."
+    },
+    {
+      "id": "os-cpu-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Round Robin with q=2 has one process of burst 5 and no competitors. Ignoring overhead, what is its completion time?",
+      "options": [
+        "5",
+        "6",
+        "4",
+        "10"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "The process uses two full quanta and a final one-unit turn. With no competitors or overhead, elapsed CPU time is exactly its burst: 5."
+    },
+    {
+      "id": "os-cpu-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Round Robin uses a very large quantum. Which behavior does it approach?",
+      "options": [
+        "FCFS",
+        "SRTF",
+        "Priority scheduling",
+        "Shortest remaining time"
+      ],
+      "answer": [
+        "FCFS"
+      ],
+      "explanation": "If the quantum exceeds every burst, no process is preempted by the timer. Processes run in queue order, approximating FCFS."
+    },
+    {
+      "id": "os-cpu-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Round Robin uses an extremely small quantum. Which cost tends to increase?",
+      "options": [
+        "Context-switch overhead",
+        "CPU burst length",
+        "Arrival rate",
+        "Throughput guaranteed to increase"
+      ],
+      "answer": [
+        "Context-switch overhead"
+      ],
+      "explanation": "A smaller quantum causes more frequent preemption and dispatch, increasing context-switch overhead relative to useful CPU work."
+    },
+    {
+      "id": "os-cpu-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A priority scheduler always chooses the highest-priority ready process, and low numeric value means higher priority. Which process runs among priorities 3, 1, and 2?",
+      "options": [
+        "Priority 1",
+        "Priority 3",
+        "Priority 2",
+        "All at once"
+      ],
+      "answer": [
+        "Priority 1"
+      ],
+      "explanation": "The convention states lower numbers represent higher priority, so priority 1 is selected."
+    },
+    {
+      "id": "os-cpu-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A low-priority process waits indefinitely because higher-priority jobs continually arrive. This is:",
+      "options": [
+        "starvation",
+        "deadlock",
+        "convoy effect",
+        "thrashing"
+      ],
+      "answer": [
+        "starvation"
+      ],
+      "explanation": "Strict priority scheduling can indefinitely postpone low-priority work, which is starvation. Aging can raise its priority over time."
+    },
+    {
+      "id": "os-cpu-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Aging in priority scheduling is used primarily to:",
+      "options": [
+        "reduce starvation by increasing waiting processes? priorities",
+        "reduce context-switch cost",
+        "shorten every CPU burst",
+        "prevent deadlock cycles"
+      ],
+      "answer": [
+        "reduce starvation by increasing waiting processes? priorities"
+      ],
+      "explanation": "Aging gradually improves the priority of processes that wait, eventually allowing them to run despite a stream of higher-priority arrivals."
+    },
+    {
+      "id": "os-cpu-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A convoy effect is most associated with:",
+      "options": [
+        "short processes waiting behind a long CPU-bound process",
+        "many short tasks under SJF",
+        "a high quantum causing no preemption",
+        "all processes using separate CPUs"
+      ],
+      "answer": [
+        "short processes waiting behind a long CPU-bound process"
+      ],
+      "explanation": "In FCFS, a long CPU-bound process can hold the CPU while many short or I/O-bound jobs queue behind it, creating a convoy."
+    },
+    {
+      "id": "os-cpu-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which scheduling criterion measures completed processes per unit time?",
+      "options": [
+        "Throughput",
+        "Turnaround time",
+        "Response time",
+        "Waiting time"
+      ],
+      "answer": [
+        "Throughput"
+      ],
+      "explanation": "Throughput is the number of completed jobs per unit time. Turnaround, response, and waiting measure per-process delays."
+    },
+    {
+      "id": "os-cpu-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A user submits an interactive request at time 8; it first receives CPU at time 11. What is its response time?",
+      "options": [
+        "3",
+        "11",
+        "8",
+        "19"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Response time is first CPU service minus arrival time: 11 ? 8 = 3 time units."
+    },
+    {
+      "id": "os-cpu-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process arrives at 2 and completes at 17. What is its turnaround time?",
+      "options": [
+        "15",
+        "17",
+        "19",
+        "2"
+      ],
+      "answer": [
+        "15"
+      ],
+      "explanation": "Turnaround time is completion minus arrival: 17 ? 2 = 15."
+    },
+    {
+      "id": "os-cpu-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has turnaround time 20 and CPU burst 7, with no other service counted. What is its waiting time?",
+      "options": [
+        "13",
+        "27",
+        "7",
+        "20"
+      ],
+      "answer": [
+        "13"
+      ],
+      "explanation": "Turnaround consists of waiting plus CPU burst time. Waiting is 20 ? 7 = 13."
+    },
+    {
+      "id": "os-cpu-019",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A CPU burst prediction uses exponential averaging ?(n+1)=?t(n)+(1??)?(n), with ?=0.5, prior estimate 8, and last burst 4. What is the new estimate?",
+      "options": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
+      "answer": [
+        "6"
+      ],
+      "explanation": "The next estimate is 0.5?4 + 0.5?8 = 6 units."
+    },
+    {
+      "id": "os-cpu-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "With exponential averaging, ?=1. Which information determines the next burst estimate?",
+      "options": [
+        "Only the most recent actual burst",
+        "Only the previous estimate",
+        "All past bursts equally",
+        "The average of arrival times"
+      ],
+      "answer": [
+        "Only the most recent actual burst"
+      ],
+      "explanation": "When ?=1, the previous estimate receives zero weight, so the new estimate equals the latest actual burst."
+    },
+    {
+      "id": "os-cpu-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process spends most of its time waiting for I/O with short CPU bursts. It is:",
+      "options": [
+        "I/O-bound",
+        "CPU-bound",
+        "deadlocked",
+        "terminated"
+      ],
+      "answer": [
+        "I/O-bound"
+      ],
+      "explanation": "I/O-bound processes have short CPU bursts relative to their time spent waiting for I/O. CPU-bound processes have long bursts."
+    },
+    {
+      "id": "os-cpu-022",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A preemptive scheduler uses priorities. A low-priority process is executing when a higher-priority process becomes ready. What happens under strict preemption?",
+      "options": [
+        "The low-priority process is preempted",
+        "The new process waits for the current burst to finish",
+        "Both processes share the same CPU instantaneously",
+        "The low-priority process is terminated"
+      ],
+      "answer": [
+        "The low-priority process is preempted"
+      ],
+      "explanation": "A strict preemptive priority scheduler immediately gives the CPU to the higher-priority ready process, returning the former process to ready."
+    },
+    {
+      "id": "os-cpu-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A multilevel queue scheduler assigns foreground jobs to RR and background jobs to FCFS. What distinguishes this from a feedback queue?",
+      "options": [
+        "Processes do not move between queues based on observed behavior",
+        "It must use SRTF in all queues",
+        "The foreground jobs are never scheduled",
+        "Background jobs have no CPU bursts"
+      ],
+      "answer": [
+        "Processes do not move between queues based on observed behavior"
+      ],
+      "explanation": "A multilevel queue has fixed class membership, while feedback queues allow movement between queues based on CPU usage or waiting behavior."
+    },
+    {
+      "id": "os-cpu-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A multilevel feedback queue moves a job to a lower-priority queue after it uses its entire quantum. Which behavior is being favored?",
+      "options": [
+        "Short or interactive jobs that yield early",
+        "Long CPU-bound jobs that exhaust quanta",
+        "Only jobs with earliest arrival time",
+        "Processes with the largest memory footprint"
+      ],
+      "answer": [
+        "Short or interactive jobs that yield early"
+      ],
+      "explanation": "Using the full quantum suggests CPU-bound behavior and can demote a job. Interactive jobs often yield early and remain at higher priority."
+    },
+    {
+      "id": "os-cpu-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process blocks for I/O before consuming its whole quantum in a feedback queue. What may the scheduler infer?",
+      "options": [
+        "It may be interactive or I/O-bound and retain higher priority",
+        "It has necessarily deadlocked",
+        "It must be terminated",
+        "It used more CPU than a process exhausting the quantum"
+      ],
+      "answer": [
+        "It may be interactive or I/O-bound and retain higher priority"
+      ],
+      "explanation": "Yielding early often signals interactive or I/O-bound behavior, so feedback policies may keep the process in a higher-priority queue."
+    },
+    {
+      "id": "os-cpu-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A scheduler is work-conserving. What does that mean?",
+      "options": [
+        "It does not leave the CPU idle when a ready process exists",
+        "It always minimizes average waiting time",
+        "It uses no preemption",
+        "It guarantees starvation freedom"
+      ],
+      "answer": [
+        "It does not leave the CPU idle when a ready process exists"
+      ],
+      "explanation": "A work-conserving scheduler assigns the CPU whenever at least one process is ready. It does not imply optimality or fairness."
+    },
+    {
+      "id": "os-cpu-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two processes have identical priority and arrival time. The scheduler?s tie-breaking rule is FCFS. Which runs first?",
+      "options": [
+        "The one enqueued first",
+        "The one with longer burst",
+        "The one with larger PID always",
+        "The scheduler must idle"
+      ],
+      "answer": [
+        "The one enqueued first"
+      ],
+      "explanation": "When priority ties, FCFS tie-breaking selects the process that entered the ready queue first. Other tie-breaking rules could produce another result."
+    },
+    {
+      "id": "os-cpu-028",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A preemptive scheduler incurs context-switch cost c each time. Why can a very small quantum reduce useful CPU efficiency?",
+      "options": [
+        "A larger fraction of time is spent switching rather than executing jobs",
+        "It increases the total CPU burst requirements",
+        "It stops I/O devices",
+        "It makes arrival times later"
+      ],
+      "answer": [
+        "A larger fraction of time is spent switching rather than executing jobs"
+      ],
+      "explanation": "Frequent quanta cause more switches. With nonzero cost, switching overhead consumes CPU time that could otherwise perform useful work."
+    },
+    {
+      "id": "os-cpu-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithm minimizes average waiting time when all jobs are known and available together and context-switch costs are ignored?",
+      "options": [
+        "Non-preemptive SJF",
+        "FCFS",
+        "Round Robin",
+        "Strict priority with arbitrary priorities"
+      ],
+      "answer": [
+        "Non-preemptive SJF"
+      ],
+      "explanation": "For a known set of jobs available at the same time, ordering by increasing burst minimizes average waiting time by placing short jobs ahead of longer ones."
+    },
+    {
+      "id": "os-cpu-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A scheduler claims to minimize response time for all workloads. Which issue undermines such a universal claim?",
+      "options": [
+        "Workload arrivals and burst lengths may be unknown and objectives conflict",
+        "Response time is independent of scheduling",
+        "All algorithms produce the same order",
+        "Only disk scheduling affects response time"
+      ],
+      "answer": [
+        "Workload arrivals and burst lengths may be unknown and objectives conflict"
+      ],
+      "explanation": "Scheduling policies trade off response, turnaround, fairness, and overhead; future arrivals and bursts are not generally known exactly."
+    },
+    {
+      "id": "os-cpu-031",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "P1 arrives at 0 with burst 8. P2 arrives at 3 with burst 2. Under SRTF, when does P2 complete?",
+      "options": [
+        "5",
+        "2",
+        "8",
+        "10"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "P1 runs from 0 to 3, leaving 5. P2 arrives and preempts; it runs for 2 units and completes at time 5."
+    },
+    {
+      "id": "os-cpu-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "P1 arrives at 0 with burst 8. P2 arrives at 3 with burst 2. Under non-preemptive SJF, when does P2 complete?",
+      "options": [
+        "10",
+        "5",
+        "8",
+        "3"
+      ],
+      "answer": [
+        "10"
+      ],
+      "explanation": "Non-preemptive SJF does not interrupt P1, so P1 completes at 8. P2 then runs for 2 units and completes at 10."
+    },
+    {
+      "id": "os-cpu-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "P1 arrives at 0 with burst 6 and P2 at 2 with burst 1. Under SRTF, what is P1?s completion time?",
+      "options": [
+        "7",
+        "6",
+        "9",
+        "3"
+      ],
+      "answer": [
+        "7"
+      ],
+      "explanation": "P1 runs 0?2, then P2 preempts and completes at 3. P1 resumes with 4 remaining and completes at 7."
+    },
+    {
+      "id": "os-cpu-034",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Round Robin has quantum 3 and processes A=5, B=4 arriving at 0 in order A,B. Ignoring switching overhead, when does A complete?",
+      "options": [
+        "8",
+        "5",
+        "9",
+        "6"
+      ],
+      "answer": [
+        "8"
+      ],
+      "explanation": "A runs 0?3 leaving 2; B runs 3?6 leaving 1; A runs 6?8 and completes."
+    },
+    {
+      "id": "os-cpu-035",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Round Robin q=2; A burst 3 and B burst 3, both arrive at 0 in order A,B. What is B?s completion time?",
+      "options": [
+        "6",
+        "3",
+        "5",
+        "4"
+      ],
+      "answer": [
+        "6"
+      ],
+      "explanation": "A runs 0?2, B 2?4, A 4?5 and completes, then B runs its last unit from 5?6."
+    },
+    {
+      "id": "os-cpu-036",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Three jobs arrive at time 0 with bursts 2, 4, and 6. Under FCFS in that order, what is the average waiting time?",
+      "options": [
+        "8/3",
+        "10/3",
+        "4",
+        "12"
+      ],
+      "answer": [
+        "8/3"
+      ],
+      "explanation": "Waiting times are 0, 2, and 6. Their sum is 8 and the mean is 8/3 time units."
+    },
+    {
+      "id": "os-cpu-037",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "For bursts 2, 4, and 6 arriving together, SJF runs shortest first. What is average waiting time?",
+      "options": [
+        "8/3",
+        "10/3",
+        "4",
+        "2"
+      ],
+      "answer": [
+        "8/3"
+      ],
+      "explanation": "Waiting times in SJF order are 0, 2, and 6, totaling 8; divided by three gives 8/3."
+    },
+    {
+      "id": "os-cpu-038",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process arrives at time 4 and first receives CPU at time 9. What is its response time?",
+      "options": [
+        "5",
+        "9",
+        "13",
+        "4"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "Response time is the first CPU start minus arrival: 9 ? 4 = 5."
+    },
+    {
+      "id": "os-cpu-039",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process arrives at time 6 and completes at time 19 after using 8 CPU units. What is its waiting time, assuming no other counted service?",
+      "options": [
+        "5",
+        "13",
+        "8",
+        "3"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "Turnaround is 19?6=13. Subtract its 8 CPU units to obtain 5 units of waiting."
+    },
+    {
+      "id": "os-cpu-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process?s predicted burst is 10. With ?=0.25 and actual burst 6, what is the next exponential average estimate?",
+      "options": [
+        "9",
+        "7",
+        "8",
+        "6"
+      ],
+      "answer": [
+        "9"
+      ],
+      "explanation": "?new = 0.25?6 + 0.75?10 = 1.5 + 7.5 = 9."
+    },
+    {
+      "id": "os-cpu-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has CPU bursts 3 and 4 separated by I/O. Which scheduler decision can occur while it waits for the I/O?",
+      "options": [
+        "Another ready process can run",
+        "The blocked process continues using CPU",
+        "The CPU must remain idle",
+        "The process is terminated"
+      ],
+      "answer": [
+        "Another ready process can run"
+      ],
+      "explanation": "When a process blocks for I/O, it leaves the ready/running set. The scheduler can dispatch another ready process."
+    },
+    {
+      "id": "os-cpu-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A non-preemptive scheduler starts a long job just before several short jobs arrive. What limitation does this illustrate?",
+      "options": [
+        "It cannot preempt the running job for later arrivals",
+        "It always minimizes response time",
+        "It prevents the convoy effect",
+        "It uses future burst knowledge"
+      ],
+      "answer": [
+        "It cannot preempt the running job for later arrivals"
+      ],
+      "explanation": "Non-preemptive policies do not reconsider the CPU until the current job blocks or completes, so newly arrived short work can wait behind it."
+    },
+    {
+      "id": "os-cpu-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A scheduler uses preemptive priority and a newly ready process has lower priority than the running process. What happens?",
+      "options": [
+        "The current process continues running",
+        "The running process is preempted",
+        "Both are terminated",
+        "The CPU switches to the lower-priority process immediately"
+      ],
+      "answer": [
+        "The current process continues running"
+      ],
+      "explanation": "Under strict priority preemption, a lower-priority arrival does not displace the higher-priority running process."
+    },
+    {
+      "id": "os-cpu-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A scheduler grants each ready process at most q time units per turn. Which policy is this?",
+      "options": [
+        "Round Robin",
+        "FCFS",
+        "Non-preemptive SJF",
+        "Static multilevel queue only"
+      ],
+      "answer": [
+        "Round Robin"
+      ],
+      "explanation": "Round Robin rotates among ready processes, preempting after each quantum if the process has not completed or blocked."
+    },
+    {
+      "id": "os-cpu-045",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A job?s turnaround is 14 units and its waiting time is 9. Its CPU burst total is:",
+      "options": [
+        "5",
+        "23",
+        "9",
+        "14"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "Turnaround equals waiting plus CPU service. CPU burst total is 14 ? 9 = 5."
+    },
+    {
+      "id": "os-cpu-046",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Three jobs have equal arrival and burst times, and the scheduler uses FCFS. What determines their order?",
+      "options": [
+        "Ready-queue insertion or tie-breaking order",
+        "Their memory sizes necessarily",
+        "The process with largest PID",
+        "The CPU must idle"
+      ],
+      "answer": [
+        "Ready-queue insertion or tie-breaking order"
+      ],
+      "explanation": "With equal arrival/burst metrics, the scheduler?s FCFS queue order or explicit tie-breaking rule determines execution order."
+    },
+    {
+      "id": "os-cpu-047",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A scheduler maximizes CPU utilization. Which interpretation is correct?",
+      "options": [
+        "Keep the CPU busy as much as possible",
+        "Minimize every process?s response time",
+        "Maximize time spent idle",
+        "Guarantee shortest turnaround for each job"
+      ],
+      "answer": [
+        "Keep the CPU busy as much as possible"
+      ],
+      "explanation": "CPU utilization is the fraction of time the CPU is busy. Maximizing it does not necessarily optimize individual latency or fairness."
+    },
+    {
+      "id": "os-cpu-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A workload has frequent short interactive bursts mixed with long CPU jobs. Which policy often gives good response and fairness tradeoffs?",
+      "options": [
+        "Round Robin with a suitable quantum",
+        "FCFS with no preemption",
+        "Non-preemptive priority with no aging",
+        "Run the longest job first"
+      ],
+      "answer": [
+        "Round Robin with a suitable quantum"
+      ],
+      "explanation": "Round Robin gives each ready process a turn, improving responsiveness. Quantum choice controls overhead and interaction; it does not ensure optimality."
+    },
+    {
+      "id": "os-cpu-049",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process?s burst estimate is too short, so SJF repeatedly predicts it will finish early. What is a likely consequence?",
+      "options": [
+        "Its actual burst may delay later jobs after it is selected",
+        "It will never be scheduled",
+        "It becomes an I/O device",
+        "The scheduler preempts every instruction"
+      ],
+      "answer": [
+        "Its actual burst may delay later jobs after it is selected"
+      ],
+      "explanation": "SJF relies on burst estimates. An underestimated long burst can occupy the CPU longer than expected and increase waiting for jobs behind it."
+    },
+    {
+      "id": "os-cpu-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A scheduler chooses the process with the earliest deadline. Which scheduling criterion is it prioritizing?",
+      "options": [
+        "Deadline urgency",
+        "Shortest CPU burst",
+        "Arrival order",
+        "Maximum throughput directly"
+      ],
+      "answer": [
+        "Deadline urgency"
+      ],
+      "explanation": "Earliest-deadline-first schedules by deadline, a real-time objective distinct from burst length or arrival order."
+    },
+    {
+      "id": "os-cpu-051",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Under EDF, two jobs have deadlines 10 and 7 and are both ready. Which is selected?",
+      "options": [
+        "Deadline 7",
+        "Deadline 10",
+        "Shorter PID",
+        "The job that arrived later"
+      ],
+      "answer": [
+        "Deadline 7"
+      ],
+      "explanation": "Earliest Deadline First chooses the ready job with the earliest absolute deadline, which is 7."
+    },
+    {
+      "id": "os-cpu-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A real-time job finishes after its deadline. Which metric has failed?",
+      "options": [
+        "Deadline satisfaction",
+        "CPU utilization",
+        "Context-switch correctness",
+        "Process state consistency"
+      ],
+      "answer": [
+        "Deadline satisfaction"
+      ],
+      "explanation": "A real-time deadline requirement is violated if completion occurs after the specified deadline, regardless of eventual completion."
+    },
+    {
+      "id": "os-cpu-053",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A scheduler uses fixed-priority preemption for periodic real-time tasks. What may happen to a low-priority task under sustained high-priority load?",
+      "options": [
+        "It can starve or miss deadlines",
+        "It always completes before high-priority tasks",
+        "All deadlines become equal",
+        "The CPU becomes non-preemptive"
+      ],
+      "answer": [
+        "It can starve or miss deadlines"
+      ],
+      "explanation": "Strict priority can indefinitely delay lower-priority tasks if higher-priority work continually occupies the processor."
+    },
+    {
+      "id": "os-cpu-054",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A scheduler has response time 2 for one job and 10 for another. What is their average response time?",
+      "options": [
+        "6",
+        "8",
+        "12",
+        "5"
+      ],
+      "answer": [
+        "6"
+      ],
+      "explanation": "The mean is (2+10)/2 = 6 time units, using the standard arithmetic average of the two response times."
+    },
+    {
+      "id": "os-cpu-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Processes arrive at 0, 2, and 4 with CPU bursts 5, 2, and 1. Under FCFS, what is the completion time of the third process?",
+      "options": [
+        "8",
+        "7",
+        "10",
+        "4"
+      ],
+      "answer": [
+        "8"
+      ],
+      "explanation": "P1 runs 0?5, P2 5?7, then P3 7?8. The third completion time is 8."
+    },
+    {
+      "id": "os-cpu-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For the same arrivals/bursts (0:5, 2:2, 4:1), under SRTF what is the completion time of the third process?",
+      "options": [
+        "5",
+        "8",
+        "4",
+        "6"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "P1 runs 0?2 (remaining 3), P2 arrives with burst 2 and runs 2?4, then P3 arrives with burst 1 and runs 4?5, completing at 5."
+    },
+    {
+      "id": "os-cpu-057",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process with burst 2 arrives at time 5 while another process with 2 units remaining is running under SRTF. What decides the next CPU choice?",
+      "options": [
+        "The scheduler?s tie-breaking rule",
+        "The new process must preempt",
+        "The running process must finish",
+        "Both execute simultaneously"
+      ],
+      "answer": [
+        "The scheduler?s tie-breaking rule"
+      ],
+      "explanation": "The remaining times tie. SRTF alone does not resolve ties, so the specified queue or scheduler tie-break rule determines the outcome."
+    },
+    {
+      "id": "os-cpu-058",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system measures waiting time in the ready queue only. Does time blocked for I/O count?",
+      "options": [
+        "No",
+        "Yes, always",
+        "Only if the process is high priority",
+        "Only under FCFS"
+      ],
+      "answer": [
+        "No"
+      ],
+      "explanation": "Waiting time in CPU scheduling typically counts time in the ready queue, not time blocked waiting for I/O. Definitions should be explicit for a problem."
+    },
+    {
+      "id": "os-cpu-059",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A scheduler switches processes at every I/O completion, even if the current process still has CPU burst remaining. What kind of event can cause this?",
+      "options": [
+        "A newly ready process may trigger preemption under the chosen policy",
+        "I/O completion always terminates the current process",
+        "The running process becomes a zombie",
+        "The CPU burst is reset to zero"
+      ],
+      "answer": [
+        "A newly ready process may trigger preemption under the chosen policy"
+      ],
+      "explanation": "I/O completion moves a blocked process to ready. A preemptive policy may then select it if its priority or remaining-time criterion warrants."
+    },
+    {
+      "id": "os-cpu-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A scheduling algorithm is non-preemptive. Which event can still cause the running process to relinquish the CPU?",
+      "options": [
+        "It blocks or terminates",
+        "A shorter job arrives",
+        "A timer quantum expires",
+        "A higher-priority job arrives necessarily"
+      ],
+      "answer": [
+        "It blocks or terminates"
+      ],
+      "explanation": "Non-preemptive scheduling does not interrupt a running process due to another arrival; the process relinquishes the CPU when it blocks or completes."
+    },
+    {
+      "id": "os-cpu-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Two processes arrive at time 0 with bursts 4 and 2 in FCFS order. What is P2?s waiting time?",
+      "answer": "4",
+      "explanation": "P2 waits while P1 executes its four-unit burst, so its waiting time is 4."
+    },
+    {
+      "id": "os-cpu-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Processes P1=3 and P2=5 arrive at time 0. Under FCFS order P1 then P2, what is the average turnaround time?",
+      "answer": "5.5",
+      "explanation": "Completion and turnaround times are 3 and 8. Their mean is (3+8)/2=5.5 time units."
+    },
+    {
+      "id": "os-cpu-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A job arrives at time 7 and completes at time 20. What is its turnaround time?",
+      "answer": "13",
+      "explanation": "Turnaround equals completion minus arrival: 20?7=13."
+    },
+    {
+      "id": "os-cpu-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has turnaround 18 and CPU service 11. How much time did it spend waiting in the ready queue?",
+      "answer": "7",
+      "explanation": "Under the stated accounting, waiting = turnaround ? CPU service = 18?11=7."
+    },
+    {
+      "id": "os-cpu-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Round Robin quantum is 4. A CPU burst is 17 and there are no competing processes or switch costs. How many CPU turns does the process receive?",
+      "answer": "5",
+      "explanation": "The process consumes four full quanta four times (16 units), then a final 1-unit turn, for five turns."
+    },
+    {
+      "id": "os-cpu-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A round-robin system has q=5 and a process needs 12 CPU units. How many timer expirations occur before it finishes?",
+      "answer": "2",
+      "explanation": "It uses two complete five-unit quanta; on the third turn it finishes after two units, so there are two expirations before completion."
+    },
+    {
+      "id": "os-cpu-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A CPU-burst predictor has ?=0.4, previous estimate 5, and actual burst 10. What is the next estimate?",
+      "answer": "7",
+      "explanation": "?new = 0.4?10 + 0.6?5 = 4 + 3 = 7 time units."
+    },
+    {
+      "id": "os-cpu-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process starts at time 12 and first runs at time 17. What is its response time?",
+      "answer": "5",
+      "explanation": "Response time is first CPU start minus arrival: 17?12=5."
+    },
+    {
+      "id": "os-cpu-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process?s ready-queue waiting time is 14, and its CPU burst is 6. What is its turnaround time, ignoring other states?",
+      "answer": "20",
+      "explanation": "Turnaround is waiting plus CPU execution: 14+6=20."
+    },
+    {
+      "id": "os-cpu-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Four jobs finish in a 20-second interval. What is throughput in jobs per second?",
+      "answer": "0.2",
+      "explanation": "Throughput is completions divided by elapsed time: 4/20 = 0.2 jobs per second."
+    },
+    {
+      "id": "os-cpu-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A CPU is busy for 45 seconds of a 60-second observation period. What is utilization as a percentage?",
+      "answer": "75",
+      "explanation": "Utilization is 45/60 = 0.75, or 75 percent."
+    },
+    {
+      "id": "os-cpu-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A round-robin process needs 15 units of CPU and q=4. How many units remain after its first two full turns?",
+      "answer": "7",
+      "explanation": "Two full turns provide 8 units of service. Remaining burst is 15?8=7."
+    },
+    {
+      "id": "os-cpu-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process?s exponential estimate is 6, actual burst is 10, and ?=0.5. What is the next estimate?",
+      "answer": "8",
+      "explanation": "The next estimate is 0.5?10 + 0.5?6 = 8."
+    },
+    {
+      "id": "os-cpu-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Two jobs have response times 3 and 9. What is their mean response time?",
+      "answer": "6",
+      "explanation": "The arithmetic mean is (3+9)/2=6 time units."
+    },
+    {
+      "id": "os-cpu-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An SRTF process has 9 units initially, runs for 4, then is preempted. How many units remain?",
+      "answer": "5",
+      "explanation": "Remaining burst equals initial minus executed: 9?4=5 units."
+    },
+    {
+      "id": "os-cpu-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are standard CPU-scheduling criteria?",
+      "options": [
+        "CPU utilization",
+        "Throughput",
+        "Turnaround time",
+        "Color depth"
+      ],
+      "answer": [
+        "CPU utilization",
+        "Throughput",
+        "Turnaround time"
+      ],
+      "explanation": "Utilization, throughput, turnaround, waiting, and response are scheduling criteria. Color depth is unrelated to CPU scheduling."
+    },
+    {
+      "id": "os-cpu-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which claims about FCFS are correct?",
+      "options": [
+        "It is usually non-preemptive",
+        "It can cause the convoy effect",
+        "It is simple to implement",
+        "It always minimizes average waiting time"
+      ],
+      "answer": [
+        "It is usually non-preemptive",
+        "It can cause the convoy effect",
+        "It is simple to implement"
+      ],
+      "explanation": "FCFS is simple and typically non-preemptive, but a long job can delay short jobs. SJF, not FCFS, minimizes average waiting for known simultaneous jobs."
+    },
+    {
+      "id": "os-cpu-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about SJF are correct?",
+      "options": [
+        "It selects the smallest next CPU burst estimate",
+        "It can be non-preemptive",
+        "It can be preemptive as SRTF",
+        "It requires exact knowledge of future bursts in practice"
+      ],
+      "answer": [
+        "It selects the smallest next CPU burst estimate",
+        "It can be non-preemptive",
+        "It can be preemptive as SRTF"
+      ],
+      "explanation": "SJF uses burst estimates and has preemptive SRTF form. Actual future bursts are generally unknown and must be estimated."
+    },
+    {
+      "id": "os-cpu-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which effects can result from choosing a very small Round Robin quantum?",
+      "options": [
+        "More context switches",
+        "Lower response delay for short jobs in some workloads",
+        "Higher scheduling overhead",
+        "The policy becomes non-preemptive FCFS"
+      ],
+      "answer": [
+        "More context switches",
+        "Lower response delay for short jobs in some workloads",
+        "Higher scheduling overhead"
+      ],
+      "explanation": "Small quanta improve service opportunities but increase preemption and overhead. FCFS is approached with a very large quantum, not a small one."
+    },
+    {
+      "id": "os-cpu-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about priority scheduling are correct?",
+      "options": [
+        "Aging can reduce starvation",
+        "Lower numeric values may encode higher priority by convention",
+        "Priority ties need a tie-break rule",
+        "Priority scheduling always guarantees fairness"
+      ],
+      "answer": [
+        "Aging can reduce starvation",
+        "Lower numeric values may encode higher priority by convention",
+        "Priority ties need a tie-break rule"
+      ],
+      "explanation": "Priority conventions vary and ties need resolution. Aging helps starvation, but strict priority alone does not guarantee fairness."
+    },
+    {
+      "id": "os-cpu-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about response and turnaround are correct?",
+      "options": [
+        "Response time ends at first CPU service",
+        "Turnaround ends at process completion",
+        "Waiting time excludes CPU service",
+        "Turnaround is always equal to response time"
+      ],
+      "answer": [
+        "Response time ends at first CPU service",
+        "Turnaround ends at process completion",
+        "Waiting time excludes CPU service"
+      ],
+      "explanation": "Response measures arrival to first service; turnaround measures arrival to completion. Waiting is ready-queue time and is distinct from CPU execution."
+    },
+    {
+      "id": "os-cpu-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which events can make a running process relinquish the CPU?",
+      "options": [
+        "It blocks for I/O",
+        "Its time quantum expires under RR",
+        "It terminates",
+        "A lower-priority process arrives under strict priority scheduling"
+      ],
+      "answer": [
+        "It blocks for I/O",
+        "Its time quantum expires under RR",
+        "It terminates"
+      ],
+      "explanation": "Blocking, quantum expiration, and termination relinquish the CPU. A lower-priority arrival does not preempt a higher-priority running process under strict priority."
+    },
+    {
+      "id": "os-cpu-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about preemptive scheduling are correct?",
+      "options": [
+        "A running process can be interrupted for another ready process",
+        "It can improve response for high-priority arrivals",
+        "It may incur context-switch overhead",
+        "It eliminates starvation automatically"
+      ],
+      "answer": [
+        "A running process can be interrupted for another ready process",
+        "It can improve response for high-priority arrivals",
+        "It may incur context-switch overhead"
+      ],
+      "explanation": "Preemption improves responsiveness in some cases but adds overhead. It does not eliminate starvation without an appropriate fairness policy."
+    },
+    {
+      "id": "os-cpu-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which workloads are likely to benefit from short CPU scheduling quanta?",
+      "options": [
+        "Interactive workloads",
+        "Many short tasks sharing one CPU",
+        "Real-time tasks requiring bounded response (with suitable policy)",
+        "A single non-preemptible long batch job only"
+      ],
+      "answer": [
+        "Interactive workloads",
+        "Many short tasks sharing one CPU",
+        "Real-time tasks requiring bounded response (with suitable policy)"
+      ],
+      "explanation": "Short quanta can improve responsiveness and sharing, though real-time guarantees need a suitable policy. A lone batch job gains little and incurs extra switching."
+    },
+    {
+      "id": "os-cpu-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about multilevel feedback queues are correct?",
+      "options": [
+        "Processes can move between queues",
+        "Observed CPU usage can affect queue placement",
+        "They can favor interactive jobs",
+        "Queue membership is always fixed at process creation"
+      ],
+      "answer": [
+        "Processes can move between queues",
+        "Observed CPU usage can affect queue placement",
+        "They can favor interactive jobs"
+      ],
+      "explanation": "Feedback queues dynamically adjust process priority or queue based on behavior. Fixed membership characterizes a basic multilevel queue."
+    },
+    {
+      "id": "os-cpu-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about exponential burst prediction are correct?",
+      "options": [
+        "Larger ? gives more weight to recent actual burst",
+        "?=0 keeps the previous estimate unchanged",
+        "?=1 uses only the latest actual burst",
+        "The estimate predicts arrival time"
+      ],
+      "answer": [
+        "Larger ? gives more weight to recent actual burst",
+        "?=0 keeps the previous estimate unchanged",
+        "?=1 uses only the latest actual burst"
+      ],
+      "explanation": "The recurrence weights recent actual burst by ? and old estimate by 1??. It predicts CPU burst length, not arrival time."
+    },
+    {
+      "id": "os-cpu-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are concerns with SJF/SRTF?",
+      "options": [
+        "Burst lengths must be estimated",
+        "Long jobs may starve under a stream of short jobs",
+        "SRTF can preempt a running job",
+        "They require no scheduler decisions after dispatch"
+      ],
+      "answer": [
+        "Burst lengths must be estimated",
+        "Long jobs may starve under a stream of short jobs",
+        "SRTF can preempt a running job"
+      ],
+      "explanation": "Shortest-job policies rely on estimates and can starve long work if short jobs continually arrive. SRTF reevaluates and can preempt."
+    },
+    {
+      "id": "os-cpu-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about work-conserving scheduling are correct?",
+      "options": [
+        "The CPU is not idle if a ready job exists",
+        "It does not by itself imply fairness",
+        "It does not guarantee minimum average turnaround",
+        "It guarantees every ready process runs immediately"
+      ],
+      "answer": [
+        "The CPU is not idle if a ready job exists",
+        "It does not by itself imply fairness",
+        "It does not guarantee minimum average turnaround"
+      ],
+      "explanation": "Work-conserving means no idle CPU when work is ready. Fairness, optimal turnaround, and immediate service do not follow."
+    },
+    {
+      "id": "os-cpu-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which scheduler properties are required for a real-time deadline guarantee?",
+      "options": [
+        "A policy that accounts for deadlines or task timing",
+        "Feasibility analysis under execution demands",
+        "Bounded relevant scheduling overhead",
+        "Only maximum average throughput"
+      ],
+      "answer": [
+        "A policy that accounts for deadlines or task timing",
+        "Feasibility analysis under execution demands",
+        "Bounded relevant scheduling overhead"
+      ],
+      "explanation": "Meeting deadlines requires timing-aware policy, schedulability analysis, and bounded overhead. High average throughput alone cannot ensure each deadline."
+    },
+    {
+      "id": "os-cpu-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements distinguish multilevel queue from multilevel feedback queue?",
+      "options": [
+        "Basic multilevel queues use fixed class assignment",
+        "Feedback queues allow movement between queues",
+        "Feedback may use CPU behavior to adjust priority",
+        "Both necessarily use Round Robin in every queue"
+      ],
+      "answer": [
+        "Basic multilevel queues use fixed class assignment",
+        "Feedback queues allow movement between queues",
+        "Feedback may use CPU behavior to adjust priority"
+      ],
+      "explanation": "The key difference is dynamic movement in feedback queues versus fixed classification in basic multilevel queues. Per-queue algorithms can vary."
+    },
+    {
+      "id": "os-cpu-091",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Four processes arrive together with bursts 1, 2, 3, and 4. Under non-preemptive SJF, what is the average waiting time?",
+      "options": [
+        "2.5",
+        "2",
+        "3",
+        "1.5"
+      ],
+      "answer": [
+        "2.5"
+      ],
+      "explanation": "SJF order is 1, 2, 3, 4. Waiting times are 0, 1, 3, and 6, giving mean 10/4 = 2.5."
+    },
+    {
+      "id": "os-cpu-092",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two processes arrive together with bursts 3 and 7 in that order. Under FCFS, what is the average waiting time?",
+      "options": [
+        "1.5",
+        "3.5",
+        "0",
+        "5"
+      ],
+      "answer": [
+        "1.5"
+      ],
+      "explanation": "The first waits 0 and the second waits 3, so the mean is (0+3)/2=1.5."
+    },
+    {
+      "id": "os-cpu-093",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "P1 arrives at time 0 with burst 6. P2 arrives at time 4 with burst 1. Under SRTF, when does P2 finish?",
+      "options": [
+        "5",
+        "1",
+        "6",
+        "7"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "P1 has 2 units remaining when P2 arrives at time 4. P2?s 1-unit burst is shorter, so it runs and completes at time 5."
+    },
+    {
+      "id": "os-cpu-094",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A CPU scheduler completes 9 jobs in 3 seconds. What is throughput in jobs per second?",
+      "options": [
+        "3",
+        "6",
+        "9",
+        "0.33"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Throughput is completed jobs divided by elapsed time: 9/3 = 3 jobs per second."
+    },
+    {
+      "id": "os-cpu-095",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process arrives at 2 and first runs at 6. It completes at 15. What is its turnaround time?",
+      "options": [
+        "13",
+        "4",
+        "9",
+        "15"
+      ],
+      "answer": [
+        "13"
+      ],
+      "explanation": "Turnaround is completion minus arrival: 15?2=13. The first-start time is relevant to response time, not turnaround."
+    },
+    {
+      "id": "os-cpu-096",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Four processes arrive together with bursts 1,2,3,4. Under SJF, what is the average waiting time?",
+      "answer": "2.5",
+      "explanation": "Waiting times are 0,1,3,6. The average is 10/4=2.5."
+    },
+    {
+      "id": "os-cpu-097",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A scheduler completes 15 jobs in 5 seconds. What is throughput in jobs per second?",
+      "answer": "3",
+      "explanation": "Throughput equals 15/5 = 3 completed jobs per second."
+    },
+    {
+      "id": "os-cpu-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Round Robin quantum is 3 and a job needs 11 CPU units. How many full quanta does it consume before its final partial turn?",
+      "answer": "3",
+      "explanation": "It consumes three full quanta for 9 units, then needs a final 2-unit turn."
+    },
+    {
+      "id": "os-cpu-099",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An I/O device completes 15 requests during a 5-second interval. What is its request throughput per second?",
+      "answer": "3",
+      "explanation": "Throughput is completed requests divided by elapsed time: 15/5 = 3 requests per second."
+    },
+    {
+      "id": "os-cpu-100",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A CPU is busy for 54 seconds in a 90-second interval. What is utilization percentage?",
+      "answer": "60",
+      "explanation": "Utilization is 54/90=0.6, or 60 percent."
+    }
+  ]
+}

@@ -1,0 +1,1483 @@
+{
+  "topicIndex": 7,
+  "questions": [
+    {
+      "id": "os-io-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A disk head is at 50 and FCFS requests arrive as 10, 20, 90. What total head movement occurs?",
+      "options": [
+        "120",
+        "110",
+        "100",
+        "90"
+      ],
+      "answer": [
+        "120"
+      ],
+      "explanation": "FCFS movement is |50?10| + |10?20| + |20?90| = 40+10+70 = 120 cylinders."
+    },
+    {
+      "id": "os-io-002",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A disk head is at 50; SSTF requests are 10, 20, and 90. What total head movement occurs?",
+      "options": [
+        "120",
+        "110",
+        "90",
+        "70"
+      ],
+      "answer": [
+        "120"
+      ],
+      "explanation": "SSTF serves 20 (30 cylinders), then 10 (10), then 90 (80): total 120 cylinders."
+    },
+    {
+      "id": "os-io-003",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk head moves toward higher cylinder numbers. Under SCAN, it services requests in that direction and continues to the end before reversing. What is this behavior called?",
+      "options": [
+        "Elevator algorithm",
+        "Shortest seek time first",
+        "Circular look",
+        "FCFS"
+      ],
+      "answer": [
+        "Elevator algorithm"
+      ],
+      "explanation": "SCAN sweeps in one direction servicing requests, reaches the disk boundary, then reverses, resembling an elevator serving floors."
+    },
+    {
+      "id": "os-io-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "How does LOOK differ from SCAN?",
+      "options": [
+        "LOOK reverses at the last pending request rather than the physical disk end",
+        "LOOK never reverses",
+        "LOOK always moves in one direction only",
+        "LOOK selects the nearest request regardless of direction"
+      ],
+      "answer": [
+        "LOOK reverses at the last pending request rather than the physical disk end"
+      ],
+      "explanation": "LOOK avoids traveling to the physical disk boundary when there are no requests beyond the last request in the current direction."
+    },
+    {
+      "id": "os-io-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "How does C-SCAN differ from SCAN?",
+      "options": [
+        "C-SCAN services in one direction, then returns to the beginning without servicing on the return",
+        "C-SCAN reverses direction at each request",
+        "C-SCAN always picks the nearest request",
+        "C-SCAN is non-preemptive CPU scheduling"
+      ],
+      "answer": [
+        "C-SCAN services in one direction, then returns to the beginning without servicing on the return"
+      ],
+      "explanation": "C-SCAN provides more uniform wait by servicing requests in one direction and wrapping to the start without serving on the return."
+    },
+    {
+      "id": "os-io-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which algorithm chooses the pending request with minimum absolute seek distance from the current head position?",
+      "options": [
+        "SSTF",
+        "FCFS",
+        "SCAN",
+        "C-SCAN"
+      ],
+      "answer": [
+        "SSTF"
+      ],
+      "explanation": "Shortest Seek Time First selects the request nearest the current head location, minimizing the next seek distance."
+    },
+    {
+      "id": "os-io-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which disk scheduling policy is inherently fair in request arrival order?",
+      "options": [
+        "FCFS",
+        "SSTF",
+        "SCAN",
+        "LOOK"
+      ],
+      "answer": [
+        "FCFS"
+      ],
+      "explanation": "FCFS preserves arrival order, preventing starvation due to repeated bypass, though it may have higher average seek movement."
+    },
+    {
+      "id": "os-io-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "What is a potential problem with SSTF?",
+      "options": [
+        "A far-away request can starve",
+        "It always travels to disk boundaries",
+        "It ignores head position",
+        "It has no seek movement"
+      ],
+      "answer": [
+        "A far-away request can starve"
+      ],
+      "explanation": "Requests near the current head can repeatedly preempt distant requests, causing starvation of requests far away."
+    },
+    {
+      "id": "os-io-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A disk has cylinders 0 through 199. Under SCAN, the head is at 100 moving upward; requests above it are at 110 and 150, below at 80. What endpoint does it reach before reversing?",
+      "options": [
+        "199",
+        "150",
+        "110",
+        "0"
+      ],
+      "answer": [
+        "199"
+      ],
+      "explanation": "SCAN continues to the physical end in its current direction, so it reaches cylinder 199 before reversing."
+    },
+    {
+      "id": "os-io-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk has requests only up to cylinder 150 in the current upward direction. Under LOOK, where does the head reverse?",
+      "options": [
+        "At cylinder 150",
+        "At cylinder 199",
+        "At cylinder 0",
+        "At cylinder 100"
+      ],
+      "answer": [
+        "At cylinder 150"
+      ],
+      "explanation": "LOOK reverses at the last pending request in the current direction, cylinder 150, rather than traveling to the physical boundary."
+    },
+    {
+      "id": "os-io-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk scheduler receives requests while the head is sweeping upward under SCAN. A new request arrives just below the current head. When is it normally serviced?",
+      "options": [
+        "On the next downward sweep",
+        "Immediately, by reversing direction",
+        "Before all higher requests",
+        "Only after the disk is idle"
+      ],
+      "answer": [
+        "On the next downward sweep"
+      ],
+      "explanation": "SCAN completes the current directional sweep before reversing, so a newly arrived request behind the head waits for the return sweep."
+    },
+    {
+      "id": "os-io-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which request order does FCFS use?",
+      "options": [
+        "Arrival order",
+        "Increasing cylinder order",
+        "Nearest head distance",
+        "Deadline order"
+      ],
+      "answer": [
+        "Arrival order"
+      ],
+      "explanation": "FCFS serves requests in their queue arrival order, independent of cylinder proximity or seek direction."
+    },
+    {
+      "id": "os-io-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A disk queue has requests at cylinders 55 and 58 with head at 56. Under SSTF, which is selected?",
+      "options": [
+        "58",
+        "55",
+        "Both simultaneously",
+        "Neither"
+      ],
+      "answer": [
+        "58"
+      ],
+      "explanation": "Distances are 2 to cylinder 58 and 1 to cylinder 55. SSTF selects 55."
+    },
+    {
+      "id": "os-io-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "What is the primary service-time component improved by disk seek scheduling on a rotating hard disk?",
+      "options": [
+        "Seek time",
+        "CPU burst time",
+        "Network latency",
+        "Page-fault frequency"
+      ],
+      "answer": [
+        "Seek time"
+      ],
+      "explanation": "Reordering disk requests can reduce actuator movement and seek time. Rotational latency is also relevant but not directly controlled by cylinder distance alone."
+    },
+    {
+      "id": "os-io-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk head is at cylinder 100 and requests are [98, 101, 120]. SSTF first selects:",
+      "options": [
+        "101",
+        "98",
+        "120",
+        "The oldest request"
+      ],
+      "answer": [
+        "101"
+      ],
+      "explanation": "The distances are 2, 1, and 20. Cylinder 101 is the nearest request."
+    },
+    {
+      "id": "os-io-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which approach most directly reduces starvation risk compared with SSTF?",
+      "options": [
+        "FCFS or an elevator policy with bounded sweeps",
+        "Always choose the nearest request",
+        "Ignore requests outside a fixed radius",
+        "Reorder only by cylinder distance"
+      ],
+      "answer": [
+        "FCFS or an elevator policy with bounded sweeps"
+      ],
+      "explanation": "FCFS prevents overtaking by request order; SCAN/LOOK sweeps provide directional service that limits indefinite postponement under typical assumptions."
+    },
+    {
+      "id": "os-io-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In disk scheduling, total head movement is usually measured in:",
+      "options": [
+        "cylinders traversed",
+        "bytes transferred",
+        "CPU cycles",
+        "number of disk platters"
+      ],
+      "answer": [
+        "cylinders traversed"
+      ],
+      "explanation": "The seek distance is measured as the number of cylinder positions moved by the head, often summed across all consecutive service points."
+    },
+    {
+      "id": "os-io-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A request is for a sector on the current cylinder but different rotational position. Does seek distance change?",
+      "options": [
+        "No; cylinder movement can be zero though rotational latency remains",
+        "Yes; movement equals the sector number",
+        "The disk head moves to cylinder zero",
+        "The request is automatically ignored"
+      ],
+      "answer": [
+        "No; cylinder movement can be zero though rotational latency remains"
+      ],
+      "explanation": "If the target lies on the current cylinder, cylinder seek movement is zero. The drive may still wait for rotational latency."
+    },
+    {
+      "id": "os-io-019",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statement about disk scheduling and SSDs is most accurate?",
+      "options": [
+        "Seek-based algorithms matter less because SSDs have no moving head",
+        "SSDs use cylinders and mechanical seeks identically",
+        "SSTF is mandatory on SSDs",
+        "FCFS cannot be used with SSDs"
+      ],
+      "answer": [
+        "Seek-based algorithms matter less because SSDs have no moving head"
+      ],
+      "explanation": "SSDs lack mechanical seek movement, so classic cylinder-based optimization is less relevant; scheduling may still address queueing, fairness, and parallelism."
+    },
+    {
+      "id": "os-io-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk has requests at 20, 40, and 80. The head is at 50 moving downward under LOOK. Which request is serviced first?",
+      "options": [
+        "40",
+        "80",
+        "20",
+        "The physical start cylinder"
+      ],
+      "answer": [
+        "40"
+      ],
+      "explanation": "LOOK continues in its current direction and first reaches the nearest request below: cylinder 40."
+    },
+    {
+      "id": "os-io-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Under C-SCAN, after the head reaches the high end, it returns to the low end. Are requests serviced during that return?",
+      "options": [
+        "No",
+        "Yes, in descending order",
+        "Only requests at the endpoints",
+        "Only the oldest request"
+      ],
+      "answer": [
+        "No"
+      ],
+      "explanation": "C-SCAN services in one direction; the return movement is a wraparound without servicing requests, then the upward sweep resumes."
+    },
+    {
+      "id": "os-io-022",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which policy can provide more uniform waiting time across cylinders than SSTF?",
+      "options": [
+        "C-SCAN",
+        "SSTF",
+        "FCFS only",
+        "Shortest job first"
+      ],
+      "answer": [
+        "C-SCAN"
+      ],
+      "explanation": "C-SCAN visits cylinders in a consistent direction and wraps around, providing more uniform service opportunity than distance-based SSTF."
+    },
+    {
+      "id": "os-io-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk uses LOOK and the head is at 40 moving upward. Pending requests are 50, 70, and 30. Which is served first?",
+      "options": [
+        "50",
+        "30",
+        "70",
+        "0"
+      ],
+      "answer": [
+        "50"
+      ],
+      "explanation": "LOOK honors the current direction and selects the nearest pending request above the head, cylinder 50."
+    },
+    {
+      "id": "os-io-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk head is at 75. Requests are at 70, 80, and 140. What will SSTF choose first?",
+      "options": [
+        "70 or 80 depending on tie-break",
+        "140",
+        "70 only",
+        "80 only"
+      ],
+      "answer": [
+        "70 or 80 depending on tie-break"
+      ],
+      "explanation": "The distances to 70 and 80 are both five cylinders. SSTF has a tie, so a tie-breaking rule determines which one is selected."
+    },
+    {
+      "id": "os-io-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A disk scheduler uses SCAN and there are no requests above the current head. If it is moving upward, what does it do?",
+      "options": [
+        "Moves to the upper boundary, then reverses",
+        "Immediately jumps to the lowest request",
+        "Stops permanently",
+        "Services requests below without moving"
+      ],
+      "answer": [
+        "Moves to the upper boundary, then reverses"
+      ],
+      "explanation": "SCAN proceeds to the physical end of the disk in the current direction before reversing, even if no request lies above the head."
+    },
+    {
+      "id": "os-io-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statement best describes rotational latency?",
+      "options": [
+        "Time waiting for the desired sector to rotate under the head",
+        "Time moving the head between cylinders",
+        "Time transferring bits after positioning",
+        "Time waiting in the OS ready queue"
+      ],
+      "answer": [
+        "Time waiting for the desired sector to rotate under the head"
+      ],
+      "explanation": "Rotational latency is the time for the disk to rotate the desired sector under the read/write head after positioning."
+    },
+    {
+      "id": "os-io-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which disk service components contribute to access time?",
+      "options": [
+        "Seek time, rotational latency, and transfer time",
+        "Only CPU scheduling delay",
+        "Only cylinder count",
+        "Page table lookup and context switch"
+      ],
+      "answer": [
+        "Seek time, rotational latency, and transfer time"
+      ],
+      "explanation": "Disk access time commonly includes moving the head (seek), waiting for rotation, and transferring data."
+    },
+    {
+      "id": "os-io-028",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk request queue is reordered to group nearby cylinders. What tradeoff must be considered?",
+      "options": [
+        "Improved average seek can worsen fairness or latency for distant requests",
+        "It reduces all components of access time to zero",
+        "It guarantees arrival order",
+        "It eliminates rotational latency"
+      ],
+      "answer": [
+        "Improved average seek can worsen fairness or latency for distant requests"
+      ],
+      "explanation": "Locality-based reordering can lower average movement but may repeatedly defer distant requests, so fairness and tail latency matter."
+    },
+    {
+      "id": "os-io-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A head is at 100 and there are requests at 105 and 180. Under SSTF, which is next?",
+      "options": [
+        "105",
+        "180",
+        "100",
+        "Both"
+      ],
+      "answer": [
+        "105"
+      ],
+      "explanation": "The seek distances are 5 and 80, so SSTF chooses cylinder 105."
+    },
+    {
+      "id": "os-io-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk has 200 cylinders numbered 0?199. Under C-SCAN, an upward sweep reaches which highest cylinder before wrapping?",
+      "options": [
+        "199",
+        "200",
+        "198",
+        "The highest request only"
+      ],
+      "answer": [
+        "199"
+      ],
+      "explanation": "The valid upper cylinder boundary is 199, so an upward C-SCAN sweep reaches 199 before wrapping to the lower end."
+    },
+    {
+      "id": "os-io-031",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Head 40; FCFS queue [10,50,90]. Total movement?",
+      "options": [
+        "110",
+        "130",
+        "100",
+        "90"
+      ],
+      "answer": [
+        "110"
+      ],
+      "explanation": "The movements are 30, 40, and 40 cylinders, summing to 110."
+    },
+    {
+      "id": "os-io-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Head 40; SSTF queue [10,50,90]. Total movement?",
+      "options": [
+        "130",
+        "110",
+        "90",
+        "70"
+      ],
+      "answer": [
+        "130"
+      ],
+      "explanation": "SSTF selects 50 (10), then 10 (40), then 90 (80), totaling 130."
+    },
+    {
+      "id": "os-io-033",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Head 50 moving up; SCAN on cylinders 0?199 with requests 20,60,90. Total movement?",
+      "options": [
+        "328",
+        "110",
+        "298",
+        "249"
+      ],
+      "answer": [
+        "328"
+      ],
+      "explanation": "SCAN moves 50?60?90?199?20: 10+30+109+179 = 328 cylinders."
+    },
+    {
+      "id": "os-io-034",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Head 100; FCFS requests [110,90,120]. Total movement?",
+      "options": [
+        "60",
+        "50",
+        "40",
+        "30"
+      ],
+      "answer": [
+        "60"
+      ],
+      "explanation": "Successive movements are 10, 20, and 30 cylinders, totaling 60."
+    },
+    {
+      "id": "os-io-035",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Head 100; SSTF requests [110,90,120]. Total movement?",
+      "options": [
+        "60",
+        "40",
+        "50",
+        "30"
+      ],
+      "answer": [
+        "60"
+      ],
+      "explanation": "Choose 110 or 90 first (10); then the other is 20 away, and 120 is 30 away. Total 60."
+    },
+    {
+      "id": "os-io-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Head 50 moving up under LOOK; requests 60,90,20. What is the service order?",
+      "options": [
+        "60,90,20",
+        "20,60,90",
+        "90,60,20",
+        "60,20,90"
+      ],
+      "answer": [
+        "60,90,20"
+      ],
+      "explanation": "LOOK serves upward requests 60 and 90, reverses at 90, then services 20."
+    },
+    {
+      "id": "os-io-037",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Head 50 moving down under LOOK; requests 20,40,80,100. Which is served first?",
+      "options": [
+        "40",
+        "160",
+        "180",
+        "100"
+      ],
+      "answer": [
+        "40"
+      ],
+      "explanation": "The head is at 50 moving down; request 40 is the first one encountered. Request 20 follows before the sweep reverses."
+    },
+    {
+      "id": "os-io-038",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Head 80 moving down under LOOK; requests 20,70,120. What is total movement?",
+      "options": [
+        "160",
+        "180",
+        "200",
+        "140"
+      ],
+      "answer": [
+        "160"
+      ],
+      "explanation": "LOOK goes 80?70 (10), then 20 (50), reverses and reaches 120 (100): total movement 160."
+    },
+    {
+      "id": "os-io-039",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Head 80 moving down under LOOK; requests 20,70,120. What is the first request?",
+      "options": [
+        "70",
+        "20",
+        "120",
+        "0"
+      ],
+      "answer": [
+        "70"
+      ],
+      "explanation": "LOOK follows its current downward direction and first reaches cylinder 70."
+    },
+    {
+      "id": "os-io-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Head 50 moving up under SCAN on 0?199; no requests above 50. How far does it move before reversal?",
+      "options": [
+        "149",
+        "0",
+        "50",
+        "199"
+      ],
+      "answer": [
+        "149"
+      ],
+      "explanation": "It travels from 50 to the upper boundary 199, a distance of 149 cylinders, before reversing."
+    },
+    {
+      "id": "os-io-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Head 50 moving up under LOOK; no requests above 50, nearest below is 40. At what cylinder does it reverse?",
+      "options": [
+        "50",
+        "199",
+        "0",
+        "40"
+      ],
+      "answer": [
+        "50"
+      ],
+      "explanation": "No request lies ahead, so LOOK reverses at its current position rather than moving to a disk boundary."
+    },
+    {
+      "id": "os-io-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Head at 40, SSTF requests 30,50,100. Which request is selected first?",
+      "options": [
+        "30 or 50 (tie)",
+        "100",
+        "30 only",
+        "50 only"
+      ],
+      "answer": [
+        "30 or 50 (tie)"
+      ],
+      "explanation": "Both 30 and 50 are 10 cylinders from the head. SSTF tie-breaking determines which one is served."
+    },
+    {
+      "id": "os-io-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Head at 90; FCFS queue [100,20]. What is total movement?",
+      "options": [
+        "90",
+        "170",
+        "80",
+        "100"
+      ],
+      "answer": [
+        "90"
+      ],
+      "explanation": "FCFS movement is |90?100| + |100?20| = 10+80 = 90 cylinders."
+    },
+    {
+      "id": "os-io-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Head at 90; SSTF queue [100,20]. What is total movement?",
+      "options": [
+        "90",
+        "170",
+        "80",
+        "100"
+      ],
+      "answer": [
+        "90"
+      ],
+      "explanation": "SSTF selects 100 (10), then 20 (80), for total 90 cylinders."
+    },
+    {
+      "id": "os-io-045",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A disk has cylinders 0?199. Head 50 moves up under C-SCAN; request at 20 only. Ignoring wrap cost convention, what request is next served?",
+      "options": [
+        "20 after wrapping",
+        "No request",
+        "199",
+        "50"
+      ],
+      "answer": [
+        "20 after wrapping"
+      ],
+      "explanation": "There is no request ahead. C-SCAN continues to the upper end, wraps to the low end, then serves cylinder 20."
+    },
+    {
+      "id": "os-io-046",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "For disk cylinders 0?99, head at 50 moves up under SCAN; requests at 60 and 20. Total movement through all requests?",
+      "options": [
+        "128",
+        "80",
+        "78",
+        "99"
+      ],
+      "answer": [
+        "128"
+      ],
+      "explanation": "Path 50?60?99?20 has distance 10+39+79=128 cylinders."
+    },
+    {
+      "id": "os-io-047",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "For disk cylinders 0?99, head 50 moving up under LOOK; requests 60 and 20. Total movement?",
+      "options": [
+        "50",
+        "128",
+        "40",
+        "60"
+      ],
+      "answer": [
+        "50"
+      ],
+      "explanation": "LOOK goes 50?60 (10), reverses at 60, then travels to 20 (40), totaling 50."
+    },
+    {
+      "id": "os-io-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "What is the seek distance from cylinder 17 to cylinder 42?",
+      "options": [
+        "25",
+        "59",
+        "42",
+        "17"
+      ],
+      "answer": [
+        "25"
+      ],
+      "explanation": "Seek distance is the absolute difference: |42?17|=25 cylinders."
+    },
+    {
+      "id": "os-io-049",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A head makes moves of 20, 15, and 35 cylinders. What is total movement?",
+      "options": [
+        "70",
+        "50",
+        "55",
+        "35"
+      ],
+      "answer": [
+        "70"
+      ],
+      "explanation": "Total head movement is the sum of consecutive distances: 20+15+35=70 cylinders."
+    },
+    {
+      "id": "os-io-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Disk rotation is 5400 RPM. Approximate average rotational latency?",
+      "options": [
+        "5.56 ms",
+        "11.11 ms",
+        "2.78 ms",
+        "1 ms"
+      ],
+      "answer": [
+        "5.56 ms"
+      ],
+      "explanation": "One turn is 60/5400 seconds ?11.11 ms. Average rotational latency is half a turn ?5.56 ms."
+    },
+    {
+      "id": "os-io-051",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Disk rotation is 12,000 RPM. Approximate one full rotation time?",
+      "options": [
+        "5 ms",
+        "10 ms",
+        "2.5 ms",
+        "12 ms"
+      ],
+      "answer": [
+        "5 ms"
+      ],
+      "explanation": "12,000 RPM is 200 turns/s, so one turn takes 1/200 s = 0.005 s = 5 ms."
+    },
+    {
+      "id": "os-io-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Seek time is 6 ms, rotational delay 4 ms, transfer time 3 ms. Total access time?",
+      "options": [
+        "13 ms",
+        "10 ms",
+        "7 ms",
+        "24 ms"
+      ],
+      "answer": [
+        "13 ms"
+      ],
+      "explanation": "Adding the three components gives 6+4+3=13 ms."
+    },
+    {
+      "id": "os-io-053",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A request targets the current cylinder but a sector just passed. What remains significant?",
+      "options": [
+        "Rotational latency",
+        "Seek across cylinders",
+        "CPU waiting time",
+        "Address translation only"
+      ],
+      "answer": [
+        "Rotational latency"
+      ],
+      "explanation": "No cylinder seek is needed, but the platter must rotate until the desired sector returns under the head."
+    },
+    {
+      "id": "os-io-054",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which algorithm follows request arrival order even when that causes large head movement?",
+      "options": [
+        "FCFS",
+        "SSTF",
+        "LOOK",
+        "C-SCAN"
+      ],
+      "answer": [
+        "FCFS"
+      ],
+      "explanation": "FCFS preserves arrival order and does not reorder by cylinder distance."
+    },
+    {
+      "id": "os-io-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which algorithm tends to serve requests near the current head first, possibly starving distant ones?",
+      "options": [
+        "SSTF",
+        "FCFS",
+        "SCAN",
+        "C-SCAN"
+      ],
+      "answer": [
+        "SSTF"
+      ],
+      "explanation": "SSTF greedily minimizes the next seek, so a stream of nearby requests can keep postponing distant requests."
+    },
+    {
+      "id": "os-io-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithms reverse at the last request in the current direction rather than disk boundary?",
+      "options": [
+        "LOOK",
+        "SCAN",
+        "C-LOOK",
+        "FCFS"
+      ],
+      "answer": [
+        "LOOK"
+      ],
+      "explanation": "LOOK and C-LOOK use request extremes as sweep endpoints, unlike SCAN/C-SCAN which travel to physical boundaries."
+    },
+    {
+      "id": "os-io-057",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which algorithms travel to a physical disk boundary before reversing or wrapping?",
+      "options": [
+        "SCAN and C-SCAN",
+        "LOOK and C-LOOK",
+        "SSTF and FCFS",
+        "FCFS only"
+      ],
+      "answer": [
+        "SCAN and C-SCAN"
+      ],
+      "explanation": "SCAN reaches the end before reversing; C-SCAN reaches an end before wrapping to the other end."
+    },
+    {
+      "id": "os-io-058",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A new request arrives just behind a LOOK sweep. When is it normally serviced?",
+      "options": [
+        "After the head reverses",
+        "Immediately",
+        "Before the next request ahead",
+        "Never"
+      ],
+      "answer": [
+        "After the head reverses"
+      ],
+      "explanation": "LOOK continues in its current direction to the last request ahead, then reverses and services the request behind."
+    },
+    {
+      "id": "os-io-059",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A hard disk request is on the same cylinder but a different track?",
+      "options": [
+        "A seek may still be needed to change heads, but cylinder movement can be zero",
+        "Cylinder distance must equal track number",
+        "There is always zero access time",
+        "The request is invalid"
+      ],
+      "answer": [
+        "A seek may still be needed to change heads, but cylinder movement can be zero"
+      ],
+      "explanation": "Cylinder movement can be zero, though head switching and rotational positioning may still contribute to access time."
+    },
+    {
+      "id": "os-io-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "An SSD has no moving actuator. Which metric matters less than for an HDD?",
+      "options": [
+        "Mechanical seek distance",
+        "Queue wait",
+        "Controller overhead",
+        "Transfer size"
+      ],
+      "answer": [
+        "Mechanical seek distance"
+      ],
+      "explanation": "With no moving head, cylinder seek distance is not a mechanical cost; queueing, controller work, and transfer still matter."
+    },
+    {
+      "id": "os-io-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Head starts at cylinder 10 and moves directly to 70. What is the seek distance?",
+      "answer": "60",
+      "explanation": "Seek distance is the absolute cylinder difference |70?10|=60."
+    },
+    {
+      "id": "os-io-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "FCFS head starts at 50 and requests are 40 then 80. What is total movement?",
+      "answer": "50",
+      "explanation": "Movement is |50?40|+|40?80|=10+40=50 cylinders."
+    },
+    {
+      "id": "os-io-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "SSTF head starts at 50 with requests 40, 60, and 90. What is the first seek distance?",
+      "answer": "10",
+      "explanation": "The nearest requests are 40 and 60, each 10 cylinders away, so the first seek distance is 10."
+    },
+    {
+      "id": "os-io-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A disk has 200 cylinders numbered 0 to 199. What is the distance from the lowest to highest cylinder?",
+      "answer": "199",
+      "explanation": "The endpoint distance is 199?0=199 cylinders."
+    },
+    {
+      "id": "os-io-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A disk rotates at 6000 RPM. What is the average rotational latency in milliseconds?",
+      "answer": "5",
+      "explanation": "One revolution takes 60/6000 seconds = 10 ms. Average latency is half a revolution, 5 ms."
+    },
+    {
+      "id": "os-io-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Seek time is 5 ms, rotational latency 2 ms, and transfer time 1 ms. What is total access time?",
+      "answer": "8",
+      "explanation": "Total access time is 5+2+1=8 ms. This follows from the stated disk service model and request order. This arithmetic follows from the service quantities given."
+    },
+    {
+      "id": "os-io-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A head moves 15 cylinders, then 22, then 9. What is the total movement?",
+      "answer": "46",
+      "explanation": "Sum the consecutive movements: 15+22+9=46 cylinders."
+    },
+    {
+      "id": "os-io-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Head at 30 and FCFS requests [10,50]. What is total movement?",
+      "answer": "60",
+      "explanation": "Movement is 20 from 30 to 10, then 40 from 10 to 50, totaling 60."
+    },
+    {
+      "id": "os-io-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Head at 80 moving down under LOOK, requests 20,70,120. What is the first request cylinder?",
+      "answer": "70",
+      "explanation": "The current direction is downward, and 70 is the nearest request below 80."
+    },
+    {
+      "id": "os-io-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A platter rotates at 10,000 RPM. What is the average rotational latency in milliseconds?",
+      "answer": "3",
+      "explanation": "One rotation takes 60/10,000 seconds = 6 ms. Half a turn averages 3 ms."
+    },
+    {
+      "id": "os-io-071",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are disk access-time components?",
+      "options": [
+        "Seek time",
+        "Rotational latency",
+        "Transfer time",
+        "CPU burst prediction"
+      ],
+      "answer": [
+        "Seek time",
+        "Rotational latency",
+        "Transfer time"
+      ],
+      "explanation": "Disk access commonly includes head seek, rotational wait, and data transfer. CPU burst prediction is a CPU scheduling concept."
+    },
+    {
+      "id": "os-io-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are properties of FCFS disk scheduling?",
+      "options": [
+        "Services requests in arrival order",
+        "Is straightforward and fair by order",
+        "Can incur large total seek movement",
+        "Always minimizes average seek distance"
+      ],
+      "answer": [
+        "Services requests in arrival order",
+        "Is straightforward and fair by order",
+        "Can incur large total seek movement"
+      ],
+      "explanation": "FCFS preserves arrival order and avoids overtaking, but can move the head substantially. It does not optimize seek distance."
+    },
+    {
+      "id": "os-io-073",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about SSTF are correct?",
+      "options": [
+        "It selects the closest pending request",
+        "It can reduce average seek compared with FCFS",
+        "It can starve distant requests",
+        "It always gives uniform waiting time"
+      ],
+      "answer": [
+        "It selects the closest pending request",
+        "It can reduce average seek compared with FCFS",
+        "It can starve distant requests"
+      ],
+      "explanation": "SSTF favors locally close requests and often reduces movement, but distant requests may be repeatedly bypassed, creating unfair wait."
+    },
+    {
+      "id": "os-io-074",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about SCAN are correct?",
+      "options": [
+        "It sweeps in one direction and then reverses",
+        "It may travel to a physical disk boundary",
+        "It is also called the elevator algorithm",
+        "It always services in arrival order"
+      ],
+      "answer": [
+        "It sweeps in one direction and then reverses",
+        "It may travel to a physical disk boundary",
+        "It is also called the elevator algorithm"
+      ],
+      "explanation": "SCAN sweeps like an elevator and reaches an endpoint before reversal. Arrival order does not determine service sequence."
+    },
+    {
+      "id": "os-io-075",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about LOOK are correct?",
+      "options": [
+        "It reverses at the last request in the current direction",
+        "It can avoid travel to an empty physical boundary",
+        "It always moves upward only",
+        "It is a seek-based elevator variant"
+      ],
+      "answer": [
+        "It reverses at the last request in the current direction",
+        "It can avoid travel to an empty physical boundary",
+        "It is a seek-based elevator variant"
+      ],
+      "explanation": "LOOK uses request positions as sweep boundaries, avoiding unnecessary travel. It reverses and therefore does not move in only one direction."
+    },
+    {
+      "id": "os-io-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements describe C-SCAN?",
+      "options": [
+        "Requests are serviced in one direction",
+        "The head wraps around after reaching an end",
+        "The return trip does not service requests",
+        "It reverses direction at every request"
+      ],
+      "answer": [
+        "Requests are serviced in one direction",
+        "The head wraps around after reaching an end",
+        "The return trip does not service requests"
+      ],
+      "explanation": "C-SCAN returns to the opposite end without service, then resumes one-directional service. It does not reverse at each request."
+    },
+    {
+      "id": "os-io-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about C-LOOK are correct?",
+      "options": [
+        "It services in one direction then jumps from one request extreme to the other",
+        "It avoids traveling to physical disk boundaries with no requests",
+        "It services on the return jump",
+        "It is based on circular LOOK behavior"
+      ],
+      "answer": [
+        "It services in one direction then jumps from one request extreme to the other",
+        "It avoids traveling to physical disk boundaries with no requests",
+        "It is based on circular LOOK behavior"
+      ],
+      "explanation": "C-LOOK wraps between the highest and lowest pending request rather than physical endpoints; the jump itself typically does not service requests."
+    },
+    {
+      "id": "os-io-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements are true for a request on the current cylinder?",
+      "options": [
+        "Cylinder seek distance can be zero",
+        "Rotational latency may still be nonzero",
+        "Transfer time may still be required",
+        "Total access time must be zero"
+      ],
+      "answer": [
+        "Cylinder seek distance can be zero",
+        "Rotational latency may still be nonzero",
+        "Transfer time may still be required"
+      ],
+      "explanation": "No cylinder movement may be needed, but sector rotation and transfer remain. Thus total access time need not be zero."
+    },
+    {
+      "id": "os-io-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties are generally true of SSDs relative to HDDs?",
+      "options": [
+        "They lack mechanical head seek",
+        "Cylinder-based seek optimization is less relevant",
+        "Queue management still matters",
+        "They have zero access latency"
+      ],
+      "answer": [
+        "They lack mechanical head seek",
+        "Cylinder-based seek optimization is less relevant",
+        "Queue management still matters"
+      ],
+      "explanation": "SSDs have no moving actuator, reducing the importance of seek distance. They still have controller, queueing, and transfer latencies."
+    },
+    {
+      "id": "os-io-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which factors can affect disk-scheduling fairness?",
+      "options": [
+        "Repeatedly arriving near-head requests under SSTF",
+        "Directional sweep policy",
+        "Arrival order policy",
+        "The disk?s logical file names"
+      ],
+      "answer": [
+        "Repeatedly arriving near-head requests under SSTF",
+        "Directional sweep policy",
+        "Arrival order policy"
+      ],
+      "explanation": "SSTF locality can starve distant requests; sweep and arrival-order policies define who waits. File names do not determine head fairness."
+    },
+    {
+      "id": "os-io-081",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "FCFS head starts at 35 and requests 15, 55, 25 in that order. What is total head movement?",
+      "answer": "90",
+      "explanation": "The movements are 20, 40, and 30 cylinders in FCFS order, totaling 90."
+    },
+    {
+      "id": "os-io-082",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "FCFS head starts at 35 and requests 15,55,25. What is total movement?",
+      "answer": "90",
+      "explanation": "Movement is |35?15| + |15?55| + |55?25| = 20+40+30 = 90 cylinders."
+    },
+    {
+      "id": "os-io-083",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "SSTF head starts at 35 with requests 15,55,25. What is total movement?",
+      "answer": "60",
+      "explanation": "SSTF chooses 25 (10), then 15 (10), then 55 (40), totaling 60 cylinders."
+    },
+    {
+      "id": "os-io-084",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Head starts at 50, moves up under LOOK, requests 20,60,90. What is total movement?",
+      "answer": "110",
+      "explanation": "LOOK moves 50?60 (10), 60?90 (30), reverses to 20 (70), totaling 110."
+    },
+    {
+      "id": "os-io-085",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Head starts at 50, moves up under SCAN on cylinders 0?99, requests 20,60,90. What is total movement?",
+      "answer": "128",
+      "explanation": "SCAN path is 50?60?90?99?20, distance 10+30+9+79=128."
+    },
+    {
+      "id": "os-io-086",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Disk at 7200 RPM: what is one full rotation time in milliseconds?",
+      "answer": "8.33",
+      "explanation": "One rotation takes 60/7200 seconds ? 0.00833 seconds = 8.33 ms."
+    },
+    {
+      "id": "os-io-087",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A head moves 100 cylinders at a stipulated rate of 2 ms per 20 cylinders. What seek time results?",
+      "answer": "10",
+      "explanation": "100 cylinders comprise five groups of 20; at 2 ms each, seek time is 10 ms."
+    },
+    {
+      "id": "os-io-088",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "An access has 7 ms seek, 4 ms rotational latency, and 5 ms transfer. Total time?",
+      "answer": "16",
+      "explanation": "Add the three components: 7+4+5=16 ms. This follows from the stated disk service model and request order. This arithmetic follows from the service quantities given."
+    },
+    {
+      "id": "os-io-089",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "The head moves 45 cylinders and then 55 cylinders. What total distance is traveled?",
+      "answer": "100",
+      "explanation": "Total head movement is 45+55=100 cylinders."
+    },
+    {
+      "id": "os-io-090",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A disk transfers 24 MB in 6 seconds. What is its rate in MB/s?",
+      "answer": "4",
+      "explanation": "Transfer rate is 24/6 = 4 MB/s. This follows from the stated disk service model and request order. This arithmetic follows from the service quantities given."
+    },
+    {
+      "id": "os-io-091",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithms sweep requests in a preferred direction?",
+      "options": [
+        "SCAN",
+        "C-SCAN",
+        "LOOK",
+        "SSTF always"
+      ],
+      "answer": [
+        "SCAN",
+        "C-SCAN",
+        "LOOK"
+      ],
+      "explanation": "SCAN, C-SCAN, and LOOK use directional sweeps. SSTF chooses by nearest distance and has no fixed sweep direction."
+    },
+    {
+      "id": "os-io-092",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about seek distance calculations are correct?",
+      "options": [
+        "Use absolute difference between consecutive cylinder positions",
+        "Sum each consecutive movement in service order",
+        "Ignore the initial head position",
+        "Different service orders can produce different totals"
+      ],
+      "answer": [
+        "Use absolute difference between consecutive cylinder positions",
+        "Sum each consecutive movement in service order",
+        "Different service orders can produce different totals"
+      ],
+      "explanation": "Movement is computed from the initial head through each serviced request. The sequence affects the sum, so the initial position must be included."
+    },
+    {
+      "id": "os-io-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which can be true for SSTF when two requests are equally distant?",
+      "options": [
+        "Either may be chosen depending on tie-break",
+        "Total later movement may differ by choice",
+        "The policy?s tie-break is not specified by SSTF alone",
+        "Both requests are served simultaneously"
+      ],
+      "answer": [
+        "Either may be chosen depending on tie-break",
+        "Total later movement may differ by choice",
+        "The policy?s tie-break is not specified by SSTF alone"
+      ],
+      "explanation": "SSTF defines a minimum-distance choice but not necessarily a tie-break. Choosing one first can change the remaining path and total movement."
+    },
+    {
+      "id": "os-io-094",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about C-SCAN fairness are correct?",
+      "options": [
+        "One-direction service can give more uniform wait by cylinder location",
+        "The wrap-around movement may add distance without serving requests",
+        "It always has less total movement than LOOK",
+        "The policy can serve requests on both sweep directions"
+      ],
+      "answer": [
+        "One-direction service can give more uniform wait by cylinder location",
+        "The wrap-around movement may add distance without serving requests"
+      ],
+      "explanation": "C-SCAN?s one-direction service can improve uniformity, but the wrap adds movement without servicing. It does not necessarily minimize movement or serve on return."
+    },
+    {
+      "id": "os-io-095",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which data is needed to calculate total movement for a disk scheduling algorithm?",
+      "options": [
+        "Initial head cylinder",
+        "Pending request cylinders",
+        "Service order or direction and boundary rules",
+        "File names"
+      ],
+      "answer": [
+        "Initial head cylinder",
+        "Pending request cylinders",
+        "Service order or direction and boundary rules"
+      ],
+      "explanation": "Movement depends on start location, request set, and how the policy orders or sweeps them. File names do not affect cylinder travel."
+    },
+    {
+      "id": "os-io-096",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about SCAN and LOOK are correct?",
+      "options": [
+        "Both reverse direction after servicing requests in a sweep",
+        "SCAN reaches the physical end before reversing",
+        "LOOK turns at the last request instead",
+        "LOOK can travel less when no request is near the boundary"
+      ],
+      "answer": [
+        "Both reverse direction after servicing requests in a sweep",
+        "SCAN reaches the physical end before reversing",
+        "LOOK turns at the last request instead",
+        "LOOK can travel less when no request is near the boundary"
+      ],
+      "explanation": "Both are elevator-style sweeps. SCAN uses physical boundaries; LOOK uses outer pending requests and can avoid empty travel."
+    },
+    {
+      "id": "os-io-097",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which access-time components are independent of CPU scheduling policy?",
+      "options": [
+        "Disk seek time",
+        "Rotational latency",
+        "Data transfer time",
+        "CPU ready-queue waiting time"
+      ],
+      "answer": [
+        "Disk seek time",
+        "Rotational latency",
+        "Data transfer time"
+      ],
+      "explanation": "Seek, rotation, and transfer describe disk access. CPU ready-queue waiting is determined by process scheduling and is a separate delay."
+    },
+    {
+      "id": "os-io-098",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conclusions follow when a request is on the current cylinder?",
+      "options": [
+        "Cylinder-distance seek can be zero",
+        "Rotational latency may dominate",
+        "Data transfer still takes time",
+        "The request cannot be serviced"
+      ],
+      "answer": [
+        "Cylinder-distance seek can be zero",
+        "Rotational latency may dominate",
+        "Data transfer still takes time"
+      ],
+      "explanation": "The head need not move between cylinders, but it may wait for the sector and then transfer data."
+    },
+    {
+      "id": "os-io-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which scheduling choices are more likely to preserve request arrival order?",
+      "options": [
+        "FCFS",
+        "SSTF",
+        "SCAN",
+        "C-SCAN"
+      ],
+      "answer": [
+        "FCFS"
+      ],
+      "explanation": "FCFS serves exactly in arrival order. The other algorithms reorder by proximity or directional sweep."
+    },
+    {
+      "id": "os-io-100",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which concerns remain even if an algorithm minimizes total head movement?",
+      "options": [
+        "Fairness among requests",
+        "Tail latency for an individual request",
+        "Rotational positioning",
+        "Whether the request queue is empty"
+      ],
+      "answer": [
+        "Fairness among requests",
+        "Tail latency for an individual request",
+        "Rotational positioning"
+      ],
+      "explanation": "Low total seek does not guarantee fairness or short worst-case delay; rotational position also contributes to access time."
+    }
+  ]
+}

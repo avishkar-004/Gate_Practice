@@ -1,0 +1,1475 @@
+{
+  "topicIndex": 9,
+  "questions": [
+    {
+      "id": "os-vm-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process references a valid virtual page that is not currently in RAM. What occurs on demand-paged access?",
+      "options": [
+        "A page fault",
+        "A protection fault necessarily",
+        "A context switch to a child",
+        "A disk scheduling interrupt only"
+      ],
+      "answer": [
+        "A page fault"
+      ],
+      "explanation": "The page is valid but not resident, so the hardware raises a page fault. The OS loads it into a frame and resumes the instruction."
+    },
+    {
+      "id": "os-vm-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process references an address outside its valid virtual address space. Is this a normal demand-page fault?",
+      "options": [
+        "No; it is an invalid reference and causes protection handling",
+        "Yes; every missing page is loaded from disk",
+        "Yes; the OS creates unlimited pages",
+        "No; it is an I/O completion"
+      ],
+      "answer": [
+        "No; it is an invalid reference and causes protection handling"
+      ],
+      "explanation": "A page fault can indicate a valid nonresident page. An invalid address is a protection violation and must not be serviced as an ordinary page-in."
+    },
+    {
+      "id": "os-vm-003",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page fault requires disk I/O. What happens to the faulting process while the page is read?",
+      "options": [
+        "It blocks while another ready process may run",
+        "It continues on the CPU during the disk transfer",
+        "It terminates immediately",
+        "It becomes a zombie"
+      ],
+      "answer": [
+        "It blocks while another ready process may run"
+      ],
+      "explanation": "Disk I/O is much slower than CPU execution. The faulting process waits, allowing the scheduler to run another ready process."
+    },
+    {
+      "id": "os-vm-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page fault service takes 8 ms and normal memory access takes 100 ns. Which dominates effective access time even for a small fault rate?",
+      "options": [
+        "Page-fault service time",
+        "TLB lookup",
+        "CPU register access",
+        "Page offset extraction"
+      ],
+      "answer": [
+        "Page-fault service time"
+      ],
+      "explanation": "A millisecond is millions of nanoseconds, so even rare faults contribute substantial average delay compared with ordinary memory accesses."
+    },
+    {
+      "id": "os-vm-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A page-fault rate is p, memory access time is ma, and page fault service time is pf. A simple EAT model is:",
+      "options": [
+        "(1?p)ma + p?pf",
+        "p?ma + (1?p)pf",
+        "ma + pf always",
+        "ma/p"
+      ],
+      "answer": [
+        "(1?p)ma + p?pf"
+      ],
+      "explanation": "With probability 1?p, access succeeds in memory; with probability p, fault service is incurred. The weighted average is (1?p)ma+p?pf."
+    },
+    {
+      "id": "os-vm-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 4 frames and references pages 1,2,3,1. Under demand paging from empty memory, how many faults occur?",
+      "options": [
+        "3",
+        "4",
+        "2",
+        "1"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Pages 1, 2, and 3 each fault on first reference. The final reference to 1 hits, giving three faults."
+    },
+    {
+      "id": "os-vm-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "With 3 empty frames, reference string 1,2,3,1,2,4 under FIFO. How many page faults occur?",
+      "options": [
+        "4",
+        "6",
+        "3",
+        "5"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "The first three distinct pages fault. Page 1 and 2 hit; page 4 faults and replaces FIFO-oldest page 1. Total is four."
+    },
+    {
+      "id": "os-vm-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "With 3 frames, reference string 1,2,3,1,2,4 under LRU. How many faults occur?",
+      "options": [
+        "4",
+        "6",
+        "3",
+        "5"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "Pages 1,2,3 fault; 1 and 2 hit, making 1 least recently used before 4 arrives. Page 4 faults: total four."
+    },
+    {
+      "id": "os-vm-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which page replacement algorithm can exhibit Belady?s anomaly?",
+      "options": [
+        "FIFO",
+        "LRU",
+        "Optimal",
+        "Stack algorithms only"
+      ],
+      "answer": [
+        "FIFO"
+      ],
+      "explanation": "FIFO can produce more page faults with more frames for some reference strings. LRU and optimal have the stack property and do not exhibit this anomaly."
+    },
+    {
+      "id": "os-vm-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Belady?s anomaly means:",
+      "options": [
+        "More frames can cause more page faults under some replacement policies",
+        "More frames always reduce page faults",
+        "FIFO never replaces pages",
+        "A process receives a protection fault"
+      ],
+      "answer": [
+        "More frames can cause more page faults under some replacement policies"
+      ],
+      "explanation": "Some policies, notably FIFO, can have a reference string where increasing frame count increases page faults, counterintuitive to simple intuition."
+    },
+    {
+      "id": "os-vm-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "The optimal replacement algorithm evicts the page:",
+      "options": [
+        "whose next use is farthest in the future",
+        "that entered memory earliest",
+        "that was least recently used",
+        "with the smallest page number"
+      ],
+      "answer": [
+        "whose next use is farthest in the future"
+      ],
+      "explanation": "Optimal replaces the page whose next reference is farthest in the future. It is mainly a benchmark because future references are unknown online."
+    },
+    {
+      "id": "os-vm-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "LRU replacement uses which information?",
+      "options": [
+        "Past reference recency",
+        "Future reference time",
+        "Page number magnitude",
+        "Disk cylinder location"
+      ],
+      "answer": [
+        "Past reference recency"
+      ],
+      "explanation": "LRU approximates locality by evicting the page that has not been used for the longest time in the past."
+    },
+    {
+      "id": "os-vm-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A working set W(t,?) is the set of pages referenced:",
+      "options": [
+        "during the most recent window of ? time units or references",
+        "since process creation only",
+        "that are currently on disk",
+        "with the highest page numbers"
+      ],
+      "answer": [
+        "during the most recent window of ? time units or references"
+      ],
+      "explanation": "The working set estimates the process?s current locality over a recent window of time or references, depending on the model."
+    },
+    {
+      "id": "os-vm-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process?s working set grows beyond its allocated frames. What may happen?",
+      "options": [
+        "Frequent page faults and thrashing",
+        "No page faults",
+        "The TLB becomes infinite",
+        "The process changes its PID"
+      ],
+      "answer": [
+        "Frequent page faults and thrashing"
+      ],
+      "explanation": "If the active locality cannot fit in allocated frames, pages are repeatedly evicted and reloaded, causing a high fault rate known as thrashing."
+    },
+    {
+      "id": "os-vm-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Thrashing is most directly associated with:",
+      "options": [
+        "insufficient frames for active working sets and excessive paging",
+        "too many CPUs",
+        "a large disk scheduling quantum",
+        "high throughput"
+      ],
+      "answer": [
+        "insufficient frames for active working sets and excessive paging"
+      ],
+      "explanation": "When the sum of working-set demands exceeds available frames, processes fault excessively and spend more time paging than executing."
+    },
+    {
+      "id": "os-vm-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system notices high CPU utilization and admits more processes. Under thrashing, what can result?",
+      "options": [
+        "Even more memory pressure and worse paging",
+        "Guaranteed lower page-fault rate",
+        "Elimination of working sets",
+        "All processes become real-time"
+      ],
+      "answer": [
+        "Even more memory pressure and worse paging"
+      ],
+      "explanation": "If utilization is high due to paging activity, adding processes can increase frame competition and worsen thrashing rather than improve useful CPU work."
+    },
+    {
+      "id": "os-vm-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A page has reference bit R=1 and modified bit M=1. What does M indicate?",
+      "options": [
+        "The page has been modified since loading",
+        "The page was never accessed",
+        "The page is invalid",
+        "The page is in the TLB only"
+      ],
+      "answer": [
+        "The page has been modified since loading"
+      ],
+      "explanation": "A dirty/modified bit records whether contents changed, meaning a replacement may need write-back before reuse."
+    },
+    {
+      "id": "os-vm-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A clean page is evicted from RAM. What is usually needed before its frame can be reused?",
+      "options": [
+        "No write-back is needed if backing copy is current",
+        "Write the page to disk always",
+        "Terminate the process",
+        "Flush every file descriptor"
+      ],
+      "answer": [
+        "No write-back is needed if backing copy is current"
+      ],
+      "explanation": "If unmodified, the backing store already has the current contents, so the page can be discarded without a write."
+    },
+    {
+      "id": "os-vm-019",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A dirty page is selected for replacement. What additional operation is usually required?",
+      "options": [
+        "Write the modified contents to backing store",
+        "Zero the entire disk",
+        "Create a new process",
+        "Change the page size"
+      ],
+      "answer": [
+        "Write the modified contents to backing store"
+      ],
+      "explanation": "The dirty page differs from its backing copy and must be written back before its frame is safely reused."
+    },
+    {
+      "id": "os-vm-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page table entry contains a valid bit. What does a cleared valid bit commonly indicate?",
+      "options": [
+        "The page is not currently resident or not valid, depending on design",
+        "The page is always writable",
+        "The process has no address space",
+        "The page?s frame is zero"
+      ],
+      "answer": [
+        "The page is not currently resident or not valid, depending on design"
+      ],
+      "explanation": "A nonvalid entry signals that the mapping cannot be directly used; it may mean nonresident or invalid, distinguished by OS metadata."
+    },
+    {
+      "id": "os-vm-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Copy-on-write after fork initially maps pages so that:",
+      "options": [
+        "parent and child share pages until a write triggers copying",
+        "every page is immediately duplicated",
+        "all pages are shared writable without protection",
+        "the child has no address space"
+      ],
+      "answer": [
+        "parent and child share pages until a write triggers copying"
+      ],
+      "explanation": "Copy-on-write shares physical pages while marking them so writes are intercepted. A write causes a private copy for the writer."
+    },
+    {
+      "id": "os-vm-022",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process writes to a copy-on-write page shared with another process. What typically happens?",
+      "options": [
+        "A fault triggers allocation and copying of the page",
+        "The other process?s mapping disappears",
+        "The write is discarded permanently",
+        "The page becomes a file descriptor"
+      ],
+      "answer": [
+        "A fault triggers allocation and copying of the page"
+      ],
+      "explanation": "The write protection raises a fault; the OS allocates a new frame, copies contents, updates the writer?s mapping, and retries."
+    },
+    {
+      "id": "os-vm-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A TLB entry is stale after a page is remapped. What correctness issue can occur without invalidation?",
+      "options": [
+        "Access to the wrong physical frame",
+        "The process always gets a page fault",
+        "The CPU stops scheduling",
+        "Disk throughput increases"
+      ],
+      "answer": [
+        "Access to the wrong physical frame"
+      ],
+      "explanation": "Using a stale translation can access a frame no longer belonging to that virtual page, so TLB invalidation or address-space tagging is required."
+    },
+    {
+      "id": "os-vm-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A TLB has 4 entries and uses LRU. Accesses A,B,C,D,A,E. Which entry is evicted on E?",
+      "options": [
+        "B",
+        "A",
+        "D",
+        "E"
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "After A,B,C,D, A is referenced again, making B the least recently used. E replaces B."
+    },
+    {
+      "id": "os-vm-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A page is present in RAM but access violates its read-only permission. What fault occurs?",
+      "options": [
+        "Protection fault",
+        "Demand page-in fault only",
+        "Disk seek fault",
+        "Deadlock"
+      ],
+      "answer": [
+        "Protection fault"
+      ],
+      "explanation": "The page is resident, but the operation violates its permission. The OS raises a protection exception rather than loading the page."
+    },
+    {
+      "id": "os-vm-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page fault is serviced, but the process?s page table is not updated before retry. What happens?",
+      "options": [
+        "The same fault can recur",
+        "The access succeeds from the new frame automatically",
+        "The process terminates by definition",
+        "The TLB corrects the page table"
+      ],
+      "answer": [
+        "The same fault can recur"
+      ],
+      "explanation": "The mapping must be installed and translation state updated before retry. Otherwise the processor sees the page as absent again."
+    },
+    {
+      "id": "os-vm-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 5 allocated frames and a reference string touches 8 pages in a short interval. What is a likely effect?",
+      "options": [
+        "Replacement is needed and fault rate may rise",
+        "All eight pages are resident",
+        "The page size increases",
+        "External fragmentation occurs"
+      ],
+      "answer": [
+        "Replacement is needed and fault rate may rise"
+      ],
+      "explanation": "Only five pages fit in its current frames. Accessing eight active pages requires evictions and can cause repeated faults."
+    },
+    {
+      "id": "os-vm-028",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which page replacement policy uses future knowledge and gives a lower bound on faults?",
+      "options": [
+        "Optimal",
+        "FIFO",
+        "LRU",
+        "Second chance"
+      ],
+      "answer": [
+        "Optimal"
+      ],
+      "explanation": "Optimal selects the page whose next use is farthest away. Since real systems lack exact future references, it serves as a theoretical benchmark."
+    },
+    {
+      "id": "os-vm-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Second-chance replacement augments FIFO with which information?",
+      "options": [
+        "A reference bit",
+        "Future-use timestamp",
+        "CPU priority",
+        "File permissions"
+      ],
+      "answer": [
+        "A reference bit"
+      ],
+      "explanation": "Second-chance checks a reference bit and clears it to defer eviction, giving recently used pages another chance before replacement."
+    },
+    {
+      "id": "os-vm-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "With 2 frames and references A,B,A,C under FIFO, how many page faults occur?",
+      "options": [
+        "3",
+        "4",
+        "2",
+        "1"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "A and B fault, the second A hits, and C faults, replacing the oldest page. Total: three."
+    },
+    {
+      "id": "os-vm-031",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "With 2 frames and references A,B,A,C under LRU, how many page faults occur?",
+      "options": [
+        "3",
+        "4",
+        "2",
+        "1"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "A and B fault; A is then most recent, so C replaces B and faults. Total is three."
+    },
+    {
+      "id": "os-vm-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "With 3 frames and references 1,2,3,4 under FIFO, which page is replaced on reference 4?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "FIFO replaces the page loaded earliest. Page 1 entered before 2 and 3, so it is evicted."
+    },
+    {
+      "id": "os-vm-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "With 3 frames, references 1,2,3,1,4 under LRU, which page is evicted for 4?",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "Before 4, the recency order from least to most recent is 2,3,1. LRU evicts page 2."
+    },
+    {
+      "id": "os-vm-034",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process?s page-fault rate rises sharply after another process is admitted. What is a likely cause?",
+      "options": [
+        "Frame allocation pressure",
+        "A larger TLB hit ratio",
+        "Reduced working set",
+        "More free physical memory"
+      ],
+      "answer": [
+        "Frame allocation pressure"
+      ],
+      "explanation": "The new process competes for frames, potentially shrinking the first process?s resident set below its active locality and increasing faults."
+    },
+    {
+      "id": "os-vm-035",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system uses local replacement. A process faults and needs a victim. From which frames is a victim selected?",
+      "options": [
+        "Frames allocated to that process",
+        "Any frame in the system",
+        "Only kernel frames",
+        "The disk cache only"
+      ],
+      "answer": [
+        "Frames allocated to that process"
+      ],
+      "explanation": "Local replacement restricts victim selection to the faulting process?s own allocated frames, protecting other processes? resident sets."
+    },
+    {
+      "id": "os-vm-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Under global replacement, a process may select a victim from:",
+      "options": [
+        "any eligible frame in memory",
+        "only its own frames",
+        "only clean pages",
+        "only the kernel"
+      ],
+      "answer": [
+        "any eligible frame in memory"
+      ],
+      "explanation": "Global replacement permits a process to take a frame currently allocated to another process, potentially changing both processes? fault rates."
+    },
+    {
+      "id": "os-vm-037",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 3 frames and LRU. Reference string 1,2,3,2,4. Which page is evicted on 4?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "After reference 2, recency is 1 least recent, then 3, then 2. Reference 4 replaces page 1."
+    },
+    {
+      "id": "os-vm-038",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 3 frames and FIFO. Reference string 1,2,3,2,4. Which page is evicted on 4?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "FIFO order remains 1,2,3 because a hit on 2 does not change arrival order. Thus 1 is replaced."
+    },
+    {
+      "id": "os-vm-039",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "The reference string 1,2,3,1,2,4 with 3 frames yields 4 FIFO faults. What is the key event on 4?",
+      "options": [
+        "FIFO evicts page 1 despite its recent use",
+        "FIFO evicts page 4",
+        "No replacement occurs",
+        "The process gets a protection fault"
+      ],
+      "answer": [
+        "FIFO evicts page 1 despite its recent use"
+      ],
+      "explanation": "FIFO does not track recent use; page 1 is oldest even though it was referenced recently, so the fault on 4 replaces it."
+    },
+    {
+      "id": "os-vm-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A page-fault handler selects a dirty victim. Why might the faulting process remain blocked longer than for a clean victim?",
+      "options": [
+        "The dirty victim must be written back before frame reuse",
+        "The page table is larger",
+        "The TLB must be deleted from disk",
+        "The CPU burst is restarted"
+      ],
+      "answer": [
+        "The dirty victim must be written back before frame reuse"
+      ],
+      "explanation": "A dirty victim needs disk write-back before its frame is reused, adding I/O latency to servicing the incoming page."
+    },
+    {
+      "id": "os-vm-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page is referenced for the first time after process start, but it is already loaded by prefetching. Is a page fault required?",
+      "options": [
+        "No, because it is resident",
+        "Yes, every first reference faults",
+        "Yes, until its TLB entry exists",
+        "Only if it is read-only"
+      ],
+      "answer": [
+        "No, because it is resident"
+      ],
+      "explanation": "A page fault is based on residency and validity, not whether the process has referenced it before. Prefetching can make it resident first."
+    },
+    {
+      "id": "os-vm-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Demand paging loads a page when:",
+      "options": [
+        "it is first accessed while nonresident",
+        "the process is created, always",
+        "the CPU is idle",
+        "a file is closed"
+      ],
+      "answer": [
+        "it is first accessed while nonresident"
+      ],
+      "explanation": "Demand paging postpones loading until an access requires a nonresident page, rather than loading every page at process start."
+    },
+    {
+      "id": "os-vm-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A valid page is absent, and no free frame exists. What must the OS do?",
+      "options": [
+        "Select a victim page, possibly write it back, then load the needed page",
+        "Reject the address as invalid",
+        "Increase the virtual address width",
+        "Terminate all processes"
+      ],
+      "answer": [
+        "Select a victim page, possibly write it back, then load the needed page"
+      ],
+      "explanation": "The OS selects a replacement frame, writes a dirty victim if needed, loads the demanded page, updates mappings, and resumes execution."
+    },
+    {
+      "id": "os-vm-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A page-fault service includes 5 ms disk read and 1 ms handler overhead. Ignoring restart, what is service time?",
+      "options": [
+        "6 ms",
+        "5 ms",
+        "1 ms",
+        "0.2 ms"
+      ],
+      "answer": [
+        "6 ms"
+      ],
+      "explanation": "The stated service components add to 5+1=6 ms."
+    },
+    {
+      "id": "os-vm-045",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Memory access is 100 ns, page-fault service is 10 ms, and fault probability is 0.001. Approximate EAT?",
+      "options": [
+        "10100 ns",
+        "110 ns",
+        "100 ns",
+        "100000 ns"
+      ],
+      "answer": [
+        "10100 ns"
+      ],
+      "explanation": "10 ms=10,000,000 ns. EAT?0.999?100 + 0.001?10,000,000 ? 10,100 ns."
+    },
+    {
+      "id": "os-vm-046",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process?s working set has 12 pages but it receives 8 frames. What risk is highest?",
+      "options": [
+        "Thrashing due to insufficient frames",
+        "No page faults",
+        "External fragmentation",
+        "Deadlock is certain"
+      ],
+      "answer": [
+        "Thrashing due to insufficient frames"
+      ],
+      "explanation": "The active locality cannot fit in the allocated frames, so pages may repeatedly evict one another and cause thrashing."
+    },
+    {
+      "id": "os-vm-047",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system uses the working-set model. If the total working sets exceed physical frame capacity, what is a common control action?",
+      "options": [
+        "Reduce the degree of multiprogramming",
+        "Admit more processes",
+        "Increase page-fault frequency",
+        "Disable all TLBs"
+      ],
+      "answer": [
+        "Reduce the degree of multiprogramming"
+      ],
+      "explanation": "Reducing active processes frees frames so remaining working sets can stay resident and avoid thrashing."
+    },
+    {
+      "id": "os-vm-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A reference bit is set by hardware on access. In a clock algorithm, a set bit usually causes:",
+      "options": [
+        "the page to receive a second chance and the bit to be cleared",
+        "immediate eviction",
+        "a write-back in every case",
+        "the process to be blocked"
+      ],
+      "answer": [
+        "the page to receive a second chance and the bit to be cleared"
+      ],
+      "explanation": "Clock clears the reference bit and advances, treating recent use as evidence to defer replacement."
+    },
+    {
+      "id": "os-vm-049",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page has reference bit 0 and dirty bit 1. What is true?",
+      "options": [
+        "It has not been recently referenced but needs write-back if evicted",
+        "It is clean and recently used",
+        "It is invalid",
+        "It must remain forever"
+      ],
+      "answer": [
+        "It has not been recently referenced but needs write-back if evicted"
+      ],
+      "explanation": "The reference bit signals recent access, while dirty indicates modification. If selected, the modified contents need write-back."
+    },
+    {
+      "id": "os-vm-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page has reference bit 1 and dirty bit 0. Which description fits?",
+      "options": [
+        "Recently referenced and clean",
+        "Not recently used and dirty",
+        "Invalid and writable",
+        "Referenced only by the kernel"
+      ],
+      "answer": [
+        "Recently referenced and clean"
+      ],
+      "explanation": "R=1 indicates recent use; M=0 means it has not been modified since backing contents were established."
+    },
+    {
+      "id": "os-vm-051",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process accesses a page with valid mapping but insufficient write permission. What occurs?",
+      "options": [
+        "Protection fault",
+        "Demand page fault serviced as writable",
+        "TLB hit only",
+        "No exception"
+      ],
+      "answer": [
+        "Protection fault"
+      ],
+      "explanation": "The mapping exists but disallows the operation. The processor raises a protection fault; the OS does not grant write access automatically."
+    },
+    {
+      "id": "os-vm-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process accesses a valid nonresident page. How does the instruction usually proceed after page-in?",
+      "options": [
+        "It is restarted or resumed with the mapping installed",
+        "It is skipped permanently",
+        "It returns a zero value without execution",
+        "The process is always killed"
+      ],
+      "answer": [
+        "It is restarted or resumed with the mapping installed"
+      ],
+      "explanation": "After loading and updating translation state, the OS restarts the faulting instruction so it can complete normally."
+    },
+    {
+      "id": "os-vm-053",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A dirty page is evicted, written to disk, then accessed again. What likely happens?",
+      "options": [
+        "It faults again and is read back from backing store",
+        "It remains in the TLB permanently",
+        "It is restored without I/O automatically",
+        "The process address space changes"
+      ],
+      "answer": [
+        "It faults again and is read back from backing store"
+      ],
+      "explanation": "Once evicted, the page is nonresident. A later reference faults and the OS reads its updated contents from backing storage."
+    },
+    {
+      "id": "os-vm-054",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A working set is estimated using the last 100 memory references. What happens to the set as old references leave the window?",
+      "options": [
+        "Pages no longer referenced in the window can be removed",
+        "All pages remain forever",
+        "Every page faults",
+        "The window becomes a page table"
+      ],
+      "answer": [
+        "Pages no longer referenced in the window can be removed"
+      ],
+      "explanation": "A sliding window tracks recent locality; pages absent from the current window can leave the working set estimate."
+    },
+    {
+      "id": "os-vm-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page-fault frequency control sees a process faulting above its upper threshold. What action can reduce its rate?",
+      "options": [
+        "Allocate more frames to it if available",
+        "Take away more of its frames",
+        "Increase its CPU priority only",
+        "Make all pages read-only"
+      ],
+      "answer": [
+        "Allocate more frames to it if available"
+      ],
+      "explanation": "More frames can keep more of its active locality resident, reducing replacement and page faults, provided memory is available."
+    },
+    {
+      "id": "os-vm-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A page-fault frequency controller sees a very low rate. What may it safely consider?",
+      "options": [
+        "Reducing the process?s frame allocation",
+        "Giving it all physical memory",
+        "Disabling address translation",
+        "Increasing its working set"
+      ],
+      "answer": [
+        "Reducing the process?s frame allocation"
+      ],
+      "explanation": "A low fault rate can indicate excess frames, so some may be reclaimed while monitoring to avoid crossing into excessive faults."
+    },
+    {
+      "id": "os-vm-057",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page table maps virtual page 3 to frame 9, and TLB has no entry. What happens on access?",
+      "options": [
+        "Page-table walk can find the mapping and then fill the TLB",
+        "A page fault is inevitable",
+        "The mapping is invalid",
+        "The frame is evicted automatically"
+      ],
+      "answer": [
+        "Page-table walk can find the mapping and then fill the TLB"
+      ],
+      "explanation": "A TLB miss is not itself a page fault. The page table may show the page is resident, after which the translation is cached."
+    },
+    {
+      "id": "os-vm-058",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A TLB miss occurs and the page-table entry is valid and present. What kind of event is this?",
+      "options": [
+        "Translation miss, not a page fault",
+        "Protection fault always",
+        "Disk read",
+        "Process termination"
+      ],
+      "answer": [
+        "Translation miss, not a page fault"
+      ],
+      "explanation": "The translation must be fetched from the page table and may be inserted into the TLB. No disk page-in is needed if the page is resident."
+    },
+    {
+      "id": "os-vm-059",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system allocates each process a fixed number of frames. What replacement scope is compatible with this policy?",
+      "options": [
+        "Local replacement",
+        "Global replacement only",
+        "No replacement",
+        "Disk-only replacement"
+      ],
+      "answer": [
+        "Local replacement"
+      ],
+      "explanation": "A fixed per-process allocation is commonly paired with local replacement, selecting victims only from that process?s frames."
+    },
+    {
+      "id": "os-vm-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process has a high page-fault rate but no other processes. What can still cause it?",
+      "options": [
+        "Its own frame allocation is smaller than its locality",
+        "Global replacement by definition",
+        "Another process stealing frames",
+        "Too many CPU cores"
+      ],
+      "answer": [
+        "Its own frame allocation is smaller than its locality"
+      ],
+      "explanation": "Even alone, a process can thrash if its allocated frames are insufficient for its active working set or access pattern."
+    },
+    {
+      "id": "os-vm-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "With 2 frames initially empty and reference string 1,2,1,3 under FIFO, how many faults occur?",
+      "answer": "3",
+      "explanation": "Page 1 and 2 fault, the next 1 hits, and 3 faults replacing FIFO-oldest page 1: three faults."
+    },
+    {
+      "id": "os-vm-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "With 2 frames and references 1,2,1,3 under LRU, how many faults occur?",
+      "answer": "3",
+      "explanation": "The first two references fault, 1 then hits, and 3 faults because page 2 is least recently used. Total three."
+    },
+    {
+      "id": "os-vm-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "With 3 frames and references 1,2,3,1,2,4 under FIFO, how many faults occur?",
+      "answer": "4",
+      "explanation": "The first three pages fault; 1 and 2 hit; 4 faults and replaces page 1. Total four faults."
+    },
+    {
+      "id": "os-vm-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A page fault service takes 6 ms, and ordinary memory access is 100 ns. How many nanoseconds is 6 ms?",
+      "answer": "6000000",
+      "explanation": "One millisecond is 1,000,000 ns, so 6 ms is 6,000,000 ns."
+    },
+    {
+      "id": "os-vm-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 6 frames and its working set contains 9 pages. How many additional frames would match the working-set size?",
+      "answer": "3",
+      "explanation": "The shortfall is 9?6=3 frames. This is a direct subtraction or expectation calculation under the stated assumptions."
+    },
+    {
+      "id": "os-vm-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A TLB has 8 entries and 3 entries are valid for the current address space. How many are unused for that address space?",
+      "answer": "5",
+      "explanation": "Eight total entries minus three usable entries leaves five."
+    },
+    {
+      "id": "os-vm-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 4-frame system references pages A,B,C,D,A,E under LRU. How many faults occur?",
+      "answer": "5",
+      "explanation": "A through D each fault; A hits; E faults and replaces least-recently-used B. Total is five."
+    },
+    {
+      "id": "os-vm-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A page-fault probability is 0.01. Out of 10,000 references, what is the expected number of page faults?",
+      "answer": "100",
+      "explanation": "Expected faults equal 0.01?10,000=100. This is a direct subtraction or expectation calculation under the stated assumptions."
+    },
+    {
+      "id": "os-vm-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Memory access is 100 ns and page-fault service is 1 ms. If fault rate is 0.001, approximate EAT in ns?",
+      "answer": "1100",
+      "explanation": "1 ms=1,000,000 ns. EAT?0.999?100+0.001?1,000,000?100+1000=1100 ns."
+    },
+    {
+      "id": "os-vm-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process uses 12 pages in its working set and receives 9 frames. How many frames short is it?",
+      "answer": "3",
+      "explanation": "The working set exceeds allocation by 12?9=3 frames."
+    },
+    {
+      "id": "os-vm-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "With 3 frames, FIFO references 1,2,3,4,1. How many faults occur?",
+      "answer": "5",
+      "explanation": "Pages 1,2,3 fault; 4 faults replacing 1; the final 1 faults again because it was evicted. Total five."
+    },
+    {
+      "id": "os-vm-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "With 3 frames, LRU references 1,2,3,4,1. How many faults occur?",
+      "answer": "5",
+      "explanation": "First three references fault, 4 evicts least-recent 1, and the final 1 faults. Total five."
+    },
+    {
+      "id": "os-vm-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A dirty page is 4096 bytes. How many bytes must be written back when it is evicted as a whole page?",
+      "answer": "4096",
+      "explanation": "The entire modified page is written back, so 4096 bytes are transferred."
+    },
+    {
+      "id": "os-vm-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 5 resident pages and references 2,2,5,1. How many hits occur if all are initially resident?",
+      "answer": "4",
+      "explanation": "All four references target pages already resident, so each is a hit."
+    },
+    {
+      "id": "os-vm-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A frame holds a 2 KiB page. How many bytes are in 7 such frames?",
+      "answer": "14336",
+      "explanation": "Seven frames contain 7?2048=14,336 bytes."
+    },
+    {
+      "id": "os-vm-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which events may cause a page fault?",
+      "options": [
+        "Access to a valid nonresident page",
+        "Write to a resident read-only page",
+        "Reference to an invalid virtual address",
+        "A TLB miss when the page is resident"
+      ],
+      "answer": [
+        "Access to a valid nonresident page",
+        "Write to a resident read-only page",
+        "Reference to an invalid virtual address"
+      ],
+      "explanation": "A nonresident valid page, a permission violation, and an invalid address can raise page-fault/protection exceptions. A TLB miss alone can be resolved by a page-table walk."
+    },
+    {
+      "id": "os-vm-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about FIFO replacement are correct?",
+      "options": [
+        "It evicts the oldest loaded page",
+        "It can exhibit Belady?s anomaly",
+        "It uses recency of access to update order",
+        "It is simple to implement"
+      ],
+      "answer": [
+        "It evicts the oldest loaded page",
+        "It can exhibit Belady?s anomaly",
+        "It is simple to implement"
+      ],
+      "explanation": "FIFO tracks arrival order and is simple, but can exhibit Belady?s anomaly. Accessing a page does not make it newer in the queue."
+    },
+    {
+      "id": "os-vm-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which algorithms have the stack property and do not exhibit Belady?s anomaly?",
+      "options": [
+        "LRU",
+        "Optimal",
+        "FIFO",
+        "A stack-based replacement policy"
+      ],
+      "answer": [
+        "LRU",
+        "Optimal",
+        "A stack-based replacement policy"
+      ],
+      "explanation": "LRU and optimal are stack algorithms; increasing frames cannot increase faults. FIFO is the classic counterexample."
+    },
+    {
+      "id": "os-vm-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which information does LRU use?",
+      "options": [
+        "Recent past references",
+        "Page load order only",
+        "The future reference string",
+        "Recency metadata or an approximation"
+      ],
+      "answer": [
+        "Recent past references",
+        "Recency metadata or an approximation"
+      ],
+      "explanation": "LRU evicts the least recently used page using past access history, maintained exactly or approximately. It does not require future knowledge."
+    },
+    {
+      "id": "os-vm-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about optimal replacement are true?",
+      "options": [
+        "It evicts the page whose next use is farthest in the future",
+        "It is a theoretical lower bound for a fixed reference string and frame count",
+        "It needs future knowledge",
+        "It is directly implementable for arbitrary unknown workloads"
+      ],
+      "answer": [
+        "It evicts the page whose next use is farthest in the future",
+        "It is a theoretical lower bound for a fixed reference string and frame count",
+        "It needs future knowledge"
+      ],
+      "explanation": "Optimal minimizes faults for a given reference string, but knowing future accesses makes it generally impractical as an online policy."
+    },
+    {
+      "id": "os-vm-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about dirty pages are correct?",
+      "options": [
+        "A dirty victim generally requires write-back",
+        "A clean page may be discarded if backing storage is current",
+        "A dirty bit records modification",
+        "Every page fault writes the victim to disk"
+      ],
+      "answer": [
+        "A dirty victim generally requires write-back",
+        "A clean page may be discarded if backing storage is current",
+        "A dirty bit records modification"
+      ],
+      "explanation": "Only modified victims need write-back; clean pages can be discarded if their backing copy is current. A page fault does not always require a dirty write."
+    },
+    {
+      "id": "os-vm-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which factors can make page-fault handling expensive?",
+      "options": [
+        "Disk or storage I/O",
+        "Victim write-back",
+        "Page-table and TLB updates",
+        "A context switch to another ready process"
+      ],
+      "answer": [
+        "Disk or storage I/O",
+        "Victim write-back",
+        "Page-table and TLB updates",
+        "A context switch to another ready process"
+      ],
+      "explanation": "Fault handling can involve storage reads/writes, translation updates, and scheduling another process while I/O occurs, all adding overhead."
+    },
+    {
+      "id": "os-vm-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about working sets are correct?",
+      "options": [
+        "They approximate current locality",
+        "They depend on a chosen reference/time window",
+        "Insufficient frames can raise the fault rate",
+        "They include every page ever referenced permanently"
+      ],
+      "answer": [
+        "They approximate current locality",
+        "They depend on a chosen reference/time window",
+        "Insufficient frames can raise the fault rate"
+      ],
+      "explanation": "A working set reflects recent locality over a window. Old pages leave the set when no longer referenced within that window."
+    },
+    {
+      "id": "os-vm-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which can indicate thrashing?",
+      "options": [
+        "High page-fault rate",
+        "Low useful CPU progress despite paging activity",
+        "Processes repeatedly evict one another?s active pages",
+        "A high TLB hit ratio necessarily"
+      ],
+      "answer": [
+        "High page-fault rate",
+        "Low useful CPU progress despite paging activity",
+        "Processes repeatedly evict one another?s active pages"
+      ],
+      "explanation": "Thrashing shows up as excessive paging and little useful execution, often from frame competition. A high TLB hit ratio does not by itself imply thrashing."
+    },
+    {
+      "id": "os-vm-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which actions can reduce thrashing?",
+      "options": [
+        "Reduce degree of multiprogramming",
+        "Allocate more frames to active working sets",
+        "Use working-set or fault-frequency control",
+        "Admit more processes to increase competition"
+      ],
+      "answer": [
+        "Reduce degree of multiprogramming",
+        "Allocate more frames to active working sets",
+        "Use working-set or fault-frequency control"
+      ],
+      "explanation": "Reducing pressure or adding frames to the locality can lower faults. Adding processes often worsens competition."
+    },
+    {
+      "id": "os-vm-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about TLBs are correct?",
+      "options": [
+        "A TLB miss is not automatically a page fault",
+        "A TLB hit supplies a cached translation",
+        "Address-space identifiers can distinguish translations",
+        "The TLB stores user file contents"
+      ],
+      "answer": [
+        "A TLB miss is not automatically a page fault",
+        "A TLB hit supplies a cached translation",
+        "Address-space identifiers can distinguish translations"
+      ],
+      "explanation": "The TLB caches address translation, often with ASIDs. A miss can be a resident-page table walk; it does not cache file data."
+    },
+    {
+      "id": "os-vm-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about copy-on-write are correct?",
+      "options": [
+        "Pages can be shared read-only after fork",
+        "A write can cause a protection fault handled by copying",
+        "Unmodified shared pages need not be copied",
+        "Every page is eagerly duplicated at fork"
+      ],
+      "answer": [
+        "Pages can be shared read-only after fork",
+        "A write can cause a protection fault handled by copying",
+        "Unmodified shared pages need not be copied"
+      ],
+      "explanation": "Copy-on-write defers duplication until modification, sharing pages initially and copying only on a write."
+    },
+    {
+      "id": "os-vm-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which replacement details matter in a clock/second-chance algorithm?",
+      "options": [
+        "Reference bit",
+        "Clock-hand position",
+        "Whether a page was recently referenced",
+        "CPU burst estimate"
+      ],
+      "answer": [
+        "Reference bit",
+        "Clock-hand position",
+        "Whether a page was recently referenced"
+      ],
+      "explanation": "Clock uses a circular hand and reference bits to approximate LRU. CPU burst prediction is unrelated."
+    },
+    {
+      "id": "os-vm-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about local and global replacement are correct?",
+      "options": [
+        "Local replacement chooses from the faulting process?s frames",
+        "Global replacement can take another process?s frame",
+        "Global replacement can change other processes? fault rates",
+        "Local replacement allows any process to evict any frame"
+      ],
+      "answer": [
+        "Local replacement chooses from the faulting process?s frames",
+        "Global replacement can take another process?s frame",
+        "Global replacement can change other processes? fault rates"
+      ],
+      "explanation": "Local scope constrains victims to one process; global scope can alter other processes? allocations and fault behavior."
+    },
+    {
+      "id": "os-vm-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which page table entry fields may be used by the OS or hardware?",
+      "options": [
+        "Frame number",
+        "Valid/present bit",
+        "Protection bits",
+        "CPU scheduling queue position"
+      ],
+      "answer": [
+        "Frame number",
+        "Valid/present bit",
+        "Protection bits"
+      ],
+      "explanation": "PTEs commonly store frame mapping, validity, and permissions; scheduling queue position belongs to process/thread scheduler structures."
+    },
+    {
+      "id": "os-vm-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "With 2 frames and FIFO references 1,2,1,3,1, how many page faults occur?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "Faults occur on 1, 2, 3, and the final 1 after FIFO evicts it. The middle 1 hits. Total four."
+    },
+    {
+      "id": "os-vm-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A FIFO cache has three frames. Starting empty, a trace is 1,2,3,4,1. How many misses occur?",
+      "options": [
+        "5",
+        "4",
+        "3",
+        "2"
+      ],
+      "answer": [
+        "5"
+      ],
+      "explanation": "The first three pages miss, page 4 replaces the oldest page 1, and the final 1 misses again. Total: five."
+    },
+    {
+      "id": "os-vm-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A valid page has been paged out to disk. On its next access, which operation is required?",
+      "options": [
+        "Read the page into a frame and update its mapping",
+        "Reject the address as invalid",
+        "Only flush the TLB",
+        "Increase the page size"
+      ],
+      "answer": [
+        "Read the page into a frame and update its mapping"
+      ],
+      "explanation": "The OS must obtain a frame, read the page from backing storage, update the page table/TLB state, and resume the faulting instruction."
+    },
+    {
+      "id": "os-vm-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process receives 4 frames but its working set is 7 pages. How many pages exceed its allocation?",
+      "options": [
+        "3",
+        "4",
+        "7",
+        "11"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "The working set exceeds the frame allocation by 7?4=3 pages, creating pressure for replacement."
+    },
+    {
+      "id": "os-vm-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A page-fault rate is 0.02 over 5000 memory references. How many faults are expected?",
+      "options": [
+        "100",
+        "250",
+        "50",
+        "10"
+      ],
+      "answer": [
+        "100"
+      ],
+      "explanation": "Expected faults are rate times references: 0.02?5000 = 100."
+    },
+    {
+      "id": "os-vm-096",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "With 2 frames and FIFO references A,B,A,C,A, how many page faults occur?",
+      "answer": "4",
+      "explanation": "A and B fault, the second A hits, C faults replacing A, and the final A faults. Total four."
+    },
+    {
+      "id": "os-vm-097",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A page fault rate is 0.005 for 20,000 references. Expected number of faults?",
+      "answer": "100",
+      "explanation": "Multiply the rate by references: 0.005?20,000=100."
+    },
+    {
+      "id": "os-vm-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 11-page working set and receives 8 frames. How many additional frames would match the working set?",
+      "answer": "3",
+      "explanation": "The difference is 11?8=3 frames. It is the difference between the working-set requirement and allocated frames."
+    },
+    {
+      "id": "os-vm-099",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A disk page-in takes 4 ms. Convert this time to microseconds.",
+      "answer": "4000",
+      "explanation": "One millisecond is 1000 microseconds; 4 ms is 4000 microseconds."
+    },
+    {
+      "id": "os-vm-100",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 6 frames and references 1,2,3,4,5,6,1,2,3,4,5 under LRU. How many faults occur?",
+      "answer": "6",
+      "explanation": "The first references to the six distinct pages fault. They all fit in six frames, so the later references hit; there are six faults."
+    }
+  ]
+}

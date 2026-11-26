@@ -1,0 +1,1514 @@
+{
+  "topicIndex": 2,
+  "questions": [
+    {
+      "id": "os-thread-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "In a user-level many-to-one thread model, one thread makes a blocking system call. What is the usual effect?",
+      "options": [
+        "The entire process may block",
+        "Only the calling thread is guaranteed to block",
+        "A new kernel thread is created automatically",
+        "The call is converted to nonblocking I/O"
+      ],
+      "answer": [
+        "The entire process may block"
+      ],
+      "explanation": "The kernel schedules the process as a unit in a many-to-one model. A blocking call can therefore prevent every user thread in that process from running."
+    },
+    {
+      "id": "os-thread-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A many-to-one runtime has four runnable user threads but only one kernel-scheduled execution context. How many of these threads can execute simultaneously on two CPUs?",
+      "options": [
+        "At most one",
+        "Two",
+        "Four",
+        "Zero"
+      ],
+      "answer": [
+        "At most one"
+      ],
+      "explanation": "All user threads share one kernel execution context, so only one can be executing at a time. Multiple CPUs do not provide parallelism for this process under many-to-one mapping."
+    },
+    {
+      "id": "os-thread-003",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A one-to-one model maps each user thread to a kernel thread. Which advantage follows most directly?",
+      "options": [
+        "A blocking call by one thread need not block its siblings",
+        "Thread creation has zero kernel cost",
+        "All threads share separate address spaces",
+        "The kernel does not schedule threads"
+      ],
+      "answer": [
+        "A blocking call by one thread need not block its siblings"
+      ],
+      "explanation": "With separate kernel-schedulable entities, another thread can run while one blocks, subject to available CPU and other constraints."
+    },
+    {
+      "id": "os-thread-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A program has 8 runnable threads under one-to-one mapping on a machine with 4 CPUs. What is the maximum number that can execute simultaneously?",
+      "options": [
+        "4",
+        "8",
+        "1",
+        "12"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "Execution in parallel is bounded by the number of available CPUs, so no more than four of the eight runnable threads can execute at once."
+    },
+    {
+      "id": "os-thread-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which resources are normally shared by threads of the same process?",
+      "options": [
+        "Global variables and open file descriptors",
+        "Stack and register set",
+        "Thread ID and program counter",
+        "Signal mask and stack in all models"
+      ],
+      "answer": [
+        "Global variables and open file descriptors"
+      ],
+      "explanation": "Threads share process resources such as address space and open descriptors, while each thread needs its own stack and CPU execution state."
+    },
+    {
+      "id": "os-thread-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which state must be distinct for each concurrently executing thread?",
+      "options": [
+        "Program counter and register set",
+        "Executable code pages",
+        "Process-wide heap",
+        "Current working directory"
+      ],
+      "answer": [
+        "Program counter and register set"
+      ],
+      "explanation": "Each thread has its own execution point and registers. Code and heap belong to the shared process address space."
+    },
+    {
+      "id": "os-thread-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A mutex protects a shared counter. Two threads increment it using a non-atomic read-modify-write sequence without locking. What can happen?",
+      "options": [
+        "An increment can be lost",
+        "The counter must increase by exactly two",
+        "The threads receive different address spaces",
+        "The kernel serializes all user instructions"
+      ],
+      "answer": [
+        "An increment can be lost"
+      ],
+      "explanation": "Interleaving can let both threads read the same old value and then write the same incremented value, losing one update."
+    },
+    {
+      "id": "os-thread-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread yields the CPU voluntarily but remains runnable. Which transition describes it?",
+      "options": [
+        "running to ready",
+        "running to blocked",
+        "ready to terminated",
+        "blocked to running"
+      ],
+      "answer": [
+        "running to ready"
+      ],
+      "explanation": "Yield relinquishes the current CPU turn without waiting for an event or ending execution, so the thread returns to a runnable state."
+    },
+    {
+      "id": "os-thread-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A thread waits on a condition variable. What should it normally do after waking?",
+      "options": [
+        "Recheck the predicate while holding the associated mutex",
+        "Assume the predicate is true",
+        "Use the condition variable as a mutex",
+        "Exit because wakeups are spurious"
+      ],
+      "answer": [
+        "Recheck the predicate while holding the associated mutex"
+      ],
+      "explanation": "Condition-variable wakeups can be spurious or another thread can consume the condition first. The thread must recheck its predicate in a loop under the mutex."
+    },
+    {
+      "id": "os-thread-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process with multiple threads calls exec successfully. What normally happens to the old threads?",
+      "options": [
+        "The process image is replaced and the old threads cease to exist",
+        "They continue in the old image",
+        "Only the caller changes image and siblings keep running",
+        "Each thread becomes a separate process"
+      ],
+      "answer": [
+        "The process image is replaced and the old threads cease to exist"
+      ],
+      "explanation": "Exec replaces the process image as a whole. The old execution context, including its threads, is discarded as the new program starts."
+    },
+    {
+      "id": "os-thread-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In a many-to-many model, many user threads are multiplexed over several kernel threads. Which statement is true?",
+      "options": [
+        "The number of executing threads is limited by kernel threads and CPUs",
+        "Every user thread must have a dedicated kernel thread",
+        "A blocking call must block all user threads",
+        "The model forbids parallel execution"
+      ],
+      "answer": [
+        "The number of executing threads is limited by kernel threads and CPUs"
+      ],
+      "explanation": "Several kernel threads permit parallel execution and allow user threads to be multiplexed. Actual simultaneous execution cannot exceed available kernel contexts or CPUs."
+    },
+    {
+      "id": "os-thread-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread library implements user-level scheduling, and the kernel sees one schedulable entity. Which scheduling decision is generally invisible to the kernel?",
+      "options": [
+        "Which user thread runs next within the process",
+        "Which process receives a CPU",
+        "Which address space is active",
+        "Which kernel thread is preempted"
+      ],
+      "answer": [
+        "Which user thread runs next within the process"
+      ],
+      "explanation": "The user runtime chooses among its user threads. The kernel sees and schedules the single underlying kernel entity, not the runtime?s internal selection."
+    },
+    {
+      "id": "os-thread-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A thread is preempted while holding a mutex. What is generally true?",
+      "options": [
+        "The mutex remains locked until an owner releases it",
+        "The scheduler automatically releases it",
+        "All waiting threads enter the critical section",
+        "The process must terminate"
+      ],
+      "answer": [
+        "The mutex remains locked until an owner releases it"
+      ],
+      "explanation": "Preemption changes which thread runs, not lock ownership. Other threads remain excluded until the owner unlocks or a recovery protocol intervenes."
+    },
+    {
+      "id": "os-thread-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread exits normally while other threads in the process continue. What is the expected process-level outcome?",
+      "options": [
+        "The process can remain alive while its other threads run",
+        "The entire process must terminate",
+        "All threads become zombies",
+        "The address space is destroyed immediately"
+      ],
+      "answer": [
+        "The process can remain alive while its other threads run"
+      ],
+      "explanation": "Thread termination is distinct from process termination. The process remains active as long as it has other live threads or otherwise continues."
+    },
+    {
+      "id": "os-thread-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A program creates 5 threads that are all CPU-bound on a 2-CPU machine. Ignoring other work, what is the maximum simultaneous parallelism?",
+      "options": [
+        "2",
+        "5",
+        "1",
+        "7"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "At most one thread can execute per CPU at a time. Five runnable threads are time-shared across the two CPUs."
+    },
+    {
+      "id": "os-thread-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statement distinguishes concurrency from parallelism?",
+      "options": [
+        "Concurrent tasks can make progress in overlapping time; parallel tasks execute simultaneously",
+        "Concurrency requires multiple CPUs; parallelism does not",
+        "They are identical terms",
+        "Parallelism occurs only with user-level threads"
+      ],
+      "answer": [
+        "Concurrent tasks can make progress in overlapping time; parallel tasks execute simultaneously"
+      ],
+      "explanation": "Concurrency concerns overlapping progress and can occur by interleaving on one CPU. Parallelism specifically requires simultaneous execution."
+    },
+    {
+      "id": "os-thread-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A thread accesses a thread-local variable. Which property is intended?",
+      "options": [
+        "Each thread has its own instance of that variable",
+        "The variable is shared process-wide",
+        "The variable is stored only in the kernel",
+        "The variable cannot be modified"
+      ],
+      "answer": [
+        "Each thread has its own instance of that variable"
+      ],
+      "explanation": "Thread-local storage provides a separate instance per thread, despite the shared process address space."
+    },
+    {
+      "id": "os-thread-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process contains two threads that concurrently call a non-reentrant library function using one static buffer. What is the main risk?",
+      "options": [
+        "Their calls may corrupt or overwrite shared intermediate state",
+        "Each call receives a private copy automatically",
+        "The kernel serializes all library calls",
+        "The process forks on each call"
+      ],
+      "answer": [
+        "Their calls may corrupt or overwrite shared intermediate state"
+      ],
+      "explanation": "A static buffer is shared by both threads. Interleaved calls can overwrite one another?s state unless the library uses synchronization or per-thread storage."
+    },
+    {
+      "id": "os-thread-019",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread waits for a lock held by another thread that is itself waiting for the first thread to signal it. What condition can result?",
+      "options": [
+        "Deadlock",
+        "Starvation freedom",
+        "Parallel speedup",
+        "A race-free atomic update"
+      ],
+      "answer": [
+        "Deadlock"
+      ],
+      "explanation": "The circular dependency prevents either thread from making progress: each waits for an action that the other cannot perform while blocked."
+    },
+    {
+      "id": "os-thread-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In a user-level threading system with one kernel thread, a page fault that blocks the kernel thread may:",
+      "options": [
+        "block all user threads in that process",
+        "block only the faulting user thread in every implementation",
+        "create an extra CPU",
+        "make the page fault disappear"
+      ],
+      "answer": [
+        "block all user threads in that process"
+      ],
+      "explanation": "The kernel blocks the single kernel execution context while servicing the fault, so the user scheduler cannot run its other threads until it resumes."
+    },
+    {
+      "id": "os-thread-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A kernel supports thread preemption, but a user-level library does not expose parallel execution. Which is most likely?",
+      "options": [
+        "Many-to-one mapping",
+        "One-to-one mapping",
+        "Many-to-many mapping with multiple kernel threads",
+        "Separate process per user thread"
+      ],
+      "answer": [
+        "Many-to-one mapping"
+      ],
+      "explanation": "If many user threads map to only one kernel thread, kernel preemption can preempt that entity but cannot run two of the user threads simultaneously."
+    },
+    {
+      "id": "os-thread-022",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread calls fork in a multithreaded process. Which child state is typical in POSIX semantics?",
+      "options": [
+        "Only the calling thread is present in the child",
+        "Every parent thread is duplicated and scheduled",
+        "The child has no address space",
+        "The child immediately shares the parent PID"
+      ],
+      "answer": [
+        "Only the calling thread is present in the child"
+      ],
+      "explanation": "The child receives a copy-on-write process image but only the forking thread survives as a thread. Other threads are absent from the child."
+    },
+    {
+      "id": "os-thread-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread has its own stack. Why is a separate stack needed?",
+      "options": [
+        "Each thread has independent call frames and return addresses",
+        "Stacks contain the shared executable code",
+        "The kernel requires every stack to be shared",
+        "A stack stores the process PID only"
+      ],
+      "answer": [
+        "Each thread has independent call frames and return addresses"
+      ],
+      "explanation": "Independent execution paths require independent activation records, local variables, and return addresses. Sharing one stack would corrupt nested calls."
+    },
+    {
+      "id": "os-thread-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A worker pool has 12 threads, but only 3 tasks are ready. How many workers can be actively executing useful tasks at most?",
+      "options": [
+        "3",
+        "12",
+        "0",
+        "9"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Only three tasks are available, so at most three workers can execute useful task work concurrently. CPU count may reduce this further."
+    },
+    {
+      "id": "os-thread-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A thread blocks on a system call in a one-to-one model. Another thread in the same process is runnable. What is generally possible?",
+      "options": [
+        "The scheduler can run the other thread",
+        "The blocked thread must be spun until I/O completes",
+        "All threads share one program counter",
+        "The process address space must be copied"
+      ],
+      "answer": [
+        "The scheduler can run the other thread"
+      ],
+      "explanation": "A separate kernel thread can be scheduled independently, allowing the runnable sibling to use a CPU while the first waits."
+    },
+    {
+      "id": "os-thread-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which statement about thread context switching is correct?",
+      "options": [
+        "It saves the outgoing thread?s register state and selects another runnable thread",
+        "It always switches to a different process",
+        "It necessarily copies the shared heap",
+        "It discards the outgoing stack"
+      ],
+      "answer": [
+        "It saves the outgoing thread?s register state and selects another runnable thread"
+      ],
+      "explanation": "The thread?s execution state must be saved so it can resume. A switch may stay within the same process and preserve shared memory."
+    },
+    {
+      "id": "os-thread-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two threads share a file descriptor and issue reads concurrently. What is a possible source of nondeterminism?",
+      "options": [
+        "Their operations may interleave and advance a shared file offset",
+        "Each thread automatically receives an independent offset",
+        "The descriptor changes their PIDs",
+        "Reads are always globally ordered by creation time"
+      ],
+      "answer": [
+        "Their operations may interleave and advance a shared file offset"
+      ],
+      "explanation": "After descriptor inheritance or sharing, the same open-file description can carry a shared offset. Concurrent reads can affect which bytes each obtains."
+    },
+    {
+      "id": "os-thread-028",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Thread A holds mutex M and waits for a condition. It calls condition_wait(M). What must this operation do atomically with respect to waiting?",
+      "options": [
+        "Release M and begin waiting",
+        "Keep M locked forever",
+        "Destroy M",
+        "Wake every thread and retain M"
+      ],
+      "answer": [
+        "Release M and begin waiting"
+      ],
+      "explanation": "Condition-wait releases the associated mutex as it blocks, preventing a missed signal window; it reacquires the mutex before returning."
+    },
+    {
+      "id": "os-thread-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A condition variable is signaled when no thread is waiting. What is generally true?",
+      "options": [
+        "The signal is not a stored permit for a future waiter",
+        "The next waiter is guaranteed to consume it",
+        "The mutex becomes permanently locked",
+        "The process terminates"
+      ],
+      "answer": [
+        "The signal is not a stored permit for a future waiter"
+      ],
+      "explanation": "Condition variables notify current waiters; unlike semaphores, they do not generally retain a count of signals for future waiters."
+    },
+    {
+      "id": "os-thread-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A semaphore is initialized to 3 and four threads each successfully perform wait once, with no signal operations. How many threads can pass the wait?",
+      "options": [
+        "3",
+        "4",
+        "1",
+        "0"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Each successful wait consumes one unit. Three permits allow three threads to proceed; the fourth blocks until a signal adds a permit."
+    },
+    {
+      "id": "os-thread-031",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 6 runnable threads under many-to-one mapping on a 1-CPU system. If the CPU is idle, how many can execute now?",
+      "options": [
+        "1",
+        "6",
+        "0",
+        "5"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "The process has one kernel-schedulable entity, so at most one user thread can run at a time. An idle CPU can execute that entity."
+    },
+    {
+      "id": "os-thread-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process has 6 runnable threads under one-to-one mapping on a 3-CPU system. What is the maximum simultaneous execution count?",
+      "options": [
+        "3",
+        "6",
+        "1",
+        "9"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Each user thread maps to a kernel thread, but the machine has only three CPUs. Thus at most three threads can execute simultaneously."
+    },
+    {
+      "id": "os-thread-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A multithreaded server has 10 requests but a pool of 4 workers. Assuming all requests are independent and CPUs are abundant, how many requests can be processed at once?",
+      "options": [
+        "4",
+        "10",
+        "14",
+        "1"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "Only four worker threads can service requests concurrently. The other six requests must wait for a worker to become available."
+    },
+    {
+      "id": "os-thread-034",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A mutex has one owner and three waiting threads. When the owner unlocks, which fact is guaranteed by the mutex abstraction alone?",
+      "options": [
+        "At most one thread acquires ownership at a time",
+        "All three waiters acquire it simultaneously",
+        "The oldest waiter always wins",
+        "The owner is terminated"
+      ],
+      "answer": [
+        "At most one thread acquires ownership at a time"
+      ],
+      "explanation": "Mutual exclusion guarantees a single owner. Fairness and waiter ordering depend on the implementation and are not guaranteed by the basic abstraction."
+    },
+    {
+      "id": "os-thread-035",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread acquires a non-recursive mutex and then attempts to lock it again. What is the common outcome?",
+      "options": [
+        "It blocks or deadlocks waiting for itself",
+        "It acquires a second independent copy",
+        "The mutex becomes a semaphore",
+        "The process forks"
+      ],
+      "answer": [
+        "It blocks or deadlocks waiting for itself"
+      ],
+      "explanation": "A non-recursive mutex cannot be acquired twice by the same owner. The second acquisition commonly deadlocks or reports an error, depending on its type."
+    },
+    {
+      "id": "os-thread-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program uses a spinlock while the lock holder is descheduled for a long time on a single CPU. What is a likely effect?",
+      "options": [
+        "The waiting thread wastes CPU while the owner cannot run",
+        "The owner releases the lock automatically",
+        "The waiting thread sleeps without consuming CPU",
+        "The system guarantees immediate ownership transfer"
+      ],
+      "answer": [
+        "The waiting thread wastes CPU while the owner cannot run"
+      ],
+      "explanation": "Spinning consumes the only CPU while the descheduled owner needs that CPU to run and release the lock. Blocking locks avoid this waste for long waits."
+    },
+    {
+      "id": "os-thread-037",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "When is a spinlock often preferable to a blocking mutex?",
+      "options": [
+        "For very short critical sections where sleeping costs more than spinning",
+        "Whenever a critical section can block on I/O",
+        "When a lock may be held indefinitely",
+        "When there is only one process"
+      ],
+      "answer": [
+        "For very short critical sections where sleeping costs more than spinning"
+      ],
+      "explanation": "A brief expected hold time can make spinning cheaper than sleep/wakeup overhead. A lock held across blocking work makes spinning wasteful."
+    },
+    {
+      "id": "os-thread-038",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread pool has 8 workers and a queue of 20 independent jobs. If each worker executes at most one job at a time, how many jobs can be running simultaneously?",
+      "options": [
+        "At most 8",
+        "At most 20",
+        "At most 28",
+        "Exactly 1"
+      ],
+      "answer": [
+        "At most 8"
+      ],
+      "explanation": "Each worker can run one job concurrently, so eight workers cap running jobs at eight. Queue size affects waiting work, not active capacity."
+    },
+    {
+      "id": "os-thread-039",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A barrier is configured for 5 threads. Four arrive and wait; the fifth arrives. What is the expected barrier behavior?",
+      "options": [
+        "All five are released to continue",
+        "Only the fifth proceeds",
+        "The first four terminate",
+        "The barrier count becomes 6"
+      ],
+      "answer": [
+        "All five are released to continue"
+      ],
+      "explanation": "A barrier releases participants once the configured number of arrivals has occurred. The fifth arrival completes the phase and lets all five proceed."
+    },
+    {
+      "id": "os-thread-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A barrier participant exits before arriving, leaving only four arrivals for a five-thread barrier. What is the likely result absent cancellation/reconfiguration?",
+      "options": [
+        "The other threads can wait indefinitely",
+        "The barrier releases after a timeout of zero",
+        "The exited thread is recreated",
+        "The barrier becomes a mutex"
+      ],
+      "answer": [
+        "The other threads can wait indefinitely"
+      ],
+      "explanation": "The required arrival count is never reached, so the remaining participants can block indefinitely. Robust designs handle cancellation or participant failure."
+    },
+    {
+      "id": "os-thread-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread executes an atomic fetch-and-add on a shared counter. Which property does atomicity provide?",
+      "options": [
+        "The read-modify-write appears indivisible to competing threads",
+        "The operation is guaranteed to be fair",
+        "The counter cannot overflow",
+        "The entire process becomes serial"
+      ],
+      "answer": [
+        "The read-modify-write appears indivisible to competing threads"
+      ],
+      "explanation": "Atomicity prevents interleaving inside the update, avoiding lost increments. It does not by itself guarantee fairness, no overflow, or serialization of unrelated work."
+    },
+    {
+      "id": "os-thread-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two threads update different variables on different cache lines without synchronization. Must this be a data race?",
+      "options": [
+        "Not necessarily; distinct memory locations avoid a conflicting access",
+        "Yes, any concurrent writes are a race",
+        "No, threads cannot execute concurrently",
+        "Yes, because they share a process"
+      ],
+      "answer": [
+        "Not necessarily; distinct memory locations avoid a conflicting access"
+      ],
+      "explanation": "A data race requires conflicting unsynchronized accesses to the same memory location under the language?s model. Separate variables can be independent."
+    },
+    {
+      "id": "os-thread-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two threads concurrently write the same non-atomic variable, and at least one write is not synchronized. What is the core issue?",
+      "options": [
+        "A data race and potentially undefined behavior in languages such as C/C++",
+        "A deadlock is guaranteed",
+        "The kernel merges the values",
+        "A context switch is disabled"
+      ],
+      "answer": [
+        "A data race and potentially undefined behavior in languages such as C/C++"
+      ],
+      "explanation": "Unsynchronized conflicting accesses constitute a data race. In C and C++, a data race on ordinary memory yields undefined behavior."
+    },
+    {
+      "id": "os-thread-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Thread A signals a condition variable before Thread B begins waiting. What should the program rely on?",
+      "options": [
+        "A shared predicate protected by a mutex, not the signal being remembered",
+        "The signal is stored until B waits",
+        "B must wake at process startup",
+        "A must hold the mutex forever"
+      ],
+      "answer": [
+        "A shared predicate protected by a mutex, not the signal being remembered"
+      ],
+      "explanation": "Condition signals are not stored as permits. The predicate records the condition; B checks it under the mutex and waits only if needed."
+    },
+    {
+      "id": "os-thread-045",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A counting semaphore starts at zero. One thread signals it, then another thread waits. What happens to the wait?",
+      "options": [
+        "It can consume the stored permit and proceed",
+        "It blocks forever because it missed the signal",
+        "It decrements below zero and terminates",
+        "It creates a new semaphore"
+      ],
+      "answer": [
+        "It can consume the stored permit and proceed"
+      ],
+      "explanation": "A semaphore retains its count. The signal increments it, so a later wait can consume that permit and proceed immediately."
+    },
+    {
+      "id": "os-thread-046",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A binary semaphore starts at one. Two threads call wait concurrently. How many can pass before any signal?",
+      "options": [
+        "1",
+        "2",
+        "0",
+        "Unlimited"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "The initial permit is consumed by one successful wait. The second call must wait until a signal restores the permit."
+    },
+    {
+      "id": "os-thread-047",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread is canceled while holding a mutex and has no cleanup handler. What is a possible consequence?",
+      "options": [
+        "The mutex can remain locked and block other threads",
+        "The OS always unlocks every user mutex",
+        "All other threads inherit the mutex",
+        "The process is guaranteed to recover its invariant"
+      ],
+      "answer": [
+        "The mutex can remain locked and block other threads"
+      ],
+      "explanation": "Cancellation does not necessarily release application-level locks safely. Without cleanup or robust recovery, other threads may block and shared state may be inconsistent."
+    },
+    {
+      "id": "os-thread-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Deferred cancellation is requested for a thread. When is cancellation normally acted upon?",
+      "options": [
+        "At a cancellation point or explicit cancellation check",
+        "Immediately after every machine instruction",
+        "Only after the process exits",
+        "Only when another process forks"
+      ],
+      "answer": [
+        "At a cancellation point or explicit cancellation check"
+      ],
+      "explanation": "Deferred cancellation waits until the target reaches a defined cancellation point or checks its status, allowing cleanup at controlled locations."
+    },
+    {
+      "id": "os-thread-049",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread holds a lock and is asynchronously canceled at an arbitrary instruction. Why is this dangerous?",
+      "options": [
+        "It may leave locks held and shared data partially updated",
+        "It always completes the critical section",
+        "It cannot be canceled while running",
+        "The kernel rolls back its writes"
+      ],
+      "answer": [
+        "It may leave locks held and shared data partially updated"
+      ],
+      "explanation": "Arbitrary cancellation can interrupt an invariant-preserving sequence at any point, leaving inconsistent data or unreleased locks."
+    },
+    {
+      "id": "os-thread-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is CPU-bound with four threads, but all threads share a global lock around the entire computation. What is the likely speedup on four CPUs?",
+      "options": [
+        "Little or none because the lock serializes the work",
+        "Exactly fourfold",
+        "Infinite",
+        "At least twofold"
+      ],
+      "answer": [
+        "Little or none because the lock serializes the work"
+      ],
+      "explanation": "A lock around the whole computation allows only one thread into the work region at a time. The CPU-bound workload is therefore effectively serialized."
+    },
+    {
+      "id": "os-thread-051",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 7 runnable user threads under many-to-one mapping. How many can execute simultaneously on an 8-CPU machine?",
+      "answer": "1",
+      "explanation": "Many-to-one mapping exposes one kernel-schedulable entity. Even with eight CPUs, only one of its user threads can execute at a time."
+    },
+    {
+      "id": "os-thread-052",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 9 runnable threads under one-to-one mapping and 6 available CPUs. What is the maximum number of simultaneously executing threads?",
+      "answer": "6",
+      "explanation": "One-to-one mapping allows kernel scheduling of each thread, but execution is still bounded by available CPUs. The maximum is min(9,6) = 6."
+    },
+    {
+      "id": "os-thread-053",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A counting semaphore begins at 4. Six wait operations occur, with no signals. How many wait calls complete immediately?",
+      "answer": "4",
+      "explanation": "The initial count provides four permits. Four waits consume them; the remaining two must block."
+    },
+    {
+      "id": "os-thread-054",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A binary semaphore begins at 0. Five signals occur, then three waits occur. What is its count after these operations, assuming a counting semaphore rather than a capped binary implementation?",
+      "answer": "2",
+      "explanation": "Starting from zero, five signals add five permits and three waits consume three, leaving count two. A strictly capped binary semaphore would have different semantics; the question specifies counting behavior."
+    },
+    {
+      "id": "os-thread-055",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A condition variable has 3 waiting threads. One signal is issued. How many waiting threads is the signal intended to wake?",
+      "answer": "1",
+      "explanation": "A signal generally wakes one waiter, if one is waiting. A broadcast would be used to wake all three."
+    },
+    {
+      "id": "os-thread-056",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A barrier requires 6 arrivals. If 5 threads have arrived, how many additional arrivals are needed to release it?",
+      "answer": "1",
+      "explanation": "The threshold is six. With five arrivals, exactly one more participant must arrive."
+    },
+    {
+      "id": "os-thread-057",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A thread context switch costs 2 microseconds. Switching from thread A to B and later from B back to A costs how many microseconds total?",
+      "answer": "4",
+      "explanation": "There are two context switches, each costing two microseconds. The combined overhead is 2 ? 2 = 4 microseconds."
+    },
+    {
+      "id": "os-thread-058",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Eight threads each increment a shared counter 100 times using a correct mutex. What is the final counter increase from an initial value of zero?",
+      "answer": "800",
+      "explanation": "The mutex prevents lost updates, so all 8 ? 100 increments take effect. The final increase is 800."
+    },
+    {
+      "id": "os-thread-059",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Four threads each perform 50 atomic increments on a shared counter. What is the final value from an initial zero?",
+      "answer": "200",
+      "explanation": "Atomic fetch-and-add preserves every update. The total is 4 ? 50 = 200."
+    },
+    {
+      "id": "os-thread-060",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 3 threads and 2 CPUs. If all are runnable and CPU-bound, what is the maximum simultaneous execution count?",
+      "answer": "2",
+      "explanation": "The CPU count limits parallel execution. Although three threads are runnable, at most two can execute on two CPUs at once."
+    },
+    {
+      "id": "os-thread-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A pool has 10 worker threads and 7 independent ready tasks. How many tasks can be actively assigned to workers at most?",
+      "answer": "7",
+      "explanation": "Only seven tasks are available. Even though there are ten workers, no more than seven can perform those tasks simultaneously."
+    },
+    {
+      "id": "os-thread-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A pool has 10 worker threads and 12 CPUs, with 16 independent ready tasks. What is the maximum number of tasks executing simultaneously?",
+      "answer": "10",
+      "explanation": "The worker count is the bottleneck: at most ten tasks can be assigned concurrently, even though there are more CPUs and tasks."
+    },
+    {
+      "id": "os-thread-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A semaphore count is 2. Three waits occur, then one signal. How many waits can have completed by the end?",
+      "answer": "3",
+      "explanation": "Two waits consume the initial permits; the third blocks. The signal adds a permit and allows that third wait to complete."
+    },
+    {
+      "id": "os-thread-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 5 threads. Each thread requires a 16 KiB stack. What is the total stack allocation, ignoring guard pages and metadata, in KiB?",
+      "answer": "80",
+      "explanation": "The per-thread stack requirement is 16 KiB. For five threads, 5 ? 16 = 80 KiB."
+    },
+    {
+      "id": "os-thread-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A system can run 4 kernel threads in parallel. A many-to-many process has 12 runnable user threads mapped over those 4 kernel threads. What is the maximum simultaneous execution count?",
+      "answer": "4",
+      "explanation": "The user threads are multiplexed over four kernel execution contexts. Even if all twelve are runnable, no more than four can execute simultaneously."
+    },
+    {
+      "id": "os-thread-066",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about threads in one process are generally correct?",
+      "options": [
+        "They share the process address space",
+        "Each thread has its own program counter",
+        "Each thread has its own stack",
+        "Each thread must have a distinct executable image"
+      ],
+      "answer": [
+        "They share the process address space",
+        "Each thread has its own program counter",
+        "Each thread has its own stack"
+      ],
+      "explanation": "Threads share the process image, but each needs private execution state such as program counter, registers, and stack. They do not each require a separate executable image."
+    },
+    {
+      "id": "os-thread-067",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are advantages commonly associated with multithreading?",
+      "options": [
+        "Responsiveness while another thread blocks",
+        "Potential parallelism on multiple CPUs",
+        "Lower-cost communication through shared address space",
+        "Automatic elimination of data races"
+      ],
+      "answer": [
+        "Responsiveness while another thread blocks",
+        "Potential parallelism on multiple CPUs",
+        "Lower-cost communication through shared address space"
+      ],
+      "explanation": "Threads can preserve responsiveness, use multiple CPUs, and communicate through shared memory. Shared state makes races possible, so synchronization remains necessary."
+    },
+    {
+      "id": "os-thread-068",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements describe many-to-one threading?",
+      "options": [
+        "Many user threads map to one kernel thread",
+        "A blocking system call may block all user threads",
+        "The process cannot use multiple CPUs in parallel through those threads",
+        "Each user thread is independently preempted by the kernel"
+      ],
+      "answer": [
+        "Many user threads map to one kernel thread",
+        "A blocking system call may block all user threads",
+        "The process cannot use multiple CPUs in parallel through those threads"
+      ],
+      "explanation": "The kernel sees one entity, so blocking can stall all user threads and parallel execution is unavailable. The kernel cannot independently preempt each user thread."
+    },
+    {
+      "id": "os-thread-069",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about one-to-one threading are correct?",
+      "options": [
+        "Each user thread maps to a kernel thread",
+        "A blocked thread may leave sibling threads runnable",
+        "Kernel resource use can grow with thread count",
+        "It inherently guarantees fairness among threads"
+      ],
+      "answer": [
+        "Each user thread maps to a kernel thread",
+        "A blocked thread may leave sibling threads runnable",
+        "Kernel resource use can grow with thread count"
+      ],
+      "explanation": "One-to-one provides independent kernel scheduling and can allow siblings to run when one blocks, but incurs kernel resources. Fairness is not automatic."
+    },
+    {
+      "id": "os-thread-070",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which practices help avoid lost updates to shared state?",
+      "options": [
+        "Protect the update with a mutex",
+        "Use a suitable atomic read-modify-write operation",
+        "Ensure all access is correctly synchronized",
+        "Add a sleep between the read and write"
+      ],
+      "answer": [
+        "Protect the update with a mutex",
+        "Use a suitable atomic read-modify-write operation",
+        "Ensure all access is correctly synchronized"
+      ],
+      "explanation": "A mutex or atomic operation makes the update indivisible or mutually exclusive. Sleeping does not establish synchronization and cannot make a race correct."
+    },
+    {
+      "id": "os-thread-071",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about mutexes are correct?",
+      "options": [
+        "They provide mutual exclusion when used consistently",
+        "A mutex should normally be unlocked by its owner",
+        "A mutex alone does not guarantee fairness",
+        "Unlocking allows several owners at once"
+      ],
+      "answer": [
+        "They provide mutual exclusion when used consistently",
+        "A mutex should normally be unlocked by its owner",
+        "A mutex alone does not guarantee fairness"
+      ],
+      "explanation": "A mutex enforces one owner at a time; ownership rules generally require the owner to release it. Fairness depends on implementation, and unlock does not create multiple owners."
+    },
+    {
+      "id": "os-thread-072",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about semaphores are correct?",
+      "options": [
+        "A counting semaphore can represent multiple permits",
+        "A wait operation consumes a permit when available",
+        "A signal can add a permit",
+        "A condition-variable signal is always stored like a semaphore permit"
+      ],
+      "answer": [
+        "A counting semaphore can represent multiple permits",
+        "A wait operation consumes a permit when available",
+        "A signal can add a permit"
+      ],
+      "explanation": "Counting semaphores retain permit counts, consumed by wait and increased by signal. Condition-variable signals generally are not remembered for future waiters."
+    },
+    {
+      "id": "os-thread-073",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are valid reasons for waiting on a condition variable in a loop?",
+      "options": [
+        "Spurious wakeups can occur",
+        "Another thread can change the predicate before the waiter reacquires the mutex",
+        "A wakeup does not itself guarantee that the desired condition holds",
+        "The loop causes the scheduler to terminate the process"
+      ],
+      "answer": [
+        "Spurious wakeups can occur",
+        "Another thread can change the predicate before the waiter reacquires the mutex",
+        "A wakeup does not itself guarantee that the desired condition holds"
+      ],
+      "explanation": "Wakeup only prompts the thread to recheck shared state. Spurious wakeups and competing consumers mean the predicate must be checked again under its mutex."
+    },
+    {
+      "id": "os-thread-074",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about thread cancellation are correct?",
+      "options": [
+        "Deferred cancellation is acted on at defined cancellation points",
+        "Cleanup handlers can release resources during cancellation",
+        "Asynchronous cancellation can interrupt an invariant midway",
+        "Cancellation guarantees rollback of shared writes"
+      ],
+      "answer": [
+        "Deferred cancellation is acted on at defined cancellation points",
+        "Cleanup handlers can release resources during cancellation",
+        "Asynchronous cancellation can interrupt an invariant midway"
+      ],
+      "explanation": "Deferred cancellation provides controlled interruption points, and cleanup can release locks. Asynchronous cancellation is risky; cancellation does not roll back writes."
+    },
+    {
+      "id": "os-thread-075",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about fork from a multithreaded process are correct under typical POSIX semantics?",
+      "options": [
+        "Only the calling thread exists in the child",
+        "The child has a separate process identity",
+        "The child may call exec to start a clean program image",
+        "All sibling threads continue running inside the child"
+      ],
+      "answer": [
+        "Only the calling thread exists in the child",
+        "The child has a separate process identity",
+        "The child may call exec to start a clean program image"
+      ],
+      "explanation": "The child is a new process, but only the calling thread remains after fork. Exec is a common safe next step; sibling threads are not duplicated as active threads."
+    },
+    {
+      "id": "os-thread-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which can cause a thread to stop executing temporarily without terminating?",
+      "options": [
+        "Preemption",
+        "Blocking on I/O",
+        "Waiting for a mutex",
+        "Returning from the thread start routine"
+      ],
+      "answer": [
+        "Preemption",
+        "Blocking on I/O",
+        "Waiting for a mutex"
+      ],
+      "explanation": "Preemption, I/O waits, and lock waits suspend execution while preserving the thread. Returning from the start routine normally terminates that thread."
+    },
+    {
+      "id": "os-thread-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about parallel speedup are correct?",
+      "options": [
+        "A serial fraction limits achievable speedup",
+        "A global lock can serialize otherwise parallel work",
+        "More threads always guarantee lower completion time",
+        "CPU and memory contention can reduce gains"
+      ],
+      "answer": [
+        "A serial fraction limits achievable speedup",
+        "A global lock can serialize otherwise parallel work",
+        "CPU and memory contention can reduce gains"
+      ],
+      "explanation": "Serial work and contention limit speedup. Adding threads can increase overhead or contention, so it does not always reduce completion time."
+    },
+    {
+      "id": "os-thread-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are properties of a data race in the usual shared-memory model?",
+      "options": [
+        "Conflicting accesses occur without adequate synchronization",
+        "At least one access is a write",
+        "Two reads alone constitute a data race",
+        "A race can make behavior unpredictable"
+      ],
+      "answer": [
+        "Conflicting accesses occur without adequate synchronization",
+        "At least one access is a write",
+        "A race can make behavior unpredictable"
+      ],
+      "explanation": "A race involves unsynchronized conflicting accesses, at least one of which writes. Concurrent reads do not conflict, while a race can yield unpredictable outcomes."
+    },
+    {
+      "id": "os-thread-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about thread-local storage are correct?",
+      "options": [
+        "Each thread has a distinct instance",
+        "It can avoid synchronization for per-thread state",
+        "It makes all global variables private",
+        "Its instances are shared across processes automatically"
+      ],
+      "answer": [
+        "Each thread has a distinct instance",
+        "It can avoid synchronization for per-thread state"
+      ],
+      "explanation": "Thread-local variables provide per-thread instances and can eliminate races on that particular state. They do not privatize ordinary globals or automatically share across processes."
+    },
+    {
+      "id": "os-thread-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a barrier are correct?",
+      "options": [
+        "It coordinates a fixed group at a phase boundary",
+        "A participant can wait until the required arrivals occur",
+        "A missing participant can prevent release",
+        "A barrier itself protects every shared variable from races"
+      ],
+      "answer": [
+        "It coordinates a fixed group at a phase boundary",
+        "A participant can wait until the required arrivals occur",
+        "A missing participant can prevent release"
+      ],
+      "explanation": "A barrier synchronizes arrival at a phase boundary. It does not provide mutual exclusion or protect data accesses by itself."
+    },
+    {
+      "id": "os-thread-081",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Thread X increments a counter while holding mutex L. Thread Y uses a different mutex M to read the same counter. Is the read protected from the update?",
+      "options": [
+        "No; both operations must use a common synchronization discipline",
+        "Yes; any mutex protects all shared data",
+        "Yes; the kernel serializes reads and writes",
+        "No, because threads cannot share counters"
+      ],
+      "answer": [
+        "No; both operations must use a common synchronization discipline"
+      ],
+      "explanation": "The write is protected only against threads acquiring L. A reader using M can race because the two locks do not coordinate with one another."
+    },
+    {
+      "id": "os-thread-082",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A program launches 100 threads for 100 tiny tasks. Why might this be slower than using a smaller worker pool?",
+      "options": [
+        "Thread creation and scheduling overhead can outweigh useful work",
+        "More threads always reduce cache misses",
+        "The OS must serialize all threads",
+        "Threads cannot execute short tasks"
+      ],
+      "answer": [
+        "Thread creation and scheduling overhead can outweigh useful work"
+      ],
+      "explanation": "For tiny tasks, managing many threads can cost more than the computation. A bounded pool amortizes setup and reduces scheduling overhead."
+    },
+    {
+      "id": "os-thread-083",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has two threads and one thread calls exit_group-like process termination. What happens to the other thread?",
+      "options": [
+        "It terminates as part of process-wide termination",
+        "It continues with a private process image",
+        "It becomes the new parent",
+        "It is guaranteed to finish its current function"
+      ],
+      "answer": [
+        "It terminates as part of process-wide termination"
+      ],
+      "explanation": "Process-wide termination ends all threads in the process; thread-specific exit would be needed to end only the caller."
+    },
+    {
+      "id": "os-thread-084",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Thread A waits on a semaphore while Thread B signals it. What is the key difference from a condition variable if the signal happens before A waits?",
+      "options": [
+        "The semaphore permit can be retained",
+        "The condition variable retains the signal instead",
+        "Both notifications are always lost",
+        "A is terminated"
+      ],
+      "answer": [
+        "The semaphore permit can be retained"
+      ],
+      "explanation": "A semaphore maintains a count, so the signal increments a permit that a later wait can consume. A condition variable does not generally store notifications."
+    },
+    {
+      "id": "os-thread-085",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread acquires a lock, updates shared state, then releases it. A second thread later acquires the same lock. What ordering property is commonly provided?",
+      "options": [
+        "The first thread?s protected writes become visible to the second after lock handoff",
+        "The second thread sees a random old copy",
+        "The process forks at unlock",
+        "The lock guarantees disk persistence"
+      ],
+      "answer": [
+        "The first thread?s protected writes become visible to the second after lock handoff"
+      ],
+      "explanation": "Synchronization operations typically establish memory-ordering/visibility between critical sections. They do not imply process creation or durable storage."
+    },
+    {
+      "id": "os-thread-086",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "On a two-core machine, two threads each run a CPU-bound loop with no shared lock. Which statement is possible?",
+      "options": [
+        "They can execute simultaneously on separate cores",
+        "They must alternate on one core",
+        "They share one program counter",
+        "One must be a process"
+      ],
+      "answer": [
+        "They can execute simultaneously on separate cores"
+      ],
+      "explanation": "With two available cores and independent runnable kernel-schedulable threads, the OS can run them in parallel."
+    },
+    {
+      "id": "os-thread-087",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A thread is ready but not running because all CPUs are occupied. Is it blocked?",
+      "options": [
+        "No; it is ready and waiting for CPU service",
+        "Yes; it is blocked on a device",
+        "Yes; it has terminated",
+        "No; it must be a user thread"
+      ],
+      "answer": [
+        "No; it is ready and waiting for CPU service"
+      ],
+      "explanation": "A runnable thread awaiting CPU assignment is ready. Blocking means waiting for a specific event such as I/O, not merely for an available CPU."
+    },
+    {
+      "id": "os-thread-088",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process with one thread uses a user-level thread package. The package creates 20 user threads but no kernel threads. What does the kernel directly schedule?",
+      "options": [
+        "The process?s single kernel execution context",
+        "Each of the 20 user threads separately",
+        "The shared heap",
+        "The user-level ready queue"
+      ],
+      "answer": [
+        "The process?s single kernel execution context"
+      ],
+      "explanation": "Without kernel-thread support, the kernel knows only the underlying execution context. The user runtime multiplexes its 20 threads internally."
+    },
+    {
+      "id": "os-thread-089",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A condition variable wait returns with the mutex reacquired. What should the thread do before using the protected resource?",
+      "options": [
+        "Recheck the condition predicate",
+        "Unlock and assume it is true",
+        "Call fork",
+        "Clear the mutex state manually"
+      ],
+      "answer": [
+        "Recheck the condition predicate"
+      ],
+      "explanation": "The wakeup does not promise the predicate remains true. Rechecking while holding the reacquired mutex protects correct use of the resource."
+    },
+    {
+      "id": "os-thread-090",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A thread waits for a lock while the lock holder is blocked waiting for the waiter to signal a condition. What design error is most likely?",
+      "options": [
+        "A circular wait/deadlock",
+        "False sharing",
+        "Thread-local storage",
+        "Copy-on-write"
+      ],
+      "answer": [
+        "A circular wait/deadlock"
+      ],
+      "explanation": "Each thread is waiting for an action from the other while holding or requiring a resource, producing a circular dependency and deadlock."
+    },
+    {
+      "id": "os-thread-091",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A worker thread pool has 5 threads. One worker blocks on I/O, while four tasks are queued. How many workers remain available to take queued work?",
+      "options": [
+        "4",
+        "5",
+        "1",
+        "0"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "One of five workers is blocked, leaving four that can potentially take queued tasks. Throughput may change when the blocked worker resumes."
+    },
+    {
+      "id": "os-thread-092",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process uses a mutex for a critical section that performs a 2-second network read. What is the main concern?",
+      "options": [
+        "The lock is held across a long blocking operation, delaying other threads",
+        "The mutex becomes a semaphore",
+        "The network read is automatically canceled",
+        "The process address space is duplicated"
+      ],
+      "answer": [
+        "The lock is held across a long blocking operation, delaying other threads"
+      ],
+      "explanation": "Holding a mutex across blocking I/O can prevent other threads needing that lock from progressing for a long time. Critical sections should generally avoid such waits."
+    },
+    {
+      "id": "os-thread-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A thread releases a mutex it does not own. What can be concluded?",
+      "options": [
+        "The operation violates normal mutex ownership rules and may fail or be undefined",
+        "It transfers ownership reliably",
+        "It wakes all threads and grants the lock to each",
+        "It is equivalent to signaling a condition variable"
+      ],
+      "answer": [
+        "The operation violates normal mutex ownership rules and may fail or be undefined"
+      ],
+      "explanation": "Mutexes are ownership-based; unlocking from a non-owner is invalid under common APIs, though exact error behavior depends on mutex type and interface."
+    },
+    {
+      "id": "os-thread-094",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process creates 3 threads and then the initial thread returns from main. What is the process outcome?",
+      "options": [
+        "In common process semantics, returning from main terminates the process and its threads",
+        "The other threads always continue until completion",
+        "The initial thread becomes a child",
+        "The process is necessarily suspended"
+      ],
+      "answer": [
+        "In common process semantics, returning from main terminates the process and its threads"
+      ],
+      "explanation": "Returning from the process entry point commonly invokes process termination, ending all remaining threads. An explicit thread-exit operation is needed if they should continue."
+    },
+    {
+      "id": "os-thread-095",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which best describes a thread control block?",
+      "options": [
+        "Per-thread metadata such as saved registers, state, and scheduling information",
+        "The shared process heap",
+        "A copy of the executable for every thread",
+        "A disk block containing the thread?s output"
+      ],
+      "answer": [
+        "Per-thread metadata such as saved registers, state, and scheduling information"
+      ],
+      "explanation": "The TCB stores state needed to schedule and resume a thread. Shared address-space regions are process resources rather than per-thread control records."
+    },
+    {
+      "id": "os-thread-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A shared counter is updated by atomic increments, but a thread performs a separate read followed by a decision and write. Is the whole sequence atomic?",
+      "options": [
+        "No; only the atomic increment operation is indivisible",
+        "Yes; one atomic operation makes all later accesses atomic",
+        "Yes, if the thread has higher priority",
+        "No; atomic operations cannot update counters"
+      ],
+      "answer": [
+        "No; only the atomic increment operation is indivisible"
+      ],
+      "explanation": "Atomicity applies to the specific operation, not an arbitrary multi-instruction sequence around it. The larger check-and-act sequence needs its own synchronization."
+    },
+    {
+      "id": "os-thread-097",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Threads A and B both lock mutex M, but A unlocks it before updating the shared variable. What is true of the update?",
+      "options": [
+        "The update is outside the protected critical section and may race",
+        "It remains protected because A previously held M",
+        "The scheduler delays B until after the update",
+        "The variable is converted to thread-local"
+      ],
+      "answer": [
+        "The update is outside the protected critical section and may race"
+      ],
+      "explanation": "Mutual exclusion covers only code executed while holding the lock. Releasing it before the write leaves the write unsynchronized."
+    },
+    {
+      "id": "os-thread-098",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two threads are both runnable on a one-core machine. Can they be concurrent?",
+      "options": [
+        "Yes, by interleaving execution over time",
+        "No, concurrency requires two cores",
+        "Yes, only if they share no memory",
+        "No, the scheduler can run only one thread total"
+      ],
+      "answer": [
+        "Yes, by interleaving execution over time"
+      ],
+      "explanation": "A single CPU can interleave execution so both tasks make progress during overlapping intervals. Simultaneous execution would require multiple cores."
+    },
+    {
+      "id": "os-thread-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A runtime uses many-to-many mapping with 6 kernel threads and 20 user threads on a 4-CPU machine. What bounds simultaneous execution?",
+      "options": [
+        "At most 4 threads",
+        "At most 6 threads",
+        "At most 20 threads",
+        "At most 26 threads"
+      ],
+      "answer": [
+        "At most 4 threads"
+      ],
+      "explanation": "Both the number of kernel execution contexts and CPUs constrain concurrency. min(6,4) = 4 can execute simultaneously."
+    },
+    {
+      "id": "os-thread-100",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread blocks on a mutex in a kernel-supported threading model. What does the scheduler typically do?",
+      "options": [
+        "It can schedule another runnable thread",
+        "It must idle the CPU",
+        "It converts the mutex owner into a process",
+        "It copies the blocked thread?s stack"
+      ],
+      "answer": [
+        "It can schedule another runnable thread"
+      ],
+      "explanation": "A blocked thread is not runnable, but other kernel-schedulable threads can use the CPU. The scheduler need not idle if work remains."
+    }
+  ]
+}

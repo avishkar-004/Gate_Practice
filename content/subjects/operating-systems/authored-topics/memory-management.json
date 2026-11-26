@@ -1,0 +1,1473 @@
+{
+  "topicIndex": 8,
+  "questions": [
+    {
+      "id": "os-mem-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process has a contiguous physical allocation and its base register is 12000, limit is 4000. Is logical address 3999 valid, and what physical address results?",
+      "options": [
+        "Yes; 15999",
+        "No; it exceeds the limit",
+        "Yes; 3999",
+        "Yes; 16000"
+      ],
+      "answer": [
+        "Yes; 15999"
+      ],
+      "explanation": "The offset 3999 is below the limit 4000, so it is valid. Physical address = base + offset = 12000+3999=15999."
+    },
+    {
+      "id": "os-mem-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "With base=8000 and limit=2500, what happens for logical address 2500?",
+      "options": [
+        "It is invalid because valid offsets are less than the limit",
+        "It maps to 10500",
+        "It maps to physical address 2500",
+        "It is valid at the last byte"
+      ],
+      "answer": [
+        "It is invalid because valid offsets are less than the limit"
+      ],
+      "explanation": "The limit is an exclusive bound. Valid offsets satisfy 0?offset<2500; offset 2500 triggers a protection fault."
+    },
+    {
+      "id": "os-mem-003",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A fixed partition is 16 KiB and a process needs 11 KiB. What is internal fragmentation in that partition?",
+      "options": [
+        "5 KiB",
+        "11 KiB",
+        "16 KiB",
+        "27 KiB"
+      ],
+      "answer": [
+        "5 KiB"
+      ],
+      "explanation": "The allocated partition contains 16 KiB while the process uses 11 KiB. The unused space inside it is 16?11=5 KiB."
+    },
+    {
+      "id": "os-mem-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which allocation method can suffer external fragmentation even when total free memory is sufficient?",
+      "options": [
+        "Contiguous variable-sized allocation",
+        "Paging",
+        "Fixed-size frames",
+        "Pure segmentation with compacted segments only"
+      ],
+      "answer": [
+        "Contiguous variable-sized allocation"
+      ],
+      "explanation": "Variable-sized contiguous allocations leave holes. Total free space can exceed a request while no single hole is large enough."
+    },
+    {
+      "id": "os-mem-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Paging divides logical memory into pages and physical memory into:",
+      "options": [
+        "frames of equal size",
+        "variable-sized segments",
+        "partitions based on process size",
+        "disk cylinders"
+      ],
+      "answer": [
+        "frames of equal size"
+      ],
+      "explanation": "Pages and frames have the same fixed size, allowing any page to occupy any free frame and eliminating external fragmentation in physical allocation."
+    },
+    {
+      "id": "os-mem-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A logical address has page number p and offset d. What does the page table provide?",
+      "options": [
+        "The frame number corresponding to p",
+        "The physical byte for d without a frame",
+        "The process?s base register only",
+        "The disk block number for every page"
+      ],
+      "answer": [
+        "The frame number corresponding to p"
+      ],
+      "explanation": "The page table maps a virtual page number to a physical frame number. The offset is carried unchanged into the physical address."
+    },
+    {
+      "id": "os-mem-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Page size is 4 KiB. How many offset bits are needed?",
+      "options": [
+        "12",
+        "10",
+        "4",
+        "4096"
+      ],
+      "answer": [
+        "12"
+      ],
+      "explanation": "A 4 KiB page contains 2^12 bytes, so twelve low-order bits select the byte offset within the page."
+    },
+    {
+      "id": "os-mem-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system uses 32-bit virtual addresses and 4 KiB pages. How many bits are in the virtual page number?",
+      "options": [
+        "20",
+        "12",
+        "24",
+        "32"
+      ],
+      "answer": [
+        "20"
+      ],
+      "explanation": "The page offset uses 12 bits, leaving 32?12=20 bits for the virtual page number."
+    },
+    {
+      "id": "os-mem-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process has 16-bit logical addresses and page size 1 KiB. How many pages are in its logical address space?",
+      "options": [
+        "64",
+        "16",
+        "1024",
+        "65536"
+      ],
+      "answer": [
+        "64"
+      ],
+      "explanation": "The address space has 2^16 bytes; each page has 2^10 bytes. Thus the number of pages is 2^6=64."
+    },
+    {
+      "id": "os-mem-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Page size is 1 KiB. Logical address 2500 has page number and offset:",
+      "options": [
+        "page 2, offset 452",
+        "page 1, offset 500",
+        "page 2, offset 452?",
+        "page 2500, offset 0"
+      ],
+      "answer": [
+        "page 2, offset 452"
+      ],
+      "explanation": "Divide 2500 by 1024: quotient 2 and remainder 452. Thus page number 2 and offset 452."
+    },
+    {
+      "id": "os-mem-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page table maps virtual page 7 to frame 12. Page size is 1024 bytes. What physical address corresponds to virtual address 7?1024+100?",
+      "options": [
+        "12388",
+        "727?",
+        "12288",
+        "100"
+      ],
+      "answer": [
+        "12388"
+      ],
+      "explanation": "The offset is 100 and frame base is 12?1024=12288. Physical address is 12288+100=12388."
+    },
+    {
+      "id": "os-mem-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which is an advantage of paging over contiguous allocation?",
+      "options": [
+        "A process need not occupy one contiguous physical region",
+        "It eliminates all memory overhead",
+        "It eliminates internal fragmentation",
+        "It requires no address translation"
+      ],
+      "answer": [
+        "A process need not occupy one contiguous physical region"
+      ],
+      "explanation": "Pages can be mapped to nonadjacent frames, avoiding the need for one large contiguous physical hole. Paging still has page tables and possible internal fragmentation."
+    },
+    {
+      "id": "os-mem-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which fragmentation is associated with paging?s final partially used page?",
+      "options": [
+        "Internal fragmentation",
+        "External fragmentation",
+        "No fragmentation",
+        "Compaction overhead"
+      ],
+      "answer": [
+        "Internal fragmentation"
+      ],
+      "explanation": "A process may not use every byte of its last allocated page, leaving unused space inside that page, which is internal fragmentation."
+    },
+    {
+      "id": "os-mem-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 10.5 KiB of memory and page size 4 KiB. How much internal fragmentation is in its last page?",
+      "options": [
+        "1.5 KiB",
+        "0.5 KiB",
+        "4 KiB",
+        "2.5 KiB"
+      ],
+      "answer": [
+        "1.5 KiB"
+      ],
+      "explanation": "It occupies three pages totaling 12 KiB. The unused portion is 12?10.5=1.5 KiB in the last page."
+    },
+    {
+      "id": "os-mem-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A TLB hit occurs during address translation. What does the TLB provide?",
+      "options": [
+        "A cached page-to-frame mapping",
+        "The actual disk contents of a page",
+        "The process?s CPU burst estimate",
+        "A free partition size"
+      ],
+      "answer": [
+        "A cached page-to-frame mapping"
+      ],
+      "explanation": "The TLB caches recent virtual-page to physical-frame translations, allowing the processor to avoid an additional page-table memory access on a hit."
+    },
+    {
+      "id": "os-mem-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page table has 2^20 entries and each entry is 4 bytes. What is its size?",
+      "options": [
+        "4 MiB",
+        "1 MiB",
+        "2 MiB",
+        "8 MiB"
+      ],
+      "answer": [
+        "4 MiB"
+      ],
+      "explanation": "The table uses 2^20?4 bytes = 2^22 bytes, which is 4 MiB."
+    },
+    {
+      "id": "os-mem-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A logical address has 10-bit page number and 12-bit offset. What is the page size?",
+      "options": [
+        "4 KiB",
+        "1 KiB",
+        "10 KiB",
+        "12 KiB"
+      ],
+      "answer": [
+        "4 KiB"
+      ],
+      "explanation": "A 12-bit offset selects 2^12 bytes, so page size is 4096 bytes or 4 KiB."
+    },
+    {
+      "id": "os-mem-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Segmentation represents a process as:",
+      "options": [
+        "variable-sized logical units such as code, data, and stack",
+        "equal-sized frames only",
+        "one undifferentiated physical block",
+        "a list of disk cylinders"
+      ],
+      "answer": [
+        "variable-sized logical units such as code, data, and stack"
+      ],
+      "explanation": "Segmentation reflects logical units of varying size, such as code, data, and stack, each with a base and bound."
+    },
+    {
+      "id": "os-mem-019",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A segment has base 5000 and limit 1000. Logical address (segment 2, offset 999) is:",
+      "options": [
+        "valid and maps to 5999",
+        "invalid because offset exceeds limit",
+        "valid and maps to 6000",
+        "a page fault"
+      ],
+      "answer": [
+        "valid and maps to 5999"
+      ],
+      "explanation": "Offset 999 is less than the exclusive limit 1000. The physical address is base 5000+999=5999."
+    },
+    {
+      "id": "os-mem-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A segment has limit 1000. Which offset causes a bounds violation?",
+      "options": [
+        "1000",
+        "999",
+        "0",
+        "512"
+      ],
+      "answer": [
+        "1000"
+      ],
+      "explanation": "Valid offsets range from zero through 999. Offset 1000 equals the exclusive limit and is invalid."
+    },
+    {
+      "id": "os-mem-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Why can segmentation lead to external fragmentation?",
+      "options": [
+        "Segments require variable-sized contiguous physical regions",
+        "Segments are always equal-sized",
+        "Every segment occupies a full page",
+        "The TLB stores variable-size blocks"
+      ],
+      "answer": [
+        "Segments require variable-sized contiguous physical regions"
+      ],
+      "explanation": "Variable-sized segments need contiguous regions of different lengths, leaving holes between allocations that may not fit a new segment."
+    },
+    {
+      "id": "os-mem-022",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Compaction addresses which problem in variable-sized contiguous allocation?",
+      "options": [
+        "External fragmentation",
+        "Internal fragmentation within fixed partitions",
+        "Page-table lookup time",
+        "TLB capacity"
+      ],
+      "answer": [
+        "External fragmentation"
+      ],
+      "explanation": "Compaction moves allocated regions to combine scattered holes into one larger contiguous free region."
+    },
+    {
+      "id": "os-mem-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "First-fit allocation scans free holes and chooses:",
+      "options": [
+        "the first hole large enough",
+        "the smallest adequate hole",
+        "the largest available hole",
+        "the hole closest to the process PID"
+      ],
+      "answer": [
+        "the first hole large enough"
+      ],
+      "explanation": "First fit searches from the beginning and stops at the first hole whose size can satisfy the request."
+    },
+    {
+      "id": "os-mem-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Best-fit allocation selects the:",
+      "options": [
+        "smallest hole that is large enough",
+        "first hole encountered",
+        "largest free hole",
+        "hole with the fewest bytes"
+      ],
+      "answer": [
+        "smallest hole that is large enough"
+      ],
+      "explanation": "Best fit chooses the smallest adequate hole, aiming to minimize leftover space for that allocation, though it can create many small fragments."
+    },
+    {
+      "id": "os-mem-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Worst-fit allocation selects the:",
+      "options": [
+        "largest available hole",
+        "smallest adequate hole",
+        "first adequate hole",
+        "hole with oldest release time"
+      ],
+      "answer": [
+        "largest available hole"
+      ],
+      "explanation": "Worst fit allocates from the largest free hole, leaving a relatively large remainder."
+    },
+    {
+      "id": "os-mem-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A free hole is 100 KiB; requests are 40 KiB then 30 KiB, using first fit and no coalescing. How much remains in that hole?",
+      "options": [
+        "30 KiB",
+        "60 KiB",
+        "70 KiB",
+        "100 KiB"
+      ],
+      "answer": [
+        "30 KiB"
+      ],
+      "explanation": "The two requests consume 40+30=70 KiB from the hole, leaving 100?70=30 KiB."
+    },
+    {
+      "id": "os-mem-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system uses relocation and limit registers. What does the limit register protect?",
+      "options": [
+        "The maximum valid logical address range",
+        "The process?s priority",
+        "The size of physical memory",
+        "The number of page-table entries"
+      ],
+      "answer": [
+        "The maximum valid logical address range"
+      ],
+      "explanation": "The limit bounds the logical address space of the process. An address beyond it causes a protection violation."
+    },
+    {
+      "id": "os-mem-028",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is relocated by changing its base register from 4000 to 9000. What happens to a valid logical offset 200?",
+      "options": [
+        "Its physical address changes from 4200 to 9200",
+        "Its logical address changes to 5200",
+        "The offset becomes 5000",
+        "It becomes invalid automatically"
+      ],
+      "answer": [
+        "Its physical address changes from 4200 to 9200"
+      ],
+      "explanation": "Physical address is base plus logical offset: 4000+200=4200 before and 9000+200=9200 afterward."
+    },
+    {
+      "id": "os-mem-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statement about address binding at execution time is correct?",
+      "options": [
+        "A process can be relocated while executing if address translation hardware supports it",
+        "All physical addresses must be fixed at compile time",
+        "It prohibits paging",
+        "It makes the logical address equal to a disk block"
+      ],
+      "answer": [
+        "A process can be relocated while executing if address translation hardware supports it"
+      ],
+      "explanation": "Execution-time binding translates logical addresses dynamically, allowing a process to be placed or moved in physical memory without changing its logical references."
+    },
+    {
+      "id": "os-mem-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process uses logical address 6000 with base 1000 and limit 5000. What is the result?",
+      "options": [
+        "Protection fault because offset is not less than limit",
+        "Physical address 7000",
+        "Physical address 6000",
+        "Valid address at the limit"
+      ],
+      "answer": [
+        "Protection fault because offset is not less than limit"
+      ],
+      "explanation": "The valid logical range is 0 through 4999. Address 6000 exceeds the limit and causes a protection fault."
+    },
+    {
+      "id": "os-mem-031",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process requests 700 KiB contiguous memory. Free holes are 500, 300, and 200 KiB. What is the total free memory, and can it be allocated contiguously?",
+      "options": [
+        "1000 KiB; no",
+        "1000 KiB; yes",
+        "700 KiB; yes",
+        "700 KiB; no"
+      ],
+      "answer": [
+        "1000 KiB; no"
+      ],
+      "explanation": "Total free memory is 1000 KiB, but no individual hole is at least 700 KiB. Without compaction, a contiguous allocation cannot be satisfied."
+    },
+    {
+      "id": "os-mem-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Free holes in address order are 100, 500, 200 KiB. A 180 KiB process arrives. Which hole does first fit choose?",
+      "options": [
+        "500 KiB hole",
+        "200 KiB hole",
+        "100 KiB hole",
+        "No hole"
+      ],
+      "answer": [
+        "500 KiB hole"
+      ],
+      "explanation": "First fit scans in address order. The first 100 KiB hole is too small; the next 500 KiB hole is the first adequate one."
+    },
+    {
+      "id": "os-mem-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Free holes are 100, 500, 200 KiB. Best fit allocates a 180 KiB process from which hole?",
+      "options": [
+        "200 KiB",
+        "500 KiB",
+        "100 KiB",
+        "No hole"
+      ],
+      "answer": [
+        "200 KiB"
+      ],
+      "explanation": "Both 500 and 200 are adequate. Best fit selects the smallest adequate hole, 200 KiB, leaving 20 KiB."
+    },
+    {
+      "id": "os-mem-034",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Free holes are 100, 500, 200 KiB. Worst fit allocates a 180 KiB process from which hole?",
+      "options": [
+        "500 KiB",
+        "200 KiB",
+        "100 KiB",
+        "No hole"
+      ],
+      "answer": [
+        "500 KiB"
+      ],
+      "explanation": "Worst fit selects the largest available hole, 500 KiB, which is adequate."
+    },
+    {
+      "id": "os-mem-035",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A memory system has 4 KiB pages. A process uses 10 KiB. How many pages are required?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "10"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Ten KiB requires two full 4 KiB pages and a third partial page, so three pages are allocated."
+    },
+    {
+      "id": "os-mem-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "With 4 KiB pages, a 10 KiB process has how much internal fragmentation in its final page?",
+      "options": [
+        "2 KiB",
+        "4 KiB",
+        "0 KiB",
+        "6 KiB"
+      ],
+      "answer": [
+        "2 KiB"
+      ],
+      "explanation": "Three pages provide 12 KiB. The 10 KiB process leaves 2 KiB unused in its final allocated page."
+    },
+    {
+      "id": "os-mem-037",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A 20-bit logical address uses 1 KiB pages. How many page-number bits are there?",
+      "options": [
+        "10",
+        "1",
+        "20",
+        "11"
+      ],
+      "answer": [
+        "10"
+      ],
+      "explanation": "A 1 KiB page uses 10 offset bits. The remaining 20?10=10 bits identify the virtual page."
+    },
+    {
+      "id": "os-mem-038",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A 24-bit virtual address uses 4 KiB pages. How many virtual pages are addressable?",
+      "options": [
+        "2^12",
+        "2^10",
+        "2^24",
+        "4096"
+      ],
+      "answer": [
+        "2^12"
+      ],
+      "explanation": "The offset is 12 bits, leaving 12 page-number bits. Hence there are 2^12 virtual pages."
+    },
+    {
+      "id": "os-mem-039",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Page size is 512 bytes. Logical address 1300 has page number and offset:",
+      "options": [
+        "2 and 276",
+        "3 and 276",
+        "2 and 512",
+        "1 and 276"
+      ],
+      "answer": [
+        "2 and 276"
+      ],
+      "explanation": "1300 = 2?512 + 276, so page number 2 and offset 276."
+    },
+    {
+      "id": "os-mem-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Page size is 2 KiB. Virtual page 6 maps to frame 9; offset is 300. What physical address results?",
+      "options": [
+        "18732",
+        "12588",
+        "18432",
+        "300"
+      ],
+      "answer": [
+        "18732"
+      ],
+      "explanation": "Frame base is 9?2048=18432. Add offset 300 to get physical address 18732."
+    },
+    {
+      "id": "os-mem-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page table entry is invalid. What does a reference to that virtual page indicate?",
+      "options": [
+        "The page is not currently part of the process?s valid mapped set",
+        "The TLB must contain the mapping",
+        "The page is necessarily on disk",
+        "The process is deadlocked"
+      ],
+      "answer": [
+        "The page is not currently part of the process?s valid mapped set"
+      ],
+      "explanation": "An invalid entry means the address is outside the process?s mapped/valid virtual space under the system?s page-table scheme. It is a protection/address fault."
+    },
+    {
+      "id": "os-mem-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page table has 2^18 entries; each entry is 8 bytes. What is its size?",
+      "options": [
+        "2 MiB",
+        "1 MiB",
+        "4 MiB",
+        "8 MiB"
+      ],
+      "answer": [
+        "2 MiB"
+      ],
+      "explanation": "2^18?8 = 2^21 bytes, which equals 2 MiB."
+    },
+    {
+      "id": "os-mem-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A TLB lookup takes 10 ns, memory access takes 100 ns, and TLB hit ratio is 0.9. Ignoring page faults, what is effective access time with serial lookup?",
+      "options": [
+        "120 ns",
+        "110 ns",
+        "210 ns",
+        "100 ns"
+      ],
+      "answer": [
+        "120 ns"
+      ],
+      "explanation": "Hit cost is 10+100=110 ns; miss cost is 10+2?100=210 ns. EAT=0.9?110+0.1?210=120 ns."
+    },
+    {
+      "id": "os-mem-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A TLB has hit ratio 0.8, lookup 5 ns, memory 50 ns, serial lookup. What is EAT?",
+      "options": [
+        "65 ns",
+        "70 ns",
+        "55 ns",
+        "105 ns"
+      ],
+      "answer": [
+        "65 ns"
+      ],
+      "explanation": "Hit cost is 5+50=55 ns; miss cost is 5+2?50=105 ns. EAT=0.8?55+0.2?105=65 ns."
+    },
+    {
+      "id": "os-mem-045",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process uses 4-level paging. What is a key benefit of multilevel page tables?",
+      "options": [
+        "Allocate lower-level page-table portions only for used address regions",
+        "Remove the need for page tables",
+        "Eliminate all translation overhead",
+        "Make physical addresses contiguous"
+      ],
+      "answer": [
+        "Allocate lower-level page-table portions only for used address regions"
+      ],
+      "explanation": "Multilevel paging can avoid allocating page-table structures for large unused virtual regions, reducing memory overhead for sparse address spaces."
+    },
+    {
+      "id": "os-mem-046",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 8 segments, but only 3 are currently allocated. How many segment-table entries are needed for its logical segment set?",
+      "options": [
+        "8",
+        "3",
+        "11",
+        "24"
+      ],
+      "answer": [
+        "8"
+      ],
+      "explanation": "The segment table describes each logical segment, including its base, limit, and status. It has eight entries even if only three are resident/allocated, depending on system representation."
+    },
+    {
+      "id": "os-mem-047",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In segmentation, a logical address consists of:",
+      "options": [
+        "segment number and offset",
+        "page number and frame number",
+        "base and physical address",
+        "PID and cylinder"
+      ],
+      "answer": [
+        "segment number and offset"
+      ],
+      "explanation": "Segmentation addresses identify a logical segment and an offset within it. The segment table checks bounds and supplies the base."
+    },
+    {
+      "id": "os-mem-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A segment table entry has base 12000 and limit 3000. Logical offset 2999 maps to:",
+      "options": [
+        "14999",
+        "15000",
+        "2999",
+        "Invalid"
+      ],
+      "answer": [
+        "14999"
+      ],
+      "explanation": "The offset is below the limit. Physical address is 12000+2999=14999."
+    },
+    {
+      "id": "os-mem-049",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A segment has limit 3000. Is offset 3000 valid?",
+      "options": [
+        "No; the limit is exclusive",
+        "Yes; it is the last byte",
+        "Yes; it maps to the base",
+        "Only if the segment is read-only"
+      ],
+      "answer": [
+        "No; the limit is exclusive"
+      ],
+      "explanation": "Valid offsets satisfy 0?offset<limit. An offset equal to 3000 is outside the segment."
+    },
+    {
+      "id": "os-mem-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system combines segmentation with paging. What is one common benefit?",
+      "options": [
+        "Logical protection/sharing by segments with physical allocation via pages",
+        "No translation structures are needed",
+        "Every segment must be physically contiguous",
+        "It eliminates internal fragmentation completely"
+      ],
+      "answer": [
+        "Logical protection/sharing by segments with physical allocation via pages"
+      ],
+      "explanation": "Segmentation provides logical units and protection, while paging maps those units through fixed-size pages, avoiding the need for each segment to occupy one contiguous physical region."
+    },
+    {
+      "id": "os-mem-051",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A fixed partition is 32 KiB; a process occupies 19 KiB. Internal fragmentation is:",
+      "options": [
+        "13 KiB",
+        "19 KiB",
+        "32 KiB",
+        "51 KiB"
+      ],
+      "answer": [
+        "13 KiB"
+      ],
+      "explanation": "Unused space within the allocated partition is 32?19=13 KiB."
+    },
+    {
+      "id": "os-mem-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "External fragmentation occurs when:",
+      "options": [
+        "Free memory is split into holes too small individually for a request",
+        "Allocated blocks contain unused space internally",
+        "Pages are mapped to arbitrary frames",
+        "A TLB entry is absent"
+      ],
+      "answer": [
+        "Free memory is split into holes too small individually for a request"
+      ],
+      "explanation": "External fragmentation describes scattered free holes that cannot satisfy a contiguous request even when their sum is sufficient."
+    },
+    {
+      "id": "os-mem-053",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Paging eliminates external fragmentation in physical allocation because:",
+      "options": [
+        "Any free frame can hold any page",
+        "Every process gets one contiguous block",
+        "Pages are variable-sized",
+        "The page table compacts memory"
+      ],
+      "answer": [
+        "Any free frame can hold any page"
+      ],
+      "explanation": "Fixed-size frames can be assigned independently to pages, so free space need not form one contiguous region."
+    },
+    {
+      "id": "os-mem-054",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A 32-bit system uses 4 KiB pages and a single-level page table with 4-byte PTEs. Approximate page-table size for a full 32-bit virtual space is:",
+      "options": [
+        "4 MiB",
+        "1 MiB",
+        "2 MiB",
+        "8 MiB"
+      ],
+      "answer": [
+        "4 MiB"
+      ],
+      "explanation": "There are 2^(32?12)=2^20 pages. At 4 bytes per entry, the table occupies 2^22 bytes = 4 MiB."
+    },
+    {
+      "id": "os-mem-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A page size increases from 4 KiB to 16 KiB. What happens to offset bits?",
+      "options": [
+        "They increase from 12 to 14",
+        "They decrease from 12 to 10",
+        "They remain 12",
+        "They become 16"
+      ],
+      "answer": [
+        "They increase from 12 to 14"
+      ],
+      "explanation": "4 KiB=2^12; 16 KiB=2^14. The offset field grows from 12 to 14 bits."
+    },
+    {
+      "id": "os-mem-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A logical address is 18 bits and page size is 2 KiB. How many bits identify the page?",
+      "options": [
+        "7",
+        "11",
+        "18",
+        "8"
+      ],
+      "answer": [
+        "7"
+      ],
+      "explanation": "The offset needs 11 bits for 2 KiB=2^11 bytes. The page number uses 18?11=7 bits."
+    },
+    {
+      "id": "os-mem-057",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 6 pages and page size 1024 bytes. What is its maximum logical address-space size?",
+      "options": [
+        "6144 bytes",
+        "6000 bytes",
+        "1024 bytes",
+        "6 bytes"
+      ],
+      "answer": [
+        "6144 bytes"
+      ],
+      "explanation": "Six pages of 1024 bytes each provide 6?1024=6144 bytes."
+    },
+    {
+      "id": "os-mem-058",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A free-memory list has holes 300, 600, 200 KiB. A 250 KiB process arrives. Under worst fit, how much remains in the chosen hole?",
+      "options": [
+        "350 KiB",
+        "50 KiB",
+        "250 KiB",
+        "600 KiB"
+      ],
+      "answer": [
+        "350 KiB"
+      ],
+      "explanation": "Worst fit chooses the 600 KiB hole. Allocating 250 leaves 350 KiB."
+    },
+    {
+      "id": "os-mem-059",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A memory manager coalesces adjacent free blocks when a process exits. What does coalescing reduce?",
+      "options": [
+        "External fragmentation",
+        "Internal fragmentation inside allocated pages",
+        "Page offset width",
+        "TLB misses"
+      ],
+      "answer": [
+        "External fragmentation"
+      ],
+      "explanation": "Combining adjacent free regions creates larger holes and reduces external fragmentation. It does not change internal waste in allocated blocks."
+    },
+    {
+      "id": "os-mem-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process uses a base-and-limit scheme with base 10000 and limit 2048. What is the highest valid physical address?",
+      "options": [
+        "12047",
+        "12048",
+        "10000",
+        "2047"
+      ],
+      "answer": [
+        "12047"
+      ],
+      "explanation": "The highest valid logical offset is 2047. Adding the base gives 10000+2047=12047."
+    },
+    {
+      "id": "os-mem-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "With page size 4096 bytes, what is the offset for logical address 10000?",
+      "answer": "1808",
+      "explanation": "10000 = 2?4096 + 1808, so the offset is 1808."
+    },
+    {
+      "id": "os-mem-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Page size is 2048 bytes. Virtual page 5 maps to frame 12. What physical address corresponds to offset 100?",
+      "answer": "24676",
+      "explanation": "Frame base is 12?2048=24576. Add offset 100 to obtain physical address 24676."
+    },
+    {
+      "id": "os-mem-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 64 KiB process uses 4 KiB pages. How many pages are needed?",
+      "answer": "16",
+      "explanation": "64 KiB divided by 4 KiB per page gives 16 pages."
+    },
+    {
+      "id": "os-mem-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process occupies 9.25 KiB with 4 KiB pages. What is the internal fragmentation in the last page, in KiB?",
+      "answer": "2.75",
+      "explanation": "Three pages provide 12 KiB. The unused portion is 12?9.25=2.75 KiB."
+    },
+    {
+      "id": "os-mem-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A page table has 2^16 entries of 4 bytes each. What is its size in KiB?",
+      "answer": "256",
+      "explanation": "The table occupies 2^16?4=2^18 bytes = 256 KiB."
+    },
+    {
+      "id": "os-mem-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A logical address has 16 bits and page size 256 bytes. How many page-number bits are used?",
+      "answer": "8",
+      "explanation": "A 256-byte page requires 8 offset bits, leaving 16?8=8 page-number bits."
+    },
+    {
+      "id": "os-mem-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A base register is 5000 and logical offset is 1234. What physical address is generated?",
+      "answer": "6234",
+      "explanation": "Physical address equals base plus valid logical offset: 5000+1234=6234."
+    },
+    {
+      "id": "os-mem-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A segment base is 7000, limit 1500, and offset 1499. What physical address results?",
+      "answer": "8499",
+      "explanation": "Offset 1499 is below the exclusive limit. Physical address is 7000+1499=8499."
+    },
+    {
+      "id": "os-mem-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A fixed partition is 64 KiB and a process uses 39 KiB. What is internal fragmentation in KiB?",
+      "answer": "25",
+      "explanation": "Unused space inside the partition is 64?39=25 KiB."
+    },
+    {
+      "id": "os-mem-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Memory holes are 200, 700, and 400 KiB. Best fit allocates 350 KiB from which hole size?",
+      "answer": "400",
+      "explanation": "The 400 and 700 KiB holes are adequate; best fit selects the smallest adequate hole, 400 KiB."
+    },
+    {
+      "id": "os-mem-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "The holes are 100, 600, 300 KiB. Worst fit allocates 250 KiB. How much remains in the selected hole?",
+      "answer": "350",
+      "explanation": "Worst fit selects the 600 KiB hole. After allocating 250 KiB, 350 KiB remains."
+    },
+    {
+      "id": "os-mem-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 32-bit address uses 8 KiB pages. How many offset bits are there?",
+      "answer": "13",
+      "explanation": "8 KiB equals 2^13 bytes, so the page offset contains 13 bits."
+    },
+    {
+      "id": "os-mem-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 30-bit virtual address uses 1 KiB pages. How many virtual pages can be addressed?",
+      "answer": "1048576",
+      "explanation": "There are 30?10=20 page-number bits, giving 2^20=1,048,576 virtual pages."
+    },
+    {
+      "id": "os-mem-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A page size is 1024 bytes. What page number contains logical address 9000?",
+      "answer": "8",
+      "explanation": "9000 divided by 1024 gives quotient 8 and remainder 808; page number is 8."
+    },
+    {
+      "id": "os-mem-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process has 3 segments with lengths 1000, 2000, and 1500 bytes. What is total logical size?",
+      "answer": "4500",
+      "explanation": "Summing the three segment lengths gives 1000+2000+1500=4500 bytes."
+    },
+    {
+      "id": "os-mem-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about paging are correct?",
+      "options": [
+        "Pages and frames have equal size",
+        "A page can map to any free frame",
+        "Paging can eliminate external fragmentation",
+        "Paging eliminates page-table overhead"
+      ],
+      "answer": [
+        "Pages and frames have equal size",
+        "A page can map to any free frame",
+        "Paging can eliminate external fragmentation"
+      ],
+      "explanation": "Equal-sized pages and frames enable noncontiguous placement and avoid external fragmentation. Page tables add memory and translation overhead."
+    },
+    {
+      "id": "os-mem-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about page-table translation are correct?",
+      "options": [
+        "The page number indexes a mapping to a frame",
+        "The offset is preserved in the physical address",
+        "A TLB caches recent translations",
+        "The page table stores CPU scheduling priorities"
+      ],
+      "answer": [
+        "The page number indexes a mapping to a frame",
+        "The offset is preserved in the physical address",
+        "A TLB caches recent translations"
+      ],
+      "explanation": "Translation maps virtual page to physical frame and preserves the offset. The TLB caches these mappings; priorities are unrelated."
+    },
+    {
+      "id": "os-mem-078",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which causes internal fragmentation?",
+      "options": [
+        "Unused bytes in a partially filled final page",
+        "A free-memory hole too small for a contiguous request",
+        "Scattered free holes between segments",
+        "A stale TLB entry"
+      ],
+      "answer": [
+        "Unused bytes in a partially filled final page"
+      ],
+      "explanation": "Internal fragmentation is unused space within allocated units, such as a partially used final page. Scattered holes are external fragmentation."
+    },
+    {
+      "id": "os-mem-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about segmentation are correct?",
+      "options": [
+        "Segments are logical variable-sized units",
+        "A segment address includes segment number and offset",
+        "A bounds check verifies offset against segment limit",
+        "Every segment must be the same size"
+      ],
+      "answer": [
+        "Segments are logical variable-sized units",
+        "A segment address includes segment number and offset",
+        "A bounds check verifies offset against segment limit"
+      ],
+      "explanation": "Segmentation models variable-sized logical parts. Each address identifies a segment and offset, checked against its limit; sizes can differ."
+    },
+    {
+      "id": "os-mem-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about external fragmentation are correct?",
+      "options": [
+        "It can occur with variable-sized contiguous allocation",
+        "Total free memory may exceed a request but be split into small holes",
+        "Compaction can combine holes",
+        "Paging?s fixed-size frame allocation suffers the same external fragmentation"
+      ],
+      "answer": [
+        "It can occur with variable-sized contiguous allocation",
+        "Total free memory may exceed a request but be split into small holes",
+        "Compaction can combine holes"
+      ],
+      "explanation": "External fragmentation is scattered free space and can be reduced by compaction. Fixed-size paging frames avoid this particular problem."
+    },
+    {
+      "id": "os-mem-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about first-fit, best-fit, and worst-fit are correct?",
+      "options": [
+        "First-fit selects the first adequate hole in its search order",
+        "Best-fit selects the smallest adequate hole",
+        "Worst-fit selects the largest hole",
+        "Best-fit always eliminates external fragmentation"
+      ],
+      "answer": [
+        "First-fit selects the first adequate hole in its search order",
+        "Best-fit selects the smallest adequate hole",
+        "Worst-fit selects the largest hole"
+      ],
+      "explanation": "These policies differ in which adequate free hole they select. None guarantees elimination of external fragmentation."
+    },
+    {
+      "id": "os-mem-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about base-and-limit relocation are correct?",
+      "options": [
+        "Physical address is base plus logical offset",
+        "The offset must be below the limit",
+        "The limit is commonly an exclusive bound",
+        "The base register stores the process?s maximum priority"
+      ],
+      "answer": [
+        "Physical address is base plus logical offset",
+        "The offset must be below the limit",
+        "The limit is commonly an exclusive bound"
+      ],
+      "explanation": "Base adds relocation and limit bounds valid logical addresses. Priority is a separate scheduling property."
+    },
+    {
+      "id": "os-mem-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which can reduce page-table memory for sparse address spaces?",
+      "options": [
+        "Multilevel page tables",
+        "Allocating lower levels only where needed",
+        "A flat table with every possible entry always resident",
+        "Page-table sharing where address spaces permit"
+      ],
+      "answer": [
+        "Multilevel page tables",
+        "Allocating lower levels only where needed",
+        "Page-table sharing where address spaces permit"
+      ],
+      "explanation": "Hierarchical tables can omit unused portions; compatible mappings can also be shared. A fully resident flat table does not save space."
+    },
+    {
+      "id": "os-mem-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a TLB are correct?",
+      "options": [
+        "A hit avoids a page-table memory lookup in common designs",
+        "A miss requires translation through page-table structures",
+        "A context switch may require address-space tagging or flushing",
+        "A TLB stores file contents"
+      ],
+      "answer": [
+        "A hit avoids a page-table memory lookup in common designs",
+        "A miss requires translation through page-table structures",
+        "A context switch may require address-space tagging or flushing"
+      ],
+      "explanation": "The TLB caches address translations. Context switching requires correct address-space separation, via tags or flushes; it does not cache files."
+    },
+    {
+      "id": "os-mem-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about address spaces are correct?",
+      "options": [
+        "Logical addresses are generated by a process",
+        "Physical addresses refer to main memory locations",
+        "Relocation hardware translates logical to physical addresses",
+        "All processes necessarily share one logical address space"
+      ],
+      "answer": [
+        "Logical addresses are generated by a process",
+        "Physical addresses refer to main memory locations",
+        "Relocation hardware translates logical to physical addresses"
+      ],
+      "explanation": "Each process generates logical/virtual addresses translated to physical locations. Separate processes commonly have distinct address spaces."
+    },
+    {
+      "id": "os-mem-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are advantages of paging?",
+      "options": [
+        "Noncontiguous physical placement",
+        "Simpler allocation of fixed-size frames",
+        "Protection can be applied per page",
+        "No internal fragmentation ever"
+      ],
+      "answer": [
+        "Noncontiguous physical placement",
+        "Simpler allocation of fixed-size frames",
+        "Protection can be applied per page"
+      ],
+      "explanation": "Pages can occupy any frames and page-level permissions can be applied. A final partially used page can still cause internal fragmentation."
+    },
+    {
+      "id": "os-mem-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are common costs of paging?",
+      "options": [
+        "Page-table storage",
+        "Address-translation overhead",
+        "Internal fragmentation in the final page",
+        "External fragmentation between allocated frames"
+      ],
+      "answer": [
+        "Page-table storage",
+        "Address-translation overhead",
+        "Internal fragmentation in the final page"
+      ],
+      "explanation": "Page tables consume memory, translation requires lookup or TLB support, and partially used pages waste internal space. Fixed frames avoid external fragmentation."
+    },
+    {
+      "id": "os-mem-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about segmentation with paging are correct?",
+      "options": [
+        "Segments can express logical protection units",
+        "Pages can map segment content into noncontiguous frames",
+        "The combination still needs translation metadata",
+        "It necessarily eliminates all fragmentation"
+      ],
+      "answer": [
+        "Segments can express logical protection units",
+        "Pages can map segment content into noncontiguous frames",
+        "The combination still needs translation metadata"
+      ],
+      "explanation": "Segmentation organizes logical regions while paging maps them into frames. Translation metadata remains, and internal fragmentation can persist."
+    },
+    {
+      "id": "os-mem-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which checks may be performed during address translation?",
+      "options": [
+        "Segment bounds",
+        "Page-table validity and permissions",
+        "Base/limit bounds in a contiguous scheme",
+        "Whether a process has the highest CPU priority"
+      ],
+      "answer": [
+        "Segment bounds",
+        "Page-table validity and permissions",
+        "Base/limit bounds in a contiguous scheme"
+      ],
+      "explanation": "Memory protection checks verify address bounds, mapping validity, and access permissions. CPU priority is a scheduler decision."
+    },
+    {
+      "id": "os-mem-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about compaction are correct?",
+      "options": [
+        "It moves allocated blocks to create a larger free region",
+        "It addresses external fragmentation",
+        "It can require relocation support",
+        "It eliminates internal fragmentation in fixed partitions"
+      ],
+      "answer": [
+        "It moves allocated blocks to create a larger free region",
+        "It addresses external fragmentation",
+        "It can require relocation support"
+      ],
+      "explanation": "Compaction rearranges allocations to merge free holes, needing relocation support. It does not reclaim unused space inside allocated partitions."
+    },
+    {
+      "id": "os-mem-091",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Page size is 1024 bytes. Virtual page 4 maps to frame 8; offset is 17. What physical address results?",
+      "options": [
+        "8209",
+        "4113",
+        "8192",
+        "17"
+      ],
+      "answer": [
+        "8209"
+      ],
+      "explanation": "Frame base is 8?1024=8192. Adding offset 17 gives physical address 8209."
+    },
+    {
+      "id": "os-mem-092",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process requests 600 KiB contiguous memory, and free holes are 350, 300, and 200 KiB. What is true?",
+      "options": [
+        "Total free is sufficient, but no single hole can satisfy it",
+        "The request fits the 350 KiB hole",
+        "The request fits because total is 850 KiB",
+        "No memory is free"
+      ],
+      "answer": [
+        "Total free is sufficient, but no single hole can satisfy it"
+      ],
+      "explanation": "There are 850 KiB free in total, but the largest contiguous hole is only 350 KiB. Without compaction, the allocation cannot be made."
+    },
+    {
+      "id": "os-mem-093",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A 24-bit virtual address uses 4 KiB pages. What is the virtual page number of address 9000?",
+      "options": [
+        "2",
+        "8",
+        "1",
+        "9000"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "Page size is 4096 bytes. 9000 divided by 4096 gives page number 2 and offset 808."
+    },
+    {
+      "id": "os-mem-094",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A segment has base 3000 and limit 1000. What physical address does offset 500 map to?",
+      "options": [
+        "3500",
+        "4000",
+        "500",
+        "Invalid"
+      ],
+      "answer": [
+        "3500"
+      ],
+      "explanation": "Offset 500 is within the segment. Physical address is 3000+500=3500."
+    },
+    {
+      "id": "os-mem-095",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A page table has 2^10 entries, each 8 bytes. What is its size in KiB?",
+      "options": [
+        "8",
+        "4",
+        "2",
+        "16"
+      ],
+      "answer": [
+        "8"
+      ],
+      "explanation": "The table uses 2^10?8=2^13 bytes, which is 8 KiB."
+    },
+    {
+      "id": "os-mem-096",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Page size is 4096 bytes. What offset is contained in logical address 10000?",
+      "answer": "1808",
+      "explanation": "10000 = 2?4096+1808, so the offset is 1808."
+    },
+    {
+      "id": "os-mem-097",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process occupies 14 KiB with 4 KiB pages. How many pages are allocated?",
+      "answer": "4",
+      "explanation": "Four pages provide 16 KiB, enough for 14 KiB."
+    },
+    {
+      "id": "os-mem-098",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process occupies 14 KiB with 4 KiB pages. What is internal fragmentation in KiB?",
+      "answer": "2",
+      "explanation": "Allocated space is 4?4=16 KiB. Unused space is 16?14=2 KiB."
+    },
+    {
+      "id": "os-mem-099",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A segment base is 900 and a valid offset is 120. What physical address is formed?",
+      "answer": "1020",
+      "explanation": "Physical address equals base plus offset: 900+120=1020."
+    },
+    {
+      "id": "os-mem-100",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A 30-bit virtual address uses 2 KiB pages. How many page-number bits are present?",
+      "answer": "19",
+      "explanation": "2 KiB requires 11 offset bits. The page number occupies 30?11=19 bits."
+    }
+  ]
+}

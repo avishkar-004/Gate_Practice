@@ -1,0 +1,1528 @@
+{
+  "topicIndex": 4,
+  "questions": [
+    {
+      "id": "os-sync-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two threads increment x using x=x+1 without synchronization. Initially x=0. Which final value is possible after both finish?",
+      "options": [
+        "1",
+        "2 only",
+        "0 only",
+        "3"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "Both threads may read zero before either writes, then each stores one. That interleaving loses an increment and leaves x equal to one."
+    },
+    {
+      "id": "os-sync-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A critical section is protected by a mutex. Which property does mutual exclusion directly provide?",
+      "options": [
+        "At most one thread executes that protected section at a time",
+        "Every thread enters in arrival order",
+        "No thread can be preempted",
+        "The protected code always terminates"
+      ],
+      "answer": [
+        "At most one thread executes that protected section at a time"
+      ],
+      "explanation": "A mutex excludes concurrent owners of the protected section. Fairness and termination are separate properties and are not guaranteed by mutual exclusion alone."
+    },
+    {
+      "id": "os-sync-003",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A lock is free. Two threads try to acquire it simultaneously. Which outcome is required?",
+      "options": [
+        "At most one acquisition succeeds at a time",
+        "Both acquire it and then the kernel chooses",
+        "Neither can acquire until a signal",
+        "The process forks"
+      ],
+      "answer": [
+        "At most one acquisition succeeds at a time"
+      ],
+      "explanation": "The lock?s atomic acquire operation must establish one owner. The other contender waits or retries; two simultaneous owners would violate mutual exclusion."
+    },
+    {
+      "id": "os-sync-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread executes wait(P) on a semaphore with value 0. What happens in the standard blocking semaphore model?",
+      "options": [
+        "The thread blocks until a signal makes a permit available",
+        "The value becomes -1 and the thread continues",
+        "The semaphore is destroyed",
+        "The thread terminates"
+      ],
+      "answer": [
+        "The thread blocks until a signal makes a permit available"
+      ],
+      "explanation": "With no permit, wait suspends the caller. A later signal increments availability and wakes a waiter or permits future progress."
+    },
+    {
+      "id": "os-sync-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A counting semaphore starts at 3. Four wait operations are invoked with no signals. How many can complete without blocking?",
+      "options": [
+        "3",
+        "4",
+        "1",
+        "0"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Three permits are initially available. Each successful wait consumes one, so the fourth wait blocks."
+    },
+    {
+      "id": "os-sync-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A binary semaphore is used as a mutex and initialized to 1. After one thread waits successfully, what is its value?",
+      "options": [
+        "0",
+        "1",
+        "-1",
+        "2"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "The wait consumes the single available permit, leaving the semaphore at zero until the owner signals it."
+    },
+    {
+      "id": "os-sync-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A condition variable is signaled when no thread is waiting. What does a future waiter generally observe?",
+      "options": [
+        "It does not consume a stored signal and waits if its predicate is false",
+        "It immediately proceeds because the signal is saved",
+        "The mutex is permanently unlocked",
+        "The process exits"
+      ],
+      "answer": [
+        "It does not consume a stored signal and waits if its predicate is false"
+      ],
+      "explanation": "Condition variables are not counting permits. Correct code checks a shared predicate under its mutex; a prior signal alone does not satisfy it."
+    },
+    {
+      "id": "os-sync-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread waits on a condition variable in an if statement rather than a while loop. Why can this be incorrect?",
+      "options": [
+        "Wakeups can be spurious or the predicate can become false before reacquisition",
+        "The condition variable always wakes every process",
+        "The mutex cannot be reacquired",
+        "The thread becomes a zombie"
+      ],
+      "answer": [
+        "Wakeups can be spurious or the predicate can become false before reacquisition"
+      ],
+      "explanation": "A wakeup is only a prompt to recheck state. Spurious wakeups and competing threads mean the predicate may not hold when the waiter runs."
+    },
+    {
+      "id": "os-sync-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Two locks are always acquired in the global order A then B. Which deadlock condition does this policy prevent?",
+      "options": [
+        "Circular wait",
+        "Mutual exclusion",
+        "No preemption",
+        "Hold and wait"
+      ],
+      "answer": [
+        "Circular wait"
+      ],
+      "explanation": "A consistent global acquisition order prevents cycles in the wait-for graph, breaking circular wait. It does not remove the other conditions in every system."
+    },
+    {
+      "id": "os-sync-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process holds one resource while requesting another unavailable resource. Which deadlock condition is present?",
+      "options": [
+        "Hold and wait",
+        "Mutual exclusion only",
+        "No preemption only",
+        "Circular wait necessarily"
+      ],
+      "answer": [
+        "Hold and wait"
+      ],
+      "explanation": "Holding an allocated resource while waiting for an additional one is hold-and-wait. A cycle is not implied by this fact alone."
+    },
+    {
+      "id": "os-sync-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Resources are allocated so that an allocated resource cannot be forcibly taken from its owner. Which deadlock condition is this?",
+      "options": [
+        "No preemption",
+        "Circular wait",
+        "Hold and wait",
+        "Mutual exclusion"
+      ],
+      "answer": [
+        "No preemption"
+      ],
+      "explanation": "No preemption means resources are released voluntarily rather than forcibly removed. It is one of the necessary conditions for deadlock."
+    },
+    {
+      "id": "os-sync-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A wait-for graph contains a cycle. When does this prove deadlock?",
+      "options": [
+        "When each resource type has a single instance",
+        "For every resource system regardless of instances",
+        "Only when there are no processes",
+        "Only when all resources are free"
+      ],
+      "answer": [
+        "When each resource type has a single instance"
+      ],
+      "explanation": "With one instance per resource type, a cycle in the wait-for graph is both necessary and sufficient for deadlock. Multiple instances complicate the criterion."
+    },
+    {
+      "id": "os-sync-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system has multiple instances of some resource types. A cycle appears in the resource-allocation graph. What can be concluded?",
+      "options": [
+        "Deadlock is possible but not guaranteed",
+        "Deadlock is certain in every case",
+        "The system is safe",
+        "No process is waiting"
+      ],
+      "answer": [
+        "Deadlock is possible but not guaranteed"
+      ],
+      "explanation": "With multiple instances, a cycle is necessary for deadlock but not sufficient; another instance may satisfy a waiting process and break the cycle."
+    },
+    {
+      "id": "os-sync-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system avoids deadlock by granting a request only if the resulting state is safe. This is:",
+      "options": [
+        "deadlock avoidance",
+        "deadlock detection",
+        "deadlock recovery",
+        "starvation prevention"
+      ],
+      "answer": [
+        "deadlock avoidance"
+      ],
+      "explanation": "Avoidance evaluates the post-grant state and denies requests that could lead to an unsafe state. Detection instead allows allocation and later searches for deadlock."
+    },
+    {
+      "id": "os-sync-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In Banker?s algorithm, Need is computed as:",
+      "options": [
+        "Max minus Allocation",
+        "Allocation minus Max",
+        "Available minus Max",
+        "Max plus Available"
+      ],
+      "answer": [
+        "Max minus Allocation"
+      ],
+      "explanation": "For each process and resource type, Need = Max ? Allocation, the additional units the process may still request."
+    },
+    {
+      "id": "os-sync-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A state is safe if:",
+      "options": [
+        "There exists an order in which each process can finish with available plus released resources",
+        "Every process has all its maximum resources now",
+        "No process holds any resource",
+        "The allocation graph has no edges"
+      ],
+      "answer": [
+        "There exists an order in which each process can finish with available plus released resources"
+      ],
+      "explanation": "Safety means a safe sequence exists: each process can obtain its remaining need in sequence using currently available resources plus releases from earlier completions."
+    },
+    {
+      "id": "os-sync-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A safe state and an unsafe state differ because:",
+      "options": [
+        "An unsafe state has no guaranteed completion sequence, though deadlock may not yet exist",
+        "Unsafe means deadlock is already certain",
+        "Safe means all resources are free",
+        "Unsafe means no process can run"
+      ],
+      "answer": [
+        "An unsafe state has no guaranteed completion sequence, though deadlock may not yet exist"
+      ],
+      "explanation": "Unsafe means the system cannot guarantee a safe sequence under worst-case claims. It may still complete; deadlock is not necessarily already present."
+    },
+    {
+      "id": "os-sync-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process requests resources that are currently unavailable. In deadlock avoidance, the request should generally be:",
+      "options": [
+        "Made to wait until it can be considered safely",
+        "Granted regardless of safety",
+        "Converted into a signal",
+        "Satisfied by terminating the requester"
+      ],
+      "answer": [
+        "Made to wait until it can be considered safely"
+      ],
+      "explanation": "The request cannot be granted immediately if resources are unavailable. If available, the algorithm still checks whether tentative allocation leaves a safe state."
+    },
+    {
+      "id": "os-sync-019",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A lock-free algorithm guarantees system-wide progress but an individual thread can starve. It is:",
+      "options": [
+        "lock-free but not wait-free",
+        "wait-free and starvation-free",
+        "blocking",
+        "deadlocked by definition"
+      ],
+      "answer": [
+        "lock-free but not wait-free"
+      ],
+      "explanation": "Lock-free guarantees that some operation completes in finite steps, not that every particular thread does. Wait-free algorithms provide per-thread progress bounds."
+    },
+    {
+      "id": "os-sync-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A spinlock waiter repeatedly checks a lock variable. What is its main cost while waiting?",
+      "options": [
+        "CPU cycles are consumed by polling",
+        "The lock owner is forcibly terminated",
+        "The waiter cannot be preempted",
+        "All cache coherence traffic stops"
+      ],
+      "answer": [
+        "CPU cycles are consumed by polling"
+      ],
+      "explanation": "Spinning consumes processor time and may create cache-coherence traffic. It is useful mainly when waits are expected to be very short."
+    },
+    {
+      "id": "os-sync-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A semaphore implements a producer-consumer buffer. The consumer acquires the buffer mutex and then waits on empty-buffer condition while holding the mutex. Why can this deadlock?",
+      "options": [
+        "The producer needs the mutex to insert the item that would wake the consumer",
+        "The consumer releases the mutex automatically",
+        "The semaphore count grows without bound",
+        "The buffer becomes shared memory"
+      ],
+      "answer": [
+        "The producer needs the mutex to insert the item that would wake the consumer"
+      ],
+      "explanation": "If the consumer sleeps while retaining the mutex, the producer cannot enter to add data and signal availability. The consumer waits for an event that cannot occur."
+    },
+    {
+      "id": "os-sync-022",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A monitor provides mutual exclusion for its procedures. What is a condition variable used for inside the monitor?",
+      "options": [
+        "Waiting for a condition while temporarily releasing the monitor lock",
+        "Counting free CPUs",
+        "Making a process ready without a scheduler",
+        "Preventing all interrupts"
+      ],
+      "answer": [
+        "Waiting for a condition while temporarily releasing the monitor lock"
+      ],
+      "explanation": "Condition variables let a thread wait for a monitor predicate. Waiting releases the monitor lock and reacquires it before returning."
+    },
+    {
+      "id": "os-sync-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A reader-writer lock allows multiple readers or one writer. Which access pattern is permitted?",
+      "options": [
+        "Several readers concurrently, with no writer active",
+        "Several writers concurrently",
+        "A reader and writer always concurrently",
+        "No readers at all"
+      ],
+      "answer": [
+        "Several readers concurrently, with no writer active"
+      ],
+      "explanation": "The lock?s defining rule permits concurrent readers but excludes writers while readers hold the lock, and vice versa."
+    },
+    {
+      "id": "os-sync-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A reader-preference reader-writer lock allows new readers to enter while a writer waits. What problem may occur?",
+      "options": [
+        "Writer starvation",
+        "Deadlock is impossible and guaranteed fairness",
+        "Readers cannot overlap",
+        "The lock becomes a semaphore"
+      ],
+      "answer": [
+        "Writer starvation"
+      ],
+      "explanation": "An ongoing stream of readers can repeatedly delay the waiting writer, potentially starving it unless fairness is enforced."
+    },
+    {
+      "id": "os-sync-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A dining-philosophers solution lets every philosopher pick up the left fork first. What can happen if all do so simultaneously?",
+      "options": [
+        "Each can wait forever for the right fork, forming deadlock",
+        "Every philosopher eats concurrently",
+        "No fork is held",
+        "The forks are duplicated"
+      ],
+      "answer": [
+        "Each can wait forever for the right fork, forming deadlock"
+      ],
+      "explanation": "Each philosopher holds one fork and waits for the next, creating a circular wait. Breaking the acquisition symmetry or limiting entry prevents this cycle."
+    },
+    {
+      "id": "os-sync-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A binary semaphore starts at 0 and receives two signals before any wait. What is a correct concern?",
+      "options": [
+        "If it is a true binary semaphore, extra signals may not accumulate as two permits",
+        "It must become a count of two",
+        "The two signals guarantee two waiters proceed",
+        "The semaphore is destroyed"
+      ],
+      "answer": [
+        "If it is a true binary semaphore, extra signals may not accumulate as two permits"
+      ],
+      "explanation": "A binary semaphore?s state is capped at available/unavailable; unlike a counting semaphore it does not necessarily preserve multiple signals as multiple permits."
+    },
+    {
+      "id": "os-sync-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread unlocks a mutex before writing shared data. Is the write protected by the mutex?",
+      "options": [
+        "No, because it occurs after the critical section ends",
+        "Yes, until another thread locks it",
+        "Yes, if the write is one machine instruction",
+        "Only if the process has one CPU"
+      ],
+      "answer": [
+        "No, because it occurs after the critical section ends"
+      ],
+      "explanation": "The mutex protects only operations performed while held. Once unlocked, another thread can access the data concurrently with the write."
+    },
+    {
+      "id": "os-sync-028",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A deadlock detection algorithm finds a cycle and terminates one process. Which approach is this?",
+      "options": [
+        "deadlock recovery by process termination",
+        "deadlock avoidance",
+        "resource ordering",
+        "safe-state testing"
+      ],
+      "answer": [
+        "deadlock recovery by process termination"
+      ],
+      "explanation": "Terminating a process to release its resources is a recovery strategy applied after detecting deadlock. It is not avoidance."
+    },
+    {
+      "id": "os-sync-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system periodically runs a deadlock detection algorithm and reclaims resources by rolling back a process. Which phase is rollback part of?",
+      "options": [
+        "recovery",
+        "prevention",
+        "avoidance",
+        "mutual exclusion"
+      ],
+      "answer": [
+        "recovery"
+      ],
+      "explanation": "Rollback is a recovery action used after deadlock has been detected. It can release resources and allow remaining processes to proceed."
+    },
+    {
+      "id": "os-sync-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process waits indefinitely because the scheduler continually favors others, though no resource cycle exists. This is:",
+      "options": [
+        "starvation",
+        "deadlock necessarily",
+        "safe state",
+        "mutual exclusion"
+      ],
+      "answer": [
+        "starvation"
+      ],
+      "explanation": "Starvation is indefinite postponement of a process, often due to unfair scheduling or resource allocation. It does not require a deadlock cycle."
+    },
+    {
+      "id": "os-sync-031",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A counting semaphore has value 5. Three waits complete, then one signal occurs. What is the resulting value?",
+      "options": [
+        "3",
+        "2",
+        "6",
+        "1"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Three waits reduce the count from five to two. A signal increments it once, resulting in three."
+    },
+    {
+      "id": "os-sync-032",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A semaphore starts at 2. Five threads each wait once, with no signals. How many threads are blocked after all requests are made?",
+      "options": [
+        "3",
+        "5",
+        "2",
+        "0"
+      ],
+      "answer": [
+        "3"
+      ],
+      "explanation": "Two wait calls consume the available permits. The remaining three cannot proceed and block."
+    },
+    {
+      "id": "os-sync-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process holds resource R1 and waits for R2. Another holds R2 and waits for R1. What is the minimum conclusion?",
+      "options": [
+        "A circular wait exists and the processes are deadlocked if both resources are single-instance",
+        "The state is safe",
+        "Only starvation can occur",
+        "There is no wait-for cycle"
+      ],
+      "answer": [
+        "A circular wait exists and the processes are deadlocked if both resources are single-instance"
+      ],
+      "explanation": "Each process waits for a resource held by the other, forming a cycle. With single-instance resources and no preemption, neither can proceed, so this is deadlock."
+    },
+    {
+      "id": "os-sync-034",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system has 3 instances of resource R. Process P holds one and requests one more; two instances are free. Can P?s request be satisfied immediately?",
+      "options": [
+        "Yes, assuming no other constraints, one free instance exists",
+        "No, because P already holds an instance",
+        "Only after all processes terminate",
+        "No, multiple instances cannot be allocated"
+      ],
+      "answer": [
+        "Yes, assuming no other constraints, one free instance exists"
+      ],
+      "explanation": "At least one unit is currently available, so the request can be granted if allocation rules and safety analysis permit it. Holding one does not forbid another."
+    },
+    {
+      "id": "os-sync-035",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In Banker?s algorithm, Available = (3,2), Allocation for P = (1,1), and Max = (4,2). What is P?s Need vector?",
+      "options": [
+        "(3,1)",
+        "(4,2)",
+        "(2,1)",
+        "(3,2)"
+      ],
+      "answer": [
+        "(3,1)"
+      ],
+      "explanation": "Need = Max ? Allocation componentwise: (4?1, 2?1) = (3,1)."
+    },
+    {
+      "id": "os-sync-036",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system has Available=(2,1). P0 needs (1,1) to finish and then releases (2,0); P1 needs (3,0). Is the sequence P0 then P1 safe?",
+      "options": [
+        "Yes",
+        "No, because P1 cannot finish first",
+        "No, because P0 needs more than total resources",
+        "Cannot determine without CPU burst times"
+      ],
+      "answer": [
+        "Yes"
+      ],
+      "explanation": "P0?s need (1,1) fits Available (2,1). After P0 finishes it releases (2,0), making Available (4,1), which covers P1?s need (3,0)."
+    },
+    {
+      "id": "os-sync-037",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Available=(1,1), P0 Need=(2,0), P1 Need=(1,1). Which process can be selected first in a safety check?",
+      "options": [
+        "P1 only",
+        "P0 only",
+        "Both",
+        "Neither"
+      ],
+      "answer": [
+        "P1 only"
+      ],
+      "explanation": "A process can finish when its Need is componentwise no greater than Available. P1?s (1,1) fits; P0?s need of two units of the first resource does not."
+    },
+    {
+      "id": "os-sync-038",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A resource-allocation graph has one instance of each resource type. What does a directed cycle imply?",
+      "options": [
+        "Deadlock",
+        "Only possible deadlock, never certainty",
+        "A safe sequence exists",
+        "No process is waiting"
+      ],
+      "answer": [
+        "Deadlock"
+      ],
+      "explanation": "With one instance of each resource type, a cycle in the allocation graph is sufficient to establish deadlock."
+    },
+    {
+      "id": "os-sync-039",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A resource-allocation graph has multiple instances of resource types and contains a cycle. What is the strongest valid conclusion?",
+      "options": [
+        "The state may be deadlocked; the cycle alone is insufficient",
+        "Deadlock is certain",
+        "Deadlock is impossible",
+        "All requests can be granted safely"
+      ],
+      "answer": [
+        "The state may be deadlocked; the cycle alone is insufficient"
+      ],
+      "explanation": "With multiple instances, a cycle does not prove deadlock because another available instance can potentially satisfy a request and allow progress."
+    },
+    {
+      "id": "os-sync-040",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A thread is awakened after a mutex becomes available, but another thread acquires it first. What should the awakened thread do?",
+      "options": [
+        "Retry acquisition and wait if necessary",
+        "Proceed as owner anyway",
+        "Unlock the mutex",
+        "Terminate its process"
+      ],
+      "answer": [
+        "Retry acquisition and wait if necessary"
+      ],
+      "explanation": "Wakeup does not necessarily reserve ownership. The thread must compete for and successfully acquire the mutex before entering its critical section."
+    },
+    {
+      "id": "os-sync-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "An atomic test-and-set lock uses a busy loop. What correctness property does test-and-set help provide?",
+      "options": [
+        "Atomic acquisition decision",
+        "Fair ordering among waiters",
+        "Deadlock freedom",
+        "No cache traffic"
+      ],
+      "answer": [
+        "Atomic acquisition decision"
+      ],
+      "explanation": "An atomic test-and-set ensures only one thread can observe and set the lock as free in the same acquisition race. It does not ensure fairness or avoid spinning."
+    },
+    {
+      "id": "os-sync-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A spinlock is used on a uniprocessor, and the lock holder is preempted by a spinning waiter of higher priority. What risk exists?",
+      "options": [
+        "Priority inversion can prevent the owner from running to release the lock",
+        "The lock holder is automatically resumed immediately",
+        "The waiter enters the critical section",
+        "The lock changes to a counting semaphore"
+      ],
+      "answer": [
+        "Priority inversion can prevent the owner from running to release the lock"
+      ],
+      "explanation": "The high-priority spinner consumes the CPU while the lower-priority owner cannot run. Priority inheritance or avoiding such spinning can address this inversion."
+    },
+    {
+      "id": "os-sync-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A mutex supports priority inheritance. A high-priority thread waits on a mutex held by a low-priority thread. What may the kernel do?",
+      "options": [
+        "Temporarily raise the owner?s priority",
+        "Terminate the owner",
+        "Grant the mutex to both",
+        "Lower the waiter priority permanently"
+      ],
+      "answer": [
+        "Temporarily raise the owner?s priority"
+      ],
+      "explanation": "Priority inheritance raises the lock owner?s effective priority so it can run and release the mutex sooner, reducing medium-priority interference."
+    },
+    {
+      "id": "os-sync-044",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A lock is reentrant. What does that mean?",
+      "options": [
+        "The owning thread can acquire it recursively without self-deadlock",
+        "Any thread can unlock it",
+        "Multiple threads can own it simultaneously",
+        "It cannot block"
+      ],
+      "answer": [
+        "The owning thread can acquire it recursively without self-deadlock"
+      ],
+      "explanation": "A reentrant or recursive lock tracks ownership depth, allowing its owner to acquire it again and release matching times without deadlocking itself."
+    },
+    {
+      "id": "os-sync-045",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread enters a critical section and is interrupted by a timer. Another thread runs and attempts the same mutex. What should happen?",
+      "options": [
+        "The second thread cannot enter until the first releases the mutex",
+        "The first thread automatically releases the lock on preemption",
+        "Both enter because they are in different time slices",
+        "The timer interrupt destroys the mutex"
+      ],
+      "answer": [
+        "The second thread cannot enter until the first releases the mutex"
+      ],
+      "explanation": "Preemption does not change mutex ownership. The second thread must wait until the original owner resumes and unlocks."
+    },
+    {
+      "id": "os-sync-046",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A monitor condition wait releases its lock while waiting, then reacquires it before return. Why is reacquisition required?",
+      "options": [
+        "To preserve monitor mutual exclusion when the thread resumes",
+        "To guarantee the predicate is true forever",
+        "To stop all other threads permanently",
+        "To convert the condition into a semaphore"
+      ],
+      "answer": [
+        "To preserve monitor mutual exclusion when the thread resumes"
+      ],
+      "explanation": "The waiting thread must re-enter the monitor under mutual exclusion before inspecting shared state. It still must recheck the predicate."
+    },
+    {
+      "id": "os-sync-047",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A reader-writer lock gives priority to writers. What may happen to new readers while a writer waits?",
+      "options": [
+        "They can be blocked to prevent writer starvation",
+        "They always bypass the writer",
+        "The writer is converted into a reader",
+        "All existing readers are terminated"
+      ],
+      "answer": [
+        "They can be blocked to prevent writer starvation"
+      ],
+      "explanation": "Writer preference typically prevents new readers from extending the reader phase, allowing the waiting writer eventually to acquire the lock after current readers exit."
+    },
+    {
+      "id": "os-sync-048",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A philosopher solution allows at most four of five philosophers to attempt to acquire forks simultaneously. What deadlock condition can this break?",
+      "options": [
+        "Circular wait",
+        "Mutual exclusion",
+        "No preemption",
+        "Resource scarcity"
+      ],
+      "answer": [
+        "Circular wait"
+      ],
+      "explanation": "Limiting contenders prevents all five from each holding one fork in a full cycle, breaking circular wait for the dining-philosophers configuration."
+    },
+    {
+      "id": "os-sync-049",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A deadlock prevention policy requests all resources at once before a process begins. Which necessary condition does it eliminate?",
+      "options": [
+        "Hold and wait",
+        "Mutual exclusion",
+        "No preemption",
+        "Circular wait"
+      ],
+      "answer": [
+        "Hold and wait"
+      ],
+      "explanation": "If processes request their full resource set before proceeding, they do not hold some resources while waiting for additional ones, eliminating hold-and-wait."
+    },
+    {
+      "id": "os-sync-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system allows resources to be forcibly taken from a process when needed. Which deadlock condition is weakened?",
+      "options": [
+        "No preemption",
+        "Circular wait",
+        "Mutual exclusion",
+        "Hold and wait"
+      ],
+      "answer": [
+        "No preemption"
+      ],
+      "explanation": "Permitting preemption removes the condition that resources cannot be forcibly reclaimed. This can prevent some deadlocks, though not all resources are safely preemptible."
+    },
+    {
+      "id": "os-sync-051",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A policy assigns a total order to resource types and requires acquisition only in increasing order. What is the effect?",
+      "options": [
+        "It prevents circular wait",
+        "It prevents all resource holding",
+        "It guarantees no starvation",
+        "It detects deadlock after it occurs"
+      ],
+      "answer": [
+        "It prevents circular wait"
+      ],
+      "explanation": "A cycle would require moving strictly upward in order and eventually returning to a lower resource, which is impossible. Thus circular wait is eliminated."
+    },
+    {
+      "id": "os-sync-052",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A deadlock recovery policy terminates the process holding the fewest resources. What tradeoff must be considered?",
+      "options": [
+        "Victim selection may affect lost work and starvation",
+        "The policy prevents deadlock before allocation",
+        "It guarantees the victim has no side effects",
+        "It always releases all resources instantly"
+      ],
+      "answer": [
+        "Victim selection may affect lost work and starvation"
+      ],
+      "explanation": "Choosing a victim balances recovery cost, lost computation, and repeated selection risk. The process may have performed substantial non-rollbackable work."
+    },
+    {
+      "id": "os-sync-053",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is repeatedly chosen as the deadlock victim and restarted. What problem may arise?",
+      "options": [
+        "Starvation of that process",
+        "Mutual exclusion is removed",
+        "The system becomes safe automatically",
+        "All resource requests become atomic"
+      ],
+      "answer": [
+        "Starvation of that process"
+      ],
+      "explanation": "Repeatedly selecting the same victim can prevent it from completing, which is starvation. Recovery policies can track victim cost or age."
+    },
+    {
+      "id": "os-sync-054",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A system detects deadlock only when CPU utilization falls below a threshold. What is a limitation?",
+      "options": [
+        "Deadlock can occur without a unique or immediate utilization signature",
+        "Utilization always becomes zero in deadlock",
+        "The system cannot have blocked processes",
+        "The detection has no runtime cost"
+      ],
+      "answer": [
+        "Deadlock can occur without a unique or immediate utilization signature"
+      ],
+      "explanation": "Processes may retain partial CPU use or unrelated work may continue; low utilization is only a heuristic and cannot reliably establish deadlock."
+    },
+    {
+      "id": "os-sync-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A lock-free stack guarantees at least one operation completes under contention. What does this not guarantee?",
+      "options": [
+        "That each particular thread completes within a bounded number of steps",
+        "That the system makes any progress",
+        "That operations are atomic",
+        "That the stack is concurrent"
+      ],
+      "answer": [
+        "That each particular thread completes within a bounded number of steps"
+      ],
+      "explanation": "Lock-free progress is system-wide. A particular thread can repeatedly lose races, so per-thread bounded completion (wait-freedom) is not implied."
+    },
+    {
+      "id": "os-sync-056",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A wait-free queue guarantees each operation completes in a bounded number of its own steps. What progress property is provided?",
+      "options": [
+        "Per-thread progress",
+        "Only system-wide progress",
+        "No progress under contention",
+        "Fair CPU scheduling"
+      ],
+      "answer": [
+        "Per-thread progress"
+      ],
+      "explanation": "Wait-freedom gives each individual operation a bounded completion guarantee independent of other threads? behavior, assuming its steps continue."
+    },
+    {
+      "id": "os-sync-057",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A thread holds mutex A and waits for B. Another holds B and waits for A. Which change directly breaks this particular cycle?",
+      "options": [
+        "Make all threads acquire A before B",
+        "Allow each thread to acquire locks in any order",
+        "Increase both mutex priorities",
+        "Add a condition variable without changing lock order"
+      ],
+      "answer": [
+        "Make all threads acquire A before B"
+      ],
+      "explanation": "A consistent global order removes the inversion that creates the cycle. Priority changes and unrelated condition variables do not resolve the circular dependency."
+    },
+    {
+      "id": "os-sync-058",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A lock protects a counter. One thread increments under the lock while another reads without acquiring it. Is the read synchronized with the increment?",
+      "options": [
+        "No",
+        "Yes, because one writer used the lock",
+        "Yes, if the read is aligned",
+        "Only on a uniprocessor"
+      ],
+      "answer": [
+        "No"
+      ],
+      "explanation": "Synchronization must be observed by both sides using the same lock or an equivalent atomic protocol. An unlocked read can race with the write."
+    },
+    {
+      "id": "os-sync-059",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A semaphore is initialized to 1 and used for mutual exclusion. Two threads both call signal after their critical sections, though only one acquired it. What can go wrong?",
+      "options": [
+        "The count can exceed 1 and allow concurrent entry later",
+        "The semaphore necessarily becomes negative",
+        "The process is killed automatically",
+        "No issue; signals are ignored when count is positive"
+      ],
+      "answer": [
+        "The count can exceed 1 and allow concurrent entry later"
+      ],
+      "explanation": "An extra signal can create an additional permit. Later, multiple waiters may pass, violating the intended binary mutual-exclusion invariant."
+    },
+    {
+      "id": "os-sync-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A thread waits on a condition while holding mutex M, then another thread signals without locking M after changing the predicate. Why is this unsafe?",
+      "options": [
+        "The predicate update and notification can race with the waiter?s check-and-sleep sequence",
+        "Signals require no predicate",
+        "The mutex is automatically acquired by the signaler",
+        "The waiter cannot wake"
+      ],
+      "answer": [
+        "The predicate update and notification can race with the waiter?s check-and-sleep sequence"
+      ],
+      "explanation": "Changing and signaling without the associated mutex can create a missed wakeup between predicate check and wait. The condition protocol should coordinate both under M."
+    },
+    {
+      "id": "os-sync-061",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A semaphore begins at 7. Ten wait operations occur and no signals occur. How many wait calls block?",
+      "answer": "3",
+      "explanation": "Seven waits consume the initial permits. The remaining 10 ? 7 = 3 calls block."
+    },
+    {
+      "id": "os-sync-062",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A semaphore begins at 4. Six signals and five waits complete. What is its final count?",
+      "answer": "5",
+      "explanation": "Signals add six and waits consume five: 4 + 6 ? 5 = 5 permits remain."
+    },
+    {
+      "id": "os-sync-063",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A system has 5 resource instances. P0 holds 2 and requests 1. P1 holds 1 and requests 2. How many instances are currently available?",
+      "answer": "2",
+      "explanation": "Allocated instances total 2 + 1 = 3. With five total, Available = 5 ? 3 = 2."
+    },
+    {
+      "id": "os-sync-064",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "Available=(3,2), Need=(2,1), and a process releases Allocation=(1,2). What is the first component of Available after it finishes?",
+      "answer": "4",
+      "explanation": "The process can complete because its need fits; it releases one unit of the first resource, making that component 4."
+    },
+    {
+      "id": "os-sync-065",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A lock acquisition costs 20 ns, and unlock costs 15 ns. Ignoring work inside, what is the combined lock/unlock overhead in ns?",
+      "answer": "35",
+      "explanation": "The stated operations cost 20 ns and 15 ns. Their combined overhead is 20 + 15 = 35 ns."
+    },
+    {
+      "id": "os-sync-066",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A critical section takes 8 microseconds and is executed by 25 threads sequentially under one mutex. Ignoring overhead, what is the total serialized time in microseconds?",
+      "answer": "200",
+      "explanation": "Mutual exclusion serializes the 25 executions: 25 ? 8 = 200 microseconds."
+    },
+    {
+      "id": "os-sync-067",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A producer-consumer buffer has capacity 18 with 11 occupied slots. What should the empty-slot semaphore count be?",
+      "answer": "7",
+      "explanation": "There are 18 total slots and 11 are occupied, leaving 18 ? 11 = 7 empty permits."
+    },
+    {
+      "id": "os-sync-068",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A buffer has 9 items. Two consumers remove one item each, then a producer inserts 4. What is the final occupancy?",
+      "answer": "11",
+      "explanation": "Occupancy changes from 9 to 7 after two removals, then to 11 after four insertions."
+    },
+    {
+      "id": "os-sync-069",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A wait-for graph has a single cycle containing 4 processes, with one instance per resource type. How many processes are in the deadlocked cycle?",
+      "answer": "4",
+      "explanation": "With single-instance resources, a wait-for cycle indicates deadlock. The cycle explicitly contains four processes, so all four are in it."
+    },
+    {
+      "id": "os-sync-070",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A counting semaphore has value 12. Eight waits and three signals occur. What is the final value?",
+      "answer": "7",
+      "explanation": "Each wait decrements and each signal increments, giving 12 ? 8 + 3 = 7."
+    },
+    {
+      "id": "os-sync-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A barrier requires 9 threads to arrive. Seven have arrived. How many more arrivals are required?",
+      "answer": "2",
+      "explanation": "The barrier threshold is nine; 9 ? 7 = 2 participants remain."
+    },
+    {
+      "id": "os-sync-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A reader-writer lock allows 6 readers to hold it. One reader exits, and no writer is waiting. How many readers may continue to hold it?",
+      "answer": "5",
+      "explanation": "One of the six current readers exits, leaving five active readers. With no writer waiting, additional readers may also be admitted depending on policy."
+    },
+    {
+      "id": "os-sync-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process requests 3 units of a resource when 2 are available. How many units short is the current availability?",
+      "answer": "1",
+      "explanation": "The request exceeds availability by 3 ? 2 = 1 unit. The request cannot be fully granted now."
+    },
+    {
+      "id": "os-sync-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "There are 10 identical resources. P0 holds 4, P1 holds 3, and P2 holds 1. How many are available?",
+      "answer": "2",
+      "explanation": "Allocated total is 4 + 3 + 1 = 8. Of ten units, two remain available."
+    },
+    {
+      "id": "os-sync-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A semaphore value is 0. Four signals occur, followed by six successful waits, with two additional waits blocking. What is its value after those operations?",
+      "answer": "0",
+      "explanation": "Four permits are created and four waits consume them. The remaining two waiters block without consuming available permits, leaving the value zero."
+    },
+    {
+      "id": "os-sync-076",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are necessary conditions for deadlock in the classical Coffman characterization?",
+      "options": [
+        "Mutual exclusion",
+        "Hold and wait",
+        "No preemption",
+        "Circular wait"
+      ],
+      "answer": [
+        "Mutual exclusion",
+        "Hold and wait",
+        "No preemption",
+        "Circular wait"
+      ],
+      "explanation": "All four conditions must hold simultaneously for a classical deadlock. Prevention strategies work by ensuring at least one condition cannot hold."
+    },
+    {
+      "id": "os-sync-077",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about safe states are correct?",
+      "options": [
+        "A safe sequence provides a possible completion order",
+        "A safe state is not currently deadlocked",
+        "An unsafe state is not necessarily already deadlocked",
+        "A safe state requires every process to hold its maximum claim"
+      ],
+      "answer": [
+        "A safe sequence provides a possible completion order",
+        "A safe state is not currently deadlocked",
+        "An unsafe state is not necessarily already deadlocked"
+      ],
+      "explanation": "Safety means some sequence exists that can complete all processes. Unsafe states lack that guarantee but need not yet be deadlocked; maximum claims need not already be allocated."
+    },
+    {
+      "id": "os-sync-078",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about Banker?s algorithm are correct?",
+      "options": [
+        "Need equals Max minus Allocation",
+        "A tentative grant must leave a safe state",
+        "Available represents currently unallocated resources",
+        "A safe sequence can be found by repeatedly selecting a satisfiable Need"
+      ],
+      "answer": [
+        "Need equals Max minus Allocation",
+        "A tentative grant must leave a safe state",
+        "Available represents currently unallocated resources",
+        "A safe sequence can be found by repeatedly selecting a satisfiable Need"
+      ],
+      "explanation": "These are the core quantities and safety-test steps: compute remaining need, tentatively grant, then find a completion order using available resources and releases."
+    },
+    {
+      "id": "os-sync-079",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which policies can prevent circular wait?",
+      "options": [
+        "Impose a total order on resource types",
+        "Require acquisition only in increasing order",
+        "Allow arbitrary acquisition order",
+        "Use a consistent lock hierarchy"
+      ],
+      "answer": [
+        "Impose a total order on resource types",
+        "Require acquisition only in increasing order",
+        "Use a consistent lock hierarchy"
+      ],
+      "explanation": "A total ordering or lock hierarchy prevents cycles by constraining acquisition direction. Arbitrary acquisition order preserves the possibility of circular wait."
+    },
+    {
+      "id": "os-sync-080",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are deadlock recovery actions after detection?",
+      "options": [
+        "Terminate one or more processes",
+        "Preempt resources where safe",
+        "Roll back a process to a checkpoint",
+        "Deny all future requests before checking safety"
+      ],
+      "answer": [
+        "Terminate one or more processes",
+        "Preempt resources where safe",
+        "Roll back a process to a checkpoint"
+      ],
+      "explanation": "Termination, safe resource preemption, and rollback are recovery options. Denying requests based on safety is avoidance, not recovery after detection."
+    },
+    {
+      "id": "os-sync-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about semaphores are correct?",
+      "options": [
+        "Wait decrements an available permit",
+        "Signal increases availability or wakes a waiter",
+        "A counting semaphore can represent multiple units",
+        "A semaphore used as a mutex should not be signaled by a non-owner accidentally"
+      ],
+      "answer": [
+        "Wait decrements an available permit",
+        "Signal increases availability or wakes a waiter",
+        "A counting semaphore can represent multiple units",
+        "A semaphore used as a mutex should not be signaled by a non-owner accidentally"
+      ],
+      "explanation": "Semaphores coordinate permits. For mutex-like use, preserving the intended ownership and count invariant is essential; extra signals can break exclusion."
+    },
+    {
+      "id": "os-sync-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about condition variables are correct?",
+      "options": [
+        "They should be paired with a predicate",
+        "Wait atomically releases the mutex and sleeps",
+        "The waiter reacquires the mutex before returning",
+        "A signal is a persistent permit for future waiters"
+      ],
+      "answer": [
+        "They should be paired with a predicate",
+        "Wait atomically releases the mutex and sleeps",
+        "The waiter reacquires the mutex before returning"
+      ],
+      "explanation": "Correct condition protocols protect predicates with a mutex. Wait releases and later reacquires it; notifications generally are not stored as future permits."
+    },
+    {
+      "id": "os-sync-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which claims about starvation are correct?",
+      "options": [
+        "A process can starve without deadlock",
+        "Unfair lock acquisition can cause starvation",
+        "A deadlock cycle requires every process in the cycle to wait",
+        "Starvation means every process is blocked in a cycle"
+      ],
+      "answer": [
+        "A process can starve without deadlock",
+        "Unfair lock acquisition can cause starvation",
+        "A deadlock cycle requires every process in the cycle to wait"
+      ],
+      "explanation": "Starvation is indefinite postponement and can affect one process while others progress. A deadlock cycle involves cyclic waiting, unlike starvation in general."
+    },
+    {
+      "id": "os-sync-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about spinlocks are correct?",
+      "options": [
+        "They busy-wait while unavailable",
+        "They can be useful for very short waits",
+        "They can waste CPU for long waits",
+        "They automatically provide FIFO fairness"
+      ],
+      "answer": [
+        "They busy-wait while unavailable",
+        "They can be useful for very short waits",
+        "They can waste CPU for long waits"
+      ],
+      "explanation": "Spinning polls the lock and can be efficient for short holds, but wastes cycles for long waits. FIFO fairness requires a specific lock design."
+    },
+    {
+      "id": "os-sync-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions can support a lost wakeup bug?",
+      "options": [
+        "Predicate checked without the associated mutex",
+        "Signaler updates predicate outside the synchronization protocol",
+        "Wait begins after a notification that was not retained",
+        "Using a counting semaphore with a stored permit"
+      ],
+      "answer": [
+        "Predicate checked without the associated mutex",
+        "Signaler updates predicate outside the synchronization protocol",
+        "Wait begins after a notification that was not retained"
+      ],
+      "explanation": "If checking, updating, and sleeping are not coordinated, a notification can occur just before the waiter sleeps. A semaphore retains permits and avoids that exact lost-notification issue."
+    },
+    {
+      "id": "os-sync-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about reader-writer locks are correct?",
+      "options": [
+        "Multiple readers may hold a read lock together",
+        "A writer requires exclusive access",
+        "Reader preference can starve writers",
+        "A reader-writer lock guarantees higher throughput for every workload"
+      ],
+      "answer": [
+        "Multiple readers may hold a read lock together",
+        "A writer requires exclusive access",
+        "Reader preference can starve writers"
+      ],
+      "explanation": "Concurrent reads and exclusive writes define the lock. Reader-heavy workloads may benefit, but overhead or contention can make it slower for other workloads."
+    },
+    {
+      "id": "os-sync-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which changes can break a dining-philosophers deadlock cycle?",
+      "options": [
+        "Allow at most N?1 philosophers to compete",
+        "Make one philosopher acquire forks in reverse order",
+        "Require all philosophers to acquire forks in one global order",
+        "Let every philosopher take left then right simultaneously"
+      ],
+      "answer": [
+        "Allow at most N?1 philosophers to compete",
+        "Make one philosopher acquire forks in reverse order",
+        "Require all philosophers to acquire forks in one global order"
+      ],
+      "explanation": "Limiting contenders or imposing an ordering breaks the circular wait. Symmetric simultaneous left-first acquisition preserves the cycle."
+    },
+    {
+      "id": "os-sync-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about atomic operations are correct?",
+      "options": [
+        "They can implement synchronization primitives",
+        "Atomicity of one operation does not make a multi-step protocol atomic",
+        "Memory ordering can matter for publishing data",
+        "An atomic counter prevents all deadlocks"
+      ],
+      "answer": [
+        "They can implement synchronization primitives",
+        "Atomicity of one operation does not make a multi-step protocol atomic",
+        "Memory ordering can matter for publishing data"
+      ],
+      "explanation": "Atomics underpin locks and counters, but compound logic still needs protocol design and visibility ordering. They do not prevent unrelated deadlocks."
+    },
+    {
+      "id": "os-sync-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which are examples of progress guarantees?",
+      "options": [
+        "Lock-free: some operation completes in finite system-wide steps",
+        "Wait-free: each operation completes in bounded own steps",
+        "Blocking mutex: a stalled owner may prevent others from progressing",
+        "Mutual exclusion: guarantees every waiter eventually enters"
+      ],
+      "answer": [
+        "Lock-free: some operation completes in finite system-wide steps",
+        "Wait-free: each operation completes in bounded own steps",
+        "Blocking mutex: a stalled owner may prevent others from progressing"
+      ],
+      "explanation": "Lock-free and wait-free define progress properties; a blocking lock can depend on its owner. Mutual exclusion alone does not imply fairness or eventual entry."
+    },
+    {
+      "id": "os-sync-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which practices reduce lock-order deadlocks?",
+      "options": [
+        "Document a global acquisition order",
+        "Release a lock before acquiring another where safe",
+        "Acquire multiple locks in arbitrary order",
+        "Use try-lock and back off on failure"
+      ],
+      "answer": [
+        "Document a global acquisition order",
+        "Release a lock before acquiring another where safe",
+        "Use try-lock and back off on failure"
+      ],
+      "explanation": "Consistent order, reducing nested ownership, or retrying after failed try-lock can avoid cycles. Arbitrary order enables lock-order inversion."
+    },
+    {
+      "id": "os-sync-091",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about priority inversion are correct?",
+      "options": [
+        "A high-priority thread can wait for a low-priority lock owner",
+        "Medium-priority work can delay the low-priority owner",
+        "Priority inheritance can mitigate the delay",
+        "It is the same as a deadlock cycle"
+      ],
+      "answer": [
+        "A high-priority thread can wait for a low-priority lock owner",
+        "Medium-priority work can delay the low-priority owner",
+        "Priority inheritance can mitigate the delay"
+      ],
+      "explanation": "Priority inversion describes indirect priority blocking; priority inheritance boosts the owner so it can release the lock. It need not be deadlock."
+    },
+    {
+      "id": "os-sync-092",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about mutex ownership are typically correct?",
+      "options": [
+        "Only the owner should unlock a normal mutex",
+        "Preemption does not release ownership",
+        "A mutex may remain locked if its owner dies",
+        "Every mutex is automatically robust"
+      ],
+      "answer": [
+        "Only the owner should unlock a normal mutex",
+        "Preemption does not release ownership",
+        "A mutex may remain locked if its owner dies"
+      ],
+      "explanation": "Mutex ownership persists across preemption and may be stranded if an owner dies. Robust recovery is an optional feature, not universal."
+    },
+    {
+      "id": "os-sync-093",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which conditions should a safety-check algorithm compare componentwise?",
+      "options": [
+        "Need with Available",
+        "Request with Available before tentative allocation",
+        "Allocation with Max to derive Need",
+        "Process ID with resource count"
+      ],
+      "answer": [
+        "Need with Available",
+        "Request with Available before tentative allocation",
+        "Allocation with Max to derive Need"
+      ],
+      "explanation": "Resource vectors are compared componentwise to decide whether requests can be met and processes can finish. Process identifiers are not resource quantities."
+    },
+    {
+      "id": "os-sync-094",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which claims about deadlock detection are correct?",
+      "options": [
+        "It can be run periodically or on demand",
+        "It allows allocations that may later deadlock",
+        "Recovery is needed if deadlock is found",
+        "It guarantees deadlock prevention"
+      ],
+      "answer": [
+        "It can be run periodically or on demand",
+        "It allows allocations that may later deadlock",
+        "Recovery is needed if deadlock is found"
+      ],
+      "explanation": "Detection permits the system to enter deadlock and searches for it later; recovery follows. It does not prevent deadlock from occurring."
+    },
+    {
+      "id": "os-sync-095",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which actions may release resources held by a deadlocked process?",
+      "options": [
+        "Terminate that process",
+        "Roll it back to a state before allocation",
+        "Preempt a safely preemptible resource",
+        "Increase its CPU priority only"
+      ],
+      "answer": [
+        "Terminate that process",
+        "Roll it back to a state before allocation",
+        "Preempt a safely preemptible resource"
+      ],
+      "explanation": "Termination, rollback, and safe preemption can free resources. Raising priority alone does not release resources or resolve a wait cycle."
+    },
+    {
+      "id": "os-sync-096",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Available=(2,1). P0 needs (1,1) and will release (2,0) on completion; P1 needs (3,0). Is P0?P1 a safe sequence?",
+      "options": [
+        "Yes",
+        "No; P0 cannot start",
+        "No; P1 must run first",
+        "Cannot determine without priorities"
+      ],
+      "answer": [
+        "Yes"
+      ],
+      "explanation": "P0?s need fits the available vector. After completion, availability becomes (4,1), which satisfies P1?s remaining need, so the sequence is safe."
+    },
+    {
+      "id": "os-sync-097",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A binary semaphore has value 1. Two threads call wait, and the first later calls signal twice. What is the most important risk?",
+      "options": [
+        "The second signal can leave an extra permit and break mutual exclusion",
+        "The semaphore necessarily becomes negative",
+        "The first thread becomes a zombie",
+        "The second thread is guaranteed to starve"
+      ],
+      "answer": [
+        "The second signal can leave an extra permit and break mutual exclusion"
+      ],
+      "explanation": "A mutex-like binary semaphore should represent one ownership permit. Extra signaling can create an additional available permit and allow overlapping entry."
+    },
+    {
+      "id": "os-sync-098",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process waits for a condition variable while holding a mutex, but the wait implementation does not release the mutex. What happens if the producer needs that mutex to make the condition true?",
+      "options": [
+        "Deadlock",
+        "Safe progress",
+        "The condition becomes true automatically",
+        "The producer skips mutual exclusion"
+      ],
+      "answer": [
+        "Deadlock"
+      ],
+      "explanation": "The waiter sleeps while holding the only lock the producer needs to update and signal the predicate. Neither can proceed."
+    },
+    {
+      "id": "os-sync-099",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A system with multiple instances of resource R has a wait-for cycle. One unused instance of R is available. What does this suggest?",
+      "options": [
+        "The cycle may be resolved by granting the available instance",
+        "Deadlock is certain despite the free instance",
+        "No process can ever complete",
+        "The system must terminate every process"
+      ],
+      "answer": [
+        "The cycle may be resolved by granting the available instance"
+      ],
+      "explanation": "A free instance may satisfy a pending request and let a process complete, so a cycle alone does not prove deadlock when resource types have multiple instances."
+    },
+    {
+      "id": "os-sync-100",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A fair mutex guarantees that a thread waiting longest is eventually served. Which problem does this property primarily address?",
+      "options": [
+        "Starvation",
+        "Mutual exclusion",
+        "Circular wait",
+        "Resource preemption"
+      ],
+      "answer": [
+        "Starvation"
+      ],
+      "explanation": "Fair service reduces indefinite postponement of an individual waiter, addressing starvation. It does not by itself eliminate lock cycles or change mutual exclusion."
+    }
+  ]
+}

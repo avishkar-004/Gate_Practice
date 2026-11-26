@@ -1,0 +1,1542 @@
+{
+  "topicIndex": 1,
+  "questions": [
+    {
+      "id": "os-proc-001",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process is in the ready queue when a higher-priority process arrives. Which transition occurs immediately under a preemptive scheduler?",
+      "options": [
+        "running to ready",
+        "running to waiting",
+        "ready to waiting",
+        "terminated to ready"
+      ],
+      "answer": [
+        "running to ready"
+      ],
+      "explanation": "The arrival can cause the current process to lose the CPU, but it remains eligible to run. It is preempted into ready; it has not requested I/O."
+    },
+    {
+      "id": "os-proc-002",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process blocks on disk I/O. When the I/O completes, what is its state before it next receives CPU time?",
+      "options": [
+        "ready",
+        "running",
+        "terminated",
+        "new"
+      ],
+      "answer": [
+        "ready"
+      ],
+      "explanation": "Completion makes the process eligible to compete for the CPU. It cannot become running directly unless dispatch also occurs."
+    },
+    {
+      "id": "os-proc-003",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is waiting for a child, but the child has not exited. Which state best describes the parent?",
+      "options": [
+        "blocked",
+        "ready",
+        "running",
+        "zombie"
+      ],
+      "answer": [
+        "blocked"
+      ],
+      "explanation": "The parent cannot make progress until the wait condition is satisfied, so it is blocked. It is not merely ready because an event is required."
+    },
+    {
+      "id": "os-proc-004",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has finished execution, but its parent has not collected its exit status. Which description applies in Unix-like systems?",
+      "options": [
+        "zombie",
+        "orphan",
+        "suspended",
+        "ready"
+      ],
+      "answer": [
+        "zombie"
+      ],
+      "explanation": "The terminated process retains a small kernel record containing its PID and status until reaped. Its address space and execution are gone."
+    },
+    {
+      "id": "os-proc-005",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A parent terminates while its child continues running. The child is commonly called a(n):",
+      "options": [
+        "orphan",
+        "zombie",
+        "daemon by definition",
+        "kernel thread"
+      ],
+      "answer": [
+        "orphan"
+      ],
+      "explanation": "An orphan is a living child whose parent has exited. A zombie has already terminated and awaits status collection."
+    },
+    {
+      "id": "os-proc-006",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which item is normally saved in a process context switch?",
+      "options": [
+        "program counter and general registers",
+        "all physical memory contents",
+        "the entire disk image",
+        "only the process name"
+      ],
+      "answer": [
+        "program counter and general registers"
+      ],
+      "explanation": "The CPU register state, including the program counter and stack pointer, must be preserved to resume execution. Memory need not be copied on every switch."
+    },
+    {
+      "id": "os-proc-007",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two processes share the same code pages but have separate writable data. Which mechanism can provide this after fork efficiently?",
+      "options": [
+        "copy-on-write",
+        "eagerly duplicate every page",
+        "swap out the parent",
+        "shared stack by default"
+      ],
+      "answer": [
+        "copy-on-write"
+      ],
+      "explanation": "Copy-on-write initially maps pages read-only and duplicates a page only when a writer attempts modification. This avoids copying untouched data."
+    },
+    {
+      "id": "os-proc-008",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "After a successful fork, which statement about the return value is correct?",
+      "options": [
+        "It is zero in the child and the child PID in the parent",
+        "It is the parent PID in both processes",
+        "It is zero in both processes",
+        "It is the child PID in the child and zero in the parent"
+      ],
+      "answer": [
+        "It is zero in the child and the child PID in the parent"
+      ],
+      "explanation": "The return value distinguishes the two execution paths: zero identifies the child, while the parent receives the new child PID."
+    },
+    {
+      "id": "os-proc-009",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process calls exec successfully. What happens to its process identity?",
+      "options": [
+        "PID stays the same while the program image is replaced",
+        "A new PID is always allocated",
+        "The caller becomes its parent",
+        "Only its current directory changes"
+      ],
+      "answer": [
+        "PID stays the same while the program image is replaced"
+      ],
+      "explanation": "Exec overlays the calling process image with a new program. It does not itself create a process, so the PID remains unchanged."
+    },
+    {
+      "id": "os-proc-010",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A child exits, and the parent calls wait. Which result is guaranteed if wait succeeds?",
+      "options": [
+        "The child is reaped and its exit status can be collected",
+        "The child is restarted",
+        "The parent becomes the child",
+        "All descendants are reaped recursively"
+      ],
+      "answer": [
+        "The child is reaped and its exit status can be collected"
+      ],
+      "explanation": "Wait collects termination status for one child and releases its zombie record. It does not restart the child or reap arbitrary descendants."
+    },
+    {
+      "id": "os-proc-011",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process executes fork once, and both parent and child then execute a second unconditional fork. Assuming all calls succeed, how many processes exist at the end?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "8"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "Each of the two existing processes creates one child in the second fork. The population doubles from two to four."
+    },
+    {
+      "id": "os-proc-012",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Three successive unconditional fork calls are executed by every process created so far. How many total processes result, including the original?",
+      "options": [
+        "8",
+        "6",
+        "7",
+        "9"
+      ],
+      "answer": [
+        "8"
+      ],
+      "explanation": "Each fork doubles the population: 1 ? 2 ? 4 ? 8. This count includes the original process."
+    },
+    {
+      "id": "os-proc-013",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program forks once inside an if condition that is true only in the parent (the child branch skips the condition body). How many processes exist afterward?",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "Only the original process reaches the fork, so one child is created. The child?s later control flow does not re-enter the already tested condition."
+    },
+    {
+      "id": "os-proc-014",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A parent has two children. One exits; the other is still running. A wait call returns successfully. What can be concluded?",
+      "options": [
+        "At least one terminated child was collected",
+        "Both children have terminated",
+        "The running child was killed",
+        "The parent has no children now"
+      ],
+      "answer": [
+        "At least one terminated child was collected"
+      ],
+      "explanation": "A successful wait can return for an already terminated child while another child continues. The second child remains the parent?s child."
+    },
+    {
+      "id": "os-proc-015",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A child invokes _exit(7). What is the value typically made available to its parent through wait status decoding?",
+      "options": [
+        "7",
+        "0",
+        "The child PID",
+        "-7"
+      ],
+      "answer": [
+        "7"
+      ],
+      "explanation": "The low-order exit status supplied to _exit is reported to the parent (subject to the platform?s status encoding and extraction macros)."
+    },
+    {
+      "id": "os-proc-016",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is preempted by a timer interrupt. Which state transition is most appropriate if it remains runnable?",
+      "options": [
+        "running to ready",
+        "running to blocked",
+        "ready to running",
+        "running to terminated"
+      ],
+      "answer": [
+        "running to ready"
+      ],
+      "explanation": "A timer interrupt ends the process?s current CPU turn without making it wait for an event. The scheduler places it back in the ready state."
+    },
+    {
+      "id": "os-proc-017",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which pair of resources is typically per-process rather than shared among all processes?",
+      "options": [
+        "virtual address space and register context",
+        "CPU and physical RAM chips",
+        "kernel code and system clock",
+        "interrupt controller and disk device"
+      ],
+      "answer": [
+        "virtual address space and register context"
+      ],
+      "explanation": "A process has its own virtual address space and saved CPU context. Physical hardware and kernel code are system-wide resources."
+    },
+    {
+      "id": "os-proc-018",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is waiting for a page fault to be serviced from disk. Which state is most suitable?",
+      "options": [
+        "blocked",
+        "ready",
+        "running",
+        "new"
+      ],
+      "answer": [
+        "blocked"
+      ],
+      "explanation": "The process cannot continue until the faulting page arrives, so it waits on an I/O-related event. After completion it returns to ready."
+    },
+    {
+      "id": "os-proc-019",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is admitted to memory and is eligible to run but has never received the CPU. Its state is:",
+      "options": [
+        "ready",
+        "running",
+        "blocked",
+        "terminated"
+      ],
+      "answer": [
+        "ready"
+      ],
+      "explanation": "The ready state means the process can execute as soon as selected. Running specifically means it currently owns a CPU."
+    },
+    {
+      "id": "os-proc-020",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process terminates while holding a user-space mutex. What does process termination by itself guarantee about that mutex?",
+      "options": [
+        "Nothing about a shared mutex?s consistency is guaranteed",
+        "The OS always unlocks it safely for all processes",
+        "Every waiter receives ownership",
+        "The mutex is converted to a semaphore"
+      ],
+      "answer": [
+        "Nothing about a shared mutex?s consistency is guaranteed"
+      ],
+      "explanation": "A process dying while holding a process-shared lock can leave application state inconsistent. Kernel cleanup of resources does not automatically repair arbitrary user-level synchronization."
+    },
+    {
+      "id": "os-proc-021",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A fork occurs while a thread library process has several threads. In POSIX-style semantics, which is the usual result in the child?",
+      "options": [
+        "Only the calling thread exists in the child",
+        "All threads are copied and run independently",
+        "No thread exists until exec",
+        "The child immediately exits"
+      ],
+      "answer": [
+        "Only the calling thread exists in the child"
+      ],
+      "explanation": "After fork in a multithreaded process, the child contains only the thread that called fork. This is why the child typically calls exec promptly."
+    },
+    {
+      "id": "os-proc-022",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process calls fork, then the child calls exec. Which memory behavior best describes the child?",
+      "options": [
+        "Its old address-space image is replaced by the new program image",
+        "It keeps all old mappings and appends a new stack",
+        "Its PID changes during exec",
+        "It becomes a thread of the parent"
+      ],
+      "answer": [
+        "Its old address-space image is replaced by the new program image"
+      ],
+      "explanation": "Exec replaces code, data, heap, and stack mappings with those for the new program while preserving process identity."
+    },
+    {
+      "id": "os-proc-023",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which operation creates a new process in the classic Unix process model?",
+      "options": [
+        "fork",
+        "exec",
+        "wait",
+        "exit"
+      ],
+      "answer": [
+        "fork"
+      ],
+      "explanation": "Fork creates a child process. Exec changes the executing program, wait synchronizes with a child, and exit terminates the caller."
+    },
+    {
+      "id": "os-proc-024",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A parent calls waitpid for a specific child that is still running, without a nonblocking option. What does the parent do?",
+      "options": [
+        "Blocks until that child changes state in a waitable way",
+        "Returns immediately with the child?s future PID",
+        "Terminates the child",
+        "Runs the child?s instructions itself"
+      ],
+      "answer": [
+        "Blocks until that child changes state in a waitable way"
+      ],
+      "explanation": "A blocking waitpid waits for the specified child?s relevant state change, usually termination. It does not execute the child or terminate it."
+    },
+    {
+      "id": "os-proc-025",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process table entry is needed after a process exits mainly to preserve:",
+      "options": [
+        "the PID and termination status for the parent",
+        "the process?s complete address space",
+        "all its open file data copied into RAM",
+        "its CPU registers for resumption"
+      ],
+      "answer": [
+        "the PID and termination status for the parent"
+      ],
+      "explanation": "The zombie record holds minimal bookkeeping so the parent can obtain the exit status and the PID can be managed correctly. The process cannot resume."
+    },
+    {
+      "id": "os-proc-026",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process performs a blocking read from an empty pipe. What transition normally occurs?",
+      "options": [
+        "running to blocked",
+        "running to ready",
+        "blocked to running without an event",
+        "terminated to blocked"
+      ],
+      "answer": [
+        "running to blocked"
+      ],
+      "explanation": "A blocking read waits for data, yielding the CPU while the process is blocked. Data arrival makes it ready; dispatch later makes it running."
+    },
+    {
+      "id": "os-proc-027",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A context switch from P to Q occurs. Which statement is correct?",
+      "options": [
+        "The kernel saves P?s CPU state and restores Q?s saved state",
+        "P?s entire memory is copied into Q",
+        "Q inherits P?s PID",
+        "The switch necessarily requires disk I/O"
+      ],
+      "answer": [
+        "The kernel saves P?s CPU state and restores Q?s saved state"
+      ],
+      "explanation": "A context switch changes the executing context by saving and restoring registers and related scheduling state. It need not copy memory or access disk."
+    },
+    {
+      "id": "os-proc-028",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has two children, both terminated and unreaped. How many zombie processes may exist?",
+      "options": [
+        "2",
+        "0",
+        "1",
+        "3"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "Each terminated child can retain a separate zombie record until its exit status is collected. Thus both can be zombies simultaneously."
+    },
+    {
+      "id": "os-proc-029",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A child exits before its parent calls wait. What happens to the child in the interval?",
+      "options": [
+        "It remains a zombie until reaped",
+        "It continues executing as an orphan",
+        "It is immediately restarted",
+        "It is converted to a ready process"
+      ],
+      "answer": [
+        "It remains a zombie until reaped"
+      ],
+      "explanation": "The child has terminated and cannot execute, but its minimal exit record is retained until the parent collects it. That state is zombie."
+    },
+    {
+      "id": "os-proc-030",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process forks and both branches increment a private integer initialized to 5. After each branch increments once, what value does each process observe?",
+      "options": [
+        "6 in each process",
+        "7 in both processes",
+        "6 in parent and 5 in child",
+        "5 in both processes"
+      ],
+      "answer": [
+        "6 in each process"
+      ],
+      "explanation": "Fork gives the child a logically separate address space. Each branch changes its own copy, so both observe 6 rather than sharing a single increment."
+    },
+    {
+      "id": "os-proc-031",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has one child that is a zombie and another child that is still blocked on I/O. A successful wait can reap:",
+      "options": [
+        "the zombie child only",
+        "the blocked child only",
+        "both children simultaneously",
+        "neither child until both exit"
+      ],
+      "answer": [
+        "the zombie child only"
+      ],
+      "explanation": "A normal wait reports a child that has terminated. The blocked child is still alive, so it cannot be reaped."
+    },
+    {
+      "id": "os-proc-032",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "After fork, parent and child share a file descriptor referring to the same open file description. Which state is commonly shared?",
+      "options": [
+        "the open-file offset",
+        "their PID",
+        "their private heap",
+        "their register set"
+      ],
+      "answer": [
+        "the open-file offset"
+      ],
+      "explanation": "Duplicated descriptors can refer to the same open-file description, so file offset and status flags may be shared. The processes still have distinct PIDs and memory contexts."
+    },
+    {
+      "id": "os-proc-033",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A child closes a descriptor after fork. What is generally true of the parent?s descriptor?",
+      "options": [
+        "It remains open in the parent",
+        "It is necessarily closed too",
+        "The parent process terminates",
+        "The child?s entire descriptor table is destroyed in the parent"
+      ],
+      "answer": [
+        "It remains open in the parent"
+      ],
+      "explanation": "Each process has its own descriptor table after fork; closing one descriptor entry does not close the other process?s entry, though the underlying open-file reference count changes."
+    },
+    {
+      "id": "os-proc-034",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which event normally moves a process from blocked to ready?",
+      "options": [
+        "completion of the event it was waiting for",
+        "expiration of its CPU quantum",
+        "selection by the dispatcher",
+        "creation of a new process"
+      ],
+      "answer": [
+        "completion of the event it was waiting for"
+      ],
+      "explanation": "An awaited event such as I/O completion makes the process eligible to run. The scheduler may dispatch it later, but dispatch is a separate ready-to-running transition."
+    },
+    {
+      "id": "os-proc-035",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process issues a nonblocking read when no data is available. Relative to a blocking read, the process typically:",
+      "options": [
+        "remains runnable and receives an immediate no-data result",
+        "must enter blocked state",
+        "is terminated by the kernel",
+        "becomes a zombie"
+      ],
+      "answer": [
+        "remains runnable and receives an immediate no-data result"
+      ],
+      "explanation": "A nonblocking operation returns promptly when it cannot proceed. The process can continue executing rather than sleeping for data."
+    },
+    {
+      "id": "os-proc-036",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is ready, and the CPU is idle. What action changes its state to running?",
+      "options": [
+        "dispatch",
+        "admission",
+        "I/O completion",
+        "reaping"
+      ],
+      "answer": [
+        "dispatch"
+      ],
+      "explanation": "The dispatcher selects a ready process for a CPU. Admission moves a new process into the system; I/O completion usually moves blocked to ready."
+    },
+    {
+      "id": "os-proc-037",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is swapped out while waiting for an event. In a suspended-state model, its state is best represented as:",
+      "options": [
+        "blocked-suspended",
+        "ready-running",
+        "terminated-ready",
+        "new-running"
+      ],
+      "answer": [
+        "blocked-suspended"
+      ],
+      "explanation": "It is both waiting for an event and not resident in main memory, hence blocked-suspended. When the event occurs it can become ready-suspended."
+    },
+    {
+      "id": "os-proc-038",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is swapped out but is otherwise eligible to execute. Its state is:",
+      "options": [
+        "ready-suspended",
+        "blocked-suspended",
+        "running-suspended",
+        "terminated-suspended"
+      ],
+      "answer": [
+        "ready-suspended"
+      ],
+      "explanation": "It is ready to run but not currently resident, so ready-suspended captures both facts. It cannot actually execute until brought back into memory."
+    },
+    {
+      "id": "os-proc-039",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which action is usually performed by the short-term scheduler?",
+      "options": [
+        "selecting a ready process for the CPU",
+        "admitting jobs from the job pool",
+        "choosing a page to evict",
+        "assigning a file-system block"
+      ],
+      "answer": [
+        "selecting a ready process for the CPU"
+      ],
+      "explanation": "The short-term scheduler chooses among ready processes for immediate CPU execution. Long-term admission and memory replacement are separate functions."
+    },
+    {
+      "id": "os-proc-040",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process control block typically stores which scheduling information?",
+      "options": [
+        "process state and priority",
+        "source code text only",
+        "contents of every disk sector",
+        "network topology"
+      ],
+      "answer": [
+        "process state and priority"
+      ],
+      "explanation": "The PCB stores state needed to manage and resume the process, including scheduling parameters such as priority and queue links. Program text is represented by address-space mappings."
+    },
+    {
+      "id": "os-proc-041",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "At fork, the child receives a distinct PID. Which identifier is normally inherited from the parent?",
+      "options": [
+        "current working directory",
+        "PID",
+        "parent PID field",
+        "current instruction pointer value as a permanently shared register"
+      ],
+      "answer": [
+        "current working directory"
+      ],
+      "explanation": "The child inherits environment and process attributes such as current working directory, subject to platform semantics. It gets its own PID, and its parent PID identifies the original process."
+    },
+    {
+      "id": "os-proc-042",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A child exits with status 256 on a system that exposes only the low 8 bits of the exit code. What status value is available?",
+      "options": [
+        "0",
+        "1",
+        "256",
+        "-1"
+      ],
+      "answer": [
+        "0"
+      ],
+      "explanation": "Only the low eight bits are retained in this conventional interface. Since 256 is 0 modulo 256, the reported exit code is zero."
+    },
+    {
+      "id": "os-proc-043",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A parent uses waitpid(child, ..., WNOHANG) while the child is still running. What is the usual result?",
+      "options": [
+        "It returns immediately indicating no child state is ready",
+        "It blocks until the child exits",
+        "It kills the child",
+        "It returns the child?s final status"
+      ],
+      "answer": [
+        "It returns immediately indicating no child state is ready"
+      ],
+      "explanation": "WNOHANG requests a nonblocking check. If the child has no reportable state change, waitpid returns immediately with an indication that nothing is ready."
+    },
+    {
+      "id": "os-proc-044",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which pair of operations is commonly combined to launch a different program as a child?",
+      "options": [
+        "fork followed by exec",
+        "exec followed by wait",
+        "wait followed by exit",
+        "exit followed by fork"
+      ],
+      "answer": [
+        "fork followed by exec"
+      ],
+      "explanation": "Fork creates the child; exec then replaces its program image. This separation allows the parent to retain its own image and optionally wait."
+    },
+    {
+      "id": "os-proc-045",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process creates a child and then exits without waiting. What is the child?s status immediately after the parent exits?",
+      "options": [
+        "It is still a live process and becomes an orphan",
+        "It becomes a zombie immediately",
+        "It must be terminated with the parent",
+        "It becomes a kernel thread"
+      ],
+      "answer": [
+        "It is still a live process and becomes an orphan"
+      ],
+      "explanation": "The child?s execution is independent after creation. When its parent exits, it is an orphan and is typically adopted by a system reaper."
+    },
+    {
+      "id": "os-proc-046",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process invokes exit while another thread in the same process is running. Under ordinary process-wide exit semantics, what happens?",
+      "options": [
+        "The process terminates, including its other threads",
+        "Only the calling thread terminates and the process continues",
+        "The caller becomes a zombie thread while the process runs",
+        "The kernel forks a replacement process"
+      ],
+      "answer": [
+        "The process terminates, including its other threads"
+      ],
+      "explanation": "Process termination ends the process as a whole, so its threads cease as well. A thread-only exit primitive has different semantics."
+    },
+    {
+      "id": "os-proc-047",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A context switch takes 4 microseconds. A CPU-bound process is switched out and later back in once per quantum. Ignoring other overheads, what context-switch time is charged per quantum cycle?",
+      "options": [
+        "8 microseconds",
+        "4 microseconds",
+        "2 microseconds",
+        "16 microseconds"
+      ],
+      "answer": [
+        "8 microseconds"
+      ],
+      "explanation": "One switch saves the process and dispatches another; a later switch restores it. The two transitions cost 2 ? 4 = 8 microseconds."
+    },
+    {
+      "id": "os-proc-048",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "The same process is preempted 25 times, and each switch costs 3 microseconds. Total time spent in these switch operations is:",
+      "options": [
+        "75 microseconds",
+        "28 microseconds",
+        "25 microseconds",
+        "150 microseconds"
+      ],
+      "answer": [
+        "75 microseconds"
+      ],
+      "explanation": "Each preemption corresponds to one context-switch operation under the stated accounting. Thus 25 ? 3 = 75 microseconds."
+    },
+    {
+      "id": "os-proc-049",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A parent remains alive, creates four children, and does not call wait. All four children exit. How many child zombie records can be pending for this parent?",
+      "options": [
+        "4",
+        "1",
+        "0",
+        "5"
+      ],
+      "answer": [
+        "4"
+      ],
+      "explanation": "Each of the four terminated children may retain a separate status record because the parent has not reaped them. The living parent is not itself a zombie."
+    },
+    {
+      "id": "os-proc-050",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process in ready state is not executing because:",
+      "options": [
+        "it is waiting for CPU allocation",
+        "it is waiting for I/O completion",
+        "it has already exited",
+        "it has no address space"
+      ],
+      "answer": [
+        "it is waiting for CPU allocation"
+      ],
+      "explanation": "Ready means runnable but not currently assigned a CPU. Waiting for I/O is blocked; termination ends execution."
+    },
+    {
+      "id": "os-proc-051",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process calls fork and checks for a negative return value. If fork fails, which execution fact is correct?",
+      "options": [
+        "No child was created by that call",
+        "A child exists but has PID zero",
+        "The parent has already been replaced",
+        "Both processes continue after the call"
+      ],
+      "answer": [
+        "No child was created by that call"
+      ],
+      "explanation": "A failed fork reports an error to the caller and does not create a child. Code must handle failure before assuming two execution paths exist."
+    },
+    {
+      "id": "os-proc-052",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process group receives a termination signal. Which statement about process identity is correct?",
+      "options": [
+        "A process group is a collection of processes with distinct PIDs",
+        "All group members become one process",
+        "The group ID replaces every member PID",
+        "Only parent and child can belong to a group"
+      ],
+      "answer": [
+        "A process group is a collection of processes with distinct PIDs"
+      ],
+      "explanation": "A process group supports signal and job-control operations over a set of processes; each member remains an individual process with its own PID."
+    },
+    {
+      "id": "os-proc-053",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A child process calls getppid after its parent has exited and it has been adopted. What does getppid report?",
+      "options": [
+        "The PID of the adopting parent",
+        "Its own PID",
+        "The PID of the original parent forever",
+        "Zero on every system"
+      ],
+      "answer": [
+        "The PID of the adopting parent"
+      ],
+      "explanation": "After adoption, the kernel updates the child?s parent relationship. getppid reports the current parent, not necessarily the process that originally forked it."
+    },
+    {
+      "id": "os-proc-054",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process is in the new state. Which event most directly moves it to ready?",
+      "options": [
+        "Admission into the set of executable processes",
+        "Completion of its disk request",
+        "Expiration of its time slice",
+        "Collection of its exit status"
+      ],
+      "answer": [
+        "Admission into the set of executable processes"
+      ],
+      "explanation": "Admission makes a newly created process eligible for scheduling. I/O completion is for blocked processes; time-slice expiration affects a running process."
+    },
+    {
+      "id": "os-proc-055",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has been selected for execution but has not yet run because the CPU is finishing a mode transition. Conceptually, after dispatch it is:",
+      "options": [
+        "running",
+        "ready",
+        "blocked",
+        "new"
+      ],
+      "answer": [
+        "running"
+      ],
+      "explanation": "Dispatch is the transition from ready to running. The actual first instruction may occur after a small implementation delay."
+    },
+    {
+      "id": "os-proc-056",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Which description best captures a process image?",
+      "options": [
+        "The executable code, data, stack, heap, and related execution context",
+        "Only the source file on disk",
+        "Only the PCB",
+        "Every page in physical memory, including other processes"
+      ],
+      "answer": [
+        "The executable code, data, stack, heap, and related execution context"
+      ],
+      "explanation": "The process image refers to the program?s execution representation, including its address-space regions and execution context. A PCB is management metadata rather than the whole image."
+    },
+    {
+      "id": "os-proc-057",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process changes its priority while waiting in the ready queue. What remains true?",
+      "options": [
+        "It is still ready until dispatched or blocked by another event",
+        "It becomes running immediately",
+        "It becomes blocked because its priority changed",
+        "It terminates and is recreated"
+      ],
+      "answer": [
+        "It is still ready until dispatched or blocked by another event"
+      ],
+      "explanation": "Priority affects scheduling choice but does not by itself change the process?s readiness. A dispatcher must still assign a CPU."
+    },
+    {
+      "id": "os-proc-058",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "The kernel performs a system call for a process and returns to the same process without scheduling another one. Is this necessarily a process context switch?",
+      "options": [
+        "No; a privilege-mode switch can occur without changing processes",
+        "Yes; every system call switches processes",
+        "Yes; entering the kernel creates a child",
+        "No; system calls execute only in user mode"
+      ],
+      "answer": [
+        "No; a privilege-mode switch can occur without changing processes"
+      ],
+      "explanation": "A system call crosses from user to kernel mode, but the same process may resume afterward. A process context switch occurs only if execution changes to another process."
+    },
+    {
+      "id": "os-proc-059",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is interrupted, and the kernel resumes the same process after handling the interrupt. Which claim is correct?",
+      "options": [
+        "An interrupt does not necessarily cause a process context switch",
+        "Every interrupt creates a new process",
+        "The process must become blocked",
+        "Its PID is reassigned"
+      ],
+      "answer": [
+        "An interrupt does not necessarily cause a process context switch"
+      ],
+      "explanation": "Interrupt handling may return to the interrupted process. Whether a context switch happens depends on scheduling decisions and events, not merely on the interrupt."
+    },
+    {
+      "id": "os-proc-060",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A child calls exec but the executable cannot be loaded. What normally happens to the calling process?",
+      "options": [
+        "Exec returns an error and the old image remains active",
+        "The PID changes and a blank image runs",
+        "The parent is replaced",
+        "The process becomes a zombie immediately"
+      ],
+      "answer": [
+        "Exec returns an error and the old image remains active"
+      ],
+      "explanation": "A failed exec does not complete the image replacement, so it returns an error to the caller, which can continue in its old program image."
+    },
+    {
+      "id": "os-proc-061",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A parent performs wait and two children have already exited. How many can one ordinary wait reap?",
+      "options": [
+        "One",
+        "Zero",
+        "Both, always",
+        "All descendants recursively"
+      ],
+      "answer": [
+        "One"
+      ],
+      "explanation": "A single wait call reports one terminated child. The parent must call wait again to collect another child?s status."
+    },
+    {
+      "id": "os-proc-062",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process calls wait when it has no unwaited-for children. What is the usual behavior?",
+      "options": [
+        "It returns an error",
+        "It blocks forever",
+        "It creates a child",
+        "It returns the PID of its parent"
+      ],
+      "answer": [
+        "It returns an error"
+      ],
+      "explanation": "Waiting is meaningful only for a child relationship. If there is no eligible child, wait reports an error rather than blocking forever."
+    },
+    {
+      "id": "os-proc-063",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A program forks in a loop that runs exactly k times in each process created by prior iterations. How many processes exist after k iterations?",
+      "options": [
+        "2^k",
+        "2k",
+        "2^k - 1",
+        "k + 1"
+      ],
+      "answer": [
+        "2^k"
+      ],
+      "explanation": "Every existing process forks once per iteration, so the count doubles each time. After k doublings, the total including the original is 2^k."
+    },
+    {
+      "id": "os-proc-064",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "In a loop, each process forks once, but only the child exits immediately and the parent continues to the next iteration. Starting with one process, after 4 iterations how many live loop participants remain?",
+      "options": [
+        "1",
+        "4",
+        "8",
+        "16"
+      ],
+      "answer": [
+        "1"
+      ],
+      "explanation": "At each iteration the existing parent creates one child that immediately exits, while the original parent alone continues. Thus one process reaches each next iteration."
+    },
+    {
+      "id": "os-proc-065",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A parent forks twice sequentially and neither child forks. How many children does it have at the end?",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "Each fork is executed only by the original parent because no child forks. Therefore it creates two children, for three total processes."
+    },
+    {
+      "id": "os-proc-066",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process forks, and both branches fork again, but only the original parent performs a third fork. How many total processes result?",
+      "options": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "answer": [
+        "7"
+      ],
+      "explanation": "First fork yields two processes, second executed by both yields four, and the final fork by only the original adds one. Total: 4 + 1 + 2 existing descendants created earlier = 7."
+    },
+    {
+      "id": "os-proc-067",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process forks once. The parent waits before printing, while the child prints and exits. What ordering is guaranteed?",
+      "options": [
+        "The child?s print occurs before the parent?s post-wait print",
+        "The parent always prints first",
+        "The two prints must occur simultaneously",
+        "The child cannot print until the parent exits"
+      ],
+      "answer": [
+        "The child?s print occurs before the parent?s post-wait print"
+      ],
+      "explanation": "The parent is blocked in wait until the child exits, so the child?s print and termination precede the parent continuing after wait."
+    },
+    {
+      "id": "os-proc-068",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "Two sibling processes both write to the same pipe, and the parent waits for one child. What does wait guarantee about output ordering between siblings?",
+      "options": [
+        "No total ordering between sibling output is guaranteed",
+        "The child created first always writes first",
+        "The parent serializes sibling writes automatically",
+        "The second child is blocked until the first exits"
+      ],
+      "answer": [
+        "No total ordering between sibling output is guaranteed"
+      ],
+      "explanation": "Waiting for one child constrains the parent, not the relative schedule of siblings. Their writes can interleave or arrive in either order, subject to write atomicity rules."
+    },
+    {
+      "id": "os-proc-069",
+      "type": "MCQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "A process is marked stopped after receiving a job-control stop signal. Which statement is most accurate?",
+      "options": [
+        "It is not eligible to run until continued",
+        "It is terminated and can never resume",
+        "It is a zombie",
+        "It is blocked only on disk I/O"
+      ],
+      "answer": [
+        "It is not eligible to run until continued"
+      ],
+      "explanation": "A stopped process is suspended from execution but retains its state and can resume after a continue event. This differs from termination and zombie status."
+    },
+    {
+      "id": "os-proc-070",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process receives a signal whose default action is termination. Before the parent reaps it, the process is:",
+      "options": [
+        "terminated, possibly represented as a zombie",
+        "blocked",
+        "ready",
+        "running in the signal handler"
+      ],
+      "answer": [
+        "terminated, possibly represented as a zombie"
+      ],
+      "explanation": "With the default terminating action, execution ceases. Until status is collected, the kernel may retain a zombie record for the parent."
+    },
+    {
+      "id": "os-proc-071",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A single process executes 5 unconditional fork calls in sequence; every process created continues to execute the remaining calls. How many processes exist at the end?",
+      "answer": "32",
+      "explanation": "Each of five calls doubles the population, so the final count is 2^5 = 32, including the original process."
+    },
+    {
+      "id": "os-proc-072",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process forks once. Only the parent executes one additional fork afterward; each child exits before that second call. How many total processes were created, counting the original?",
+      "answer": "3",
+      "explanation": "The first fork creates one child. The parent alone executes the second fork and creates another child, giving three distinct processes in total."
+    },
+    {
+      "id": "os-proc-073",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A parent has 3 children that all terminate without being waited for. How many child exit records can be waiting for collection?",
+      "answer": "3",
+      "explanation": "Each exited child can leave one unreaped status record. Since all three children have terminated and the parent has not waited, three records may be pending."
+    },
+    {
+      "id": "os-proc-074",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process executes fork in a loop for 4 iterations, with every process continuing the loop. How many fork calls in total are executed?",
+      "answer": "15",
+      "explanation": "The number of calls per iteration is 1, 2, 4, and 8. Their sum is 1 + 2 + 4 + 8 = 15."
+    },
+    {
+      "id": "os-proc-075",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A parent creates 6 children sequentially. Each child exits immediately, and the parent reaps each child before creating the next. What is the maximum number of simultaneously existing processes including the parent?",
+      "answer": "2",
+      "explanation": "At each point the parent and at most one newly created child coexist. The child is reaped before the next is created, so the maximum is two."
+    },
+    {
+      "id": "os-proc-076",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process forks 3 times in an if branch that only the original parent can reach. How many children does it create?",
+      "answer": "3",
+      "explanation": "Only the original parent executes each of the three fork calls. Each successful call creates one child, for three children."
+    },
+    {
+      "id": "os-proc-077",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A running process is preempted 12 times. Each context-switch operation costs 5 microseconds. What is the total cost of those 12 operations in microseconds?",
+      "answer": "60",
+      "explanation": "The stated count is 12 switch operations, each costing 5 microseconds. Total overhead is 12 ? 5 = 60 microseconds."
+    },
+    {
+      "id": "os-proc-078",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process performs 4 fork calls in sequence, but after every call only the child continues and the parent exits. How many live processes remain after the fourth call?",
+      "answer": "1",
+      "explanation": "Each fork produces two branches, but the parent branch exits at every step. Exactly one child continues to the next iteration, leaving one live process at the end."
+    },
+    {
+      "id": "os-proc-079",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A process creates 2 children. Each child creates 2 children of its own; the original parent creates no further children. How many processes are in the resulting tree, including the root?",
+      "answer": "7",
+      "explanation": "The tree has one root, two children, and four grandchildren. The total is 1 + 2 + 4 = 7."
+    },
+    {
+      "id": "os-proc-080",
+      "type": "NAT",
+      "difficulty": "MODERATE",
+      "prompt": "A parent waits for 4 children, all of which have exited. What is the minimum number of successful wait calls needed to collect all four exit statuses?",
+      "answer": "4",
+      "explanation": "One successful wait call collects one child?s status. Four terminated children therefore require four successful waits."
+    },
+    {
+      "id": "os-proc-081",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which properties are normally private to a process after a successful fork?",
+      "options": [
+        "its PID",
+        "its virtual address-space identity",
+        "its parent-child relationship",
+        "the physical CPU core"
+      ],
+      "answer": [
+        "its PID",
+        "its virtual address-space identity",
+        "its parent-child relationship"
+      ],
+      "explanation": "Parent and child have distinct process identities and address spaces and distinct relationship metadata. They can run on the same CPU core over time, so the core is not a private process property."
+    },
+    {
+      "id": "os-proc-082",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about exec are correct?",
+      "options": [
+        "It replaces the caller?s program image on success",
+        "It normally preserves the process PID",
+        "It creates a child process by itself",
+        "It returns to the old image after successful replacement"
+      ],
+      "answer": [
+        "It replaces the caller?s program image on success",
+        "It normally preserves the process PID"
+      ],
+      "explanation": "Exec overlays the current process image and retains its identity. It does not create a child, and a successful exec does not return to the old code path."
+    },
+    {
+      "id": "os-proc-083",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which events can move a process from running to ready?",
+      "options": [
+        "timer preemption",
+        "preemption by a higher-priority process",
+        "blocking on an unavailable pipe read",
+        "normal process exit"
+      ],
+      "answer": [
+        "timer preemption",
+        "preemption by a higher-priority process"
+      ],
+      "explanation": "Preemption leaves a process runnable, placing it in ready. An unavailable blocking read moves it to blocked, while exit terminates it."
+    },
+    {
+      "id": "os-proc-084",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about a zombie are correct?",
+      "options": [
+        "It has terminated execution",
+        "It may retain an exit status for its parent",
+        "It continues consuming CPU instructions",
+        "A parent can remove its record by collecting its status"
+      ],
+      "answer": [
+        "It has terminated execution",
+        "It may retain an exit status for its parent",
+        "A parent can remove its record by collecting its status"
+      ],
+      "explanation": "A zombie has no executing code and consumes no CPU. Its minimal status record remains until a parent or reaper collects it."
+    },
+    {
+      "id": "os-proc-085",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which resources are commonly inherited or duplicated across fork in Unix-like systems?",
+      "options": [
+        "environment variables",
+        "current working directory",
+        "open file descriptors",
+        "the child PID"
+      ],
+      "answer": [
+        "environment variables",
+        "current working directory",
+        "open file descriptors"
+      ],
+      "explanation": "The child inherits environment and working-directory state, and receives descriptor entries referring to open file descriptions. It receives a new PID."
+    },
+    {
+      "id": "os-proc-086",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about process context switching are correct?",
+      "options": [
+        "It saves enough CPU state to resume the outgoing process",
+        "It always copies the entire outgoing address space",
+        "It may occur after a timer interrupt",
+        "It is identical to every user-to-kernel mode transition"
+      ],
+      "answer": [
+        "It saves enough CPU state to resume the outgoing process",
+        "It may occur after a timer interrupt"
+      ],
+      "explanation": "A context switch preserves CPU state and may be selected after a timer interrupt. It does not require copying the address space and is distinct from a mode switch."
+    },
+    {
+      "id": "os-proc-087",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which situations can leave a process blocked?",
+      "options": [
+        "waiting for disk I/O completion",
+        "waiting in a blocking wait for a child",
+        "waiting for data on an empty blocking pipe",
+        "being eligible but not yet selected by the scheduler"
+      ],
+      "answer": [
+        "waiting for disk I/O completion",
+        "waiting in a blocking wait for a child",
+        "waiting for data on an empty blocking pipe"
+      ],
+      "explanation": "The first three require an event before progress and are blocked conditions. A runnable process awaiting CPU time is ready, not blocked."
+    },
+    {
+      "id": "os-proc-088",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about wait are correct?",
+      "options": [
+        "A successful call can collect one terminated child",
+        "A blocking wait can suspend the caller while a child is still running",
+        "One call must collect all terminated children",
+        "A process with no eligible children can receive an error"
+      ],
+      "answer": [
+        "A successful call can collect one terminated child",
+        "A blocking wait can suspend the caller while a child is still running",
+        "A process with no eligible children can receive an error"
+      ],
+      "explanation": "A wait operation reports one child?s status per successful call and can block until one is available. With no eligible child, it normally reports an error."
+    },
+    {
+      "id": "os-proc-089",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which outcomes are possible after a child exits before its parent?",
+      "options": [
+        "The child is briefly a zombie",
+        "The child may be adopted if the parent exits",
+        "The child continues executing as an orphan",
+        "Its exit status can be collected by a wait operation"
+      ],
+      "answer": [
+        "The child is briefly a zombie",
+        "The child may be adopted if the parent exits",
+        "Its exit status can be collected by a wait operation"
+      ],
+      "explanation": "An exited child can be a zombie and its parent can collect the status. If the parent also exits, an orphaned living child may be adopted; an exited child does not continue executing."
+    },
+    {
+      "id": "os-proc-090",
+      "type": "MSQ",
+      "difficulty": "CHALLENGING",
+      "prompt": "Which statements about ready and blocked states are correct?",
+      "options": [
+        "A ready process needs CPU allocation to run",
+        "A blocked process awaits an event",
+        "I/O completion commonly moves blocked to ready",
+        "A ready process is necessarily executing"
+      ],
+      "answer": [
+        "A ready process needs CPU allocation to run",
+        "A blocked process awaits an event",
+        "I/O completion commonly moves blocked to ready"
+      ],
+      "explanation": "Ready means runnable but awaiting dispatch. Blocked means waiting for an event; its completion makes the process ready. Only running processes currently execute."
+    },
+    {
+      "id": "os-proc-091",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process creates two children. The parent waits for the first child specifically; that child exits, but the second remains blocked. Which statement is guaranteed?",
+      "options": [
+        "The parent?s wait for the first child can return while the second remains alive",
+        "The parent must wait for both children before returning",
+        "The second child is automatically terminated",
+        "The first child becomes an orphan"
+      ],
+      "answer": [
+        "The parent?s wait for the first child can return while the second remains alive"
+      ],
+      "explanation": "A wait targeting a particular child can complete when that child terminates. It imposes no requirement that a sibling also exit."
+    },
+    {
+      "id": "os-proc-092",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A program has one process before entering a loop. Every iteration forks, but all children immediately exit and only the original parent continues. How does the number of loop iterations affect the final live-process count?",
+      "options": [
+        "It remains one",
+        "It doubles every iteration",
+        "It increases by one per iteration",
+        "It is always the number of iterations"
+      ],
+      "answer": [
+        "It remains one"
+      ],
+      "explanation": "Although a transient child is created each time, it exits before the next iteration. The original process is the sole continuing loop participant."
+    },
+    {
+      "id": "os-proc-093",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process has a pending child exit status. The parent calls wait and collects it. Which resource is released as a direct result?",
+      "options": [
+        "The child?s retained termination record",
+        "The parent?s address space",
+        "The child?s executable file on disk",
+        "The scheduler?s ready queue"
+      ],
+      "answer": [
+        "The child?s retained termination record"
+      ],
+      "explanation": "Reaping releases the kernel bookkeeping retained for the terminated child. It does not remove the parent?s memory or the executable file itself."
+    },
+    {
+      "id": "os-proc-094",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A fork is followed by child code that changes a global variable. The parent reads its global afterward. What determines whether the parent sees the child?s change?",
+      "options": [
+        "The child?s private address-space semantics prevent the write from changing the parent copy",
+        "The scheduler determines whether globals are shared",
+        "The parent sees it only if it waits",
+        "All globals are shared after fork"
+      ],
+      "answer": [
+        "The child?s private address-space semantics prevent the write from changing the parent copy"
+      ],
+      "explanation": "The child and parent have separate logical address spaces after fork. A child?s ordinary write affects its own copy, regardless of scheduling or wait."
+    },
+    {
+      "id": "os-proc-095",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process is blocked for a child to exit. The child exits. What is the parent?s next scheduling state before it runs again?",
+      "options": [
+        "ready",
+        "running immediately",
+        "terminated",
+        "new"
+      ],
+      "answer": [
+        "ready"
+      ],
+      "explanation": "The event makes the parent eligible and moves it to ready. A later dispatch is required before it executes again."
+    },
+    {
+      "id": "os-proc-096",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process forks once and then both branches execute a print statement exactly once. How many prints occur?",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "answer": [
+        "2"
+      ],
+      "explanation": "Both parent and child resume after the fork and each reaches the print once. Therefore there are two executions of the statement."
+    },
+    {
+      "id": "os-proc-097",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A parent creates a child and then immediately calls exec itself. What happens to the already created child?",
+      "options": [
+        "It remains a separate process; exec replaces only the parent image",
+        "The child is merged into the parent",
+        "The child is automatically reparented to itself",
+        "The child?s PID becomes the parent PID"
+      ],
+      "answer": [
+        "It remains a separate process; exec replaces only the parent image"
+      ],
+      "explanation": "Exec changes the calling process?s image. It does not undo prior process creation or alter the independent child?s identity."
+    },
+    {
+      "id": "os-proc-098",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A CPU-bound process is preempted at the end of its quantum and remains runnable. Which state transition occurs?",
+      "options": [
+        "running to ready",
+        "running to blocked",
+        "ready to blocked",
+        "running to zombie"
+      ],
+      "answer": [
+        "running to ready"
+      ],
+      "explanation": "Quantum expiration does not imply an event wait or termination. The process is placed back in the ready queue."
+    },
+    {
+      "id": "os-proc-099",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A process makes a blocking system call for input. The device completes the request. Does the process execute immediately at completion?",
+      "options": [
+        "No, it becomes ready and must be dispatched",
+        "Yes, completion directly gives it the CPU",
+        "No, it becomes terminated",
+        "Yes, it skips the scheduler"
+      ],
+      "answer": [
+        "No, it becomes ready and must be dispatched"
+      ],
+      "explanation": "I/O completion makes the process runnable, but CPU ownership is assigned separately by the scheduler. It enters ready before running."
+    },
+    {
+      "id": "os-proc-100",
+      "type": "MCQ",
+      "difficulty": "MODERATE",
+      "prompt": "A child exits and is reaped. Can the parent later obtain that same child?s exit status with another wait?",
+      "options": [
+        "No, the status record has already been collected",
+        "Yes, any number of times",
+        "Only after the parent forks again",
+        "Only if the child is restarted"
+      ],
+      "answer": [
+        "No, the status record has already been collected"
+      ],
+      "explanation": "Reaping consumes the pending status record. A later wait cannot collect it again as a still-waitable terminated child."
+    }
+  ]
+}
